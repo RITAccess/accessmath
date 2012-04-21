@@ -46,6 +46,6 @@
 -(void)resetEraser:(BOOL)isSet;
 -(void)changeEraserLocationTo:(CGPoint)locationPoint;
 
-@property (nonatomic,retain) IBOutlet UISegmentedControl* segmentedControl;
+@property (nonatomic) IBOutlet UISegmentedControl* segmentedControl;
 
 @end

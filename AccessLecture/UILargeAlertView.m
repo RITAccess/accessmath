@@ -37,7 +37,6 @@
         
         UIImage* image = [UIImage imageNamed:@"AlertBG.png"];
         self.backgroundImage = image;
-        [image release];
 		self.alertText = text;
     }
     return self;
@@ -78,10 +77,6 @@
     [self dismissWithClickedButtonIndex:0 animated:YES];
 }
 
--(void)dealloc {
-    [backgroundImage release];
-    [super dealloc];
-}
 
 
 @end

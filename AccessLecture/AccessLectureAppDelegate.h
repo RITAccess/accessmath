@@ -16,9 +16,9 @@
 
 }
 
-@property (nonatomic, retain) IBOutlet UIWindow* window;
-@property (nonatomic, retain) NSUserDefaults* defaults;
-@property (nonatomic, retain) IBOutlet RootViewController* rootViewController;
-@property (nonatomic, retain) IBOutlet UINavigationController* navigationController;
+@property (nonatomic) IBOutlet UIWindow* window;
+@property (nonatomic) NSUserDefaults* defaults;
+@property (nonatomic) IBOutlet RootViewController* rootViewController;
+@property (nonatomic) IBOutlet UINavigationController* navigationController;
 
 @end

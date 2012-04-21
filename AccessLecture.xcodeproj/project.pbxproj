@@ -23,6 +23,8 @@
 		3F73880C13A6922F00F2E7CA /* sliderSpeedMax.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F73880B13A6922F00F2E7CA /* sliderSpeedMax.png */; };
 		3F78A40713D5C1160048A579 /* UILargeAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F78A40513D5C1160048A579 /* UILargeAlertView.m */; };
 		3F959F0713C7555500A6DA79 /* ClearNotes.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F959F0613C7555500A6DA79 /* ClearNotes.png */; };
+		3F99F20215436E090065CBB9 /* Lecture.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F99F20115436E090065CBB9 /* Lecture.m */; };
+		3F99F209154375270065CBB9 /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F99F208154375270065CBB9 /* Position.m */; };
 		3FA3DBDD139E6887001525C6 /* ZoomHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA3DBDC139E6887001525C6 /* ZoomHandler.m */; };
 		3FA5387613A2500C0025A855 /* IASKAppSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA5385013A2500C0025A855 /* IASKAppSettingsViewController.m */; };
 		3FA5387713A2500C0025A855 /* IASKAppSettingsWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA5385213A2500C0025A855 /* IASKAppSettingsWebViewController.m */; };
@@ -50,6 +52,7 @@
 		3FC32EBC13E05E0F00077291 /* biology.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FC32EBA13E05E0F00077291 /* biology.png */; };
 		3FC32EBD13E05E0F00077291 /* geometry.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FC32EBB13E05E0F00077291 /* geometry.png */; };
 		3FC85673139D2CF90028DEB5 /* LectureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FC85672139D2CF90028DEB5 /* LectureViewController.m */; };
+		3FCD5D0B15437D0A005F2A60 /* AccessDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F99F1FD154364270065CBB9 /* AccessDocument.m */; };
 		3FED960C1370863E00D8D1B8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FED960B1370863E00D8D1B8 /* UIKit.framework */; };
 		3FED960E1370863E00D8D1B8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FED960D1370863E00D8D1B8 /* Foundation.framework */; };
 		3FED96101370863E00D8D1B8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FED960F1370863E00D8D1B8 /* CoreGraphics.framework */; };
@@ -105,6 +108,16 @@
 		3F78A40513D5C1160048A579 /* UILargeAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UILargeAlertView.m; sourceTree = "<group>"; };
 		3F78A40613D5C1160048A579 /* UILargeAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UILargeAlertView.xib; sourceTree = "<group>"; };
 		3F959F0613C7555500A6DA79 /* ClearNotes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ClearNotes.png; path = "Lecture View Images/ClearNotes.png"; sourceTree = "<group>"; };
+		3F99F1F91543641E0065CBB9 /* FileManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileManager.h; sourceTree = "<group>"; };
+		3F99F1FA1543641E0065CBB9 /* FileManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileManager.m; sourceTree = "<group>"; };
+		3F99F1FC154364270065CBB9 /* AccessDocument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccessDocument.h; sourceTree = "<group>"; };
+		3F99F1FD154364270065CBB9 /* AccessDocument.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccessDocument.m; sourceTree = "<group>"; };
+		3F99F1FE154364270065CBB9 /* Note.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
+		3F99F1FF154364270065CBB9 /* Note.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
+		3F99F20015436E090065CBB9 /* Lecture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lecture.h; sourceTree = "<group>"; };
+		3F99F20115436E090065CBB9 /* Lecture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lecture.m; sourceTree = "<group>"; };
+		3F99F207154375270065CBB9 /* Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Position.h; sourceTree = "<group>"; };
+		3F99F208154375270065CBB9 /* Position.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Position.m; sourceTree = "<group>"; };
 		3FA3DBDB139E6887001525C6 /* ZoomHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZoomHandler.h; path = core/ZoomHandler.h; sourceTree = "<group>"; };
 		3FA3DBDC139E6887001525C6 /* ZoomHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZoomHandler.m; path = core/ZoomHandler.m; sourceTree = "<group>"; };
 		3FA5384F13A2500C0025A855 /* IASKAppSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IASKAppSettingsViewController.h; sourceTree = "<group>"; };
@@ -280,6 +293,14 @@
 		3F99F1EE15435FA80065CBB9 /* UIDocument */ = {
 			isa = PBXGroup;
 			children = (
+				3F99F1FC154364270065CBB9 /* AccessDocument.h */,
+				3F99F1FD154364270065CBB9 /* AccessDocument.m */,
+				3F99F1FE154364270065CBB9 /* Note.h */,
+				3F99F1FF154364270065CBB9 /* Note.m */,
+				3F99F20015436E090065CBB9 /* Lecture.h */,
+				3F99F20115436E090065CBB9 /* Lecture.m */,
+				3F99F207154375270065CBB9 /* Position.h */,
+				3F99F208154375270065CBB9 /* Position.m */,
 			);
 			name = UIDocument;
 			sourceTree = "<group>";
@@ -287,6 +308,8 @@
 		3F99F1EF15435FB40065CBB9 /* FileManager */ = {
 			isa = PBXGroup;
 			children = (
+				3F99F1F91543641E0065CBB9 /* FileManager.h */,
+				3F99F1FA1543641E0065CBB9 /* FileManager.m */,
 			);
 			name = FileManager;
 			sourceTree = "<group>";
@@ -614,6 +637,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FCD5D0B15437D0A005F2A60 /* AccessDocument.m in Sources */,
 				3FED96191370863E00D8D1B8 /* main.m in Sources */,
 				3FED961C1370863E00D8D1B8 /* AccessLectureAppDelegate.m in Sources */,
 				3FED96221370863E00D8D1B8 /* RootViewController.m in Sources */,
@@ -639,6 +663,8 @@
 				3F2DB24113A65C2D00041736 /* ColorViewController.m in Sources */,
 				3F0DBDD613BD174900E3FEE8 /* AboutViewController.m in Sources */,
 				3F78A40713D5C1160048A579 /* UILargeAlertView.m in Sources */,
+				3F99F20215436E090065CBB9 /* Lecture.m in Sources */,
+				3F99F209154375270065CBB9 /* Position.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -715,10 +741,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AccessLecture/AccessLecture-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "AccessLecture/AccessLecture-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -732,9 +760,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AccessLecture/AccessLecture-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "AccessLecture/AccessLecture-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -6,6 +6,8 @@
 #import "IASKSettingsReader.h"
 #import "UILargeAlertView.h"
 
+
+
 #define ZOOM_VIEW_TAG 100
 #define MIN_ZOOM_SCALE 1.0
 #define MAX_ZOOM_SCALE 20
@@ -331,18 +333,6 @@ float oldZoomScale;
 /**
  Release resources from memory
  */
-- (void)dealloc {
-    
-    [t release];
-	[scrollView release];
-	[imageView release];
-    [notesViewController release];
-    [appSettingsViewController release];
-    [bottomToolbar release];
-    [topToolbar release];
-    [receivedData release];
-    [super dealloc];
-}
 
 /**
  View is unloaded
@@ -350,9 +340,7 @@ float oldZoomScale;
 - (void)viewDidUnload {
     
     [t invalidate];
-    [bottomToolbar release];
     bottomToolbar = nil;
-    [topToolbar release];
     topToolbar = nil;
     [super viewDidUnload];
 }
@@ -375,7 +363,6 @@ float oldZoomScale;
                                 img.size.width * [scrollView zoomScale],img.size.height * [scrollView zoomScale])];
     [notesViewController.imageView setFrame:CGRectMake(0, 0,
                                 img.size.width * [scrollView zoomScale],img.size.height *[scrollView zoomScale])];
-    [img release];
     //NSLog(@"Succeeded! Received %d bytes of data",[receivedData length]);
     
     [imageView sizeToFit];
@@ -386,8 +373,6 @@ float oldZoomScale;
     }
     
     // Release the connection, and the data object
-    [connection release];
-    [receivedData release];
 }
 
 /**
@@ -420,8 +405,6 @@ float oldZoomScale;
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError*) error {
     
     // release the connection, and the data object
-    [connection release];
-    [receivedData release];
     
     // inform the user
     NSLog(@"Connection failed! Error - %@ %@",
@@ -472,7 +455,7 @@ float oldZoomScale;
         
         if (theConnection) {
             // Create the NSMutableData to hold the received data.
-            receivedData = [[NSMutableData data] retain];
+            receivedData = [NSMutableData data];
             loading = true;
         }
     }

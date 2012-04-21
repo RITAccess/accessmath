@@ -57,18 +57,6 @@
 /**
  Deallocate memory
  */
-- (void)dealloc {
-    [redToolSlider release];
-    [greenToolSlider release];
-    [blueToolSlider release];
-    [redTextSlider release];
-    [greenTextSlider release];
-    [blueTextSlider release];
-    [transparencySlider release];
-    [preview release];
-    [previewLabel release];
-    [super dealloc];
-}
 
 /**
  Memory warning

@@ -18,11 +18,6 @@
 /**
  Deallocate memory
  */
-- (void)dealloc {
-    [scrollView release];
-    [mainView release];
-    [super dealloc];
-}
 
 /**
  Memory management problem
@@ -74,7 +69,6 @@
  */
 - (void)viewDidUnload {
     scrollView = nil;
-    [mainView release];
     mainView = nil;
     [super viewDidUnload];
 }

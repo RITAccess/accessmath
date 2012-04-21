@@ -154,12 +154,11 @@ bool resetChanges = true;
 	if (!_file) {
 		return @"Root";
 	}
-	return [[_file retain] autorelease];
+	return _file;
 }
 
 - (void)setFile:(NSString *)file {
 	if (file != _file) {
-		[_file release];
 		_file = [file copy];
 	}
 	
@@ -215,7 +214,7 @@ bool resetChanges = true;
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
 	self.tableView = nil;
-	[_viewList release], _viewList = nil;
+	_viewList = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -238,7 +237,6 @@ bool resetChanges = true;
                                                                                     target:self 
                                                                                     action:@selector(dismiss:)];
         self.navigationItem.rightBarButtonItem = buttonItem;
-        [buttonItem release];
     } 
 	
 	if (self.currentIndexPath) {
@@ -318,17 +316,16 @@ bool resetChanges = true;
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 
-    [_viewList release], _viewList = nil;
-    [_currentIndexPath release], _currentIndexPath = nil;
-	[_file release], _file = nil;
-	[_currentFirstResponder release], _currentFirstResponder = nil;
-	[_settingsReader release], _settingsReader = nil;
-    [_settingsStore release], _settingsStore = nil;
-	[_tableView release], _tableView = nil;
+    _viewList = nil;
+    _currentIndexPath = nil;
+	_file = nil;
+	_currentFirstResponder = nil;
+	_settingsReader = nil;
+    _settingsStore = nil;
+	_tableView = nil;
 	
 	_delegate = nil;
 
-    [super dealloc];
 }
 
 
@@ -502,7 +499,7 @@ bool resetChanges = true;
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[specifier type]];
         
         if (!cell) {
-            cell = [[[IASKPSTitleValueSpecifierViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:[specifier type]] autorelease];
+            cell = [[IASKPSTitleValueSpecifierViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:[specifier type]];
 			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		}
         [[cell textLabel] setText:[specifier title]];
@@ -514,7 +511,7 @@ bool resetChanges = true;
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[specifier type]];
         
         if (!cell) {
-            cell = [[[IASKPSTitleValueSpecifierViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:[specifier type]] autorelease];
+            cell = [[IASKPSTitleValueSpecifierViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:[specifier type]];
 			cell.accessoryType = UITableViewCellAccessoryNone;
         }
 		
@@ -597,7 +594,7 @@ bool resetChanges = true;
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[specifier type]];
         
         if (!cell) {
-            cell = [[[IASKPSTitleValueSpecifierViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:[specifier type]] autorelease];
+            cell = [[IASKPSTitleValueSpecifierViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:[specifier type]];
 			[cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
         }
 
@@ -607,7 +604,7 @@ bool resetChanges = true;
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[specifier type]];
         
         if (!cell) {
-            cell = [[[IASKPSTitleValueSpecifierViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:[specifier type]] autorelease];
+            cell = [[IASKPSTitleValueSpecifierViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:[specifier type]];
 			[cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
         }
 
@@ -618,7 +615,7 @@ bool resetChanges = true;
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[specifier type]];
 		
         if (!cell) {
-            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[specifier type]] autorelease];
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[specifier type]];
         }
         cell.textLabel.text = [specifier title];
         cell.textLabel.textAlignment = UITextAlignmentCenter;
@@ -627,7 +624,7 @@ bool resetChanges = true;
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[specifier type]];
         
         if (!cell) {
-            cell = [[[IASKPSTitleValueSpecifierViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:[specifier type]] autorelease];
+            cell = [[IASKPSTitleValueSpecifierViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:[specifier type]];
 			[cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
         }
         
@@ -641,7 +638,7 @@ bool resetChanges = true;
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[specifier type]];
 		
         if (!cell) {
-            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[specifier type]] autorelease];
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[specifier type]];
         }
         [[cell textLabel] setText:[specifier title]];
         return cell;
@@ -677,7 +674,6 @@ bool resetChanges = true;
             // add the new view controller to the dictionary and then to the 'viewList' array
             [newItemDict setObject:targetViewController forKey:@"viewController"];
             [_viewList replaceObjectAtIndex:kIASKSpecifierValuesViewControllerIndex withObject:newItemDict];
-            [targetViewController release];
             
             // load the view controll back in to push it
             targetViewController = [[_viewList objectAtIndex:kIASKSpecifierValuesViewControllerIndex] objectForKey:@"viewController"];
@@ -714,7 +710,6 @@ bool resetChanges = true;
 			}
 			self.navigationController.delegate = nil;
             [self.navigationController pushViewController:vc animated:YES];
-            [vc release];
             return;
         }
         
@@ -739,7 +734,6 @@ bool resetChanges = true;
             // add the new view controller to the dictionary and then to the 'viewList' array
             [newItemDict setObject:targetViewController forKey:@"viewController"];
             [_viewList replaceObjectAtIndex:kIASKSpecifierChildViewControllerIndex withObject:newItemDict];
-            [targetViewController release];
             
             // load the view controll back in to push it
             targetViewController = [[_viewList objectAtIndex:kIASKSpecifierChildViewControllerIndex] objectForKey:@"viewController"];
@@ -809,7 +803,6 @@ bool resetChanges = true;
             
             mailViewController.mailComposeDelegate = vc;
             [vc presentModalViewController:mailViewController animated:YES];
-            [mailViewController release];
         } else {
             UIAlertView *alert = [[UIAlertView alloc]
                                   initWithTitle:NSLocalizedString(@"Mail not configured", @"InAppSettingsKit")
@@ -818,7 +811,6 @@ bool resetChanges = true;
                                   cancelButtonTitle:NSLocalizedString(@"OK", @"InAppSettingsKit")
                                   otherButtonTitles:nil];
             [alert show];
-            [alert release];
         }
 
 	} else {

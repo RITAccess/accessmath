@@ -55,7 +55,7 @@
 -(void)handleZoomWith: (float) newScale andZoomType: (BOOL) zoomType;
 -(void)resetImageZoom: (UIGestureRecognizer *)gestureRecognizer;
 
-@property (nonatomic, retain) IASKAppSettingsViewController* appSettingsViewController;
+@property (nonatomic) IASKAppSettingsViewController* appSettingsViewController;
 
 @end
 

@@ -40,8 +40,8 @@
 
 }
 
-@property (nonatomic, retain) IBOutlet UISegmentedControl* segmentedControl;
-@property (nonatomic, retain) IBOutlet UIImageView* imageView;
+@property (nonatomic) IBOutlet UISegmentedControl* segmentedControl;
+@property (nonatomic) IBOutlet UIImageView* imageView;
 
 -(IBAction) segmentedControlIndexChanged;
 -(void)settingsChange;

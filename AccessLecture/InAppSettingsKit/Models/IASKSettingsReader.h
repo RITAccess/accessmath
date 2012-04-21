@@ -133,10 +133,10 @@ __VA_ARGS__ \
 - (NSString*)titleForStringId:(NSString*)stringId;
 - (NSString*)pathForImageNamed:(NSString*)image;
 
-@property (nonatomic, retain) NSString      *path;
-@property (nonatomic, retain) NSString      *localizationTable;
-@property (nonatomic, retain) NSString      *bundlePath;
-@property (nonatomic, retain) NSDictionary  *settingsBundle;
-@property (nonatomic, retain) NSArray       *dataSource;
+@property (nonatomic) NSString      *path;
+@property (nonatomic) NSString      *localizationTable;
+@property (nonatomic) NSString      *bundlePath;
+@property (nonatomic) NSDictionary  *settingsBundle;
+@property (nonatomic) NSArray       *dataSource;
 
 @end

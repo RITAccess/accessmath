@@ -52,8 +52,5 @@
 /**
  Release resources from memory
  */
-- (void)dealloc{
-    [super dealloc];
-}
 
 @end

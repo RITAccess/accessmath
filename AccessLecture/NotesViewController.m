@@ -336,11 +336,5 @@
 /**
  Release resources from memory
  */
-- (void)dealloc {
-    [eraser release];
-    [segmentedControl release];
-    [imageView release];
-    [super dealloc];
-} 
 
 @end

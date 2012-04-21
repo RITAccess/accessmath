@@ -43,10 +43,5 @@
 /**
  Release resources from memory
  */
-- (void)dealloc{
-    [window release];
-    [navigationController release];
-    [super dealloc];
-}
 
 @end

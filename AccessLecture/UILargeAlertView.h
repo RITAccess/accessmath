@@ -20,7 +20,7 @@
 
 -(id)initWithText:(NSString *)text fontSize:(int)fontSize;
 
-@property(readwrite, retain) UIImage *backgroundImage;
-@property(readwrite, retain) NSString *alertText;
+@property(readwrite) UIImage *backgroundImage;
+@property(readwrite) NSString *alertText;
 
 @end

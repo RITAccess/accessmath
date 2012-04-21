@@ -320,13 +320,5 @@
 /**
  Release resources from memory
  */
-- (void)dealloc {
-    [drawingView release];
-    [eraser release];
-    [parentScrollView release];
-    [segmentedControl release];
-    [drawingView release];
-    [super dealloc];
-} 
 
 @end
