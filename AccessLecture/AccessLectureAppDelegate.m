@@ -14,7 +14,7 @@
     rootViewController = [[RootViewController alloc] initWithNibName:@"RootViewController" bundle:nil];
     
     // Initialize the navigation cobtroller with the root view controller 
-    [navigationController initWithRootViewController: rootViewController];
+    navigationController = [navigationController initWithRootViewController: rootViewController];
     
     // Set the application defaults
     defaults = [NSUserDefaults standardUserDefaults];

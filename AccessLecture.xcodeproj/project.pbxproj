@@ -53,6 +53,7 @@
 		3FC32EBD13E05E0F00077291 /* geometry.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FC32EBB13E05E0F00077291 /* geometry.png */; };
 		3FC85673139D2CF90028DEB5 /* LectureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FC85672139D2CF90028DEB5 /* LectureViewController.m */; };
 		3FCD5D0B15437D0A005F2A60 /* AccessDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F99F1FD154364270065CBB9 /* AccessDocument.m */; };
+		3FCD5D1715438472005F2A60 /* AccessLectureRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FCD5D1615438472005F2A60 /* AccessLectureRuntime.m */; };
 		3FED960C1370863E00D8D1B8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FED960B1370863E00D8D1B8 /* UIKit.framework */; };
 		3FED960E1370863E00D8D1B8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FED960D1370863E00D8D1B8 /* Foundation.framework */; };
 		3FED96101370863E00D8D1B8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FED960F1370863E00D8D1B8 /* CoreGraphics.framework */; };
@@ -161,6 +162,8 @@
 		3FC32EBA13E05E0F00077291 /* biology.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = biology.png; path = ../biology.png; sourceTree = "<group>"; };
 		3FC32EBB13E05E0F00077291 /* geometry.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = geometry.png; path = ../geometry.png; sourceTree = "<group>"; };
 		3FC85672139D2CF90028DEB5 /* LectureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LectureViewController.m; sourceTree = "<group>"; };
+		3FCD5D1515438472005F2A60 /* AccessLectureRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccessLectureRuntime.h; sourceTree = "<group>"; };
+		3FCD5D1615438472005F2A60 /* AccessLectureRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccessLectureRuntime.m; sourceTree = "<group>"; };
 		3FED96071370863E00D8D1B8 /* AccessLecture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AccessLecture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FED960B1370863E00D8D1B8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3FED960D1370863E00D8D1B8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -409,6 +412,38 @@
 			name = LectureViewController;
 			sourceTree = "<group>";
 		};
+		3FCD5D1115438265005F2A60 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3F78A40213D5C0DD0048A579 /* Accessible Subclasses */,
+				3F0D2257137AD912009CCDB3 /* Inline NoteBox */,
+				3FED963113708E4E00D8D1B8 /* Root View */,
+				3F7E63DD139D624E0021466E /* Settings View */,
+				3FED965F1370941700D8D1B8 /* Notes View */,
+				3FED963213708E5100D8D1B8 /* Lecture View */,
+				3F0DBDCC13BD170C00E3FEE8 /* About View */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		3FCD5D131543829A005F2A60 /* Application Architecture */ = {
+			isa = PBXGroup;
+			children = (
+				3FED963013708E0000D8D1B8 /* App Delegate */,
+			);
+			name = "Application Architecture";
+			sourceTree = "<group>";
+		};
+		3FCD5D14154382F5005F2A60 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3F99F1ED15435F9D0065CBB9 /* Document Model */,
+				3FCD5D1515438472005F2A60 /* AccessLectureRuntime.h */,
+				3FCD5D1615438472005F2A60 /* AccessLectureRuntime.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		3FED95FC1370863E00D8D1B8 = {
 			isa = PBXGroup;
 			children = (
@@ -445,15 +480,9 @@
 		3FED96111370863E00D8D1B8 /* AccessLecture */ = {
 			isa = PBXGroup;
 			children = (
-				3F99F1ED15435F9D0065CBB9 /* Document Model */,
-				3F78A40213D5C0DD0048A579 /* Accessible Subclasses */,
-				3F0DBDCC13BD170C00E3FEE8 /* About View */,
-				3F7E63DD139D624E0021466E /* Settings View */,
-				3FED963013708E0000D8D1B8 /* App Delegate */,
-				3FED965F1370941700D8D1B8 /* Notes View */,
-				3F0D2257137AD912009CCDB3 /* Inline NoteBox */,
-				3FED963213708E5100D8D1B8 /* Lecture View */,
-				3FED963113708E4E00D8D1B8 /* Root View */,
+				3FCD5D14154382F5005F2A60 /* Model */,
+				3FCD5D131543829A005F2A60 /* Application Architecture */,
+				3FCD5D1115438265005F2A60 /* View */,
 			);
 			path = AccessLecture;
 			sourceTree = "<group>";
@@ -665,6 +694,7 @@
 				3F78A40713D5C1160048A579 /* UILargeAlertView.m in Sources */,
 				3F99F20215436E090065CBB9 /* Lecture.m in Sources */,
 				3F99F209154375270065CBB9 /* Position.m in Sources */,
+				3FCD5D1715438472005F2A60 /* AccessLectureRuntime.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
