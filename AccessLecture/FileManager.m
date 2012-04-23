@@ -1,6 +1,6 @@
 //
 //  FileManager.m
-//  UIDocumentExample
+//  AccessLecture
 //
 //  Created by Steven Brunwasser on 3/19/12.
 //  Copyright (c) 2012 Rochester Institute of Technology. All rights reserved.
@@ -26,14 +26,22 @@
     return localDocumentsDirectoryURL;
 }
 
-+ (NSArray *)localDocuments {
++ (NSURL *)iCloudDirectory {
+    NSURL * ubiquity = [[NSFileManager defaultManager] URLForUbiquityContainerIdentifier:nil];
+    return ubiquity;
+}
+
++ (NSArray *)localDocumentsIn:(NSURL *)URL {
     NSError * error = nil;
-    NSURL * localDocs = [self localDocumentsDirectoryURL];
+    NSURL * localDocs = URL;
     if (localDocs == nil) {
         NSLog(@"ERROR!");
         return nil;
     } else {
-        NSArray * localDocuments = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:[self localDocumentsDirectoryURL] includingPropertiesForKeys:nil options:NSDirectoryEnumerationSkipsPackageDescendants error:&error];
+        NSArray * localDocuments = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:localDocs 
+                                                                 includingPropertiesForKeys:nil 
+                                                                                    options:NSDirectoryEnumerationSkipsPackageDescendants 
+                                                                                      error:&error];
         return localDocuments;
     }
 }

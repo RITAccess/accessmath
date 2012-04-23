@@ -10,6 +10,6 @@
 
 @interface AccessLectureRuntime : NSObject
 
-+ (AccessLectureRuntime *)defaults;
++ (AccessLectureRuntime *)defaultRuntime;
 
 @end

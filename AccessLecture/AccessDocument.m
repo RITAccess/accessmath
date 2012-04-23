@@ -15,9 +15,6 @@ static NSString * FILE_TYPE = @"lecture";
 
 @implementation AccessDocument
 
-//
-//  Note object to store all data
-//
 @synthesize notes = _notes;
 @synthesize lecture = _lecture;
 

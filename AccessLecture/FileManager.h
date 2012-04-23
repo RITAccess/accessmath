@@ -1,6 +1,6 @@
 //
 //  FileManager.h
-//  UIDocumentExample
+//  AccessLecture
 //
 //  Created by Steven Brunwasser on 3/19/12.
 //  Copyright (c) 2012 Rochester Institute of Technology. All rights reserved.
@@ -21,9 +21,15 @@
 + (NSURL *)localDocumentsDirectoryURL;
 
 //
-//  get a list of all the files in the documents directory
+// get the iCloud documents directory
+// return nil if none available
 //
-+ (NSArray *)localDocuments;
++ (NSURL *)iCloudDirectory;
+
+//
+//  get a list of all the files in the specified directory
+//
++ (NSArray *)localDocumentsIn:(NSURL *)URL;
 
 //
 //  find a file in the given array of files that fits the given block condition

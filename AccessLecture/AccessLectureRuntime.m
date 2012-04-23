@@ -17,13 +17,10 @@
 @implementation AccessLectureRuntime
 
 - (id)init {
-    if (self = [super init]) {
-        
-    }
-    return self;
+    return [super init];
 }
 
-+ (AccessLectureRuntime *)defaults {
++ (AccessLectureRuntime *)defaultRuntime {
     static AccessLectureRuntime * defaults;
     if (defaults) return defaults;
     defaults = [[AccessLectureRuntime alloc] init];

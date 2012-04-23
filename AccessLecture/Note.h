@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Rochester Institute of Technology. All rights reserved.
 //
 //
-//  A note object to hold data for a document.
+//  A note object to hold data pertaining to user created notes.
 //
 //
 
@@ -16,9 +16,10 @@
 
 @interface Note : NSObject
 
+// the psotion of the note
 @property (strong, nonatomic) Position * position;
+// the image for the note (notes are drawn)
 @property (strong, nonatomic) UIImage * image;
-//@property (strong, nonatomic) NSString * text;
 
 //
 //  default init

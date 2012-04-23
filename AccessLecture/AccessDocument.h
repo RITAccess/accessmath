@@ -20,11 +20,9 @@
 
 @interface AccessDocument : UIDocument
 
-//
-//  We are going to wrap all of our data saved in the document to this note object
-//  (this makes saving and opening the file a little easier on us)
-//
+// a collection of notes in the lecture
 @property (strong, nonatomic) NSMutableArray * notes;
+// the lecture object
 @property (strong, nonatomic) Lecture * lecture;
 
 //
