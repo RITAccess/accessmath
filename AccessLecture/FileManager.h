@@ -24,17 +24,19 @@
 // get the iCloud documents directory
 // return nil if none available
 //
-+ (NSURL *)iCloudDirectory;
++ (NSURL *)iCloudDirectoryURL;
 
 //
 //  get a list of all the files in the specified directory
 //
-+ (NSArray *)localDocumentsIn:(NSURL *)URL;
++ (NSArray *)documentsIn:(NSURL *)URL;
 
 //
 //  find a file in the given array of files that fits the given block condition
 //
 //  the block should take an NSURL* argument and return a BOOL if the NSURL is correct
+//
+//  returns nil if no file was found
 //
 + (NSURL *)findFileIn:(NSArray *)files thatFits:(BOOL(^)(NSURL*))condition;
 

@@ -2,8 +2,8 @@
 //  Position.h
 //  AccessLecture
 //
-//  Created by Student on 4/21/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Created by Steven Brunwasser on 4/21/12.
+//  Copyright (c) 2012 Rochester Institute of Technology. All rights reserved.
 //
 //
 //  An object to keep track of the location of a note relative to an XY plane.

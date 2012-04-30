@@ -2,8 +2,8 @@
 //  Position.m
 //  AccessLecture
 //
-//  Created by Student on 4/21/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Created by Steven Brunwasser on 4/21/12.
+//  Copyright (c) 2012 Rochester Institute of Technology. All rights reserved.
 //
 
 #import "Position.h"

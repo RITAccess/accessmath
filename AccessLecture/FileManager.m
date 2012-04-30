@@ -26,23 +26,23 @@
     return localDocumentsDirectoryURL;
 }
 
-+ (NSURL *)iCloudDirectory {
++ (NSURL *)iCloudDirectoryURL {
     NSURL * ubiquity = [[NSFileManager defaultManager] URLForUbiquityContainerIdentifier:nil];
     return ubiquity;
 }
 
-+ (NSArray *)localDocumentsIn:(NSURL *)URL {
++ (NSArray *)documentsIn:(NSURL *)URL {
     NSError * error = nil;
-    NSURL * localDocs = URL;
-    if (localDocs == nil) {
+    NSURL * docs = URL;
+    if (docs == nil) {
         NSLog(@"ERROR!");
         return nil;
     } else {
-        NSArray * localDocuments = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:localDocs 
-                                                                 includingPropertiesForKeys:nil 
-                                                                                    options:NSDirectoryEnumerationSkipsPackageDescendants 
-                                                                                      error:&error];
-        return localDocuments;
+        NSArray * documents = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:docs 
+                                                            includingPropertiesForKeys:nil 
+                                                                               options:NSDirectoryEnumerationSkipsPackageDescendants 
+                                                                                 error:&error];
+        return documents;
     }
 }
 
