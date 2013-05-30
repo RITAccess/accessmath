@@ -1,6 +1,7 @@
 // Copyright 2011 Access Lecture. All rights reserved.
 
 #import "AccessLectureAppDelegate.h"
+#import "ALNetworkInterface.h"
 
 @implementation AccessLectureAppDelegate
 
@@ -35,6 +36,11 @@
     // Set the starting view
     self.window.rootViewController = self.navigationController;
     [self.window makeKeyAndVisible];
+    
+    // Set up the network socket connection
+    ALNetworkInterface *test = [[ALNetworkInterface alloc] init];
+    [test connect];
+    
     
     return YES;
     

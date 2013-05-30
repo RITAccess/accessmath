@@ -362,7 +362,7 @@ float oldZoomScale;
                                 img.size.width * [scrollView zoomScale],img.size.height * [scrollView zoomScale])];
     [notesViewController.imageView setFrame:CGRectMake(0, 0,
                                 img.size.width * [scrollView zoomScale],img.size.height *[scrollView zoomScale])];
-    //NSLog(@"Succeeded! Received %d bytes of data",[receivedData length]);
+//    NSLog(@"Succeeded! Received %d bytes of data",[receivedData length]);
     
     [imageView sizeToFit];
 	[scrollView setContentSize:CGSizeMake(imageView.frame.size.width, imageView.frame.size.height)];
@@ -417,7 +417,7 @@ float oldZoomScale;
  */
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse*) response {
     [receivedData setLength:0];
-    NSLog(@"Got Response");
+//    NSLog(@"Got Response");
 }
 
 /**
@@ -425,7 +425,7 @@ float oldZoomScale;
  */
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*) data {
     [receivedData appendData:data];
-    NSLog(@"Got Data");
+//    NSLog(@"Got Data");
 }
 
 /**

@@ -85,6 +85,13 @@
 		3FFBACDC13D5DBB700EB4313 /* RedDown.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FFBACD213D5DBB700EB4313 /* RedDown.png */; };
 		3FFBACDD13D5DBB700EB4313 /* RedUp.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FFBACD313D5DBB700EB4313 /* RedUp.png */; };
 		3FFCFB2213A25388003DAB63 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FFCFB2113A25388003DAB63 /* MessageUI.framework */; };
+		4C26E5EF1757B5250050E99F /* ALNetworkInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C26E5EE1757B5250050E99F /* ALNetworkInterface.m */; };
+		4C26E5F81757B57A0050E99F /* base64.c in Sources */ = {isa = PBXBuildFile; fileRef = 4C26E5F11757B57A0050E99F /* base64.c */; };
+		4C26E5F91757B57A0050E99F /* NSData+SRB64Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C26E5F41757B57A0050E99F /* NSData+SRB64Additions.m */; };
+		4C26E5FA1757B57A0050E99F /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C26E5F71757B57A0050E99F /* SRWebSocket.m */; };
+		4C26E5FC1757B5B80050E99F /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C26E5FB1757B5B80050E99F /* libicucore.dylib */; };
+		4C26E5FE1757B5C20050E99F /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C26E5FD1757B5C20050E99F /* CFNetwork.framework */; };
+		4C26E6001757B5CB0050E99F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C26E5FF1757B5CB0050E99F /* Security.framework */; };
 		4C62BECD175651DB00CAF4CF /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F99F1FA1543641E0065CBB9 /* FileManager.m */; };
 /* End PBXBuildFile section */
 
@@ -203,6 +210,18 @@
 		3FFBACD213D5DBB700EB4313 /* RedDown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RedDown.png; sourceTree = "<group>"; };
 		3FFBACD313D5DBB700EB4313 /* RedUp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RedUp.png; sourceTree = "<group>"; };
 		3FFCFB2113A25388003DAB63 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		4C26E5ED1757B5250050E99F /* ALNetworkInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALNetworkInterface.h; sourceTree = "<group>"; };
+		4C26E5EE1757B5250050E99F /* ALNetworkInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALNetworkInterface.m; sourceTree = "<group>"; };
+		4C26E5F11757B57A0050E99F /* base64.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = base64.c; sourceTree = "<group>"; };
+		4C26E5F21757B57A0050E99F /* base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base64.h; sourceTree = "<group>"; };
+		4C26E5F31757B57A0050E99F /* NSData+SRB64Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+SRB64Additions.h"; sourceTree = "<group>"; };
+		4C26E5F41757B57A0050E99F /* NSData+SRB64Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+SRB64Additions.m"; sourceTree = "<group>"; };
+		4C26E5F51757B57A0050E99F /* SocketRocket-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SocketRocket-Prefix.pch"; sourceTree = "<group>"; };
+		4C26E5F61757B57A0050E99F /* SRWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRWebSocket.h; sourceTree = "<group>"; };
+		4C26E5F71757B57A0050E99F /* SRWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRWebSocket.m; sourceTree = "<group>"; };
+		4C26E5FB1757B5B80050E99F /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		4C26E5FD1757B5C20050E99F /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		4C26E5FF1757B5CB0050E99F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +229,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C26E6001757B5CB0050E99F /* Security.framework in Frameworks */,
+				4C26E5FE1757B5C20050E99F /* CFNetwork.framework in Frameworks */,
+				4C26E5FC1757B5B80050E99F /* libicucore.dylib in Frameworks */,
 				3FED960C1370863E00D8D1B8 /* UIKit.framework in Frameworks */,
 				3FED960E1370863E00D8D1B8 /* Foundation.framework in Frameworks */,
 				3FED96101370863E00D8D1B8 /* CoreGraphics.framework in Frameworks */,
@@ -448,6 +470,9 @@
 		3FED95FC1370863E00D8D1B8 = {
 			isa = PBXGroup;
 			children = (
+				4C26E5FF1757B5CB0050E99F /* Security.framework */,
+				4C26E5FD1757B5C20050E99F /* CFNetwork.framework */,
+				4C26E5FB1757B5B80050E99F /* libicucore.dylib */,
 				3FF7FFD413D5E45300B89A5D /* AlertBG.png */,
 				3F73880B13A6922F00F2E7CA /* sliderSpeedMax.png */,
 				3F73880813A6922B00F2E7CA /* sliderSpeedMin.png */,
@@ -481,6 +506,7 @@
 		3FED96111370863E00D8D1B8 /* AccessLecture */ = {
 			isa = PBXGroup;
 			children = (
+				4C26E5EC1757B5030050E99F /* NetworkInterface */,
 				3FCD5D14154382F5005F2A60 /* Model */,
 				3FCD5D131543829A005F2A60 /* Application Architecture */,
 				3FCD5D1115438265005F2A60 /* View */,
@@ -563,6 +589,30 @@
 				3FED9667137096FE00D8D1B8 /* NotesViewController.xib */,
 			);
 			name = "Notes View";
+			sourceTree = "<group>";
+		};
+		4C26E5EC1757B5030050E99F /* NetworkInterface */ = {
+			isa = PBXGroup;
+			children = (
+				4C26E5F01757B57A0050E99F /* SocketRocket */,
+				4C26E5ED1757B5250050E99F /* ALNetworkInterface.h */,
+				4C26E5EE1757B5250050E99F /* ALNetworkInterface.m */,
+			);
+			name = NetworkInterface;
+			sourceTree = "<group>";
+		};
+		4C26E5F01757B57A0050E99F /* SocketRocket */ = {
+			isa = PBXGroup;
+			children = (
+				4C26E5F11757B57A0050E99F /* base64.c */,
+				4C26E5F21757B57A0050E99F /* base64.h */,
+				4C26E5F31757B57A0050E99F /* NSData+SRB64Additions.h */,
+				4C26E5F41757B57A0050E99F /* NSData+SRB64Additions.m */,
+				4C26E5F51757B57A0050E99F /* SocketRocket-Prefix.pch */,
+				4C26E5F61757B57A0050E99F /* SRWebSocket.h */,
+				4C26E5F71757B57A0050E99F /* SRWebSocket.m */,
+			);
+			path = SocketRocket;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -697,6 +747,10 @@
 				3F99F209154375270065CBB9 /* Position.m in Sources */,
 				3FCD5D1715438472005F2A60 /* AccessLectureRuntime.m in Sources */,
 				4C62BECD175651DB00CAF4CF /* FileManager.m in Sources */,
+				4C26E5EF1757B5250050E99F /* ALNetworkInterface.m in Sources */,
+				4C26E5F81757B57A0050E99F /* base64.c in Sources */,
+				4C26E5F91757B57A0050E99F /* NSData+SRB64Additions.m in Sources */,
+				4C26E5FA1757B57A0050E99F /* SRWebSocket.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
