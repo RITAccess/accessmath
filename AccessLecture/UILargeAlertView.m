@@ -77,6 +77,4 @@
     [self dismissWithClickedButtonIndex:0 animated:YES];
 }
 
-
-
 @end
