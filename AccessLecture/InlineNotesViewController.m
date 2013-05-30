@@ -33,7 +33,7 @@
 /**
  Initialization function with a specified height
  */
--(id)initWithHeight:(float)height: (UIScrollView*) sv {
+-(id)initWithHeight:(float)height : (UIScrollView*) sv {
     
     viewHeight = height;
     parentScrollView = sv;

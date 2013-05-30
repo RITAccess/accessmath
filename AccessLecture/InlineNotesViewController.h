@@ -37,7 +37,7 @@
 }
 
 -(id)initWithScrollView:(UIScrollView*)sv;
--(id)initWithHeight:(float)height: (UIScrollView*) sv;
+-(id)initWithHeight:(float)height : (UIScrollView*) sv;
 -(IBAction)backButton:(id)sender;
 -(IBAction)saveButton:(id)sender;
 -(IBAction)segmentedControlIndexChanged;

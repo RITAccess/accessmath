@@ -82,7 +82,7 @@ float oldZoomScale;
     [self.view addSubview:notesViewController.segmentedControl];
     
     // Set up the scrollview
-	scrollView.clipsToBounds = YES;	// default is NO, but we want to restrict drawing within our scrollview
+	scrollView.clipsToBounds = NO;	// default is NO, but we want to restrict drawing within our scrollview
 	[scrollView addSubview:notesViewController.view]; // We want to scroll/zoom the note-taking view as well
     [scrollView setDelegate:self];
     [scrollView setContentMode:UIViewContentModeScaleAspectFit]; // If this is not set, the image will be distorted

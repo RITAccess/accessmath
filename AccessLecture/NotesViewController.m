@@ -158,7 +158,7 @@
         eraser.frame = eraserFrame;
     } else { // pen mode
         CGContextSetLineWidth(UIGraphicsGetCurrentContext(), penRadius);
-        CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), r, g, b, 1.0); 
+        CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), r, g, b, 1.0);
         CGContextSetBlendMode(UIGraphicsGetCurrentContext(), kCGBlendModeNormal);
     }
     

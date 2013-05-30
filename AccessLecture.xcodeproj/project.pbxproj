@@ -73,6 +73,7 @@
 		3FED965C1370909100D8D1B8 /* ZoomOut.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FED96501370909100D8D1B8 /* ZoomOut.png */; };
 		3FED9668137096FF00D8D1B8 /* NotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FED9666137096FE00D8D1B8 /* NotesViewController.m */; };
 		3FED9669137096FF00D8D1B8 /* NotesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FED9667137096FE00D8D1B8 /* NotesViewController.xib */; };
+		3FF2465617567F49004460D9 /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F99F1FA1543641E0065CBB9 /* FileManager.m */; };
 		3FF7FFD513D5E45300B89A5D /* AlertBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FF7FFD413D5E45300B89A5D /* AlertBG.png */; };
 		3FFBACD413D5DBB700EB4313 /* BlackDown.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FFBACCA13D5DBB700EB4313 /* BlackDown.png */; };
 		3FFBACD513D5DBB700EB4313 /* BlackUp.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FFBACCB13D5DBB700EB4313 /* BlackUp.png */; };
@@ -695,6 +696,7 @@
 				3F99F20215436E090065CBB9 /* Lecture.m in Sources */,
 				3F99F209154375270065CBB9 /* Position.m in Sources */,
 				3FCD5D1715438472005F2A60 /* AccessLectureRuntime.m in Sources */,
+				3FF2465617567F49004460D9 /* FileManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -772,6 +774,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Pratik Rasam (RTRNBL5XYF)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -780,6 +784,8 @@
 				INFOPLIST_FILE = "AccessLecture/AccessLecture-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E9A28986-40E6-45BD-BBB0-020FDD0DB8C4";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
@@ -791,6 +797,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Pratik Rasam (RTRNBL5XYF)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AccessLecture/AccessLecture-Prefix.pch";
@@ -798,6 +806,8 @@
 				INFOPLIST_FILE = "AccessLecture/AccessLecture-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E9A28986-40E6-45BD-BBB0-020FDD0DB8C4";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
