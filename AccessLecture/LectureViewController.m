@@ -17,7 +17,7 @@
 #define PASSWORD @"lecture"
 
 //NSString* urlString = @"https://129.21.67.216:5010/common/library/apps/Screen/out.png";
-NSString* urlString = @"https://129.21.84.13:5010/common/library/apps/Screen/out.png";
+NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/test.png";
 float ZOOM_STEP; // The magnification-increment for the +/- icons
 float oldZoomScale;
 
@@ -112,7 +112,7 @@ float oldZoomScale;
      * Update the imageView with a screenshot of the Mac
      */
     shouldSnapToZoom = YES;
-    /* REAL CODE
+    // REAL CODE
     t = [NSTimer scheduledTimerWithTimeInterval:1.0
                                          target:self
                                        selector:@selector(updateImageView)
@@ -120,7 +120,7 @@ float oldZoomScale;
                                         repeats:YES];
     NSRunLoop *runner = [NSRunLoop currentRunLoop];
     [runner addTimer:t forMode: NSDefaultRunLoopMode];
-     */
+     
     
     // Get the scrollView's pan gesture and store it for later use
     for (UIGestureRecognizer* rec in scrollView.gestureRecognizers) {
@@ -417,7 +417,7 @@ float oldZoomScale;
  */
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse*) response {
     [receivedData setLength:0];
-    //NSLog(@"Got Response");
+    NSLog(@"Got Response");
 }
 
 /**
@@ -425,7 +425,7 @@ float oldZoomScale;
  */
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*) data {
     [receivedData appendData:data];
-    //NSLog(@"Got Data");
+    NSLog(@"Got Data");
 }
 
 /**
