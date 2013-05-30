@@ -507,8 +507,8 @@
 			isa = PBXGroup;
 			children = (
 				3FED961D1370863E00D8D1B8 /* MainWindow.xib */,
-				3FED961B1370863E00D8D1B8 /* AccessLectureAppDelegate.m */,
 				3FED961A1370863E00D8D1B8 /* AccessLectureAppDelegate.h */,
+				3FED961B1370863E00D8D1B8 /* AccessLectureAppDelegate.m */,
 			);
 			name = "App Delegate";
 			sourceTree = "<group>";
@@ -774,6 +774,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Michael Timbrook (2383UG2Y7R)";
 				COPY_PHASE_STRIP = NO;
@@ -781,6 +782,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AccessLecture/AccessLecture-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "AccessLecture/AccessLecture-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -797,12 +799,14 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Michael Timbrook (2383UG2Y7R)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AccessLecture/AccessLecture-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "AccessLecture/AccessLecture-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";

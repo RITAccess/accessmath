@@ -50,7 +50,7 @@ float oldZoomScale;
     ZOOM_STEP = [defaults floatForKey:@"userZoomIncrement"];
 	zoomHandler = [[ZoomHandler alloc] initWithZoomLevel: ZOOM_STEP];
 	
-    /* REAL CODE 
+    // REAL CODE 
 	// Set up the imageview
     img = [[UIImage alloc] initWithData:
                     [NSData dataWithContentsOfURL:
@@ -58,15 +58,14 @@ float oldZoomScale;
     imageView = [[UIImageView alloc]initWithImage:img];
 	imageView.userInteractionEnabled = YES;
     [imageView setTag:ZOOM_VIEW_TAG]; 
-     */
     
     /***********
      * USABILITY TESTING CODE
      **********/
-    img = [UIImage imageNamed:[defaults valueForKey:@"testImage"]];
-    imageView = [[UIImageView alloc]initWithImage:img];
-	imageView.userInteractionEnabled = YES;
-    [imageView setTag:ZOOM_VIEW_TAG]; 
+//    img = [UIImage imageNamed:[defaults valueForKey:@"testImage"]];
+//    imageView = [[UIImageView alloc]initWithImage:img];
+//	imageView.userInteractionEnabled = YES;
+//    [imageView setTag:ZOOM_VIEW_TAG]; 
     /*********/
     
     /**
