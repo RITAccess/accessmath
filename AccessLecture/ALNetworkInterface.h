@@ -17,4 +17,8 @@
 - (void)onMessageBlock:(void (^) (NSString *response))hande;
 - (void)sendData:(id)data;
 
+/* Recieve full lecture from server */
+- (void)getFullLecture:(NSString *)lectureName completion:(void (^)(id lecture))handle;
+
+
 @end

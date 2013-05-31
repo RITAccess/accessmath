@@ -18,7 +18,7 @@
     [super setUp];
     
     // Set-up code here.
-    testEchoServer = [[ALNetworkInterface alloc] initWithURL:@"ws://echo.websocket.org"];
+    testEchoServer = [[ALNetworkInterface alloc] initWithURL:@"localhost"];
 }
 
 - (void)tearDown
@@ -36,16 +36,8 @@
 - (void)testSocketBasic
 {
     
-    [testEchoServer sendData:@"Test String"];
-    
-    [testEchoServer onMessageBlock:^(NSString *response) {
-        STAssertEquals(@"Test String", response, @"Echo Failed");
-    }];
-    
-    [testEchoServer sendData:@"Test String"];
-    
-    [testEchoServer onMessageBlock:^(NSString *response) {
-        STAssertFalse([@"" isEqualToString:response], @"Echo Failed");
+    [testEchoServer getFullLecture:@"Some Lecture" completion:^(id lecture) {
+        STAssertTrue(FALSE, @"DATA %@", lecture);
     }];
     
 

@@ -51,12 +51,6 @@
 #error SocketRocket muust be compiled with ARC enabled
 #endif
 
-<<<<<<< HEAD
-//#define SR_ENABLE_LOG 0
-=======
-#define SR_ENABLE_LOG 1
->>>>>>> be24abbf6680b660434ed69b152f3030d9ef3ce1
-
 typedef enum  {
     SROpCodeTextFrame = 0x1,
     SROpCodeBinaryFrame = 0x2,

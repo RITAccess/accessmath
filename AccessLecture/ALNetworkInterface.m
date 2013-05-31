@@ -15,6 +15,9 @@
     SocketIO *socketConnection;
     NSString *connectionURL;
     
+    // Completion Handles
+    void (^lectureRequest)(id lecture);
+    
     // For testing
     void (^onMessage)(NSString *);
 }
@@ -29,6 +32,14 @@
     }
     return self;
 }
+
+#pragma mark Accessing Lecture Requests
+
+- (void)getFullLecture:(NSString *)lectureName completion:(void (^)(id lecture))handle{
+    lectureRequest = handle;
+    [socketConnection sendEvent:@"lecture-request" withData:lectureName];
+}
+
 
 #pragma mark Using Interface
 
@@ -55,7 +66,9 @@
  * Receive Message from server
  */
 - (void) socketIO:(SocketIO *)socket didReceiveEvent:(SocketIOPacket *)packet {
-    NSLog(@"Message: %@", packet.name);
+    if ([packet.name isEqualToString:@"lecture-response"]) {
+        lectureRequest(packet.data);
+    }
     
 }
 
@@ -64,7 +77,6 @@
  */
 - (void) socketIODidConnect:(SocketIO *)socket {
     NSLog(@"Connection open");
-    [socketConnection sendEvent:@"lecture-request" withData:nil];
 }
 
 @end
