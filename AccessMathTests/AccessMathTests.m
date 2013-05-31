@@ -19,7 +19,6 @@
     
     // Set-up code here.
     ALNetworkInterface *testInterface = [[ALNetworkInterface alloc] initWithURL:[NSURL URLWithString:@""]];
-    
 }
 
 - (void)tearDown
