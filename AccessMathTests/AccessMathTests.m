@@ -9,6 +9,7 @@
 #define OFFLINETEST 1
 
 #import "AccessMathTests.h"
+#import "ALNetworkInterface.h"
 
 @implementation AccessMathTests
 
@@ -17,6 +18,8 @@
     [super setUp];
     
     // Set-up code here.
+    ALNetworkInterface *testInterface = [[ALNetworkInterface alloc] initWithURL:[NSURL URLWithString:@""]];
+    
 }
 
 - (void)tearDown

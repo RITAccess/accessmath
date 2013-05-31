@@ -11,16 +11,16 @@
 @implementation ALNetworkInterface {
     
     SRWebSocket *socket;
-    
+    NSURL *connectionURL;
 }
 
 /**
  * Init - set up socket
  */
-- (id)init {
+- (id)initWithURL:(NSURL *)url {
     self = [super init];
     if (self) {
-        // init
+        connectionURL = url;
     }
     return self;
 }

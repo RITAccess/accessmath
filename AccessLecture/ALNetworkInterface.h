@@ -11,6 +11,7 @@
 
 @interface ALNetworkInterface : NSObject <SRWebSocketDelegate>
 
+- (id)initWithURL:(NSURL *)url;
 - (void)connect;
 
 @end
