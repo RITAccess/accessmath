@@ -59,6 +59,13 @@
 		3FC85673139D2CF90028DEB5 /* LectureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FC85672139D2CF90028DEB5 /* LectureViewController.m */; };
 		3FCD5D0B15437D0A005F2A60 /* AccessDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F99F1FD154364270065CBB9 /* AccessDocument.m */; };
 		3FCD5D1715438472005F2A60 /* AccessLectureRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FCD5D1615438472005F2A60 /* AccessLectureRuntime.m */; };
+		3FD681DC175910270072E0BC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C26E5FF1757B5CB0050E99F /* Security.framework */; };
+		3FD681DD175910290072E0BC /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C26E5FD1757B5C20050E99F /* CFNetwork.framework */; };
+		3FD681DE1759102A0072E0BC /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C26E5FB1757B5B80050E99F /* libicucore.dylib */; };
+		3FD681DF175910300072E0BC /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C26E5F71757B57A0050E99F /* SRWebSocket.m */; };
+		3FD681E0175910310072E0BC /* NSData+SRB64Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C26E5F41757B57A0050E99F /* NSData+SRB64Additions.m */; };
+		3FD681E1175910320072E0BC /* base64.c in Sources */ = {isa = PBXBuildFile; fileRef = 4C26E5F11757B57A0050E99F /* base64.c */; };
+		3FD681E2175910340072E0BC /* ALNetworkInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C26E5EE1757B5250050E99F /* ALNetworkInterface.m */; };
 		3FED960C1370863E00D8D1B8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FED960B1370863E00D8D1B8 /* UIKit.framework */; };
 		3FED960E1370863E00D8D1B8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FED960D1370863E00D8D1B8 /* Foundation.framework */; };
 		3FED96101370863E00D8D1B8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FED960F1370863E00D8D1B8 /* CoreGraphics.framework */; };
@@ -242,7 +249,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F9BA9C31758FE1C00BEFB55 /* SenTestingKit.framework in Frameworks */,
+				3FD681DC175910270072E0BC /* Security.framework in Frameworks */,
+				3FD681DE1759102A0072E0BC /* libicucore.dylib in Frameworks */,
 				3F9BA9C41758FE1C00BEFB55 /* UIKit.framework in Frameworks */,
+				3FD681DD175910290072E0BC /* CFNetwork.framework in Frameworks */,
 				3F9BA9C51758FE1C00BEFB55 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -667,8 +677,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3F9BA9D21758FE1C00BEFB55 /* Build configuration list for PBXNativeTarget "AccessMathTests" */;
 			buildPhases = (
-				3F9BA9BC1758FE1C00BEFB55 /* Sources */,
 				3F9BA9BD1758FE1C00BEFB55 /* Frameworks */,
+				3F9BA9BC1758FE1C00BEFB55 /* Sources */,
 				3F9BA9BE1758FE1C00BEFB55 /* Resources */,
 				3F9BA9BF1758FE1C00BEFB55 /* ShellScript */,
 			);
@@ -806,6 +816,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F9BA9CE1758FE1C00BEFB55 /* AccessMathTests.m in Sources */,
+				3FD681E1175910320072E0BC /* base64.c in Sources */,
+				3FD681E2175910340072E0BC /* ALNetworkInterface.m in Sources */,
+				3FD681E0175910310072E0BC /* NSData+SRB64Additions.m in Sources */,
+				3FD681DF175910300072E0BC /* SRWebSocket.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

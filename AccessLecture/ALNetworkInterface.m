@@ -12,6 +12,9 @@
     
     SRWebSocket *socket;
     NSURL *connectionURL;
+    
+    // For testing
+    void (^onMessage)(NSString *);
 }
 
 /**
@@ -25,13 +28,23 @@
     return self;
 }
 
+#pragma mark Using Interface
+
 - (void)connect {
     
-    socket = [[SRWebSocket alloc] initWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"ws://echo.websocket.org"]]];
+    socket = [[SRWebSocket alloc] initWithURLRequest:[NSURLRequest requestWithURL:connectionURL]];
     [socket setDelegate:self];
     
     NSLog(@"Connecting...");
     [socket open];
+}
+
+- (void)onMessageBlock:(void (^) (NSString *response))hande {
+    onMessage = hande;
+}
+
+- (void)sendData:(id)data {
+    [socket send:data];
 }
 
 #pragma mark Socket Methods
@@ -41,6 +54,7 @@
  */
 - (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message {
     NSLog(@"Message: %@", message);
+    onMessage(message);
 }
 
 /**
@@ -62,7 +76,7 @@
  * Socket Close
  */
 - (void)webSocket:(SRWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean {
-    NSLog(@"The connection closed%@", wasClean ? @"." : @" with an error.");
+    NSLog(@"The connection closed%@", wasClean ? @"." : [NSString stringWithFormat:@", reason %@", reason]);
 }
 
 @end

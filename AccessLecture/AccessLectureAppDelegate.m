@@ -38,7 +38,7 @@
     [self.window makeKeyAndVisible];
     
     // Set up the network socket connection
-    _server = [[ALNetworkInterface alloc] init];
+    _server = [[ALNetworkInterface alloc] initWithURL:[NSURL URLWithString:@"ws://localhost:9000"]];
     [_server connect];
     
     

@@ -6,19 +6,19 @@
 //
 //
 
-#define OFFLINETEST 1
-
 #import "AccessMathTests.h"
 #import "ALNetworkInterface.h"
 
-@implementation AccessMathTests
+@implementation AccessMathTests {
+    __strong ALNetworkInterface *testEchoServer;
+}
 
 - (void)setUp
 {
     [super setUp];
     
     // Set-up code here.
-    ALNetworkInterface *testInterface = [[ALNetworkInterface alloc] initWithURL:[NSURL URLWithString:@""]];
+    testEchoServer = [[ALNetworkInterface alloc] initWithURL:[NSURL URLWithString:@"ws://echo.websocket.org"]];
 }
 
 - (void)tearDown
@@ -26,18 +26,29 @@
     // Tear-down code here.
     
     [super tearDown];
+    
+    testEchoServer = nil;
 }
-
-#if OFFLINETEST
 
 /**
  * Tests the socket framwork against and echo server
  */
 - (void)testSocketBasic
 {
-    STAssertTrue(true, @"Not true?");
-}
+    
+    [testEchoServer sendData:@"Test String"];
+    
+    [testEchoServer onMessageBlock:^(NSString *response) {
+        STAssertEquals(@"Test String", response, @"Echo Failed");
+    }];
+    
+    [testEchoServer sendData:@"Test String"];
+    
+    [testEchoServer onMessageBlock:^(NSString *response) {
+        STAssertFalse([@"" isEqualToString:response], @"Echo Failed");
+    }];
+    
 
-#endif
+}
 
 @end

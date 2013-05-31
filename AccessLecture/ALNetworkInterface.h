@@ -13,5 +13,7 @@
 
 - (id)initWithURL:(NSURL *)url;
 - (void)connect;
+- (void)onMessageBlock:(void (^) (NSString *response))hande;
+- (void)sendData:(id)data;
 
 @end
