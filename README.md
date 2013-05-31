@@ -9,7 +9,7 @@ Led by [Stephanie Ludi](https://github.com/retrogamer80s), this project has prev
 * [Piper Chester](https://github.com/piperchester) SE Undergraduate 
 
 ### Status
-View our current discussion, thoughts, and questions on our [wiki](https://github.com/RITAccess/accessmath/wiki/home).
+Currently our build supports iOS 4.0 - iOS 6.0. View our current discussion, thoughts, and questions on our [wiki](https://github.com/RITAccess/accessmath/wiki/home).
 
 ### Documentation
 We're currently maintaining our documentation on Google Drive.
