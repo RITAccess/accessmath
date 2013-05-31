@@ -25,6 +25,11 @@
 		3F959F0713C7555500A6DA79 /* ClearNotes.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F959F0613C7555500A6DA79 /* ClearNotes.png */; };
 		3F99F20215436E090065CBB9 /* Lecture.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F99F20115436E090065CBB9 /* Lecture.m */; };
 		3F99F209154375270065CBB9 /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F99F208154375270065CBB9 /* Position.m */; };
+		3F9BA9C31758FE1C00BEFB55 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F9BA9C21758FE1C00BEFB55 /* SenTestingKit.framework */; };
+		3F9BA9C41758FE1C00BEFB55 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FED960B1370863E00D8D1B8 /* UIKit.framework */; };
+		3F9BA9C51758FE1C00BEFB55 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FED960D1370863E00D8D1B8 /* Foundation.framework */; };
+		3F9BA9CB1758FE1C00BEFB55 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3F9BA9C91758FE1C00BEFB55 /* InfoPlist.strings */; };
+		3F9BA9CE1758FE1C00BEFB55 /* AccessMathTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F9BA9CD1758FE1C00BEFB55 /* AccessMathTests.m */; };
 		3FA3DBDD139E6887001525C6 /* ZoomHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA3DBDC139E6887001525C6 /* ZoomHandler.m */; };
 		3FA5387613A2500C0025A855 /* IASKAppSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA5385013A2500C0025A855 /* IASKAppSettingsViewController.m */; };
 		3FA5387713A2500C0025A855 /* IASKAppSettingsWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA5385213A2500C0025A855 /* IASKAppSettingsWebViewController.m */; };
@@ -120,6 +125,13 @@
 		3F99F20115436E090065CBB9 /* Lecture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lecture.m; sourceTree = "<group>"; };
 		3F99F207154375270065CBB9 /* Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Position.h; sourceTree = "<group>"; };
 		3F99F208154375270065CBB9 /* Position.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Position.m; sourceTree = "<group>"; };
+		3F9BA9C11758FE1C00BEFB55 /* AccessMathTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AccessMathTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F9BA9C21758FE1C00BEFB55 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		3F9BA9C81758FE1C00BEFB55 /* AccessMathTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AccessMathTests-Info.plist"; sourceTree = "<group>"; };
+		3F9BA9CA1758FE1C00BEFB55 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3F9BA9CC1758FE1C00BEFB55 /* AccessMathTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccessMathTests.h; sourceTree = "<group>"; };
+		3F9BA9CD1758FE1C00BEFB55 /* AccessMathTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccessMathTests.m; sourceTree = "<group>"; };
+		3F9BA9CF1758FE1C00BEFB55 /* AccessMathTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AccessMathTests-Prefix.pch"; sourceTree = "<group>"; };
 		3FA3DBDB139E6887001525C6 /* ZoomHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZoomHandler.h; path = core/ZoomHandler.h; sourceTree = "<group>"; };
 		3FA3DBDC139E6887001525C6 /* ZoomHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZoomHandler.m; path = core/ZoomHandler.m; sourceTree = "<group>"; };
 		3FA5384F13A2500C0025A855 /* IASKAppSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IASKAppSettingsViewController.h; sourceTree = "<group>"; };
@@ -206,6 +218,16 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3F9BA9BD1758FE1C00BEFB55 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F9BA9C31758FE1C00BEFB55 /* SenTestingKit.framework in Frameworks */,
+				3F9BA9C41758FE1C00BEFB55 /* UIKit.framework in Frameworks */,
+				3F9BA9C51758FE1C00BEFB55 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3FED96041370863E00D8D1B8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -316,6 +338,26 @@
 				3F99F1FA1543641E0065CBB9 /* FileManager.m */,
 			);
 			name = FileManager;
+			sourceTree = "<group>";
+		};
+		3F9BA9C61758FE1C00BEFB55 /* AccessMathTests */ = {
+			isa = PBXGroup;
+			children = (
+				3F9BA9CC1758FE1C00BEFB55 /* AccessMathTests.h */,
+				3F9BA9CD1758FE1C00BEFB55 /* AccessMathTests.m */,
+				3F9BA9C71758FE1C00BEFB55 /* Supporting Files */,
+			);
+			path = AccessMathTests;
+			sourceTree = "<group>";
+		};
+		3F9BA9C71758FE1C00BEFB55 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3F9BA9C81758FE1C00BEFB55 /* AccessMathTests-Info.plist */,
+				3F9BA9C91758FE1C00BEFB55 /* InfoPlist.strings */,
+				3F9BA9CF1758FE1C00BEFB55 /* AccessMathTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		3FA5384D13A2500C0025A855 /* InAppSettingsKit */ = {
@@ -456,6 +498,7 @@
 				3FED960A1370863E00D8D1B8 /* Frameworks */,
 				3FED96121370863E00D8D1B8 /* Supporting Files */,
 				3FED96081370863E00D8D1B8 /* Products */,
+				3F9BA9C61758FE1C00BEFB55 /* AccessMathTests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -463,6 +506,7 @@
 			isa = PBXGroup;
 			children = (
 				3FED96071370863E00D8D1B8 /* AccessLecture.app */,
+				3F9BA9C11758FE1C00BEFB55 /* AccessMathTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -474,6 +518,7 @@
 				3FED960B1370863E00D8D1B8 /* UIKit.framework */,
 				3FED960D1370863E00D8D1B8 /* Foundation.framework */,
 				3FED960F1370863E00D8D1B8 /* CoreGraphics.framework */,
+				3F9BA9C21758FE1C00BEFB55 /* SenTestingKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -568,6 +613,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		3F9BA9C01758FE1C00BEFB55 /* AccessMathTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3F9BA9D21758FE1C00BEFB55 /* Build configuration list for PBXNativeTarget "AccessMathTests" */;
+			buildPhases = (
+				3F9BA9BC1758FE1C00BEFB55 /* Sources */,
+				3F9BA9BD1758FE1C00BEFB55 /* Frameworks */,
+				3F9BA9BE1758FE1C00BEFB55 /* Resources */,
+				3F9BA9BF1758FE1C00BEFB55 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AccessMathTests;
+			productName = AccessMathTests;
+			productReference = 3F9BA9C11758FE1C00BEFB55 /* AccessMathTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 		3FED96061370863E00D8D1B8 /* AccessLecture */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3FED96281370863E00D8D1B8 /* Build configuration list for PBXNativeTarget "AccessLecture" */;
@@ -603,11 +666,20 @@
 			projectRoot = "";
 			targets = (
 				3FED96061370863E00D8D1B8 /* AccessLecture */,
+				3F9BA9C01758FE1C00BEFB55 /* AccessMathTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		3F9BA9BE1758FE1C00BEFB55 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F9BA9CB1758FE1C00BEFB55 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3FED96051370863E00D8D1B8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -662,7 +734,31 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3F9BA9BF1758FE1C00BEFB55 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		3F9BA9BC1758FE1C00BEFB55 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F9BA9CE1758FE1C00BEFB55 /* AccessMathTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3FED96031370863E00D8D1B8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -703,6 +799,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		3F9BA9C91758FE1C00BEFB55 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3F9BA9CA1758FE1C00BEFB55 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		3FED96141370863E00D8D1B8 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -730,6 +834,69 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		3F9BA9D01758FE1C00BEFB55 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AccessMathTests/AccessMathTests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				INFOPLIST_FILE = "AccessMathTests/AccessMathTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		3F9BA9D11758FE1C00BEFB55 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AccessMathTests/AccessMathTests-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				INFOPLIST_FILE = "AccessMathTests/AccessMathTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
 		3FED96261370863E00D8D1B8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -821,6 +988,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3F9BA9D21758FE1C00BEFB55 /* Build configuration list for PBXNativeTarget "AccessMathTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F9BA9D01758FE1C00BEFB55 /* Debug */,
+				3F9BA9D11758FE1C00BEFB55 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		3FED96011370863E00D8D1B8 /* Build configuration list for PBXProject "AccessLecture" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
