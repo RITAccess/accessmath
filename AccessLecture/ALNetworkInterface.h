@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "SocketRocket/SRWebSocket.h"
+#import "SocketIO.h"
 
-@interface ALNetworkInterface : NSObject <SRWebSocketDelegate>
+@interface ALNetworkInterface : NSObject <SocketIODelegate>
 
-- (id)initWithURL:(NSURL *)url;
+- (id)initWithURL:(NSString *)url;
 - (void)connect;
 - (void)onMessageBlock:(void (^) (NSString *response))hande;
 - (void)sendData:(id)data;

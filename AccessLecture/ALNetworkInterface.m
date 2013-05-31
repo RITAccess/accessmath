@@ -7,11 +7,13 @@
 //
 
 #import "ALNetworkInterface.h"
+#import "SocketIO.h"
+#import "SocketIOPacket.h"
 
 @implementation ALNetworkInterface {
     
-    SRWebSocket *socket;
-    NSURL *connectionURL;
+    SocketIO *socketConnection;
+    NSString *connectionURL;
     
     // For testing
     void (^onMessage)(NSString *);
@@ -20,7 +22,7 @@
 /**
  * Init - set up socket
  */
-- (id)initWithURL:(NSURL *)url {
+- (id)initWithURL:(NSString *)url {
     self = [super init];
     if (self) {
         connectionURL = url;
@@ -32,11 +34,10 @@
 
 - (void)connect {
     
-    socket = [[SRWebSocket alloc] initWithURLRequest:[NSURLRequest requestWithURL:connectionURL]];
-    [socket setDelegate:self];
-    
-    NSLog(@"Connecting...");
-    [socket open];
+    socketConnection = [[SocketIO alloc] initWithDelegate:self];
+    NSLog(@"Connecting to %@", connectionURL.description);
+    [socketConnection connectToHost:connectionURL.description onPort:9000];
+
 }
 
 - (void)onMessageBlock:(void (^) (NSString *response))hande {
@@ -44,39 +45,26 @@
 }
 
 - (void)sendData:(id)data {
-    [socket send:data];
+    [socketConnection sendEvent:@"" withData:data];
 }
 
 #pragma mark Socket Methods
 
+
 /**
  * Receive Message from server
  */
-- (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message {
-    NSLog(@"Message: %@", message);
-    onMessage(message);
+- (void) socketIO:(SocketIO *)socket didReceiveEvent:(SocketIOPacket *)packet {
+    NSLog(@"Message: %@", packet.name);
+    
 }
 
 /**
  * Did open connection
  */
-- (void)webSocketDidOpen:(SRWebSocket *)webSocket {
+- (void) socketIODidConnect:(SocketIO *)socket {
     NSLog(@"Connection open");
-    [socket send:@"Hey whats up!"];
-}
-
-/**
- * Error Handle
- */
-- (void)webSocket:(SRWebSocket *)webSocket didFailWithError:(NSError *)error {
-    NSLog(@"Could not connect");
-}
-
-/**
- * Socket Close
- */
-- (void)webSocket:(SRWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean {
-    NSLog(@"The connection closed%@", wasClean ? @"." : [NSString stringWithFormat:@", reason %@", reason]);
+    [socketConnection sendEvent:@"lecture-request" withData:nil];
 }
 
 @end

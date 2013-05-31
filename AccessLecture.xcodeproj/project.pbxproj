@@ -66,6 +66,16 @@
 		3FD681E0175910310072E0BC /* NSData+SRB64Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C26E5F41757B57A0050E99F /* NSData+SRB64Additions.m */; };
 		3FD681E1175910320072E0BC /* base64.c in Sources */ = {isa = PBXBuildFile; fileRef = 4C26E5F11757B57A0050E99F /* base64.c */; };
 		3FD681E2175910340072E0BC /* ALNetworkInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C26E5EE1757B5250050E99F /* ALNetworkInterface.m */; };
+		3FD681EF17591E810072E0BC /* SocketIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD681E517591E810072E0BC /* SocketIO.m */; };
+		3FD681F017591E810072E0BC /* SocketIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD681E517591E810072E0BC /* SocketIO.m */; };
+		3FD681F117591E810072E0BC /* SocketIOJSONSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD681E717591E810072E0BC /* SocketIOJSONSerialization.m */; };
+		3FD681F217591E810072E0BC /* SocketIOJSONSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD681E717591E810072E0BC /* SocketIOJSONSerialization.m */; };
+		3FD681F317591E810072E0BC /* SocketIOPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD681E917591E810072E0BC /* SocketIOPacket.m */; };
+		3FD681F417591E810072E0BC /* SocketIOPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD681E917591E810072E0BC /* SocketIOPacket.m */; };
+		3FD681F517591E810072E0BC /* SocketIOTransportWebsocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD681EC17591E810072E0BC /* SocketIOTransportWebsocket.m */; };
+		3FD681F617591E810072E0BC /* SocketIOTransportWebsocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD681EC17591E810072E0BC /* SocketIOTransportWebsocket.m */; };
+		3FD681F717591E810072E0BC /* SocketIOTransportXHR.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD681EE17591E810072E0BC /* SocketIOTransportXHR.m */; };
+		3FD681F817591E810072E0BC /* SocketIOTransportXHR.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD681EE17591E810072E0BC /* SocketIOTransportXHR.m */; };
 		3FED960C1370863E00D8D1B8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FED960B1370863E00D8D1B8 /* UIKit.framework */; };
 		3FED960E1370863E00D8D1B8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FED960D1370863E00D8D1B8 /* Foundation.framework */; };
 		3FED96101370863E00D8D1B8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FED960F1370863E00D8D1B8 /* CoreGraphics.framework */; };
@@ -191,6 +201,17 @@
 		3FC85672139D2CF90028DEB5 /* LectureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LectureViewController.m; sourceTree = "<group>"; };
 		3FCD5D1515438472005F2A60 /* AccessLectureRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccessLectureRuntime.h; sourceTree = "<group>"; };
 		3FCD5D1615438472005F2A60 /* AccessLectureRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccessLectureRuntime.m; sourceTree = "<group>"; };
+		3FD681E417591E810072E0BC /* SocketIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIO.h; sourceTree = "<group>"; };
+		3FD681E517591E810072E0BC /* SocketIO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIO.m; sourceTree = "<group>"; };
+		3FD681E617591E810072E0BC /* SocketIOJSONSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOJSONSerialization.h; sourceTree = "<group>"; };
+		3FD681E717591E810072E0BC /* SocketIOJSONSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIOJSONSerialization.m; sourceTree = "<group>"; };
+		3FD681E817591E810072E0BC /* SocketIOPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOPacket.h; sourceTree = "<group>"; };
+		3FD681E917591E810072E0BC /* SocketIOPacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIOPacket.m; sourceTree = "<group>"; };
+		3FD681EA17591E810072E0BC /* SocketIOTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOTransport.h; sourceTree = "<group>"; };
+		3FD681EB17591E810072E0BC /* SocketIOTransportWebsocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOTransportWebsocket.h; sourceTree = "<group>"; };
+		3FD681EC17591E810072E0BC /* SocketIOTransportWebsocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIOTransportWebsocket.m; sourceTree = "<group>"; };
+		3FD681ED17591E810072E0BC /* SocketIOTransportXHR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOTransportXHR.h; sourceTree = "<group>"; };
+		3FD681EE17591E810072E0BC /* SocketIOTransportXHR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIOTransportXHR.m; sourceTree = "<group>"; };
 		3FED96071370863E00D8D1B8 /* AccessLecture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AccessLecture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FED960B1370863E00D8D1B8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3FED960D1370863E00D8D1B8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -519,6 +540,24 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		3FD681E317591E710072E0BC /* SocketIO */ = {
+			isa = PBXGroup;
+			children = (
+				3FD681E417591E810072E0BC /* SocketIO.h */,
+				3FD681E517591E810072E0BC /* SocketIO.m */,
+				3FD681E617591E810072E0BC /* SocketIOJSONSerialization.h */,
+				3FD681E717591E810072E0BC /* SocketIOJSONSerialization.m */,
+				3FD681E817591E810072E0BC /* SocketIOPacket.h */,
+				3FD681E917591E810072E0BC /* SocketIOPacket.m */,
+				3FD681EA17591E810072E0BC /* SocketIOTransport.h */,
+				3FD681EB17591E810072E0BC /* SocketIOTransportWebsocket.h */,
+				3FD681EC17591E810072E0BC /* SocketIOTransportWebsocket.m */,
+				3FD681ED17591E810072E0BC /* SocketIOTransportXHR.h */,
+				3FD681EE17591E810072E0BC /* SocketIOTransportXHR.m */,
+			);
+			name = SocketIO;
+			sourceTree = "<group>";
+		};
 		3FED95FC1370863E00D8D1B8 = {
 			isa = PBXGroup;
 			children = (
@@ -649,6 +688,7 @@
 		4C26E5EC1757B5030050E99F /* NetworkInterface */ = {
 			isa = PBXGroup;
 			children = (
+				3FD681E317591E710072E0BC /* SocketIO */,
 				4C26E5F01757B57A0050E99F /* SocketRocket */,
 				4C26E5ED1757B5250050E99F /* ALNetworkInterface.h */,
 				4C26E5EE1757B5250050E99F /* ALNetworkInterface.m */,
@@ -820,6 +860,11 @@
 				3FD681E2175910340072E0BC /* ALNetworkInterface.m in Sources */,
 				3FD681E0175910310072E0BC /* NSData+SRB64Additions.m in Sources */,
 				3FD681DF175910300072E0BC /* SRWebSocket.m in Sources */,
+				3FD681F017591E810072E0BC /* SocketIO.m in Sources */,
+				3FD681F217591E810072E0BC /* SocketIOJSONSerialization.m in Sources */,
+				3FD681F417591E810072E0BC /* SocketIOPacket.m in Sources */,
+				3FD681F617591E810072E0BC /* SocketIOTransportWebsocket.m in Sources */,
+				3FD681F817591E810072E0BC /* SocketIOTransportXHR.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -861,6 +906,11 @@
 				4C26E5F81757B57A0050E99F /* base64.c in Sources */,
 				4C26E5F91757B57A0050E99F /* NSData+SRB64Additions.m in Sources */,
 				4C26E5FA1757B57A0050E99F /* SRWebSocket.m in Sources */,
+				3FD681EF17591E810072E0BC /* SocketIO.m in Sources */,
+				3FD681F117591E810072E0BC /* SocketIOJSONSerialization.m in Sources */,
+				3FD681F317591E810072E0BC /* SocketIOPacket.m in Sources */,
+				3FD681F517591E810072E0BC /* SocketIOTransportWebsocket.m in Sources */,
+				3FD681F717591E810072E0BC /* SocketIOTransportXHR.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,7 +18,7 @@
     [super setUp];
     
     // Set-up code here.
-    testEchoServer = [[ALNetworkInterface alloc] initWithURL:[NSURL URLWithString:@"ws://echo.websocket.org"]];
+    testEchoServer = [[ALNetworkInterface alloc] initWithURL:@"ws://echo.websocket.org"];
 }
 
 - (void)tearDown
