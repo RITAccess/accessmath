@@ -20,14 +20,16 @@
 - (id)init {
     self = [super init];
     if (self) {
-        // Create Socket
-        socket = [[SRWebSocket alloc] initWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"ws://echo.websocket.org"]]];
-        [socket setDelegate:self];
+        // init
     }
     return self;
 }
 
 - (void)connect {
+    
+    socket = [[SRWebSocket alloc] initWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"ws://echo.websocket.org"]]];
+    [socket setDelegate:self];
+    
     NSLog(@"Connecting...");
     [socket open];
 }
@@ -38,7 +40,7 @@
  * Receive Message from server
  */
 - (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message {
-    NSLog(@"%@", message);
+    NSLog(@"Message: %@", message);
 }
 
 /**
@@ -46,6 +48,7 @@
  */
 - (void)webSocketDidOpen:(SRWebSocket *)webSocket {
     NSLog(@"Connection open");
+    [socket send:@"Hey whats up!"];
 }
 
 /**

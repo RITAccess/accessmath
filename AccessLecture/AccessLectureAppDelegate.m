@@ -1,7 +1,7 @@
 // Copyright 2011 Access Lecture. All rights reserved.
 
 #import "AccessLectureAppDelegate.h"
-#import "ALNetworkInterface.h"
+
 
 @implementation AccessLectureAppDelegate
 
@@ -38,8 +38,8 @@
     [self.window makeKeyAndVisible];
     
     // Set up the network socket connection
-    ALNetworkInterface *test = [[ALNetworkInterface alloc] init];
-    [test connect];
+    _server = [[ALNetworkInterface alloc] init];
+    [_server connect];
     
     
     return YES;

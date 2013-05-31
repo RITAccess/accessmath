@@ -51,6 +51,7 @@
 #error SocketRocket muust be compiled with ARC enabled
 #endif
 
+//#define SR_ENABLE_LOG 0
 
 typedef enum  {
     SROpCodeTextFrame = 0x1,
@@ -366,6 +367,10 @@ static __strong NSData *CRLFCRLF;
     [self _initializeStreams];
     
     // default handlers
+    
+    // Setup operation queue
+    _delegateOperationQueue = [NSOperationQueue mainQueue];
+    
 }
 
 - (void)assertOnWorkQueue;
@@ -420,12 +425,13 @@ static __strong NSData *CRLFCRLF;
 // Calls block on delegate queue
 - (void)_performDelegateBlock:(dispatch_block_t)block;
 {
-    if (_delegateOperationQueue) {
-        [_delegateOperationQueue addOperationWithBlock:block];
-    } else {
-        assert(_delegateDispatchQueue);
-        dispatch_async(_delegateDispatchQueue, block);
-    }
+    [[NSOperationQueue mainQueue] addOperationWithBlock:block];
+//    if (_delegateOperationQueue) {
+//        [_delegateOperationQueue addOperationWithBlock:block];
+//    } else {
+//        assert(_delegateDispatchQueue);
+//        dispatch_async(_delegateDispatchQueue, block);
+//    }
 }
 
 - (void)setDelegateDispatchQueue:(dispatch_queue_t)queue;
@@ -489,7 +495,7 @@ static __strong NSData *CRLFCRLF;
     }
 
     [self _performDelegateBlock:^{
-        if ([self.delegate respondsToSelector:@selector(webSocketDidOpen:)]) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(webSocketDidOpen:)]) {
             [self.delegate webSocketDidOpen:self];
         };
     }];
