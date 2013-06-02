@@ -13,10 +13,3 @@ Currently our build supports iOS 4.0 - iOS 6.0. View our current discussion, tho
 
 ### Documentation
 We're currently maintaining our documentation on Google Drive.
-
-### User Interface 
-The current build uses Interface Builder as opposed to Storyboard to determine the UI. The project contains several
-original icons that will be kept and integrated.
-
-### Networking
-We're currently planning on implementing our backend with [socket.io](http://socket.io/) powered by [node.js](http://nodejs.org)
