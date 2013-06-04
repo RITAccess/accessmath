@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2CFC32A0175E60FC00384AEC /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CFC329F175E60FC00384AEC /* MainStoryboard.storyboard */; };
 		3F0D2260137ADAE3009CCDB3 /* InlineNotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0D225E137ADAE3009CCDB3 /* InlineNotesViewController.m */; };
 		3F0D2261137ADAE3009CCDB3 /* InlineNotesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F0D225F137ADAE3009CCDB3 /* InlineNotesViewController.xib */; };
 		3F0DBDD613BD174900E3FEE8 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0DBDD413BD174900E3FEE8 /* AboutViewController.m */; };
@@ -94,6 +95,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2CFC329F175E60FC00384AEC /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		3F0D225D137ADAE3009CCDB3 /* InlineNotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InlineNotesViewController.h; sourceTree = "<group>"; };
 		3F0D225E137ADAE3009CCDB3 /* InlineNotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InlineNotesViewController.m; sourceTree = "<group>"; };
 		3F0D225F137ADAE3009CCDB3 /* InlineNotesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InlineNotesViewController.xib; sourceTree = "<group>"; };
@@ -543,6 +545,7 @@
 				3FED96141370863E00D8D1B8 /* InfoPlist.strings */,
 				3FED96171370863E00D8D1B8 /* AccessLecture-Prefix.pch */,
 				3FED96181370863E00D8D1B8 /* main.m */,
+				2CFC329F175E60FC00384AEC /* MainStoryboard.storyboard */,
 			);
 			name = "Supporting Files";
 			path = AccessLecture;
@@ -729,6 +732,7 @@
 				3FF7FFD513D5E45300B89A5D /* AlertBG.png in Resources */,
 				3FC32EBC13E05E0F00077291 /* biology.png in Resources */,
 				3FC32EBD13E05E0F00077291 /* geometry.png in Resources */,
+				2CFC32A0175E60FC00384AEC /* MainStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -993,6 +997,7 @@
 				3F9BA9D11758FE1C00BEFB55 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3FED96011370863E00D8D1B8 /* Build configuration list for PBXProject "AccessLecture" */ = {
 			isa = XCConfigurationList;
