@@ -7,31 +7,6 @@
 
 @implementation AboutViewController
 
-/**
- Init with a specific xib file
- */
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    return self;
-}
-
-/**
- Deallocate memory
- */
-
-/**
- Memory management problem
- */
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
-/**
- * Returns to the previous screen by popping the top of the controller stack
- */
--(IBAction)backButton:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
-}
 
 #pragma mark - View lifecycle
 /**
@@ -39,20 +14,20 @@
  */
 - (void)viewDidLoad {
     
-    // Scrollview set up
-    scrollView = (UIScrollView*)self.view;
-    [scrollView setContentMode:UIViewContentModeScaleAspectFit];
-    [scrollView setScrollEnabled:YES];
-    [scrollView setMinimumZoomScale:1.0];
-    [scrollView setMaximumZoomScale:10.0];
-	scrollView.bounces = FALSE;
-	scrollView.bouncesZoom = FALSE;
-    
-    // Completely zoom out when user double taps
-    UITapGestureRecognizer *fullZoomOutRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resetImageZoom:)];
-    [fullZoomOutRecognizer setNumberOfTapsRequired:2];
-    [fullZoomOutRecognizer setNumberOfTouchesRequired:2];
-    [scrollView addGestureRecognizer:fullZoomOutRecognizer];
+//    // Scrollview set up
+//    scrollView = (UIScrollView*)self.view;
+//    [scrollView setContentMode:UIViewContentModeScaleAspectFit];
+//    [scrollView setScrollEnabled:YES];
+//    [scrollView setMinimumZoomScale:1.0];
+//    [scrollView setMaximumZoomScale:10.0];
+//	scrollView.bounces = FALSE;
+//	scrollView.bouncesZoom = FALSE;
+//    
+//    // Completely zoom out when user double taps
+//    UITapGestureRecognizer *fullZoomOutRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resetImageZoom:)];
+//    [fullZoomOutRecognizer setNumberOfTapsRequired:2];
+//    [fullZoomOutRecognizer setNumberOfTouchesRequired:2];
+//    [scrollView addGestureRecognizer:fullZoomOutRecognizer];
     
     [super viewDidLoad];
 }
@@ -73,17 +48,6 @@
     [super viewDidUnload];
 }
 
-/**
- Should the application be rotatable?
- */
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-	
-    // Only support portrait
-    return UIInterfaceOrientationIsPortrait(interfaceOrientation);
-
-}
-
-#pragma mark -
 #pragma mark UIScrollViewDelegate protocol
 
 /**

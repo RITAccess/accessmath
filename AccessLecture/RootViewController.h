@@ -12,7 +12,6 @@
     
 }
 
--(IBAction)openNewLecture:(id)sender;
--(IBAction)openAbout:(id)sender;
+- (IBAction)openAbout:(id)sender;
 
 @end

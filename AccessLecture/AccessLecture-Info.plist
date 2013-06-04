@@ -18,11 +18,9 @@
 				<string>lec</string>
 			</array>
 			<key>Lecture</key>
-			<data>
-			</data>
+			<data></data>
 			<key>Notes</key>
-			<data>
-			</data>
+			<data></data>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
@@ -49,8 +47,6 @@
 	<string>1.0</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSMainNibFile</key>
-	<string>MainWindow</string>
 	<key>UIMainStoryboardFile~ipad</key>
 	<string>MainStoryboard</string>
 	<key>UISupportedInterfaceOrientations</key>

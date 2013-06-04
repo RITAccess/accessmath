@@ -11,12 +11,9 @@
 		3F0D2260137ADAE3009CCDB3 /* InlineNotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0D225E137ADAE3009CCDB3 /* InlineNotesViewController.m */; };
 		3F0D2261137ADAE3009CCDB3 /* InlineNotesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F0D225F137ADAE3009CCDB3 /* InlineNotesViewController.xib */; };
 		3F0DBDD613BD174900E3FEE8 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0DBDD413BD174900E3FEE8 /* AboutViewController.m */; };
-		3F0DBDD713BD174900E3FEE8 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F0DBDD513BD174900E3FEE8 /* AboutViewController.xib */; };
 		3F0FFCFB1371A93A00299663 /* Back.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F0FFCFA1371A93A00299663 /* Back.png */; };
 		3F2DB24113A65C2D00041736 /* ColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DB23F13A65C2D00041736 /* ColorViewController.m */; };
 		3F2DB24213A65C2D00041736 /* ColorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F2DB24013A65C2D00041736 /* ColorViewController.xib */; };
-		3F4CB1F813C795AE00B15170 /* About.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F4CB1F613C795AE00B15170 /* About.png */; };
-		3F4CB1F913C795AE00B15170 /* NewLecture.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F4CB1F713C795AE00B15170 /* NewLecture.png */; };
 		3F5E3F1E137C5CA30022F3C9 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F5E3F1D137C5CA30022F3C9 /* Default-Landscape~ipad.png */; };
 		3F5E3F21137C5CAC0022F3C9 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F5E3F20137C5CAC0022F3C9 /* Default-Portrait~ipad.png */; };
 		3F63540C13A157C40024E6E9 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3F63540B13A157C40024E6E9 /* Settings.bundle */; };
@@ -68,7 +65,6 @@
 		3FED961C1370863E00D8D1B8 /* AccessLectureAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FED961B1370863E00D8D1B8 /* AccessLectureAppDelegate.m */; };
 		3FED961F1370863E00D8D1B8 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FED961D1370863E00D8D1B8 /* MainWindow.xib */; };
 		3FED96221370863E00D8D1B8 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FED96211370863E00D8D1B8 /* RootViewController.m */; };
-		3FED96251370863E00D8D1B8 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FED96231370863E00D8D1B8 /* RootViewController.xib */; };
 		3FED962F137089D100D8D1B8 /* LectureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FED962D137089D100D8D1B8 /* LectureViewController.xib */; };
 		3FED96531370909100D8D1B8 /* Invert.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FED96471370909100D8D1B8 /* Invert.png */; };
 		3FED96541370909100D8D1B8 /* Notes.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FED96481370909100D8D1B8 /* Notes.png */; };
@@ -101,13 +97,10 @@
 		3F0D225F137ADAE3009CCDB3 /* InlineNotesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InlineNotesViewController.xib; sourceTree = "<group>"; };
 		3F0DBDD313BD174900E3FEE8 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		3F0DBDD413BD174900E3FEE8 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
-		3F0DBDD513BD174900E3FEE8 /* AboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
 		3F0FFCFA1371A93A00299663 /* Back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Back.png; path = "Lecture View Images/Back.png"; sourceTree = "<group>"; };
 		3F2DB23E13A65C2D00041736 /* ColorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorViewController.h; sourceTree = "<group>"; };
 		3F2DB23F13A65C2D00041736 /* ColorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorViewController.m; sourceTree = "<group>"; };
 		3F2DB24013A65C2D00041736 /* ColorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColorViewController.xib; sourceTree = "<group>"; };
-		3F4CB1F613C795AE00B15170 /* About.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = About.png; sourceTree = "<group>"; };
-		3F4CB1F713C795AE00B15170 /* NewLecture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NewLecture.png; sourceTree = "<group>"; };
 		3F5E3F1D137C5CA30022F3C9 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "../Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		3F5E3F20137C5CAC0022F3C9 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait~ipad.png"; path = "../Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		3F63540B13A157C40024E6E9 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
@@ -192,7 +185,6 @@
 		3FED961E1370863E00D8D1B8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
 		3FED96201370863E00D8D1B8 /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		3FED96211370863E00D8D1B8 /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		3FED96241370863E00D8D1B8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RootViewController.xib; sourceTree = "<group>"; };
 		3FED962B137089D100D8D1B8 /* LectureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LectureViewController.h; sourceTree = "<group>"; };
 		3FED962D137089D100D8D1B8 /* LectureViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LectureViewController.xib; sourceTree = "<group>"; };
 		3FED96471370909100D8D1B8 /* Invert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Invert.png; path = "Lecture View Images/Invert.png"; sourceTree = "<group>"; };
@@ -244,6 +236,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2CFC32A1175E7ED600384AEC /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				3F959F0613C7555500A6DA79 /* ClearNotes.png */,
+				3FAE785313C786F800796813 /* accesslecture.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		3F0D2257137AD912009CCDB3 /* Inline NoteBox */ = {
 			isa = PBXGroup;
 			children = (
@@ -259,7 +260,6 @@
 			children = (
 				3F0DBDD313BD174900E3FEE8 /* AboutViewController.h */,
 				3F0DBDD413BD174900E3FEE8 /* AboutViewController.m */,
-				3F0DBDD513BD174900E3FEE8 /* AboutViewController.xib */,
 			);
 			name = "About View";
 			sourceTree = "<group>";
@@ -538,6 +538,7 @@
 		3FED96121370863E00D8D1B8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2CFC32A1175E7ED600384AEC /* Images */,
 				3F5E3F20137C5CAC0022F3C9 /* Default-Portrait~ipad.png */,
 				3F5E3F1D137C5CA30022F3C9 /* Default-Landscape~ipad.png */,
 				3FAAA84F137848AB00F79C0C /* Icon.png */,
@@ -564,10 +565,6 @@
 		3FED963113708E4E00D8D1B8 /* Root View */ = {
 			isa = PBXGroup;
 			children = (
-				3F4CB1F613C795AE00B15170 /* About.png */,
-				3F4CB1F713C795AE00B15170 /* NewLecture.png */,
-				3FAE785313C786F800796813 /* accesslecture.png */,
-				3FED96231370863E00D8D1B8 /* RootViewController.xib */,
 				3FED96211370863E00D8D1B8 /* RootViewController.m */,
 				3FED96201370863E00D8D1B8 /* RootViewController.h */,
 			);
@@ -605,7 +602,6 @@
 			isa = PBXGroup;
 			children = (
 				3F82AD8313D5C92A00BA47B7 /* Pen Colors */,
-				3F959F0613C7555500A6DA79 /* ClearNotes.png */,
 				3FED9665137096FE00D8D1B8 /* NotesViewController.h */,
 				3FED9666137096FE00D8D1B8 /* NotesViewController.m */,
 				3FED9667137096FE00D8D1B8 /* NotesViewController.xib */,
@@ -689,7 +685,6 @@
 			files = (
 				3FED96161370863E00D8D1B8 /* InfoPlist.strings in Resources */,
 				3FED961F1370863E00D8D1B8 /* MainWindow.xib in Resources */,
-				3FED96251370863E00D8D1B8 /* RootViewController.xib in Resources */,
 				3FED962F137089D100D8D1B8 /* LectureViewController.xib in Resources */,
 				3FED96531370909100D8D1B8 /* Invert.png in Resources */,
 				3FED96541370909100D8D1B8 /* Notes.png in Resources */,
@@ -714,11 +709,8 @@
 				3F2DB24213A65C2D00041736 /* ColorViewController.xib in Resources */,
 				3F73880913A6922B00F2E7CA /* sliderSpeedMin.png in Resources */,
 				3F73880C13A6922F00F2E7CA /* sliderSpeedMax.png in Resources */,
-				3F0DBDD713BD174900E3FEE8 /* AboutViewController.xib in Resources */,
 				3F959F0713C7555500A6DA79 /* ClearNotes.png in Resources */,
 				3FAE785413C786F800796813 /* accesslecture.png in Resources */,
-				3F4CB1F813C795AE00B15170 /* About.png in Resources */,
-				3F4CB1F913C795AE00B15170 /* NewLecture.png in Resources */,
 				3FFBACD413D5DBB700EB4313 /* BlackDown.png in Resources */,
 				3FFBACD513D5DBB700EB4313 /* BlackUp.png in Resources */,
 				3FFBACD613D5DBB700EB4313 /* BlueDown.png in Resources */,
@@ -825,14 +817,6 @@
 				3FED961E1370863E00D8D1B8 /* en */,
 			);
 			name = MainWindow.xib;
-			sourceTree = "<group>";
-		};
-		3FED96231370863E00D8D1B8 /* RootViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3FED96241370863E00D8D1B8 /* en */,
-			);
-			name = RootViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
