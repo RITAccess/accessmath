@@ -5,8 +5,8 @@
 #import "IASKSpecifier.h"
 #import "IASKSettingsReader.h"
 #import "UILargeAlertView.h"
-
-
+#import "FileManager.h"
+#import "AccessDocument.h"
 
 #define ZOOM_VIEW_TAG 100
 #define MIN_ZOOM_SCALE 1.0
@@ -18,6 +18,7 @@
 
 //NSString* urlString = @"https://129.21.67.216:5010/common/library/apps/Screen/out.png";
 NSString* urlString = @"https://129.21.84.13:5010/common/library/apps/Screen/out.png";
+//NSString* urlString= @"http://www.schooljotter.com/imagefolders/stgiles/Y5/mathematics.jpg";
 float ZOOM_STEP; // The magnification-increment for the +/- icons
 float oldZoomScale;
 
@@ -63,10 +64,17 @@ float oldZoomScale;
     /***********
      * USABILITY TESTING CODE
      **********/
-    img = [UIImage imageNamed:[defaults valueForKey:@"testImage"]];
+   img = [UIImage imageNamed:[defaults valueForKey:@"testImage"]];
+    currentRuntime = [[AccessLectureRuntime alloc] init];
+    [[AccessLectureRuntime defaultRuntime] openDocument];
+    currentLecture = [[Lecture alloc] init];
+  //  currentLecture = [[Lecture alloc] initWithName:@"Pratik"];
+    [AccessLectureRuntime defaultRuntime].currentDocument.lecture.name=@"Pratik2";
+  
+   // img = [UIImage imageWithData:[AccessLectureRuntime defaultRuntime].currentDocument.lecture.image];
     imageView = [[UIImageView alloc]initWithImage:img];
 	imageView.userInteractionEnabled = YES;
-    [imageView setTag:ZOOM_VIEW_TAG]; 
+    [imageView setTag:ZOOM_VIEW_TAG];
     /*********/
     
     /**
@@ -122,7 +130,7 @@ float oldZoomScale;
     NSRunLoop *runner = [NSRunLoop currentRunLoop];
     [runner addTimer:t forMode: NSDefaultRunLoopMode];
      */
-    
+
     // Get the scrollView's pan gesture and store it for later use
     for (UIGestureRecognizer* rec in scrollView.gestureRecognizers) {
         if ([rec isKindOfClass:[UIPanGestureRecognizer class]]) {
@@ -284,6 +292,7 @@ float oldZoomScale;
  */
 -(IBAction)clearButton:(id)sender {
     notesViewController.imageView.image = nil;
+   
 }
 
 
@@ -306,12 +315,35 @@ float oldZoomScale;
     
     // Adds a photo to the saved photos album.  The optional completionSelector should have the form:
     UIImageWriteToSavedPhotosAlbum(saveImage, nil, nil, nil);
+    //Save document with current image to user documents directory
+ 
+       NSURL * currentDirectory = [FileManager iCloudDirectoryURL];
+    if (currentDirectory == nil) currentDirectory = [FileManager localDocumentsDirectoryURL];
+    NSArray * docs = [FileManager documentsIn:currentDirectory];
+    NSURL * document = [FileManager findFileIn:docs thatFits:^(NSURL* url){
+        if (url != nil) return YES;
+        return NO;
+    }];
     
+    currentDocument = [[AccessDocument alloc] initWithFileURL:document];
+    currentLecture.image = UIImagePNGRepresentation(saveImage);
+    currentDocument.lecture = currentLecture;
+    // [AccessLectureRuntime defaultRuntime].currentDocument.lecture.image =UIImagePNGRepresentation(saveImage);
+    [[AccessLectureRuntime defaultRuntime].currentDocument saveToURL:document
+              forSaveOperation:UIDocumentSaveForCreating
+             completionHandler:^(BOOL success) {
+                 if (success){
+                     NSLog(@"Saved for overwriting");
+                 } else {
+                     NSLog(@"Not saved for overwriting");
+                 }
+             }];
     // Tell the user that notes are saved
-	UIAlertView* alert = [[UILargeAlertView alloc] 
+	UIAlertView* alert = [[UILargeAlertView alloc]
                           initWithText:NSLocalizedString(@"Notes Saved!", nil)
                           fontSize:48];
 	[alert show];
+ 
 }
 
 /**
@@ -442,8 +474,7 @@ float oldZoomScale;
  Grabs the new image of the lecture and replaces it in the imageview
  */
 - (void)updateImageView {
-  
-    if(!loading) {
+       if(!loading) {
        
         // Create the request.
         NSURLRequest* theRequest=[NSURLRequest requestWithURL:[NSURL URLWithString:urlString] 

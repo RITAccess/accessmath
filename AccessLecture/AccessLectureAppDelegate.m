@@ -1,7 +1,7 @@
 // Copyright 2011 Access Lecture. All rights reserved.
 
 #import "AccessLectureAppDelegate.h"
-
+#import "FileManager.h"
 @implementation AccessLectureAppDelegate
 
 @synthesize window, rootViewController, navigationController, defaults;
@@ -31,7 +31,6 @@
     [defaults setFloat:.2 forKey:@"eraserSize"];
     [defaults setValue:@"biology.png" forKey:@"testImage"];
     [defaults synchronize];
-    
     // Set the starting view
     self.window.rootViewController = self.navigationController;
     [self.window makeKeyAndVisible];

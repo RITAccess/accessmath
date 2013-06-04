@@ -6,7 +6,9 @@
 #import "IASKAppSettingsViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "Zoomhandler.H"
-
+#import "AccessLectureRuntime.h"
+#import "AccessLectureRuntime.h"
+#import "Lecture.h"
 @interface LectureViewController : UIViewController<UIScrollViewDelegate, IASKSettingsDelegate> {
     
     // UI
@@ -41,6 +43,11 @@
     // Settings
     IASKAppSettingsViewController* appSettingsViewController;
     NSUserDefaults* defaults;
+    
+    //Current Document Settings
+    AccessDocument *currentDocument;
+    AccessLectureRuntime *currentRuntime;
+    Lecture *currentLecture;
 }
 
 -(IBAction)openNotes:(id)sender;

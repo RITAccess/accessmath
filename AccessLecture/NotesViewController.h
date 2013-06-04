@@ -3,7 +3,7 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
-@interface NotesViewController : UIViewController{
+@interface NotesViewController : UIViewController<UITextViewDelegate>{
     
     // The color picking segmented control
 	IBOutlet UISegmentedControl* segmentedControl;
@@ -50,5 +50,5 @@
 -(int)penRadius;
 -(void)resetEraser:(BOOL)isSet;
 -(void)changeEraserLocationTo:(CGPoint)locationPoint;
-
+- (UIBezierPath *)makeCircleAtLocation:(CGPoint)location radius:(CGFloat)radius;
 @end

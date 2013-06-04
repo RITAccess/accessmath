@@ -31,16 +31,18 @@ static NSString * FILE_TYPE = @"lecture";
 // 
 - (BOOL)loadFromContents:(id)contents ofType:(NSString *)typeName error:(NSError *__autoreleasing *)outError {
     
-    if ([typeName isEqual:FILE_TYPE]) {    
+       
+    if ([contents length]>0) {
         NSData * archivedData = (NSData *)contents;
         NSKeyedUnarchiver * unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:archivedData];
         
         _notes = [unarchiver decodeObjectForKey:NOTES_KEY];
         _lecture = [unarchiver decodeObjectForKey:LECTURE_KEY];
-        
+       
         return YES;
-    }    
+    }
     return NO;
+
 }
 
 //
@@ -58,7 +60,7 @@ static NSString * FILE_TYPE = @"lecture";
     
     [archiver encodeObject:_notes forKey:NOTES_KEY];
     [archiver encodeObject:_lecture forKey:LECTURE_KEY];
-    
+    [archiver finishEncoding];
     return (NSData*)archivedData;
 }
 

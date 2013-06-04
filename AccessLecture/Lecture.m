@@ -33,7 +33,7 @@ static NSString * IMAGE_KEY = @"IMAGE_KEY";     // key for the lecture image
     if (self = [super init]) {
         _name = name;
         _date = [NSDate date];
-        _image = [[UIImage alloc] init];
+        _image = [[NSData alloc] init];
     }
     return self;
 }

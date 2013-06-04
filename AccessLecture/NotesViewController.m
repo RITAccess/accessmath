@@ -79,13 +79,24 @@
     
     // User settings
     defaults = [NSUserDefaults standardUserDefaults]; 
-    
+   
     // Observe NSUserDefaults for setting changes
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(settingsChange) name:NSUserDefaultsDidChangeNotification object:nil];
     [self settingsChange];
-} 
-
-
+}
+- (UIBezierPath *)makeCircleAtLocation:(CGPoint)location radius:(CGFloat)radius
+{
+    
+    
+    UIBezierPath *path = [UIBezierPath bezierPath];
+    [path addArcWithCenter:location
+                    radius:radius
+                startAngle:0.0
+                  endAngle:M_PI * 2.0
+                 clockwise:YES];
+    
+    return path;
+}
 /**
  Gets called at launch & every time the settings are updated
  */
@@ -122,8 +133,10 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     isMouseMoved = NO;
     UITouch *touch = [touches anyObject]; 
-    
     CGPoint currentPoint = [touch locationInView:imageView];
+    
+   
+        
     
     if(isEraserOn){
         [self changeEraserLocationTo:currentPoint];
@@ -131,6 +144,8 @@
     
     [self resetEraser:FALSE];
     lastPoint = [touch locationInView:imageView];
+    
+    
 } 
 
 /**
@@ -158,7 +173,7 @@
         eraser.frame = eraserFrame;
     } else { // pen mode
         CGContextSetLineWidth(UIGraphicsGetCurrentContext(), penRadius);
-        CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), r, g, b, 1.0);
+        CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), r, g, b, 10.0);
         CGContextSetBlendMode(UIGraphicsGetCurrentContext(), kCGBlendModeNormal);
     }
     
@@ -185,13 +200,74 @@
  */
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event { 
     [self resetEraser:TRUE]; 
-    
+    UITouch *aTouch = [touches anyObject];
+    //Boolean variable to decide whether current location needs to edit an existing note or create a new one
+    BOOL isNew = YES;
+    //Check for double tap
+    NSLog(@"%d",[imageView subviews].count);
+    if (aTouch.tapCount >= 1 && [imageView subviews].count>1)
+    {
+        for(UITextView *view in [imageView subviews] )
+            
+        {
+           if([view isKindOfClass:[UITextView class]])
+           {
+               
+           view.hidden = YES;
+            UIGraphicsBeginImageContext(imageView.frame.size);
+            [imageView.image drawInRect:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+                CGContextSetLineWidth(UIGraphicsGetCurrentContext(), penRadius);
+                CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), 255, g, b, 10.0);
+                CGContextSetBlendMode(UIGraphicsGetCurrentContext(), kCGBlendModeNormal);
+     
+            CGContextBeginPath(UIGraphicsGetCurrentContext());
+            CGContextAddEllipseInRect(UIGraphicsGetCurrentContext(), CGRectMake(view.frame.origin.x, view.frame.origin.y, 30,30));
+            CGContextStrokePath(UIGraphicsGetCurrentContext());
+            
+            imageView.image = UIGraphicsGetImageFromCurrentImageContext(); 
+            UIGraphicsEndImageContext();
+           }
+           
+
+        }
+        
+    }
+    if (aTouch.tapCount >= 2) {
+        //Fetch all UITextViews currently 
+        for(UITextView *view in [imageView subviews] )
+            
+        {
+            if (CGRectContainsPoint(view.frame,[aTouch locationInView:self.view]))
+            {
+                isNew=NO;
+                view.hidden = NO;
+                [view becomeFirstResponder];
+               
+            }
+            
+        }
+    if(isNew==YES)
+    {
+        
+        UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(lastPoint.x, lastPoint.y, 300,90)];
+        [imageView addSubview:textView];
+        textView.text = @"Tap to Enter Notes";
+       
+        [textView setScrollEnabled:YES];
+        [textView scrollRectToVisible:CGRectMake(lastPoint.x, lastPoint.y, 300,90) animated:NO];
+        [textView setFont:[UIFont systemFontOfSize:25]];
+         textView.layer.borderWidth=0.5f;
+        [textView setNeedsDisplay];
+        [textView becomeFirstResponder];
+        [imageView bringSubviewToFront:textView];
+        
+    }
+    }
     if (!isMouseMoved) {
         UIGraphicsBeginImageContext(imageView.frame.size);
-        CGContextRef contextRef = UIGraphicsGetCurrentContext(); 
+        CGContextRef contextRef = UIGraphicsGetCurrentContext();
         
         [imageView.image drawInRect:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-        
         CGContextSetLineWidth(contextRef, penRadius);
         CGContextSetRGBStrokeColor(contextRef, r, g, b, 1.0);
         CGContextMoveToPoint(contextRef, lastPoint.x, lastPoint.y);

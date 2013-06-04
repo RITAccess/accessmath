@@ -19,7 +19,7 @@
 // the date of the lecture (when the user created the lecture)
 @property (strong, nonatomic) NSDate * date;
 // the image of the bard from the lecture
-@property (strong, nonatomic) UIImage * image;
+@property (strong, nonatomic) NSData * image;
 
 //
 // create a lecture
