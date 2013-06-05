@@ -576,7 +576,11 @@ float oldZoomScale;
 
 - (IBAction)displaySettings:(id)sender
 {
-    NSLog(@"Display settings!");
+    // Creating and adding the IASKAppSettingsViewController to a popover.
+    appSettingsViewController = [[IASKAppSettingsViewController alloc]init];
+    _popover = [[UIPopoverController alloc]initWithContentViewController:appSettingsViewController];
+    [_popover presentPopoverFromRect:CGRectMake(780, 500, 100, 100) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:NO];
+    _popover.popoverContentSize = CGSizeMake(350, 900);
 }
 
 

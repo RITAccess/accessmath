@@ -41,6 +41,7 @@
     // Settings
     IASKAppSettingsViewController* appSettingsViewController;
     NSUserDefaults* defaults;
+    
 }
 
 -(IBAction)openNotes:(id)sender;
@@ -56,6 +57,8 @@
 -(void)resetImageZoom: (UIGestureRecognizer *)gestureRecognizer;
 
 @property (nonatomic) IASKAppSettingsViewController* appSettingsViewController;
+@property (nonatomic, strong)UIPopoverController* popover;
+
 - (IBAction)toRoot:(id)sender;
 - (IBAction)displaySettings:(id)sender;
 
