@@ -219,7 +219,6 @@ float oldZoomScale;
     [self.navigationController pushViewController:self.appSettingsViewController animated:YES];
 }
 
-#pragma mark -
 #pragma mark Note-Taking Methods
 
 /**
@@ -283,34 +282,6 @@ float oldZoomScale;
  */
 -(IBAction)clearButton:(id)sender {
     notesViewController.imageView.image = nil;
-}
-
-
-/**
- * Returns to the previous screen by popping the top of the controller stack
- */
--(IBAction)backButton:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-/**
- Save a screenshot of the current notes to the iPad Photo Album
- */
--(IBAction)saveButton:(id)sender {
-    
-    UIImage *saveImage;
-    
-    // Take the screenshot
-    saveImage = [self imageByCropping:scrollView toRect:imageView.frame];
-    
-    // Adds a photo to the saved photos album.  The optional completionSelector should have the form:
-    UIImageWriteToSavedPhotosAlbum(saveImage, nil, nil, nil);
-    
-    // Tell the user that notes are saved
-	UIAlertView* alert = [[UILargeAlertView alloc] 
-                          initWithText:NSLocalizedString(@"Notes Saved!", nil)
-                          fontSize:48];
-	[alert show];
 }
 
 /**
@@ -581,6 +552,24 @@ float oldZoomScale;
     _popover = [[UIPopoverController alloc]initWithContentViewController:appSettingsViewController];
     [_popover presentPopoverFromRect:CGRectMake(780, 500, 100, 100) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:NO];
     _popover.popoverContentSize = CGSizeMake(350, 900);
+}
+
+- (IBAction)save:(id)sender
+{
+    // Take the screenshot
+    UIImage *saveImage = [self imageByCropping:scrollView toRect:imageView.frame];
+    
+    // Adds a photo to the saved photos album.  The optional completionSelector should have the form:
+    UIImageWriteToSavedPhotosAlbum(saveImage, nil, nil, nil);
+    
+    // Tell the user that notes are saved
+	UIAlertView* alert = [[UILargeAlertView alloc] initWithText:NSLocalizedString(@"Notes Saved!", nil) fontSize:48];
+	[alert show];
+}
+
+- (IBAction)notes:(id)sender
+{
+    
 }
 
 

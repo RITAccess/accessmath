@@ -98,12 +98,50 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8P8-je-oSK" userLabel="Save">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="115" id="417-U1-6fp"/>
+                                    <constraint firstAttribute="width" constant="108" id="zmu-OJ-3TA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="Save.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="save:" destination="RCT-V3-Df9" eventType="touchUpInside" id="EnU-qI-1HX"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tsl-Mb-aPD" userLabel="Notes">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="108" id="sV0-HE-7kA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Button" image="Notes.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="notes:" destination="RCT-V3-Df9" eventType="touchUpInside" id="rTe-Dp-dXg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="OpN-0A-3Yt" firstAttribute="leading" secondItem="u8h-wp-V2i" secondAttribute="leading" type="default" id="0Gz-RK-0Xz"/>
+                            <constraint firstAttribute="bottom" secondItem="8P8-je-oSK" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="3iM-FE-Dsu"/>
+                            <constraint firstItem="8P8-je-oSK" firstAttribute="leading" secondItem="u8h-wp-V2i" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="G5T-3h-HbJ"/>
+                            <constraint firstItem="tsl-Mb-aPD" firstAttribute="leading" secondItem="u8h-wp-V2i" secondAttribute="leading" constant="143" id="OCQ-pL-bbH"/>
+                            <constraint firstAttribute="bottom" secondItem="tsl-Mb-aPD" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="mGG-RV-3xD"/>
                             <constraint firstItem="OpN-0A-3Yt" firstAttribute="trailing" secondItem="u8h-wp-V2i" secondAttribute="trailing" type="default" id="mfM-rn-aEK"/>
                             <constraint firstItem="OpN-0A-3Yt" firstAttribute="top" secondItem="u8h-wp-V2i" secondAttribute="top" type="default" id="rqj-2d-Bfd"/>
+                            <constraint firstItem="tsl-Mb-aPD" firstAttribute="top" secondItem="8P8-je-oSK" secondAttribute="top" type="default" id="tKv-d4-Sys"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
@@ -227,6 +265,8 @@
     </scenes>
     <resources>
         <image name="Back.png" width="95" height="95"/>
+        <image name="Notes.png" width="95" height="95"/>
+        <image name="Save.png" width="95" height="95"/>
         <image name="Settings.png" width="68" height="68"/>
         <image name="accesslecture.png" width="695" height="512"/>
     </resources>

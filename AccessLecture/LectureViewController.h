@@ -26,7 +26,6 @@
     NSTimer* t;
     UIImage* img;
     
-    
     // Zooming
     CGPoint scrSize;
     BOOL shouldSnapToZoom;
@@ -45,8 +44,6 @@
 }
 
 -(IBAction)openNotes:(id)sender;
--(IBAction)backButton:(id)sender;
--(IBAction)saveButton:(id)sender;
 -(IBAction)clearButton:(id)sender;
 -(IBAction)zoomOut;
 -(IBAction)zoomIn;
@@ -61,6 +58,8 @@
 
 - (IBAction)toRoot:(id)sender;
 - (IBAction)displaySettings:(id)sender;
+- (IBAction)save:(id)sender;
+- (IBAction)notes:(id)sender;
 
 @end
 
