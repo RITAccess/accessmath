@@ -44,7 +44,9 @@ float oldZoomScale;
  Set up after the xib loads
  */
 - (void)viewDidLoad {
-    defaults = [NSUserDefaults standardUserDefaults]; 
+    defaults = [NSUserDefaults standardUserDefaults];
+    
+
     
     // Zoom setup
     ZOOM_STEP = [defaults floatForKey:@"userZoomIncrement"];
@@ -581,7 +583,7 @@ float oldZoomScale;
     // Swap the toolbars
     [topToolbar setHidden:YES];
     [bottomToolbar setHidden:YES];
-    [notesViewController.segmentedControl setHidden:NO];
+//    [notesViewController.segmentedControl setHidden:NO];
     [notesTopToolbar setHidden:NO];
     
     // Force the ScrollView to require 2 fingers to scroll
@@ -606,6 +608,5 @@ float oldZoomScale;
 	UIAlertView* alert = [[UILargeAlertView alloc] initWithText:NSLocalizedString(@"Notes Cleared!", nil) fontSize:48];
 	[alert show];
 }
-
 
 @end

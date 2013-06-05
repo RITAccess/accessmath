@@ -63,7 +63,8 @@
 - (IBAction)displaySettings:(id)sender;
 - (IBAction)save:(id)sender;
 - (IBAction)notes:(id)sender;
-@property (weak, nonatomic) IBOutlet UIView *colorSelection;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *colorSelection;
+
 
 @end
 
