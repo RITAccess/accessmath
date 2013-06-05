@@ -46,11 +46,11 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *clearNotesButton;
 
--(IBAction)openNotes:(id)sender;
--(IBAction)clearButton:(id)sender;
 -(IBAction)zoomOut;
 -(IBAction)zoomIn;
+
 -(IBAction)openSettings:(id)sender;
+
 -(void)updateImageView;
 -(void)settingsChange;
 -(void)handleZoomWith: (float) newScale andZoomType: (BOOL) zoomType;
@@ -59,12 +59,14 @@
 @property (nonatomic) IASKAppSettingsViewController* appSettingsViewController;
 @property (nonatomic, strong)UIPopoverController* popover;
 
-- (IBAction)toRoot:(id)sender;
+- (IBAction)backButtonPress:(id)sender;
 - (IBAction)displaySettings:(id)sender;
 - (IBAction)save:(id)sender;
 - (IBAction)notes:(id)sender;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *colorSelection;
 
+@property (weak, nonatomic) IBOutlet UISegmentedControl *colorSelectionSegment;
+@property (weak, nonatomic) IBOutlet UIButton *zoomOutButton;
+@property (weak, nonatomic) IBOutlet UIButton *zoomInButton;
 
 @end
 

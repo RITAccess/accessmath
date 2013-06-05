@@ -32,27 +32,21 @@ float oldZoomScale;
 
 @synthesize appSettingsViewController;
 
-/**
- Initialize the view controller by linking it to a specific xib file
- */
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     return self;
 }
 
-/**
- Set up after the xib loads
- */
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     defaults = [NSUserDefaults standardUserDefaults];
-    
-
     
     // Zoom setup
     ZOOM_STEP = [defaults floatForKey:@"userZoomIncrement"];
 	zoomHandler = [[ZoomHandler alloc] initWithZoomLevel: ZOOM_STEP];
 	
-    // REAL CODE 
 	// Set up the imageview
     img = [[UIImage alloc] initWithData:
                     [NSData dataWithContentsOfURL:
@@ -60,15 +54,6 @@ float oldZoomScale;
     imageView = [[UIImageView alloc]initWithImage:img];
 	imageView.userInteractionEnabled = YES;
     [imageView setTag:ZOOM_VIEW_TAG]; 
-    
-    /***********
-     * USABILITY TESTING CODE
-     **********/
-//    img = [UIImage imageNamed:[defaults valueForKey:@"testImage"]];
-//    imageView = [[UIImageView alloc]initWithImage:img];
-//	imageView.userInteractionEnabled = YES;
-//    [imageView setTag:ZOOM_VIEW_TAG]; 
-    /*********/
     
     /**
      * Initialize the note-taking feature
@@ -151,7 +136,7 @@ float oldZoomScale;
     [super viewDidLoad];
     
     self.clearNotesButton.hidden = YES; // Hide Clear Button on Start
-    self.colorSelection.hidden = YES; // Hide Clear Button on Start
+    self.colorSelectionSegment.hidden = YES; // Hide Clear Button on Start
 } 
 
 /**
@@ -217,47 +202,39 @@ float oldZoomScale;
     return image;
 }
 
-/**
- * Open the IASKAppSettingsViewController (settings page)
- */
--(IBAction)openSettings:(id)sender {
-    [self.navigationController pushViewController:self.appSettingsViewController animated:YES];
-}
-
-#pragma mark Note-Taking Methods
+#pragma mark - Note-Taking
 
 /**
  * Opens the note-taking feature.
  */
-
--(IBAction)openNotes:(id)sender {
-    // Zoom the user all the way out when they enter note-taking mode
-    oldZoomScale = scrollView.zoomScale;
-    [self resetImageZoom:nil];
-    // Disable zooming back in
-    [scrollView setMaximumZoomScale:MIN_ZOOM_SCALE];
-    
-    // Swap the toolbars
-    [topToolbar setHidden:YES];
-    [bottomToolbar setHidden:YES];
-    [notesViewController.segmentedControl setHidden:NO];
-    [notesTopToolbar setHidden:NO];
-    
-    // Force the ScrollView to require 2 fingers to scroll
-    // while in note-taking mode
-    [scrollViewPanGesture setMinimumNumberOfTouches:2];
-    [scrollViewPanGesture setMaximumNumberOfTouches:2];
-    [notesViewController.view setUserInteractionEnabled:YES];
-    
-    // Maintain an appropriate content size
-    if ([defaults floatForKey:@"toolbarAlpha"] != 0.0) {
-        // Toolbars are partially transparent
-        scrollView.frame = CGRectMake(0, 0, SCREEN_WIDTH, self.view.frame.size.height-TOOLBAR_HEIGHT);
-    } else {
-        // Toolbars are completely solid
-        scrollView.frame = CGRectMake(0, TOOLBAR_HEIGHT, SCREEN_WIDTH, self.view.frame.size.height-(TOOLBAR_HEIGHT * 2));
-    }
-}
+//-(IBAction)openNotes:(id)sender
+//{
+//    NSLog(@"Testing");
+//    // Zoom the user all the way out when they enter note-taking mode
+//    oldZoomScale = scrollView.zoomScale;
+//    [self resetImageZoom:nil];
+//    
+//    // Disable zooming back in
+//    [scrollView setMaximumZoomScale:MIN_ZOOM_SCALE];
+//    
+//    // Swap the toolbars
+//    [topToolbar setHidden:YES];
+//    [bottomToolbar setHidden:YES];
+//    [notesViewController.segmentedControl setHidden:NO];
+//    [notesTopToolbar setHidden:NO];
+//    
+//    // Force the ScrollView to require 2 fingers to scroll while in note-taking mode
+//    [scrollViewPanGesture setMinimumNumberOfTouches:2];
+//    [scrollViewPanGesture setMaximumNumberOfTouches:2];
+//    [notesViewController.view setUserInteractionEnabled:YES];
+//    
+//    // Maintain an appropriate content size
+//    if ([defaults floatForKey:@"toolbarAlpha"] != 0.0) {
+//        scrollView.frame = CGRectMake(0, 0, SCREEN_WIDTH, self.view.frame.size.height-TOOLBAR_HEIGHT);  // Partially transparent toolbars
+//    } else {
+//        scrollView.frame = CGRectMake(0, TOOLBAR_HEIGHT, SCREEN_WIDTH, self.view.frame.size.height-(TOOLBAR_HEIGHT * 2)); // Opaque toolbars
+//    }
+//}
 
 /**
  * Close the note-taking feature.
@@ -281,13 +258,6 @@ float oldZoomScale;
         // Toolbars are completely solid
         scrollView.frame = CGRectMake(0, TOOLBAR_HEIGHT, SCREEN_WIDTH, self.view.frame.size.height-(TOOLBAR_HEIGHT * 2));
     }
-}
-
-/**
- Clears the user notes
- */
--(IBAction)clearButton:(id)sender {
-    notesViewController.imageView.image = nil;
 }
 
 /**
@@ -315,11 +285,13 @@ float oldZoomScale;
     bottomToolbar = nil;
     topToolbar = nil;
     [self setClearNotesButton:nil];
-    [self setColorSelection:nil];
+    [self setColorSelectionSegment:nil];
+    [self setZoomOutButton:nil];
+    [self setZoomInButton:nil];
     [super viewDidUnload];
 }
 
-#pragma mark NSURLConnection delegate methods
+#pragma mark - NSURLConnection delegate Functionality
 
 /**
  When the NSURLConnection is complete
@@ -389,32 +361,33 @@ float oldZoomScale;
 /**
  When the NSURLConnection receives a responde
  */
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse*) response {
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse*)response
+{
     [receivedData setLength:0];
-    NSLog(@"Got Response");
 }
 
 /**
- If data is received from the NSURLConnection being made
+ * If data is received from the NSURLConnection being made
  */
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*) data {
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data
+{
     [receivedData appendData:data];
-    NSLog(@"Got Data");
 }
 
 /**
- Tells the NSURLConnection that authentication is possible
+ * Tells the NSURLConnection that authentication is possible. // NOTE: This seems unnecessary...
  */
-- (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
+- (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace
+{
     return YES;
 }
 
-#pragma mark Image Refresh Management
+#pragma mark - Image Refresh Management
 /**
- Grabs the new image of the lecture and replaces it in the imageview
+ * Pulls new image from URLConnection and inserts into the UIImageView.
  */
-- (void)updateImageView {
-  
+- (void)updateImageView
+{
     if(!loading) {
        
         // Create the request.
@@ -422,25 +395,26 @@ float oldZoomScale;
                                                   cachePolicy:NSURLRequestUseProtocolCachePolicy
                                               timeoutInterval:60.0];
         
-        // Create the connection with the request and start loading the data
+        // Create the connection with the request and start loading the data.
         NSURLConnection *theConnection= [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
         
         if (theConnection) {
-            // Create the NSMutableData to hold the received data.
-            receivedData = [NSMutableData data];
+            receivedData = [NSMutableData data]; // Create the NSMutableData to hold the received data.
             loading = true;
         }
     }
 }
 
-#pragma mark UIScrollViewDelegate protocol
+#pragma mark - UIScrollViewDelegate Protocol
+
 /**
- Required scrollview delegate method
+ * Required ScrollView delegate method.
  */
-- (UIView *)viewForZoomingInScrollView:(UIScrollView *)sv {
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)sv
+{
 	return [sv viewWithTag:ZOOM_VIEW_TAG];
-    //return notesViewController.view;
 }
+
 - (void)scrollViewDidZoom:(UIScrollView *)sv {
     [notesViewController.view setFrame:CGRectMake(0, 0,
                                                   img.size.width * [scrollView zoomScale],img.size.height * [scrollView zoomScale])];
@@ -458,8 +432,7 @@ float oldZoomScale;
     [sv setZoomScale:scale animated:NO];
 }
 
-#pragma mark -
-#pragma mark Zooming methods
+#pragma mark - Zooming 
 
 /**
  Resetting the scrollView to be completely zoomed out
@@ -469,9 +442,10 @@ float oldZoomScale;
 }
 
 /**
- A helper function for zooming by tapping
+ * Helps with tap to zoom.
  */
-- (CGRect)zoomRectForScale:(float)scale withCenter:(CGPoint)center {
+- (CGRect)zoomRectForScale:(float)scale withCenter:(CGPoint)center
+{
     CGRect zoomRect;
     
 	//	At a zoom scale of 1.0, it would be the size of the scrollView's bounds.
@@ -487,9 +461,10 @@ float oldZoomScale;
 }
 
 /**
- Function for the scrollview to be able to zoom out
- **/
--(IBAction)zoomOut {
+ * Manages ScrollView zooming out.
+ */
+-(IBAction)zoomOut
+{
     if([scrollView zoomScale] > [scrollView minimumZoomScale]) {
         float newScale = [scrollView zoomScale] / ZOOM_STEP;
         [self handleZoomWith:newScale andZoomType: FALSE];
@@ -497,9 +472,10 @@ float oldZoomScale;
 }
 
 /**
- Function for the scrollview to be able to zoom in
- **/
--(IBAction)zoomIn {
+ * Manages ScrollView zooming in.
+ */
+-(IBAction)zoomIn
+{
 	float newScale = [scrollView zoomScale] * ZOOM_STEP;
     
     if(newScale <= [scrollView maximumZoomScale]){
@@ -507,19 +483,18 @@ float oldZoomScale;
     }
 }
 
--(void)handleZoomWith: (float) newScale andZoomType:(BOOL) isZoomIn {
-   
+-(void)handleZoomWith:(float)newScale andZoomType:(BOOL)isZoomIn
+{
     CGPoint newOrigin = [zoomHandler getNewOriginFromViewLocation: [scrollView contentOffset] 
 														 viewSize: scrSize andZoomType: isZoomIn];
 	CGRect zoomRect = [self zoomRectForScale:newScale withCenter:newOrigin];
     [scrollView zoomToRect:zoomRect animated:YES];
 }
 
-#pragma mark -
-#pragma mark IASKAppSettingsViewControllerDelegate protocol
+#pragma mark - IASKAppSettingsViewControllerDelegate protocol
 
 /**
- Constructor for an appSettingsViewController
+ * Constructor for an appSettingsViewController.
  */
 - (IASKAppSettingsViewController*)appSettingsViewController {
 	
@@ -534,14 +509,15 @@ float oldZoomScale;
 /**
  Required inAppSettingsViewController delegate method
  */
-- (void)settingsViewControllerDidEnd:(IASKAppSettingsViewController*)sender {
+- (void)settingsViewControllerDidEnd:(IASKAppSettingsViewController*)sender
+{
     [self dismissModalViewControllerAnimated:YES];
 	self.navigationController.navigationBarHidden = YES;
 }
 
 # pragma mark - Buttons
 
-- (IBAction)toRoot:(id)sender
+- (IBAction)backButtonPress:(id)sender
 {
    [self performSegueWithIdentifier:@"toHome" sender:nil];
 }
@@ -571,7 +547,9 @@ float oldZoomScale;
 - (IBAction)notes:(id)sender
 {
     self.clearNotesButton.hidden = NO;
-    self.colorSelection.hidden = NO;
+    self.colorSelectionSegment.hidden = NO;
+    self.zoomInButton.hidden = YES;
+    self.zoomOutButton.hidden = YES;
     [sender setHidden:YES];
     
     // Zoom the user all the way out when they enter note-taking mode
@@ -604,6 +582,8 @@ float oldZoomScale;
 
 - (IBAction)clear:(id)sender
 {
+//    notesViewController.imageView.image = nil;
+    
     // Tell the user that notes are saved
 	UIAlertView* alert = [[UILargeAlertView alloc] initWithText:NSLocalizedString(@"Notes Cleared!", nil) fontSize:48];
 	[alert show];
