@@ -5,5 +5,6 @@
     UIScrollView* scrollView;
     IBOutlet UIView *mainView;
 }
+- (IBAction)returnToHome:(id)sender;
 
 @end

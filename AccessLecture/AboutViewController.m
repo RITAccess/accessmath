@@ -12,7 +12,8 @@
 /**
  When view is loaded
  */
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     
 //    // Scrollview set up
 //    scrollView = (UIScrollView*)self.view;
@@ -22,12 +23,12 @@
 //    [scrollView setMaximumZoomScale:10.0];
 //	scrollView.bounces = FALSE;
 //	scrollView.bouncesZoom = FALSE;
-//    
-//    // Completely zoom out when user double taps
-//    UITapGestureRecognizer *fullZoomOutRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resetImageZoom:)];
-//    [fullZoomOutRecognizer setNumberOfTapsRequired:2];
-//    [fullZoomOutRecognizer setNumberOfTouchesRequired:2];
-//    [scrollView addGestureRecognizer:fullZoomOutRecognizer];
+    
+    // Completely zoom out when user double taps
+    UITapGestureRecognizer *fullZoomOutRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resetImageZoom:)];
+    [fullZoomOutRecognizer setNumberOfTapsRequired:2];
+    [fullZoomOutRecognizer setNumberOfTouchesRequired:2];
+    [scrollView addGestureRecognizer:fullZoomOutRecognizer];
     
     [super viewDidLoad];
 }
@@ -35,14 +36,16 @@
 /**
  Resetting the scrollView to be completely zoomed out
  */
--(void)resetImageZoom: (UIGestureRecognizer *)gestureRecognizer {
+-(void)resetImageZoom: (UIGestureRecognizer *)gestureRecognizer
+{
     [scrollView setZoomScale:1.0 animated:YES];
 }
 
 /**
  When view is unloaded
  */
-- (void)viewDidUnload {
+- (void)viewDidUnload
+{
     scrollView = nil;
     mainView = nil;
     [super viewDidUnload];
@@ -65,4 +68,8 @@
     [sv setZoomScale:scale animated:NO];
 }
 
+- (IBAction)returnToHome:(id)sender
+{
+    [self performSegueWithIdentifier:@"toRoot" sender:nil];
+}
 @end
