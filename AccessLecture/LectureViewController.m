@@ -288,6 +288,7 @@ float oldZoomScale;
     [self setColorSelectionSegment:nil];
     [self setZoomOutButton:nil];
     [self setZoomInButton:nil];
+    [self setSettingsButton:nil];
     [super viewDidUnload];
 }
 
@@ -463,7 +464,7 @@ float oldZoomScale;
 /**
  * Manages ScrollView zooming out.
  */
--(IBAction)zoomOut
+-(IBAction)zoomOutButtonPress:(id)sender
 {
     if([scrollView zoomScale] > [scrollView minimumZoomScale]) {
         float newScale = [scrollView zoomScale] / ZOOM_STEP;
@@ -474,10 +475,9 @@ float oldZoomScale;
 /**
  * Manages ScrollView zooming in.
  */
--(IBAction)zoomIn
+-(IBAction)zoomInButtonPress:(id)sender
 {
 	float newScale = [scrollView zoomScale] * ZOOM_STEP;
-    
     if(newScale <= [scrollView maximumZoomScale]){
         [self handleZoomWith:newScale andZoomType: TRUE];
     }
@@ -496,8 +496,8 @@ float oldZoomScale;
 /**
  * Constructor for an appSettingsViewController.
  */
-- (IASKAppSettingsViewController*)appSettingsViewController {
-	
+- (IASKAppSettingsViewController*)appSettingsViewController
+{
     if (!appSettingsViewController) {
 		appSettingsViewController = [[IASKAppSettingsViewController alloc] initWithNibName:@"IASKAppSettingsView" bundle:nil];
 		appSettingsViewController.delegate = self;
@@ -527,11 +527,11 @@ float oldZoomScale;
     // Creating and adding the IASKAppSettingsViewController to a popover.
     appSettingsViewController = [[IASKAppSettingsViewController alloc]init];
     _popover = [[UIPopoverController alloc]initWithContentViewController:appSettingsViewController];
-    [_popover presentPopoverFromRect:CGRectMake(780, 50, 100, 100) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:NO];
+    [_popover presentPopoverFromBarButtonItem:self.settingsButton permittedArrowDirections:UIPopoverArrowDirectionUp animated:NO];
     _popover.popoverContentSize = CGSizeMake(350, 800);
 }
 
-- (IBAction)save:(id)sender
+- (IBAction)saveButtonPress:(id)sender
 {
     // Take the screenshot
     UIImage *saveImage = [self imageByCropping:scrollView toRect:imageView.frame];
@@ -544,7 +544,7 @@ float oldZoomScale;
 	[alert show];
 }
 
-- (IBAction)notes:(id)sender
+- (IBAction)startNotesButtonPress:(id)sender
 {
     self.clearNotesButton.hidden = NO;
     self.colorSelectionSegment.hidden = NO;
@@ -580,7 +580,7 @@ float oldZoomScale;
     }
 }
 
-- (IBAction)clear:(id)sender
+- (IBAction)clearNotesButtonPress:(id)sender
 {
 //    notesViewController.imageView.image = nil;
     

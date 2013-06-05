@@ -112,7 +112,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="save:" destination="RCT-V3-Df9" eventType="touchUpInside" id="EnU-qI-1HX"/>
+                                    <action selector="saveButtonPress:" destination="RCT-V3-Df9" eventType="touchUpInside" id="QPY-eM-PUJ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tsl-Mb-aPD" userLabel="Notes">
@@ -129,7 +129,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="notes:" destination="RCT-V3-Df9" eventType="touchUpInside" id="rTe-Dp-dXg"/>
+                                    <action selector="startNotesButtonPress:" destination="RCT-V3-Df9" eventType="touchUpInside" id="7Kx-ph-lmE"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WpD-Hy-O39" userLabel="Clear Button">
@@ -146,7 +146,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="clear:" destination="RCT-V3-Df9" eventType="touchUpInside" id="g33-fa-GQq"/>
+                                    <action selector="clearNotesButtonPress:" destination="RCT-V3-Df9" eventType="touchUpInside" id="EBn-Qv-HDl"/>
                                 </connections>
                             </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="fxk-M5-lvQ">
@@ -171,6 +171,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="zoomInButtonPress:" destination="RCT-V3-Df9" eventType="touchUpInside" id="V2j-HV-4It"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EYf-Ou-3oC">
                                 <constraints>
@@ -184,6 +187,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="zoomOutButtonPress:" destination="RCT-V3-Df9" eventType="touchUpInside" id="dQb-FJ-0VF"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -212,6 +218,7 @@
                     <connections>
                         <outlet property="clearNotesButton" destination="WpD-Hy-O39" id="t49-83-8OQ"/>
                         <outlet property="colorSelectionSegment" destination="fxk-M5-lvQ" id="Tf2-sn-F9S"/>
+                        <outlet property="settingsButton" destination="YR6-hw-cvW" id="eWv-n3-zuv"/>
                         <outlet property="zoomInButton" destination="of9-aN-bYB" id="v7o-Vl-2L9"/>
                         <outlet property="zoomOutButton" destination="EYf-Ou-3oC" id="TVB-lt-Jjg"/>
                         <segue destination="SP6-Rd-Xf7" kind="modal" identifier="toHome" id="cjx-4M-SOy"/>

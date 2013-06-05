@@ -42,31 +42,27 @@
     NSUserDefaults* defaults;
     
 }
-- (IBAction)clear:(id)sender;
 
-@property (weak, nonatomic) IBOutlet UIButton *clearNotesButton;
-
--(IBAction)zoomOut;
--(IBAction)zoomIn;
-
--(IBAction)openSettings:(id)sender;
-
--(void)updateImageView;
--(void)settingsChange;
--(void)handleZoomWith: (float) newScale andZoomType: (BOOL) zoomType;
--(void)resetImageZoom: (UIGestureRecognizer *)gestureRecognizer;
-
-@property (nonatomic) IASKAppSettingsViewController* appSettingsViewController;
-@property (nonatomic, strong)UIPopoverController* popover;
+- (void)updateImageView;
+- (void)settingsChange;
+- (void)handleZoomWith: (float) newScale andZoomType: (BOOL) zoomType;
+- (void)resetImageZoom: (UIGestureRecognizer *)gestureRecognizer;
 
 - (IBAction)backButtonPress:(id)sender;
 - (IBAction)displaySettings:(id)sender;
-- (IBAction)save:(id)sender;
-- (IBAction)notes:(id)sender;
+- (IBAction)saveButtonPress:(id)sender;
+- (IBAction)startNotesButtonPress:(id)sender;
+- (IBAction)clearNotesButtonPress:(id)sender;
+- (IBAction)zoomOutButtonPress:(id)sender;
+- (IBAction)zoomInButtonPress:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *colorSelectionSegment;
 @property (weak, nonatomic) IBOutlet UIButton *zoomOutButton;
 @property (weak, nonatomic) IBOutlet UIButton *zoomInButton;
+@property (weak, nonatomic) IBOutlet UIButton *clearNotesButton;
+@property (nonatomic) IASKAppSettingsViewController* appSettingsViewController;
+@property (nonatomic, strong)UIPopoverController* popover;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *settingsButton;
 
 @end
 
