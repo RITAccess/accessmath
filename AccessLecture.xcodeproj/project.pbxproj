@@ -640,8 +640,8 @@
 				3F4CB1F713C795AE00B15170 /* NewLecture.png */,
 				3FAE785313C786F800796813 /* accesslecture.png */,
 				3FED96231370863E00D8D1B8 /* RootViewController.xib */,
-				3FED96211370863E00D8D1B8 /* RootViewController.m */,
 				3FED96201370863E00D8D1B8 /* RootViewController.h */,
+				3FED96211370863E00D8D1B8 /* RootViewController.m */,
 			);
 			name = "Root View";
 			sourceTree = "<group>";
@@ -1061,7 +1061,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Piper Chester (926JP4SG23)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Michael Timbrook (2383UG2Y7R)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1072,7 +1072,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4F1D5C81-E636-4BBB-A977-DC27D713DE97";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D3F506A0-12F7-41BD-93F2-4801DAF818E6";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
@@ -1086,7 +1086,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Piper Chester (926JP4SG23)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Michael Timbrook (2383UG2Y7R)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AccessLecture/AccessLecture-Prefix.pch";
@@ -1096,7 +1096,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4F1D5C81-E636-4BBB-A977-DC27D713DE97";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D3F506A0-12F7-41BD-93F2-4801DAF818E6";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;

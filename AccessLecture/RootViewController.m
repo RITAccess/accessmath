@@ -1,6 +1,7 @@
 // Copyright 2011 Access Lecture. All rights reserved.
 
 #import "RootViewController.h"
+#import "AccessLectureAppDelegate.h"
 
 @implementation RootViewController
 
@@ -16,6 +17,37 @@
  */
 -(IBAction)openAbout:(id)sender{
     [self.navigationController pushViewController:aboutViewController animated:YES];
+}
+
+/**
+ * Open an active connection to the server
+ */
+- (IBAction)connectToServer:(id)sender {
+    
+    AccessLectureAppDelegate *app = [[UIApplication sharedApplication] delegate];
+
+    UIButton *button = (UIButton *)sender;
+    if ([button.titleLabel.text isEqualToString:@"Disconnect"]) {
+        [app.server disconnect];
+    } else {
+        [app.server connectCompletion:^(BOOL success) {
+            NSLog(@"%@", success ? @"Success" : @"Failed to connect");
+        }];
+    }
+}
+
+- (IBAction)connectToLecture:(id)sender {
+    
+    AccessLectureAppDelegate *app = [[UIApplication sharedApplication] delegate];
+    
+    [app.server requestAccessToLectureSteam:@"Test Lecture 2"];
+    
+    [app.server setDelegate:self];
+    
+}
+
+- (void)didRecieveUpdate:(id)data {
+    NSLog(@"%@", data);
 }
 
 /**
@@ -53,4 +85,7 @@
  Release resources from memory
  */
 
+- (void)viewDidUnload {
+    [super viewDidUnload];
+}
 @end

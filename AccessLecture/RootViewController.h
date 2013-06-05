@@ -3,8 +3,10 @@
 #import <UIKit/UIKit.h>
 #import "LectureViewController.h"
 #import "AboutViewController.h"
+#import "Lecture.h"
+#import "ALNetworkInterface.h"
 
-@interface RootViewController : UIViewController {
+@interface RootViewController : UIViewController <LectureStreaming> {
 
     // The lecture view
     LectureViewController *lectureViewController;
@@ -14,5 +16,8 @@
 
 -(IBAction)openNewLecture:(id)sender;
 -(IBAction)openAbout:(id)sender;
+- (IBAction)connectToServer:(id)sender;
+- (IBAction)connectToLecture:(id)sender;
+
 
 @end

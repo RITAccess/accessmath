@@ -24,10 +24,7 @@ static NSString * IMAGE_KEY = @"IMAGE_KEY";     // key for the lecture image
 @synthesize image = _image;
 
 - (id)init {
-    if (self = [super init]) {
-        self = [self initWithName:@"Generic Lecture"];
-    }
-    return self;
+    return [self initWithName:@"Generic Lecture"];
 }
 - (id)initWithName:(NSString *)name {
     if (self = [super init]) {
@@ -47,10 +44,30 @@ static NSString * IMAGE_KEY = @"IMAGE_KEY";     // key for the lecture image
     return self;
 }
 
+- (id)initWithPacket:(SocketIOPacket *)packet {
+    self = [super init];
+    if (self) {
+        
+        id JSON = [packet.dataAsJSON valueForKeyPath:@"args"];
+        _name = [JSON valueForKeyPath:@"name"][0];
+        _date = [NSDate dateWithTimeIntervalSince1970:[[JSON valueForKeyPath:@"date"][0] integerValue]];
+        _image= nil;
+        
+    }
+    return self;
+}
+
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [aCoder encodeObject:_name forKey:NAME_KEY];
     [aCoder encodeObject:_date forKey:DATE_KEY];
     [aCoder encodeObject:_image forKey:IMAGE_KEY];
+}
+
+/**
+ * Description of lecture
+ */
+- (NSString *)description {
+    return [NSString stringWithFormat:@"%@ : %@", _name, _date];;
 }
 
 @end
