@@ -567,4 +567,12 @@ float oldZoomScale;
 	self.navigationController.navigationBarHidden = YES;
 }
 
+# pragma mark - Buttons
+
+- (IBAction)toRoot:(id)sender
+{
+   [self performSegueWithIdentifier:@"toHome" sender:nil];
+}
+
+
 @end

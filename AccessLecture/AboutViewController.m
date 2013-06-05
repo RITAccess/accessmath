@@ -16,13 +16,17 @@
 {
     
 //    // Scrollview set up
-//    scrollView = (UIScrollView*)self.view;
+//    scrollView = (UIScrollView* )self.view;
+//
+//    scrollView.contentSize=CGSizeMake(1280, 960);
+//    scrollView.delegate=self;
 //    [scrollView setContentMode:UIViewContentModeScaleAspectFit];
 //    [scrollView setScrollEnabled:YES];
 //    [scrollView setMinimumZoomScale:1.0];
 //    [scrollView setMaximumZoomScale:10.0];
 //	scrollView.bounces = FALSE;
 //	scrollView.bouncesZoom = FALSE;
+    
     
     // Completely zoom out when user double taps
     UITapGestureRecognizer *fullZoomOutRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resetImageZoom:)];

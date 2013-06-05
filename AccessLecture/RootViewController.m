@@ -4,31 +4,30 @@
 
 @implementation RootViewController
 
-/**
- Logic for when the screen first loads
- */
-- (void)viewDidLoad{
-    
-    // Hide the navigation bar if we don't want to see it
+- (void)viewDidLoad
+{
     self.navigationController.navigationBarHidden = YES; 
     
     [super viewDidLoad];
 }
 
-/**
- In case there's a memory warning
- */
-- (void)didReceiveMemoryWarning{
+
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
 }
 
-/**
- Release resources from memory
- */
+
+#pragma mark - Buttons
 
 - (IBAction)openAbout:(id)sender
 {
     [self performSegueWithIdentifier:@"toAbout" sender:nil];
+}
+
+- (IBAction)openLecture:(id)sender
+{
+    [self performSegueWithIdentifier:@"toLecture" sender:nil];    
 }
 
 @end

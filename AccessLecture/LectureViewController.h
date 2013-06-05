@@ -56,6 +56,7 @@
 -(void)resetImageZoom: (UIGestureRecognizer *)gestureRecognizer;
 
 @property (nonatomic) IASKAppSettingsViewController* appSettingsViewController;
+- (IBAction)toRoot:(id)sender;
 
 @end
 
