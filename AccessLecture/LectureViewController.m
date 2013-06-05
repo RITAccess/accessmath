@@ -574,5 +574,10 @@ float oldZoomScale;
    [self performSegueWithIdentifier:@"toHome" sender:nil];
 }
 
+- (IBAction)displaySettings:(id)sender
+{
+    NSLog(@"Display settings!");
+}
+
 
 @end

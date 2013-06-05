@@ -57,6 +57,7 @@
 
 @property (nonatomic) IASKAppSettingsViewController* appSettingsViewController;
 - (IBAction)toRoot:(id)sender;
+- (IBAction)displaySettings:(id)sender;
 
 @end
 

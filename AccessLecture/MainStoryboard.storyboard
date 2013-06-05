@@ -90,6 +90,11 @@
                                                 <action selector="toRoot:" destination="RCT-V3-Df9" id="KJs-Rg-HJ6"/>
                                             </connections>
                                         </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" image="Settings.png" id="YR6-hw-cvW">
+                                            <connections>
+                                                <action selector="displaySettings:" destination="RCT-V3-Df9" id="J8l-YF-brp"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -222,46 +227,9 @@
     </scenes>
     <resources>
         <image name="Back.png" width="95" height="95"/>
+        <image name="Settings.png" width="68" height="68"/>
         <image name="accesslecture.png" width="695" height="512"/>
     </resources>
-    <classes>
-        <class className="AboutViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AboutViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="returnToHome:"/>
-                <relationship kind="outlet" name="mainView" candidateClass="UIView"/>
-            </relationships>
-        </class>
-        <class className="LectureViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LectureViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="backButton:"/>
-                <relationship kind="action" name="clearButton:"/>
-                <relationship kind="action" name="openNotes:"/>
-                <relationship kind="action" name="openSettings:"/>
-                <relationship kind="action" name="saveButton:"/>
-                <relationship kind="action" name="toRoot:"/>
-                <relationship kind="action" name="zoomIn"/>
-                <relationship kind="action" name="zoomOut"/>
-                <relationship kind="outlet" name="bottomToolbar" candidateClass="UIView"/>
-                <relationship kind="outlet" name="notesTopToolbar" candidateClass="UIView"/>
-                <relationship kind="outlet" name="notesTopToolbarLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="toolbarLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="topToolbar" candidateClass="UIView"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="RootViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RootViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="openAbout:"/>
-                <relationship kind="action" name="openLecture:"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
