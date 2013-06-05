@@ -147,6 +147,9 @@ float oldZoomScale;
     [self settingsChange];
     
     [super viewDidLoad];
+    
+    self.clearNotesButton.hidden = YES; // Hide Clear Button on Start
+    self.colorSelection.hidden = YES; // Hide Clear Button on Start
 } 
 
 /**
@@ -222,8 +225,9 @@ float oldZoomScale;
 #pragma mark Note-Taking Methods
 
 /**
- * Opens the note-taking feature
+ * Opens the note-taking feature.
  */
+
 -(IBAction)openNotes:(id)sender {
     // Zoom the user all the way out when they enter note-taking mode
     oldZoomScale = scrollView.zoomScale;
@@ -254,10 +258,10 @@ float oldZoomScale;
 }
 
 /**
- * Close the note-taking feature
+ * Close the note-taking feature.
  */
--(IBAction)closeNotes:(id)sender {
-    
+-(IBAction)closeNotes:(id)sender
+{    
     [scrollView setMaximumZoomScale:MAX_ZOOM_SCALE];
     [scrollView setZoomScale:oldZoomScale animated:YES];
     [notesViewController.segmentedControl setHidden:YES];
@@ -301,10 +305,6 @@ float oldZoomScale;
 }
 
 /**
- Release resources from memory
- */
-
-/**
  View is unloaded
  */
 - (void)viewDidUnload {
@@ -312,10 +312,11 @@ float oldZoomScale;
     [t invalidate];
     bottomToolbar = nil;
     topToolbar = nil;
+    [self setClearNotesButton:nil];
+    [self setColorSelection:nil];
     [super viewDidUnload];
 }
 
-#pragma mark -
 #pragma mark NSURLConnection delegate methods
 
 /**
@@ -406,7 +407,6 @@ float oldZoomScale;
     return YES;
 }
 
-#pragma mark -
 #pragma mark Image Refresh Management
 /**
  Grabs the new image of the lecture and replaces it in the imageview
@@ -431,7 +431,6 @@ float oldZoomScale;
     }
 }
 
-#pragma mark -
 #pragma mark UIScrollViewDelegate protocol
 /**
  Required scrollview delegate method
@@ -550,8 +549,8 @@ float oldZoomScale;
     // Creating and adding the IASKAppSettingsViewController to a popover.
     appSettingsViewController = [[IASKAppSettingsViewController alloc]init];
     _popover = [[UIPopoverController alloc]initWithContentViewController:appSettingsViewController];
-    [_popover presentPopoverFromRect:CGRectMake(780, 500, 100, 100) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:NO];
-    _popover.popoverContentSize = CGSizeMake(350, 900);
+    [_popover presentPopoverFromRect:CGRectMake(780, 50, 100, 100) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:NO];
+    _popover.popoverContentSize = CGSizeMake(350, 800);
 }
 
 - (IBAction)save:(id)sender
@@ -569,7 +568,43 @@ float oldZoomScale;
 
 - (IBAction)notes:(id)sender
 {
+    self.clearNotesButton.hidden = NO;
+    self.colorSelection.hidden = NO;
+    [sender setHidden:YES];
     
+    // Zoom the user all the way out when they enter note-taking mode
+    oldZoomScale = scrollView.zoomScale;
+    [self resetImageZoom:nil];
+    // Disable zooming back in
+    [scrollView setMaximumZoomScale:MIN_ZOOM_SCALE];
+    
+    // Swap the toolbars
+    [topToolbar setHidden:YES];
+    [bottomToolbar setHidden:YES];
+    [notesViewController.segmentedControl setHidden:NO];
+    [notesTopToolbar setHidden:NO];
+    
+    // Force the ScrollView to require 2 fingers to scroll
+    // while in note-taking mode
+    [scrollViewPanGesture setMinimumNumberOfTouches:2];
+    [scrollViewPanGesture setMaximumNumberOfTouches:2];
+    [notesViewController.view setUserInteractionEnabled:YES];
+    
+    // Maintain an appropriate content size
+    if ([defaults floatForKey:@"toolbarAlpha"] != 0.0) {
+        // Toolbars are partially transparent
+        scrollView.frame = CGRectMake(0, 0, SCREEN_WIDTH, self.view.frame.size.height-TOOLBAR_HEIGHT);
+    } else {
+        // Toolbars are completely solid
+        scrollView.frame = CGRectMake(0, TOOLBAR_HEIGHT, SCREEN_WIDTH, self.view.frame.size.height-(TOOLBAR_HEIGHT * 2));
+    }
+}
+
+- (IBAction)clear:(id)sender
+{
+    // Tell the user that notes are saved
+	UIAlertView* alert = [[UILargeAlertView alloc] initWithText:NSLocalizedString(@"Notes Cleared!", nil) fontSize:48];
+	[alert show];
 }
 
 

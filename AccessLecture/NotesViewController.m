@@ -59,11 +59,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+        NSLog(@"Notes View Loaded!");
+    
     // Hide the navigation bar if we don't want to see it
     self.navigationController.navigationBarHidden = YES;  
     
     // Set up pen & eraser
-    //mouseMoved = 0;
     isEraserOn = FALSE;
     eraserRadius = ([defaults floatForKey:@"eraserSize"] * 100); 
     eraser = [[UIImageView alloc] initWithImage:nil];
@@ -90,24 +91,6 @@
  Gets called at launch & every time the settings are updated
  */
 -(void)settingsChange {
-   /** 
-    if ([defaults floatForKey:@"toolbarAlpha"] != 0.0) {
-        
-        // Toolbar is partially transparent
-        drawingView.frame = CGRectMake(0, 0, SCREEN_WIDTH, self.view.frame.size.height-SEGMENT_HEIGHT);
-        imageView.frame = CGRectMake(0, 0, SCREEN_WIDTH, self.view.frame.size.height-SEGMENT_HEIGHT);
-        backgroundImage.frame = CGRectMake(0, 0, SCREEN_WIDTH, self.view.frame.size.height-SEGMENT_HEIGHT);
-        
-    } else {
-        
-        // Toolbar is completely solid
-        drawingView.frame = CGRectMake(0, TOOLBAR_HEIGHT, SCREEN_WIDTH, self.view.frame.size.height-(SEGMENT_HEIGHT + TOOLBAR_HEIGHT));
-        imageView.frame = CGRectMake(0, 0, SCREEN_WIDTH, self.view.frame.size.height-(SEGMENT_HEIGHT + TOOLBAR_HEIGHT));
-        backgroundImage.frame = CGRectMake(0, 0, SCREEN_WIDTH, self.view.frame.size.height-(SEGMENT_HEIGHT + TOOLBAR_HEIGHT));
-        
-    }
-    */
-  
     // Update pen size
     penRadius = ([defaults floatForKey:@"penSize"] * 10);
     
@@ -120,6 +103,9 @@
  When the user first starts writing
  */
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    
+    NSLog(@"Touches began!");
+    
     isMouseMoved = NO;
     UITouch *touch = [touches anyObject]; 
     
@@ -137,6 +123,9 @@
  When the user first starts moving the pen
  */
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    NSLog(@"Moving finger...");
+    
     isMouseMoved = YES; 
     
     UITouch *touch = [touches anyObject]; 
@@ -144,8 +133,6 @@
     
     // Setting up the context
     UIGraphicsBeginImageContext(imageView.frame.size);
-    //CGContextSetAllowsAntialiasing(UIGraphicsGetCurrentContext(), NO);
-    //CGContextSetShouldAntialias(UIGraphicsGetCurrentContext(), NO);
     [imageView.image drawInRect:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     
     if (isEraserOn) { // if user has pressed the eraser
@@ -170,14 +157,6 @@
     imageView.image = UIGraphicsGetImageFromCurrentImageContext(); 
     UIGraphicsEndImageContext(); 
     lastPoint = currentPoint; 
-    
-    /*
-    mouseMoved++; 
-    
-    if (mouseMoved == 1) {
-        mouseMoved = 0;
-    }
-    */ 
 } 
 
 /**

@@ -42,6 +42,9 @@
     NSUserDefaults* defaults;
     
 }
+- (IBAction)clear:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UIButton *clearNotesButton;
 
 -(IBAction)openNotes:(id)sender;
 -(IBAction)clearButton:(id)sender;
@@ -60,6 +63,7 @@
 - (IBAction)displaySettings:(id)sender;
 - (IBAction)save:(id)sender;
 - (IBAction)notes:(id)sender;
+@property (weak, nonatomic) IBOutlet UIView *colorSelection;
 
 @end
 
