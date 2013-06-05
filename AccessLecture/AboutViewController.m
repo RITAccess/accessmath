@@ -56,14 +56,16 @@
 /**
  Required scrollview delegate method
  */
-- (UIView *)viewForZoomingInScrollView:(UIScrollView *)sv {
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)sv
+{
 	return mainView;
 }
 
 /**
  Required scrollview delegate method
  */
-- (void)scrollViewDidEndZooming:(UIScrollView *)sv withView:(UIView *)view atScale:(float)scale {
+- (void)scrollViewDidEndZooming:(UIScrollView *)sv withView:(UIView *)view atScale:(float)scale
+{
     [sv setZoomScale:scale+0.01 animated:NO];
     [sv setZoomScale:scale animated:NO];
 }
