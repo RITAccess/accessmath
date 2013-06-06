@@ -6,6 +6,7 @@
 #import "IASKAppSettingsViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "Zoomhandler.H"
+#import "LineDrawView.h"
 
 @interface LectureViewController : UIViewController<UIScrollViewDelegate, IASKSettingsDelegate> {
     
@@ -35,12 +36,13 @@
     BOOL loading;
     
     // Notes
+    LineDrawView *lineDrawView;
     NotesViewController* notesViewController;
+    
     
     // Settings
     IASKAppSettingsViewController* appSettingsViewController;
     NSUserDefaults* defaults;
-    
 }
 
 - (void)updateImageView;

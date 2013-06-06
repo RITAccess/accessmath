@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C0F886B1760D8EC0062BD16 /* LineDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F886A1760D8EC0062BD16 /* LineDrawView.m */; };
 		2CFC32A0175E60FC00384AEC /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CFC329F175E60FC00384AEC /* MainStoryboard.storyboard */; };
 		3F0D2260137ADAE3009CCDB3 /* InlineNotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0D225E137ADAE3009CCDB3 /* InlineNotesViewController.m */; };
 		3F0D2261137ADAE3009CCDB3 /* InlineNotesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F0D225F137ADAE3009CCDB3 /* InlineNotesViewController.xib */; };
@@ -91,6 +92,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C0F88691760D8EC0062BD16 /* LineDrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineDrawView.h; sourceTree = "<group>"; };
+		2C0F886A1760D8EC0062BD16 /* LineDrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineDrawView.m; sourceTree = "<group>"; };
 		2CFC329F175E60FC00384AEC /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		3F0D225D137ADAE3009CCDB3 /* InlineNotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InlineNotesViewController.h; sourceTree = "<group>"; };
 		3F0D225E137ADAE3009CCDB3 /* InlineNotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InlineNotesViewController.m; sourceTree = "<group>"; };
@@ -236,6 +239,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C0F88681760D8D10062BD16 /* LineDrawView */ = {
+			isa = PBXGroup;
+			children = (
+				2C0F88691760D8EC0062BD16 /* LineDrawView.h */,
+				2C0F886A1760D8EC0062BD16 /* LineDrawView.m */,
+			);
+			name = LineDrawView;
+			sourceTree = "<group>";
+		};
 		2CFC32A1175E7ED600384AEC /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -574,6 +586,7 @@
 		3FED963213708E5100D8D1B8 /* Lecture View */ = {
 			isa = PBXGroup;
 			children = (
+				2C0F88681760D8D10062BD16 /* LineDrawView */,
 				3FAD0BFA13A7B7D800218B1F /* LectureViewController */,
 				3F97A09D139EC3AB0094D903 /* Zoom Handler */,
 				3FED964313708FC800D8D1B8 /* Lecture View Images */,
@@ -789,6 +802,7 @@
 				3F99F209154375270065CBB9 /* Position.m in Sources */,
 				3FCD5D1715438472005F2A60 /* AccessLectureRuntime.m in Sources */,
 				4C62BECD175651DB00CAF4CF /* FileManager.m in Sources */,
+				2C0F886B1760D8EC0062BD16 /* LineDrawView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

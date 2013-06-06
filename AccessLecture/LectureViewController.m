@@ -5,6 +5,7 @@
 #import "IASKSpecifier.h"
 #import "IASKSettingsReader.h"
 #import "UILargeAlertView.h"
+#import "LineDrawView.h"
 
 
 
@@ -203,38 +204,6 @@ float oldZoomScale;
 }
 
 #pragma mark - Note-Taking
-
-/**
- * Opens the note-taking feature.
- */
-//-(IBAction)openNotes:(id)sender
-//{
-//    NSLog(@"Testing");
-//    // Zoom the user all the way out when they enter note-taking mode
-//    oldZoomScale = scrollView.zoomScale;
-//    [self resetImageZoom:nil];
-//    
-//    // Disable zooming back in
-//    [scrollView setMaximumZoomScale:MIN_ZOOM_SCALE];
-//    
-//    // Swap the toolbars
-//    [topToolbar setHidden:YES];
-//    [bottomToolbar setHidden:YES];
-//    [notesViewController.segmentedControl setHidden:NO];
-//    [notesTopToolbar setHidden:NO];
-//    
-//    // Force the ScrollView to require 2 fingers to scroll while in note-taking mode
-//    [scrollViewPanGesture setMinimumNumberOfTouches:2];
-//    [scrollViewPanGesture setMaximumNumberOfTouches:2];
-//    [notesViewController.view setUserInteractionEnabled:YES];
-//    
-//    // Maintain an appropriate content size
-//    if ([defaults floatForKey:@"toolbarAlpha"] != 0.0) {
-//        scrollView.frame = CGRectMake(0, 0, SCREEN_WIDTH, self.view.frame.size.height-TOOLBAR_HEIGHT);  // Partially transparent toolbars
-//    } else {
-//        scrollView.frame = CGRectMake(0, TOOLBAR_HEIGHT, SCREEN_WIDTH, self.view.frame.size.height-(TOOLBAR_HEIGHT * 2)); // Opaque toolbars
-//    }
-//}
 
 /**
  * Close the note-taking feature.
@@ -578,6 +547,9 @@ float oldZoomScale;
         // Toolbars are completely solid
         scrollView.frame = CGRectMake(0, TOOLBAR_HEIGHT, SCREEN_WIDTH, self.view.frame.size.height-(TOOLBAR_HEIGHT * 2));
     }
+    
+    lineDrawView=[[LineDrawView alloc]initWithFrame:CGRectMake(0, 200, 768, 600)];
+    [self.view addSubview:lineDrawView];
 }
 
 - (IBAction)clearNotesButtonPress:(id)sender
