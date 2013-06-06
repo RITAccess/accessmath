@@ -138,7 +138,11 @@ float oldZoomScale;
     
     self.clearNotesButton.hidden = YES; // Hide Clear Button on Start
     self.colorSelectionSegment.hidden = YES; // Hide Clear Button on Start
-} 
+    
+    [self.colorSelectionSegment addTarget:self
+                         action:@selector(changeColor:)
+               forControlEvents:UIControlEventValueChanged];
+}
 
 /**
  Gets called at launch & every time the settings are updated
@@ -561,4 +565,28 @@ float oldZoomScale;
 	[alert show];
 }
 
+- (void)changeColor:(id)sender
+{
+    
+    UISegmentedControl *segmentedControl = (UISegmentedControl *)sender;
+    NSLog(@"%@", [segmentedControl titleForSegmentAtIndex:[segmentedControl selectedSegmentIndex]]);
+    
+    switch ([segmentedControl selectedSegmentIndex]) {
+        case 0:
+            lineDrawView.brushColor = [UIColor redColor];
+            break;
+        case 1:
+            lineDrawView.brushColor = [UIColor greenColor];
+            break;
+        case 2:
+            lineDrawView.brushColor = [UIColor blueColor];
+            break;
+        case 3:
+            lineDrawView.brushColor = [UIColor blackColor];
+            break;
+        default:
+            lineDrawView.brushColor = [UIColor whiteColor];
+            break;
+    }
+}
 @end

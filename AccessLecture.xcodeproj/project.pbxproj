@@ -462,8 +462,8 @@
 		3FAD0BFA13A7B7D800218B1F /* LectureViewController */ = {
 			isa = PBXGroup;
 			children = (
-				3FC85672139D2CF90028DEB5 /* LectureViewController.m */,
 				3FED962B137089D100D8D1B8 /* LectureViewController.h */,
+				3FC85672139D2CF90028DEB5 /* LectureViewController.m */,
 				3FED962D137089D100D8D1B8 /* LectureViewController.xib */,
 			);
 			name = LectureViewController;

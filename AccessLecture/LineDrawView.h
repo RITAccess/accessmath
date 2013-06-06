@@ -9,10 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface LineDrawView : UIView
-{
-    // Drawing
-    UIBezierPath *bezierPath;
-    UIColor *brushColor;
-}
+
+@property (nonatomic) UIBezierPath *bezierPath;
+@property (nonatomic) UIColor *brushColor;
 
 @end

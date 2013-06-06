@@ -14,6 +14,9 @@
 
 @implementation LineDrawView
 
+@synthesize bezierPath;
+@synthesize brushColor;
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -51,6 +54,7 @@
     
     
 }
+
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

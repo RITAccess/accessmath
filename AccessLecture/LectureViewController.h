@@ -66,5 +66,6 @@
 @property (strong, nonatomic)UIPopoverController* popover;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *settingsButton;
 
+
 @end
 
