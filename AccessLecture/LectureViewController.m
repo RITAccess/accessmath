@@ -552,7 +552,7 @@ float oldZoomScale;
         scrollView.frame = CGRectMake(0, TOOLBAR_HEIGHT, SCREEN_WIDTH, self.view.frame.size.height-(TOOLBAR_HEIGHT * 2));
     }
     
-    lineDrawView=[[LineDrawView alloc]initWithFrame:CGRectMake(0, 200, 768, 600)];
+    lineDrawView=[[LineDrawView alloc]initWithFrame:CGRectMake(0, 200, 768, 650)];
     [self.view addSubview:lineDrawView];
 }
 
@@ -571,11 +571,15 @@ float oldZoomScale;
     UISegmentedControl *segmentedControl = (UISegmentedControl *)sender;
     NSLog(@"%@", [segmentedControl titleForSegmentAtIndex:[segmentedControl selectedSegmentIndex]]);
     
+    lineDrawView.currentPath = [segmentedControl selectedSegmentIndex];
+    
     switch ([segmentedControl selectedSegmentIndex]) {
         case 0:
+            lineDrawView.currentPath = 0;
             lineDrawView.brushColor = [UIColor redColor];
             break;
         case 1:
+            lineDrawView.currentPath = 1;
             lineDrawView.brushColor = [UIColor greenColor];
             break;
         case 2:
