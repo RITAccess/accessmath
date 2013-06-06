@@ -19,10 +19,8 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-/**
- Set up when the view loads
- */
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     // Hide navigation bar, we have our own toolbar
     self.navigationController.navigationBarHidden = YES;
     
@@ -53,10 +51,6 @@
     
     [super viewDidLoad];
 }
-
-/**
- Deallocate memory
- */
 
 /**
  Memory warning

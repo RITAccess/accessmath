@@ -7,11 +7,8 @@
 
 @implementation AboutViewController
 
-
 #pragma mark - View lifecycle
-/**
- When view is loaded
- */
+
 - (void)viewDidLoad
 {
     
@@ -37,6 +34,13 @@
     [super viewDidLoad];
 }
 
+- (void)viewDidUnload
+{
+    scrollView = nil;
+    mainView = nil;
+    [super viewDidUnload];
+}
+
 /**
  Resetting the scrollView to be completely zoomed out
  */
@@ -45,20 +49,10 @@
     [scrollView setZoomScale:1.0 animated:YES];
 }
 
-/**
- When view is unloaded
- */
-- (void)viewDidUnload
-{
-    scrollView = nil;
-    mainView = nil;
-    [super viewDidUnload];
-}
-
 #pragma mark UIScrollViewDelegate protocol
 
 /**
- Required scrollview delegate method
+ * Required scrollview delegate method.
  */
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)sv
 {
@@ -66,7 +60,7 @@
 }
 
 /**
- Required scrollview delegate method
+ * Required scrollview delegate method.
  */
 - (void)scrollViewDidEndZooming:(UIScrollView *)sv withView:(UIView *)view atScale:(float)scale
 {
