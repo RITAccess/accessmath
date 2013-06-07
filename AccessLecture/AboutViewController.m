@@ -56,6 +56,6 @@
 
 - (IBAction)returnToHome:(id)sender
 {
-    [self performSegueWithIdentifier:@"toRoot" sender:nil];
+    [self dismissModalViewControllerAnimated:YES];
 }
 @end

@@ -400,7 +400,7 @@ float oldZoomScale;
 
 - (IBAction)backButtonPress:(id)sender
 {
-   [self performSegueWithIdentifier:@"toHome" sender:nil];
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 
