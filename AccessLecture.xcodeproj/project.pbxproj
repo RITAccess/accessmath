@@ -678,6 +678,9 @@
 /* Begin PBXProject section */
 		3FED95FE1370863E00D8D1B8 /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+			};
 			buildConfigurationList = 3FED96011370863E00D8D1B8 /* Build configuration list for PBXProject "AccessLecture" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
@@ -874,6 +877,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "AccessMathTests/AccessMathTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
@@ -902,6 +906,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AccessMathTests/AccessMathTests-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "AccessMathTests/AccessMathTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;

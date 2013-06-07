@@ -241,15 +241,23 @@
                         <subviews>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="-1" minValue="-1.5" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="LP3-oQ-phe">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="216" id="IpR-3I-4vX"/>
+                                    <constraint firstAttribute="width" constant="322" id="fHQ-sX-IBB"/>
                                 </constraints>
                                 <connections>
                                     <action selector="colorSlide:" destination="pIb-Nv-pIW" eventType="valueChanged" id="v8N-nw-GoF"/>
                                 </connections>
                             </slider>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="-1" minValue="-1.5" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Keu-Vj-uQi">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="318" id="q7D-qe-XqL"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="colorSlide:" destination="pIb-Nv-pIW" eventType="valueChanged" id="agY-CM-yQl"/>
+                                </connections>
+                            </slider>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="-2" minValue="-2" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="heX-aQ-72k">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="210" id="VQB-JR-mvs"/>
+                                    <constraint firstAttribute="width" constant="319" id="QuK-Sx-KYf"/>
                                 </constraints>
                             </slider>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Pen Size" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f5m-cJ-Gvb">
@@ -260,36 +268,73 @@
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Zoom" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qpk-I5-pq5">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Eraser Size" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VsA-sA-WsO">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="27" id="F5e-eM-d2v"/>
-                                    <constraint firstAttribute="width" constant="76" id="V5p-Nl-IlS"/>
+                                    <constraint firstAttribute="height" constant="23" id="b9A-Zv-LHN"/>
+                                    <constraint firstAttribute="width" constant="156" id="gh0-jQ-3ni"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Settings" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qbS-ll-VCR">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Active Test Image" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cG9-d2-eHm">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="39" id="Wp0-1d-WYM"/>
-                                    <constraint firstAttribute="width" constant="120" id="jXX-Ph-7iX"/>
+                                    <constraint firstAttribute="width" constant="219" id="TJo-85-c4w"/>
+                                    <constraint firstAttribute="height" constant="33" id="Zhd-zq-jN8"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Zoom Increment" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qpk-I5-pq5">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="27" id="F5e-eM-d2v"/>
+                                    <constraint firstAttribute="width" constant="196" id="Yyc-9H-wkS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kSV-aq-K2t"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="High Contrast Mode" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uE6-du-dUk">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="33" id="5n4-kY-lms"/>
+                                    <constraint firstAttribute="width" constant="251" id="eSU-uc-Pda"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gW1-EI-Vkh"/>
+                            <navigationBar contentMode="scaleToFill" barStyle="blackOpaque" translatesAutoresizingMaskIntoConstraints="NO" id="U4g-4z-jz9">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="350" id="GUz-yr-3ID"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="Settings" id="JGh-wN-nHa"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.89707880429999998" green="0.89707880429999998" blue="0.89707880429999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="gW1-EI-Vkh" firstAttribute="top" secondItem="uE6-du-dUk" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="1Bn-B5-NCu"/>
+                            <constraint firstItem="VsA-sA-WsO" firstAttribute="leading" secondItem="kU9-Ev-PsL" secondAttribute="leading" constant="103" id="4S2-f5-MLI"/>
+                            <constraint firstItem="VsA-sA-WsO" firstAttribute="centerX" secondItem="kSV-aq-K2t" secondAttribute="centerX" type="default" id="8Gs-sD-iSH"/>
                             <constraint firstItem="LP3-oQ-phe" firstAttribute="top" secondItem="f5m-cJ-Gvb" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="9al-YA-T4E"/>
-                            <constraint firstItem="LP3-oQ-phe" firstAttribute="leading" secondItem="kU9-Ev-PsL" secondAttribute="leading" constant="13" id="C77-6V-Mko"/>
-                            <constraint firstItem="Qpk-I5-pq5" firstAttribute="centerX" secondItem="heX-aQ-72k" secondAttribute="centerX" type="default" id="L4d-HA-FIW"/>
-                            <constraint firstItem="f5m-cJ-Gvb" firstAttribute="leading" secondItem="kU9-Ev-PsL" secondAttribute="leading" constant="69" id="Mc4-3D-70N"/>
-                            <constraint firstItem="heX-aQ-72k" firstAttribute="top" secondItem="Qpk-I5-pq5" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="OzO-xL-UAL"/>
-                            <constraint firstItem="qbS-ll-VCR" firstAttribute="leading" secondItem="kU9-Ev-PsL" secondAttribute="leading" constant="101" id="PKz-GO-fm6"/>
-                            <constraint firstItem="Qpk-I5-pq5" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="176" id="au7-eA-2Jc"/>
-                            <constraint firstItem="qbS-ll-VCR" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="20" symbolic="YES" type="default" id="dJh-49-QZA"/>
+                            <constraint firstItem="U4g-4z-jz9" firstAttribute="leading" secondItem="kU9-Ev-PsL" secondAttribute="leading" type="default" id="Bu9-AU-4bw"/>
+                            <constraint firstItem="LP3-oQ-phe" firstAttribute="centerX" secondItem="cG9-d2-eHm" secondAttribute="centerX" type="default" id="DoB-xZ-9ch"/>
+                            <constraint firstItem="heX-aQ-72k" firstAttribute="top" secondItem="VsA-sA-WsO" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="IEo-a9-DRX"/>
+                            <constraint firstItem="Keu-Vj-uQi" firstAttribute="trailing" secondItem="heX-aQ-72k" secondAttribute="trailing" type="default" id="LUd-td-jfv"/>
+                            <constraint firstItem="f5m-cJ-Gvb" firstAttribute="centerX" secondItem="LP3-oQ-phe" secondAttribute="centerX" type="default" id="MSX-4y-Mag"/>
+                            <constraint firstItem="cG9-d2-eHm" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="368" id="MzB-dH-6sh"/>
+                            <constraint firstItem="uE6-du-dUk" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="468" id="PbG-8a-lkP"/>
+                            <constraint firstItem="VsA-sA-WsO" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="180" id="PxR-QA-uZi"/>
+                            <constraint firstItem="Qpk-I5-pq5" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="273" id="Qb0-Md-PFK"/>
+                            <constraint firstItem="Qpk-I5-pq5" firstAttribute="centerX" secondItem="Keu-Vj-uQi" secondAttribute="centerX" type="default" id="XC3-66-Cj2"/>
+                            <constraint firstItem="uE6-du-dUk" firstAttribute="leading" secondItem="kU9-Ev-PsL" secondAttribute="leading" constant="58" id="YJq-bK-jX6"/>
+                            <constraint firstItem="U4g-4z-jz9" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" type="default" id="YUy-v5-FXa"/>
+                            <constraint firstItem="kSV-aq-K2t" firstAttribute="top" secondItem="cG9-d2-eHm" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Zp1-y8-kYY"/>
+                            <constraint firstItem="Keu-Vj-uQi" firstAttribute="top" secondItem="Qpk-I5-pq5" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="dL8-NE-CbQ"/>
                             <constraint firstItem="f5m-cJ-Gvb" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="80" id="eqD-bS-iWB"/>
-                            <constraint firstItem="Qpk-I5-pq5" firstAttribute="centerX" secondItem="LP3-oQ-phe" secondAttribute="centerX" type="default" id="lfQ-u2-3VS"/>
+                            <constraint firstItem="heX-aQ-72k" firstAttribute="centerX" secondItem="U4g-4z-jz9" secondAttribute="centerX" type="default" id="g1G-Vo-CrJ"/>
+                            <constraint firstItem="uE6-du-dUk" firstAttribute="centerX" secondItem="gW1-EI-Vkh" secondAttribute="centerX" type="default" id="zep-t3-ceA"/>
+                            <constraint firstItem="LP3-oQ-phe" firstAttribute="trailing" secondItem="heX-aQ-72k" secondAttribute="trailing" type="default" id="zjR-Pz-e2o"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
@@ -419,6 +464,53 @@
         <image name="ZoomOut.png" width="95" height="95"/>
         <image name="accesslecture.png" width="695" height="512"/>
     </resources>
+    <classes>
+        <class className="AboutViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AboutViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="returnToHome:"/>
+                <relationship kind="outlet" name="mainView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="LectureViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LectureViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backButtonPress:"/>
+                <relationship kind="action" name="clearNotesButtonPress:"/>
+                <relationship kind="action" name="saveButtonPress:"/>
+                <relationship kind="action" name="startNotesButtonPress:"/>
+                <relationship kind="action" name="zoomInButtonPress:"/>
+                <relationship kind="action" name="zoomOutButtonPress:"/>
+                <relationship kind="outlet" name="bottomToolbar" candidateClass="UIView"/>
+                <relationship kind="outlet" name="clearNotesButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="colorSelectionSegment" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="notesTopToolbar" candidateClass="UIView"/>
+                <relationship kind="outlet" name="notesTopToolbarLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="settingsButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="toolbarLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="topToolbar" candidateClass="UIView"/>
+                <relationship kind="outlet" name="zoomInButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="zoomOutButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="RootViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RootViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="openAbout:"/>
+                <relationship kind="action" name="openLecture:"/>
+            </relationships>
+        </class>
+        <class className="SettingsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="colorSlide:"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
