@@ -232,15 +232,20 @@ float oldZoomScale;
     }
 }
 
-/**
- Do we want the application to be rotateable? Return YES or NO
- */
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Only support portrait
-    return UIInterfaceOrientationIsPortrait(interfaceOrientation);
+- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
     
-    NSLog(@"changed!");
+    if (lineDrawView != NULL){
+        if (self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
+            self.interfaceOrientation == UIInterfaceOrientationLandscapeRight){
+            lineDrawView.frame = CGRectMake(0, 180, 1024, 468);
+        } else {
+//            lineDrawView.frame = CGRectMake(0, 180, 1024, 468);
+//            lineDrawView.bounds = CGRectMake(0, 180, 1024, 768);
 
+            
+        }
+
+    }
 }
 
 /**
@@ -545,7 +550,7 @@ float oldZoomScale;
         scrollView.frame = CGRectMake(0, TOOLBAR_HEIGHT, SCREEN_WIDTH, self.view.frame.size.height-(TOOLBAR_HEIGHT * 2));
     }
     
-    lineDrawView=[[LineDrawView alloc]initWithFrame:CGRectMake(0, 180, 768, 720)];
+    lineDrawView=[[LineDrawView alloc]initWithFrame:CGRectMake(0, 180, 1024, 468)];
     
     [self.view addSubview:lineDrawView];
 }

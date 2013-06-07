@@ -28,7 +28,7 @@
     if (self) {
         
         // Initialization code
-        self.backgroundColor=[UIColor whiteColor];
+        self.backgroundColor=[UIColor lightGrayColor];
         bezierPath=[[UIBezierPath alloc]init];
         bezierPath.lineWidth=1;
         
