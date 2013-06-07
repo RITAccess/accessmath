@@ -1,23 +1,15 @@
 // Copyright 2011 Access Lecture. All rights reserved.
 
 #import <UIKit/UIKit.h>
-#import "NotesViewController.h"
-#import "InlineNotesViewController.h"
-#import "IASKAppSettingsViewController.h"
 #import <QuartzCore/QuartzCore.h>
-#import "Zoomhandler.H"
+#import "ZoomHandler.H"
 #import "LineDrawView.h"
 #import "SettingsViewController.h"
 
-@interface LectureViewController : UIViewController<UIScrollViewDelegate, IASKSettingsDelegate> {
+@interface LectureViewController : UIViewController<UIScrollViewDelegate> {
     
     // UI
 	IBOutlet UIScrollView* scrollView;
-    IBOutlet UIView* bottomToolbar;
-    IBOutlet UIView* topToolbar;
-    IBOutlet UILabel* toolbarLabel;
-    IBOutlet UIView* notesTopToolbar;
-    IBOutlet UILabel* notesTopToolbarLabel;
 	UIImageView* imageView;
     
     // ScrollView Gestures
@@ -37,12 +29,9 @@
     BOOL loading;
     
     // Notes
-    LineDrawView *lineDrawView;
-    NotesViewController* notesViewController;
-    
+    LineDrawView *lineDrawView;    
     
     // Settings
-    IASKAppSettingsViewController* appSettingsViewController;
     NSUserDefaults* defaults;
 }
 
@@ -62,7 +51,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *zoomOutButton;
 @property (weak, nonatomic) IBOutlet UIButton *zoomInButton;
 @property (weak, nonatomic) IBOutlet UIButton *clearNotesButton;
-@property (strong, nonatomic) IASKAppSettingsViewController* appSettingsViewController;
 @property (strong, nonatomic)UIPopoverController* popover;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *settingsButton;
 

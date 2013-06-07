@@ -1,13 +1,9 @@
 // Copyright 2011 Access Lecture. All rights reserved.
 
 #import "LectureViewController.h"
-#import <QuartzCore/QuartzCore.h> 
-#import "IASKSpecifier.h"
-#import "IASKSettingsReader.h"
+#import <QuartzCore/QuartzCore.h>
 #import "UILargeAlertView.h"
 #import "LineDrawView.h"
-
-
 
 #define ZOOM_VIEW_TAG 100
 #define MIN_ZOOM_SCALE 1.0
@@ -31,7 +27,6 @@ float oldZoomScale;
 
 @implementation LectureViewController
 
-@synthesize appSettingsViewController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -48,58 +43,31 @@ float oldZoomScale;
 	zoomHandler = [[ZoomHandler alloc] initWithZoomLevel: ZOOM_STEP];
 	
 	// Set up the imageview
-    img = [[UIImage alloc] initWithData:
-                    [NSData dataWithContentsOfURL:
-                     [NSURL URLWithString:urlString]]];
+    img = [[UIImage alloc] initWithData: [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]]];
     imageView = [[UIImageView alloc]initWithImage:img];
 	imageView.userInteractionEnabled = YES;
     [imageView setTag:ZOOM_VIEW_TAG]; 
     
-    /**
-     * Initialize the note-taking feature
-     */
-    notesViewController = [[NotesViewController alloc] initWithNibName:@"NotesViewController" bundle:nil];
-    [notesViewController.view addSubview:imageView]; // We draw on a copy of the imageView
-    [notesViewController.view sendSubviewToBack:imageView]; // Hide it for now, since note-taking isn't active
-    [notesTopToolbar setHidden:YES]; // Note-taking specific toolbar
-    [notesViewController.view setHidden:NO];
-    [notesViewController.segmentedControl setHidden:YES]; // The color picker
-    [notesViewController.view setUserInteractionEnabled:NO];
-    [self.view addSubview:notesViewController.segmentedControl];
     
     // Set up the scrollview
-	scrollView.clipsToBounds = YES;	// default is NO, but we want to restrict drawing within our scrollview
-	[scrollView addSubview:notesViewController.view]; // We want to scroll/zoom the note-taking view as well
-    [scrollView setDelegate:self];
-    [scrollView setContentMode:UIViewContentModeScaleAspectFit]; // If this is not set, the image will be distorted
-    [scrollView setContentSize:CGSizeMake(notesViewController.view.frame.size.width,notesViewController.view.frame.size.width)];
-	[scrollView setScrollEnabled:YES];
-    [scrollView setMinimumZoomScale:MIN_ZOOM_SCALE];
-    [scrollView setZoomScale:MIN_ZOOM_SCALE];
-    [scrollView setMaximumZoomScale:MAX_ZOOM_SCALE];
-	scrollView.bounces = FALSE;
-	scrollView.bouncesZoom = FALSE;
+//	scrollView.clipsToBounds = YES;	// default is NO, but we want to restrict drawing within our scrollview
+//	[scrollView addSubview:notesViewController.view]; // We want to scroll/zoom the note-taking view as well
+//    [scrollView setDelegate:self];
+//    [scrollView setContentMode:UIViewContentModeScaleAspectFit]; // If this is not set, the image will be distorted
+//    [scrollView setContentSize:CGSizeMake(notesViewController.view.frame.size.width,notesViewController.view.frame.size.width)];
+//	[scrollView setScrollEnabled:YES];
+//    [scrollView setMinimumZoomScale:MIN_ZOOM_SCALE];
+//    [scrollView setZoomScale:MIN_ZOOM_SCALE];
+//    [scrollView setMaximumZoomScale:MAX_ZOOM_SCALE];
+//	scrollView.bounces = FALSE;
+//	scrollView.bouncesZoom = FALSE;
     
-    /***********
-     * USABILITY TESTING CODE
-     **********/
-    [notesViewController.view setFrame:CGRectMake(0, 0,
-                                                  img.size.width * [scrollView zoomScale],img.size.height * [scrollView zoomScale])];
-    [notesViewController.imageView setFrame:CGRectMake(0, 0,
-                                                       img.size.width * [scrollView zoomScale],img.size.height *[scrollView zoomScale])];
-    [imageView sizeToFit];
-	[scrollView setContentSize:CGSizeMake(imageView.frame.size.width, imageView.frame.size.height)];
-    /*********/
         
     // Set up the navigation controller
     self.navigationController.navigationBarHidden = YES;
-    
-    /* 
-     * Timer Setup.
-     * Update the imageView with a screenshot of the Mac
-     */
+     
+    // Timer Setup. Update the imageView with a screenshot of the Mac
     shouldSnapToZoom = YES;
-    // REAL CODE
     t = [NSTimer scheduledTimerWithTimeInterval:1.0
                                          target:self
                                        selector:@selector(updateImageView)
@@ -109,7 +77,7 @@ float oldZoomScale;
     [runner addTimer:t forMode: NSDefaultRunLoopMode];
      
     
-    // Get the scrollView's pan gesture and store it for later use
+    // Get the scrollView's pan gesture and store it for later use.
     for (UIGestureRecognizer* rec in scrollView.gestureRecognizers) {
         if ([rec isKindOfClass:[UIPanGestureRecognizer class]]) {
             scrollViewPanGesture = (UIPanGestureRecognizer*)rec;
@@ -144,14 +112,10 @@ float oldZoomScale;
 }
 
 /**
- Gets called at launch & every time the settings are updated
+ * Gets called at launch & every time the settings are updated.
  */
 -(void)settingsChange {
 
-    // Toolbar transparency
-    bottomToolbar.alpha = 1 - [defaults floatForKey:@"toolbarAlpha"];
-    topToolbar.alpha = 1 - [defaults floatForKey:@"toolbarAlpha"];
-    notesTopToolbar.alpha = 1 - [defaults floatForKey:@"toolbarAlpha"];
     
     if ([defaults floatForKey:@"toolbarAlpha"] != 0.0) {
         // Toolbars are partially transparent
@@ -160,21 +124,6 @@ float oldZoomScale;
         // Toolbars are completely solid
         scrollView.frame = CGRectMake(0, TOOLBAR_HEIGHT, SCREEN_WIDTH, self.view.frame.size.height-(TOOLBAR_HEIGHT * 2));
     }
-    
-    // Toolbar colors
-    float toolRed = [defaults floatForKey:@"tbRed"];
-    float toolGreen = [defaults floatForKey:@"tbGreen"];
-    float toolBlue = [defaults floatForKey:@"tbBlue"];
-    [topToolbar setBackgroundColor:[UIColor colorWithRed:toolRed green:toolGreen blue:toolBlue alpha:1.0]];
-    [notesTopToolbar setBackgroundColor:[UIColor colorWithRed:toolRed green:toolGreen blue:toolBlue alpha:1.0]];
-    [bottomToolbar setBackgroundColor:[UIColor colorWithRed:toolRed green:toolGreen blue:toolBlue alpha:1.0]];
-    
-    // Text colors
-    float textRed = [defaults floatForKey:@"textRed"];
-    float textGreen = [defaults floatForKey:@"textGreen"];
-    float textBlue = [defaults floatForKey:@"textBlue"];
-    toolbarLabel.textColor = [UIColor colorWithRed:textRed green:textGreen blue:textBlue alpha:1.0];
-    notesTopToolbarLabel.textColor = [UIColor colorWithRed:textRed green:textGreen blue:textBlue alpha:1.0];
     
     // Scrolling speed
     scrollView.decelerationRate = [defaults floatForKey:@"userScrollSpeed"];
@@ -215,13 +164,8 @@ float oldZoomScale;
 {    
     [scrollView setMaximumZoomScale:MAX_ZOOM_SCALE];
     [scrollView setZoomScale:oldZoomScale animated:YES];
-    [notesViewController.segmentedControl setHidden:YES];
-    [notesTopToolbar setHidden:YES];
-    [topToolbar setHidden:NO];
-    [bottomToolbar setHidden:NO];
     [scrollViewPanGesture setMinimumNumberOfTouches:1];
     [scrollViewPanGesture setMaximumNumberOfTouches:1];
-    [notesViewController.view setUserInteractionEnabled:NO];
     
     if ([defaults floatForKey:@"toolbarAlpha"] != 0.0) {
         // Toolbars are partially transparent
@@ -238,31 +182,19 @@ float oldZoomScale;
         if (self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
             self.interfaceOrientation == UIInterfaceOrientationLandscapeRight){
             lineDrawView.frame = CGRectMake(0, 180, 1024, 468);
-        } else {
-//            lineDrawView.frame = CGRectMake(0, 180, 1024, 468);
-//            lineDrawView.bounds = CGRectMake(0, 180, 1024, 768);
-
-            
         }
-
     }
 }
 
 /**
- In case there's a memory warning
+ * In case there's a memory warning.
  */
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
-/**
- View is unloaded
- */
 - (void)viewDidUnload {
-    
     [t invalidate];
-    bottomToolbar = nil;
-    topToolbar = nil;
     [self setClearNotesButton:nil];
     [self setColorSelectionSegment:nil];
     [self setZoomOutButton:nil];
@@ -274,7 +206,7 @@ float oldZoomScale;
 #pragma mark - NSURLConnection delegate Functionality
 
 /**
- When the NSURLConnection is complete
+ * When the NSURLConnection is complete.
  */
 - (void)connectionDidFinishLoading:(NSURLConnection*)connection {
     loading = false;
@@ -282,13 +214,6 @@ float oldZoomScale;
     // Put the received data in the imageView
     img = [[UIImage alloc]initWithData:receivedData];
     [imageView setImage:img];
-    
-    // Set the size of the drawing views
-    [notesViewController.view setFrame:CGRectMake(0, 0,
-                                img.size.width * [scrollView zoomScale],img.size.height * [scrollView zoomScale])];
-    [notesViewController.imageView setFrame:CGRectMake(0, 0,
-                                img.size.width * [scrollView zoomScale],img.size.height *[scrollView zoomScale])];
-    //NSLog(@"Succeeded! Received %d bytes of data",[receivedData length]);
     
     [imageView sizeToFit];
 	[scrollView setContentSize:CGSizeMake(imageView.frame.size.width, imageView.frame.size.height)];
@@ -301,7 +226,7 @@ float oldZoomScale;
 }
 
 /**
- When the NSURLConnection receives and authentication challenge
+ * When the NSURLConnection receives and authentication challenge.
  */
 -(void)connection:(NSURLConnection*)connection didReceiveAuthenticationChallenge:
 
@@ -325,11 +250,10 @@ float oldZoomScale;
 }
 
 /**
- When the NSURLConnection fails to load
+ * When the NSURLConnection fails to load.
  */
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError*) error {
-    
-    // release the connection, and the data object
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError*) error
+{
     
     // inform the user
     NSLog(@"Connection failed! Error - %@ %@",
@@ -339,7 +263,7 @@ float oldZoomScale;
 }
 
 /**
- When the NSURLConnection receives a responde
+ * When the NSURLConnection receives a response.
  */
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse*)response
 {
@@ -395,17 +319,14 @@ float oldZoomScale;
 	return [sv viewWithTag:ZOOM_VIEW_TAG];
 }
 
-- (void)scrollViewDidZoom:(UIScrollView *)sv {
-    [notesViewController.view setFrame:CGRectMake(0, 0,
-                                                  img.size.width * [scrollView zoomScale],img.size.height * [scrollView zoomScale])];
-    [notesViewController.imageView setFrame:CGRectMake(0, 0,
-                                                       img.size.width * [scrollView zoomScale],img.size.height *[scrollView zoomScale])];
+- (void)scrollViewDidZoom:(UIScrollView *)sv
+{
     //int newPenRadius = scrollView.zoomScale * notesViewController.penRadius;
     //[notesViewController setPenRadius:newPenRadius];
 }
 
 /**
- Required scrollview delegate method
+ * Required scrollview delegate method.
  */
 - (void)scrollViewDidEndZooming:(UIScrollView *)sv withView:(UIView *)view atScale:(float)scale {
     [sv setZoomScale:scale+0.01 animated:NO];
@@ -470,30 +391,6 @@ float oldZoomScale;
     [scrollView zoomToRect:zoomRect animated:YES];
 }
 
-#pragma mark - IASKAppSettingsViewControllerDelegate protocol
-
-/**
- * Constructor for an appSettingsViewController.
- */
-- (IASKAppSettingsViewController*)appSettingsViewController
-{
-    if (!appSettingsViewController) {
-		appSettingsViewController = [[IASKAppSettingsViewController alloc] initWithNibName:@"IASKAppSettingsView" bundle:nil];
-		appSettingsViewController.delegate = self;
-	}
-    
-	return appSettingsViewController;
-}
-
-/**
- Required inAppSettingsViewController delegate method
- */
-- (void)settingsViewControllerDidEnd:(IASKAppSettingsViewController*)sender
-{
-    [self dismissModalViewControllerAnimated:YES];
-	self.navigationController.navigationBarHidden = YES;
-}
-
 # pragma mark - Buttons
 
 - (IBAction)backButtonPress:(id)sender
@@ -529,17 +426,10 @@ float oldZoomScale;
     // Disable zooming back in
     [scrollView setMaximumZoomScale:MIN_ZOOM_SCALE];
     
-    // Swap the toolbars
-    [topToolbar setHidden:YES];
-    [bottomToolbar setHidden:YES];
-//    [notesViewController.segmentedControl setHidden:NO];
-    [notesTopToolbar setHidden:NO];
-    
     // Force the ScrollView to require 2 fingers to scroll
     // while in note-taking mode
     [scrollViewPanGesture setMinimumNumberOfTouches:2];
     [scrollViewPanGesture setMaximumNumberOfTouches:2];
-    [notesViewController.view setUserInteractionEnabled:YES];
     
     // Maintain an appropriate content size
     if ([defaults floatForKey:@"toolbarAlpha"] != 0.0) {
@@ -565,16 +455,14 @@ float oldZoomScale;
     [lineDrawView.bezierPath4 removeAllPoints];
     [lineDrawView.bezierPath5 removeAllPoints];
     
-    // Tell the user that notes are saved
+    // Tell the user that notes are cleared.
 	UIAlertView* alert = [[UILargeAlertView alloc] initWithText:NSLocalizedString(@"Notes Cleared!", nil) fontSize:48];
 	[alert show];
 }
 
 - (void)changeColor:(id)sender
 {
-    
     UISegmentedControl *segmentedControl = (UISegmentedControl *)sender;
-    NSLog(@"%@", [segmentedControl titleForSegmentAtIndex:[segmentedControl selectedSegmentIndex]]);
     
     lineDrawView.currentPath = [segmentedControl selectedSegmentIndex];
     

@@ -14,21 +14,22 @@
 
 @implementation LineDrawView
 
-@synthesize bezierPath;
 @synthesize brushColor;
+@synthesize bezierPath;
 @synthesize bezierPath2;
-@synthesize currentPath;
 @synthesize bezierPath3;
 @synthesize bezierPath4;
 @synthesize bezierPath5;
+@synthesize currentPath;
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
+    
     if (self) {
-        
-        // Initialization code
         self.backgroundColor=[UIColor lightGrayColor];
+        
+        // Will move these to an array of UIBezierPaths soon.
         bezierPath=[[UIBezierPath alloc]init];
         bezierPath.lineWidth=1;
         
@@ -46,7 +47,7 @@
         
         brushColor=[UIColor redColor];
         
-        currentPath = 0;
+        currentPath = 0; // Current UIBezierPath is 0; this is the Red Segment.
     }
     return self;
 }
@@ -74,6 +75,7 @@
             break;
     }
 }
+
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
     UITouch *touch=[[touches allObjects] objectAtIndex:0];
@@ -98,6 +100,7 @@
     
     [self setNeedsDisplay];
 }
+
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     
@@ -105,8 +108,9 @@
     
 }
 
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
+/**
+ * Override drawRect() to allow for custom drawing. No override causes performance issues.
+ */
 - (void)drawRect:(CGRect)rect
 {
     [brushColor setStroke];
