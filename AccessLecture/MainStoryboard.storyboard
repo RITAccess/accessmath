@@ -72,7 +72,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rA3-sa-Cr6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8" y="-98"/>
+            <point key="canvasLocation" x="16" y="170"/>
         </scene>
         <!--Lecture View Controller-->
         <scene sceneID="mdX-Kk-LIa">
@@ -224,12 +224,11 @@
                         <outlet property="settingsButton" destination="YR6-hw-cvW" id="eWv-n3-zuv"/>
                         <outlet property="zoomInButton" destination="of9-aN-bYB" id="v7o-Vl-2L9"/>
                         <outlet property="zoomOutButton" destination="EYf-Ou-3oC" id="TVB-lt-Jjg"/>
-                        <segue destination="SP6-Rd-Xf7" kind="modal" identifier="toHome" id="cjx-4M-SOy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hKG-8k-2TT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1258" y="667"/>
+            <point key="canvasLocation" x="1254" y="-257"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="xKA-8C-K9A">
@@ -342,7 +341,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nwK-rf-vVY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2371" y="489"/>
+            <point key="canvasLocation" x="2403" y="-385"/>
         </scene>
         <!--About View Controller-->
         <scene sceneID="nkT-Z3-fpK">
@@ -445,13 +444,10 @@
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
-                    <connections>
-                        <segue destination="SP6-Rd-Xf7" kind="modal" identifier="toRoot" id="naC-lY-gOw"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yrs-bA-QSr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1258" y="-202"/>
+            <point key="canvasLocation" x="1254" y="682"/>
         </scene>
     </scenes>
     <resources>
@@ -481,15 +477,10 @@
                 <relationship kind="action" name="startNotesButtonPress:"/>
                 <relationship kind="action" name="zoomInButtonPress:"/>
                 <relationship kind="action" name="zoomOutButtonPress:"/>
-                <relationship kind="outlet" name="bottomToolbar" candidateClass="UIView"/>
                 <relationship kind="outlet" name="clearNotesButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="colorSelectionSegment" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="notesTopToolbar" candidateClass="UIView"/>
-                <relationship kind="outlet" name="notesTopToolbarLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
                 <relationship kind="outlet" name="settingsButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="toolbarLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="topToolbar" candidateClass="UIView"/>
                 <relationship kind="outlet" name="zoomInButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="zoomOutButton" candidateClass="UIButton"/>
             </relationships>
@@ -500,8 +491,11 @@
         <class className="RootViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RootViewController.h"/>
             <relationships>
+                <relationship kind="action" name="connectToLecture:"/>
+                <relationship kind="action" name="connectToServer:"/>
                 <relationship kind="action" name="openAbout:"/>
                 <relationship kind="action" name="openLecture:"/>
+                <relationship kind="action" name="openNewLecture:"/>
             </relationships>
         </class>
         <class className="SettingsViewController" superclassName="UIViewController">
@@ -516,7 +510,4 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="cjx-4M-SOy"/>
-    </inferredMetricsTieBreakers>
 </document>
