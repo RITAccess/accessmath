@@ -1,6 +1,7 @@
 // Copyright 2011 Access Lecture. All rights reserved.
 
 #import "RootViewController.h"
+#import "AccessLectureAppDelegate.h"
 
 @implementation RootViewController
 
@@ -17,7 +18,44 @@
     [super didReceiveMemoryWarning];
 }
 
+/**
+ * Open an active connection to the server
+ */
+- (IBAction)connectToServer:(id)sender {
+    
+    AccessLectureAppDelegate *app = [[UIApplication sharedApplication] delegate];
 
+    UIButton *button = (UIButton *)sender;
+    if ([button.titleLabel.text isEqualToString:@"Disconnect"]) {
+        [app.server disconnect];
+    } else {
+        [app.server connectCompletion:^(BOOL success) {
+            NSLog(@"%@", success ? @"Success" : @"Failed to connect");
+        }];
+    }
+}
+
+- (IBAction)connectToLecture:(id)sender {
+    
+    AccessLectureAppDelegate *app = [[UIApplication sharedApplication] delegate];
+    
+    [app.server requestAccessToLectureSteam:@"Test Lecture 2"];
+    
+    [app.server setDelegate:self];
+    
+}
+
+- (void)didRecieveUpdate:(id)data {
+    NSLog(@"%@", data);
+}
+
+/**
+ Do we want the application to be rotateable? Return YES or NO
+ */
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    
+    return UIInterfaceOrientationIsPortrait(interfaceOrientation);
+}
 #pragma mark - Buttons
 
 - (IBAction)openAbout:(id)sender
@@ -28,6 +66,14 @@
 - (IBAction)openLecture:(id)sender
 {
     [self performSegueWithIdentifier:@"toLecture" sender:nil];    
+}
+
+/**
+ Release resources from memory
+ */
+
+- (void)viewDidUnload {
+    [super viewDidUnload];
 }
 
 @end

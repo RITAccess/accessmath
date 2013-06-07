@@ -2,6 +2,7 @@
 
 #import <UIKit/UIKit.h>
 #import "RootViewController.h"
+#import "ALNetworkInterface.h"
 
 @interface AccessLectureAppDelegate : NSObject <UIApplicationDelegate> {
     
@@ -20,5 +21,8 @@
 @property (nonatomic) NSUserDefaults* defaults;
 @property (nonatomic, strong)  RootViewController* rootViewController;
 @property (nonatomic, strong) UINavigationController* navigationController;
+
+// Network Interface
+@property (nonatomic, strong) ALNetworkInterface *server;
 
 @end

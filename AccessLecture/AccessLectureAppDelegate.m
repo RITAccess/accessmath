@@ -2,6 +2,7 @@
 
 #import "AccessLectureAppDelegate.h"
 
+
 @implementation AccessLectureAppDelegate
 
 @synthesize window, rootViewController, navigationController, defaults;
@@ -40,7 +41,26 @@
 //    self.window.rootViewController = self.navigationController;
 //    [self.window makeKeyAndVisible];
     
+    // Set up the network socket connection
+    _server = [[ALNetworkInterface alloc] initWithURL:@"micaheltimbrook.com"];
+    NSLog(@"Setup complete");
+    
     return YES;
+}
+
+/**
+ * Did fall from main view
+ */
+- (void)applicationWillResignActive:(UIApplication *)application {
+    NSLog(@"Lost active");
+    NSLog(@"Was connected to server? %@", _server.wasConnected ? @"Yes": @"No");
+}
+
+/**
+ * Resume main view
+ */
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    
 }
 
 @end

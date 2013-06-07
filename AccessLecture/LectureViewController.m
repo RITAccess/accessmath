@@ -65,17 +65,6 @@ float oldZoomScale;
         
     // Set up the navigation controller
     self.navigationController.navigationBarHidden = YES;
-     
-    // Timer Setup. Update the imageView with a screenshot of the Mac
-    shouldSnapToZoom = YES;
-    t = [NSTimer scheduledTimerWithTimeInterval:1.0
-                                         target:self
-                                       selector:@selector(updateImageView)
-                                       userInfo:nil
-                                        repeats:YES];
-    NSRunLoop *runner = [NSRunLoop currentRunLoop];
-    [runner addTimer:t forMode: NSDefaultRunLoopMode];
-     
     
     // Get the scrollView's pan gesture and store it for later use.
     for (UIGestureRecognizer* rec in scrollView.gestureRecognizers) {
@@ -223,67 +212,6 @@ float oldZoomScale;
     }
     
     // Release the connection, and the data object
-}
-
-/**
- * When the NSURLConnection receives and authentication challenge.
- */
--(void)connection:(NSURLConnection*)connection didReceiveAuthenticationChallenge:
-
-    (NSURLAuthenticationChallenge*)challenge {
-    
-    //NSLog(@"Received Challenge");
-    if ([[challenge protectionSpace]authenticationMethod] == NSURLAuthenticationMethodServerTrust) {
-       
-        // Needs certificate confirmation
-        [[challenge sender] useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];  
-    } else {
-       
-        // Needs login information
-        NSURLCredential *newCredential;
-        newCredential = [NSURLCredential credentialWithUser:USERNAME
-                                                   password:PASSWORD
-                                                persistence:NSURLCredentialPersistenceNone];
-        [[challenge sender] useCredential:newCredential
-               forAuthenticationChallenge:challenge];
-    }
-}
-
-/**
- * When the NSURLConnection fails to load.
- */
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError*) error
-{
-    
-    // inform the user
-    NSLog(@"Connection failed! Error - %@ %@",
-          [error localizedDescription],
-          [[error userInfo] objectForKey:NSURLErrorFailingURLStringErrorKey]);
-
-}
-
-/**
- * When the NSURLConnection receives a response.
- */
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse*)response
-{
-    [receivedData setLength:0];
-}
-
-/**
- * If data is received from the NSURLConnection being made
- */
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data
-{
-    [receivedData appendData:data];
-}
-
-/**
- * Tells the NSURLConnection that authentication is possible. // NOTE: This seems unnecessary...
- */
-- (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace
-{
-    return YES;
 }
 
 #pragma mark - Image Refresh Management

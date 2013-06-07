@@ -11,6 +11,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SocketIOPacket.h"
 
 @interface Lecture : NSObject
 
@@ -26,6 +27,7 @@
 //
 - (id)init;
 - (id)initWithName:(NSString *)name;
+- (id)initWithPacket:(SocketIOPacket *)packet;
 
 //
 // create the lecture from serialized data

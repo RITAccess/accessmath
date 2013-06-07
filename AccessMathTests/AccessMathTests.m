@@ -6,17 +6,19 @@
 //
 //
 
-#define OFFLINETEST 1
-
 #import "AccessMathTests.h"
+#import "ALNetworkInterface.h"
 
-@implementation AccessMathTests
+@implementation AccessMathTests {
+    __strong ALNetworkInterface *testEchoServer;
+}
 
 - (void)setUp
 {
     [super setUp];
     
     // Set-up code here.
+    testEchoServer = [[ALNetworkInterface alloc] initWithURL:@"localhost"];
 }
 
 - (void)tearDown
@@ -24,18 +26,21 @@
     // Tear-down code here.
     
     [super tearDown];
+    
+    testEchoServer = nil;
 }
-
-#if OFFLINETEST
 
 /**
  * Tests the socket framwork against and echo server
  */
 - (void)testSocketBasic
 {
-    STAssertTrue(true, @"Not true?");
-}
+    
+    [testEchoServer getFullLecture:@"Some Lecture" completion:^(id lecture) {
+        STAssertTrue(FALSE, @"DATA %@", lecture);
+    }];
+    
 
-#endif
+}
 
 @end
