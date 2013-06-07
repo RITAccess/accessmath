@@ -33,7 +33,6 @@ float oldZoomScale;
 
 @synthesize appSettingsViewController;
 
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -239,6 +238,8 @@ float oldZoomScale;
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Only support portrait
     return UIInterfaceOrientationIsPortrait(interfaceOrientation);
+    
+    NSLog(@"changed!");
 
 }
 
@@ -495,14 +496,6 @@ float oldZoomScale;
    [self performSegueWithIdentifier:@"toHome" sender:nil];
 }
 
-- (IBAction)displaySettings:(id)sender
-{
-    // Creating and adding the IASKAppSettingsViewController to a popover.
-    appSettingsViewController = [[IASKAppSettingsViewController alloc]init];
-    _popover = [[UIPopoverController alloc]initWithContentViewController:appSettingsViewController];
-    [_popover presentPopoverFromBarButtonItem:self.settingsButton permittedArrowDirections:UIPopoverArrowDirectionUp animated:NO];
-    _popover.popoverContentSize = CGSizeMake(350, 800);
-}
 
 - (IBAction)saveButtonPress:(id)sender
 {
@@ -552,13 +545,20 @@ float oldZoomScale;
         scrollView.frame = CGRectMake(0, TOOLBAR_HEIGHT, SCREEN_WIDTH, self.view.frame.size.height-(TOOLBAR_HEIGHT * 2));
     }
     
-    lineDrawView=[[LineDrawView alloc]initWithFrame:CGRectMake(0, 200, 768, 650)];
+    lineDrawView=[[LineDrawView alloc]initWithFrame:CGRectMake(0, 180, 768, 720)];
+    
     [self.view addSubview:lineDrawView];
 }
 
 - (IBAction)clearNotesButtonPress:(id)sender
 {
 //    notesViewController.imageView.image = nil;
+    
+    [lineDrawView.bezierPath removeAllPoints];
+    [lineDrawView.bezierPath2 removeAllPoints];
+    [lineDrawView.bezierPath3 removeAllPoints];
+    [lineDrawView.bezierPath4 removeAllPoints];
+    [lineDrawView.bezierPath5 removeAllPoints];
     
     // Tell the user that notes are saved
 	UIAlertView* alert = [[UILargeAlertView alloc] initWithText:NSLocalizedString(@"Notes Cleared!", nil) fontSize:48];
@@ -575,11 +575,9 @@ float oldZoomScale;
     
     switch ([segmentedControl selectedSegmentIndex]) {
         case 0:
-            lineDrawView.currentPath = 0;
             lineDrawView.brushColor = [UIColor redColor];
             break;
         case 1:
-            lineDrawView.currentPath = 1;
             lineDrawView.brushColor = [UIColor greenColor];
             break;
         case 2:

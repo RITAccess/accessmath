@@ -7,6 +7,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "Zoomhandler.H"
 #import "LineDrawView.h"
+#import "SettingsViewController.h"
 
 @interface LectureViewController : UIViewController<UIScrollViewDelegate, IASKSettingsDelegate> {
     
@@ -51,7 +52,6 @@
 - (void)resetImageZoom: (UIGestureRecognizer *)gestureRecognizer;
 
 - (IBAction)backButtonPress:(id)sender;
-- (IBAction)displaySettings:(id)sender;
 - (IBAction)saveButtonPress:(id)sender;
 - (IBAction)startNotesButtonPress:(id)sender;
 - (IBAction)clearNotesButtonPress:(id)sender;
@@ -65,7 +65,6 @@
 @property (strong, nonatomic) IASKAppSettingsViewController* appSettingsViewController;
 @property (strong, nonatomic)UIPopoverController* popover;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *settingsButton;
-
 
 @end
 

@@ -4,13 +4,7 @@
 #import "LectureViewController.h"
 #import "AboutViewController.h"
 
-@interface RootViewController : UIViewController {
-
-    // The lecture view
-    LectureViewController *lectureViewController;
-    AboutViewController *aboutViewController;
-    
-}
+@interface RootViewController : UIViewController
 
 - (IBAction)openAbout:(id)sender;
 - (IBAction)openLecture:(id)sender;
