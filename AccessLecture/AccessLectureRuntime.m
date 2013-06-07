@@ -9,7 +9,7 @@
 #import "AccessLectureRuntime.h"
 #import "AccessDocument.h"
 #import "FileManager.h"
-
+#import "Lecture.h"
 static NSString * DEFAULT_FILENAME = @"Lecture001"; 
 
 @interface AccessLectureRuntime ()
@@ -34,20 +34,43 @@ static NSString * DEFAULT_FILENAME = @"Lecture001";
     return defaults;
 }
 
-- (void)openDocument {
+- (void)openDocument{
     NSURL * currentDirectory = [FileManager iCloudDirectoryURL];
     if (currentDirectory == nil) currentDirectory = [FileManager localDocumentsDirectoryURL];
     NSArray * docs = [FileManager documentsIn:currentDirectory];
+    NSLog(@"%d",[docs count]);
     NSURL * document = [FileManager findFileIn:docs thatFits:^(NSURL* url){
         if (url != nil) return YES;
         return NO;
     }];
+     
     if (document == nil) {
         NSString * filename = [DEFAULT_FILENAME stringByAppendingPathExtension:[AccessDocument fileType]];
         document = [currentDirectory URLByAppendingPathComponent:filename];
-    }
+        }
     _currentDocument = [[AccessDocument alloc] initWithFileURL:document];
-    [_currentDocument openWithCompletionHandler:^(BOOL success){  }];
+   
+    [_currentDocument openWithCompletionHandler:^(BOOL success){
+       if(success)
+       {
+           NSLog(@"Success");
+           [AccessLectureRuntime defaultRuntime].currentDocument = _currentDocument;
+          
+       }
+       else{
+           [_currentDocument saveToURL:document
+              forSaveOperation: UIDocumentSaveForCreating
+             completionHandler:^(BOOL success) {
+                 if (success){
+                     NSLog(@"Created");
+                 } else {
+                     NSLog(@"Not created");
+                 }
+             }];
+       }
+       
+          }];
+   
 }
 
 @end

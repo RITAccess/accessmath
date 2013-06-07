@@ -67,7 +67,7 @@
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">NewLecture.png</string>
 						</object>
-						<object class="IBUIFontDescription" key="IBUIFontDescription" id="840615655">
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="517834492">
 							<string key="name">Helvetica-Bold</string>
 							<string key="family">Helvetica</string>
 							<int key="traits">2</int>
@@ -100,7 +100,7 @@
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">About.png</string>
 						</object>
-						<reference key="IBUIFontDescription" ref="840615655"/>
+						<reference key="IBUIFontDescription" ref="517834492"/>
 						<reference key="IBUIFont" ref="1059663699"/>
 					</object>
 					<object class="IBUIImageView" id="230131941">

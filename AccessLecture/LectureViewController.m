@@ -4,6 +4,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import "UILargeAlertView.h"
 #import "LineDrawView.h"
+#import "FileManager.h"
+#import "AccessDocument.h"
 
 #define ZOOM_VIEW_TAG 100
 #define MIN_ZOOM_SCALE 1.0
@@ -13,8 +15,8 @@
 #define USERNAME @"Student"
 #define PASSWORD @"lecture"
 
-//NSString* urlString = @"https://129.21.67.216:5010/common/library/apps/Screen/out.png";
 NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/test.png";
+
 float ZOOM_STEP; // The magnification-increment for the +/- icons
 float oldZoomScale;
 
@@ -48,7 +50,6 @@ float oldZoomScale;
 	imageView.userInteractionEnabled = YES;
     [imageView setTag:ZOOM_VIEW_TAG]; 
     
-    
     // Set up the scrollview
 //	scrollView.clipsToBounds = YES;	// default is NO, but we want to restrict drawing within our scrollview
 //	[scrollView addSubview:notesViewController.view]; // We want to scroll/zoom the note-taking view as well
@@ -62,11 +63,31 @@ float oldZoomScale;
 //	scrollView.bounces = FALSE;
 //	scrollView.bouncesZoom = FALSE;
     
-        
-    // Set up the navigation controller
+    // img = [UIImage imageWithData:[AccessLectureRuntime defaultRuntime].currentDocument.lecture.image];
+    imageView = [[UIImageView alloc]initWithImage:img];
+	imageView.userInteractionEnabled = YES;
+    [imageView setTag:ZOOM_VIEW_TAG];
+    /*********/
+
     self.navigationController.navigationBarHidden = YES;
-    
-    // Get the scrollView's pan gesture and store it for later use.
+
+    /* 
+     * Timer Setup.
+     * Update the imageView with a screenshot of the Mac
+     */
+    shouldSnapToZoom = YES;
+    /* REAL CODE
+    t = [NSTimer scheduledTimerWithTimeInterval:1.0
+                                         target:self
+                                       selector:@selector(updateImageView)
+                                       userInfo:nil
+                                        repeats:YES];
+    NSRunLoop *runner = [NSRunLoop currentRunLoop];
+    [runner addTimer:t forMode: NSDefaultRunLoopMode];
+     */
+
+    // Get the scrollView's pan gesture and store it for later use
+
     for (UIGestureRecognizer* rec in scrollView.gestureRecognizers) {
         if ([rec isKindOfClass:[UIPanGestureRecognizer class]]) {
             scrollViewPanGesture = (UIPanGestureRecognizer*)rec;
@@ -165,7 +186,7 @@ float oldZoomScale;
     }
 }
 
-- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
+- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     
     if (lineDrawView != NULL){
         if (self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
@@ -173,6 +194,64 @@ float oldZoomScale;
             lineDrawView.frame = CGRectMake(0, 180, 1024, 468);
         }
     }
+}
+
+/**
+ * Returns to the previous screen by popping the top of the controller stack
+ */
+-(IBAction)backButton:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+/**
+ Save a screenshot of the current notes to the iPad Photo Album
+ */
+-(IBAction)saveButton:(id)sender {
+    
+    UIImage *saveImage;
+    
+    // Take the screenshot
+    saveImage = [self imageByCropping:scrollView toRect:imageView.frame];
+    
+    // Adds a photo to the saved photos album.  The optional completionSelector should have the form:
+    UIImageWriteToSavedPhotosAlbum(saveImage, nil, nil, nil);
+    //Save document with current image to user documents directory
+ 
+       NSURL * currentDirectory = [FileManager iCloudDirectoryURL];
+    if (currentDirectory == nil) currentDirectory = [FileManager localDocumentsDirectoryURL];
+    NSArray * docs = [FileManager documentsIn:currentDirectory];
+    NSURL * document = [FileManager findFileIn:docs thatFits:^(NSURL* url){
+        if (url != nil) return YES;
+        return NO;
+    }];
+    
+    currentDocument = [[AccessDocument alloc] initWithFileURL:document];
+    currentLecture.image = UIImagePNGRepresentation(saveImage);
+    currentDocument.lecture = currentLecture;
+    // [AccessLectureRuntime defaultRuntime].currentDocument.lecture.image =UIImagePNGRepresentation(saveImage);
+//    [[AccessLectureRuntime defaultRuntime].currentDocument saveToURL:document
+//              forSaveOperation:UIDocumentSaveForCreating
+//             completionHandler:^(BOOL success) {
+//                 if (success){
+//                     NSLog(@"Saved for overwriting");
+//                 } else {
+//                     NSLog(@"Not saved for overwriting");
+//                 }
+//             }];
+    // Tell the user that notes are saved
+	UIAlertView* alert = [[UILargeAlertView alloc]
+                          initWithText:NSLocalizedString(@"Notes Saved!", nil)
+                          fontSize:48];
+	[alert show];
+ 
+}
+
+/**
+ Do we want the application to be rotateable? Return YES or NO
+ */
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    // Only support portrait
+    return UIInterfaceOrientationIsPortrait(interfaceOrientation);
 }
 
 /**
@@ -218,10 +297,8 @@ float oldZoomScale;
 /**
  * Pulls new image from URLConnection and inserts into the UIImageView.
  */
-- (void)updateImageView
-{
-    if(!loading) {
-       
+- (void)updateImageView {
+       if(!loading) {
         // Create the request.
         NSURLRequest* theRequest=[NSURLRequest requestWithURL:[NSURL URLWithString:urlString] 
                                                   cachePolicy:NSURLRequestUseProtocolCachePolicy

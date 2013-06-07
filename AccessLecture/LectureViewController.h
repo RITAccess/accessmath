@@ -5,6 +5,9 @@
 #import "ZoomHandler.H"
 #import "LineDrawView.h"
 #import "SettingsViewController.h"
+#import "AccessLectureRuntime.h"
+#import "AccessLectureRuntime.h"
+#import "Lecture.h"
 
 @interface LectureViewController : UIViewController<UIScrollViewDelegate> {
     
@@ -33,6 +36,11 @@
     
     // Settings
     NSUserDefaults* defaults;
+    
+    //Current Document Settings
+    AccessDocument *currentDocument;
+    AccessLectureRuntime *currentRuntime;
+    Lecture *currentLecture;
 }
 
 - (void)updateImageView;

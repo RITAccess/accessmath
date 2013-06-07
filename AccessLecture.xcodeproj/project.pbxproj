@@ -28,6 +28,7 @@
 		3F6D11D417625F260066A4FA /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11D217625F150066A4FA /* libicucore.dylib */; };
 		3F6D11D517625F270066A4FA /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11D017625F0D0066A4FA /* CFNetwork.framework */; };
 		3F6D11D617625F2D0066A4FA /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11CE17625F060066A4FA /* Security.framework */; };
+		3F6D11DA176263880066A4FA /* NotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D11D9176263880066A4FA /* NotesViewController.m */; };
 		3F73880913A6922B00F2E7CA /* sliderSpeedMin.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F73880813A6922B00F2E7CA /* sliderSpeedMin.png */; };
 		3F73880C13A6922F00F2E7CA /* sliderSpeedMax.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F73880B13A6922F00F2E7CA /* sliderSpeedMax.png */; };
 		3F78A40713D5C1160048A579 /* UILargeAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F78A40513D5C1160048A579 /* UILargeAlertView.m */; };
@@ -104,6 +105,8 @@
 		3F6D11CE17625F060066A4FA /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		3F6D11D017625F0D0066A4FA /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		3F6D11D217625F150066A4FA /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		3F6D11D8176263880066A4FA /* NotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesViewController.h; sourceTree = "<group>"; };
+		3F6D11D9176263880066A4FA /* NotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesViewController.m; sourceTree = "<group>"; };
 		3F73880813A6922B00F2E7CA /* sliderSpeedMin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sliderSpeedMin.png; path = AccessLecture/sliderSpeedMin.png; sourceTree = "<group>"; };
 		3F73880B13A6922F00F2E7CA /* sliderSpeedMax.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sliderSpeedMax.png; path = AccessLecture/sliderSpeedMax.png; sourceTree = "<group>"; };
 		3F78A40413D5C1160048A579 /* UILargeAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILargeAlertView.h; sourceTree = "<group>"; };
@@ -267,6 +270,15 @@
 				3F6D11BB17625EA20066A4FA /* SocketIOTransportXHR.m */,
 			);
 			name = SocketIO;
+			sourceTree = "<group>";
+		};
+		3F6D11D7176263760066A4FA /* NoteViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3F6D11D9176263880066A4FA /* NotesViewController.m */,
+				3F6D11D8176263880066A4FA /* NotesViewController.h */,
+			);
+			name = NoteViewController;
 			sourceTree = "<group>";
 		};
 		3F78A40213D5C0DD0048A579 /* Accessible Subclasses */ = {
@@ -477,6 +489,7 @@
 		3FED963213708E5100D8D1B8 /* Lecture View */ = {
 			isa = PBXGroup;
 			children = (
+				3F6D11D7176263760066A4FA /* NoteViewController */,
 				3FAD0BF813A7B7AE00218B1F /* ColorViewController */,
 				2C76BDE41762140D00A1E6BA /* Settings View */,
 				2C0F88681760D8D10062BD16 /* Line Draw View */,
@@ -660,6 +673,7 @@
 				3F6D11CA17625EA20066A4FA /* base64.c in Sources */,
 				3F6D11CB17625EA20066A4FA /* NSData+SRB64Additions.m in Sources */,
 				3F6D11CC17625EA20066A4FA /* SRWebSocket.m in Sources */,
+				3F6D11DA176263880066A4FA /* NotesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
