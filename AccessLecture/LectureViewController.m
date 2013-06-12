@@ -27,7 +27,9 @@ float oldZoomScale;
 - (CGRect)zoomRectForScale:(float)scale withCenter:(CGPoint)center;
 @end
 
-@implementation LectureViewController
+@implementation LectureViewController {
+    __weak UIPopoverController *popover;
+}
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -267,7 +269,6 @@ float oldZoomScale;
     [self setColorSelectionSegment:nil];
     [self setZoomOutButton:nil];
     [self setZoomInButton:nil];
-    [self setSettingsButton:nil];
     [super viewDidUnload];
 }
 
@@ -397,6 +398,20 @@ float oldZoomScale;
 }
 
 # pragma mark - Buttons
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    popover = [(UIStoryboardPopoverSegue *)segue popoverController];
+}
+
+- (BOOL) shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    if (popover)
+        return NO;
+    else
+        return YES;
+}
+
 
 - (IBAction)backButtonPress:(id)sender
 {
