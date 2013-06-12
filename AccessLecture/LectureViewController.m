@@ -406,10 +406,7 @@ float oldZoomScale;
 
 - (BOOL) shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
-    if (popover)
-        return NO;
-    else
-        return YES;
+    return popover ? NO : YES;
 }
 
 
