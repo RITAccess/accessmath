@@ -54,7 +54,6 @@
 		3FED96161370863E00D8D1B8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3FED96141370863E00D8D1B8 /* InfoPlist.strings */; };
 		3FED96191370863E00D8D1B8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FED96181370863E00D8D1B8 /* main.m */; };
 		3FED961C1370863E00D8D1B8 /* AccessLectureAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FED961B1370863E00D8D1B8 /* AccessLectureAppDelegate.m */; };
-		3FED961F1370863E00D8D1B8 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FED961D1370863E00D8D1B8 /* MainWindow.xib */; };
 		3FED96221370863E00D8D1B8 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FED96211370863E00D8D1B8 /* RootViewController.m */; };
 		3FED96531370909100D8D1B8 /* Invert.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FED96471370909100D8D1B8 /* Invert.png */; };
 		3FED96541370909100D8D1B8 /* Notes.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FED96481370909100D8D1B8 /* Notes.png */; };
@@ -150,7 +149,6 @@
 		3FED96181370863E00D8D1B8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3FED961A1370863E00D8D1B8 /* AccessLectureAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccessLectureAppDelegate.h; sourceTree = "<group>"; };
 		3FED961B1370863E00D8D1B8 /* AccessLectureAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccessLectureAppDelegate.m; sourceTree = "<group>"; };
-		3FED961E1370863E00D8D1B8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
 		3FED96201370863E00D8D1B8 /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		3FED96211370863E00D8D1B8 /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		3FED962B137089D100D8D1B8 /* LectureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LectureViewController.h; sourceTree = "<group>"; };
@@ -474,7 +472,6 @@
 		3FED963013708E0000D8D1B8 /* App Delegate */ = {
 			isa = PBXGroup;
 			children = (
-				3FED961D1370863E00D8D1B8 /* MainWindow.xib */,
 				3FED961A1370863E00D8D1B8 /* AccessLectureAppDelegate.h */,
 				3FED961B1370863E00D8D1B8 /* AccessLectureAppDelegate.m */,
 			);
@@ -607,7 +604,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3FED96161370863E00D8D1B8 /* InfoPlist.strings in Resources */,
-				3FED961F1370863E00D8D1B8 /* MainWindow.xib in Resources */,
 				3FED96531370909100D8D1B8 /* Invert.png in Resources */,
 				3FED96541370909100D8D1B8 /* Notes.png in Resources */,
 				3FED96551370909100D8D1B8 /* Save.png in Resources */,
@@ -708,14 +704,6 @@
 				3FED96151370863E00D8D1B8 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		3FED961D1370863E00D8D1B8 /* MainWindow.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3FED961E1370863E00D8D1B8 /* en */,
-			);
-			name = MainWindow.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
