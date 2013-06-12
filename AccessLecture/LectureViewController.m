@@ -391,7 +391,7 @@ float oldZoomScale;
 
 -(void)handleZoomWith:(float)newScale andZoomType:(BOOL)isZoomIn
 {
-    CGPoint newOrigin = [zoomHandler getNewOriginFromViewLocation: [scrollView contentOffset] 
+    CGPoint newOrigin = [zoomHandler getNewOriginFromViewLocation: [scrollView contentOffset]
 														 viewSize: scrSize andZoomType: isZoomIn];
 	CGRect zoomRect = [self zoomRectForScale:newScale withCenter:newOrigin];
     [scrollView zoomToRect:zoomRect animated:YES];
@@ -406,12 +406,20 @@ float oldZoomScale;
 
 - (BOOL) shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
-    return popover ? NO : YES;
+    if (popover) {
+        [popover dismissPopoverAnimated:YES];
+        return NO;
+    } else {
+        return YES;
+    }
 }
 
 
 - (IBAction)backButtonPress:(id)sender
 {
+    if (popover) {
+        [popover dismissPopoverAnimated:YES];
+    }
     [self dismissModalViewControllerAnimated:YES];
 }
 
