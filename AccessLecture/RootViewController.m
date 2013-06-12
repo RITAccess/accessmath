@@ -23,30 +23,8 @@
  */
 - (IBAction)connectToServer:(id)sender {
     
-    AccessLectureAppDelegate *app = [[UIApplication sharedApplication] delegate];
-
-    UIButton *button = (UIButton *)sender;
-    if ([button.titleLabel.text isEqualToString:@"Disconnect"]) {
-        [app.server disconnect];
-    } else {
-        [app.server connectCompletion:^(BOOL success) {
-            NSLog(@"%@", success ? @"Success" : @"Failed to connect");
-        }];
-    }
-}
-
-- (IBAction)connectToLecture:(id)sender {
+    [self performSegueWithIdentifier:@"showConnect"sender:nil];
     
-    AccessLectureAppDelegate *app = [[UIApplication sharedApplication] delegate];
-    
-    [app.server requestAccessToLectureSteam:@"Test Lecture 2"];
-    
-    [app.server setDelegate:self];
-    
-}
-
-- (void)didRecieveUpdate:(id)data {
-    NSLog(@"%@", data);
 }
 
 /**

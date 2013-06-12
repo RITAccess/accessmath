@@ -33,6 +33,7 @@
 
 /* Set up stream */
 - (void)requestAccessToLectureSteam:(NSString *)name;
+@property (nonatomic, strong) NSString *connectionURL;
 
 /* Keeping a persitaint connection */
 @property(nonatomic) BOOL wasConnected;

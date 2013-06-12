@@ -6,7 +6,7 @@
 #import "Lecture.h"
 #import "ALNetworkInterface.h"
 
-@interface RootViewController : UIViewController <LectureStreaming> {
+@interface RootViewController : UIViewController {
 
     // The lecture view
     LectureViewController *lectureViewController;
@@ -14,10 +14,8 @@
     
 }
 
--(IBAction)openNewLecture:(id)sender;
 -(IBAction)openAbout:(id)sender;
 - (IBAction)connectToServer:(id)sender;
-- (IBAction)connectToLecture:(id)sender;
 - (IBAction)openLecture:(id)sender;
 
 @end

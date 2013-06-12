@@ -10,10 +10,10 @@
 #import "SocketIO.h"
 #import "SocketIOPacket.h"
 
+
 @implementation ALNetworkInterface {
     
     SocketIO *socketConnection;
-    NSString *connectionURL;
     
     // Completion Handles
     void (^lectureRequest)(Lecture *lecture, BOOL found);
@@ -21,6 +21,8 @@
     // For testing
     void (^onMessage)(NSString *);
 }
+
+@synthesize connectionURL = connectionURL;
 
 /**
  * Init - set up socket

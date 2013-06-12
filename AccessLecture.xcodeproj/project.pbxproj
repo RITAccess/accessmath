@@ -66,6 +66,7 @@
 		3FF7FFD513D5E45300B89A5D /* AlertBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FF7FFD413D5E45300B89A5D /* AlertBG.png */; };
 		3FFCFB2213A25388003DAB63 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FFCFB2113A25388003DAB63 /* MessageUI.framework */; };
 		4C62BECD175651DB00CAF4CF /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F99F1FA1543641E0065CBB9 /* FileManager.m */; };
+		4C96FA84176289DE002C0D74 /* ConnectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C96FA83176289DE002C0D74 /* ConnectViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,8 +83,8 @@
 		3F5E3F1D137C5CA30022F3C9 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "../Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		3F5E3F20137C5CAC0022F3C9 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait~ipad.png"; path = "../Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		3F63540B13A157C40024E6E9 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
-		3F6D11AF17625EA20066A4FA /* ALNetworkInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALNetworkInterface.h; path = ../ALNetworkInterface.h; sourceTree = "<group>"; };
-		3F6D11B017625EA20066A4FA /* ALNetworkInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALNetworkInterface.m; path = ../ALNetworkInterface.m; sourceTree = "<group>"; };
+		3F6D11AF17625EA20066A4FA /* ALNetworkInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALNetworkInterface.h; sourceTree = "<group>"; };
+		3F6D11B017625EA20066A4FA /* ALNetworkInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALNetworkInterface.m; sourceTree = "<group>"; };
 		3F6D11B117625EA20066A4FA /* SocketIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIO.h; sourceTree = "<group>"; };
 		3F6D11B217625EA20066A4FA /* SocketIO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIO.m; sourceTree = "<group>"; };
 		3F6D11B317625EA20066A4FA /* SocketIOJSONSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOJSONSerialization.h; sourceTree = "<group>"; };
@@ -162,6 +163,8 @@
 		3FED96501370909100D8D1B8 /* ZoomOut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ZoomOut.png; path = "Lecture View Images/ZoomOut.png"; sourceTree = "<group>"; };
 		3FF7FFD413D5E45300B89A5D /* AlertBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AlertBG.png; path = AccessLecture/core/AlertBG.png; sourceTree = "<group>"; };
 		3FFCFB2113A25388003DAB63 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		4C96FA82176289DE002C0D74 /* ConnectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectViewController.h; sourceTree = "<group>"; };
+		4C96FA83176289DE002C0D74 /* ConnectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,6 +235,8 @@
 		3F6D11AD17625E500066A4FA /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				3F6D11AF17625EA20066A4FA /* ALNetworkInterface.h */,
+				3F6D11B017625EA20066A4FA /* ALNetworkInterface.m */,
 				3F6D11CD17625EAC0066A4FA /* SocketIO */,
 				3F6D11BC17625EA20066A4FA /* SocketRocket */,
 			);
@@ -241,8 +246,6 @@
 		3F6D11BC17625EA20066A4FA /* SocketRocket */ = {
 			isa = PBXGroup;
 			children = (
-				3F6D11AF17625EA20066A4FA /* ALNetworkInterface.h */,
-				3F6D11B017625EA20066A4FA /* ALNetworkInterface.m */,
 				3F6D11BD17625EA20066A4FA /* base64.c */,
 				3F6D11BE17625EA20066A4FA /* base64.h */,
 				3F6D11BF17625EA20066A4FA /* NSData+SRB64Additions.h */,
@@ -374,6 +377,7 @@
 		3FCD5D1115438265005F2A60 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4C96FA81176289B4002C0D74 /* Connect View */,
 				3F78A40213D5C0DD0048A579 /* Accessible Subclasses */,
 				3FED963113708E4E00D8D1B8 /* Root View */,
 				3FED963213708E5100D8D1B8 /* Lecture View */,
@@ -480,8 +484,8 @@
 		3FED963113708E4E00D8D1B8 /* Root View */ = {
 			isa = PBXGroup;
 			children = (
-				3FED96211370863E00D8D1B8 /* RootViewController.m */,
 				3FED96201370863E00D8D1B8 /* RootViewController.h */,
+				3FED96211370863E00D8D1B8 /* RootViewController.m */,
 			);
 			name = "Root View";
 			sourceTree = "<group>";
@@ -514,6 +518,15 @@
 				3FED96501370909100D8D1B8 /* ZoomOut.png */,
 			);
 			name = "Lecture View Images";
+			sourceTree = "<group>";
+		};
+		4C96FA81176289B4002C0D74 /* Connect View */ = {
+			isa = PBXGroup;
+			children = (
+				4C96FA82176289DE002C0D74 /* ConnectViewController.h */,
+				4C96FA83176289DE002C0D74 /* ConnectViewController.m */,
+			);
+			name = "Connect View";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -674,6 +687,7 @@
 				3F6D11CB17625EA20066A4FA /* NSData+SRB64Additions.m in Sources */,
 				3F6D11CC17625EA20066A4FA /* SRWebSocket.m in Sources */,
 				3F6D11DA176263880066A4FA /* NotesViewController.m in Sources */,
+				4C96FA84176289DE002C0D74 /* ConnectViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -815,8 +829,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Piper Chester (926JP4SG23)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Michael Timbrook (2383UG2Y7R)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Michael Timbrook (2383UG2Y7R)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -826,8 +840,8 @@
 				INFOPLIST_FILE = "AccessLecture/AccessLecture-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4F1D5C81-E636-4BBB-A977-DC27D713DE97";
+				PROVISIONING_PROFILE = "D3F506A0-12F7-41BD-93F2-4801DAF818E6";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D3F506A0-12F7-41BD-93F2-4801DAF818E6";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
@@ -840,8 +854,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Piper Chester (926JP4SG23)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Michael Timbrook (2383UG2Y7R)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Michael Timbrook (2383UG2Y7R)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AccessLecture/AccessLecture-Prefix.pch";
@@ -850,8 +864,8 @@
 				INFOPLIST_FILE = "AccessLecture/AccessLecture-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4F1D5C81-E636-4BBB-A977-DC27D713DE97";
+				PROVISIONING_PROFILE = "D3F506A0-12F7-41BD-93F2-4801DAF818E6";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D3F506A0-12F7-41BD-93F2-4801DAF818E6";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
