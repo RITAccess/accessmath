@@ -89,6 +89,18 @@
     [socketConnection sendEvent:@"" withData:data];
 }
 
+#pragma mark Status
+
+- (BOOL)conneted
+{
+    return socketConnection.isConnected;
+}
+
+- (BOOL)isConnecting
+{
+    return socketConnection.isConnecting;
+}
+
 #pragma mark Socket Methods
 
 /**

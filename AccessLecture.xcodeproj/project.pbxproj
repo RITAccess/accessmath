@@ -59,6 +59,7 @@
 		3FED965C1370909100D8D1B8 /* ZoomOut.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FED96501370909100D8D1B8 /* ZoomOut.png */; };
 		3FF7FFD513D5E45300B89A5D /* AlertBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FF7FFD413D5E45300B89A5D /* AlertBG.png */; };
 		3FFCFB2213A25388003DAB63 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FFCFB2113A25388003DAB63 /* MessageUI.framework */; };
+		4C0966B01768D6520063AED7 /* Networking.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0966AF1768D6520063AED7 /* Networking.m */; };
 		4C62BECD175651DB00CAF4CF /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F99F1FA1543641E0065CBB9 /* FileManager.m */; };
 		4C96FA84176289DE002C0D74 /* ConnectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C96FA83176289DE002C0D74 /* ConnectViewController.m */; };
 		4CB832A11768C0BC008F0099 /* AccessLecture_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB832A01768C0AC008F0099 /* AccessLecture_Tests.m */; };
@@ -164,6 +165,7 @@
 		3FED96501370909100D8D1B8 /* ZoomOut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ZoomOut.png; path = "Lecture View Images/ZoomOut.png"; sourceTree = "<group>"; };
 		3FF7FFD413D5E45300B89A5D /* AlertBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AlertBG.png; path = AccessLecture/core/AlertBG.png; sourceTree = "<group>"; };
 		3FFCFB2113A25388003DAB63 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		4C0966AF1768D6520063AED7 /* Networking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Networking.m; sourceTree = "<group>"; };
 		4C96FA82176289DE002C0D74 /* ConnectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectViewController.h; sourceTree = "<group>"; };
 		4C96FA83176289DE002C0D74 /* ConnectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectViewController.m; sourceTree = "<group>"; };
 		4CB8329E1768C0AC008F0099 /* AccessLecture Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AccessLecture Tests-Info.plist"; sourceTree = "<group>"; };
@@ -518,6 +520,7 @@
 		4CE742C71768BDE60026DE71 /* AccessLecture Tests */ = {
 			isa = PBXGroup;
 			children = (
+				4C0966AF1768D6520063AED7 /* Networking.m */,
 				4CB832A01768C0AC008F0099 /* AccessLecture_Tests.m */,
 				4CE742C81768BDE60026DE71 /* Supporting Files */,
 			);
@@ -679,6 +682,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CB832A11768C0BC008F0099 /* AccessLecture_Tests.m in Sources */,
+				4C0966B01768D6520063AED7 /* Networking.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
