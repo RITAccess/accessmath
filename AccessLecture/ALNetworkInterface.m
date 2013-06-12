@@ -73,6 +73,8 @@
 - (void)connectCompletion:(void (^)(BOOL success))handle {
     
     [self connect];
+    while (socketConnection.isConnecting)
+        ;
     handle(true);
     
 }
@@ -91,7 +93,7 @@
 
 #pragma mark Status
 
-- (BOOL)conneted
+- (BOOL)connected
 {
     return socketConnection.isConnected;
 }

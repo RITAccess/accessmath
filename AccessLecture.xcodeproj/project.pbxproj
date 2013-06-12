@@ -60,16 +60,20 @@
 		3FF7FFD513D5E45300B89A5D /* AlertBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FF7FFD413D5E45300B89A5D /* AlertBG.png */; };
 		3FFCFB2213A25388003DAB63 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FFCFB2113A25388003DAB63 /* MessageUI.framework */; };
 		4C0966B01768D6520063AED7 /* Networking.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0966AF1768D6520063AED7 /* Networking.m */; };
+		4C51C79D1768F5BE0045DF42 /* Lectures.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C51C79C1768F5BE0045DF42 /* Lectures.m */; };
 		4C62BECD175651DB00CAF4CF /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F99F1FA1543641E0065CBB9 /* FileManager.m */; };
 		4C96FA84176289DE002C0D74 /* ConnectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C96FA83176289DE002C0D74 /* ConnectViewController.m */; };
 		4CB832A11768C0BC008F0099 /* AccessLecture_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB832A01768C0AC008F0099 /* AccessLecture_Tests.m */; };
+		4CBF5D871768DAD200746377 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11D217625F150066A4FA /* libicucore.dylib */; };
+		4CBF5D881768DAD500746377 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11D017625F0D0066A4FA /* CFNetwork.framework */; };
+		4CBF5D891768DAD700746377 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11CE17625F060066A4FA /* Security.framework */; };
 		4CE742C41768BDE60026DE71 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F9BA9C21758FE1C00BEFB55 /* SenTestingKit.framework */; };
 		4CE742C51768BDE60026DE71 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FED960D1370863E00D8D1B8 /* Foundation.framework */; };
 		4CE742C61768BDE60026DE71 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FED960B1370863E00D8D1B8 /* UIKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		4CE742D01768BDE60026DE71 /* PBXContainerItemProxy */ = {
+		4CBF5D8A1768DB4E00746377 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3FED95FE1370863E00D8D1B8 /* Project object */;
 			proxyType = 1;
@@ -166,12 +170,12 @@
 		3FF7FFD413D5E45300B89A5D /* AlertBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AlertBG.png; path = AccessLecture/core/AlertBG.png; sourceTree = "<group>"; };
 		3FFCFB2113A25388003DAB63 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		4C0966AF1768D6520063AED7 /* Networking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Networking.m; sourceTree = "<group>"; };
+		4C51C79C1768F5BE0045DF42 /* Lectures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lectures.m; sourceTree = "<group>"; };
 		4C96FA82176289DE002C0D74 /* ConnectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectViewController.h; sourceTree = "<group>"; };
 		4C96FA83176289DE002C0D74 /* ConnectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectViewController.m; sourceTree = "<group>"; };
 		4CB8329E1768C0AC008F0099 /* AccessLecture Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AccessLecture Tests-Info.plist"; sourceTree = "<group>"; };
 		4CB8329F1768C0AC008F0099 /* AccessLecture Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AccessLecture Tests-Prefix.pch"; sourceTree = "<group>"; };
 		4CB832A01768C0AC008F0099 /* AccessLecture_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccessLecture_Tests.m; sourceTree = "<group>"; };
-		4CE742A11768B8DD0026DE71 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		4CE742C31768BDE60026DE71 /* AccessLecture Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "AccessLecture Tests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -196,6 +200,9 @@
 			files = (
 				4CE742C41768BDE60026DE71 /* SenTestingKit.framework in Frameworks */,
 				4CE742C61768BDE60026DE71 /* UIKit.framework in Frameworks */,
+				4CBF5D881768DAD500746377 /* CFNetwork.framework in Frameworks */,
+				4CBF5D891768DAD700746377 /* Security.framework in Frameworks */,
+				4CBF5D871768DAD200746377 /* libicucore.dylib in Frameworks */,
 				4CE742C51768BDE60026DE71 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -419,7 +426,6 @@
 		3FED960A1370863E00D8D1B8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4CE742A11768B8DD0026DE71 /* XCTest.framework */,
 				3F6D11D217625F150066A4FA /* libicucore.dylib */,
 				3F6D11D017625F0D0066A4FA /* CFNetwork.framework */,
 				3F6D11CE17625F060066A4FA /* Security.framework */,
@@ -520,6 +526,7 @@
 		4CE742C71768BDE60026DE71 /* AccessLecture Tests */ = {
 			isa = PBXGroup;
 			children = (
+				4C51C79C1768F5BE0045DF42 /* Lectures.m */,
 				4C0966AF1768D6520063AED7 /* Networking.m */,
 				4CB832A01768C0AC008F0099 /* AccessLecture_Tests.m */,
 				4CE742C81768BDE60026DE71 /* Supporting Files */,
@@ -567,7 +574,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				4CE742D11768BDE60026DE71 /* PBXTargetDependency */,
+				4CBF5D8B1768DB4E00746377 /* PBXTargetDependency */,
 			);
 			name = "AccessLecture Tests";
 			productName = "AccessLecture Tests";
@@ -682,6 +689,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CB832A11768C0BC008F0099 /* AccessLecture_Tests.m in Sources */,
+				4C51C79D1768F5BE0045DF42 /* Lectures.m in Sources */,
 				4C0966B01768D6520063AED7 /* Networking.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -689,10 +697,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		4CE742D11768BDE60026DE71 /* PBXTargetDependency */ = {
+		4CBF5D8B1768DB4E00746377 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3FED96061370863E00D8D1B8 /* AccessLecture */;
-			targetProxy = 4CE742D01768BDE60026DE71 /* PBXContainerItemProxy */;
+			targetProxy = 4CBF5D8A1768DB4E00746377 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
