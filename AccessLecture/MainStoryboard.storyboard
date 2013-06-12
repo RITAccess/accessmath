@@ -593,6 +593,54 @@
         <image name="ZoomOut.png" width="95" height="95"/>
         <image name="accesslecture.png" width="695" height="512"/>
     </resources>
+    <classes>
+        <class className="AboutViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AboutViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="returnToHome:"/>
+                <relationship kind="outlet" name="mainView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="LectureViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LectureViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backButton:"/>
+                <relationship kind="action" name="backButtonPress:"/>
+                <relationship kind="action" name="clearNotesButtonPress:"/>
+                <relationship kind="action" name="closeNotes:"/>
+                <relationship kind="action" name="saveButton:"/>
+                <relationship kind="action" name="saveButtonPress:"/>
+                <relationship kind="action" name="startNotesButtonPress:"/>
+                <relationship kind="action" name="zoomInButtonPress:"/>
+                <relationship kind="action" name="zoomOutButtonPress:"/>
+                <relationship kind="outlet" name="clearNotesButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="colorSelectionSegment" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="settingsButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="zoomInButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="zoomOutButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="RootViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RootViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="connectToLecture:"/>
+                <relationship kind="action" name="connectToServer:"/>
+                <relationship kind="action" name="openAbout:"/>
+                <relationship kind="action" name="openLecture:"/>
+                <relationship kind="action" name="openNewLecture:"/>
+            </relationships>
+        </class>
+        <class className="SettingsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="colorSlide:"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackOpaque"/>
         <simulatedOrientationMetrics key="orientation"/>
