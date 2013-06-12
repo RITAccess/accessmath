@@ -8,9 +8,10 @@
 #import "AccessLectureRuntime.h"
 #import "AccessLectureRuntime.h"
 #import "Lecture.h"
+#import "UISegmentedControlExtension.h"
 
-@interface LectureViewController : UIViewController<UIScrollViewDelegate> {
-    
+@interface LectureViewController : UIViewController<UIScrollViewDelegate>
+{
     // UI
 	IBOutlet UIScrollView* scrollView;
 	UIImageView* imageView;
@@ -41,6 +42,8 @@
     AccessDocument *currentDocument;
     AccessLectureRuntime *currentRuntime;
     Lecture *currentLecture;
+    
+    UISegmentedControl *colors;
 }
 
 - (void)updateImageView;
@@ -55,7 +58,6 @@
 - (IBAction)zoomOutButtonPress:(id)sender;
 - (IBAction)zoomInButtonPress:(id)sender;
 
-@property (weak, nonatomic) IBOutlet UISegmentedControl *colorSelectionSegment;
 @property (weak, nonatomic) IBOutlet UIButton *zoomOutButton;
 @property (weak, nonatomic) IBOutlet UIButton *zoomInButton;
 @property (weak, nonatomic) IBOutlet UIButton *clearNotesButton;

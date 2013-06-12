@@ -7,6 +7,13 @@
 #import "FileManager.h"
 #import "AccessDocument.h"
 
+#define RED_TAG 111
+#define GREEN_TAG 112
+#define BLUE_TAG 113
+#define BLACK_TAG 114
+#define HILIGHT_TAG 115
+#define ERASER_TAG 116
+
 #define ZOOM_VIEW_TAG 100
 #define MIN_ZOOM_SCALE 1.0
 #define MAX_ZOOM_SCALE 20
@@ -116,11 +123,6 @@ float oldZoomScale;
     [super viewDidLoad];
     
     self.clearNotesButton.hidden = YES; // Hide Clear Button on Start
-    self.colorSelectionSegment.hidden = YES; // Hide Clear Button on Start
-    
-    [self.colorSelectionSegment addTarget:self
-                         action:@selector(changeColor:)
-               forControlEvents:UIControlEventValueChanged];
 }
 
 /**
@@ -169,6 +171,7 @@ float oldZoomScale;
 
 #pragma mark - Note-Taking
 
+
 /**
  * Close the note-taking feature.
  */
@@ -195,6 +198,16 @@ float oldZoomScale;
             self.interfaceOrientation == UIInterfaceOrientationLandscapeRight){
             lineDrawView.frame = CGRectMake(0, 180, 1024, 468);
         }
+    }
+    
+    if (colors != NULL){
+        if (self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
+            self.interfaceOrientation == UIInterfaceOrientationLandscapeRight){
+            [colors setFrame:CGRectMake(0, 716, 1024, 30)];
+        } else if (self.interfaceOrientation == UIInterfaceOrientationPortrait){
+            [colors setFrame:CGRectMake(0, 972, 768, 30)];
+        }
+        
     }
 }
 
@@ -266,7 +279,6 @@ float oldZoomScale;
 - (void)viewDidUnload {
     [t invalidate];
     [self setClearNotesButton:nil];
-    [self setColorSelectionSegment:nil];
     [self setZoomOutButton:nil];
     [self setZoomInButton:nil];
     [super viewDidUnload];
@@ -440,7 +452,6 @@ float oldZoomScale;
 - (IBAction)startNotesButtonPress:(id)sender
 {
     self.clearNotesButton.hidden = NO;
-    self.colorSelectionSegment.hidden = NO;
     self.zoomInButton.hidden = YES;
     self.zoomOutButton.hidden = YES;
     [sender setHidden:YES];
@@ -468,30 +479,49 @@ float oldZoomScale;
     lineDrawView=[[LineDrawView alloc]initWithFrame:CGRectMake(0, 180, 1024, 468)];
     
     [self.view addSubview:lineDrawView];
+    
+    
+    NSArray *segments = [[NSArray alloc] initWithObjects:@"", @"", @"", @"", @"", @"Eraser", nil];
+    colors = [[UISegmentedControl alloc] initWithItems:segments];
+    [colors setSegmentedControlStyle:UISegmentedControlStyleBar];
+    [colors setTintColor:[UIColor lightGrayColor]];
+    
+    
+    if (self.interfaceOrientation == UIInterfaceOrientationPortrait){
+        [colors setFrame:CGRectMake(0, 968, 768, 80)];
+    } else {
+        [colors setFrame:CGRectMake(0, 712, 1024, 80)];
+    }
+    
+    
+
+    [colors addTarget:self action:@selector(segmentChanged:) forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:colors];
+    
+    
+    // at some point later, the segment indexes change, so
+    // must set tags on the segments before they render
+    [colors setTag:RED_TAG forSegmentAtIndex:0];
+    [colors setTag:GREEN_TAG forSegmentAtIndex:1];
+    [colors setTag:BLUE_TAG forSegmentAtIndex:2];
+    [colors setTag:BLACK_TAG forSegmentAtIndex:3];
+    [colors setTag:HILIGHT_TAG forSegmentAtIndex:4];
+    [colors setTag:ERASER_TAG forSegmentAtIndex:5];
+    
+    [colors setTintColor:[UIColor redColor] forTag:RED_TAG];
+    [colors setTintColor:[UIColor greenColor] forTag:GREEN_TAG];
+    [colors setTintColor:[UIColor blueColor] forTag:BLUE_TAG];
+    [colors setTintColor:[UIColor blackColor] forTag:BLACK_TAG];
+    [colors setTintColor:[UIColor yellowColor] forTag:HILIGHT_TAG];
+    [colors setTintColor:[UIColor whiteColor] forTag:ERASER_TAG];
 }
 
-- (IBAction)clearNotesButtonPress:(id)sender
-{
-//    notesViewController.imageView.image = nil;
+-(void)segmentChanged:(id)sender {
+    //    UISegmentedControl *segmentedControl = (UISegmentedControl *)sender;
     
-    [lineDrawView.bezierPath removeAllPoints];
-    [lineDrawView.bezierPath2 removeAllPoints];
-    [lineDrawView.bezierPath3 removeAllPoints];
-    [lineDrawView.bezierPath4 removeAllPoints];
-    [lineDrawView.bezierPath5 removeAllPoints];
+    lineDrawView.currentPath = [colors selectedSegmentIndex];
     
-    // Tell the user that notes are cleared.
-	UIAlertView* alert = [[UILargeAlertView alloc] initWithText:NSLocalizedString(@"Notes Cleared!", nil) fontSize:48];
-	[alert show];
-}
-
-- (void)changeColor:(id)sender
-{
-    UISegmentedControl *segmentedControl = (UISegmentedControl *)sender;
-    
-    lineDrawView.currentPath = [segmentedControl selectedSegmentIndex];
-    
-    switch ([segmentedControl selectedSegmentIndex]) {
+    switch ([colors selectedSegmentIndex]) {
         case 0:
             lineDrawView.brushColor = [UIColor redColor];
             break;
@@ -509,4 +539,20 @@ float oldZoomScale;
             break;
     }
 }
+
+- (IBAction)clearNotesButtonPress:(id)sender
+{
+//    notesViewController.imageView.image = nil;
+    
+    [lineDrawView.bezierPath removeAllPoints];
+    [lineDrawView.bezierPath2 removeAllPoints];
+    [lineDrawView.bezierPath3 removeAllPoints];
+    [lineDrawView.bezierPath4 removeAllPoints];
+    [lineDrawView.bezierPath5 removeAllPoints];
+    
+    // Tell the user that notes are cleared.
+	UIAlertView* alert = [[UILargeAlertView alloc] initWithText:NSLocalizedString(@"Notes Cleared!", nil) fontSize:48];
+	[alert show];
+}
+
 @end
