@@ -59,8 +59,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *zoomOutButton;
 @property (weak, nonatomic) IBOutlet UIButton *zoomInButton;
 @property (weak, nonatomic) IBOutlet UIButton *clearNotesButton;
-@property (strong, nonatomic)UIPopoverController* popover;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *settingsButton;
 
 @end
 
