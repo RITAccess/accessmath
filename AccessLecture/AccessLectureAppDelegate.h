@@ -24,5 +24,6 @@
 
 // Network Interface
 @property (nonatomic, strong) ALNetworkInterface *server;
+@property (nonatomic, strong) NSString *serverAddress;
 
 @end
