@@ -30,8 +30,6 @@
 		3F6D11D517625F270066A4FA /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11D017625F0D0066A4FA /* CFNetwork.framework */; };
 		3F6D11D617625F2D0066A4FA /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11CE17625F060066A4FA /* Security.framework */; };
 		3F6D11DA176263880066A4FA /* NotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D11D9176263880066A4FA /* NotesViewController.m */; };
-		3F73880913A6922B00F2E7CA /* sliderSpeedMin.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F73880813A6922B00F2E7CA /* sliderSpeedMin.png */; };
-		3F73880C13A6922F00F2E7CA /* sliderSpeedMax.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F73880B13A6922F00F2E7CA /* sliderSpeedMax.png */; };
 		3F78A40713D5C1160048A579 /* UILargeAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F78A40513D5C1160048A579 /* UILargeAlertView.m */; };
 		3F959F0713C7555500A6DA79 /* ClearNotes.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F959F0613C7555500A6DA79 /* ClearNotes.png */; };
 		3F99F20215436E090065CBB9 /* Lecture.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F99F20115436E090065CBB9 /* Lecture.m */; };
@@ -110,8 +108,6 @@
 		3F6D11D217625F150066A4FA /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		3F6D11D8176263880066A4FA /* NotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesViewController.h; sourceTree = "<group>"; };
 		3F6D11D9176263880066A4FA /* NotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesViewController.m; sourceTree = "<group>"; };
-		3F73880813A6922B00F2E7CA /* sliderSpeedMin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sliderSpeedMin.png; path = AccessLecture/sliderSpeedMin.png; sourceTree = "<group>"; };
-		3F73880B13A6922F00F2E7CA /* sliderSpeedMax.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sliderSpeedMax.png; path = AccessLecture/sliderSpeedMax.png; sourceTree = "<group>"; };
 		3F78A40413D5C1160048A579 /* UILargeAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILargeAlertView.h; sourceTree = "<group>"; };
 		3F78A40513D5C1160048A579 /* UILargeAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UILargeAlertView.m; sourceTree = "<group>"; };
 		3F78A40613D5C1160048A579 /* UILargeAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UILargeAlertView.xib; sourceTree = "<group>"; };
@@ -418,8 +414,6 @@
 			isa = PBXGroup;
 			children = (
 				3FF7FFD413D5E45300B89A5D /* AlertBG.png */,
-				3F73880B13A6922F00F2E7CA /* sliderSpeedMax.png */,
-				3F73880813A6922B00F2E7CA /* sliderSpeedMin.png */,
 				3F63540B13A157C40024E6E9 /* Settings.bundle */,
 				3FED96111370863E00D8D1B8 /* AccessLecture */,
 				3FED960A1370863E00D8D1B8 /* Frameworks */,
@@ -629,8 +623,6 @@
 				3F5E3F1E137C5CA30022F3C9 /* Default-Landscape~ipad.png in Resources */,
 				3F5E3F21137C5CAC0022F3C9 /* Default-Portrait~ipad.png in Resources */,
 				3F63540C13A157C40024E6E9 /* Settings.bundle in Resources */,
-				3F73880913A6922B00F2E7CA /* sliderSpeedMin.png in Resources */,
-				3F73880C13A6922F00F2E7CA /* sliderSpeedMax.png in Resources */,
 				3F959F0713C7555500A6DA79 /* ClearNotes.png in Resources */,
 				3FAE785413C786F800796813 /* accesslecture.png in Resources */,
 				3FF7FFD513D5E45300B89A5D /* AlertBG.png in Resources */,

@@ -27,7 +27,7 @@
     self = [super initWithFrame:frame];
     
     if (self) {
-        self.backgroundColor=[UIColor lightGrayColor];
+        self.backgroundColor=[UIColor whiteColor];
         
         // Will move these to an array of UIBezierPaths soon.
         bezierPath=[[UIBezierPath alloc]init];
