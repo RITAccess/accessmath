@@ -27,7 +27,9 @@ float oldZoomScale;
 - (CGRect)zoomRectForScale:(float)scale withCenter:(CGPoint)center;
 @end
 
-@implementation LectureViewController
+@implementation LectureViewController {
+    __weak UIPopoverController *popover;
+}
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -267,7 +269,6 @@ float oldZoomScale;
     [self setColorSelectionSegment:nil];
     [self setZoomOutButton:nil];
     [self setZoomInButton:nil];
-    [self setSettingsButton:nil];
     [super viewDidUnload];
 }
 
@@ -390,7 +391,7 @@ float oldZoomScale;
 
 -(void)handleZoomWith:(float)newScale andZoomType:(BOOL)isZoomIn
 {
-    CGPoint newOrigin = [zoomHandler getNewOriginFromViewLocation: [scrollView contentOffset] 
+    CGPoint newOrigin = [zoomHandler getNewOriginFromViewLocation: [scrollView contentOffset]
 														 viewSize: scrSize andZoomType: isZoomIn];
 	CGRect zoomRect = [self zoomRectForScale:newScale withCenter:newOrigin];
     [scrollView zoomToRect:zoomRect animated:YES];
@@ -398,8 +399,27 @@ float oldZoomScale;
 
 # pragma mark - Buttons
 
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    popover = [(UIStoryboardPopoverSegue *)segue popoverController];
+}
+
+- (BOOL) shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    if (popover) {
+        [popover dismissPopoverAnimated:YES];
+        return NO;
+    } else {
+        return YES;
+    }
+}
+
+
 - (IBAction)backButtonPress:(id)sender
 {
+    if (popover) {
+        [popover dismissPopoverAnimated:YES];
+    }
     [self dismissModalViewControllerAnimated:YES];
 }
 
