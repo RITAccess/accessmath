@@ -242,7 +242,8 @@ float oldZoomScale;
 	UIAlertView* alert = [[UILargeAlertView alloc]
                           initWithText:NSLocalizedString(@"Notes Saved!", nil)
                           fontSize:48];
-	[alert show];
+	alert.title= @"Notes Saved";
+    [alert show];
  
 }
 
