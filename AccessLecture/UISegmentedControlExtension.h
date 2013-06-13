@@ -12,6 +12,5 @@
 
 -(void)setTag:(NSInteger)tag forSegmentAtIndex:(NSUInteger)segment;
 -(void)setTintColor:(UIColor*)color forTag:(NSInteger)aTag;
--(void)setShadowColor:(UIColor*)color forTag:(NSInteger)aTag;
 
 @end

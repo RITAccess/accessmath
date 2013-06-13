@@ -203,9 +203,9 @@ float oldZoomScale;
     if (colors != NULL){
         if (self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
             self.interfaceOrientation == UIInterfaceOrientationLandscapeRight){
-            [colors setFrame:CGRectMake(0, 720, 1024, 30)];
+            [colors setFrame:CGRectMake(0, 670, 1024, 80)];
         } else if (self.interfaceOrientation == UIInterfaceOrientationPortrait){
-            [colors setFrame:CGRectMake(0, 976, 768, 30)];
+            [colors setFrame:CGRectMake(0, 927, 768, 80)];
         }
         
     }
@@ -395,6 +395,8 @@ float oldZoomScale;
  */
 -(IBAction)zoomInButtonPress:(id)sender
 {
+    lineDrawView.transform = CGAffineTransformMakeScale(1.05, 1.05);
+    
 	float newScale = [scrollView zoomScale] * ZOOM_STEP;
     if(newScale <= [scrollView maximumZoomScale]){
         [self handleZoomWith:newScale andZoomType: TRUE];
@@ -488,9 +490,9 @@ float oldZoomScale;
     
     
     if (self.interfaceOrientation == UIInterfaceOrientationPortrait){
-        [colors setFrame:CGRectMake(0, 974, 768, 80)];
+        [colors setFrame:CGRectMake(0, 927, 768, 80)];
     } else {
-        [colors setFrame:CGRectMake(0, 718, 1024, 80)];
+        [colors setFrame:CGRectMake(0, 670, 1024, 80)];
     }
 
     [colors addTarget:self action:@selector(segmentChanged:) forControlEvents:UIControlEventValueChanged];

@@ -16,26 +16,19 @@
 }
 
 -(void)setTintColor:(UIColor*)color forTag:(NSInteger)aTag {
-    // must operate by tags.  Subview index is unreliable
+    // Must operate by tags.  Subview index is unreliable.
     UIView *segment = [self viewWithTag:aTag];
+    
+    // Extending height of each subview of segments.
+    for (UIView *view in segment.subviews){
+        [view setFrame:CGRectMake(0, 0, 0, 600)];
+    }
+
     SEL tint = @selector(setTintColor:);
     
-    // UISegment is an undocumented class, so tread carefully
-    // if the segment exists and if it responds to the setTintColor message
+    // If the segment exists and if it responds to the setTintColor message.
     if (segment && ([segment respondsToSelector:tint])) {
         [segment performSelector:tint withObject:color];
-    }
-}
-
--(void)setShadowColor:(UIColor*)color forTag:(NSInteger)aTag {
-    
-    // you could also combine setShadowColor and setTextColor
-    UIView *segment = [self viewWithTag:aTag];
-    for (UIView *view in segment.subviews) {
-        SEL shadowColor = @selector(setShadowColor:);
-        if (view && ([view respondsToSelector:shadowColor])) {
-            [view performSelector:shadowColor withObject:color];
-        }
     }
 }
 
