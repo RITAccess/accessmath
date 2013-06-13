@@ -203,9 +203,9 @@ float oldZoomScale;
     if (colors != NULL){
         if (self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
             self.interfaceOrientation == UIInterfaceOrientationLandscapeRight){
-            [colors setFrame:CGRectMake(0, 716, 1024, 30)];
+            [colors setFrame:CGRectMake(0, 720, 1024, 30)];
         } else if (self.interfaceOrientation == UIInterfaceOrientationPortrait){
-            [colors setFrame:CGRectMake(0, 972, 768, 30)];
+            [colors setFrame:CGRectMake(0, 976, 768, 30)];
         }
         
     }
@@ -488,12 +488,10 @@ float oldZoomScale;
     
     
     if (self.interfaceOrientation == UIInterfaceOrientationPortrait){
-        [colors setFrame:CGRectMake(0, 968, 768, 80)];
+        [colors setFrame:CGRectMake(0, 974, 768, 80)];
     } else {
-        [colors setFrame:CGRectMake(0, 712, 1024, 80)];
+        [colors setFrame:CGRectMake(0, 718, 1024, 80)];
     }
-    
-    
 
     [colors addTarget:self action:@selector(segmentChanged:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:colors];
@@ -516,34 +514,9 @@ float oldZoomScale;
     [colors setTintColor:[UIColor whiteColor] forTag:ERASER_TAG];
 }
 
--(void)segmentChanged:(id)sender {
-    //    UISegmentedControl *segmentedControl = (UISegmentedControl *)sender;
-    
-    lineDrawView.currentPath = [colors selectedSegmentIndex];
-    
-    switch ([colors selectedSegmentIndex]) {
-        case 0:
-            lineDrawView.brushColor = [UIColor redColor];
-            break;
-        case 1:
-            lineDrawView.brushColor = [UIColor greenColor];
-            break;
-        case 2:
-            lineDrawView.brushColor = [UIColor blueColor];
-            break;
-        case 3:
-            lineDrawView.brushColor = [UIColor blackColor];
-            break;
-        default:
-            lineDrawView.brushColor = [UIColor whiteColor];
-            break;
-    }
-}
 
 - (IBAction)clearNotesButtonPress:(id)sender
 {
-//    notesViewController.imageView.image = nil;
-    
     [lineDrawView.bezierPath removeAllPoints];
     [lineDrawView.bezierPath2 removeAllPoints];
     [lineDrawView.bezierPath3 removeAllPoints];
@@ -553,6 +526,14 @@ float oldZoomScale;
     // Tell the user that notes are cleared.
 	UIAlertView* alert = [[UILargeAlertView alloc] initWithText:NSLocalizedString(@"Notes Cleared!", nil) fontSize:48];
 	[alert show];
+}
+
+/**
+ * Called when the SegmentedControl is changed to a new color.
+ */
+-(void)segmentChanged:(id)sender
+{
+    lineDrawView.currentPath = [colors selectedSegmentIndex];
 }
 
 @end

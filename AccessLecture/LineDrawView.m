@@ -14,7 +14,6 @@
 
 @implementation LineDrawView
 
-@synthesize brushColor;
 @synthesize bezierPath;
 @synthesize bezierPath2;
 @synthesize bezierPath3;
@@ -31,24 +30,14 @@
         
         // Will move these to an array of UIBezierPaths soon.
         bezierPath=[[UIBezierPath alloc]init];
-        bezierPath.lineWidth=1;
-        
         bezierPath2=[[UIBezierPath alloc]init];
-        bezierPath2.lineWidth=5;
-        
         bezierPath3=[[UIBezierPath alloc]init];
-        bezierPath3.lineWidth=10;
-        
         bezierPath4=[[UIBezierPath alloc]init];
-        bezierPath4.lineWidth=15;
-        
         bezierPath5=[[UIBezierPath alloc]init];
-        bezierPath5.lineWidth=20;
         
-        brushColor=[UIColor redColor];
-        
-        currentPath = 0; // Current UIBezierPath is 0; this is the Red Segment.
+        currentPath = 0;
     }
+    
     return self;
 }
 
@@ -73,13 +62,13 @@
         default:
             [bezierPath5 moveToPoint:[touch locationInView:self]];
             break;
-    }
+    }    
 }
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
     UITouch *touch=[[touches allObjects] objectAtIndex:0];
-    
+
     switch (currentPath) {
         case 0:
             [bezierPath addLineToPoint:[touch locationInView:self]];
@@ -103,7 +92,7 @@
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    
+
 }
 
 /**
@@ -111,12 +100,16 @@
  */
 - (void)drawRect:(CGRect)rect
 {
-    [brushColor setStroke];
-    [bezierPath strokeWithBlendMode:kCGBlendModeNormal alpha:1.0];
-    [bezierPath2 strokeWithBlendMode:kCGBlendModeClear alpha:1.0];
-    [bezierPath3 strokeWithBlendMode:kCGBlendModeClear alpha:1.0];
-    [bezierPath4 strokeWithBlendMode:kCGBlendModeClear alpha:1.0];
-    [bezierPath5 strokeWithBlendMode:kCGBlendModeClear alpha:1.0];
+    [[UIColor redColor] setStroke];
+    [bezierPath stroke];
+    [[UIColor greenColor] setStroke];
+    [bezierPath2 stroke];
+    [[UIColor blueColor] setStroke];
+    [bezierPath3 stroke];
+    [[UIColor blackColor] setStroke];
+    [bezierPath4 stroke];
+    [[UIColor yellowColor] setStroke];
+    [bezierPath5 stroke];
 }
 
 @end
