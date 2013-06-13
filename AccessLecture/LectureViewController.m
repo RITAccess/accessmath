@@ -281,6 +281,7 @@ float oldZoomScale;
     [self setClearNotesButton:nil];
     [self setZoomOutButton:nil];
     [self setZoomInButton:nil];
+    [self setStartNotesButton:nil];
     [super viewDidUnload];
 }
 
@@ -456,16 +457,15 @@ float oldZoomScale;
     self.clearNotesButton.hidden = NO;
     self.zoomInButton.hidden = YES;
     self.zoomOutButton.hidden = YES;
-    [sender setHidden:YES];
+    self.startNotesButton.hidden = YES;
     
     // Zoom the user all the way out when they enter note-taking mode
     oldZoomScale = scrollView.zoomScale;
     [self resetImageZoom:nil];
-    // Disable zooming back in
-    [scrollView setMaximumZoomScale:MIN_ZOOM_SCALE];
+
+    [scrollView setMaximumZoomScale:MIN_ZOOM_SCALE];     // Disable zooming back in
     
-    // Force the ScrollView to require 2 fingers to scroll
-    // while in note-taking mode
+    // Force the ScrollView to require 2 fingers to scroll while in note-taking mode
     [scrollViewPanGesture setMinimumNumberOfTouches:2];
     [scrollViewPanGesture setMaximumNumberOfTouches:2];
     
@@ -518,16 +518,18 @@ float oldZoomScale;
 
 
 - (IBAction)clearNotesButtonPress:(id)sender
-{
-    [lineDrawView.bezierPath removeAllPoints];
-    [lineDrawView.bezierPath2 removeAllPoints];
-    [lineDrawView.bezierPath3 removeAllPoints];
-    [lineDrawView.bezierPath4 removeAllPoints];
-    [lineDrawView.bezierPath5 removeAllPoints];
-    
+{    
     // Tell the user that notes are cleared.
 	UIAlertView* alert = [[UILargeAlertView alloc] initWithText:NSLocalizedString(@"Notes Cleared!", nil) fontSize:48];
 	[alert show];
+    
+    [lineDrawView removeFromSuperview];
+    [colors removeFromSuperview];
+    
+    self.clearNotesButton.hidden = YES;
+    self.zoomInButton.hidden = NO;
+    self.zoomOutButton.hidden = NO;
+    self.startNotesButton.hidden = NO;
 }
 
 /**

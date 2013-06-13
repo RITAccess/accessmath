@@ -61,6 +61,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *zoomOutButton;
 @property (weak, nonatomic) IBOutlet UIButton *zoomInButton;
 @property (weak, nonatomic) IBOutlet UIButton *clearNotesButton;
+@property (weak, nonatomic) IBOutlet UIButton *startNotesButton;
 
 @end
 
