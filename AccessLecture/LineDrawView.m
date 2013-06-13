@@ -14,28 +14,19 @@
 
 @implementation LineDrawView
 
-@synthesize bezierPath;
-@synthesize bezierPath2;
-@synthesize bezierPath3;
-@synthesize bezierPath4;
-@synthesize bezierPath5;
-@synthesize currentPath;
-
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     
     if (self) {
+        
         self.backgroundColor=[UIColor whiteColor];
-        
-        // Will move these to an array of UIBezierPaths soon.
-        bezierPath=[[UIBezierPath alloc]init];
-        bezierPath2=[[UIBezierPath alloc]init];
-        bezierPath3=[[UIBezierPath alloc]init];
-        bezierPath4=[[UIBezierPath alloc]init];
-        bezierPath5=[[UIBezierPath alloc]init];
-        
-        currentPath = 0;
+        _bezierPath=[[UIBezierPath alloc]init];
+        _bezierPath2=[[UIBezierPath alloc]init];
+        _bezierPath3=[[UIBezierPath alloc]init];
+        _bezierPath4=[[UIBezierPath alloc]init];
+        _bezierPath5=[[UIBezierPath alloc]init];
+        _currentPath = 0;
     }
     
     return self;
@@ -46,21 +37,21 @@
 {
     UITouch *touch=[[touches allObjects] objectAtIndex:0];
     
-    switch (currentPath) {
+    switch (_currentPath) {
         case 0:
-            [bezierPath moveToPoint:[touch locationInView:self]]; 
+            [_bezierPath moveToPoint:[touch locationInView:self]];
             break;
         case 1:
-            [bezierPath2 moveToPoint:[touch locationInView:self]];
+            [_bezierPath2 moveToPoint:[touch locationInView:self]];
             break;
         case 2:
-            [bezierPath3 moveToPoint:[touch locationInView:self]];
+            [_bezierPath3 moveToPoint:[touch locationInView:self]];
             break;
         case 3:
-            [bezierPath4 moveToPoint:[touch locationInView:self]];
+            [_bezierPath4 moveToPoint:[touch locationInView:self]];
             break;
         default:
-            [bezierPath5 moveToPoint:[touch locationInView:self]];
+            [_bezierPath5 moveToPoint:[touch locationInView:self]];
             break;
     }    
 }
@@ -69,21 +60,21 @@
 {
     UITouch *touch=[[touches allObjects] objectAtIndex:0];
 
-    switch (currentPath) {
+    switch (_currentPath) {
         case 0:
-            [bezierPath addLineToPoint:[touch locationInView:self]];
+            [_bezierPath addLineToPoint:[touch locationInView:self]];
             break;
         case 1:
-            [bezierPath2 addLineToPoint:[touch locationInView:self]];
+            [_bezierPath2 addLineToPoint:[touch locationInView:self]];
             break;
         case 2:
-            [bezierPath3 addLineToPoint:[touch locationInView:self]];
+            [_bezierPath3 addLineToPoint:[touch locationInView:self]];
             break;
         case 3:
-            [bezierPath4 addLineToPoint:[touch locationInView:self]];
+            [_bezierPath4 addLineToPoint:[touch locationInView:self]];
             break;
         default:
-            [bezierPath5 addLineToPoint:[touch locationInView:self]];
+            [_bezierPath5 addLineToPoint:[touch locationInView:self]];
             break;
     }
     
@@ -101,15 +92,15 @@
 - (void)drawRect:(CGRect)rect
 {
     [[UIColor redColor] setStroke];
-    [bezierPath stroke];
+    [_bezierPath stroke];
     [[UIColor greenColor] setStroke];
-    [bezierPath2 stroke];
+    [_bezierPath2 stroke];
     [[UIColor blueColor] setStroke];
-    [bezierPath3 stroke];
+    [_bezierPath3 stroke];
     [[UIColor blackColor] setStroke];
-    [bezierPath4 stroke];
+    [_bezierPath4 stroke];
     [[UIColor yellowColor] setStroke];
-    [bezierPath5 stroke];
+    [_bezierPath5 stroke];
 }
 
 @end

@@ -60,17 +60,19 @@ float oldZoomScale;
     [imageView setTag:ZOOM_VIEW_TAG]; 
     
     // Set up the scrollview
-//	scrollView.clipsToBounds = YES;	// default is NO, but we want to restrict drawing within our scrollview
+	scrollView.clipsToBounds = YES;	// default is NO, but we want to restrict drawing within our scrollview
 //	[scrollView addSubview:notesViewController.view]; // We want to scroll/zoom the note-taking view as well
-//    [scrollView setDelegate:self];
-//    [scrollView setContentMode:UIViewContentModeScaleAspectFit]; // If this is not set, the image will be distorted
-//    [scrollView setContentSize:CGSizeMake(notesViewController.view.frame.size.width,notesViewController.view.frame.size.width)];
-//	[scrollView setScrollEnabled:YES];
-//    [scrollView setMinimumZoomScale:MIN_ZOOM_SCALE];
-//    [scrollView setZoomScale:MIN_ZOOM_SCALE];
-//    [scrollView setMaximumZoomScale:MAX_ZOOM_SCALE];
-//	scrollView.bounces = FALSE;
-//	scrollView.bouncesZoom = FALSE;
+    [scrollView setDelegate:self];
+    [scrollView setContentMode:UIViewContentModeScaleAspectFit]; // If this is not set, the image will be distorted
+    [scrollView setContentSize:CGSizeMake(50,50)];
+	[scrollView setScrollEnabled:YES];
+    [scrollView setMinimumZoomScale:MIN_ZOOM_SCALE];
+    [scrollView setZoomScale:MIN_ZOOM_SCALE];
+    [scrollView setMaximumZoomScale:MAX_ZOOM_SCALE];
+	scrollView.bounces = FALSE;
+	scrollView.bouncesZoom = FALSE;
+    scrollView.backgroundColor = [UIColor greenColor]; // Testing Purposes
+    [self.view addSubview:scrollView];
     
     // img = [UIImage imageWithData:[AccessLectureRuntime defaultRuntime].currentDocument.lecture.image];
     imageView = [[UIImageView alloc]initWithImage:img];
@@ -123,6 +125,8 @@ float oldZoomScale;
     [super viewDidLoad];
     
     self.clearNotesButton.hidden = YES; // Hide Clear Button on Start
+    
+    zoomedIn = NO;
 }
 
 /**
@@ -200,12 +204,12 @@ float oldZoomScale;
         }
     }
     
-    if (colors != NULL){
+    if (colorSegmentedControl != NULL){
         if (self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
             self.interfaceOrientation == UIInterfaceOrientationLandscapeRight){
-            [colors setFrame:CGRectMake(0, 670, 1024, 80)];
+            [colorSegmentedControl setFrame:CGRectMake(0, 670, 1024, 80)];
         } else if (self.interfaceOrientation == UIInterfaceOrientationPortrait){
-            [colors setFrame:CGRectMake(0, 927, 768, 80)];
+            [colorSegmentedControl setFrame:CGRectMake(0, 927, 768, 80)];
         }
         
     }
@@ -385,6 +389,9 @@ float oldZoomScale;
  */
 -(IBAction)zoomOutButtonPress:(id)sender
 {
+    
+    lineDrawView.transform = CGAffineTransformMakeScale(MIN_ZOOM_SCALE, MIN_ZOOM_SCALE);
+    
     if([scrollView zoomScale] > [scrollView minimumZoomScale]) {
         float newScale = [scrollView zoomScale] / ZOOM_STEP;
         [self handleZoomWith:newScale andZoomType: FALSE];
@@ -396,8 +403,9 @@ float oldZoomScale;
  */
 -(IBAction)zoomInButtonPress:(id)sender
 {
-    lineDrawView.transform = CGAffineTransformMakeScale(1.05, 1.05);
     
+    lineDrawView.transform = CGAffineTransformMakeScale(1.25, 1.25);
+
 	float newScale = [scrollView zoomScale] * ZOOM_STEP;
     if(newScale <= [scrollView maximumZoomScale]){
         [self handleZoomWith:newScale andZoomType: TRUE];
@@ -468,63 +476,65 @@ float oldZoomScale;
     // Force the ScrollView to require 2 fingers to scroll while in note-taking mode
     [scrollViewPanGesture setMinimumNumberOfTouches:2];
     [scrollViewPanGesture setMaximumNumberOfTouches:2];
-    
-    // Maintain an appropriate content size
-    if ([defaults floatForKey:@"toolbarAlpha"] != 0.0) {
-        // Toolbars are partially transparent
-        scrollView.frame = CGRectMake(0, 0, SCREEN_WIDTH, self.view.frame.size.height-TOOLBAR_HEIGHT);
-    } else {
-        // Toolbars are completely solid
-        scrollView.frame = CGRectMake(0, TOOLBAR_HEIGHT, SCREEN_WIDTH, self.view.frame.size.height-(TOOLBAR_HEIGHT * 2));
-    }
+
     
     lineDrawView=[[LineDrawView alloc]initWithFrame:CGRectMake(0, 180, 1024, 468)];
     
+    [self initColorSegmentedControl];
+    
     [self.view addSubview:lineDrawView];
     
-    
+    UITapGestureRecognizer* tapToZoom = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(zoomIn:)];
+    tapToZoom.numberOfTapsRequired = 2;
+    [tapToZoom setEnabled:YES];
+    [self.view addGestureRecognizer:tapToZoom];
+}
+
+- (void)zoomIn:(UIGestureRecognizer *)withGestureRecognizer{
+    lineDrawView.transform = CGAffineTransformMakeScale(1.25, 1.25);
+}
+
+- (void)initColorSegmentedControl
+{
     NSArray *segments = [[NSArray alloc] initWithObjects:@"", @"", @"", @"", @"", @"Eraser", nil];
-    colors = [[UISegmentedControl alloc] initWithItems:segments];
-    [colors setSegmentedControlStyle:UISegmentedControlStyleBar];
-    [colors setTintColor:[UIColor lightGrayColor]];
+    colorSegmentedControl = [[UISegmentedControl alloc] initWithItems:segments];
+    [colorSegmentedControl setSegmentedControlStyle:UISegmentedControlStyleBar];
+    [colorSegmentedControl setTintColor:[UIColor lightGrayColor]];
     
     
     if (self.interfaceOrientation == UIInterfaceOrientationPortrait){
-        [colors setFrame:CGRectMake(0, 927, 768, 80)];
+        [colorSegmentedControl setFrame:CGRectMake(0, 927, 768, 80)];
     } else {
-        [colors setFrame:CGRectMake(0, 670, 1024, 80)];
+        [colorSegmentedControl setFrame:CGRectMake(0, 670, 1024, 80)];
     }
-
-    [colors addTarget:self action:@selector(segmentChanged:) forControlEvents:UIControlEventValueChanged];
-    [self.view addSubview:colors];
     
+    [colorSegmentedControl addTarget:self action:@selector(segmentChanged:) forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:colorSegmentedControl];
     
-    // at some point later, the segment indexes change, so
-    // must set tags on the segments before they render
-    [colors setTag:RED_TAG forSegmentAtIndex:0];
-    [colors setTag:GREEN_TAG forSegmentAtIndex:1];
-    [colors setTag:BLUE_TAG forSegmentAtIndex:2];
-    [colors setTag:BLACK_TAG forSegmentAtIndex:3];
-    [colors setTag:HILIGHT_TAG forSegmentAtIndex:4];
-    [colors setTag:ERASER_TAG forSegmentAtIndex:5];
+    // Indices change; need to set tags on the segments before rendering.
+    [colorSegmentedControl setTag:RED_TAG forSegmentAtIndex:0];
+    [colorSegmentedControl setTag:GREEN_TAG forSegmentAtIndex:1];
+    [colorSegmentedControl setTag:BLUE_TAG forSegmentAtIndex:2];
+    [colorSegmentedControl setTag:BLACK_TAG forSegmentAtIndex:3];
+    [colorSegmentedControl setTag:HILIGHT_TAG forSegmentAtIndex:4];
+    [colorSegmentedControl setTag:ERASER_TAG forSegmentAtIndex:5];
     
-    [colors setTintColor:[UIColor redColor] forTag:RED_TAG];
-    [colors setTintColor:[UIColor greenColor] forTag:GREEN_TAG];
-    [colors setTintColor:[UIColor blueColor] forTag:BLUE_TAG];
-    [colors setTintColor:[UIColor blackColor] forTag:BLACK_TAG];
-    [colors setTintColor:[UIColor yellowColor] forTag:HILIGHT_TAG];
-    [colors setTintColor:[UIColor whiteColor] forTag:ERASER_TAG];
+    [colorSegmentedControl setTintColor:[UIColor redColor] forTag:RED_TAG];
+    [colorSegmentedControl setTintColor:[UIColor greenColor] forTag:GREEN_TAG];
+    [colorSegmentedControl setTintColor:[UIColor blueColor] forTag:BLUE_TAG];
+    [colorSegmentedControl setTintColor:[UIColor blackColor] forTag:BLACK_TAG];
+    [colorSegmentedControl setTintColor:[UIColor yellowColor] forTag:HILIGHT_TAG];
+    [colorSegmentedControl setTintColor:[UIColor whiteColor] forTag:ERASER_TAG];
+    
 }
-
 
 - (IBAction)clearNotesButtonPress:(id)sender
 {    
     // Tell the user that notes are cleared.
-	UIAlertView* alert = [[UILargeAlertView alloc] initWithText:NSLocalizedString(@"Notes Cleared!", nil) fontSize:48];
+	UIAlertView* alert = [[UILargeAlertView alloc] initWithText:NSLocalizedString(@"Exit Drawing!", nil) fontSize:48];
 	[alert show];
     
-    [lineDrawView removeFromSuperview];
-    [colors removeFromSuperview];
+    [colorSegmentedControl removeFromSuperview];
     
     self.clearNotesButton.hidden = YES;
     self.zoomInButton.hidden = NO;
@@ -537,7 +547,7 @@ float oldZoomScale;
  */
 -(void)segmentChanged:(id)sender
 {
-    lineDrawView.currentPath = [colors selectedSegmentIndex];
+    lineDrawView.currentPath = [colorSegmentedControl selectedSegmentIndex];
 }
 
 @end

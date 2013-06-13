@@ -43,7 +43,11 @@
     AccessLectureRuntime *currentRuntime;
     Lecture *currentLecture;
     
-    UISegmentedControl *colors;
+    // Color Selection
+    UISegmentedControl *colorSegmentedControl;
+    
+    // Zoom
+    BOOL zoomedIn;
 }
 
 - (void)updateImageView;
