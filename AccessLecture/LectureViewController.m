@@ -246,7 +246,6 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
 #pragma mark - Zooming 
 
 - (void)zoomTap:(UIGestureRecognizer *)gestureRecognizer {
-    NSLog(@"Zoom Tap!");
     if (isZoomedIn) {
         lineDrawView.transform = CGAffineTransformMakeScale(1.0, 1.0);
         isZoomedIn = NO;
