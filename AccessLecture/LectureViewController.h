@@ -27,6 +27,9 @@
     CGPoint screenSize;
     BOOL shouldSnapToZoom;
     ZoomHandler *zoomHandler;
+    BOOL isZoomedIn;
+    float ZOOM_STEP;
+    float oldZoomScale;
     
     // Connection
     BOOL loading;
@@ -44,9 +47,6 @@
     
     // Color Selection
     UISegmentedControl *colorSegmentedControl;
-    
-    // Zoom Flag
-    BOOL isZoomedIn;
 }
 
 - (void)updateImageView;

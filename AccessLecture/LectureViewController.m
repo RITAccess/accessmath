@@ -24,9 +24,6 @@
 
 NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/test.png";
 
-float ZOOM_STEP; // The magnification-increment for the +/- icons
-float oldZoomScale;
-
 @interface LectureViewController (UtilityMethods)
 /**
  * Helper method to return the new frame for a UIScrollView after zooming
@@ -64,9 +61,9 @@ float oldZoomScale;
     [scrollView setMinimumZoomScale:MIN_ZOOM_SCALE];
     [scrollView setZoomScale:MIN_ZOOM_SCALE];
     [scrollView setMaximumZoomScale:MAX_ZOOM_SCALE];
-	scrollView.bounces = FALSE;
-	scrollView.bouncesZoom = FALSE;
-    scrollView.backgroundColor = [UIColor lightGrayColor]; // Testing Purposes
+	scrollView.bounces = NO;
+	scrollView.bouncesZoom = NO;
+    scrollView.backgroundColor = [UIColor whiteColor]; // Testing Purposes
     [self.view addSubview:scrollView];
 
     shouldSnapToZoom = YES;
@@ -183,45 +180,13 @@ float oldZoomScale;
     }
 }
 
-/**
- * Save a screenshot of the current notes to the iPad Photo Album
- */
--(IBAction)saveButton:(id)sender {
-    UIImage *saveImage;
-    
-    // Take the screenshot
-    saveImage = [self imageByCropping:scrollView toRect:imageView.frame];
-    
-    // Adds a photo to the saved photos album.  The optional completionSelector should have the form:
-    UIImageWriteToSavedPhotosAlbum(saveImage, nil, nil, nil);
-    //Save document with current image to user documents directory
- 
-       NSURL * currentDirectory = [FileManager iCloudDirectoryURL];
-    if (currentDirectory == nil) currentDirectory = [FileManager localDocumentsDirectoryURL];
-    NSArray * docs = [FileManager documentsIn:currentDirectory];
-    NSURL * document = [FileManager findFileIn:docs thatFits:^(NSURL* url){
-        if (url != nil) return YES;
-        return NO;
-    }];
-    
-    currentDocument = [[AccessDocument alloc] initWithFileURL:document];
-    currentLecture.image = UIImagePNGRepresentation(saveImage);
-    currentDocument.lecture = currentLecture;
-    
-    // Tell the user that notes are saved
-	UIAlertView* alert = [[UILargeAlertView alloc]
-                          initWithText:NSLocalizedString(@"Notes Saved!", nil)
-                          fontSize:48];
-	[alert show];
-}
-
 #pragma mark - NSURLConnection delegate Functionality
 
 /**
  * When the NSURLConnection is complete.
  */
 - (void)connectionDidFinishLoading:(NSURLConnection*)connection {
-    loading = false;
+    loading = NO;
     
     // Put the received data in the imageView
     img = [[UIImage alloc]initWithData:receivedData];
@@ -261,13 +226,11 @@ float oldZoomScale;
 /**
  * Required ScrollView delegate method.
  */
-- (UIView *)viewForZoomingInScrollView:(UIScrollView *)sv
-{
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)sv {
 	return [sv viewWithTag:ZOOM_VIEW_TAG];
 }
 
-- (void)scrollViewDidZoom:(UIScrollView *)sv
-{
+- (void)scrollViewDidZoom:(UIScrollView *)sv {
     //int newPenRadius = scrollView.zoomScale * notesViewController.penRadius;
     //[notesViewController setPenRadius:newPenRadius];
 }
@@ -282,10 +245,21 @@ float oldZoomScale;
 
 #pragma mark - Zooming 
 
+- (void)zoomTap:(UIGestureRecognizer *)gestureRecognizer {
+    NSLog(@"Zoom Tap!");
+    if (isZoomedIn) {
+        lineDrawView.transform = CGAffineTransformMakeScale(1.0, 1.0);
+        isZoomedIn = NO;
+    } else {
+        lineDrawView.transform = CGAffineTransformMakeScale(1.25, 1.25);
+        isZoomedIn = YES;
+    }
+}
+
 /**
  Resetting the scrollView to be completely zoomed out
  */
--(void)resetImageZoom: (UIGestureRecognizer *)gestureRecognizer {
+- (void)resetImageZoom:(UIGestureRecognizer *)gestureRecognizer {
     [scrollView setZoomScale:1.0 animated:YES];
 }
 
@@ -317,11 +291,11 @@ float oldZoomScale;
 
 # pragma mark - Navigation
 
-- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     popover = [(UIStoryboardPopoverSegue *)segue popoverController];
 }
 
-- (BOOL) shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
     if (popover) {
         [popover dismissPopoverAnimated:YES];
         return NO;
@@ -395,9 +369,11 @@ float oldZoomScale;
     
     [self initColorSegmentedControl];
     
+    lineDrawView.userInteractionEnabled = YES;
     [self.view addSubview:lineDrawView];
     
-    UITapGestureRecognizer* tapToZoom = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(zoomIn:)];
+    UITapGestureRecognizer* tapToZoom = [[UITapGestureRecognizer alloc] initWithTarget:self action:
+                                         @selector(zoomTap:)];
     tapToZoom.numberOfTapsRequired = 2;
     [tapToZoom setEnabled:YES];
     [self.view addGestureRecognizer:tapToZoom];
@@ -405,7 +381,8 @@ float oldZoomScale;
 
 - (IBAction)clearNotesButtonPress:(id)sender {
     // Tell the user that notes are cleared.
-	UIAlertView* alert = [[UILargeAlertView alloc] initWithText:NSLocalizedString(@"Exit Drawing!", nil) fontSize:48];
+	UIAlertView* alert = [[UILargeAlertView alloc] initWithText:
+                          NSLocalizedString(@"Exit Drawing!", nil) fontSize:48];
 	[alert show];
     
     [colorSegmentedControl removeFromSuperview];
@@ -414,6 +391,9 @@ float oldZoomScale;
     self.zoomInButton.hidden = NO;
     self.zoomOutButton.hidden = NO;
     self.startNotesButton.hidden = NO;
+    
+    // Disabling drawing to allow the user to scroll, zoom, or pan!
+    lineDrawView.userInteractionEnabled = NO;
     
     [scrollView setMaximumZoomScale:MAX_ZOOM_SCALE];
     [scrollView setZoomScale:oldZoomScale animated:YES];
