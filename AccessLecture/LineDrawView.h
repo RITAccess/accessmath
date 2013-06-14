@@ -10,7 +10,6 @@
 
 @interface LineDrawView : UIView
 
-@property (nonatomic) UIColor *brushColor;
 @property (nonatomic) UIBezierPath *bezierPath;
 @property (nonatomic) UIBezierPath *bezierPath2;
 @property (nonatomic) UIBezierPath *bezierPath3;

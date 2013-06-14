@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2C0F886B1760D8EC0062BD16 /* LineDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F886A1760D8EC0062BD16 /* LineDrawView.m */; };
+		2C6F39A01768DAEB00D700F7 /* UISegmentedControlExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C6F399F1768DAEB00D700F7 /* UISegmentedControlExtension.m */; };
 		2C76BDE71762143300A1E6BA /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C76BDE61762143300A1E6BA /* SettingsViewController.m */; };
 		2CFC32A0175E60FC00384AEC /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CFC329F175E60FC00384AEC /* MainStoryboard.storyboard */; };
 		3F0DBDD613BD174900E3FEE8 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0DBDD413BD174900E3FEE8 /* AboutViewController.m */; };
@@ -29,8 +30,6 @@
 		3F6D11D517625F270066A4FA /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11D017625F0D0066A4FA /* CFNetwork.framework */; };
 		3F6D11D617625F2D0066A4FA /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11CE17625F060066A4FA /* Security.framework */; };
 		3F6D11DA176263880066A4FA /* NotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D11D9176263880066A4FA /* NotesViewController.m */; };
-		3F73880913A6922B00F2E7CA /* sliderSpeedMin.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F73880813A6922B00F2E7CA /* sliderSpeedMin.png */; };
-		3F73880C13A6922F00F2E7CA /* sliderSpeedMax.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F73880B13A6922F00F2E7CA /* sliderSpeedMax.png */; };
 		3F78A40713D5C1160048A579 /* UILargeAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F78A40513D5C1160048A579 /* UILargeAlertView.m */; };
 		3F959F0713C7555500A6DA79 /* ClearNotes.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F959F0613C7555500A6DA79 /* ClearNotes.png */; };
 		3F99F20215436E090065CBB9 /* Lecture.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F99F20115436E090065CBB9 /* Lecture.m */; };
@@ -85,6 +84,8 @@
 /* Begin PBXFileReference section */
 		2C0F88691760D8EC0062BD16 /* LineDrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineDrawView.h; sourceTree = "<group>"; };
 		2C0F886A1760D8EC0062BD16 /* LineDrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineDrawView.m; sourceTree = "<group>"; };
+		2C6F399E1768DAEB00D700F7 /* UISegmentedControlExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISegmentedControlExtension.h; sourceTree = "<group>"; };
+		2C6F399F1768DAEB00D700F7 /* UISegmentedControlExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISegmentedControlExtension.m; sourceTree = "<group>"; };
 		2C76BDE51762143300A1E6BA /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		2C76BDE61762143300A1E6BA /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		2CFC329F175E60FC00384AEC /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
@@ -121,8 +122,6 @@
 		3F6D11D217625F150066A4FA /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		3F6D11D8176263880066A4FA /* NotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesViewController.h; sourceTree = "<group>"; };
 		3F6D11D9176263880066A4FA /* NotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesViewController.m; sourceTree = "<group>"; };
-		3F73880813A6922B00F2E7CA /* sliderSpeedMin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sliderSpeedMin.png; path = AccessLecture/sliderSpeedMin.png; sourceTree = "<group>"; };
-		3F73880B13A6922F00F2E7CA /* sliderSpeedMax.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sliderSpeedMax.png; path = AccessLecture/sliderSpeedMax.png; sourceTree = "<group>"; };
 		3F78A40413D5C1160048A579 /* UILargeAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILargeAlertView.h; sourceTree = "<group>"; };
 		3F78A40513D5C1160048A579 /* UILargeAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UILargeAlertView.m; sourceTree = "<group>"; };
 		3F78A40613D5C1160048A579 /* UILargeAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UILargeAlertView.xib; sourceTree = "<group>"; };
@@ -217,6 +216,15 @@
 				2C0F886A1760D8EC0062BD16 /* LineDrawView.m */,
 			);
 			name = "Line Draw View";
+			sourceTree = "<group>";
+		};
+		2C6F399A1768DA0300D700F7 /* Color Selection */ = {
+			isa = PBXGroup;
+			children = (
+				2C6F399E1768DAEB00D700F7 /* UISegmentedControlExtension.h */,
+				2C6F399F1768DAEB00D700F7 /* UISegmentedControlExtension.m */,
+			);
+			name = "Color Selection";
 			sourceTree = "<group>";
 		};
 		2C76BDE41762140D00A1E6BA /* Settings View */ = {
@@ -403,8 +411,6 @@
 			isa = PBXGroup;
 			children = (
 				3FF7FFD413D5E45300B89A5D /* AlertBG.png */,
-				3F73880B13A6922F00F2E7CA /* sliderSpeedMax.png */,
-				3F73880813A6922B00F2E7CA /* sliderSpeedMin.png */,
 				3F63540B13A157C40024E6E9 /* Settings.bundle */,
 				3FED96111370863E00D8D1B8 /* AccessLecture */,
 				3FED960A1370863E00D8D1B8 /* Frameworks */,
@@ -487,6 +493,7 @@
 		3FED963213708E5100D8D1B8 /* Lecture View */ = {
 			isa = PBXGroup;
 			children = (
+				2C6F399A1768DA0300D700F7 /* Color Selection */,
 				3F6D11D7176263760066A4FA /* NoteViewController */,
 				3FAD0BF813A7B7AE00218B1F /* ColorViewController */,
 				2C76BDE41762140D00A1E6BA /* Settings View */,
@@ -630,8 +637,6 @@
 				3F5E3F1E137C5CA30022F3C9 /* Default-Landscape~ipad.png in Resources */,
 				3F5E3F21137C5CAC0022F3C9 /* Default-Portrait~ipad.png in Resources */,
 				3F63540C13A157C40024E6E9 /* Settings.bundle in Resources */,
-				3F73880913A6922B00F2E7CA /* sliderSpeedMin.png in Resources */,
-				3F73880C13A6922F00F2E7CA /* sliderSpeedMax.png in Resources */,
 				3F959F0713C7555500A6DA79 /* ClearNotes.png in Resources */,
 				3FAE785413C786F800796813 /* accesslecture.png in Resources */,
 				3FF7FFD513D5E45300B89A5D /* AlertBG.png in Resources */,
@@ -681,6 +686,7 @@
 				3F6D11CC17625EA20066A4FA /* SRWebSocket.m in Sources */,
 				3F6D11DA176263880066A4FA /* NotesViewController.m in Sources */,
 				4C96FA84176289DE002C0D74 /* ConnectViewController.m in Sources */,
+				2C6F39A01768DAEB00D700F7 /* UISegmentedControlExtension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -720,18 +726,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Steven Brunwasser (8ENTC6WQ78)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Steven Brunwasser (8ENTC6WQ78)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Piper Chester (926JP4SG23)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Piper Chester (926JP4SG23)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
-				PROVISIONING_PROFILE = "16C54F0A-275F-4C86-8504-74AD96551503";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "16C54F0A-275F-4C86-8504-74AD96551503";
+				PROVISIONING_PROFILE = "4F1D5C81-E636-4BBB-A977-DC27D713DE97";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4F1D5C81-E636-4BBB-A977-DC27D713DE97";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -741,16 +747,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Steven Brunwasser (8ENTC6WQ78)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Steven Brunwasser (8ENTC6WQ78)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Piper Chester (926JP4SG23)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Piper Chester (926JP4SG23)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "16C54F0A-275F-4C86-8504-74AD96551503";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "16C54F0A-275F-4C86-8504-74AD96551503";
+				PROVISIONING_PROFILE = "4F1D5C81-E636-4BBB-A977-DC27D713DE97";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4F1D5C81-E636-4BBB-A977-DC27D713DE97";
 				SDKROOT = iphoneos;
 			};
 			name = Release;
@@ -761,8 +767,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Piper Chester (926JP4SG23)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Piper Chester (926JP4SG23)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -772,8 +778,8 @@
 				INFOPLIST_FILE = "AccessLecture/AccessLecture-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "D3F506A0-12F7-41BD-93F2-4801DAF818E6";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D3F506A0-12F7-41BD-93F2-4801DAF818E6";
+				PROVISIONING_PROFILE = "4F1D5C81-E636-4BBB-A977-DC27D713DE97";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4F1D5C81-E636-4BBB-A977-DC27D713DE97";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
@@ -786,8 +792,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Piper Chester (926JP4SG23)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Piper Chester (926JP4SG23)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AccessLecture/AccessLecture-Prefix.pch";
@@ -796,8 +802,8 @@
 				INFOPLIST_FILE = "AccessLecture/AccessLecture-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "D3F506A0-12F7-41BD-93F2-4801DAF818E6";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D3F506A0-12F7-41BD-93F2-4801DAF818E6";
+				PROVISIONING_PROFILE = "4F1D5C81-E636-4BBB-A977-DC27D713DE97";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4F1D5C81-E636-4BBB-A977-DC27D713DE97";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
