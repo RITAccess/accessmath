@@ -32,7 +32,7 @@
 
 #pragma mark - Touch Methods
 
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch=[[touches allObjects] objectAtIndex:0];
     
     switch (_currentPath) {
@@ -54,7 +54,7 @@
     }    
 }
 
--(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch=[[touches allObjects] objectAtIndex:0];
 
     switch (_currentPath) {
@@ -76,6 +76,18 @@
     }
     
     [self setNeedsDisplay];
+}
+
+- (void)clearAllPaths {
+    [_bezierPath removeAllPoints];
+    [_bezierPath2 removeAllPoints];
+    [_bezierPath3 removeAllPoints];
+    [_bezierPath4 removeAllPoints];
+    [_bezierPath5 removeAllPoints];
+}
+
++ (void)setLineWidth:(NSInteger)newWidth {
+    
 }
 
 /**

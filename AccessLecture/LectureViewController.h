@@ -60,11 +60,13 @@
 - (IBAction)clearNotesButtonPress:(id)sender;
 - (IBAction)zoomOutButtonPress:(id)sender;
 - (IBAction)zoomInButtonPress:(id)sender;
+- (IBAction)exitNotesButtonPress:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UIButton *zoomOutButton;
 @property (weak, nonatomic) IBOutlet UIButton *zoomInButton;
 @property (weak, nonatomic) IBOutlet UIButton *clearNotesButton;
 @property (weak, nonatomic) IBOutlet UIButton *startNotesButton;
+@property (weak, nonatomic) IBOutlet UIButton *exitNotesButton;
 
 @end
 

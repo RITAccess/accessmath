@@ -109,6 +109,7 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
     [self setZoomOutButton:nil];
     [self setZoomInButton:nil];
     [self setStartNotesButton:nil];
+    [self setExitNotesButton:nil];
     [super viewDidUnload];
 }
 
@@ -128,8 +129,9 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
     [imageView setImage:img];
     
     
-    // Hide Clear Button on Start
+    // Hide Clear and Exit Notes Buttons on Start
     self.clearNotesButton.hidden = YES;
+    self.exitNotesButton.hidden = YES;
     
     // Initialize Zoom check, will flip when zoomed in
     isZoomedIn = NO;
@@ -243,7 +245,7 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
     [sv setZoomScale:scale animated:NO];
 }
 
-#pragma mark - Zooming 
+#pragma mark - Zooming and Scrolling
 
 - (void)zoomTap:(UIGestureRecognizer *)gestureRecognizer {
     if (isZoomedIn) {
@@ -285,6 +287,17 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
 														 viewSize: screenSize andZoomType: isZoomIn];
 	CGRect zoomRect = [self zoomRectForScale:newScale withCenter:newOrigin];
     [scrollView zoomToRect:zoomRect animated:YES];
+}
+
+- (void)panMove:(UIPanGestureRecognizer *)gesture {
+    if ((gesture.state == UIGestureRecognizerStateChanged) ||
+        (gesture.state == UIGestureRecognizerStateEnded)) {
+        
+        CGPoint translation = [gesture translationInView:scrollView];
+        lineDrawView.center = CGPointMake(lineDrawView.center.x + translation.x,
+                                             lineDrawView.center.y + translation.y);
+        [gesture setTranslation:CGPointMake(0, 0) inView:self.view];
+    }
 }
 
 
@@ -352,6 +365,7 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
 
 - (IBAction)startNotesButtonPress:(id)sender {
     self.clearNotesButton.hidden = NO;
+    self.exitNotesButton.hidden = NO;
     self.zoomInButton.hidden = YES;
     self.zoomOutButton.hidden = YES;
     self.startNotesButton.hidden = YES;
@@ -372,21 +386,25 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
     [self.view addSubview:lineDrawView];
     
     UITapGestureRecognizer* tapToZoom = [[UITapGestureRecognizer alloc] initWithTarget:self action:
-                                         @selector(zoomTap:)];
+                                        @selector(zoomTap:)];
     tapToZoom.numberOfTapsRequired = 2;
     [tapToZoom setEnabled:YES];
     [self.view addGestureRecognizer:tapToZoom];
+    
+    scrollView.panGestureRecognizer.minimumNumberOfTouches = 2;
+    
+    UIPanGestureRecognizer *panToMove = [[UIPanGestureRecognizer alloc]initWithTarget:self action:
+                                         @selector(panMove:)];
+    panToMove.minimumNumberOfTouches = 2;
+    [panToMove setTranslation:CGPointMake(40, 40) inView:lineDrawView];
+    [self.view addGestureRecognizer:panToMove];
 }
 
-- (IBAction)clearNotesButtonPress:(id)sender {
-    // Tell the user that notes are cleared.
-	UIAlertView* alert = [[UILargeAlertView alloc] initWithText:
-                          NSLocalizedString(@"Exit Drawing!", nil) fontSize:48];
-	[alert show];
-    
+- (IBAction)exitNotesButtonPress:(id)sender {
     [colorSegmentedControl removeFromSuperview];
     
     self.clearNotesButton.hidden = YES;
+    self.exitNotesButton.hidden = YES;
     self.zoomInButton.hidden = NO;
     self.zoomOutButton.hidden = NO;
     self.startNotesButton.hidden = NO;
@@ -398,6 +416,15 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
     [scrollView setZoomScale:oldZoomScale animated:YES];
     [scrollViewPanGesture setMinimumNumberOfTouches:1];
     [scrollViewPanGesture setMaximumNumberOfTouches:1];
+}
+
+- (IBAction)clearNotesButtonPress:(id)sender {
+    // Tell the user that notes are cleared.
+	UIAlertView* alert = [[UILargeAlertView alloc] initWithText:
+                          NSLocalizedString(@"Notes Cleared!", nil) fontSize:48];
+	[alert show];
+    
+    [lineDrawView clearAllPaths];
 }
 
 # pragma mark - ColorSegmentedControl
