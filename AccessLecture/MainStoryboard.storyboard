@@ -371,23 +371,23 @@
             <objects>
                 <viewController autoresizesArchivedViewToFullSize="NO" id="pIb-Nv-pIW" customClass="SettingsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kU9-Ev-PsL">
-                        <rect key="frame" x="0.0" y="20" width="320" height="3968"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="6908"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="-1" minValue="-1.5" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="LP3-oQ-phe">
-                                <rect key="frame" x="18" y="132" width="284" height="23"/>
+                                <rect key="frame" x="18" y="133" width="284" height="23"/>
                                 <connections>
                                     <action selector="colorSlide:" destination="pIb-Nv-pIW" eventType="valueChanged" id="v8N-nw-GoF"/>
                                 </connections>
                             </slider>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="-1" minValue="-1.5" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="zqK-70-aS1">
-                                <rect key="frame" x="18" y="253" width="284" height="23"/>
+                                <rect key="frame" x="18" y="255" width="284" height="23"/>
                                 <connections>
                                     <action selector="colorSlide:" destination="pIb-Nv-pIW" eventType="valueChanged" id="gwX-TA-eyN"/>
                                 </connections>
                             </slider>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="-1" minValue="-1.5" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="7ey-Ee-dVE">
-                                <rect key="frame" x="18" y="371" width="284" height="23"/>
+                                <rect key="frame" x="18" y="374" width="284" height="23"/>
                                 <connections>
                                     <action selector="colorSlide:" destination="pIb-Nv-pIW" eventType="valueChanged" id="1eA-D9-foo"/>
                                 </connections>
@@ -402,7 +402,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Eraser Size" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VsA-sA-WsO">
-                                <rect key="frame" x="82" y="207" width="156" height="23"/>
+                                <rect key="frame" x="82" y="208" width="156" height="23"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="23" id="b9A-Zv-LHN"/>
                                     <constraint firstAttribute="width" constant="156" id="gh0-jQ-3ni"/>
@@ -411,7 +411,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Active Test Image" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cG9-d2-eHm">
-                                <rect key="frame" x="51" y="454" width="219" height="33"/>
+                                <rect key="frame" x="51" y="458" width="219" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="219" id="TJo-85-c4w"/>
                                     <constraint firstAttribute="height" constant="33" id="Zhd-zq-jN8"/>
@@ -420,7 +420,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Zoom Increment" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qpk-I5-pq5">
-                                <rect key="frame" x="62" y="330" width="217" height="27"/>
+                                <rect key="frame" x="62" y="333" width="217" height="27"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="27" id="F5e-eM-d2v"/>
                                     <constraint firstAttribute="width" constant="217" id="HrF-xI-TwE"/>
@@ -429,10 +429,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kSV-aq-K2t">
-                                <rect key="frame" x="122" y="499" width="79" height="27"/>
+                                <rect key="frame" x="122" y="503" width="79" height="27"/>
                             </switch>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="High Contrast Mode" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uE6-du-dUk">
-                                <rect key="frame" x="35" y="567" width="251" height="33"/>
+                                <rect key="frame" x="35" y="572" width="251" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="33" id="5n4-kY-lms"/>
                                     <constraint firstAttribute="width" constant="251" id="eSU-uc-Pda"/>
@@ -441,10 +441,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gW1-EI-Vkh">
-                                <rect key="frame" x="122" y="619" width="79" height="27"/>
+                                <rect key="frame" x="122" y="624" width="79" height="27"/>
                             </switch>
                             <navigationBar contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="U4g-4z-jz9">
-                                <rect key="frame" x="0.0" y="1175" width="350" height="44"/>
+                                <rect key="frame" x="0.0" y="1185" width="350" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="350" id="GUz-yr-3ID"/>
                                 </constraints>
@@ -453,7 +453,7 @@
                                 </items>
                             </navigationBar>
                             <navigationBar contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="eyO-xM-VVf">
-                                <rect key="frame" x="0.0" y="1240" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="1251" width="320" height="44"/>
                                 <items>
                                     <navigationItem title="Settings" id="O2C-4p-myn"/>
                                 </items>
@@ -462,38 +462,38 @@
                         <color key="backgroundColor" red="0.89707880429999998" green="0.89707880429999998" blue="0.89707880429999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="VsA-sA-WsO" firstAttribute="centerX" secondItem="zqK-70-aS1" secondAttribute="centerX" type="default" id="28B-Ib-lMq"/>
-                            <constraint firstItem="kSV-aq-K2t" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="499" id="2s5-cF-MeG"/>
                             <constraint firstItem="7ey-Ee-dVE" firstAttribute="trailing" secondItem="zqK-70-aS1" secondAttribute="trailing" type="default" id="3AH-MS-dnt"/>
                             <constraint firstItem="f5m-cJ-Gvb" firstAttribute="centerX" secondItem="LP3-oQ-phe" secondAttribute="centerX" type="default" id="3yt-JY-EsS"/>
                             <constraint firstItem="LP3-oQ-phe" firstAttribute="trailing" secondItem="zqK-70-aS1" secondAttribute="trailing" type="default" id="4XD-oB-wQA"/>
-                            <constraint firstItem="eyO-xM-VVf" firstAttribute="leading" secondItem="kU9-Ev-PsL" secondAttribute="leading" type="default" id="6MS-Kz-zvL"/>
+                            <constraint firstItem="Qpk-I5-pq5" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="333" id="81c-kG-om0"/>
                             <constraint firstItem="f5m-cJ-Gvb" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="82" id="Aa7-0D-o6R"/>
-                            <constraint firstItem="gW1-EI-Vkh" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="619" id="Ank-uc-mUq"/>
                             <constraint firstItem="gW1-EI-Vkh" firstAttribute="leading" secondItem="kSV-aq-K2t" secondAttribute="leading" type="default" id="BD5-Gc-Kjr"/>
+                            <constraint firstItem="eyO-xM-VVf" firstAttribute="leading" secondItem="kU9-Ev-PsL" secondAttribute="leading" type="default" id="CoK-vE-fRP"/>
                             <constraint firstItem="gW1-EI-Vkh" firstAttribute="centerX" secondItem="uE6-du-dUk" secondAttribute="centerX" type="default" id="D80-Ro-L9U"/>
-                            <constraint firstItem="cG9-d2-eHm" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="454" id="FSi-aZ-PsC"/>
-                            <constraint firstItem="U4g-4z-jz9" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="1175" id="INg-iS-enm"/>
+                            <constraint firstItem="7ey-Ee-dVE" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="374" id="Emm-xg-d1I"/>
+                            <constraint firstItem="VsA-sA-WsO" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="208" id="IBC-in-8Il"/>
+                            <constraint firstItem="eyO-xM-VVf" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="1251" id="IMK-Uq-LDP"/>
                             <constraint firstItem="zqK-70-aS1" firstAttribute="leading" secondItem="LP3-oQ-phe" secondAttribute="leading" type="default" id="NHH-uV-5Iv"/>
+                            <constraint firstItem="kSV-aq-K2t" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="503" id="Ojg-fv-tkx"/>
                             <constraint firstItem="zqK-70-aS1" firstAttribute="leading" secondItem="7ey-Ee-dVE" secondAttribute="leading" type="default" id="QHB-OY-Eu3"/>
                             <constraint firstItem="Qpk-I5-pq5" firstAttribute="leading" secondItem="kU9-Ev-PsL" secondAttribute="leading" constant="62" id="RKN-aX-Z8N"/>
                             <constraint firstItem="eyO-xM-VVf" firstAttribute="leading" secondItem="U4g-4z-jz9" secondAttribute="leading" type="default" id="RPs-ee-dxE"/>
-                            <constraint firstItem="Qpk-I5-pq5" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="330" id="WJc-uW-0nj"/>
-                            <constraint firstItem="uE6-du-dUk" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="567" id="X1A-o0-Po7"/>
                             <constraint firstItem="7ey-Ee-dVE" firstAttribute="centerX" secondItem="cG9-d2-eHm" secondAttribute="centerX" type="default" id="Xvx-n5-Eag"/>
                             <constraint firstItem="LP3-oQ-phe" firstAttribute="leading" secondItem="kU9-Ev-PsL" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="ZS9-4X-fN5"/>
                             <constraint firstAttribute="trailing" secondItem="LP3-oQ-phe" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="anK-vG-DRU"/>
-                            <constraint firstItem="VsA-sA-WsO" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="207" id="bBL-1i-DoV"/>
-                            <constraint firstItem="zqK-70-aS1" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="253" id="lqA-yq-tKr"/>
+                            <constraint firstItem="uE6-du-dUk" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="572" id="bKU-bg-lrf"/>
+                            <constraint firstItem="zqK-70-aS1" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="255" id="dgf-W2-zzL"/>
                             <constraint firstItem="eyO-xM-VVf" firstAttribute="centerX" secondItem="gW1-EI-Vkh" secondAttribute="centerX" type="default" id="oco-Ms-JbS"/>
+                            <constraint firstItem="LP3-oQ-phe" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="133" id="qQU-6l-6b6"/>
                             <constraint firstItem="kSV-aq-K2t" firstAttribute="centerX" secondItem="cG9-d2-eHm" secondAttribute="centerX" type="default" id="sIN-o0-Wav"/>
-                            <constraint firstItem="7ey-Ee-dVE" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="371" id="tug-1T-CZt"/>
-                            <constraint firstItem="eyO-xM-VVf" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="1240" id="uo1-cE-RjN"/>
-                            <constraint firstItem="LP3-oQ-phe" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="132" id="z5z-ry-SbA"/>
+                            <constraint firstItem="cG9-d2-eHm" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="458" id="snr-vt-Zaq"/>
+                            <constraint firstItem="gW1-EI-Vkh" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="624" id="v6J-pu-P6P"/>
+                            <constraint firstItem="U4g-4z-jz9" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="1185" id="vHa-vj-KIZ"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <value key="contentSizeForViewInPopover" type="size" width="350" height="800"/>
+                    <value key="contentSizeForViewInPopover" type="size" width="320" height="500"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nwK-rf-vVY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -507,72 +507,6 @@
                         <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="About" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RxL-vi-wjU">
-                                <rect key="frame" x="20" y="99" width="111" height="33"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="33" id="DaF-2B-cqg"/>
-                                    <constraint firstAttribute="width" constant="111" id="VmR-ey-Bjg"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="35"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Team" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fu1-PS-7pA">
-                                <rect key="frame" x="20" y="332" width="105" height="33"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="105" id="ALH-xb-Pdz"/>
-                                    <constraint firstAttribute="height" constant="33" id="esl-ry-udA"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="35"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Special Thanks" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JKf-3T-trK">
-                                <rect key="frame" x="27" y="540" width="331" height="48"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="Im7-Ck-vrE"/>
-                                    <constraint firstAttribute="width" constant="331" id="Nza-wg-h57"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="35"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" text="AccessMath is being developed by students at the Rochester Institute of Technology." translatesAutoresizingMaskIntoConstraints="NO" id="Ruy-D9-f3K">
-                                <rect key="frame" x="20" y="133" width="650" height="144"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="144" id="Cws-nu-PNs"/>
-                                    <constraint firstAttribute="width" constant="650" id="WpV-uE-jlI"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="2010-2011: Alex Canter, Lindsey Ellis, Abhishek Shrestha                                         " translatesAutoresizingMaskIntoConstraints="NO" id="UBl-rd-Tz0">
-                                <rect key="frame" x="27" y="368" width="665" height="83"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="665" id="IZw-qG-sRE"/>
-                                    <constraint firstAttribute="height" constant="83" id="ryE-cJ-y16"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" text="CRA, Usability Volunteers" translatesAutoresizingMaskIntoConstraints="NO" id="PWA-Oh-HvU">
-                                <rect key="frame" x="20" y="581" width="445" height="61"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="61" id="7SM-hh-P2Z"/>
-                                    <constraint firstAttribute="width" constant="445" id="vtr-Aq-NU0"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" text="2012-2013: Pratik Rasam, Michael Timbrook, Piper Chester" translatesAutoresizingMaskIntoConstraints="NO" id="HJl-fj-LRe">
-                                <rect key="frame" x="27" y="446" width="616" height="76"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="616" id="11w-jv-MxT"/>
-                                    <constraint firstAttribute="height" constant="76" id="eWE-y8-1Pe"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <navigationBar contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="TbZ-Vx-9oZ">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="44"/>
                                 <items>
@@ -585,26 +519,104 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j9g-tP-9tn">
+                                <rect key="frame" x="20" y="71" width="984" height="583"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="583" id="osG-Gf-CbJ"/>
+                                </constraints>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content">AccessMath is being developed by students at the Rochester Institute of Technology. 
+
+</string>
+                                        <attributes>
+                                            <font key="NSFont" size="35" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" headerLevel="1"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="Team (2010 − 2011)">
+                                        <attributes>
+                                            <font key="NSFont" size="40" name="HelveticaNeue-Bold"/>
+                                            <font key="NSOriginalFont" size="35" name="HelveticaNeue-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" headerLevel="1"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content" base64-UTF8="YES">
+IAo
+</string>
+                                        <attributes>
+                                            <font key="NSFont" size="35" name="HelveticaNeue-Bold"/>
+                                            <font key="NSOriginalFont" size="35" name="HelveticaNeue-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" headerLevel="1"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">Alex Canter, Lindsey Ellis, Abhishek Shrestha, Steven Brunwasser
+ 
+</string>
+                                        <attributes>
+                                            <font key="NSFont" size="35" name="HelveticaNeue"/>
+                                            <font key="NSOriginalFont" size="35" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" headerLevel="1"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">Team (2013)
+</string>
+                                        <attributes>
+                                            <font key="NSFont" size="40" name="HelveticaNeue-Bold"/>
+                                            <font key="NSOriginalFont" size="35" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" headerLevel="1"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="Pratik Rasam, Michael Timbrook and Piper Chester">
+                                        <attributes>
+                                            <font key="NSFont" size="35" name="HelveticaNeue"/>
+                                            <font key="NSOriginalFont" size="35" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" headerLevel="1"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content" base64-UTF8="YES">
+IAoKA
+</string>
+                                        <attributes>
+                                            <font key="NSFont" size="35" name="HelveticaNeue-Bold"/>
+                                            <font key="NSOriginalFont" size="35" name="HelveticaNeue-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" headerLevel="1"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">Special Thanks
+</string>
+                                        <attributes>
+                                            <font key="NSFont" size="40" name="HelveticaNeue-Bold"/>
+                                            <font key="NSOriginalFont" size="35" name="HelveticaNeue-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" headerLevel="1"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="CRA, Usability Volunteers">
+                                        <attributes>
+                                            <font key="NSFont" size="35" name="HelveticaNeue"/>
+                                            <font key="NSOriginalFont" size="35" name="HelveticaNeue-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" headerLevel="1"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="TbZ-Vx-9oZ" firstAttribute="trailing" secondItem="Awu-V3-w53" secondAttribute="trailing" type="default" id="4ml-3h-GAn"/>
-                            <constraint firstItem="HJl-fj-LRe" firstAttribute="top" secondItem="Awu-V3-w53" secondAttribute="top" constant="446" id="GWd-mi-BGv"/>
-                            <constraint firstItem="Fu1-PS-7pA" firstAttribute="leading" secondItem="Awu-V3-w53" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Ldv-Ek-Ypm"/>
-                            <constraint firstItem="UBl-rd-Tz0" firstAttribute="leading" secondItem="Awu-V3-w53" secondAttribute="leading" constant="27" id="NNo-FN-Soa"/>
-                            <constraint firstItem="HJl-fj-LRe" firstAttribute="leading" secondItem="JKf-3T-trK" secondAttribute="leading" type="default" id="NPE-nm-LIw"/>
-                            <constraint firstItem="UBl-rd-Tz0" firstAttribute="top" secondItem="Awu-V3-w53" secondAttribute="top" constant="368" id="XUb-PU-XH7"/>
+                            <constraint firstItem="j9g-tP-9tn" firstAttribute="top" secondItem="Awu-V3-w53" secondAttribute="top" constant="71" id="9ka-Ur-wVu"/>
+                            <constraint firstItem="j9g-tP-9tn" firstAttribute="centerX" secondItem="TbZ-Vx-9oZ" secondAttribute="centerX" type="default" id="VCM-TA-DA2"/>
                             <constraint firstItem="TbZ-Vx-9oZ" firstAttribute="leading" secondItem="Awu-V3-w53" secondAttribute="leading" type="default" id="aQd-8C-Ei6"/>
-                            <constraint firstItem="Fu1-PS-7pA" firstAttribute="top" secondItem="Awu-V3-w53" secondAttribute="top" constant="332" id="cOS-O5-e9d"/>
-                            <constraint firstAttribute="bottom" secondItem="JKf-3T-trK" secondAttribute="bottom" constant="160" id="k2i-iI-U7j"/>
-                            <constraint firstItem="PWA-Oh-HvU" firstAttribute="leading" secondItem="Awu-V3-w53" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="ktY-RI-Pe6"/>
-                            <constraint firstItem="RxL-vi-wjU" firstAttribute="top" secondItem="Awu-V3-w53" secondAttribute="top" constant="99" id="lRS-5T-LWM"/>
+                            <constraint firstItem="j9g-tP-9tn" firstAttribute="leading" secondItem="Awu-V3-w53" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="lKx-c5-Z4q"/>
                             <constraint firstItem="TbZ-Vx-9oZ" firstAttribute="top" secondItem="Awu-V3-w53" secondAttribute="top" type="default" id="nHe-R8-P1G"/>
-                            <constraint firstItem="Ruy-D9-f3K" firstAttribute="top" secondItem="Awu-V3-w53" secondAttribute="top" constant="133" id="rJc-2w-FvO"/>
-                            <constraint firstItem="HJl-fj-LRe" firstAttribute="leading" secondItem="UBl-rd-Tz0" secondAttribute="leading" type="default" id="rRx-iW-ERC"/>
-                            <constraint firstItem="RxL-vi-wjU" firstAttribute="leading" secondItem="Awu-V3-w53" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="uL4-H9-jnZ"/>
-                            <constraint firstItem="Ruy-D9-f3K" firstAttribute="leading" secondItem="Awu-V3-w53" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="xb8-Us-Rzm"/>
-                            <constraint firstAttribute="bottom" secondItem="PWA-Oh-HvU" secondAttribute="bottom" constant="106" id="yF4-Bq-ZM7"/>
+                            <constraint firstAttribute="trailing" secondItem="j9g-tP-9tn" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="sML-nA-n0e"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
@@ -625,6 +637,58 @@
         <image name="ZoomOut.png" width="95" height="95"/>
         <image name="accesslecture.png" width="695" height="512"/>
     </resources>
+    <classes>
+        <class className="AboutViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AboutViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="returnToHome:"/>
+                <relationship kind="outlet" name="mainView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="ConnectViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ConnectViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addressChanged:"/>
+                <relationship kind="action" name="cancel:"/>
+                <relationship kind="action" name="downloadRequest:"/>
+                <relationship kind="action" name="streamRequest:"/>
+                <relationship kind="outlet" name="lectureName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="serverAddress" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="LectureViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LectureViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backButtonPress:"/>
+                <relationship kind="action" name="clearNotesButtonPress:"/>
+                <relationship kind="action" name="saveButtonPress:"/>
+                <relationship kind="action" name="startNotesButtonPress:"/>
+                <relationship kind="action" name="zoomInButtonPress:"/>
+                <relationship kind="action" name="zoomOutButtonPress:"/>
+                <relationship kind="outlet" name="clearNotesButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="startNotesButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="zoomInButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="zoomOutButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="RootViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RootViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="connectToServer:"/>
+                <relationship kind="action" name="openAbout:"/>
+                <relationship kind="action" name="openLecture:"/>
+            </relationships>
+        </class>
+        <class className="SettingsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="colorSlide:"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="lightContent"/>
         <simulatedOrientationMetrics key="orientation"/>

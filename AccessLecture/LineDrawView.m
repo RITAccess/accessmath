@@ -19,11 +19,11 @@
     
     if (self) {
         self.backgroundColor=[UIColor clearColor];
-        _bezierPath=[[UIBezierPath alloc]init];
-        _bezierPath2=[[UIBezierPath alloc]init];
-        _bezierPath3=[[UIBezierPath alloc]init];
-        _bezierPath4=[[UIBezierPath alloc]init];
-        _bezierPath5=[[UIBezierPath alloc]init];
+        _bezierPath = [[UIBezierPath alloc]init];
+        _bezierPath2 = [[UIBezierPath alloc]init];
+        _bezierPath3 = [[UIBezierPath alloc]init];
+        _bezierPath4 = [[UIBezierPath alloc]init];
+        _bezierPath5 = [[UIBezierPath alloc]init];
         _currentPath = 0;
     }
     
