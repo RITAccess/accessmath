@@ -14,13 +14,11 @@
 
 @implementation LineDrawView
 
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     
     if (self) {
-        
-        self.backgroundColor=[UIColor whiteColor];
+        self.backgroundColor=[UIColor clearColor];
         _bezierPath=[[UIBezierPath alloc]init];
         _bezierPath2=[[UIBezierPath alloc]init];
         _bezierPath3=[[UIBezierPath alloc]init];
@@ -33,8 +31,8 @@
 }
 
 #pragma mark - Touch Methods
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch=[[touches allObjects] objectAtIndex:0];
     
     switch (_currentPath) {
@@ -56,8 +54,7 @@
     }    
 }
 
--(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
-{
+-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch=[[touches allObjects] objectAtIndex:0];
 
     switch (_currentPath) {
@@ -81,16 +78,11 @@
     [self setNeedsDisplay];
 }
 
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
-
-}
-
 /**
  * Override drawRect() to allow for custom drawing. No override causes performance issues.
+ * Alternating setting stroke and stroking to handle each individual path.
  */
-- (void)drawRect:(CGRect)rect
-{
+- (void)drawRect:(CGRect)rect {
     [[UIColor redColor] setStroke];
     [_bezierPath stroke];
     [[UIColor greenColor] setStroke];

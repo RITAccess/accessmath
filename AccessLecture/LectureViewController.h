@@ -13,7 +13,7 @@
 @interface LectureViewController : UIViewController<UIScrollViewDelegate>
 {
     // UI
-	IBOutlet UIScrollView* scrollView;
+	UIScrollView* scrollView;
 	UIImageView* imageView;
     
     // ScrollView Gestures
@@ -21,11 +21,10 @@
     
     // Image grabbing
     NSMutableData* receivedData;
-    NSTimer* t;
     UIImage* img;
     
     // Zooming
-    CGPoint scrSize;
+    CGPoint screenSize;
     BOOL shouldSnapToZoom;
     ZoomHandler *zoomHandler;
     
@@ -46,8 +45,8 @@
     // Color Selection
     UISegmentedControl *colorSegmentedControl;
     
-    // Zoom
-    BOOL zoomedIn;
+    // Zoom Flag
+    BOOL isZoomedIn;
 }
 
 - (void)updateImageView;
