@@ -73,6 +73,8 @@
 - (void)connectCompletion:(void (^)(BOOL success))handle {
     
     [self connect];
+    while (socketConnection.isConnecting)
+        ;
     handle(true);
     
 }
@@ -87,6 +89,18 @@
 
 - (void)sendData:(id)data {
     [socketConnection sendEvent:@"" withData:data];
+}
+
+#pragma mark Status
+
+- (BOOL)connected
+{
+    return socketConnection.isConnected;
+}
+
+- (BOOL)isConnecting
+{
+    return socketConnection.isConnecting;
 }
 
 #pragma mark Socket Methods

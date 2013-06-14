@@ -47,10 +47,10 @@ static NSString * IMAGE_KEY = @"IMAGE_KEY";     // key for the lecture image
 - (id)initWithPacket:(SocketIOPacket *)packet {
     self = [super init];
     if (self) {
-        
+        NSLog(@"%@", packet.data);
         id JSON = [packet.dataAsJSON valueForKeyPath:@"args"];
         _name = [JSON valueForKeyPath:@"name"][0];
-        _date = [NSDate dateWithTimeIntervalSince1970:[[JSON valueForKeyPath:@"date"][0] integerValue]];
+        _date = [NSDate dateWithTimeIntervalSince1970:[[JSON valueForKeyPath:@"date"][0] floatValue]];
         _image= nil;
         
     }
