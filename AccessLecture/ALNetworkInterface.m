@@ -40,16 +40,27 @@
 /**
  * Download an intire lecture from server
  */
-- (void)getFullLecture:(NSString *)lectureName completion:(void (^)(Lecture *lecture, BOOL found))handle{
+- (void)getFullLecture:(NSString *)lectureName completion:(void (^)(Lecture *lecture, BOOL found))handle
+{
     lectureRequest = handle;
     NSLog(@"Requesting %@", lectureName);
     [socketConnection sendEvent:@"lecture-request" withData:lectureName];
 }
 
+- (void)getFullLecture:(NSString *)lectureName
+{
+    [self getFullLecture:lectureName completion:^(Lecture *lecture, BOOL found) {
+        if([_delegate respondsToSelector:@selector(didFinishDownloadingLecture:)]) {
+            [_delegate didFinishDownloadingLecture:lecture];
+        }
+    }];
+}
+
 /**
  * Request to get streaming updates sent to the delegate
  */
-- (void)requestAccessToLectureSteam:(NSString *)name {
+- (void)requestAccessToLectureSteam:(NSString *)name
+{
     [socketConnection sendEvent:@"steaming-request" withData:name];
 }
 
@@ -58,8 +69,8 @@
 /**
  * Connect to the LectureConnect server
  */
-- (void)connect {
-    
+- (void)connect
+{    
     if ([socketConnection isConnected])
         return;
     
@@ -70,8 +81,8 @@
     
 }
 
-- (void)connectCompletion:(void (^)(BOOL success))handle {
-    
+- (void)connectCompletion:(void (^)(BOOL success))handle
+{    
     [self connect];
     while (socketConnection.isConnecting)
         ;
@@ -79,16 +90,9 @@
     
 }
 
-- (void)disconnect {
+- (void)disconnect
+{
     [socketConnection disconnect];
-}
-
-- (void)onMessageBlock:(void (^) (NSString *response))hande {
-    onMessage = hande;
-}
-
-- (void)sendData:(id)data {
-    [socketConnection sendEvent:@"" withData:data];
 }
 
 #pragma mark Status
@@ -120,11 +124,17 @@
     }
     // Recive update
     if ([packet.name isEqualToString:@"update"]) {
-        NSLog(@"Update");
-        NSString *data = [[packet.dataAsJSON valueForKeyPath:@"args"] valueForKeyPath:@"message"][0]; // Testing use
+        NSString *data = [[packet.dataAsJSON valueForKeyPath:@"args"] valueForKeyPath:@"message"][0];
+        NSLog(@"Update: %@", data);
         if ([_delegate respondsToSelector:@selector(didRecieveUpdate)]) {
             [_delegate didRecieveUpdate:data];
         }
+    }
+    // On Termination
+    if ([packet.name isEqualToString:@"termination"]) {
+        NSString *message = [[packet.dataAsJSON valueForKeyPath:@"args"] valueForKeyPath:@"message"][0];
+        NSString *status = [[packet.dataAsJSON valueForKeyPath:@"args"] valueForKeyPath:@"status"][0];
+        NSLog(@"Stream ended with status %@ with message %@", status, message);
     }
     
 }
