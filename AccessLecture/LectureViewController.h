@@ -13,11 +13,10 @@
 @interface LectureViewController : UIViewController<UIScrollViewDelegate>
 {
     // UI
-	UIScrollView* scrollView;
 	UIImageView* imageView;
     
-    // ScrollView Gestures
-    UIPanGestureRecognizer* scrollViewPanGesture;
+    // Gestures
+    UIPanGestureRecognizer *panToMove;
     
     // Image grabbing
     NSMutableData* receivedData;
@@ -25,7 +24,6 @@
     
     // Zooming
     CGPoint screenSize;
-    BOOL shouldSnapToZoom;
     ZoomHandler *zoomHandler;
     BOOL isZoomedIn;
     float ZOOM_STEP;
@@ -47,12 +45,13 @@
     
     // Color Selection
     UISegmentedControl *colorSegmentedControl;
+    
+    // New ScrollView
+    UIScrollView *scrollView;
 }
 
 - (void)updateImageView;
 - (void)settingsChange;
-- (void)handleZoomWith: (float) newScale andZoomType: (BOOL) zoomType;
-- (void)resetImageZoom: (UIGestureRecognizer *)gestureRecognizer;
 
 - (IBAction)backButtonPress:(id)sender;
 - (IBAction)saveButtonPress:(id)sender;
@@ -68,6 +67,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *startNotesButton;
 @property (weak, nonatomic) IBOutlet UIButton *exitNotesButton;
 @property (weak, nonatomic) IBOutlet UIButton *saveNotesButton;
+@property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *navigationBarBackButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *navigationBarSettingsButton;
 
 @end
 

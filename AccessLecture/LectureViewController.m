@@ -18,22 +18,21 @@
 #define MIN_ZOOM_SCALE 1.0
 #define MAX_ZOOM_SCALE 20
 #define SCREEN_WIDTH 768
-#define TOOLBAR_HEIGHT 74
 #define USERNAME @"Student"
 #define PASSWORD @"lecture"
 
+#define IPAD_MINI_HEIGHT 1024
+#define IPAD_MINI_WIDTH 768
+
 #define BUTTON_SIZE 100
-#define TOP_BUTTONS_Y 57
+#define TOP_BUTTONS_Y 101
 #define LANDSCAPE_BOTTOM_BUTTONS_Y 643
 #define PORTRAIT_BOTTOM_BUTTONS_Y 904
 
 NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/test.png";
 
 @interface LectureViewController (UtilityMethods)
-/**
- * Helper method to return the new frame for a UIScrollView after zooming
- */
-- (CGRect)zoomRectForScale:(float)scale withCenter:(CGPoint)center;
+
 @end
 
 @implementation LectureViewController {
@@ -43,58 +42,32 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
 - (void)viewDidLoad {
     defaults = [NSUserDefaults standardUserDefaults];
     
+    lineDrawView = [[LineDrawView alloc]initWithFrame:CGRectMake(0, 180, IPAD_MINI_HEIGHT, 468)];
+    
     // Zoom Setup
     ZOOM_STEP = [defaults floatForKey:@"userZoomIncrement"];
 	zoomHandler = [[ZoomHandler alloc] initWithZoomLevel: ZOOM_STEP];
-	
-	// ImageView Setup
-    img = [[UIImage alloc] initWithData: [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]]];
-    imageView = [[UIImageView alloc]initWithImage:img];
-	imageView.userInteractionEnabled = YES;
-    [imageView setTag:ZOOM_VIEW_TAG];
-    // img = [UIImage imageWithData:[AccessLectureRuntime defaultRuntime].currentDocument.lecture.image];
-    //    imageView = [[UIImageView alloc]initWithImage:img];
-    //	imageView.userInteractionEnabled = YES;
-    //    [imageView setTag:ZOOM_VIEW_TAG];
     
-    // ScrollView Setup
-    scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 180, 1024, 468)];
-	scrollView.clipsToBounds = YES;	// default is NO, but we want to restrict drawing within our scrollview
-    [scrollView setDelegate:self];
-    [scrollView setContentMode:UIViewContentModeScaleAspectFit]; // If this is not set, the image will be distorted
-	[scrollView setScrollEnabled:YES];
-    [scrollView setMinimumZoomScale:MIN_ZOOM_SCALE];
-    [scrollView setZoomScale:MIN_ZOOM_SCALE];
-    [scrollView setMaximumZoomScale:MAX_ZOOM_SCALE];
-	scrollView.bounces = NO;
-	scrollView.bouncesZoom = NO;
-    scrollView.backgroundColor = [UIColor whiteColor]; // Testing Purposes
+    scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 180, IPAD_MINI_HEIGHT, 468)];
+    scrollView.contentSize = CGSizeMake(IPAD_MINI_HEIGHT, 468);
+    scrollView.contentInset = UIEdgeInsetsMake(0, 0, 80, 0);
+    scrollView.backgroundColor = [UIColor whiteColor];
+    scrollView.scrollEnabled = YES;
     [self.view addSubview:scrollView];
-
-    shouldSnapToZoom = YES;
-
-    // Get the scrollView's pan gesture and store it for later use
-    for (UIGestureRecognizer* rec in scrollView.gestureRecognizers) {
-        if ([rec isKindOfClass:[UIPanGestureRecognizer class]]) {
-            scrollViewPanGesture = (UIPanGestureRecognizer*)rec;
-        }
-    }
-	
+    
 	// Get the screen resolution of the iPad and subtract the height of the toolbars (2* 74)
-	screenSize = CGPointMake(scrollView.frame.size.width,scrollView.frame.size.height - (TOOLBAR_HEIGHT * 2) );
+//	screenSize = CGPointMake(scrollView.frame.size.width,scrollView.frame.size.height - (TOOLBAR_HEIGHT * 2) );
     
     // Observe NSUserDefaults for setting changes
     // Will automatically call settingsChanged: when approproiate
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(settingsChange) name:NSUserDefaultsDidChangeNotification object:nil];
     
-    // Completely zoom out when user double taps with two fingers
-    UITapGestureRecognizer *fullZoomOutRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resetImageZoom:)];
-    [fullZoomOutRecognizer setNumberOfTapsRequired:2];
-    [fullZoomOutRecognizer setNumberOfTouchesRequired:2];
-    [scrollView addGestureRecognizer:fullZoomOutRecognizer];
-    
-    // LineDrawView setup
-    lineDrawView = [[LineDrawView alloc]initWithFrame:CGRectMake(0, 180, 1024, 468)];
+    panToMove = [[UIPanGestureRecognizer alloc]initWithTarget:self action
+                                                             :@selector(panMove:)];
+    panToMove.minimumNumberOfTouches = 3;
+    panToMove.maximumNumberOfTouches = 3;
+    [panToMove setTranslation:CGPointMake(40, 40) inView:lineDrawView];
+    [self.view addGestureRecognizer:panToMove];
     
     // Apply the stored settings
     [self settingsChange];
@@ -116,6 +89,9 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
     [self setStartNotesButton:nil];
     [self setExitNotesButton:nil];
     [self setSaveNotesButton:nil];
+    [self setNavigationBar:nil];
+    [self setNavigationBarBackButton:nil];
+    [self setNavigationBarSettingsButton:nil];
     [super viewDidUnload];
 }
 
@@ -123,9 +99,6 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
  * Gets called at launch & every time the settings are updated.
  */
 -(void)settingsChange {
-    // Scrolling speed
-    scrollView.decelerationRate = [defaults floatForKey:@"userScrollSpeed"];
-    
     // Zoom increment 
     ZOOM_STEP = ([defaults floatForKey:@"userZoomIncrement"] * 100);
     [zoomHandler setZoomLevel:ZOOM_STEP];
@@ -151,7 +124,6 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
     CGSize pageSize = rect.size;
     UIGraphicsBeginImageContext(pageSize);
     
-    [scrollView.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     
     UIGraphicsEndImageContext();
@@ -175,15 +147,15 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
         self.clearNotesButton.frame = CGRectMake(926, TOP_BUTTONS_Y, BUTTON_SIZE, BUTTON_SIZE);
         
         if (lineDrawView){
-            lineDrawView.frame = CGRectMake(0, 180, 1024, 450);
-        }
-        
-        if (scrollView){
-           scrollView.frame = CGRectMake(0, 180, 1024, 450); 
+            lineDrawView.frame = CGRectMake(0, 180, IPAD_MINI_HEIGHT, 450);
         }
         
         if (colorSegmentedControl){
-            [colorSegmentedControl setFrame:CGRectMake(0, 670, 1024, 80)];
+            [colorSegmentedControl setFrame:CGRectMake(0, 670, IPAD_MINI_HEIGHT, 80)];
+        }
+        
+        if (scrollView){
+            scrollView.frame = CGRectMake(0, 180, IPAD_MINI_HEIGHT, 450);
         }
     } else if (self.interfaceOrientation == UIInterfaceOrientationPortrait){
         self.startNotesButton.frame = CGRectMake(6, PORTRAIT_BOTTOM_BUTTONS_Y, BUTTON_SIZE, BUTTON_SIZE);
@@ -194,7 +166,11 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
         self.clearNotesButton.frame = CGRectMake(668, TOP_BUTTONS_Y, BUTTON_SIZE, BUTTON_SIZE);
         
         if (colorSegmentedControl){
-            [colorSegmentedControl setFrame:CGRectMake(0, 927, 768, 80)];
+            [colorSegmentedControl setFrame:CGRectMake(0, 927, IPAD_MINI_HEIGHT, 80)];
+        }
+        
+        if (scrollView){
+            scrollView.frame = CGRectMake(0, 180, IPAD_MINI_HEIGHT, 450);
         }
     }
 }
@@ -212,11 +188,6 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
     [imageView setImage:img];
     
     [imageView sizeToFit];
-	[scrollView setContentSize:CGSizeMake(imageView.frame.size.width, imageView.frame.size.height)];
-    if (shouldSnapToZoom) {
-        shouldSnapToZoom = NO;
-        [scrollView setZoomScale:MIN_ZOOM_SCALE];
-    }
 }
 
 #pragma mark - Image Refresh Management
@@ -240,28 +211,6 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
     }
 }
 
-#pragma mark - UIScrollViewDelegate Protocol
-
-/**
- * Required ScrollView delegate method.
- */
-- (UIView *)viewForZoomingInScrollView:(UIScrollView *)sv {
-	return [sv viewWithTag:ZOOM_VIEW_TAG];
-}
-
-- (void)scrollViewDidZoom:(UIScrollView *)sv {
-    //int newPenRadius = scrollView.zoomScale * notesViewController.penRadius;
-    //[notesViewController setPenRadius:newPenRadius];
-}
-
-/**
- * Required scrollview delegate method.
- */
-- (void)scrollViewDidEndZooming:(UIScrollView *)sv withView:(UIView *)view atScale:(float)scale {
-    [sv setZoomScale:scale+0.01 animated:NO];
-    [sv setZoomScale:scale animated:NO];
-}
-
 #pragma mark - Zooming and Scrolling
 
 - (void)zoomTap:(UIGestureRecognizer *)gestureRecognizer {
@@ -275,22 +224,10 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
 }
 
 /**
- Resetting the scrollView to be completely zoomed out
- */
-- (void)resetImageZoom:(UIGestureRecognizer *)gestureRecognizer {
-    [scrollView setZoomScale:1.0 animated:YES];
-}
-
-/**
  * Helps with tap to zoom.
  */
 - (CGRect)zoomRectForScale:(float)scale withCenter:(CGPoint)center {
     CGRect zoomRect;
-    
-	//	At a zoom scale of 1.0, it would be the size of the scrollView's bounds.
-	//	As the zoom scale decreases, so more content is visible, the size of the rect grows.
-	zoomRect.size.height = [scrollView frame].size.height / scale;
-	zoomRect.size.width  = [scrollView frame].size.width  / scale;
     
 	// Choose an origin so as to get the right center.
     zoomRect.origin.x = center.x / scale;
@@ -299,18 +236,12 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
 	return zoomRect;
 }
 
--(void)handleZoomWith:(float)newScale andZoomType:(BOOL)isZoomIn {
-    CGPoint newOrigin = [zoomHandler getNewOriginFromViewLocation: [scrollView contentOffset]
-														 viewSize: screenSize andZoomType: isZoomIn];
-	CGRect zoomRect = [self zoomRectForScale:newScale withCenter:newOrigin];
-    [scrollView zoomToRect:zoomRect animated:YES];
-}
 
 - (void)panMove:(UIPanGestureRecognizer *)gesture {
     if ((gesture.state == UIGestureRecognizerStateChanged) ||
         (gesture.state == UIGestureRecognizerStateEnded)) {
         
-        CGPoint translation = [gesture translationInView:scrollView];
+        CGPoint translation = [gesture translationInView:self.view];
         lineDrawView.center = CGPointMake(lineDrawView.center.x + translation.x,
                                              lineDrawView.center.y + translation.y);
         [gesture setTranslation:CGPointMake(0, 0) inView:self.view];
@@ -335,30 +266,12 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
 
 # pragma mark - Button Callbacks
 
-/**
- * Manages ScrollView zooming out.
- */
 -(IBAction)zoomOutButtonPress:(id)sender {
     lineDrawView.transform = CGAffineTransformMakeScale(MIN_ZOOM_SCALE, MIN_ZOOM_SCALE);
-    
-    if([scrollView zoomScale] > [scrollView minimumZoomScale]) {
-        float newScale = [scrollView zoomScale] / ZOOM_STEP;
-        [self handleZoomWith:newScale andZoomType: FALSE];
-    }
 }
 
-/**
- * Manages ScrollView zooming in.
- */
 -(IBAction)zoomInButtonPress:(id)sender {
-    //    [scrollView addSubview:lineDrawView]; // We want to scroll/zoom the note-taking view as well
-    //    [self.view addSubview:scrollView];
     lineDrawView.transform = CGAffineTransformMakeScale(1.25, 1.25);
-    
-	float newScale = [scrollView zoomScale] * ZOOM_STEP;
-    if(newScale <= [scrollView maximumZoomScale]){
-        [self handleZoomWith:newScale andZoomType: TRUE];
-    }
 }
 
 - (IBAction)backButtonPress:(id)sender {
@@ -370,10 +283,10 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
 
 - (IBAction)saveButtonPress:(id)sender {
     // Take the screenshot
-    UIImage *saveImage = [self imageByCropping:scrollView toRect:imageView.frame];
+//    UIImage *saveImage = [self imageByCropping:scrollView toRect:imageView.frame]; 
     
     // Adds a photo to the saved photos album.  The optional completionSelector should have the form:
-    UIImageWriteToSavedPhotosAlbum(saveImage, nil, nil, nil);
+//    UIImageWriteToSavedPhotosAlbum(saveImage, nil, nil, nil);
     
     // Tell the user that notes are saved
 	UIAlertView* alert = [[UILargeAlertView alloc] initWithText:NSLocalizedString(@"Notes Saved!", nil) fontSize:48];
@@ -387,16 +300,6 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
     self.zoomOutButton.hidden = YES;
     self.startNotesButton.hidden = YES;
     
-    // Zoom the user all the way out when they enter note-taking mode
-    oldZoomScale = scrollView.zoomScale;
-    [self resetImageZoom:nil];
-
-    [scrollView setMaximumZoomScale:MIN_ZOOM_SCALE];     // Disable zooming back in
-    
-    // Force the ScrollView to require 2 fingers to scroll while in note-taking mode
-    [scrollViewPanGesture setMinimumNumberOfTouches:2];
-    [scrollViewPanGesture setMaximumNumberOfTouches:2];
-    
     [self initColorSegmentedControl];
     
     lineDrawView.userInteractionEnabled = YES;
@@ -408,13 +311,7 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
     [tapToZoom setEnabled:YES];
     [self.view addGestureRecognizer:tapToZoom];
     
-    scrollView.panGestureRecognizer.minimumNumberOfTouches = 2;
-    
-    UIPanGestureRecognizer *panToMove = [[UIPanGestureRecognizer alloc]initWithTarget:self action:
-                                         @selector(panMove:)];
-    panToMove.minimumNumberOfTouches = 2;
-    [panToMove setTranslation:CGPointMake(40, 40) inView:lineDrawView];
-    [self.view addGestureRecognizer:panToMove];
+    panToMove.enabled = NO;
 }
 
 - (IBAction)exitNotesButtonPress:(id)sender {
@@ -429,10 +326,9 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
     // Disabling drawing to allow the user to scroll, zoom, or pan!
     lineDrawView.userInteractionEnabled = NO;
     
-    [scrollView setMaximumZoomScale:MAX_ZOOM_SCALE];
-    [scrollView setZoomScale:oldZoomScale animated:YES];
-    [scrollViewPanGesture setMinimumNumberOfTouches:1];
-    [scrollViewPanGesture setMaximumNumberOfTouches:1];
+    [scrollView addSubview:lineDrawView];
+    panToMove.enabled = YES;
+    [scrollView addGestureRecognizer:panToMove];
 }
 
 - (IBAction)clearNotesButtonPress:(id)sender {
@@ -453,9 +349,9 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
     [colorSegmentedControl setTintColor:[UIColor lightGrayColor]];
     
     if (self.interfaceOrientation == UIInterfaceOrientationPortrait){
-        [colorSegmentedControl setFrame:CGRectMake(0, 927, 768, 80)];
+        [colorSegmentedControl setFrame:CGRectMake(0, 927, IPAD_MINI_HEIGHT, 80)];
     } else {
-        [colorSegmentedControl setFrame:CGRectMake(0, 670, 1024, 80)];
+        [colorSegmentedControl setFrame:CGRectMake(0, 670, IPAD_MINI_HEIGHT, 80)];
     }
     
     [colorSegmentedControl addTarget:self action:@selector(segmentChanged:) forControlEvents:UIControlEventValueChanged];
