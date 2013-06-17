@@ -67,6 +67,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *clearNotesButton;
 @property (weak, nonatomic) IBOutlet UIButton *startNotesButton;
 @property (weak, nonatomic) IBOutlet UIButton *exitNotesButton;
+@property (weak, nonatomic) IBOutlet UIButton *saveNotesButton;
 
 @end
 

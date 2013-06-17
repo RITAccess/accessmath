@@ -22,6 +22,11 @@
 #define USERNAME @"Student"
 #define PASSWORD @"lecture"
 
+#define BUTTON_SIZE 100
+#define TOP_BUTTONS_Y 57
+#define LANDSCAPE_BOTTOM_BUTTONS_Y 643
+#define PORTRAIT_BOTTOM_BUTTONS_Y 904
+
 NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/test.png";
 
 @interface LectureViewController (UtilityMethods)
@@ -110,6 +115,7 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
     [self setZoomInButton:nil];
     [self setStartNotesButton:nil];
     [self setExitNotesButton:nil];
+    [self setSaveNotesButton:nil];
     [super viewDidUnload];
 }
 
@@ -158,25 +164,36 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
 #pragma mark - Rotation Handling
 
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    if (lineDrawView != NULL){
-        if (self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
-            self.interfaceOrientation == UIInterfaceOrientationLandscapeRight){
-            lineDrawView.frame = CGRectMake(0, 180, 1024, 468);
-        }
-    }
     
-    if (scrollView != NULL){
-        if (self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
-            self.interfaceOrientation == UIInterfaceOrientationLandscapeRight){
-            scrollView.frame = CGRectMake(0, 180, 1024, 468);
+    if (self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
+        self.interfaceOrientation == UIInterfaceOrientationLandscapeRight){
+        self.zoomInButton.frame = CGRectMake(829, LANDSCAPE_BOTTOM_BUTTONS_Y, BUTTON_SIZE, BUTTON_SIZE);
+        self.zoomOutButton.frame = CGRectMake(926, LANDSCAPE_BOTTOM_BUTTONS_Y, BUTTON_SIZE, BUTTON_SIZE);
+        self.startNotesButton.frame = CGRectMake(6, LANDSCAPE_BOTTOM_BUTTONS_Y, BUTTON_SIZE, BUTTON_SIZE);
+        self.saveNotesButton.frame = CGRectMake(6, TOP_BUTTONS_Y, BUTTON_SIZE, BUTTON_SIZE);
+        self.exitNotesButton.frame = CGRectMake(829, TOP_BUTTONS_Y, BUTTON_SIZE, BUTTON_SIZE);
+        self.clearNotesButton.frame = CGRectMake(926, TOP_BUTTONS_Y, BUTTON_SIZE, BUTTON_SIZE);
+        
+        if (lineDrawView){
+            lineDrawView.frame = CGRectMake(0, 180, 1024, 450);
         }
-    }
-    
-    if (colorSegmentedControl != NULL){
-        if (self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
-            self.interfaceOrientation == UIInterfaceOrientationLandscapeRight){
+        
+        if (scrollView){
+           scrollView.frame = CGRectMake(0, 180, 1024, 450); 
+        }
+        
+        if (colorSegmentedControl){
             [colorSegmentedControl setFrame:CGRectMake(0, 670, 1024, 80)];
-        } else if (self.interfaceOrientation == UIInterfaceOrientationPortrait){
+        }
+    } else if (self.interfaceOrientation == UIInterfaceOrientationPortrait){
+        self.startNotesButton.frame = CGRectMake(6, PORTRAIT_BOTTOM_BUTTONS_Y, BUTTON_SIZE, BUTTON_SIZE);
+        self.zoomInButton.frame = CGRectMake(573, PORTRAIT_BOTTOM_BUTTONS_Y, BUTTON_SIZE, BUTTON_SIZE);
+        self.zoomOutButton.frame = CGRectMake(668, PORTRAIT_BOTTOM_BUTTONS_Y, BUTTON_SIZE, BUTTON_SIZE);
+        self.saveNotesButton.frame = CGRectMake(6, TOP_BUTTONS_Y, BUTTON_SIZE, BUTTON_SIZE);
+        self.exitNotesButton.frame = CGRectMake(573, TOP_BUTTONS_Y, BUTTON_SIZE, BUTTON_SIZE);
+        self.clearNotesButton.frame = CGRectMake(668, TOP_BUTTONS_Y, BUTTON_SIZE, BUTTON_SIZE);
+        
+        if (colorSegmentedControl){
             [colorSegmentedControl setFrame:CGRectMake(0, 927, 768, 80)];
         }
     }
