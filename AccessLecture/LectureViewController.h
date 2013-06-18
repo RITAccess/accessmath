@@ -13,10 +13,11 @@
 @interface LectureViewController : UIViewController<UIScrollViewDelegate>
 {
     // UI
-	UIImageView* imageView;
+	UIImageView *imageView;
     
     // Gestures
     UIPanGestureRecognizer *panToMove;
+    UITapGestureRecognizer *tapToZoom;
     
     // Image grabbing
     NSMutableData* receivedData;

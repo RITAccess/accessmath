@@ -55,9 +55,6 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
     scrollView.scrollEnabled = YES;
     [self.view addSubview:scrollView];
     
-	// Get the screen resolution of the iPad and subtract the height of the toolbars (2* 74)
-//	screenSize = CGPointMake(scrollView.frame.size.width,scrollView.frame.size.height - (TOOLBAR_HEIGHT * 2) );
-    
     // Observe NSUserDefaults for setting changes
     // Will automatically call settingsChanged: when approproiate
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(settingsChange) name:NSUserDefaultsDidChangeNotification object:nil];
@@ -69,8 +66,13 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
     [panToMove setTranslation:CGPointMake(40, 40) inView:lineDrawView];
     [self.view addGestureRecognizer:panToMove];
     
-    // Apply the stored settings
-    [self settingsChange];
+    
+    tapToZoom = [[UITapGestureRecognizer alloc] initWithTarget:self action:
+                                         @selector(zoomTap:)];
+    tapToZoom.numberOfTapsRequired = 2;
+    [self.view addGestureRecognizer:tapToZoom];
+    
+    [self settingsChange];     // Apply the stored settings
     
     [super viewDidLoad];
 }
@@ -78,11 +80,13 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
 /**
  * In case there's a memory warning.
  */
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
 }
 
-- (void)viewDidUnload {
+- (void)viewDidUnload
+{
     [self setClearNotesButton:nil];
     [self setZoomOutButton:nil];
     [self setZoomInButton:nil];
@@ -98,7 +102,8 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
 /**
  * Gets called at launch & every time the settings are updated.
  */
--(void)settingsChange {
+-(void)settingsChange
+{
     // Zoom increment 
     ZOOM_STEP = ([defaults floatForKey:@"userZoomIncrement"] * 100);
     [zoomHandler setZoomLevel:ZOOM_STEP];
@@ -106,7 +111,6 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
     // Active usability testing image
     img = [UIImage imageNamed:[defaults valueForKey:@"testImage"]];
     [imageView setImage:img];
-    
     
     // Hide Clear and Exit Notes Buttons on Start
     self.clearNotesButton.hidden = YES;
@@ -119,7 +123,8 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
 /**
  * Get a screenshot of a ScrollView's content.
  */
-- (UIImage *)imageByCropping:(UIScrollView *)imageToCrop toRect:(CGRect)rect {
+- (UIImage *)imageByCropping:(UIScrollView *)imageToCrop toRect:(CGRect)rect
+{
     imageToCrop.clipsToBounds = NO;
     CGSize pageSize = rect.size;
     UIGraphicsBeginImageContext(pageSize);
@@ -135,8 +140,8 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
 
 #pragma mark - Rotation Handling
 
-- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    
+- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{    
     if (self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
         self.interfaceOrientation == UIInterfaceOrientationLandscapeRight){
         self.zoomInButton.frame = CGRectMake(829, LANDSCAPE_BOTTOM_BUTTONS_Y, BUTTON_SIZE, BUTTON_SIZE);
@@ -170,7 +175,7 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
         }
         
         if (scrollView){
-            scrollView.frame = CGRectMake(0, 180, IPAD_MINI_HEIGHT, 450);
+            scrollView.frame = CGRectMake(0, 180, IPAD_MINI_HEIGHT, 710); // Extending ScrollView past LineDrawView height
         }
     }
 }
@@ -180,7 +185,8 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
 /**
  * When the NSURLConnection is complete.
  */
-- (void)connectionDidFinishLoading:(NSURLConnection*)connection {
+- (void)connectionDidFinishLoading:(NSURLConnection*)connection
+{
     loading = NO;
     
     // Put the received data in the imageView
@@ -194,7 +200,8 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
 /**
  * Pulls new image from URLConnection and inserts into the UIImageView.
  */
-- (void)updateImageView {
+- (void)updateImageView
+{
        if(!loading) {
         // Create the request.
         NSURLRequest* theRequest=[NSURLRequest requestWithURL:[NSURL URLWithString:urlString] 
@@ -213,7 +220,8 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
 
 #pragma mark - Zooming and Scrolling
 
-- (void)zoomTap:(UIGestureRecognizer *)gestureRecognizer {
+- (void)zoomTap:(UIGestureRecognizer *)gestureRecognizer
+{
     if (isZoomedIn) {
         lineDrawView.transform = CGAffineTransformMakeScale(1.0, 1.0);
         isZoomedIn = NO;
@@ -226,7 +234,8 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
 /**
  * Helps with tap to zoom.
  */
-- (CGRect)zoomRectForScale:(float)scale withCenter:(CGPoint)center {
+- (CGRect)zoomRectForScale:(float)scale withCenter:(CGPoint)center
+{
     CGRect zoomRect;
     
 	// Choose an origin so as to get the right center.
@@ -237,7 +246,8 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
 }
 
 
-- (void)panMove:(UIPanGestureRecognizer *)gesture {
+- (void)panMove:(UIPanGestureRecognizer *)gesture
+{
     if ((gesture.state == UIGestureRecognizerStateChanged) ||
         (gesture.state == UIGestureRecognizerStateEnded)) {
         
@@ -251,11 +261,13 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
 
 # pragma mark - Navigation
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
     popover = [(UIStoryboardPopoverSegue *)segue popoverController];
 }
 
-- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
     if (popover) {
         [popover dismissPopoverAnimated:YES];
         return NO;
@@ -266,34 +278,33 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
 
 # pragma mark - Button Callbacks
 
--(IBAction)zoomOutButtonPress:(id)sender {
+-(IBAction)zoomOutButtonPress:(id)sender
+{
     lineDrawView.transform = CGAffineTransformMakeScale(MIN_ZOOM_SCALE, MIN_ZOOM_SCALE);
 }
 
--(IBAction)zoomInButtonPress:(id)sender {
+-(IBAction)zoomInButtonPress:(id)sender
+{
     lineDrawView.transform = CGAffineTransformMakeScale(1.25, 1.25);
 }
 
-- (IBAction)backButtonPress:(id)sender {
+- (IBAction)backButtonPress:(id)sender
+{
     if (popover) {
         [popover dismissPopoverAnimated:YES];
     }
     [self dismissModalViewControllerAnimated:YES];
 }
 
-- (IBAction)saveButtonPress:(id)sender {
-    // Take the screenshot
-//    UIImage *saveImage = [self imageByCropping:scrollView toRect:imageView.frame]; 
-    
-    // Adds a photo to the saved photos album.  The optional completionSelector should have the form:
-//    UIImageWriteToSavedPhotosAlbum(saveImage, nil, nil, nil);
-    
+- (IBAction)saveButtonPress:(id)sender
+{    
     // Tell the user that notes are saved
 	UIAlertView* alert = [[UILargeAlertView alloc] initWithText:NSLocalizedString(@"Notes Saved!", nil) fontSize:48];
 	[alert show];
 }
 
-- (IBAction)startNotesButtonPress:(id)sender {
+- (IBAction)startNotesButtonPress:(id)sender
+{
     self.clearNotesButton.hidden = NO;
     self.exitNotesButton.hidden = NO;
     self.zoomInButton.hidden = YES;
@@ -305,16 +316,12 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
     lineDrawView.userInteractionEnabled = YES;
     [self.view addSubview:lineDrawView];
     
-    UITapGestureRecognizer* tapToZoom = [[UITapGestureRecognizer alloc] initWithTarget:self action:
-                                        @selector(zoomTap:)];
-    tapToZoom.numberOfTapsRequired = 2;
-    [tapToZoom setEnabled:YES];
-    [self.view addGestureRecognizer:tapToZoom];
-    
-    panToMove.enabled = NO;
+    tapToZoom.enabled = YES;
+    panToMove.enabled = YES;
 }
 
-- (IBAction)exitNotesButtonPress:(id)sender {
+- (IBAction)exitNotesButtonPress:(id)sender
+{
     [colorSegmentedControl removeFromSuperview];
     
     self.clearNotesButton.hidden = YES;
@@ -327,22 +334,22 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
     lineDrawView.userInteractionEnabled = NO;
     
     [scrollView addSubview:lineDrawView];
-    panToMove.enabled = YES;
     [scrollView addGestureRecognizer:panToMove];
 }
 
-- (IBAction)clearNotesButtonPress:(id)sender {
-    // Tell the user that notes are cleared.
+- (IBAction)clearNotesButtonPress:(id)sender
+{
+    [lineDrawView clearAllPaths];
+    
 	UIAlertView* alert = [[UILargeAlertView alloc] initWithText:
                           NSLocalizedString(@"Notes Cleared!", nil) fontSize:48];
-	[alert show];
-    
-    [lineDrawView clearAllPaths];
+	[alert show];     // Tell the user that notes are cleared.
 }
 
 # pragma mark - ColorSegmentedControl
 
-- (void)initColorSegmentedControl {
+- (void)initColorSegmentedControl
+{
     NSArray *segments = [[NSArray alloc] initWithObjects:@"", @"", @"", @"", @"", @"Eraser", nil];
     colorSegmentedControl = [[UISegmentedControl alloc] initWithItems:segments];
     [colorSegmentedControl setSegmentedControlStyle:UISegmentedControlStyleBar];
@@ -376,7 +383,8 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
 /**
  * Called when the SegmentedControl is changed to a new color.
  */
--(void)segmentChanged:(id)sender {
+-(void)segmentChanged:(id)sender
+{
     lineDrawView.currentPath = [colorSegmentedControl selectedSegmentIndex];
 }
 

@@ -14,7 +14,8 @@
 
 @implementation LineDrawView
 
-- (id)initWithFrame:(CGRect)frame {
+- (id)initWithFrame:(CGRect)frame
+{
     self = [super initWithFrame:frame];
     
     if (self) {
@@ -32,7 +33,8 @@
 
 #pragma mark - Touch Methods
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
     UITouch *touch=[[touches allObjects] objectAtIndex:0];
     
     switch (_currentPath) {
