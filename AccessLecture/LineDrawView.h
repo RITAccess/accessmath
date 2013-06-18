@@ -19,5 +19,7 @@
 @property (nonatomic) UIBezierPath *bezierPath4;
 @property (nonatomic) UIBezierPath *bezierPath5;
 @property (nonatomic) NSInteger currentPath;
+@property (nonatomic) BOOL isCreatingNote;
+@property (nonatomic) BOOL isDrawing;
 
 @end

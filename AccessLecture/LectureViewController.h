@@ -11,10 +11,8 @@
 #import "UISegmentedControlExtension.h"
 
 
-@interface LectureViewController : UIViewController<UIScrollViewDelegate,UIAlertViewDelegate>{
-    
-
-
+@interface LectureViewController : UIViewController<UIScrollViewDelegate,UIAlertViewDelegate>
+{    
     // UI
 	UIImageView *imageView;
     
@@ -37,7 +35,7 @@
     BOOL loading;
     
     // Notes
-    LineDrawView *lineDrawView;    
+    LineDrawView *lineDrawView;
     
     // Settings
     NSUserDefaults* defaults;
@@ -64,6 +62,8 @@
 - (IBAction)zoomOutButtonPress:(id)sender;
 - (IBAction)zoomInButtonPress:(id)sender;
 - (IBAction)exitNotesButtonPress:(id)sender;
+- (IBAction)createNoteButtonPress:(id)sender;
+
 
 @property (weak, nonatomic) IBOutlet UIButton *zoomOutButton;
 @property (weak, nonatomic) IBOutlet UIButton *zoomInButton;
@@ -74,6 +74,7 @@
 @property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *navigationBarBackButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *navigationBarSettingsButton;
+@property (weak, nonatomic) IBOutlet UIButton *createNoteButton;
 
 @end
 

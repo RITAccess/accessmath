@@ -146,6 +146,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
     // Hide Clear and Exit Notes Buttons on Start
     self.clearNotesButton.hidden = YES;
     self.exitNotesButton.hidden = YES;
+    self.createNoteButton.hidden = YES;
     
     // Initialize Zoom check, will flip when zoomed in
     isZoomedIn = NO;
@@ -413,6 +414,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
 {
     self.clearNotesButton.hidden = NO;
     self.exitNotesButton.hidden = NO;
+    self.createNoteButton.hidden = NO;
     self.zoomInButton.hidden = YES;
     self.zoomOutButton.hidden = YES;
     self.startNotesButton.hidden = YES;
@@ -441,6 +443,21 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
     
     [scrollView addSubview:lineDrawView];
     [scrollView addGestureRecognizer:panToMove];
+}
+
+- (IBAction)createNoteButtonPress:(id)sender
+{
+    UIAlertView *alert;
+    if (lineDrawView.isCreatingNote == YES){
+        alert = [[UILargeAlertView alloc] initWithText:
+                              NSLocalizedString(@"Exiting Note Mode!" , nil) fontSize:48];
+    } else {
+        alert = [[UILargeAlertView alloc]initWithText:
+                 NSLocalizedString(@"Entering Note Mode!", nil)fontSize:48];
+    }
+    
+    lineDrawView.isCreatingNote = !lineDrawView.isCreatingNote;
+	[alert show];
 }
 
 - (IBAction)clearNotesButtonPress:(id)sender

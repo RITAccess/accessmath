@@ -26,6 +26,7 @@
         _bezierPath4 = [[UIBezierPath alloc]init];
         _bezierPath5 = [[UIBezierPath alloc]init];
         _currentPath = 0;
+        _isCreatingNote = NO;
     }
     
     return self;
@@ -87,18 +88,15 @@
     //Boolean variable to decide whether current location needs to edit an existing note or create a new one
     BOOL isNew = YES;
     //Check for double tap
-    if (aTouch.tapCount >= 1 && [self subviews].count >0)
+    if (aTouch.tapCount >= 1 && [self subviews].count > 0)
     {
         for(UITextView *view in [self subviews] )
             
         {
             if([view isKindOfClass:[UITextView class]])
             {
-                
                 view.hidden = YES;
             }
-            
-            
         }
         
     }
@@ -107,19 +105,18 @@
         UITouch *touch=[[touches allObjects] objectAtIndex:0];
   //      UIBezierPath *notesBezierPath = [[UIBezierPath alloc]init];
         for(UITextView *view in [self subviews] )
-            
         {
             if (CGRectContainsPoint(view.frame,[aTouch locationInView:self]))
             {
-                isNew=NO;
+                isNew = NO;
                 view.hidden = NO;
                 [view becomeFirstResponder];
-                
             }
             
         }
-        if(isNew==YES)
+        if(isNew == YES && self.isCreatingNote == YES)
         {
+            NSLog(@"Is Creating Note...");
 //            [_bezierPath addArcWithCenter:CGPointMake([touch locationInView:self].x,[touch locationInView:self].y ) radius:15 startAngle:90 endAngle:180 clockwise:YES];
             UIImageView * anImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin.png" ]];
             [anImageView setCenter:[touch locationInView:self]];
@@ -135,11 +132,9 @@
           //  textView.layer.borderWidth=0.5f;
             [textView setNeedsDisplay];
             [textView becomeFirstResponder];
-                       
         }
     }
 }
-
 
 - (void)clearAllPaths {
     [_bezierPath removeAllPoints];
