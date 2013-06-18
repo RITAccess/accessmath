@@ -8,14 +8,12 @@
 #import "AccessDocument.h"
 #import "AccessLectureRuntime.h"
 
-
 #define RED_TAG 111
 #define GREEN_TAG 112
 #define BLUE_TAG 113
 #define BLACK_TAG 114
 #define HILIGHT_TAG 115
 #define ERASER_TAG 116
-
 
 #define ZOOM_VIEW_TAG 100
 #define MIN_ZOOM_SCALE 1.0
@@ -58,19 +56,6 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
 	imageView.userInteractionEnabled = YES;
     [imageView setTag:ZOOM_VIEW_TAG]; 
     [[AccessLectureRuntime defaultRuntime] openDocument];
-    // Set up the scrollview
-//	scrollView.clipsToBounds = YES;	// default is NO, but we want to restrict drawing within our scrollview
-//	[scrollView addSubview:notesViewController.view]; // We want to scroll/zoom the note-taking view as well
-//    [scrollView setDelegate:self];
-//    [scrollView setContentMode:UIViewContentModeScaleAspectFit]; // If this is not set, the image will be distorted
-//    [scrollView setContentSize:CGSizeMake(notesViewController.view.frame.size.width,notesViewController.view.frame.size.width)];
-//	[scrollView setScrollEnabled:YES];
-//    [scrollView setMinimumZoomScale:MIN_ZOOM_SCALE];
-//    [scrollView setZoomScale:MIN_ZOOM_SCALE];
-//    [scrollView setMaximumZoomScale:MAX_ZOOM_SCALE];
-//	scrollView.bounces = FALSE;
-//	scrollView.bouncesZoom = FALSE;
-
     
     scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 180, IPAD_MINI_HEIGHT, 468)];
     scrollView.contentSize = CGSizeMake(IPAD_MINI_HEIGHT, 468);
