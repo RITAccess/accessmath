@@ -8,6 +8,7 @@
 
 #import "SettingsViewController.h"
 #import "LineDrawView.h"
+#import "LectureViewController.h"
 
 @interface SettingsViewController ()
 
@@ -27,6 +28,22 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)colorSlide:(id)sender {
+
+- (IBAction)penSizeSlide:(id)sender {
+    
+}
+
+- (IBAction)eraserSizeSlide:(id)sender {
+}
+
+- (IBAction)contrastSwitchToggle:(id)sender {
+    
+}
+
+- (IBAction)zoomIncrementStep:(id)sender {
+    
+}
+- (void)viewDidUnload {
+    [super viewDidUnload];
 }
 @end

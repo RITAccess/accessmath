@@ -14,16 +14,17 @@
 
 @implementation LineDrawView
 
-- (id)initWithFrame:(CGRect)frame {
+- (id)initWithFrame:(CGRect)frame
+{
     self = [super initWithFrame:frame];
     
     if (self) {
         self.backgroundColor=[UIColor clearColor];
-        _bezierPath=[[UIBezierPath alloc]init];
-        _bezierPath2=[[UIBezierPath alloc]init];
-        _bezierPath3=[[UIBezierPath alloc]init];
-        _bezierPath4=[[UIBezierPath alloc]init];
-        _bezierPath5=[[UIBezierPath alloc]init];
+        _bezierPath = [[UIBezierPath alloc]init];
+        _bezierPath2 = [[UIBezierPath alloc]init];
+        _bezierPath3 = [[UIBezierPath alloc]init];
+        _bezierPath4 = [[UIBezierPath alloc]init];
+        _bezierPath5 = [[UIBezierPath alloc]init];
         _currentPath = 0;
     }
     
@@ -32,7 +33,8 @@
 
 #pragma mark - Touch Methods
 
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
     UITouch *touch=[[touches allObjects] objectAtIndex:0];
     
     switch (_currentPath) {
@@ -54,7 +56,7 @@
     }    
 }
 
--(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch=[[touches allObjects] objectAtIndex:0];
 
     switch (_currentPath) {
@@ -76,6 +78,18 @@
     }
     
     [self setNeedsDisplay];
+}
+
+- (void)clearAllPaths {
+    [_bezierPath removeAllPoints];
+    [_bezierPath2 removeAllPoints];
+    [_bezierPath3 removeAllPoints];
+    [_bezierPath4 removeAllPoints];
+    [_bezierPath5 removeAllPoints];
+}
+
++ (void)setLineWidth:(NSInteger)newWidth {
+    
 }
 
 /**
