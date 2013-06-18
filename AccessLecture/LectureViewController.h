@@ -9,7 +9,7 @@
 #import "AccessLectureRuntime.h"
 #import "Lecture.h"
 
-@interface LectureViewController : UIViewController<UIScrollViewDelegate> {
+@interface LectureViewController : UIViewController<UIScrollViewDelegate,UIAlertViewDelegate>{
     
     // UI
 	IBOutlet UIScrollView* scrollView;

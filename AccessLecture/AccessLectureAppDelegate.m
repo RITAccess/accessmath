@@ -36,13 +36,9 @@
     [defaults setFloat:.2 forKey:@"eraserSize"];
     [defaults setValue:@"biology.png" forKey:@"testImage"];
     [defaults synchronize];
-    // Set the starting view
-//    self.window.rootViewController = self.navigationController;
-//    [self.window makeKeyAndVisible];
     
     // Set up the network socket connection
-    _server = [[ALNetworkInterface alloc] initWithURL:@"micaheltimbrook.com"];
-    NSLog(@"Setup complete");
+    _server = [[ALNetworkInterface alloc] initWithURL:_serverAddress];
     
     return YES;
 }

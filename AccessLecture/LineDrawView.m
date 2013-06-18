@@ -107,7 +107,6 @@
     //Boolean variable to decide whether current location needs to edit an existing note or create a new one
     BOOL isNew = YES;
     //Check for double tap
-    NSLog(@"%d",[self subviews].count);
     if (aTouch.tapCount >= 1 && [self subviews].count >0)
     {
         for(UITextView *view in [self subviews] )
