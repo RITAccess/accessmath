@@ -41,4 +41,7 @@
 /* Delegate */
 @property (nonatomic, strong) id<LectureStreaming> delegate;
 
+/* Information */
+@property (readonly, getter = connected) BOOL connected;
+@property (readonly, getter = isConnecting) BOOL connecting;
 @end

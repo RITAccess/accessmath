@@ -8,25 +8,30 @@
 #import "AccessLectureRuntime.h"
 #import "AccessLectureRuntime.h"
 #import "Lecture.h"
+#import "UISegmentedControlExtension.h"
+
 
 @interface LectureViewController : UIViewController<UIScrollViewDelegate,UIAlertViewDelegate>{
     
+
+
     // UI
-	IBOutlet UIScrollView* scrollView;
-	UIImageView* imageView;
+	UIImageView *imageView;
     
-    // ScrollView Gestures
-    UIPanGestureRecognizer* scrollViewPanGesture;
+    // Gestures
+    UIPanGestureRecognizer *panToMove;
+    UITapGestureRecognizer *tapToZoom;
     
     // Image grabbing
     NSMutableData* receivedData;
-    NSTimer* t;
     UIImage* img;
     
     // Zooming
-    CGPoint scrSize;
-    BOOL shouldSnapToZoom;
+    CGPoint screenSize;
     ZoomHandler *zoomHandler;
+    BOOL isZoomedIn;
+    float ZOOM_STEP;
+    float oldZoomScale;
     
     // Connection
     BOOL loading;
@@ -41,12 +46,16 @@
     AccessDocument *currentDocument;
     AccessLectureRuntime *currentRuntime;
     Lecture *currentLecture;
+    
+    // Color Selection
+    UISegmentedControl *colorSegmentedControl;
+    
+    // New ScrollView
+    UIScrollView *scrollView;
 }
 
 - (void)updateImageView;
 - (void)settingsChange;
-- (void)handleZoomWith: (float) newScale andZoomType: (BOOL) zoomType;
-- (void)resetImageZoom: (UIGestureRecognizer *)gestureRecognizer;
 
 - (IBAction)backButtonPress:(id)sender;
 - (IBAction)saveButtonPress:(id)sender;
@@ -54,13 +63,17 @@
 - (IBAction)clearNotesButtonPress:(id)sender;
 - (IBAction)zoomOutButtonPress:(id)sender;
 - (IBAction)zoomInButtonPress:(id)sender;
+- (IBAction)exitNotesButtonPress:(id)sender;
 
-@property (weak, nonatomic) IBOutlet UISegmentedControl *colorSelectionSegment;
 @property (weak, nonatomic) IBOutlet UIButton *zoomOutButton;
 @property (weak, nonatomic) IBOutlet UIButton *zoomInButton;
 @property (weak, nonatomic) IBOutlet UIButton *clearNotesButton;
-@property (strong, nonatomic)UIPopoverController* popover;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *settingsButton;
+@property (weak, nonatomic) IBOutlet UIButton *startNotesButton;
+@property (weak, nonatomic) IBOutlet UIButton *exitNotesButton;
+@property (weak, nonatomic) IBOutlet UIButton *saveNotesButton;
+@property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *navigationBarBackButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *navigationBarSettingsButton;
 
 @end
 

@@ -14,92 +14,72 @@
 
 @implementation LineDrawView
 
-@synthesize brushColor;
-@synthesize bezierPath;
-@synthesize bezierPath2;
-@synthesize bezierPath3;
-@synthesize bezierPath4;
-@synthesize bezierPath5;
-@synthesize currentPath;
-
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     
     if (self) {
-        self.backgroundColor=[UIColor lightGrayColor];
-        
-        // Will move these to an array of UIBezierPaths soon.
-        bezierPath=[[UIBezierPath alloc]init];
-        bezierPath.lineWidth=1;
-        
-        bezierPath2=[[UIBezierPath alloc]init];
-        bezierPath2.lineWidth=5;
-        
-        bezierPath3=[[UIBezierPath alloc]init];
-        bezierPath3.lineWidth=10;
-        
-        bezierPath4=[[UIBezierPath alloc]init];
-        bezierPath4.lineWidth=15;
-        
-        bezierPath5=[[UIBezierPath alloc]init];
-        bezierPath5.lineWidth=20;
-        
-        brushColor=[UIColor redColor];
-        
-        currentPath = 0; // Current UIBezierPath is 0; this is the Red Segment.
+        self.backgroundColor=[UIColor clearColor];
+        _bezierPath = [[UIBezierPath alloc]init];
+        _bezierPath2 = [[UIBezierPath alloc]init];
+        _bezierPath3 = [[UIBezierPath alloc]init];
+        _bezierPath4 = [[UIBezierPath alloc]init];
+        _bezierPath5 = [[UIBezierPath alloc]init];
+        _currentPath = 0;
     }
+    
     return self;
 }
 
 #pragma mark - Touch Methods
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     UITouch *touch=[[touches allObjects] objectAtIndex:0];
     
-    switch (currentPath) {
+    switch (_currentPath) {
         case 0:
-            [bezierPath moveToPoint:[touch locationInView:self]]; 
+            [_bezierPath moveToPoint:[touch locationInView:self]];
             break;
         case 1:
-            [bezierPath2 moveToPoint:[touch locationInView:self]];
+            [_bezierPath2 moveToPoint:[touch locationInView:self]];
             break;
         case 2:
-            [bezierPath3 moveToPoint:[touch locationInView:self]];
+            [_bezierPath3 moveToPoint:[touch locationInView:self]];
             break;
         case 3:
-            [bezierPath4 moveToPoint:[touch locationInView:self]];
+            [_bezierPath4 moveToPoint:[touch locationInView:self]];
             break;
         default:
-            [bezierPath5 moveToPoint:[touch locationInView:self]];
+            [_bezierPath5 moveToPoint:[touch locationInView:self]];
             break;
-    }
+    }    
 }
 
--(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
-{
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch=[[touches allObjects] objectAtIndex:0];
-    
-    switch (currentPath) {
+
+    switch (_currentPath) {
         case 0:
-            [bezierPath addLineToPoint:[touch locationInView:self]];
+            [_bezierPath addLineToPoint:[touch locationInView:self]];
             break;
         case 1:
-            [bezierPath2 addLineToPoint:[touch locationInView:self]];
+            [_bezierPath2 addLineToPoint:[touch locationInView:self]];
             break;
         case 2:
-            [bezierPath3 addLineToPoint:[touch locationInView:self]];
+            [_bezierPath3 addLineToPoint:[touch locationInView:self]];
             break;
         case 3:
-            [bezierPath4 addLineToPoint:[touch locationInView:self]];
+            [_bezierPath4 addLineToPoint:[touch locationInView:self]];
             break;
         default:
-            [bezierPath5 addLineToPoint:[touch locationInView:self]];
+            [_bezierPath5 addLineToPoint:[touch locationInView:self]];
             break;
     }
     
     [self setNeedsDisplay];
 }
+
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -125,6 +105,7 @@
     if (aTouch.tapCount >= 2) {
         //Fetch all UITextViews currently
         UITouch *touch=[[touches allObjects] objectAtIndex:0];
+  //      UIBezierPath *notesBezierPath = [[UIBezierPath alloc]init];
         for(UITextView *view in [self subviews] )
             
         {
@@ -139,8 +120,11 @@
         }
         if(isNew==YES)
         {
-            
-            [bezierPath addArcWithCenter:CGPointMake([touch locationInView:self].x,[touch locationInView:self].y ) radius:15 startAngle:90 endAngle:180 clockwise:YES];
+//            [_bezierPath addArcWithCenter:CGPointMake([touch locationInView:self].x,[touch locationInView:self].y ) radius:15 startAngle:90 endAngle:180 clockwise:YES];
+            UIImageView * anImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin.png" ]];
+            [anImageView setCenter:[touch locationInView:self]];
+            [anImageView setBounds:CGRectMake([touch locationInView:self].x, [touch locationInView:self].y, 50, 50)];
+            [self addSubview:anImageView];
             UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake([touch locationInView:self].x, [touch locationInView:self].y ,300,90)];
             [self addSubview:textView];
             textView.text = @"Tap to Enter Notes";
@@ -154,21 +138,39 @@
                        
         }
     }
-    
+}
+
+
+- (void)clearAllPaths {
+    [_bezierPath removeAllPoints];
+    [_bezierPath2 removeAllPoints];
+    [_bezierPath3 removeAllPoints];
+    [_bezierPath4 removeAllPoints];
+    [_bezierPath5 removeAllPoints];
+}
+
++ (void)setLineWidth:(NSInteger)newWidth {
+
     
 }
 
 /**
  * Override drawRect() to allow for custom drawing. No override causes performance issues.
+ * Alternating setting stroke and stroking to handle each individual path.
  */
-- (void)drawRect:(CGRect)rect
-{
-    [brushColor setStroke];
-    [bezierPath strokeWithBlendMode:kCGBlendModeNormal alpha:1.0];
-    [bezierPath2 strokeWithBlendMode:kCGBlendModeClear alpha:1.0];
-    [bezierPath3 strokeWithBlendMode:kCGBlendModeClear alpha:1.0];
-    [bezierPath4 strokeWithBlendMode:kCGBlendModeClear alpha:1.0];
-    [bezierPath5 strokeWithBlendMode:kCGBlendModeClear alpha:1.0];
+- (void)drawRect:(CGRect)rect {
+    [[UIColor redColor] setStroke];
+    [_bezierPath stroke];
+    [[UIColor greenColor] setStroke];
+    [_bezierPath2 stroke];
+    [[UIColor blueColor] setStroke];
+    [_bezierPath3 stroke];
+    [[UIColor blackColor] setStroke];
+    [_bezierPath4 stroke];
+    [[UIColor yellowColor] setStroke];
+    [_bezierPath5 stroke];
 }
 
+
 @end
+
