@@ -38,8 +38,7 @@ static NSString * DEFAULT_FILENAME = @"Lecture001";
     NSURL * currentDirectory = [FileManager iCloudDirectoryURL];
     if (currentDirectory == nil) currentDirectory = [FileManager localDocumentsDirectoryURL];
     NSArray * docs = [FileManager documentsIn:currentDirectory];
-    NSLog(@"%d",[docs count]);
-    NSURL * document = [FileManager findFileIn:docs thatFits:^(NSURL* url){
+       NSURL * document = [FileManager findFileIn:docs thatFits:^(NSURL* url){
         if (url != nil) return YES;
         return NO;
     }];
@@ -55,8 +54,7 @@ static NSString * DEFAULT_FILENAME = @"Lecture001";
        {
            NSLog(@"Success");
            [AccessLectureRuntime defaultRuntime].currentDocument = _currentDocument;
-          
-       }
+          }
        else{
            [_currentDocument saveToURL:document
               forSaveOperation: UIDocumentSaveForCreating

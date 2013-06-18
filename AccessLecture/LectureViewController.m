@@ -6,6 +6,8 @@
 #import "LineDrawView.h"
 #import "FileManager.h"
 #import "AccessDocument.h"
+#import "AccessLectureRuntime.h"
+
 
 #define RED_TAG 111
 #define GREEN_TAG 112
@@ -13,6 +15,7 @@
 #define BLACK_TAG 114
 #define HILIGHT_TAG 115
 #define ERASER_TAG 116
+
 
 #define ZOOM_VIEW_TAG 100
 #define MIN_ZOOM_SCALE 1.0
@@ -47,6 +50,27 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
     // Zoom Setup
     ZOOM_STEP = [defaults floatForKey:@"userZoomIncrement"];
 	zoomHandler = [[ZoomHandler alloc] initWithZoomLevel: ZOOM_STEP];
+
+	
+	// Set up the imageview
+    img = [[UIImage alloc] initWithData: [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]]];
+    imageView = [[UIImageView alloc]initWithImage:img];
+	imageView.userInteractionEnabled = YES;
+    [imageView setTag:ZOOM_VIEW_TAG]; 
+    [[AccessLectureRuntime defaultRuntime] openDocument];
+    // Set up the scrollview
+//	scrollView.clipsToBounds = YES;	// default is NO, but we want to restrict drawing within our scrollview
+//	[scrollView addSubview:notesViewController.view]; // We want to scroll/zoom the note-taking view as well
+//    [scrollView setDelegate:self];
+//    [scrollView setContentMode:UIViewContentModeScaleAspectFit]; // If this is not set, the image will be distorted
+//    [scrollView setContentSize:CGSizeMake(notesViewController.view.frame.size.width,notesViewController.view.frame.size.width)];
+//	[scrollView setScrollEnabled:YES];
+//    [scrollView setMinimumZoomScale:MIN_ZOOM_SCALE];
+//    [scrollView setZoomScale:MIN_ZOOM_SCALE];
+//    [scrollView setMaximumZoomScale:MAX_ZOOM_SCALE];
+//	scrollView.bounces = FALSE;
+//	scrollView.bouncesZoom = FALSE;
+
     
     scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 180, IPAD_MINI_HEIGHT, 468)];
     scrollView.contentSize = CGSizeMake(IPAD_MINI_HEIGHT, 468);
@@ -74,9 +98,31 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
     
     [self settingsChange];     // Apply the stored settings
     
+
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIAlertView * alertName = [[UIAlertView alloc] initWithTitle:@"Lecture" message:@"Please enter lecture name:" delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:nil];
+        alertName.alertViewStyle = UIAlertViewStylePlainTextInput;
+        UITextField * alertTextField = [alertName textFieldAtIndex:0];
+        alertTextField.keyboardType = UIKeyboardTypeNumberPad;
+        alertTextField.placeholder = @"Enter lecture name";
+        [alertName show];
+ 
+    });
+
     [super viewDidLoad];
 }
 
+
+
+- (void)alertView:(UIAlertView *)alertView
+clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 0){
+       currentLecture = [[Lecture alloc] initWithName:[alertView textFieldAtIndex:0].text];
+    }else if (buttonIndex == 1){
+        //reset clicked
+    }
+}
 /**
  * In case there's a memory warning.
  */
@@ -179,6 +225,22 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
         }
     }
 }
+
+
+
+
+/**
+ Do we want the application to be rotateable? Return YES or NO
+ */
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    // Only support portrait
+    return UIInterfaceOrientationIsPortrait(interfaceOrientation);
+}
+
+/**
+ * In case there's a memory warning.
+ */
+
 
 #pragma mark - NSURLConnection delegate Functionality
 
@@ -297,11 +359,70 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
 }
 
 - (IBAction)saveButtonPress:(id)sender
-{    
+
+{
+   
+    // Take the screenshot
+    UIImage *saveImage = [self imageByCropping:scrollView toRect:lineDrawView.frame];
+    
+    // Adds a photo to the saved photos album.  The optional completionSelector should have the form:
+    UIImageWriteToSavedPhotosAlbum(saveImage, nil, nil, nil);
+    //Save document with current image to user documents directory
+    
+         UIImageWriteToSavedPhotosAlbum(saveImage, nil, nil, nil);
+
+   
+        NSURL * currentDirectory = [FileManager iCloudDirectoryURL];
+        if (currentDirectory == nil) currentDirectory = [FileManager localDocumentsDirectoryURL];
+        NSArray * docs = [FileManager documentsIn:currentDirectory];
+   
+    NSURL * document = [FileManager findFileIn:docs thatFits:^(NSURL* url){
+            if (url != nil) return YES;
+            return NO;
+        }];
+    NSString *docsPath =[[currentDirectory absoluteString] stringByAppendingString:[NSString stringWithFormat:@"/%@.lecture",currentLecture.name]];
+    NSURL *docURL = [NSURL URLWithString:docsPath];
+    NSURL *temp = [docs objectAtIndex:0];
+ 
+    currentDocument = [[AccessDocument alloc] initWithFileURL:docURL];
+    currentLecture.image = UIImagePNGRepresentation(saveImage);
+    currentDocument.lecture = currentLecture;
+
+    if([[NSFileManager defaultManager] fileExistsAtPath:[docURL path]])
+    {
+         
+        [currentDocument saveToURL:docURL
+                  forSaveOperation:UIDocumentSaveForOverwriting
+                 completionHandler:^(BOOL success) {
+                     if (success){
+                         UIAlertView* alert = [[UILargeAlertView alloc] initWithText:NSLocalizedString(@"Notes Overwitten!", nil) fontSize:48];
+                         [alert show];
+                     } else {
+                         NSLog(@"Not saved for overwriting");
+                     }
+                 }];
+       
+    }
+    else{
+        [currentDocument saveToURL:docURL
+                  forSaveOperation:UIDocumentSaveForCreating
+                 completionHandler:^(BOOL success) {
+                     if (success){
+                         UIAlertView* alert = [[UILargeAlertView alloc] initWithText:NSLocalizedString(@"New Notes Created!", nil) fontSize:48];
+                         [alert show];
+                     } else {
+                         NSLog(@"Not created");
+                     }
+                 }];
+
+    }
+    
+      }
+  
     // Tell the user that notes are saved
-	UIAlertView* alert = [[UILargeAlertView alloc] initWithText:NSLocalizedString(@"Notes Saved!", nil) fontSize:48];
-	[alert show];
-}
+//	UIAlertView* alert = [[UILargeAlertView alloc] initWithText:NSLocalizedString(@"Notes Saved!", nil) fontSize:48];
+//	[[alert show];
+
 
 - (IBAction)startNotesButtonPress:(id)sender
 {
@@ -316,7 +437,7 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
     lineDrawView.userInteractionEnabled = YES;
     [self.view addSubview:lineDrawView];
     
-    tapToZoom.enabled = YES;
+    //tapToZoom.enabled = YES;
     panToMove.enabled = YES;
 }
 

@@ -10,8 +10,11 @@
 #import "Lecture.h"
 #import "UISegmentedControlExtension.h"
 
-@interface LectureViewController : UIViewController<UIScrollViewDelegate>
-{
+
+@interface LectureViewController : UIViewController<UIScrollViewDelegate,UIAlertViewDelegate>{
+    
+
+
     // UI
 	UIImageView *imageView;
     

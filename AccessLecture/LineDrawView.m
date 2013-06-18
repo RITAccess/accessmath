@@ -80,6 +80,67 @@
     [self setNeedsDisplay];
 }
 
+
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    UITouch *aTouch = [touches anyObject];
+    //Boolean variable to decide whether current location needs to edit an existing note or create a new one
+    BOOL isNew = YES;
+    //Check for double tap
+    if (aTouch.tapCount >= 1 && [self subviews].count >0)
+    {
+        for(UITextView *view in [self subviews] )
+            
+        {
+            if([view isKindOfClass:[UITextView class]])
+            {
+                
+                view.hidden = YES;
+            }
+            
+            
+        }
+        
+    }
+    if (aTouch.tapCount >= 2) {
+        //Fetch all UITextViews currently
+        UITouch *touch=[[touches allObjects] objectAtIndex:0];
+  //      UIBezierPath *notesBezierPath = [[UIBezierPath alloc]init];
+        for(UITextView *view in [self subviews] )
+            
+        {
+            if (CGRectContainsPoint(view.frame,[aTouch locationInView:self]))
+            {
+                isNew=NO;
+                view.hidden = NO;
+                [view becomeFirstResponder];
+                
+            }
+            
+        }
+        if(isNew==YES)
+        {
+//            [_bezierPath addArcWithCenter:CGPointMake([touch locationInView:self].x,[touch locationInView:self].y ) radius:15 startAngle:90 endAngle:180 clockwise:YES];
+            UIImageView * anImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin.png" ]];
+            [anImageView setCenter:[touch locationInView:self]];
+            [anImageView setBounds:CGRectMake([touch locationInView:self].x, [touch locationInView:self].y, 50, 50)];
+            [self addSubview:anImageView];
+            UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake([touch locationInView:self].x, [touch locationInView:self].y ,300,90)];
+            [self addSubview:textView];
+            textView.text = @"Tap to Enter Notes";
+            
+            [textView setScrollEnabled:YES];
+            [textView scrollRectToVisible:CGRectMake([touch locationInView:self].x, [touch locationInView:self].y, 300,90) animated:NO];
+            [textView setFont:[UIFont systemFontOfSize:25]];
+          //  textView.layer.borderWidth=0.5f;
+            [textView setNeedsDisplay];
+            [textView becomeFirstResponder];
+                       
+        }
+    }
+}
+
+
 - (void)clearAllPaths {
     [_bezierPath removeAllPoints];
     [_bezierPath2 removeAllPoints];
@@ -89,6 +150,7 @@
 }
 
 + (void)setLineWidth:(NSInteger)newWidth {
+
     
 }
 
@@ -109,4 +171,6 @@
     [_bezierPath5 stroke];
 }
 
+
 @end
+
