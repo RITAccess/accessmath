@@ -171,7 +171,7 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
         self.clearNotesButton.frame = CGRectMake(668, TOP_BUTTONS_Y, BUTTON_SIZE, BUTTON_SIZE);
         
         if (colorSegmentedControl){
-            [colorSegmentedControl setFrame:CGRectMake(0, 927, IPAD_MINI_HEIGHT, 80)];
+            [colorSegmentedControl setFrame:CGRectMake(0, 927, IPAD_MINI_WIDTH, 80)];
         }
         
         if (scrollView){
@@ -356,7 +356,7 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
     [colorSegmentedControl setTintColor:[UIColor lightGrayColor]];
     
     if (self.interfaceOrientation == UIInterfaceOrientationPortrait){
-        [colorSegmentedControl setFrame:CGRectMake(0, 927, IPAD_MINI_HEIGHT, 80)];
+        [colorSegmentedControl setFrame:CGRectMake(0, 927, IPAD_MINI_WIDTH, 80)];
     } else {
         [colorSegmentedControl setFrame:CGRectMake(0, 670, IPAD_MINI_HEIGHT, 80)];
     }
@@ -383,7 +383,7 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
 /**
  * Called when the SegmentedControl is changed to a new color.
  */
--(void)segmentChanged:(id)sender
+- (void)segmentChanged:(id)sender
 {
     lineDrawView.currentPath = [colorSegmentedControl selectedSegmentIndex];
 }
