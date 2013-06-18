@@ -73,6 +73,6 @@
 
 - (IBAction)returnToHome:(id)sender
 {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:^{}];
 }
 @end

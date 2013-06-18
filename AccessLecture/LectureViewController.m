@@ -355,7 +355,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (popover) {
         [popover dismissPopoverAnimated:YES];
     }
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:^{}];
 }
 
 - (IBAction)saveButtonPress:(id)sender
