@@ -51,7 +51,7 @@
 {
     [self getFullLecture:lectureName completion:^(Lecture *lecture, BOOL found) {
         if([_delegate respondsToSelector:@selector(didFinishDownloadingLecture:)]) {
-            [_delegate didFinishDownloadingLecture:lecture];
+            [_delegate didFinishDownloadingLecture:lecture]; 
         }
     }];
 }
@@ -135,6 +135,10 @@
         NSString *message = [[packet.dataAsJSON valueForKeyPath:@"args"] valueForKeyPath:@"message"][0];
         NSString *status = [[packet.dataAsJSON valueForKeyPath:@"args"] valueForKeyPath:@"status"][0];
         NSLog(@"Stream ended with status %@ with message %@", status, message);
+    }
+    // Name request
+    if ([packet.name isEqualToString:@"get-name"]) {
+        [socketConnection sendEvent:@"set-name" withData:[[UIDevice currentDevice] name]];;
     }
     
 }
