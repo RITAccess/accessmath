@@ -765,8 +765,8 @@
 		3FED96261370863E00D8D1B8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Pratik Rasam (RTRNBL5XYF)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Pratik Rasam (RTRNBL5XYF)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Piper Chester (926JP4SG23)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Piper Chester (926JP4SG23)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
@@ -776,8 +776,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "E9A28986-40E6-45BD-BBB0-020FDD0DB8C4";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E9A28986-40E6-45BD-BBB0-020FDD0DB8C4";
+				PROVISIONING_PROFILE = "4F1D5C81-E636-4BBB-A977-DC27D713DE97";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4F1D5C81-E636-4BBB-A977-DC27D713DE97";
 				SDKROOT = iphoneos7.0;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -786,16 +786,16 @@
 		3FED96271370863E00D8D1B8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Pratik Rasam (RTRNBL5XYF)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Pratik Rasam (RTRNBL5XYF)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Piper Chester (926JP4SG23)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Piper Chester (926JP4SG23)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "E9A28986-40E6-45BD-BBB0-020FDD0DB8C4";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E9A28986-40E6-45BD-BBB0-020FDD0DB8C4";
+				PROVISIONING_PROFILE = "4F1D5C81-E636-4BBB-A977-DC27D713DE97";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4F1D5C81-E636-4BBB-A977-DC27D713DE97";
 				SDKROOT = iphoneos7.0;
 			};
 			name = Release;

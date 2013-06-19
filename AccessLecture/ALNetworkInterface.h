@@ -16,32 +16,32 @@
 @protocol LectureStreaming <NSObject>
 
 - (void)didRecieveUpdate:(id)data;
+- (void)didFinishDownloadingLecture:(Lecture *)lecture;
 
 @end
 
 @interface ALNetworkInterface : NSObject <SocketIODelegate>
 
+/* Delegate */
+@property (nonatomic, strong) id<LectureStreaming> delegate;
+
+/* Create interface */
+@property (nonatomic, strong) NSString *connectionURL;
 - (id)initWithURL:(NSString *)url;
 - (void)connect;
 - (void)connectCompletion:(void (^)(BOOL success))handle;
-- (void)onMessageBlock:(void (^) (NSString *response))hande;
-- (void)sendData:(id)data;
 - (void)disconnect;
 
 /* Recieve full lecture from server */
 - (void)getFullLecture:(NSString *)lectureName completion:(void (^)(Lecture *lecture, BOOL found))handle;
+- (void)getFullLecture:(NSString *)lectureName;
 
 /* Set up stream */
 - (void)requestAccessToLectureSteam:(NSString *)name;
-@property (nonatomic, strong) NSString *connectionURL;
-
-/* Keeping a persitaint connection */
-@property(nonatomic) BOOL wasConnected;
-
-/* Delegate */
-@property (nonatomic, strong) id<LectureStreaming> delegate;
 
 /* Information */
 @property (readonly, getter = connected) BOOL connected;
 @property (readonly, getter = isConnecting) BOOL connecting;
+@property(nonatomic) BOOL wasConnected;
+
 @end
