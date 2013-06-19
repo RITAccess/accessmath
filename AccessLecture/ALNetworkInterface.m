@@ -73,11 +73,8 @@
 {    
     if ([socketConnection isConnected])
         return;
-    
-    socketConnection = [[SocketIO alloc] initWithDelegate:self];
-    NSLog(@"Connecting to %@", connectionURL.description);
-    [socketConnection connectToHost:connectionURL.description onPort:9000];
-    _wasConnected = YES;
+    NSURL *connection = [NSURL URLWithString:connectionURL];
+
     
 }
 
