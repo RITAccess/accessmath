@@ -28,7 +28,6 @@
 		3F6D11D417625F260066A4FA /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11D217625F150066A4FA /* libicucore.dylib */; };
 		3F6D11D517625F270066A4FA /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11D017625F0D0066A4FA /* CFNetwork.framework */; };
 		3F6D11D617625F2D0066A4FA /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11CE17625F060066A4FA /* Security.framework */; };
-		3F6D11DA176263880066A4FA /* NotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D11D9176263880066A4FA /* NotesViewController.m */; };
 		3F78A40713D5C1160048A579 /* UILargeAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F78A40513D5C1160048A579 /* UILargeAlertView.m */; };
 		3F959F0713C7555500A6DA79 /* ClearNotes.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F959F0613C7555500A6DA79 /* ClearNotes.png */; };
 		3F986F31176F5E2300A9CBDF /* OpenLectureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F986F30176F5E2300A9CBDF /* OpenLectureViewController.m */; };
@@ -43,7 +42,6 @@
 		3F9BA9CE1758FE1C00BEFB55 /* AccessMathTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F9BA9CD1758FE1C00BEFB55 /* AccessMathTests.m */; };
 		3F9C589D1770C99B001D4988 /* UISegmentedControlExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F9C589C1770C99B001D4988 /* UISegmentedControlExtension.m */; };
 		3F9C58A01770CE76001D4988 /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F9C589F1770CE76001D4988 /* pin.png */; };
-		3FA3DBDD139E6887001525C6 /* ZoomHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA3DBDC139E6887001525C6 /* ZoomHandler.m */; };
 		3FAAA850137848AB00F79C0C /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAAA84F137848AB00F79C0C /* Icon.png */; };
 		3FAE785413C786F800796813 /* accesslecture.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAE785313C786F800796813 /* accesslecture.png */; };
 		3FC32EBC13E05E0F00077291 /* biology.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FC32EBA13E05E0F00077291 /* biology.png */; };
@@ -107,8 +105,6 @@
 		3F6D11CE17625F060066A4FA /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		3F6D11D017625F0D0066A4FA /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		3F6D11D217625F150066A4FA /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
-		3F6D11D8176263880066A4FA /* NotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesViewController.h; sourceTree = "<group>"; };
-		3F6D11D9176263880066A4FA /* NotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesViewController.m; sourceTree = "<group>"; };
 		3F78A40413D5C1160048A579 /* UILargeAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILargeAlertView.h; sourceTree = "<group>"; };
 		3F78A40513D5C1160048A579 /* UILargeAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UILargeAlertView.m; sourceTree = "<group>"; };
 		3F78A40613D5C1160048A579 /* UILargeAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UILargeAlertView.xib; sourceTree = "<group>"; };
@@ -137,8 +133,6 @@
 		3F9C589B1770C99B001D4988 /* UISegmentedControlExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISegmentedControlExtension.h; sourceTree = "<group>"; };
 		3F9C589C1770C99B001D4988 /* UISegmentedControlExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISegmentedControlExtension.m; sourceTree = "<group>"; };
 		3F9C589F1770CE76001D4988 /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin.png; sourceTree = "<group>"; };
-		3FA3DBDB139E6887001525C6 /* ZoomHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZoomHandler.h; path = core/ZoomHandler.h; sourceTree = "<group>"; };
-		3FA3DBDC139E6887001525C6 /* ZoomHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZoomHandler.m; path = core/ZoomHandler.m; sourceTree = "<group>"; };
 		3FAAA84F137848AB00F79C0C /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
 		3FAE785313C786F800796813 /* accesslecture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = accesslecture.png; sourceTree = "<group>"; };
 		3FC32EBA13E05E0F00077291 /* biology.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = biology.png; path = ../biology.png; sourceTree = "<group>"; };
@@ -279,15 +273,6 @@
 			name = SocketIO;
 			sourceTree = "<group>";
 		};
-		3F6D11D7176263760066A4FA /* NoteViewController */ = {
-			isa = PBXGroup;
-			children = (
-				3F6D11D9176263880066A4FA /* NotesViewController.m */,
-				3F6D11D8176263880066A4FA /* NotesViewController.h */,
-			);
-			name = NoteViewController;
-			sourceTree = "<group>";
-		};
 		3F78A40213D5C0DD0048A579 /* Accessible Subclasses */ = {
 			isa = PBXGroup;
 			children = (
@@ -296,15 +281,6 @@
 				3F78A40613D5C1160048A579 /* UILargeAlertView.xib */,
 			);
 			name = "Accessible Subclasses";
-			sourceTree = "<group>";
-		};
-		3F97A09D139EC3AB0094D903 /* Zoom Handler */ = {
-			isa = PBXGroup;
-			children = (
-				3FA3DBDC139E6887001525C6 /* ZoomHandler.m */,
-				3FA3DBDB139E6887001525C6 /* ZoomHandler.h */,
-			);
-			name = "Zoom Handler";
 			sourceTree = "<group>";
 		};
 		3F99F1ED15435F9D0065CBB9 /* Document Model */ = {
@@ -360,13 +336,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		3F9C589E1770C9A6001D4988 /* Color Selection */ = {
+		3F9C589E1770C9A6001D4988 /* Color Segmented Control */ = {
 			isa = PBXGroup;
 			children = (
 				3F9C589B1770C99B001D4988 /* UISegmentedControlExtension.h */,
 				3F9C589C1770C99B001D4988 /* UISegmentedControlExtension.m */,
 			);
-			name = "Color Selection";
+			name = "Color Segmented Control";
 			sourceTree = "<group>";
 		};
 		3FAD0BF813A7B7AE00218B1F /* ColorViewController */ = {
@@ -502,14 +478,12 @@
 		3FED963213708E5100D8D1B8 /* Lecture View */ = {
 			isa = PBXGroup;
 			children = (
-				3F9C589E1770C9A6001D4988 /* Color Selection */,
+				3F9C589E1770C9A6001D4988 /* Color Segmented Control */,
 				3FEECEC9176907A9008E74C9 /* OpenSavedLecture */,
-				3F6D11D7176263760066A4FA /* NoteViewController */,
 				3FAD0BF813A7B7AE00218B1F /* ColorViewController */,
 				2C76BDE41762140D00A1E6BA /* Settings View */,
 				2C0F88681760D8D10062BD16 /* Line Draw View */,
 				3FAD0BFA13A7B7D800218B1F /* Lecture View  */,
-				3F97A09D139EC3AB0094D903 /* Zoom Handler */,
 			);
 			name = "Lecture View";
 			sourceTree = "<group>";
@@ -681,7 +655,6 @@
 				3FED961C1370863E00D8D1B8 /* AccessLectureAppDelegate.m in Sources */,
 				3FED96221370863E00D8D1B8 /* RootViewController.m in Sources */,
 				3FC85673139D2CF90028DEB5 /* LectureViewController.m in Sources */,
-				3FA3DBDD139E6887001525C6 /* ZoomHandler.m in Sources */,
 				3F2DB24113A65C2D00041736 /* ColorViewController.m in Sources */,
 				3F0DBDD613BD174900E3FEE8 /* AboutViewController.m in Sources */,
 				3F78A40713D5C1160048A579 /* UILargeAlertView.m in Sources */,
@@ -701,7 +674,6 @@
 				3F6D11CA17625EA20066A4FA /* base64.c in Sources */,
 				3F6D11CB17625EA20066A4FA /* NSData+SRB64Additions.m in Sources */,
 				3F6D11CC17625EA20066A4FA /* SRWebSocket.m in Sources */,
-				3F6D11DA176263880066A4FA /* NotesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

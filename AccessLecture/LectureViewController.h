@@ -2,7 +2,6 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
-#import "ZoomHandler.H"
 #import "LineDrawView.h"
 #import "SettingsViewController.h"
 #import "AccessLectureRuntime.h"
@@ -26,7 +25,6 @@
     
     // Zooming
     CGPoint screenSize;
-    ZoomHandler *zoomHandler;
     BOOL isZoomedIn;
     float ZOOM_STEP;
     float oldZoomScale;

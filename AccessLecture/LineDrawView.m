@@ -27,6 +27,10 @@
         _bezierPath5 = [[UIBezierPath alloc]init];
         _currentPath = 0;
         _isCreatingNote = NO;
+        _isDrawing = YES;
+        _tapToCreateNote = [[UITapGestureRecognizer alloc]initWithTarget:self action
+                                                                        :@selector(createNote:)];
+        [self addGestureRecognizer:_tapToCreateNote];
     }
     
     return self;
@@ -34,106 +38,84 @@
 
 #pragma mark - Touch Methods
 
+- (void)createNote:(UIGestureRecognizer *)gesture
+{
+    if (_isCreatingNote){
+        if(self.isCreatingNote){
+            UIImageView * pinImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin.png"]];
+            [pinImageView setCenter:[gesture locationInView:self]];
+            [pinImageView setTransform:CGAffineTransformMakeScale(.25, .25)]; // Shrinking the pin... 
+            [self addSubview:pinImageView];
+            
+            UITextView *textView = [[UITextView alloc]initWithFrame:CGRectMake([gesture locationInView:self].x + 50, [gesture locationInView:self].y, 300, 90)];
+            [self addSubview:textView];
+            textView.text = @"Type Notes Here...";
+            textView.layer.borderWidth = 3;
+            textView.layer.cornerRadius = 20;
+            [textView setFont:[UIFont boldSystemFontOfSize:40]];
+            [textView setNeedsDisplay];
+            
+            if ([textView isFirstResponder]){
+                [self becomeFirstResponder];
+            }
+        }
+    }
+}
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     UITouch *touch=[[touches allObjects] objectAtIndex:0];
     
-    switch (_currentPath) {
-        case 0:
-            [_bezierPath moveToPoint:[touch locationInView:self]];
-            break;
-        case 1:
-            [_bezierPath2 moveToPoint:[touch locationInView:self]];
-            break;
-        case 2:
-            [_bezierPath3 moveToPoint:[touch locationInView:self]];
-            break;
-        case 3:
-            [_bezierPath4 moveToPoint:[touch locationInView:self]];
-            break;
-        default:
-            [_bezierPath5 moveToPoint:[touch locationInView:self]];
-            break;
-    }    
+    if (_isDrawing){
+        switch (_currentPath) {
+            case 0:
+                [_bezierPath moveToPoint:[touch locationInView:self]];
+                break;
+            case 1:
+                [_bezierPath2 moveToPoint:[touch locationInView:self]];
+                break;
+            case 2:
+                [_bezierPath3 moveToPoint:[touch locationInView:self]];
+                break;
+            case 3:
+                [_bezierPath4 moveToPoint:[touch locationInView:self]];
+                break;
+            default:
+                [_bezierPath5 moveToPoint:[touch locationInView:self]];
+                break;
+        }
+    }
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch=[[touches allObjects] objectAtIndex:0];
 
-    switch (_currentPath) {
-        case 0:
-            [_bezierPath addLineToPoint:[touch locationInView:self]];
-            break;
-        case 1:
-            [_bezierPath2 addLineToPoint:[touch locationInView:self]];
-            break;
-        case 2:
-            [_bezierPath3 addLineToPoint:[touch locationInView:self]];
-            break;
-        case 3:
-            [_bezierPath4 addLineToPoint:[touch locationInView:self]];
-            break;
-        default:
-            [_bezierPath5 addLineToPoint:[touch locationInView:self]];
-            break;
+    if (_isDrawing){
+        switch (_currentPath) {
+            case 0:
+                [_bezierPath addLineToPoint:[touch locationInView:self]];
+                break;
+            case 1:
+                [_bezierPath2 addLineToPoint:[touch locationInView:self]];
+                break;
+            case 2:
+                [_bezierPath3 addLineToPoint:[touch locationInView:self]];
+                break;
+            case 3:
+                [_bezierPath4 addLineToPoint:[touch locationInView:self]];
+                break;
+            default:
+                [_bezierPath5 addLineToPoint:[touch locationInView:self]];
+                break;
+        }
+        
+        [self setNeedsDisplay];
     }
-    
-    [self setNeedsDisplay];
 }
 
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    UITouch *aTouch = [touches anyObject];
-    //Boolean variable to decide whether current location needs to edit an existing note or create a new one
-    BOOL isNew = YES;
-    //Check for double tap
-    if (aTouch.tapCount >= 1 && [self subviews].count > 0)
-    {
-        for(UITextView *view in [self subviews] )
-            
-        {
-            if([view isKindOfClass:[UITextView class]])
-            {
-                view.hidden = YES;
-            }
-        }
-        
-    }
-    if (aTouch.tapCount >= 2) {
-        //Fetch all UITextViews currently
-        UITouch *touch=[[touches allObjects] objectAtIndex:0];
-  //      UIBezierPath *notesBezierPath = [[UIBezierPath alloc]init];
-        for(UITextView *view in [self subviews] )
-        {
-            if (CGRectContainsPoint(view.frame,[aTouch locationInView:self]))
-            {
-                isNew = NO;
-                view.hidden = NO;
-                [view becomeFirstResponder];
-            }
-            
-        }
-        if(isNew == YES && self.isCreatingNote == YES)
-        {
-            NSLog(@"Is Creating Note...");
-//            [_bezierPath addArcWithCenter:CGPointMake([touch locationInView:self].x,[touch locationInView:self].y ) radius:15 startAngle:90 endAngle:180 clockwise:YES];
-            UIImageView * anImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin.png" ]];
-            [anImageView setCenter:[touch locationInView:self]];
-            [anImageView setBounds:CGRectMake([touch locationInView:self].x, [touch locationInView:self].y, 50, 50)];
-            [self addSubview:anImageView];
-            UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake([touch locationInView:self].x, [touch locationInView:self].y ,300,90)];
-            [self addSubview:textView];
-            textView.text = @"Tap to Enter Notes";
-            
-            [textView setScrollEnabled:YES];
-            [textView scrollRectToVisible:CGRectMake([touch locationInView:self].x, [touch locationInView:self].y, 300,90) animated:NO];
-            [textView setFont:[UIFont systemFontOfSize:25]];
-          //  textView.layer.borderWidth=0.5f;
-            [textView setNeedsDisplay];
-            [textView becomeFirstResponder];
-        }
-    }
 }
 
 - (void)clearAllPaths {

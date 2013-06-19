@@ -47,7 +47,6 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
     
     // Zoom Setup
     ZOOM_STEP = [defaults floatForKey:@"userZoomIncrement"];
-	zoomHandler = [[ZoomHandler alloc] initWithZoomLevel: ZOOM_STEP];
 
 	
 	// Set up the imageview
@@ -82,8 +81,6 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
     [self.view addGestureRecognizer:tapToZoom];
     
     [self settingsChange];     // Apply the stored settings
-    
-
     
     dispatch_async(dispatch_get_main_queue(), ^{
         UIAlertView * alertName = [[UIAlertView alloc] initWithTitle:@"Lecture" message:@"Please enter lecture name:" delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:nil];
@@ -137,7 +134,6 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
 {
     // Zoom increment 
     ZOOM_STEP = ([defaults floatForKey:@"userZoomIncrement"] * 100);
-    [zoomHandler setZoomLevel:ZOOM_STEP];
     
     // Active usability testing image
     img = [UIImage imageNamed:[defaults valueForKey:@"testImage"]];
@@ -211,21 +207,6 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
         }
     }
 }
-
-
-
-
-/**
- Do we want the application to be rotateable? Return YES or NO
- */
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Only support portrait
-    return UIInterfaceOrientationIsPortrait(interfaceOrientation);
-}
-
-/**
- * In case there's a memory warning.
- */
 
 
 #pragma mark - NSURLConnection delegate Functionality
@@ -345,9 +326,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
 }
 
 - (IBAction)saveButtonPress:(id)sender
-
 {
-   
     // Take the screenshot
     UIImage *saveImage = [self imageByCropping:scrollView toRect:lineDrawView.frame];
     
@@ -376,7 +355,6 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
 
     if([[NSFileManager defaultManager] fileExistsAtPath:[docURL path]])
     {
-         
         [currentDocument saveToURL:docURL
                   forSaveOperation:UIDocumentSaveForOverwriting
                  completionHandler:^(BOOL success) {
@@ -388,8 +366,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
                      }
                  }];
        
-    }
-    else{
+    } else {
         [currentDocument saveToURL:docURL
                   forSaveOperation:UIDocumentSaveForCreating
                  completionHandler:^(BOOL success) {
@@ -400,16 +377,9 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
                          NSLog(@"Not created");
                      }
                  }];
-
     }
-    
-      }
+}
   
-    // Tell the user that notes are saved
-//	UIAlertView* alert = [[UILargeAlertView alloc] initWithText:NSLocalizedString(@"Notes Saved!", nil) fontSize:48];
-//	[[alert show];
-
-
 - (IBAction)startNotesButtonPress:(id)sender
 {
     self.clearNotesButton.hidden = NO;
@@ -422,6 +392,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
     [self initColorSegmentedControl];
     
     lineDrawView.userInteractionEnabled = YES;
+    lineDrawView.isDrawing = YES;
     [self.view addSubview:lineDrawView];
     
     //tapToZoom.enabled = YES;
@@ -434,6 +405,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
     
     self.clearNotesButton.hidden = YES;
     self.exitNotesButton.hidden = YES;
+    self.createNoteButton.hidden = YES;
     self.zoomInButton.hidden = NO;
     self.zoomOutButton.hidden = NO;
     self.startNotesButton.hidden = NO;
@@ -457,12 +429,21 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
     }
     
     lineDrawView.isCreatingNote = !lineDrawView.isCreatingNote;
+    lineDrawView.isDrawing = !lineDrawView.isDrawing;
+    tapToZoom.enabled = !tapToZoom.enabled;
+    panToMove.enabled = !panToMove.enabled;
+    
 	[alert show];
 }
 
 - (IBAction)clearNotesButtonPress:(id)sender
 {
     [lineDrawView clearAllPaths];
+    
+    // Removes all notes.
+    for (UIView *view in [lineDrawView subviews]){
+        [view removeFromSuperview];
+    }
     
 	UIAlertView* alert = [[UILargeAlertView alloc] initWithText:
                           NSLocalizedString(@"Notes Cleared!", nil) fontSize:48];
