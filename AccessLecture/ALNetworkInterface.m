@@ -74,7 +74,7 @@
     if ([socketConnection isConnected])
         return;
     socketConnection = [[SocketIO alloc] initWithDelegate:self];
-    [socketConnection setUseSecure:YES];
+//    [socketConnection setUseSecure:YES];
     [socketConnection connectToHost:connectionURL onPort:9000];
     
 }
