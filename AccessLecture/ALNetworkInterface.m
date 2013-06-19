@@ -73,8 +73,9 @@
 {    
     if ([socketConnection isConnected])
         return;
-    NSURL *connection = [NSURL URLWithString:connectionURL];
-
+    socketConnection = [[SocketIO alloc] initWithDelegate:self];
+    [socketConnection setUseSecure:YES];
+    [socketConnection connectToHost:connectionURL onPort:9000];
     
 }
 
