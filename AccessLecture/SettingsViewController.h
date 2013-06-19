@@ -10,6 +10,9 @@
 
 @interface SettingsViewController : UIViewController
 
-- (IBAction)colorSlide:(id)sender;
+- (IBAction)penSizeSlide:(id)sender;
+- (IBAction)eraserSizeSlide:(id)sender;
+- (IBAction)contrastSwitchToggle:(id)sender;
+- (IBAction)zoomIncrementStep:(id)sender;
 
 @end
