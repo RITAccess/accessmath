@@ -30,13 +30,23 @@
         _isDrawing = YES;
         _tapToCreateNote = [[UITapGestureRecognizer alloc]initWithTarget:self action
                                                                         :@selector(createNote:)];
+        _tapToDismissKeyboard = [[UITapGestureRecognizer alloc]initWithTarget:self action
+                                                                             :@selector(dismissKeyboard)];
+        _tapToCreateNote.numberOfTapsRequired = 2;
+        [self addGestureRecognizer:_tapToDismissKeyboard];
         [self addGestureRecognizer:_tapToCreateNote];
+        
     }
     
     return self;
 }
 
 #pragma mark - Touch Methods
+
+- (void)dismissKeyboard
+{
+    [self endEditing:YES];
+}
 
 - (void)createNote:(UIGestureRecognizer *)gesture
 {
@@ -47,17 +57,13 @@
             [pinImageView setTransform:CGAffineTransformMakeScale(.25, .25)]; // Shrinking the pin... 
             [self addSubview:pinImageView];
             
-            UITextView *textView = [[UITextView alloc]initWithFrame:CGRectMake([gesture locationInView:self].x + 50, [gesture locationInView:self].y, 300, 90)];
+            UITextView *textView = [[UITextView alloc]initWithFrame:CGRectMake([gesture locationInView:self].x + 15, [gesture locationInView:self].y + 10, 300, 90)];
             [self addSubview:textView];
             textView.text = @"Type Notes Here...";
             textView.layer.borderWidth = 3;
             textView.layer.cornerRadius = 20;
             [textView setFont:[UIFont boldSystemFontOfSize:40]];
             [textView setNeedsDisplay];
-            
-            if ([textView isFirstResponder]){
-                [self becomeFirstResponder];
-            }
         }
     }
 }

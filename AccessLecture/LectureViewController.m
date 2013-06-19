@@ -53,14 +53,14 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
     img = [[UIImage alloc] initWithData: [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]]];
     imageView = [[UIImageView alloc]initWithImage:img];
 	imageView.userInteractionEnabled = YES;
-    [imageView setTag:ZOOM_VIEW_TAG]; 
+    [imageView setTag:ZOOM_VIEW_TAG];
     [[AccessLectureRuntime defaultRuntime] openDocument];
     
     scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 180, IPAD_MINI_HEIGHT, 468)];
     scrollView.contentSize = CGSizeMake(IPAD_MINI_HEIGHT, 468);
     scrollView.contentInset = UIEdgeInsetsMake(0, 0, 80, 0);
     scrollView.backgroundColor = [UIColor whiteColor];
-    scrollView.scrollEnabled = YES;
+    scrollView.scrollEnabled = NO; // Panning should be sufficient for now.
     [self.view addSubview:scrollView];
     
     // Observe NSUserDefaults for setting changes
@@ -69,11 +69,10 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
     
     panToMove = [[UIPanGestureRecognizer alloc]initWithTarget:self action
                                                              :@selector(panMove:)];
-    panToMove.minimumNumberOfTouches = 3;
-    panToMove.maximumNumberOfTouches = 3;
+    panToMove.minimumNumberOfTouches = 1;
+    panToMove.maximumNumberOfTouches = 2;
     [panToMove setTranslation:CGPointMake(40, 40) inView:lineDrawView];
     [self.view addGestureRecognizer:panToMove];
-    
     
     tapToZoom = [[UITapGestureRecognizer alloc] initWithTarget:self action:
                                          @selector(zoomTap:)];
@@ -395,8 +394,8 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
     lineDrawView.isDrawing = YES;
     [self.view addSubview:lineDrawView];
     
-    //tapToZoom.enabled = YES;
-    panToMove.enabled = YES;
+    tapToZoom.enabled = NO;
+    panToMove.enabled = NO;
 }
 
 - (IBAction)exitNotesButtonPress:(id)sender
@@ -412,6 +411,9 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
     
     // Disabling drawing to allow the user to scroll, zoom, or pan!
     lineDrawView.userInteractionEnabled = NO;
+    
+    tapToZoom.enabled = YES;
+    panToMove.enabled = YES;
     
     [scrollView addSubview:lineDrawView];
     [scrollView addGestureRecognizer:panToMove];
@@ -430,8 +432,6 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
     
     lineDrawView.isCreatingNote = !lineDrawView.isCreatingNote;
     lineDrawView.isDrawing = !lineDrawView.isDrawing;
-    tapToZoom.enabled = !tapToZoom.enabled;
-    panToMove.enabled = !panToMove.enabled;
     
 	[alert show];
 }
