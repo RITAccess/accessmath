@@ -6,6 +6,7 @@
 #import "LineDrawView.h"
 #import "FileManager.h"
 #import "AccessDocument.h"
+#import "AccessLectureRuntime.h"
 
 #define RED_TAG 111
 #define GREEN_TAG 112
@@ -46,13 +47,20 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
     
     // Zoom Setup
     ZOOM_STEP = [defaults floatForKey:@"userZoomIncrement"];
-	zoomHandler = [[ZoomHandler alloc] initWithZoomLevel: ZOOM_STEP];
+
+	
+	// Set up the imageview
+    img = [[UIImage alloc] initWithData: [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]]];
+    imageView = [[UIImageView alloc]initWithImage:img];
+	imageView.userInteractionEnabled = YES;
+    [imageView setTag:ZOOM_VIEW_TAG];
+    [[AccessLectureRuntime defaultRuntime] openDocument];
     
     scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 180, IPAD_MINI_HEIGHT, 468)];
     scrollView.contentSize = CGSizeMake(IPAD_MINI_HEIGHT, 468);
     scrollView.contentInset = UIEdgeInsetsMake(0, 0, 80, 0);
     scrollView.backgroundColor = [UIColor whiteColor];
-    scrollView.scrollEnabled = YES;
+    scrollView.scrollEnabled = NO; // Panning should be sufficient for now.
     [self.view addSubview:scrollView];
     
     // Observe NSUserDefaults for setting changes
@@ -61,11 +69,10 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
     
     panToMove = [[UIPanGestureRecognizer alloc]initWithTarget:self action
                                                              :@selector(panMove:)];
-    panToMove.minimumNumberOfTouches = 3;
-    panToMove.maximumNumberOfTouches = 3;
+    panToMove.minimumNumberOfTouches = 1;
+    panToMove.maximumNumberOfTouches = 2;
     [panToMove setTranslation:CGPointMake(40, 40) inView:lineDrawView];
     [self.view addGestureRecognizer:panToMove];
-    
     
     tapToZoom = [[UITapGestureRecognizer alloc] initWithTarget:self action:
                                          @selector(zoomTap:)];
@@ -74,9 +81,29 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
     
     [self settingsChange];     // Apply the stored settings
     
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIAlertView * alertName = [[UIAlertView alloc] initWithTitle:@"Lecture" message:@"Please enter lecture name:" delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:nil];
+        alertName.alertViewStyle = UIAlertViewStylePlainTextInput;
+        UITextField * alertTextField = [alertName textFieldAtIndex:0];
+        alertTextField.keyboardType = UIKeyboardTypeNumberPad;
+        alertTextField.placeholder = @"Enter lecture name";
+        [alertName show];
+ 
+    });
+
     [super viewDidLoad];
 }
 
+
+
+- (void)alertView:(UIAlertView *)alertView
+clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 0){
+       currentLecture = [[Lecture alloc] initWithName:[alertView textFieldAtIndex:0].text];
+    }else if (buttonIndex == 1){
+        //reset clicked
+    }
+}
 /**
  * In case there's a memory warning.
  */
@@ -106,7 +133,6 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
 {
     // Zoom increment 
     ZOOM_STEP = ([defaults floatForKey:@"userZoomIncrement"] * 100);
-    [zoomHandler setZoomLevel:ZOOM_STEP];
     
     // Active usability testing image
     img = [UIImage imageNamed:[defaults valueForKey:@"testImage"]];
@@ -115,6 +141,7 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
     // Hide Clear and Exit Notes Buttons on Start
     self.clearNotesButton.hidden = YES;
     self.exitNotesButton.hidden = YES;
+    self.createNoteButton.hidden = YES;
     
     // Initialize Zoom check, will flip when zoomed in
     isZoomedIn = NO;
@@ -171,7 +198,7 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
         self.clearNotesButton.frame = CGRectMake(668, TOP_BUTTONS_Y, BUTTON_SIZE, BUTTON_SIZE);
         
         if (colorSegmentedControl){
-            [colorSegmentedControl setFrame:CGRectMake(0, 927, IPAD_MINI_HEIGHT, 80)];
+            [colorSegmentedControl setFrame:CGRectMake(0, 927, IPAD_MINI_WIDTH, 80)];
         }
         
         if (scrollView){
@@ -179,6 +206,7 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
         }
     }
 }
+
 
 #pragma mark - NSURLConnection delegate Functionality
 
@@ -293,20 +321,69 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
     if (popover) {
         [popover dismissPopoverAnimated:YES];
     }
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:^{}];
 }
 
 - (IBAction)saveButtonPress:(id)sender
-{    
-    // Tell the user that notes are saved
-	UIAlertView* alert = [[UILargeAlertView alloc] initWithText:NSLocalizedString(@"Notes Saved!", nil) fontSize:48];
-	[alert show];
-}
+{
+    // Take the screenshot
+    UIImage *saveImage = [self imageByCropping:scrollView toRect:lineDrawView.frame];
+    
+    // Adds a photo to the saved photos album.  The optional completionSelector should have the form:
+    UIImageWriteToSavedPhotosAlbum(saveImage, nil, nil, nil);
+    //Save document with current image to user documents directory
+    
+         UIImageWriteToSavedPhotosAlbum(saveImage, nil, nil, nil);
 
+   
+        NSURL * currentDirectory = [FileManager iCloudDirectoryURL];
+        if (currentDirectory == nil) currentDirectory = [FileManager localDocumentsDirectoryURL];
+        NSArray * docs = [FileManager documentsIn:currentDirectory];
+   
+    NSURL * document = [FileManager findFileIn:docs thatFits:^(NSURL* url){
+            if (url != nil) return YES;
+            return NO;
+        }];
+    NSString *docsPath =[[currentDirectory absoluteString] stringByAppendingString:[NSString stringWithFormat:@"/%@.lecture",currentLecture.name]];
+    NSURL *docURL = [NSURL URLWithString:docsPath];
+    NSURL *temp = [docs objectAtIndex:0];
+ 
+    currentDocument = [[AccessDocument alloc] initWithFileURL:docURL];
+    currentLecture.image = UIImagePNGRepresentation(saveImage);
+    currentDocument.lecture = currentLecture;
+
+    if([[NSFileManager defaultManager] fileExistsAtPath:[docURL path]])
+    {
+        [currentDocument saveToURL:docURL
+                  forSaveOperation:UIDocumentSaveForOverwriting
+                 completionHandler:^(BOOL success) {
+                     if (success){
+                         UIAlertView* alert = [[UILargeAlertView alloc] initWithText:NSLocalizedString(@"Notes Overwitten!", nil) fontSize:48];
+                         [alert show];
+                     } else {
+                         NSLog(@"Not saved for overwriting");
+                     }
+                 }];
+       
+    } else {
+        [currentDocument saveToURL:docURL
+                  forSaveOperation:UIDocumentSaveForCreating
+                 completionHandler:^(BOOL success) {
+                     if (success){
+                         UIAlertView* alert = [[UILargeAlertView alloc] initWithText:NSLocalizedString(@"New Notes Created!", nil) fontSize:48];
+                         [alert show];
+                     } else {
+                         NSLog(@"Not created");
+                     }
+                 }];
+    }
+}
+  
 - (IBAction)startNotesButtonPress:(id)sender
 {
     self.clearNotesButton.hidden = NO;
     self.exitNotesButton.hidden = NO;
+    self.createNoteButton.hidden = NO;
     self.zoomInButton.hidden = YES;
     self.zoomOutButton.hidden = YES;
     self.startNotesButton.hidden = YES;
@@ -314,10 +391,11 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
     [self initColorSegmentedControl];
     
     lineDrawView.userInteractionEnabled = YES;
+    lineDrawView.isDrawing = YES;
     [self.view addSubview:lineDrawView];
     
-    tapToZoom.enabled = YES;
-    panToMove.enabled = YES;
+    tapToZoom.enabled = NO;
+    panToMove.enabled = NO;
 }
 
 - (IBAction)exitNotesButtonPress:(id)sender
@@ -326,6 +404,7 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
     
     self.clearNotesButton.hidden = YES;
     self.exitNotesButton.hidden = YES;
+    self.createNoteButton.hidden = YES;
     self.zoomInButton.hidden = NO;
     self.zoomOutButton.hidden = NO;
     self.startNotesButton.hidden = NO;
@@ -333,13 +412,38 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
     // Disabling drawing to allow the user to scroll, zoom, or pan!
     lineDrawView.userInteractionEnabled = NO;
     
+    tapToZoom.enabled = YES;
+    panToMove.enabled = YES;
+    
     [scrollView addSubview:lineDrawView];
     [scrollView addGestureRecognizer:panToMove];
+}
+
+- (IBAction)createNoteButtonPress:(id)sender
+{
+    UIAlertView *alert;
+    if (lineDrawView.isCreatingNote == YES){
+        alert = [[UILargeAlertView alloc] initWithText:
+                              NSLocalizedString(@"Exiting Note Mode!" , nil) fontSize:48];
+    } else {
+        alert = [[UILargeAlertView alloc]initWithText:
+                 NSLocalizedString(@"Entering Note Mode!", nil)fontSize:48];
+    }
+    
+    lineDrawView.isCreatingNote = !lineDrawView.isCreatingNote;
+    lineDrawView.isDrawing = !lineDrawView.isDrawing;
+    
+	[alert show];
 }
 
 - (IBAction)clearNotesButtonPress:(id)sender
 {
     [lineDrawView clearAllPaths];
+    
+    // Removes all notes.
+    for (UIView *view in [lineDrawView subviews]){
+        [view removeFromSuperview];
+    }
     
 	UIAlertView* alert = [[UILargeAlertView alloc] initWithText:
                           NSLocalizedString(@"Notes Cleared!", nil) fontSize:48];
@@ -356,7 +460,7 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
     [colorSegmentedControl setTintColor:[UIColor lightGrayColor]];
     
     if (self.interfaceOrientation == UIInterfaceOrientationPortrait){
-        [colorSegmentedControl setFrame:CGRectMake(0, 927, IPAD_MINI_HEIGHT, 80)];
+        [colorSegmentedControl setFrame:CGRectMake(0, 927, IPAD_MINI_WIDTH, 80)];
     } else {
         [colorSegmentedControl setFrame:CGRectMake(0, 670, IPAD_MINI_HEIGHT, 80)];
     }
@@ -383,7 +487,7 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
 /**
  * Called when the SegmentedControl is changed to a new color.
  */
--(void)segmentChanged:(id)sender
+- (void)segmentChanged:(id)sender
 {
     lineDrawView.currentPath = [colorSegmentedControl selectedSegmentIndex];
 }

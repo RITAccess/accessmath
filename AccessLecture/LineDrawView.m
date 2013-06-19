@@ -26,6 +26,16 @@
         _bezierPath4 = [[UIBezierPath alloc]init];
         _bezierPath5 = [[UIBezierPath alloc]init];
         _currentPath = 0;
+        _isCreatingNote = NO;
+        _isDrawing = YES;
+        _tapToCreateNote = [[UITapGestureRecognizer alloc]initWithTarget:self action
+                                                                        :@selector(createNote:)];
+        _tapToDismissKeyboard = [[UITapGestureRecognizer alloc]initWithTarget:self action
+                                                                             :@selector(dismissKeyboard)];
+        _tapToCreateNote.numberOfTapsRequired = 2;
+        [self addGestureRecognizer:_tapToDismissKeyboard];
+        [self addGestureRecognizer:_tapToCreateNote];
+        
     }
     
     return self;
@@ -33,51 +43,85 @@
 
 #pragma mark - Touch Methods
 
+- (void)dismissKeyboard
+{
+    [self endEditing:YES];
+}
+
+- (void)createNote:(UIGestureRecognizer *)gesture
+{
+    if (_isCreatingNote){
+        if(self.isCreatingNote){
+            UIImageView * pinImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin.png"]];
+            [pinImageView setCenter:[gesture locationInView:self]];
+            [pinImageView setTransform:CGAffineTransformMakeScale(.25, .25)]; // Shrinking the pin... 
+            [self addSubview:pinImageView];
+            
+            UITextView *textView = [[UITextView alloc]initWithFrame:CGRectMake([gesture locationInView:self].x + 15, [gesture locationInView:self].y + 10, 300, 90)];
+            [self addSubview:textView];
+            textView.text = @"Type Notes Here...";
+            textView.layer.borderWidth = 3;
+            textView.layer.cornerRadius = 20;
+            [textView setFont:[UIFont boldSystemFontOfSize:40]];
+            [textView setNeedsDisplay];
+        }
+    }
+}
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     UITouch *touch=[[touches allObjects] objectAtIndex:0];
     
-    switch (_currentPath) {
-        case 0:
-            [_bezierPath moveToPoint:[touch locationInView:self]];
-            break;
-        case 1:
-            [_bezierPath2 moveToPoint:[touch locationInView:self]];
-            break;
-        case 2:
-            [_bezierPath3 moveToPoint:[touch locationInView:self]];
-            break;
-        case 3:
-            [_bezierPath4 moveToPoint:[touch locationInView:self]];
-            break;
-        default:
-            [_bezierPath5 moveToPoint:[touch locationInView:self]];
-            break;
-    }    
+    if (_isDrawing){
+        switch (_currentPath) {
+            case 0:
+                [_bezierPath moveToPoint:[touch locationInView:self]];
+                break;
+            case 1:
+                [_bezierPath2 moveToPoint:[touch locationInView:self]];
+                break;
+            case 2:
+                [_bezierPath3 moveToPoint:[touch locationInView:self]];
+                break;
+            case 3:
+                [_bezierPath4 moveToPoint:[touch locationInView:self]];
+                break;
+            default:
+                [_bezierPath5 moveToPoint:[touch locationInView:self]];
+                break;
+        }
+    }
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch=[[touches allObjects] objectAtIndex:0];
 
-    switch (_currentPath) {
-        case 0:
-            [_bezierPath addLineToPoint:[touch locationInView:self]];
-            break;
-        case 1:
-            [_bezierPath2 addLineToPoint:[touch locationInView:self]];
-            break;
-        case 2:
-            [_bezierPath3 addLineToPoint:[touch locationInView:self]];
-            break;
-        case 3:
-            [_bezierPath4 addLineToPoint:[touch locationInView:self]];
-            break;
-        default:
-            [_bezierPath5 addLineToPoint:[touch locationInView:self]];
-            break;
+    if (_isDrawing){
+        switch (_currentPath) {
+            case 0:
+                [_bezierPath addLineToPoint:[touch locationInView:self]];
+                break;
+            case 1:
+                [_bezierPath2 addLineToPoint:[touch locationInView:self]];
+                break;
+            case 2:
+                [_bezierPath3 addLineToPoint:[touch locationInView:self]];
+                break;
+            case 3:
+                [_bezierPath4 addLineToPoint:[touch locationInView:self]];
+                break;
+            default:
+                [_bezierPath5 addLineToPoint:[touch locationInView:self]];
+                break;
+        }
+        
+        [self setNeedsDisplay];
     }
-    
-    [self setNeedsDisplay];
+}
+
+
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
 }
 
 - (void)clearAllPaths {
@@ -89,6 +133,7 @@
 }
 
 + (void)setLineWidth:(NSInteger)newWidth {
+
     
 }
 
@@ -109,4 +154,6 @@
     [_bezierPath5 stroke];
 }
 
+
 @end
+
