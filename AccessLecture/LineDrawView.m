@@ -30,12 +30,16 @@
         _isDrawing = YES;
         _tapToCreateNote = [[UITapGestureRecognizer alloc]initWithTarget:self action
                                                                         :@selector(createNote:)];
+        _tapToCreateNote.numberOfTapsRequired = 2;
         _tapToDismissKeyboard = [[UITapGestureRecognizer alloc]initWithTarget:self action
                                                                              :@selector(dismissKeyboard)];
-        _tapToCreateNote.numberOfTapsRequired = 2;
+        
+        _panToMoveNote = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(moveNote:)];
+        [_panToMoveNote setMinimumNumberOfTouches:1];
+        [_panToMoveNote setEnabled:NO];
         [self addGestureRecognizer:_tapToDismissKeyboard];
         [self addGestureRecognizer:_tapToCreateNote];
-        
+//        [self addGestureRecognizer:_panToMoveNote];
     }
     
     return self;
@@ -52,20 +56,31 @@
 {
     if (_isCreatingNote){
         if(self.isCreatingNote){
-            UIImageView * pinImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin.png"]];
-            [pinImageView setCenter:[gesture locationInView:self]];
-            [pinImageView setTransform:CGAffineTransformMakeScale(.25, .25)]; // Shrinking the pin... 
-            [self addSubview:pinImageView];
+            _pinImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin.png"]];
+            [_pinImageView setCenter:[gesture locationInView:self]];
+            [_pinImageView setTransform:CGAffineTransformMakeScale(.25, .25)]; // Shrinking the pin...
+            [self addSubview:_pinImageView];
             
-            UITextView *textView = [[UITextView alloc]initWithFrame:CGRectMake([gesture locationInView:self].x + 15, [gesture locationInView:self].y + 10, 300, 90)];
+            UITextView *textView = [[UITextView alloc]initWithFrame:CGRectMake([gesture locationInView:self].x + 15, [gesture locationInView:self].y + 10, 300, 120)];
             [self addSubview:textView];
             textView.text = @"Type Notes Here...";
             textView.layer.borderWidth = 3;
             textView.layer.cornerRadius = 20;
-            [textView setFont:[UIFont boldSystemFontOfSize:40]];
+            [textView setFont:[UIFont boldSystemFontOfSize:30]];
             [textView setNeedsDisplay];
         }
     }
+}
+
+- (void)moveNote:(UIPanGestureRecognizer *)gesture
+{
+    if (_pinImageView){
+        if (gesture.view.frame.origin.x == _pinImageView.frame.origin.x){
+            NSLog(@"Equal!");
+        }
+    }
+
+    NSLog(@"Moving...");
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

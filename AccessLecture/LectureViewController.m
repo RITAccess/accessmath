@@ -430,6 +430,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
                  NSLocalizedString(@"Entering Note Mode!", nil)fontSize:48];
     }
     
+    [colorSegmentedControl setHidden:!colorSegmentedControl.isHidden];
     lineDrawView.isCreatingNote = !lineDrawView.isCreatingNote;
     lineDrawView.isDrawing = !lineDrawView.isDrawing;
     
