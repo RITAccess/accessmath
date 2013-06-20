@@ -10,6 +10,7 @@
 #import "LectureCell.h"
 #import "FileManager.h"
 #import "LectureViewController.h"
+
 @interface OpenLectureViewController ()
 
 @end
@@ -24,6 +25,7 @@
     }
     return self;
 }
+
 
 - (void)viewDidLoad
 {
@@ -84,6 +86,25 @@
         LectureViewController *controller = [segue destinationViewController];
         controller.isOpened = YES;
         controller.documentURL = [diectories objectAtIndex:self.tableView.indexPathForSelectedRow.row];
+        NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+        
+        NSOperation *operation;
+        
+        operation = [NSBlockOperation blockOperationWithBlock:^{
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [[AccessLectureRuntime defaultRuntime] openDocument:controller.documentURL];
+                
+            });
+            }];
+        NSOperation *completionOperation = [NSBlockOperation blockOperationWithBlock:^{
+            NSLog(@"Starting second");
+                                
+
+        }];
+       
+        [queue addOperation:operation];
+        [queue addOperation:completionOperation];
         
     }
    

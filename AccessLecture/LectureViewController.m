@@ -40,6 +40,21 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
     __weak UIPopoverController *popover;
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+   
+}
+-(void)viewDidAppear:(BOOL)animated{
+    if(self.isOpened)
+    {
+        currentLecture = [AccessLectureRuntime defaultRuntime].currentDocument.lecture;
+        [[self.navigationBar topItem] setTitle:currentLecture.name];
+        UIImage *temp = [UIImage imageWithData:currentLecture.image];
+     
+        [imageView setBounds:CGRectMake(0, 180, IPAD_MINI_HEIGHT, 468)];
+        [imageView setImage:temp];
+        [self.view addSubview:imageView];
+    }
+}
 - (void)viewDidLoad {
  
     defaults = [NSUserDefaults standardUserDefaults];
@@ -86,7 +101,8 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
     if(!(self.isOpened))
     {
     dispatch_async(dispatch_get_main_queue(), ^{
-        UIAlertView * alertName = [[UIAlertView alloc] initWithTitle:@"Lecture" message:@"Please enter lecture name:" delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:nil];
+        UIAlertView * alertName = [[UIAlertView alloc] initWithTitle:@"Lecture" message:
+                                   @"Please enter lecture name:" delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:nil];
         alertName.alertViewStyle = UIAlertViewStylePlainTextInput;
         UITextField * alertTextField = [alertName textFieldAtIndex:0];
         //alertTextField.keyboardType = UIKeyboardTypeNumberPad;
@@ -96,27 +112,6 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
     });
     }
     
-    
-        if(self.isOpened)
-        {
-           dispatch_group_t group = dispatch_group_create();
-           dispatch_group_async(group,dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^ {
-            [[AccessLectureRuntime defaultRuntime] openDocument:self.documentURL];
-            NSLog(@"1st");
-           });
-            dispatch_group_notify(group,dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^ {
-                NSLog(@"2nd");
-              
-                UIImage *thisImage = [UIImage imageWithData:[AccessLectureRuntime defaultRuntime].currentDocument.lecture.image];
-                UIImageView *view = [[UIImageView alloc] initWithImage:thisImage];
-                [scrollView addSubview:view];    });
-         //   self.navigationBar.topItem.title = currentLecture.name;
-        }
-       
-   
-    
-   
-   
     [super viewDidLoad];
 }
 
@@ -382,8 +377,9 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
 - (IBAction)saveButtonPress:(id)sender
 
 {
-  
+  self.navigationBar.topItem.title = [AccessLectureRuntime defaultRuntime].currentDocument.lecture.name;
     // Take the screenshot
+    
     UIImage *saveImage = [self imageByCropping:scrollView toRect:CGRectMake(0, 0, 500, 500)];
    
     NSLog(@"%u",[[scrollView subviews] count]);
@@ -448,6 +444,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
     [self.view addSubview:lineDrawView];
     tapToZoom.enabled = YES;
     panToMove.enabled = YES;
+    [scrollView addSubview:imageView];
 }
 
 - (IBAction)exitNotesButtonPress:(id)sender

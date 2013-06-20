@@ -49,26 +49,29 @@ static NSString * DEFAULT_FILENAME = @"Lecture001";
         document = [currentDirectory URLByAppendingPathComponent:filename];
         }
     _currentDocument = [[AccessDocument alloc] initWithFileURL:withURL];
-
-    [_currentDocument openWithCompletionHandler:^(BOOL success){
-       if(success)
-       {
-           NSLog(@"Success");
-           [AccessLectureRuntime defaultRuntime].currentDocument = _currentDocument;
-              }
-       else{
-           [_currentDocument saveToURL:withURL
-              forSaveOperation: UIDocumentSaveForCreating
-             completionHandler:^(BOOL success) {
-                 if (success){
-                     NSLog(@"Created");
-                 } else {
-                     NSLog(@"Not created");
-                 }
-             }];
-       }
-       
-          }];
+  dispatch_barrier_async(dispatch_get_main_queue(), ^{
+        [_currentDocument openWithCompletionHandler:^(BOOL success){
+            if(success)
+            {
+                NSLog(@"Success");
+                [AccessLectureRuntime defaultRuntime].currentDocument = _currentDocument;
+            }
+            else{
+                [_currentDocument saveToURL:withURL
+                           forSaveOperation: UIDocumentSaveForCreating
+                          completionHandler:^(BOOL success) {
+                              if (success){
+                                  NSLog(@"Created");
+                              } else {
+                                  NSLog(@"Not created");
+                              }
+                          }];
+            }
+            
+        }];
+  
+  });
+    
    
 }
 
