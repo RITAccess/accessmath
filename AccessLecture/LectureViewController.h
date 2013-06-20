@@ -45,6 +45,8 @@
     AccessLectureRuntime *currentRuntime;
     Lecture *currentLecture;
     
+   
+    
     // Color Selection
     UISegmentedControl *colorSegmentedControl;
     
@@ -75,6 +77,7 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *navigationBarBackButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *navigationBarSettingsButton;
 @property (weak, nonatomic) IBOutlet UIButton *createNoteButton;
-
+@property (nonatomic)BOOL isOpened;
+@property (nonatomic) NSURL *documentURL;
 @end
 

@@ -117,7 +117,6 @@
         if(isNew == YES && self.isCreatingNote == YES)
         {
             NSLog(@"Is Creating Note...");
-//            [_bezierPath addArcWithCenter:CGPointMake([touch locationInView:self].x,[touch locationInView:self].y ) radius:15 startAngle:90 endAngle:180 clockwise:YES];
             UIImageView * anImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin.png" ]];
             [anImageView setCenter:[touch locationInView:self]];
             [anImageView setBounds:CGRectMake([touch locationInView:self].x, [touch locationInView:self].y, 50, 50)];
@@ -129,7 +128,6 @@
             [textView setScrollEnabled:YES];
             [textView scrollRectToVisible:CGRectMake([touch locationInView:self].x, [touch locationInView:self].y, 300,90) animated:NO];
             [textView setFont:[UIFont systemFontOfSize:25]];
-          //  textView.layer.borderWidth=0.5f;
             [textView setNeedsDisplay];
             [textView becomeFirstResponder];
         }

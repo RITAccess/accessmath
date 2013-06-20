@@ -34,29 +34,30 @@ static NSString * DEFAULT_FILENAME = @"Lecture001";
     return defaults;
 }
 
-- (void)openDocument{
+- (void)openDocument:(NSURL *) withURL{
+  //  NSURL *dirURL=[FileManager accessMathDirectoryURL];
+  //  [FileManager clearAllDocuments];
     NSURL * currentDirectory = [FileManager iCloudDirectoryURL];
-    if (currentDirectory == nil) currentDirectory = [FileManager localDocumentsDirectoryURL];
+    if (currentDirectory == nil) currentDirectory = [FileManager accessMathDirectoryURL];
     NSArray * docs = [FileManager documentsIn:currentDirectory];
        NSURL * document = [FileManager findFileIn:docs thatFits:^(NSURL* url){
         if (url != nil) return YES;
         return NO;
     }];
-     
-    if (document == nil) {
+     if (document == nil) {
         NSString * filename = [DEFAULT_FILENAME stringByAppendingPathExtension:[AccessDocument fileType]];
         document = [currentDirectory URLByAppendingPathComponent:filename];
         }
-    _currentDocument = [[AccessDocument alloc] initWithFileURL:document];
-   
+    _currentDocument = [[AccessDocument alloc] initWithFileURL:withURL];
+
     [_currentDocument openWithCompletionHandler:^(BOOL success){
        if(success)
        {
            NSLog(@"Success");
            [AccessLectureRuntime defaultRuntime].currentDocument = _currentDocument;
-          }
+              }
        else{
-           [_currentDocument saveToURL:document
+           [_currentDocument saveToURL:withURL
               forSaveOperation: UIDocumentSaveForCreating
              completionHandler:^(BOOL success) {
                  if (success){

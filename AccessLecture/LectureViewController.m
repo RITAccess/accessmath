@@ -41,6 +41,7 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
 }
 
 - (void)viewDidLoad {
+ 
     defaults = [NSUserDefaults standardUserDefaults];
     
     lineDrawView = [[LineDrawView alloc]initWithFrame:CGRectMake(0, 180, IPAD_MINI_HEIGHT, 468)];
@@ -55,7 +56,7 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
     imageView = [[UIImageView alloc]initWithImage:img];
 	imageView.userInteractionEnabled = YES;
     [imageView setTag:ZOOM_VIEW_TAG]; 
-    [[AccessLectureRuntime defaultRuntime] openDocument];
+   
     
     scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 180, IPAD_MINI_HEIGHT, 468)];
     scrollView.contentSize = CGSizeMake(IPAD_MINI_HEIGHT, 468);
@@ -82,24 +83,47 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
     [self.view addGestureRecognizer:tapToZoom];
     
     [self settingsChange];     // Apply the stored settings
-    
-
-    
+    if(!(self.isOpened))
+    {
     dispatch_async(dispatch_get_main_queue(), ^{
         UIAlertView * alertName = [[UIAlertView alloc] initWithTitle:@"Lecture" message:@"Please enter lecture name:" delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:nil];
         alertName.alertViewStyle = UIAlertViewStylePlainTextInput;
         UITextField * alertTextField = [alertName textFieldAtIndex:0];
-        alertTextField.keyboardType = UIKeyboardTypeNumberPad;
+        //alertTextField.keyboardType = UIKeyboardTypeNumberPad;
         alertTextField.placeholder = @"Enter lecture name";
         [alertName show];
- 
+        
     });
-
+    }
+    
+    
+        if(self.isOpened)
+        {
+           dispatch_group_t group = dispatch_group_create();
+           dispatch_group_async(group,dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^ {
+            [[AccessLectureRuntime defaultRuntime] openDocument:self.documentURL];
+            NSLog(@"1st");
+           });
+            dispatch_group_notify(group,dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^ {
+                NSLog(@"2nd");
+              
+                UIImage *thisImage = [UIImage imageWithData:[AccessLectureRuntime defaultRuntime].currentDocument.lecture.image];
+                UIImageView *view = [[UIImageView alloc] initWithImage:thisImage];
+                [scrollView addSubview:view];    });
+         //   self.navigationBar.topItem.title = currentLecture.name;
+        }
+       
+   
+    
+   
+   
     [super viewDidLoad];
 }
 
 
-
+/**
+ *Event handler for alertview 
+ */
 - (void)alertView:(UIAlertView *)alertView
 clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 0){
@@ -205,8 +229,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
         if (colorSegmentedControl){
             [colorSegmentedControl setFrame:CGRectMake(0, 927, IPAD_MINI_WIDTH, 80)];
         }
-        
-        if (scrollView){
+       if (scrollView){
             scrollView.frame = CGRectMake(0, 180, IPAD_MINI_HEIGHT, 710); // Extending ScrollView past LineDrawView height
         }
     }
@@ -344,40 +367,43 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
     [self dismissViewControllerAnimated:YES completion:^{}];
 }
 
+//Function for extracting image from a view
++ (UIImage *) imageWithView:(UIView *)view
+{
+    UIGraphicsBeginImageContextWithOptions(view.bounds.size, view.opaque, 0.0);
+    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    
+    UIImage * img = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return img;
+}
 - (IBAction)saveButtonPress:(id)sender
 
 {
-   
+  
     // Take the screenshot
-    UIImage *saveImage = [self imageByCropping:scrollView toRect:lineDrawView.frame];
-    
+    UIImage *saveImage = [self imageByCropping:scrollView toRect:CGRectMake(0, 0, 500, 500)];
+   
+    NSLog(@"%u",[[scrollView subviews] count]);
+   // saveImage = [[scrollView subviews]objectAtIndex:0] ;
     // Adds a photo to the saved photos album.  The optional completionSelector should have the form:
+    saveImage = [LectureViewController imageWithView:scrollView];
     UIImageWriteToSavedPhotosAlbum(saveImage, nil, nil, nil);
-    //Save document with current image to user documents directory
-    
-         UIImageWriteToSavedPhotosAlbum(saveImage, nil, nil, nil);
 
-   
-        NSURL * currentDirectory = [FileManager iCloudDirectoryURL];
+    NSURL * currentDirectory = [FileManager iCloudDirectoryURL];
         if (currentDirectory == nil) currentDirectory = [FileManager localDocumentsDirectoryURL];
-        NSArray * docs = [FileManager documentsIn:currentDirectory];
-   
-    NSURL * document = [FileManager findFileIn:docs thatFits:^(NSURL* url){
-            if (url != nil) return YES;
-            return NO;
-        }];
-    NSString *docsPath =[[currentDirectory absoluteString] stringByAppendingString:[NSString stringWithFormat:@"/%@.lecture",currentLecture.name]];
+    NSString *docsPath =[[currentDirectory absoluteString] stringByAppendingString:[NSString stringWithFormat:@"/AccessMath/%@.lecture",currentLecture.name]];
+    NSLog(@"The location of the file is: %@",docsPath);
     NSURL *docURL = [NSURL URLWithString:docsPath];
-    NSURL *temp = [docs objectAtIndex:0];
- 
+    //Create a document to save with specified url
     currentDocument = [[AccessDocument alloc] initWithFileURL:docURL];
     currentLecture.image = UIImagePNGRepresentation(saveImage);
     currentDocument.lecture = currentLecture;
-
     if([[NSFileManager defaultManager] fileExistsAtPath:[docURL path]])
     {
-         
-        [currentDocument saveToURL:docURL
+            [currentDocument saveToURL:docURL
                   forSaveOperation:UIDocumentSaveForOverwriting
                  completionHandler:^(BOOL success) {
                      if (success){
@@ -387,7 +413,6 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
                          NSLog(@"Not saved for overwriting");
                      }
                  }];
-       
     }
     else{
         [currentDocument saveToURL:docURL
@@ -418,13 +443,10 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
     self.zoomInButton.hidden = YES;
     self.zoomOutButton.hidden = YES;
     self.startNotesButton.hidden = YES;
-    
     [self initColorSegmentedControl];
-    
     lineDrawView.userInteractionEnabled = YES;
     [self.view addSubview:lineDrawView];
-    
-    //tapToZoom.enabled = YES;
+    tapToZoom.enabled = YES;
     panToMove.enabled = YES;
 }
 

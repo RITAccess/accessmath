@@ -9,6 +9,7 @@
 #import "OpenLectureViewController.h"
 #import "LectureCell.h"
 #import "FileManager.h"
+#import "LectureViewController.h"
 @interface OpenLectureViewController ()
 
 @end
@@ -33,7 +34,7 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    NSURL *currentDirectory = [FileManager localDocumentsDirectoryURL];
+    NSURL *currentDirectory = [FileManager accessMathDirectoryURL];
     NSArray * docs = [FileManager documentsIn:currentDirectory];
     diectories = [[NSMutableArray alloc] initWithArray:docs];
 }
@@ -75,4 +76,17 @@
 {
     [self dismissViewControllerAnimated:YES completion:^{}];
 }
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    //Use a segue to forward the changes from itemViewController to inventoryViewController
+    if([segue.identifier isEqualToString:@"Lecture"])
+    {
+        LectureViewController *controller = [segue destinationViewController];
+        controller.isOpened = YES;
+        controller.documentURL = [diectories objectAtIndex:self.tableView.indexPathForSelectedRow.row];
+        
+    }
+   
+}
+
 @end

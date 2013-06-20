@@ -20,6 +20,12 @@
 //
 + (NSURL *)localDocumentsDirectoryURL;
 
+//get the AccessMath directory of the current user
++ (NSURL *)accessMathDirectoryURL;
+
+// delete all files in AccessMath directory
++ (void) clearAllDocuments;
+
 //
 // get the iCloud documents directory
 // return nil if none available
