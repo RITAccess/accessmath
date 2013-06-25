@@ -52,43 +52,37 @@
 {
     if (_isCreatingNote){
         if(self.isCreatingNote){
-            UIImageView *_pinImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin.png"]];
-            [_pinImageView setCenter:[gesture locationInView:self]];
-            [_pinImageView setTransform:CGAffineTransformMakeScale(.25, .25)]; // Shrinking the pin...
-            _pinImageView.userInteractionEnabled = YES;
-            [self addSubview:_pinImageView];
+//            UIImageView *pinImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin.png"]];
+//            [pinImageView setCenter:[gesture locationInView:self]];
+//            [pinImageView setTransform:CGAffineTransformMakeScale(.25, .25)]; // Shrinking the pin...
+//            pinImageView.userInteractionEnabled = YES;
+//            [self addSubview:pinImageView];
         
-            _panToMoveNote = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
-            [_pinImageView addGestureRecognizer:_panToMoveNote];
+            UIPanGestureRecognizer *panToMoveNote = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
+            UILongPressGestureRecognizer *longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressToRemoveNote:)];
             
-            UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressToRemoveNote:)];
-            [_pinImageView addGestureRecognizer:lpgr];
+            longPressGestureRecognizer.numberOfTouchesRequired = 3;
             
-        UITextView *_textBubble = [[UITextView alloc]initWithFrame:CGRectMake([gesture locationInView:self].x + 15, [gesture locationInView:self].y + 10, 300, 120)];
-            _textBubble.text = @"Type Notes Here...";
-            _textBubble.layer.borderWidth = 3;
-            _textBubble.layer.cornerRadius = 20;
-            [_textBubble setFont:[UIFont boldSystemFontOfSize:30]];
-            [_textBubble setNeedsDisplay];
-            [self addSubview:_textBubble];
-            
-            [_textBubble addGestureRecognizer:_panToMoveNote];
+            UITextView *textBubble = [[UITextView alloc]initWithFrame:CGRectMake([gesture locationInView:self].x + 15, [gesture locationInView:self].y + 10, 300, 120)];
+            textBubble.text = @"Type Notes Here...";
+            textBubble.layer.borderWidth = 3;
+            textBubble.layer.cornerRadius = 20;
+            [textBubble setFont:[UIFont boldSystemFontOfSize:30]];
+            [textBubble addGestureRecognizer:panToMoveNote];
+            [textBubble addGestureRecognizer:longPressGestureRecognizer];
+            [self addSubview:textBubble];
         }
     }
 }
 
 - (void)handlePan:(UIPanGestureRecognizer *)gestureRecognizer
 {
-      [gestureRecognizer.view setFrame:CGRectMake([gestureRecognizer locationInView:self].x, [gestureRecognizer locationInView:self].y, 64, 64)];
-//    [_pinImageView setFrame:CGRectMake([gestureRecognizer locationInView:self].x, [gestureRecognizer locationInView:self].y, 64, 64)];
-//    [_textBubble setFrame:CGRectMake([gestureRecognizer locationInView:self].x + 50, [gestureRecognizer locationInView:self].y + 30, 300, 120)];
+    [gestureRecognizer.view setFrame:CGRectMake([gestureRecognizer locationInView:self].x, [gestureRecognizer locationInView:self].y, 300, 120)];
 }
 
 - (void)longPressToRemoveNote:(UILongPressGestureRecognizer *)gestureRecognizer
 {
-    NSLog(@"Removing notes...");
-//    [_pinImageView removeFromSuperview];
-//    [_textBubble removeFromSuperview];
+    [gestureRecognizer.view removeFromSuperview];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

@@ -23,8 +23,5 @@
 @property BOOL isDrawing;
 @property UITapGestureRecognizer *tapToCreateNote;
 @property UITapGestureRecognizer *tapToDismissKeyboard;
-@property UIPanGestureRecognizer *panToMoveNote;
-//@property UIImageView *pinImageView;
-//@property UITextView *textBubble;
 
 @end
