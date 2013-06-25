@@ -33,10 +33,6 @@
         _tapToCreateNote.numberOfTapsRequired = 2;
         _tapToDismissKeyboard = [[UITapGestureRecognizer alloc]initWithTarget:self action
                                                                              :@selector(dismissKeyboard)];
-        
-        _panToMoveNote = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(moveNote:)];
-        [_panToMoveNote setMinimumNumberOfTouches:1];
-        [_panToMoveNote setEnabled:NO];
         [self addGestureRecognizer:_tapToDismissKeyboard];
         [self addGestureRecognizer:_tapToCreateNote];
 //        [self addGestureRecognizer:_panToMoveNote];
@@ -56,39 +52,51 @@
 {
     if (_isCreatingNote){
         if(self.isCreatingNote){
-            _pinImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin.png"]];
+            UIImageView *_pinImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin.png"]];
             [_pinImageView setCenter:[gesture locationInView:self]];
             [_pinImageView setTransform:CGAffineTransformMakeScale(.25, .25)]; // Shrinking the pin...
+            _pinImageView.userInteractionEnabled = YES;
             [self addSubview:_pinImageView];
+        
+            _panToMoveNote = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
+            [_pinImageView addGestureRecognizer:_panToMoveNote];
             
-            UITextView *textView = [[UITextView alloc]initWithFrame:CGRectMake([gesture locationInView:self].x + 15, [gesture locationInView:self].y + 10, 300, 120)];
-            [self addSubview:textView];
-            textView.text = @"Type Notes Here...";
-            textView.layer.borderWidth = 3;
-            textView.layer.cornerRadius = 20;
-            [textView setFont:[UIFont boldSystemFontOfSize:30]];
-            [textView setNeedsDisplay];
+            UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressToRemoveNote:)];
+            [_pinImageView addGestureRecognizer:lpgr];
+            
+        UITextView *_textBubble = [[UITextView alloc]initWithFrame:CGRectMake([gesture locationInView:self].x + 15, [gesture locationInView:self].y + 10, 300, 120)];
+            _textBubble.text = @"Type Notes Here...";
+            _textBubble.layer.borderWidth = 3;
+            _textBubble.layer.cornerRadius = 20;
+            [_textBubble setFont:[UIFont boldSystemFontOfSize:30]];
+            [_textBubble setNeedsDisplay];
+            [self addSubview:_textBubble];
+            
+            [_textBubble addGestureRecognizer:_panToMoveNote];
         }
     }
 }
 
-- (void)moveNote:(UIPanGestureRecognizer *)gesture
+- (void)handlePan:(UIPanGestureRecognizer *)gestureRecognizer
 {
-    if (_pinImageView){
-        if (gesture.view.frame.origin.x == _pinImageView.frame.origin.x){
-            NSLog(@"Equal!");
-        }
-    }
+      [gestureRecognizer.view setFrame:CGRectMake([gestureRecognizer locationInView:self].x, [gestureRecognizer locationInView:self].y, 64, 64)];
+//    [_pinImageView setFrame:CGRectMake([gestureRecognizer locationInView:self].x, [gestureRecognizer locationInView:self].y, 64, 64)];
+//    [_textBubble setFrame:CGRectMake([gestureRecognizer locationInView:self].x + 50, [gestureRecognizer locationInView:self].y + 30, 300, 120)];
+}
 
-    NSLog(@"Moving...");
+- (void)longPressToRemoveNote:(UILongPressGestureRecognizer *)gestureRecognizer
+{
+    NSLog(@"Removing notes...");
+//    [_pinImageView removeFromSuperview];
+//    [_textBubble removeFromSuperview];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    UITouch *touch=[[touches allObjects] objectAtIndex:0];
+    UITouch *touch = [[touches allObjects] objectAtIndex:0];
     
     if (_isDrawing){
-        switch (_currentPath) {
+        switch (_currentPath){
             case 0:
                 [_bezierPath moveToPoint:[touch locationInView:self]];
                 break;
@@ -108,7 +116,8 @@
     }
 }
 
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
     UITouch *touch=[[touches allObjects] objectAtIndex:0];
 
     if (_isDrawing){
@@ -139,7 +148,8 @@
 {
 }
 
-- (void)clearAllPaths {
+- (void)clearAllPaths
+{
     [_bezierPath removeAllPoints];
     [_bezierPath2 removeAllPoints];
     [_bezierPath3 removeAllPoints];
@@ -156,7 +166,8 @@
  * Override drawRect() to allow for custom drawing. No override causes performance issues.
  * Alternating setting stroke and stroking to handle each individual path.
  */
-- (void)drawRect:(CGRect)rect {
+- (void)drawRect:(CGRect)rect
+{
     [[UIColor redColor] setStroke];
     [_bezierPath stroke];
     [[UIColor greenColor] setStroke];

@@ -357,7 +357,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="createNoteButtonPress:" destination="RCT-V3-Df9" eventType="touchUpInside" id="5bi-yA-o4O"/>
+                                    <action selector="toggleNoteButtonPress:" destination="RCT-V3-Df9" eventType="touchUpInside" id="uqn-1h-f82"/>
                                 </connections>
                             </button>
                         </subviews>

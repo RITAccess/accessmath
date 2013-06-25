@@ -392,6 +392,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
     
     lineDrawView.userInteractionEnabled = YES;
     lineDrawView.isDrawing = YES;
+    [lineDrawView setFrame:CGRectMake(0, 180, lineDrawView.frame.size.width, lineDrawView.frame.size.height)]; // Reset position...
     [self.view addSubview:lineDrawView];
     
     tapToZoom.enabled = NO;
@@ -419,7 +420,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
     [scrollView addGestureRecognizer:panToMove];
 }
 
-- (IBAction)createNoteButtonPress:(id)sender
+- (IBAction)toggleNoteButtonPress:(id)sender
 {
     UIAlertView *alert;
     if (lineDrawView.isCreatingNote == YES){
