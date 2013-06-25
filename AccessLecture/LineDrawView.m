@@ -7,13 +7,13 @@
 //
 
 #import "LineDrawView.h"
-
+#import "AccessLectureRuntime.h"
 @interface LineDrawView ()
 
 @end
 
 @implementation LineDrawView
-
+@synthesize start;
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -37,8 +37,7 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     UITouch *touch=[[touches allObjects] objectAtIndex:0];
-    
-    switch (_currentPath) {
+     switch (_currentPath) {
         case 0:
             [_bezierPath moveToPoint:[touch locationInView:self]];
             break;
@@ -77,8 +76,7 @@
             [_bezierPath5 addLineToPoint:[touch locationInView:self]];
             break;
     }
-    
-    [self setNeedsDisplay];
+       [self setNeedsDisplay];
 }
 
 
@@ -98,12 +96,8 @@
                 view.hidden = YES;
             }
         }
-        
-    }
-    if (aTouch.tapCount >= 2) {
-        //Fetch all UITextViews currently
-        UITouch *touch=[[touches allObjects] objectAtIndex:0];
-  //      UIBezierPath *notesBezierPath = [[UIBezierPath alloc]init];
+    
+      if(self.isCreatingNote == YES)
         for(UITextView *view in [self subviews] )
         {
             if (CGRectContainsPoint(view.frame,[aTouch locationInView:self]))
@@ -114,7 +108,11 @@
             }
             
         }
-        if(isNew == YES && self.isCreatingNote == YES)
+    }
+    if (aTouch.tapCount >= 2) {
+        //Fetch all UITextViews currently
+        UITouch *touch=[[touches allObjects] objectAtIndex:0];
+         if(isNew == YES && self.isCreatingNote == YES)
         {
             NSLog(@"Is Creating Note...");
             UIImageView * anImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin.png" ]];
@@ -124,12 +122,11 @@
             UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake([touch locationInView:self].x, [touch locationInView:self].y ,300,90)];
             [self addSubview:textView];
             textView.text = @"Tap to Enter Notes";
-            
             [textView setScrollEnabled:YES];
-            [textView scrollRectToVisible:CGRectMake([touch locationInView:self].x, [touch locationInView:self].y, 300,90) animated:NO];
             [textView setFont:[UIFont systemFontOfSize:25]];
             [textView setNeedsDisplay];
             [textView becomeFirstResponder];
+            
         }
     }
 }

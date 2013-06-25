@@ -16,7 +16,7 @@
 @end
 
 @implementation OpenLectureViewController
-@synthesize diectories;
+@synthesize directories;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -26,19 +26,19 @@
     return self;
 }
 
-
+-(void) viewWillAppear:(BOOL)animated{
+    NSURL *currentDirectory = [FileManager accessMathDirectoryURL];
+    NSArray * docs = [FileManager documentsIn:currentDirectory];
+    directories = [[NSMutableArray alloc] initWithArray:docs];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
     NSURL *currentDirectory = [FileManager accessMathDirectoryURL];
     NSArray * docs = [FileManager documentsIn:currentDirectory];
-    diectories = [[NSMutableArray alloc] initWithArray:docs];
+    directories = [[NSMutableArray alloc] initWithArray:docs];
 }
 
 - (void)didReceiveMemoryWarning
@@ -59,21 +59,37 @@
 {
 
     // Return the number of rows in the section.
-    return [diectories count];
+    return [directories count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
     LectureCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    cell.label.text=[[[diectories objectAtIndex:[indexPath row]] path] lastPathComponent];
+    cell.label.text=[[[directories objectAtIndex:[indexPath row]] path] lastPathComponent];
     // Configure the cell...
     [cell.image setImage:[UIImage imageNamed:@"biology.png"]];
     [cell.label setFont:[UIFont systemFontOfSize:38]];
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+forRowAtIndexPath:(NSIndexPath *)indexPath {
+    // If row is deleted, remove it from the list.
+        if (editingStyle == UITableViewCellEditingStyleDelete) {
+        //[[InventoryStore shared]->inventories removeObjectAtIndex:indexPath.row];
+        dispatch_async(dispatch_get_main_queue(), ^{
+          [[NSFileManager defaultManager] removeItemAtURL:[directories objectAtIndex:indexPath.row] error:nil];
+            
+        });
+       
+        }
+   // [[InventoryStore shared] removeInventory:inventoryToDelete];
+  
+    [tableView reloadData];
 
+   
+}
 - (IBAction)returnToHome:(id)sender
 {
     [self dismissViewControllerAnimated:YES completion:^{}];
@@ -85,29 +101,14 @@
     {
         LectureViewController *controller = [segue destinationViewController];
         controller.isOpened = YES;
-        controller.documentURL = [diectories objectAtIndex:self.tableView.indexPathForSelectedRow.row];
-        NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+        controller.documentURL = [directories objectAtIndex:self.tableView.indexPathForSelectedRow.row];
+    dispatch_async(dispatch_get_main_queue(), ^{
+                        [[AccessLectureRuntime defaultRuntime] openDocument:controller.documentURL];
         
-        NSOperation *operation;
-        
-        operation = [NSBlockOperation blockOperationWithBlock:^{
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [[AccessLectureRuntime defaultRuntime] openDocument:controller.documentURL];
-                
-            });
-            }];
-        NSOperation *completionOperation = [NSBlockOperation blockOperationWithBlock:^{
-            NSLog(@"Starting second");
-                                
+                    });
+                   
 
-        }];
-       
-        [queue addOperation:operation];
-        [queue addOperation:completionOperation];
-        
-    }
-   
+}
 }
 
 @end

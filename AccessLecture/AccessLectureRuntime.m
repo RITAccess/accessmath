@@ -49,7 +49,7 @@ static NSString * DEFAULT_FILENAME = @"Lecture001";
         document = [currentDirectory URLByAppendingPathComponent:filename];
         }
     _currentDocument = [[AccessDocument alloc] initWithFileURL:withURL];
-  dispatch_barrier_async(dispatch_get_main_queue(), ^{
+    dispatch_barrier_async(dispatch_get_main_queue(), ^{
         [_currentDocument openWithCompletionHandler:^(BOOL success){
             if(success)
             {
@@ -72,7 +72,6 @@ static NSString * DEFAULT_FILENAME = @"Lecture001";
   
   });
     
-   
-}
+   }
 
 @end

@@ -11,7 +11,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "AccessDocument.h"
 @interface FileManager : NSObject
 
 //
@@ -45,5 +45,7 @@
 //  returns nil if no file was found
 //
 + (NSURL *)findFileIn:(NSArray *)files thatFits:(BOOL(^)(NSURL*))condition;
+
+
 
 @end

@@ -44,15 +44,19 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
    
 }
 -(void)viewDidAppear:(BOOL)animated{
+   //If document is opened and not a new document load current lecture from document
     if(self.isOpened)
     {
         currentLecture = [AccessLectureRuntime defaultRuntime].currentDocument.lecture;
+       
         [[self.navigationBar topItem] setTitle:currentLecture.name];
         UIImage *temp = [UIImage imageWithData:currentLecture.image];
-     
-        [imageView setBounds:CGRectMake(0, 180, IPAD_MINI_HEIGHT, 468)];
+        [imageView setBounds:[scrollView bounds]];
         [imageView setImage:temp];
+        [scrollView setFrame:lineDrawView.frame];
         [self.view addSubview:imageView];
+        
+        
     }
 }
 - (void)viewDidLoad {
@@ -60,6 +64,8 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
     defaults = [NSUserDefaults standardUserDefaults];
     
     lineDrawView = [[LineDrawView alloc]initWithFrame:CGRectMake(0, 180, IPAD_MINI_HEIGHT, 468)];
+//    lineDrawView.layer.borderColor = [UIColor redColor].CGColor;
+//    scrollView.layer.borderColor = [UIColor blueColor].CGColor;
     
     // Zoom Setup
     ZOOM_STEP = [defaults floatForKey:@"userZoomIncrement"];
@@ -105,7 +111,6 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
                                    @"Please enter lecture name:" delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:nil];
         alertName.alertViewStyle = UIAlertViewStylePlainTextInput;
         UITextField * alertTextField = [alertName textFieldAtIndex:0];
-        //alertTextField.keyboardType = UIKeyboardTypeNumberPad;
         alertTextField.placeholder = @"Enter lecture name";
         [alertName show];
         
@@ -123,6 +128,7 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
 clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 0){
        currentLecture = [[Lecture alloc] initWithName:[alertView textFieldAtIndex:0].text];
+         [[self.navigationBar topItem] setTitle:[alertView textFieldAtIndex:0].text];
     }else if (buttonIndex == 1){
         //reset clicked
     }
@@ -229,10 +235,6 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
         }
     }
 }
-
-
-
-
 /**
  Do we want the application to be rotateable? Return YES or NO
  */
@@ -258,8 +260,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
     // Put the received data in the imageView
     img = [[UIImage alloc]initWithData:receivedData];
     [imageView setImage:img];
-    
-    [imageView sizeToFit];
+        [imageView sizeToFit];
 }
 
 #pragma mark - Image Refresh Management
@@ -374,28 +375,25 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
     
     return img;
 }
+
 - (IBAction)saveButtonPress:(id)sender
 
-{
-  self.navigationBar.topItem.title = [AccessLectureRuntime defaultRuntime].currentDocument.lecture.name;
-    // Take the screenshot
+{    // Take the screenshot
+       UIImage *saveImage = [self imageByCropping:scrollView toRect:scrollView.bounds];
+     // Adds a photo to the saved photos album.  The optional completionSelector should have the form:
+    [lineDrawView setBackgroundColor:[UIColor whiteColor]];
+    saveImage = [LectureViewController imageWithView:lineDrawView];
     
-    UIImage *saveImage = [self imageByCropping:scrollView toRect:CGRectMake(0, 0, 500, 500)];
-   
-    NSLog(@"%u",[[scrollView subviews] count]);
-   // saveImage = [[scrollView subviews]objectAtIndex:0] ;
-    // Adds a photo to the saved photos album.  The optional completionSelector should have the form:
-    saveImage = [LectureViewController imageWithView:scrollView];
     UIImageWriteToSavedPhotosAlbum(saveImage, nil, nil, nil);
-
     NSURL * currentDirectory = [FileManager iCloudDirectoryURL];
-        if (currentDirectory == nil) currentDirectory = [FileManager localDocumentsDirectoryURL];
+    if (currentDirectory == nil) currentDirectory = [FileManager localDocumentsDirectoryURL];
     NSString *docsPath =[[currentDirectory absoluteString] stringByAppendingString:[NSString stringWithFormat:@"/AccessMath/%@.lecture",currentLecture.name]];
-    NSLog(@"The location of the file is: %@",docsPath);
+    docsPath = [docsPath stringByReplacingOccurrencesOfString:@" " withString:@"_"];
     NSURL *docURL = [NSURL URLWithString:docsPath];
     //Create a document to save with specified url
     currentDocument = [[AccessDocument alloc] initWithFileURL:docURL];
     currentLecture.image = UIImagePNGRepresentation(saveImage);
+    currentDocument.notes = [[NSMutableArray alloc] initWithArray:lineDrawView .subviews];
     currentDocument.lecture = currentLecture;
     if([[NSFileManager defaultManager] fileExistsAtPath:[docURL path]])
     {
@@ -418,19 +416,14 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
                          UIAlertView* alert = [[UILargeAlertView alloc] initWithText:NSLocalizedString(@"New Notes Created!", nil) fontSize:48];
                          [alert show];
                      } else {
-                         NSLog(@"Not created");
+                         UIAlertView* alert = [[UILargeAlertView alloc] initWithText:NSLocalizedString(@"Error creating new note", nil) fontSize:48];
+                         [alert show];
                      }
                  }];
-
     }
     
       }
   
-    // Tell the user that notes are saved
-//	UIAlertView* alert = [[UILargeAlertView alloc] initWithText:NSLocalizedString(@"Notes Saved!", nil) fontSize:48];
-//	[[alert show];
-
-
 - (IBAction)startNotesButtonPress:(id)sender
 {
     self.clearNotesButton.hidden = NO;
@@ -444,13 +437,21 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
     [self.view addSubview:lineDrawView];
     tapToZoom.enabled = YES;
     panToMove.enabled = YES;
-    [scrollView addSubview:imageView];
+    if(self.isOpened){
+        NSMutableArray *notes = [[NSMutableArray alloc] initWithArray:[AccessLectureRuntime defaultRuntime].currentDocument.notes];
+        for(UITextView *view in notes){
+            [lineDrawView addSubview:view];
+            if([view isKindOfClass:[UITextView class]])
+            NSLog(@"%@",view.text);
+        }
+     
+    }
+    
 }
 
 - (IBAction)exitNotesButtonPress:(id)sender
 {
     [colorSegmentedControl removeFromSuperview];
-    
     self.clearNotesButton.hidden = YES;
     self.exitNotesButton.hidden = YES;
     self.zoomInButton.hidden = NO;
@@ -459,8 +460,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
     
     // Disabling drawing to allow the user to scroll, zoom, or pan!
     lineDrawView.userInteractionEnabled = NO;
-    
-    [scrollView addSubview:lineDrawView];
+
     [scrollView addGestureRecognizer:panToMove];
 }
 
@@ -505,7 +505,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
     
     [colorSegmentedControl addTarget:self action:@selector(segmentChanged:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:colorSegmentedControl];
-    
+   
     // Indices change; need to set tags on the segments before rendering.
     [colorSegmentedControl setTag:RED_TAG forSegmentAtIndex:0];
     [colorSegmentedControl setTag:GREEN_TAG forSegmentAtIndex:1];
@@ -513,7 +513,6 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
     [colorSegmentedControl setTag:BLACK_TAG forSegmentAtIndex:3];
     [colorSegmentedControl setTag:HILIGHT_TAG forSegmentAtIndex:4];
     [colorSegmentedControl setTag:ERASER_TAG forSegmentAtIndex:5];
-    
     [colorSegmentedControl setTintColor:[UIColor redColor] forTag:RED_TAG];
     [colorSegmentedControl setTintColor:[UIColor greenColor] forTag:GREEN_TAG];
     [colorSegmentedControl setTintColor:[UIColor blueColor] forTag:BLUE_TAG];

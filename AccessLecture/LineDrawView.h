@@ -21,5 +21,5 @@
 @property (nonatomic) NSInteger currentPath;
 @property (nonatomic) BOOL isCreatingNote;
 @property (nonatomic) BOOL isDrawing;
-
+@property (nonatomic) CGPoint *start;
 @end
