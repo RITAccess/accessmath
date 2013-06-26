@@ -193,16 +193,34 @@
                                     <action selector="connectToServer:" destination="SP6-Rd-Xf7" eventType="touchUpInside" id="tAr-QY-MXw"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w9Z-RI-LPo">
+                                <rect key="frame" x="743" y="500" width="186" height="91"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="186" id="Vcb-Gy-jGh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <state key="normal" title="Open Lecture">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="AWi-60-pMo" firstAttribute="top" secondItem="PYl-bd-Q14" secondAttribute="top" constant="71" id="4X7-um-bgf"/>
                             <constraint firstItem="zTk-Fd-Exh" firstAttribute="leading" secondItem="PYl-bd-Q14" secondAttribute="leading" constant="66" id="4zy-dB-xkq"/>
-                            <constraint firstItem="sbZ-Bw-DiI" firstAttribute="centerX" secondItem="PYl-bd-Q14" secondAttribute="centerX" type="default" id="6gd-dx-Wr4"/>
+                            <constraint firstItem="w9Z-RI-LPo" firstAttribute="top" secondItem="sbZ-Bw-DiI" secondAttribute="top" type="default" id="6Ht-zi-A6J"/>
+                            <constraint firstAttribute="trailing" secondItem="w9Z-RI-LPo" secondAttribute="trailing" constant="95" id="JZB-tF-hFc"/>
                             <constraint firstItem="7kQ-H5-RJO" firstAttribute="leading" secondItem="sbZ-Bw-DiI" secondAttribute="leading" type="default" id="UD4-Tf-n44"/>
                             <constraint firstAttribute="bottom" secondItem="7kQ-H5-RJO" secondAttribute="bottom" constant="42" id="aEh-hi-kCA"/>
                             <constraint firstItem="7kQ-H5-RJO" firstAttribute="top" secondItem="sbZ-Bw-DiI" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="aIq-8o-saP"/>
                             <constraint firstItem="zTk-Fd-Exh" firstAttribute="centerY" secondItem="sbZ-Bw-DiI" secondAttribute="centerY" type="default" id="hOT-n8-GMs"/>
+                            <constraint firstItem="w9Z-RI-LPo" firstAttribute="bottom" secondItem="sbZ-Bw-DiI" secondAttribute="bottom" type="default" id="j3K-6P-lgb"/>
+                            <constraint firstItem="AWi-60-pMo" firstAttribute="centerX" secondItem="PYl-bd-Q14" secondAttribute="centerX" type="default" id="jT5-wI-dJe"/>
                             <constraint firstItem="sbZ-Bw-DiI" firstAttribute="trailing" secondItem="7kQ-H5-RJO" secondAttribute="trailing" type="default" id="sea-3d-fPh"/>
                             <constraint firstItem="AWi-60-pMo" firstAttribute="centerX" secondItem="sbZ-Bw-DiI" secondAttribute="centerX" type="default" id="yAz-1k-TkC"/>
                         </constraints>
@@ -239,7 +257,7 @@
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" image="Settings.png" id="YR6-hw-cvW" userLabel="Settings">
                                             <connections>
-                                                <segue destination="pIb-Nv-pIW" kind="popover" popoverAnchorBarButtonItem="YR6-hw-cvW" id="ICM-mM-OaW">
+                                                <segue destination="z7Z-iA-fuh" kind="popover" popoverAnchorBarButtonItem="YR6-hw-cvW" id="2yg-6K-KZ1">
                                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                                 </segue>
                                             </connections>
@@ -341,6 +359,25 @@
                                     <action selector="exitNotesButtonPress:" destination="RCT-V3-Df9" eventType="touchUpInside" id="yRm-7k-pbx"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tCi-cd-Rvg" userLabel="Note Button">
+                                <rect key="frame" x="517" y="67" width="80" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="NZz-5E-iqM"/>
+                                    <constraint firstAttribute="width" constant="80" id="gjU-bM-9fh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" backgroundImage="pin.png">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="toggleNoteButtonPress:" destination="RCT-V3-Df9" eventType="touchUpInside" id="uqn-1h-f82"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -369,6 +406,7 @@
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
+                    <value key="contentSizeForViewInPopover" type="size" width="200" height="1004"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
                         <outlet property="clearNotesButton" destination="WpD-Hy-O39" id="t49-83-8OQ"/>
@@ -386,7 +424,7 @@
             <point key="canvasLocation" x="1254" y="-257"/>
         </scene>
         <!--Settings View Controller-->
-        <scene sceneID="xKA-8C-K9A">
+        <scene sceneID="nqa-Yi-K2H">
             <objects>
                 <viewController autoresizesArchivedViewToFullSize="NO" id="pIb-Nv-pIW" customClass="SettingsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kU9-Ev-PsL">
@@ -447,8 +485,8 @@
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="High Contrast Mode" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uE6-du-dUk">
                                 <rect key="frame" x="35" y="606" width="251" height="33"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="33" id="5n4-kY-lms"/>
-                                    <constraint firstAttribute="width" constant="251" id="R87-ml-uRY"/>
+                                    <constraint firstAttribute="width" constant="113" id="f5D-e7-php"/>
+                                    <constraint firstAttribute="height" constant="32" id="gda-OI-ZfE"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <nil key="highlightedColor"/>
@@ -482,7 +520,7 @@
                                 </connections>
                             </stepper>
                         </subviews>
-                        <color key="backgroundColor" red="0.89707880429999998" green="0.89707880429999998" blue="0.89707880429999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="kSV-aq-K2t" firstAttribute="centerX" secondItem="cG9-d2-eHm" secondAttribute="centerX" type="default" id="0SJ-li-ysy"/>
                             <constraint firstItem="VsA-sA-WsO" firstAttribute="centerX" secondItem="zqK-70-aS1" secondAttribute="centerX" type="default" id="28B-Ib-lMq"/>
@@ -512,14 +550,13 @@
                             <constraint firstItem="B5h-hB-3IN" firstAttribute="trailing" secondItem="zqK-70-aS1" secondAttribute="trailing" type="default" id="plL-X3-Crv"/>
                             <constraint firstItem="B5h-hB-3IN" firstAttribute="leading" secondItem="kU9-Ev-PsL" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="rYX-SM-N6R"/>
                         </constraints>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <splitViewMasterSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nwK-rf-vVY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lJn-kF-Bjw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2579" y="-909"/>
+            <point key="canvasLocation" x="2216" y="-511"/>
         </scene>
         <!--About View Controller-->
         <scene sceneID="nkT-Z3-fpK">
@@ -659,6 +696,58 @@ IAoKA
         <image name="ZoomOut.png" width="95" height="95"/>
         <image name="accesslecture.png" width="695" height="512"/>
     </resources>
+    <classes>
+        <class className="AboutViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AboutViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="returnToHome:"/>
+                <relationship kind="outlet" name="mainView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="LectureViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LectureViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backButtonPress:"/>
+                <relationship kind="action" name="clearNotesButtonPress:"/>
+                <relationship kind="action" name="exitNotesButtonPress:"/>
+                <relationship kind="action" name="saveButtonPress:"/>
+                <relationship kind="action" name="startNotesButtonPress:"/>
+                <relationship kind="action" name="toggleNoteButtonPress:"/>
+                <relationship kind="action" name="zoomInButtonPress:"/>
+                <relationship kind="action" name="zoomOutButtonPress:"/>
+                <relationship kind="outlet" name="clearNotesButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="createNoteButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="exitNotesButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="navigationBar" candidateClass="UINavigationBar"/>
+                <relationship kind="outlet" name="navigationBarBackButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="navigationBarSettingsButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="saveNotesButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="startNotesButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="zoomInButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="zoomOutButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="RootViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RootViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="connectToServer:"/>
+                <relationship kind="action" name="openAbout:"/>
+                <relationship kind="action" name="openLecture:"/>
+            </relationships>
+        </class>
+        <class className="SettingsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="contrastSwitchToggle:"/>
+                <relationship kind="action" name="eraserSizeSlide:"/>
+                <relationship kind="action" name="penSizeSlide:"/>
+                <relationship kind="action" name="zoomIncrementStep:"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="lightContent"/>
         <simulatedOrientationMetrics key="orientation"/>
