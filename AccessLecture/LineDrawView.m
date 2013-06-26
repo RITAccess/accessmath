@@ -77,7 +77,7 @@
             [textBubble addGestureRecognizer:panToMoveNote];
             [textBubble addGestureRecognizer:longPressGestureRecognizer];
             [self addSubview:textBubble];
-            [textBubble addSubview:anImageView];
+            [textBubble setClipsToBounds:NO];
         }
     }
 }
