@@ -66,21 +66,23 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
     
     // Zoom Setup
     ZOOM_STEP = [defaults floatForKey:@"userZoomIncrement"];
-	zoomHandler = [[ZoomHandler alloc] initWithZoomLevel: ZOOM_STEP];
 
 	
 	// Set up the imageview
     img = [[UIImage alloc] initWithData: [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]]];
     imageView = [[UIImageView alloc]initWithImage:img];
 	imageView.userInteractionEnabled = YES;
+
     [imageView setTag:ZOOM_VIEW_TAG]; 
+
+    [imageView setTag:ZOOM_VIEW_TAG];
    
     
     scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 180, IPAD_MINI_HEIGHT, 468)];
     scrollView.contentSize = CGSizeMake(IPAD_MINI_HEIGHT, 468);
     scrollView.contentInset = UIEdgeInsetsMake(0, 0, 80, 0);
     scrollView.backgroundColor = [UIColor whiteColor];
-    scrollView.scrollEnabled = YES;
+    scrollView.scrollEnabled = NO; // Panning should be sufficient for now.
     [self.view addSubview:scrollView];
     
     // Observe NSUserDefaults for setting changes
@@ -89,11 +91,10 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
     
     panToMove = [[UIPanGestureRecognizer alloc]initWithTarget:self action
                                                              :@selector(panMove:)];
-    panToMove.minimumNumberOfTouches = 3;
-    panToMove.maximumNumberOfTouches = 3;
+    panToMove.minimumNumberOfTouches = 1;
+    panToMove.maximumNumberOfTouches = 2;
     [panToMove setTranslation:CGPointMake(40, 40) inView:lineDrawView];
     [self.view addGestureRecognizer:panToMove];
-    
     
     tapToZoom = [[UITapGestureRecognizer alloc] initWithTarget:self action:
                                          @selector(zoomTap:)];
@@ -101,8 +102,10 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
     [self.view addGestureRecognizer:tapToZoom];
     
     [self settingsChange];     // Apply the stored settings
+
     if(!(self.isOpened))
     {
+
     dispatch_async(dispatch_get_main_queue(), ^{
         UIAlertView * alertName = [[UIAlertView alloc] initWithTitle:@"Lecture" message:
                                    @"Please enter lecture name:" delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:nil];
@@ -159,7 +162,6 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
 {
     // Zoom increment 
     ZOOM_STEP = ([defaults floatForKey:@"userZoomIncrement"] * 100);
-    [zoomHandler setZoomLevel:ZOOM_STEP];
     
     // Active usability testing image
     img = [UIImage imageNamed:[defaults valueForKey:@"testImage"]];
@@ -232,6 +234,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
         }
     }
 }
+
 /**
  Do we want the application to be rotateable? Return YES or NO
  */
@@ -360,12 +363,12 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
     [self dismissViewControllerAnimated:YES completion:^{}];
 }
 
+
 //Function for extracting image from a view
 + (UIImage *) imageWithView:(UIView *)view
 {
     UIGraphicsBeginImageContextWithOptions(view.bounds.size, view.opaque, 0.0);
     [view.layer renderInContext:UIGraphicsGetCurrentContext()];
-    
     UIImage * img = UIGraphicsGetImageFromCurrentImageContext();
     
     UIGraphicsEndImageContext();
@@ -374,8 +377,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
 }
 
 - (IBAction)saveButtonPress:(id)sender
-
-{    // Take the screenshot
+    {    // Take the screenshot
        UIImage *saveImage = [self imageByCropping:scrollView toRect:scrollView.bounds];
      // Adds a photo to the saved photos album.  The optional completionSelector should have the form:
     [lineDrawView setBackgroundColor:[UIColor whiteColor]];
@@ -394,6 +396,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
     currentDocument.lecture = currentLecture;
     if([[NSFileManager defaultManager] fileExistsAtPath:[docURL path]])
     {
+
             [currentDocument saveToURL:docURL
                   forSaveOperation:UIDocumentSaveForOverwriting
                  completionHandler:^(BOOL success) {
@@ -404,8 +407,9 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
                          NSLog(@"Not saved for overwriting");
                      }
                  }];
+
     }
-    else{
+     else {
         [currentDocument saveToURL:docURL
                   forSaveOperation:UIDocumentSaveForCreating
                  completionHandler:^(BOOL success) {
@@ -418,8 +422,8 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
                      }
                  }];
     }
-    
-      }
+}
+
   
 - (IBAction)startNotesButtonPress:(id)sender
 {
@@ -431,6 +435,8 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
     self.startNotesButton.hidden = YES;
     [self initColorSegmentedControl];
     lineDrawView.userInteractionEnabled = YES;
+    lineDrawView.isDrawing = YES;
+    [lineDrawView setFrame:CGRectMake(0, 180, lineDrawView.frame.size.width, lineDrawView.frame.size.height)]; // Reset position...
     [self.view addSubview:lineDrawView];
     tapToZoom.enabled = YES;
     panToMove.enabled = YES;
@@ -443,7 +449,10 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
         }
      
     }
-    
+      
+    tapToZoom.enabled = NO;
+    panToMove.enabled = NO;
+
 }
 
 - (IBAction)exitNotesButtonPress:(id)sender
@@ -451,17 +460,21 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
     [colorSegmentedControl removeFromSuperview];
     self.clearNotesButton.hidden = YES;
     self.exitNotesButton.hidden = YES;
+    self.createNoteButton.hidden = YES;
     self.zoomInButton.hidden = NO;
     self.zoomOutButton.hidden = NO;
     self.startNotesButton.hidden = NO;
     
     // Disabling drawing to allow the user to scroll, zoom, or pan!
     lineDrawView.userInteractionEnabled = NO;
-
+    tapToZoom.enabled = YES;
+    panToMove.enabled = YES;
+    
+    [scrollView addSubview:lineDrawView];
     [scrollView addGestureRecognizer:panToMove];
 }
 
-- (IBAction)createNoteButtonPress:(id)sender
+- (IBAction)toggleNoteButtonPress:(id)sender
 {
     UIAlertView *alert;
     if (lineDrawView.isCreatingNote == YES){
@@ -472,13 +485,21 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
                  NSLocalizedString(@"Entering Note Mode!", nil)fontSize:48];
     }
     
+    [colorSegmentedControl setHidden:!colorSegmentedControl.isHidden];
     lineDrawView.isCreatingNote = !lineDrawView.isCreatingNote;
+    lineDrawView.isDrawing = !lineDrawView.isDrawing;
+    
 	[alert show];
 }
 
 - (IBAction)clearNotesButtonPress:(id)sender
 {
     [lineDrawView clearAllPaths];
+    
+    // Removes all notes.
+    for (UIView *view in [lineDrawView subviews]){
+        [view removeFromSuperview];
+    }
     
 	UIAlertView* alert = [[UILargeAlertView alloc] initWithText:
                           NSLocalizedString(@"Notes Cleared!", nil) fontSize:48];

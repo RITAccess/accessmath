@@ -51,6 +51,7 @@
 #error SocketRocket muust be compiled with ARC enabled
 #endif
 
+
 typedef enum  {
     SROpCodeTextFrame = 0x1,
     SROpCodeBinaryFrame = 0x2,
@@ -283,6 +284,10 @@ typedef void (^data_callback)(SRWebSocket *webSocket,  NSData *data);
     
     NSArray *_requestedProtocols;
     SRIOConsumerPool *_consumerPool;
+  
+    // For client SSL authentication.
+    NSData *_clientCertificateData;
+    NSString *_clientCertificateCipher;
 }
 
 @synthesize delegate = _delegate;
@@ -329,6 +334,13 @@ static __strong NSData *CRLFCRLF;
     return [self initWithURLRequest:request protocols:protocols];
 }
 
+- (id)initWithURLRequest:(NSURLRequest *)request andClientCertData:(NSData *)data andClientCertCipher:(NSString *)cipher
+{
+  _clientCertificateData = data;
+  _clientCertificateCipher = cipher;
+  return [self initWithURLRequest:request];
+}
+
 - (void)_SR_commonInit;
 {
     
@@ -365,10 +377,6 @@ static __strong NSData *CRLFCRLF;
     [self _initializeStreams];
     
     // default handlers
-    
-    // Setup operation queue
-    _delegateOperationQueue = [NSOperationQueue mainQueue];
-    
 }
 
 - (void)assertOnWorkQueue;
@@ -423,13 +431,12 @@ static __strong NSData *CRLFCRLF;
 // Calls block on delegate queue
 - (void)_performDelegateBlock:(dispatch_block_t)block;
 {
-    [[NSOperationQueue mainQueue] addOperationWithBlock:block];
-//    if (_delegateOperationQueue) {
-//        [_delegateOperationQueue addOperationWithBlock:block];
-//    } else {
-//        assert(_delegateDispatchQueue);
-//        dispatch_async(_delegateDispatchQueue, block);
-//    }
+    if (_delegateOperationQueue) {
+        [_delegateOperationQueue addOperationWithBlock:block];
+    } else {
+        assert(_delegateDispatchQueue);
+        dispatch_async(_delegateDispatchQueue, block);
+    }
 }
 
 - (void)setDelegateDispatchQueue:(dispatch_queue_t)queue;
@@ -465,7 +472,7 @@ static __strong NSData *CRLFCRLF;
     
     if (responseCode >= 400) {
         SRFastLog(@"Request failed with response code %d", responseCode);
-        [self _failWithError:[NSError errorWithDomain:@"org.lolrus.SocketRocket" code:2132 userInfo:[NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"received bad response code from server %d", responseCode] forKey:NSLocalizedDescriptionKey]]];
+        [self _failWithError:[NSError errorWithDomain:@"org.lolrus.SocketRocket" code:2132 userInfo:[NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"received bad response code from server %ld", (long)responseCode] forKey:NSLocalizedDescriptionKey]]];
         return;
 
     }
@@ -493,7 +500,7 @@ static __strong NSData *CRLFCRLF;
     }
 
     [self _performDelegateBlock:^{
-        if (self.delegate && [self.delegate respondsToSelector:@selector(webSocketDidOpen:)]) {
+        if ([self.delegate respondsToSelector:@selector(webSocketDidOpen:)]) {
             [self.delegate webSocketDidOpen:self];
         };
     }];
@@ -534,7 +541,7 @@ static __strong NSData *CRLFCRLF;
     CFHTTPMessageSetHeaderFieldValue(request, CFSTR("Upgrade"), CFSTR("websocket"));
     CFHTTPMessageSetHeaderFieldValue(request, CFSTR("Connection"), CFSTR("Upgrade"));
     CFHTTPMessageSetHeaderFieldValue(request, CFSTR("Sec-WebSocket-Key"), (__bridge CFStringRef)_secKey);
-    CFHTTPMessageSetHeaderFieldValue(request, CFSTR("Sec-WebSocket-Version"), (__bridge CFStringRef)[NSString stringWithFormat:@"%d", _webSocketVersion]);
+    CFHTTPMessageSetHeaderFieldValue(request, CFSTR("Sec-WebSocket-Version"), (__bridge CFStringRef)[NSString stringWithFormat:@"%ld", (long)_webSocketVersion]);
     
     CFHTTPMessageSetHeaderFieldValue(request, CFSTR("Origin"), (__bridge CFStringRef)_url.SR_origin);
     
@@ -589,7 +596,49 @@ static __strong NSData *CRLFCRLF;
         [SSLOptions setValue:[NSNumber numberWithBool:NO] forKey:(__bridge id)kCFStreamSSLValidatesCertificateChain];
         NSLog(@"SocketRocket: In debug mode.  Allowing connection to any root cert");
 #endif
+      
+        // For client SSL authentication.
+        if (_clientCertificateData != nil) {
+          // Import .p12 data
+          CFArrayRef keyref = NULL;
+          OSStatus status = SecPKCS12Import((__bridge CFDataRef)_clientCertificateData,
+                                            (__bridge CFDictionaryRef)[NSDictionary
+                                                                       dictionaryWithObject:_clientCertificateCipher
+                                                                       forKey:(__bridge id)kSecImportExportPassphrase],
+                                            &keyref);
+          if (status != noErr) {
+            [self _failWithError:[NSError errorWithDomain:@"org.lolrus.SocketRocket" code:23556 userInfo:[NSDictionary dictionaryWithObject:@"Error importing pkcs12 data" forKey:NSLocalizedDescriptionKey]]];
+            return;
+          }
+          
+          // Identity
+          CFDictionaryRef identityDict = CFArrayGetValueAtIndex(keyref, 0);
+          SecIdentityRef identityRef = (SecIdentityRef)CFDictionaryGetValue(identityDict,
+                                                                            kSecImportItemIdentity);
         
+          // Cert
+          SecCertificateRef cert = NULL;
+          status = SecIdentityCopyCertificate(identityRef, &cert);
+          if (status) {
+            [self _failWithError:[NSError errorWithDomain:@"org.lolrus.SocketRocket" code:23556 userInfo:[NSDictionary dictionaryWithObject:@"Error getting client certificate from pkcs12 data" forKey:NSLocalizedDescriptionKey]]];
+            return;
+          }
+        
+          // The certificates array, containing the identity then the certificate
+          NSArray *myCerts = [[NSArray alloc] initWithObjects:(__bridge id)identityRef, (__bridge id)cert, nil];
+        
+          //
+          [SSLOptions setObject:[NSNumber numberWithBool:YES] forKey:(NSString *)kCFStreamSSLAllowsExpiredRoots];
+          [SSLOptions setObject:[NSNumber numberWithBool:YES] forKey:(NSString *)kCFStreamSSLAllowsExpiredCertificates];
+          [SSLOptions setObject:[NSNumber numberWithBool:YES] forKey:(NSString *)kCFStreamSSLAllowsAnyRoot];
+          [SSLOptions setObject:[NSNumber numberWithBool:NO] forKey:(NSString *)kCFStreamSSLValidatesCertificateChain];
+          [SSLOptions setObject:[NSString stringWithFormat:@"%@:%d", host, port] forKey:(NSString *)kCFStreamSSLPeerName];
+          [SSLOptions setObject:(NSString *)kCFStreamSocketSecurityLevelNegotiatedSSL forKey:(NSString*)kCFStreamSSLLevel];
+          [SSLOptions setObject:(NSString *)kCFStreamSocketSecurityLevelNegotiatedSSL forKey:(NSString*)kCFStreamPropertySocketSecurityLevel];
+          [SSLOptions setObject:myCerts forKey:(NSString *)kCFStreamSSLCertificates];
+          [SSLOptions setObject:[NSNumber numberWithBool:NO] forKey:(NSString *)kCFStreamSSLIsServer];
+        }
+      
         [_outputStream setProperty:SSLOptions
                             forKey:(__bridge id)kCFStreamPropertySSLSettings];
     }
@@ -880,7 +929,7 @@ static inline BOOL closeCodeIsValid(int closeCode) {
             [self handlePong];
             break;
         default:
-            [self _closeWithProtocolError:[NSString stringWithFormat:@"Unknown opcode %d", opcode]];
+            [self _closeWithProtocolError:[NSString stringWithFormat:@"Unknown opcode %ld", (long)opcode]];
             // TODO: Handle invalid opcode
             break;
     }

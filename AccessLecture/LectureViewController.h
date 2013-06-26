@@ -2,7 +2,6 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
-#import "ZoomHandler.H"
 #import "LineDrawView.h"
 #import "SettingsViewController.h"
 #import "AccessLectureRuntime.h"
@@ -26,7 +25,6 @@
     
     // Zooming
     CGPoint screenSize;
-    ZoomHandler *zoomHandler;
     BOOL isZoomedIn;
     float ZOOM_STEP;
     float oldZoomScale;
@@ -64,7 +62,7 @@
 - (IBAction)zoomOutButtonPress:(id)sender;
 - (IBAction)zoomInButtonPress:(id)sender;
 - (IBAction)exitNotesButtonPress:(id)sender;
-- (IBAction)createNoteButtonPress:(id)sender;
+- (IBAction)toggleNoteButtonPress:(id)sender;
 
 
 @property (weak, nonatomic) IBOutlet UIButton *zoomOutButton;
