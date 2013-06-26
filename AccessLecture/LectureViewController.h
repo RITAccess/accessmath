@@ -60,7 +60,7 @@
 - (IBAction)zoomOutButtonPress:(id)sender;
 - (IBAction)zoomInButtonPress:(id)sender;
 - (IBAction)exitNotesButtonPress:(id)sender;
-- (IBAction)createNoteButtonPress:(id)sender;
+- (IBAction)toggleNoteButtonPress:(id)sender;
 
 
 @property (weak, nonatomic) IBOutlet UIButton *zoomOutButton;

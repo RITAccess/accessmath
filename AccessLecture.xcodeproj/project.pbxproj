@@ -366,9 +366,9 @@
 		3FCD5D1115438265005F2A60 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3FED963213708E5100D8D1B8 /* Lecture View */,
 				3F78A40213D5C0DD0048A579 /* Accessible Subclasses */,
 				3FED963113708E4E00D8D1B8 /* Root View */,
-				3FED963213708E5100D8D1B8 /* Lecture View */,
 				3F0DBDCC13BD170C00E3FEE8 /* About View */,
 			);
 			name = View;
