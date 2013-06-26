@@ -517,7 +517,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="-1" minValue="-1.5" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="zqK-70-aS1">
-                                <rect key="frame" x="18" y="284" width="284" height="23"/>
+                                <rect key="frame" x="18" y="286" width="284" height="23"/>
                                 <connections>
                                     <action selector="eraserSizeSlide:" destination="pIb-Nv-pIW" eventType="valueChanged" id="oyD-33-lff"/>
                                 </connections>
@@ -538,7 +538,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Eraser Size" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VsA-sA-WsO">
-                                <rect key="frame" x="82" y="232" width="156" height="23"/>
+                                <rect key="frame" x="82" y="233" width="156" height="23"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="23" id="b9A-Zv-LHN"/>
                                     <constraint firstAttribute="width" constant="156" id="gh0-jQ-3ni"/>
@@ -547,7 +547,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Active Test Image" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cG9-d2-eHm">
-                                <rect key="frame" x="51" y="508" width="219" height="33"/>
+                                <rect key="frame" x="51" y="510" width="219" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="219" id="TJo-85-c4w"/>
                                     <constraint firstAttribute="height" constant="33" id="Zhd-zq-jN8"/>
@@ -556,7 +556,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Zoom Increment" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qpk-I5-pq5">
-                                <rect key="frame" x="62" y="367" width="217" height="27"/>
+                                <rect key="frame" x="62" y="368" width="217" height="27"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="27" id="F5e-eM-d2v"/>
                                     <constraint firstAttribute="width" constant="217" id="HrF-xI-TwE"/>
@@ -565,10 +565,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kSV-aq-K2t">
-                                <rect key="frame" x="122" y="559" width="79" height="27"/>
+                                <rect key="frame" x="122" y="561" width="79" height="27"/>
                             </switch>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="High Contrast Mode" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uE6-du-dUk">
-                                <rect key="frame" x="35" y="635" width="251" height="33"/>
+                                <rect key="frame" x="35" y="637" width="251" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="33" id="5n4-kY-lms"/>
                                     <constraint firstAttribute="width" constant="251" id="R87-ml-uRY"/>
@@ -577,13 +577,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gW1-EI-Vkh">
-                                <rect key="frame" x="122" y="691" width="79" height="27"/>
+                                <rect key="frame" x="122" y="694" width="79" height="27"/>
                                 <connections>
                                     <action selector="contrastSwitchToggle:" destination="pIb-Nv-pIW" eventType="valueChanged" id="fAg-BP-iAr"/>
                                 </connections>
                             </switch>
                             <navigationBar contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="U4g-4z-jz9">
-                                <rect key="frame" x="0.0" y="1318" width="350" height="44"/>
+                                <rect key="frame" x="0.0" y="1323" width="350" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="350" id="GUz-yr-3ID"/>
                                 </constraints>
@@ -592,13 +592,13 @@
                                 </items>
                             </navigationBar>
                             <navigationBar contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="eyO-xM-VVf">
-                                <rect key="frame" x="0.0" y="1389" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="1394" width="320" height="44"/>
                                 <items>
                                     <navigationItem title="Settings" id="O2C-4p-myn"/>
                                 </items>
                             </navigationBar>
                             <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="isb-BJ-wA5">
-                                <rect key="frame" x="113" y="1126" width="94" height="27"/>
+                                <rect key="frame" x="113" y="1166" width="94" height="27"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <action selector="zoomIncrementStep:" destination="pIb-Nv-pIW" eventType="valueChanged" id="l9V-1s-G5S"/>
@@ -611,29 +611,29 @@
                             <constraint firstItem="f5m-cJ-Gvb" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="72" id="1nz-ZS-7HN"/>
                             <constraint firstItem="VsA-sA-WsO" firstAttribute="centerX" secondItem="zqK-70-aS1" secondAttribute="centerX" type="default" id="28B-Ib-lMq"/>
                             <constraint firstAttribute="trailing" secondItem="B5h-hB-3IN" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="4ko-cA-pj1"/>
-                            <constraint firstItem="eyO-xM-VVf" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="1389" id="5oV-xb-4TC"/>
                             <constraint firstItem="cG9-d2-eHm" firstAttribute="centerX" secondItem="zqK-70-aS1" secondAttribute="centerX" type="default" id="6TS-Ji-Mp1"/>
-                            <constraint firstItem="uE6-du-dUk" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="635" id="7Od-0R-aPY"/>
-                            <constraint firstItem="cG9-d2-eHm" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="508" id="Agp-HK-ON4"/>
+                            <constraint firstItem="kSV-aq-K2t" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="561" id="A2W-rc-Yem"/>
                             <constraint firstItem="gW1-EI-Vkh" firstAttribute="leading" secondItem="kSV-aq-K2t" secondAttribute="leading" type="default" id="BD5-Gc-Kjr"/>
-                            <constraint firstItem="VsA-sA-WsO" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="232" id="ET1-QS-EcM"/>
                             <constraint firstItem="Qpk-I5-pq5" firstAttribute="leading" secondItem="kU9-Ev-PsL" secondAttribute="leading" constant="62" id="HVw-Ew-cwB"/>
                             <constraint firstItem="eyO-xM-VVf" firstAttribute="centerX" secondItem="isb-BJ-wA5" secondAttribute="centerX" type="default" id="Hpa-i8-6zK"/>
-                            <constraint firstItem="kSV-aq-K2t" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="559" id="MRW-bd-pZc"/>
+                            <constraint firstItem="uE6-du-dUk" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="637" id="Kzi-gk-6iJ"/>
+                            <constraint firstItem="eyO-xM-VVf" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="1394" id="LMp-f1-H8c"/>
                             <constraint firstItem="B5h-hB-3IN" firstAttribute="centerX" secondItem="f5m-cJ-Gvb" secondAttribute="centerX" type="default" id="NId-RY-Eip"/>
+                            <constraint firstItem="VsA-sA-WsO" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="233" id="Pmz-iD-5cg"/>
                             <constraint firstItem="eyO-xM-VVf" firstAttribute="leading" secondItem="U4g-4z-jz9" secondAttribute="leading" type="default" id="RPs-ee-dxE"/>
+                            <constraint firstItem="cG9-d2-eHm" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="510" id="RRH-wW-ur5"/>
                             <constraint firstItem="B5h-hB-3IN" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="133" id="RU5-Um-pVS"/>
-                            <constraint firstItem="gW1-EI-Vkh" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="691" id="lbp-oG-go1"/>
+                            <constraint firstItem="Qpk-I5-pq5" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="368" id="anQ-xF-5Yq"/>
+                            <constraint firstItem="U4g-4z-jz9" firstAttribute="leading" secondItem="kU9-Ev-PsL" secondAttribute="leading" type="default" id="b9a-d2-gOC"/>
+                            <constraint firstItem="isb-BJ-wA5" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="1166" id="ekW-aW-Ufg"/>
+                            <constraint firstItem="zqK-70-aS1" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="286" id="ioQ-Wz-JSX"/>
                             <constraint firstItem="isb-BJ-wA5" firstAttribute="centerX" secondItem="gW1-EI-Vkh" secondAttribute="centerX" type="default" id="mCw-WS-e6J"/>
                             <constraint firstItem="B5h-hB-3IN" firstAttribute="leading" secondItem="zqK-70-aS1" secondAttribute="leading" type="default" id="mDh-LE-R2R"/>
                             <constraint firstItem="uE6-du-dUk" firstAttribute="centerX" secondItem="gW1-EI-Vkh" secondAttribute="centerX" type="default" id="ncO-8j-Dw9"/>
-                            <constraint firstItem="zqK-70-aS1" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="284" id="pRW-nu-Hgj"/>
                             <constraint firstItem="B5h-hB-3IN" firstAttribute="trailing" secondItem="zqK-70-aS1" secondAttribute="trailing" type="default" id="plL-X3-Crv"/>
                             <constraint firstItem="B5h-hB-3IN" firstAttribute="leading" secondItem="kU9-Ev-PsL" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="rYX-SM-N6R"/>
-                            <constraint firstItem="Qpk-I5-pq5" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="367" id="sEd-lL-JxW"/>
-                            <constraint firstItem="eyO-xM-VVf" firstAttribute="leading" secondItem="kU9-Ev-PsL" secondAttribute="leading" type="default" id="ufe-lW-Dq3"/>
-                            <constraint firstItem="isb-BJ-wA5" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="1126" id="v8u-cS-lPA"/>
-                            <constraint firstItem="U4g-4z-jz9" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="1318" id="ytB-59-Ywf"/>
+                            <constraint firstItem="U4g-4z-jz9" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="1323" id="vFk-VR-vhm"/>
+                            <constraint firstItem="gW1-EI-Vkh" firstAttribute="top" secondItem="kU9-Ev-PsL" secondAttribute="top" constant="694" id="yyg-zI-jlp"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
@@ -783,6 +783,71 @@ IAoKA
         <image name="accesslecture.png" width="695" height="512"/>
         <image name="pin.png" width="256" height="256"/>
     </resources>
+    <classes>
+        <class className="AboutViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AboutViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="returnToHome:"/>
+                <relationship kind="outlet" name="mainView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="LectureCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LectureCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="image" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="label" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="LectureViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LectureViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backButtonPress:"/>
+                <relationship kind="action" name="clearNotesButtonPress:"/>
+                <relationship kind="action" name="createNoteButtonPress:"/>
+                <relationship kind="action" name="exitNotesButtonPress:"/>
+                <relationship kind="action" name="saveButtonPress:"/>
+                <relationship kind="action" name="startNotesButtonPress:"/>
+                <relationship kind="action" name="zoomInButtonPress:"/>
+                <relationship kind="action" name="zoomOutButtonPress:"/>
+                <relationship kind="outlet" name="clearNotesButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="createNoteButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="exitNotesButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="navigationBar" candidateClass="UINavigationBar"/>
+                <relationship kind="outlet" name="navigationBarBackButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="navigationBarSettingsButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="saveNotesButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="startNotesButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="zoomInButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="zoomOutButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="OpenLectureViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/OpenLectureViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="returnToHome:"/>
+            </relationships>
+        </class>
+        <class className="RootViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RootViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="connectToServer:"/>
+                <relationship kind="action" name="openAbout:"/>
+                <relationship kind="action" name="openLecture:"/>
+            </relationships>
+        </class>
+        <class className="SettingsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="contrastSwitchToggle:"/>
+                <relationship kind="action" name="eraserSizeSlide:"/>
+                <relationship kind="action" name="penSizeSlide:"/>
+                <relationship kind="action" name="zoomIncrementStep:"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="lightContent"/>
         <simulatedOrientationMetrics key="orientation"/>

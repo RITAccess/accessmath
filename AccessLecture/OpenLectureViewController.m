@@ -84,10 +84,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
         });
        
         }
-   // [[InventoryStore shared] removeInventory:inventoryToDelete];
-  
-    [tableView reloadData];
-
+     [tableView reloadRowsAtIndexPaths:[tableView indexPathsForVisibleRows]
+                     withRowAnimation:UITableViewRowAnimationNone];
    
 }
 - (IBAction)returnToHome:(id)sender
@@ -102,7 +100,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
         LectureViewController *controller = [segue destinationViewController];
         controller.isOpened = YES;
         controller.documentURL = [directories objectAtIndex:self.tableView.indexPathForSelectedRow.row];
-    dispatch_async(dispatch_get_main_queue(), ^{
+     dispatch_async(dispatch_get_main_queue(), ^{
                         [[AccessLectureRuntime defaultRuntime] openDocument:controller.documentURL];
         
                     });

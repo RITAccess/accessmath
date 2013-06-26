@@ -51,9 +51,8 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
        
         [[self.navigationBar topItem] setTitle:currentLecture.name];
         UIImage *temp = [UIImage imageWithData:currentLecture.image];
-        [imageView setBounds:[scrollView bounds]];
+        [imageView setBounds:[lineDrawView bounds]];
         [imageView setImage:temp];
-        [scrollView setFrame:lineDrawView.frame];
         [self.view addSubview:imageView];
         
         
@@ -64,8 +63,6 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
     defaults = [NSUserDefaults standardUserDefaults];
     
     lineDrawView = [[LineDrawView alloc]initWithFrame:CGRectMake(0, 180, IPAD_MINI_HEIGHT, 468)];
-//    lineDrawView.layer.borderColor = [UIColor redColor].CGColor;
-//    scrollView.layer.borderColor = [UIColor blueColor].CGColor;
     
     // Zoom Setup
     ZOOM_STEP = [defaults floatForKey:@"userZoomIncrement"];
@@ -382,8 +379,8 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
        UIImage *saveImage = [self imageByCropping:scrollView toRect:scrollView.bounds];
      // Adds a photo to the saved photos album.  The optional completionSelector should have the form:
     [lineDrawView setBackgroundColor:[UIColor whiteColor]];
+    [lineDrawView setFrame:scrollView.frame];
     saveImage = [LectureViewController imageWithView:lineDrawView];
-    
     UIImageWriteToSavedPhotosAlbum(saveImage, nil, nil, nil);
     NSURL * currentDirectory = [FileManager iCloudDirectoryURL];
     if (currentDirectory == nil) currentDirectory = [FileManager localDocumentsDirectoryURL];

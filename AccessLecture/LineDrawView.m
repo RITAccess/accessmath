@@ -53,7 +53,8 @@
         default:
             [_bezierPath5 moveToPoint:[touch locationInView:self]];
             break;
-    }    
+    }
+    
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
