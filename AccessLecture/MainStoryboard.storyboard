@@ -444,12 +444,24 @@
                                     <navigationItem title="Settings" id="ESH-YQ-9up"/>
                                 </items>
                             </navigationBar>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pen Size" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EDQ-ZT-ok2">
+                                <rect key="frame" x="104" y="69" width="113" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="113" id="f5D-e7-php"/>
+                                    <constraint firstAttribute="height" constant="32" id="gda-OI-ZfE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="EDQ-ZT-ok2" firstAttribute="top" secondItem="qmE-s5-B4f" secondAttribute="top" constant="69" id="9Bu-8J-n3i"/>
                             <constraint firstItem="4RH-Th-gNv" firstAttribute="top" secondItem="qmE-s5-B4f" secondAttribute="top" type="default" id="Asu-Zj-OIY"/>
                             <constraint firstItem="4RH-Th-gNv" firstAttribute="trailing" secondItem="qmE-s5-B4f" secondAttribute="trailing" type="default" id="D3V-Si-nXI"/>
                             <constraint firstItem="4RH-Th-gNv" firstAttribute="leading" secondItem="qmE-s5-B4f" secondAttribute="leading" type="default" id="Kvr-0C-Ixl"/>
+                            <constraint firstItem="EDQ-ZT-ok2" firstAttribute="centerX" secondItem="4RH-Th-gNv" secondAttribute="centerX" type="default" id="b5f-Nv-gRy"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
