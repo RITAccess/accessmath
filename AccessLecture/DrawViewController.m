@@ -14,7 +14,7 @@
 #define BLACK_TAG 114
 #define HILIGHT_TAG 115
 #define ERASER_TAG 116
-#define COLOR_HEIGHT 80
+#define COLOR_HEIGHT 85
 
 @interface DrawViewController ()
 
@@ -37,6 +37,11 @@
     [self initColorSegmentedControl];
 }
 
+- (void)viewDidUnload {
+    [self setToolbarView:nil];
+    [super viewDidUnload];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -50,9 +55,9 @@
     [_colorSegmentedControl setSegmentedControlStyle:UISegmentedControlStyleBar];
     
     if (self.interfaceOrientation == UIInterfaceOrientationPortrait){
-        [_colorSegmentedControl setFrame:CGRectMake(0, self.view.frame.size.height - COLOR_HEIGHT, 768, COLOR_HEIGHT)];
+        [_colorSegmentedControl setFrame:CGRectMake(0, 0, self.toolbarView.frame.size.width - 200, COLOR_HEIGHT)];
     } else {
-        [_colorSegmentedControl setFrame:CGRectMake(0, self.view.frame.size.width - COLOR_HEIGHT, 1024, COLOR_HEIGHT)];
+        [_colorSegmentedControl setFrame:CGRectMake(0, 0, self.toolbarView.frame.size.width - 200, COLOR_HEIGHT)];
     }
     
     [_colorSegmentedControl addTarget:self action:@selector(segmentChanged:) forControlEvents:UIControlEventValueChanged];
@@ -72,41 +77,32 @@
     [_colorSegmentedControl setTintColor:[UIColor yellowColor] forTag:HILIGHT_TAG];
     [_colorSegmentedControl setTintColor:[UIColor whiteColor] forTag:ERASER_TAG];
     
+    [self.toolbarView addSubview:_colorSegmentedControl];
 //    [self.view addSubview:_colorSegmentedControl];
 }
 
 #pragma mark - Rotation Handling
 
-- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     if (self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
         self.interfaceOrientation == UIInterfaceOrientationLandscapeRight){
-        
-//        if (lineDrawView){
-//            lineDrawView.frame = CGRectMake(0, 180, IPAD_MINI_HEIGHT, 450);
-//        }
-        
         if (_colorSegmentedControl){
-            [_colorSegmentedControl setFrame:CGRectMake(0, self.view.frame.size.width - COLOR_HEIGHT, 1024, COLOR_HEIGHT)];
+            [_colorSegmentedControl setFrame:CGRectMake(0, 0, self.toolbarView.frame.size.width - 200, COLOR_HEIGHT)];
         }
-        
-//        if (scrollView){
-//            scrollView.frame = CGRectMake(0, 180, IPAD_MINI_HEIGHT, 450);
-//        }
     } else if (self.interfaceOrientation == UIInterfaceOrientationPortrait){
-        
         if (_colorSegmentedControl){
-            [_colorSegmentedControl setFrame:CGRectMake(0, 927, 768, COLOR_HEIGHT)];
+            [_colorSegmentedControl setFrame:CGRectMake(0, 0, self.toolbarView.frame.size.width - 200, COLOR_HEIGHT)];
         }
-        
-//        if (scrollView){
-//            scrollView.frame = CGRectMake(0, 180, IPAD_MINI_HEIGHT, 710); // Extending ScrollView past LineDrawView height
-//        }
     }
 }
 
-- (void)viewDidUnload {
-    [self setToolbarView:nil];
-    [super viewDidUnload];
+/**
+ * Called when the SegmentedControl is changed to a new color.
+ */
+- (void)segmentChanged:(id)sender
+{
+    NSLog(@"Segment changed...");
+//    lineDrawView.currentPath = [_colorSegmentedControl selectedSegmentIndex];
 }
 @end

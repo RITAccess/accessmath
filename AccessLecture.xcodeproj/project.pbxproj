@@ -240,6 +240,7 @@
 		2CBF3014177B700C0087C17C /* DrawViewController */ = {
 			isa = PBXGroup;
 			children = (
+				2C0F88681760D8D10062BD16 /* Line Draw View */,
 				2C6F399A1768DA0300D700F7 /* Color Selection */,
 				2CBF3019177B7AB10087C17C /* DrawViewController.h */,
 				2CBF301A177B7AB10087C17C /* DrawViewController.m */,
@@ -491,7 +492,6 @@
 				2CBF3014177B700C0087C17C /* DrawViewController */,
 				3FAD0BF813A7B7AE00218B1F /* ColorViewController */,
 				2C76BDE41762140D00A1E6BA /* Settings View */,
-				2C0F88681760D8D10062BD16 /* Line Draw View */,
 				3FAD0BFA13A7B7D800218B1F /* Lecture View  */,
 			);
 			name = "Lecture View";
