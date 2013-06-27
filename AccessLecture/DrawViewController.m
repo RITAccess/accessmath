@@ -46,7 +46,8 @@
     [self initColorSegmentedControl];
 }
 
-- (void)viewDidUnload {
+- (void)viewDidUnload
+{
     [self setToolbarView:nil];
     [self setTogglePanSwitch:nil];
     [super viewDidUnload];
@@ -78,9 +79,37 @@
     if ((gesture.state == UIGestureRecognizerStateChanged) ||
         (gesture.state == UIGestureRecognizerStateEnded)) {
         
-        CGPoint translation = [gesture translationInView:self.view];
-        _drawView.center = CGPointMake(_drawView.center.x + translation.x,
-                                          _drawView.center.y + translation.y);
+        CGPoint translation = [gesture translationInView:self.view];        
+        _drawView.center = CGPointMake(_drawView.center.x + translation.x, _drawView.center.y + translation.y);
+        
+        // Clamp Left and Top Sides of View
+        if (_drawView.frame.origin.x > 0){
+            _drawView.frame = CGRectMake(0, _drawView.frame.origin.y, _drawView.frame.size.width, _drawView.frame.size.height);
+        }
+        
+        if (_drawView.frame.origin.y > 0){
+            _drawView.frame = CGRectMake(_drawView.frame.origin.x, 0, _drawView.frame.size.width, _drawView.frame.size.height);
+        }
+        
+        // Clamp Right and Bottom Sides of View
+        if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)){
+            if (_drawView.frame.origin.x < -500){
+                _drawView.frame = CGRectMake(-500, _drawView.frame.origin.y, _drawView.frame.size.width, _drawView.frame.size.height);
+            }
+            
+            if (_drawView.frame.origin.y < -1020){
+                _drawView.frame = CGRectMake(_drawView.frame.origin.x, -1020, _drawView.frame.size.width, _drawView.frame.size.height);
+            }
+        } else if (UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)) {
+            if (_drawView.frame.origin.x < -765){
+                _drawView.frame = CGRectMake(-765, _drawView.frame.origin.y, _drawView.frame.size.width, _drawView.frame.size.height);
+            } 
+            
+            if (_drawView.frame.origin.y < -1020){
+                _drawView.frame = CGRectMake(_drawView.frame.origin.x, -1020, _drawView.frame.size.width, _drawView.frame.size.height);
+            }
+        }
+        
         [gesture setTranslation:CGPointMake(0, 0) inView:self.view];
     }
 }
