@@ -18,6 +18,16 @@
 @implementation LectureViewContainer {
     BOOL menuOpen;
     NSArray *menuItems;
+    
+    // Controllers
+    NotesViewController *nvc;
+    DrawViewController *dcv;
+    StreamViewController *svc;
+    
+    NSArray *nvcPersistent;
+    NSArray *dcvPersistent;
+    NSArray *svcPersistent;
+    
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -38,6 +48,11 @@
     
     [_sideMenu setBackgroundColor:[UIColor colorWithRed:0.97 green:0.97 blue:0.97 alpha:0.8]];
     [_navBar setBackgroundColor:[UIColor colorWithRed:0.97 green:0.97 blue:0.97 alpha:0.5]];
+    
+    // Set up views
+    nvc = [[NotesViewController alloc] initWithNibName:NotesViewControllerXIB bundle:nil];
+    dcv = [[DrawViewController alloc] initWithNibName:DrawViewControllerXIB bundle:nil];
+    svc = [[StreamViewController alloc] initWithNibName:StreamViewControllerXIB bundle:nil];
     
     menuOpen = NO;
     [self setUpMenuItems];
@@ -75,7 +90,7 @@
 #pragma mark Actions
 
 - (void)action:(UITapGestureRecognizer *)reg
-{
+{    
     switch (reg.view.tag) {
         case 0:
             // Save
@@ -83,28 +98,19 @@
             break;
         case 1:
         {
-            NotesViewController *nvc = [[NotesViewController alloc] initWithNibName:NotesViewControllerXIB bundle:nil];
             [self addController:nvc];
-            [self addController:nvc];
-            [nvc didMoveToParentViewController:self];
             break;
         }
         case 2:
         {
             // Draw
-            DrawViewController *dcv = [[DrawViewController alloc] initWithNibName:DrawViewControllerXIB bundle:nil];
-            [self addChildViewController:dcv];
             [self addController:dcv];
-            [dcv didMoveToParentViewController:self];
             break;
         }
         case 3:
         {
             // Stream
-            StreamViewController *svm = [[StreamViewController alloc] initWithNibName:StreamViewControllerXIB bundle:nil];
-            [self addChildViewController:svm];
-            [self addController:svm];
-            [svm didMoveToParentViewController:self];
+            [self addController:svc];
             break;
         }
             
@@ -121,11 +127,25 @@
 
 - (void)addController:(UIViewController *)vc
 {
+    // Leave parent
+    NSMutableArray *children = [[NSMutableArray alloc] initWithArray:self.childViewControllers];
+    for (UIViewController<LectureViewChild> *child in self.childViewControllers) {
+        if ([child respondsToSelector:@selector(willLeaveActiveState)]) {
+            [child willLeaveActiveState];
+        }
+    }
+    [self addChildViewController:vc];
     [self.view addSubview:vc.view];
     [vc.view setBackgroundColor:[UIColor clearColor]];
     [self.view bringSubviewToFront:_navBar];
     [self.view bringSubviewToFront:_sideMenu];
-    
+    for (UIViewController<LectureViewChild> *child in children) {
+        if ([child respondsToSelector:@selector(willLeaveActiveState)]) {
+            [child didLeaveActiveState];
+        }
+    }
+    children = nil;
+    [vc didMoveToParentViewController:self];
 }
 
 - (IBAction)menuButtonTapped:(id)sender

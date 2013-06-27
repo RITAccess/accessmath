@@ -49,6 +49,7 @@
 - (void)didMoveToParentViewController:(UIViewController *)parent
 {
     NSLog(@"new parent %@", parent);
+    [test setBackgroundColor:[UIColor orangeColor]];
     [UIView animateWithDuration:2.0 delay:0.0 options:UIViewAnimationOptionRepeat | UIViewAnimationOptionCurveLinear animations:^{
         CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI);
         test.transform = transform;
@@ -63,6 +64,17 @@
 - (void)didSaveState
 {
     NSLog(@"Did save state");
+}
+
+- (void)willLeaveActiveState
+{
+    [test setBackgroundColor:[UIColor grayColor]];
+    NSLog(@"Will leave active state");
+}
+
+- (void)didLeaveActiveState
+{
+    NSLog(@"Did leave active state");
 }
 
 #pragma mark Orientation

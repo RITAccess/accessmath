@@ -14,9 +14,8 @@
 - (void)willSaveState;
 - (void)didSaveState;
 
-- (BOOL)shouldHavePersistantView;
-- (void)willSetUpPersistantView;
-- (UIView *)didSetUpPersistantView;
+- (void)willLeaveActiveState;
+- (void)didLeaveActiveState;
 
 @end
 
