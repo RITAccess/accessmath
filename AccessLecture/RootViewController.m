@@ -19,6 +19,13 @@
     [super didReceiveMemoryWarning];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    // Instantiating DrawViewController for testing
+//    DrawViewController *drawViewController = [[DrawViewController alloc] initWithNibName:@"DrawViewController" bundle:nil];
+//    [self presentModalViewController:drawViewController animated:NO];
+}
+
 /**
  * Open an active connection to the server
  */

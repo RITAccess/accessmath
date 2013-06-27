@@ -8,6 +8,8 @@
 
 #import "LectureViewContainer.h"
 #import "StreamViewController.h"
+#import "DrawViewController.h"
+#import "NotesViewController.h"
 
 @interface LectureViewContainer ()
 
@@ -77,22 +79,33 @@
     switch (reg.view.tag) {
         case 0:
             // Save
-            for (UIViewController<LectureViewChild> *children in self.childViewControllers) {
-                [children willSaveState];
-            }
+            [self startSave];
             break;
         case 1:
-            // Notes
+        {
+            NotesViewController *nvc = [[NotesViewController alloc] initWithNibName:NotesViewControllerXIB bundle:nil];
+            [self addController:nvc];
+            [self addController:nvc];
+            [nvc didMoveToParentViewController:self];
             break;
+        }
         case 2:
+        {
             // Draw
+            DrawViewController *dcv = [[DrawViewController alloc] initWithNibName:DrawViewControllerXIB bundle:nil];
+            [self addChildViewController:dcv];
+            [self addController:dcv];
+            [dcv didMoveToParentViewController:self];
             break;
+        }
         case 3:
         {
+            // Stream
             StreamViewController *svm = [[StreamViewController alloc] initWithNibName:StreamViewControllerXIB bundle:nil];
             [self addChildViewController:svm];
             [self addController:svm];
             [svm didMoveToParentViewController:self];
+            break;
         }
             
         default:
@@ -109,7 +122,7 @@
 - (void)addController:(UIViewController *)vc
 {
     [self.view addSubview:vc.view];
-    
+    [vc.view setBackgroundColor:[UIColor clearColor]];
     [self.view bringSubviewToFront:_navBar];
     [self.view bringSubviewToFront:_sideMenu];
     
@@ -196,6 +209,25 @@
 {
     for (UIView *item in menuItems) {
         [item removeFromSuperview];
+    }
+}
+
+#pragma mark Saving
+
+- (void)startSave
+{
+    for (UIViewController<LectureViewChild> *children in self.childViewControllers) {
+        if ([children respondsToSelector:@selector(willSaveState)]) {
+            [children willSaveState];
+        }
+    }
+    
+    // Do state saving
+    
+    for (UIViewController<LectureViewChild> *children in self.childViewControllers) {
+        if ([children respondsToSelector:@selector(didSaveState)]) {
+            [children didSaveState];
+        }
     }
 }
 

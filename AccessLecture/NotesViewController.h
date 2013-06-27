@@ -7,11 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LectureViewContainer.h"
 
-@interface NotesViewController : UIViewController
+static NSString* const NotesViewControllerXIB = @"NotesViewController";
+
+@interface NotesViewController : UIViewController <LectureViewChild>
+
 @property (nonatomic) BOOL isCreatingNote;
 @property (nonatomic) BOOL isDrawing;
 @property (nonatomic) CGPoint *start;
 @property UITapGestureRecognizer *tapToCreateNote;
 @property UITapGestureRecognizer *tapToDismissKeyboard;
+
 @end

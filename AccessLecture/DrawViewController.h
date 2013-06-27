@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "UISegmentedControlExtension.h"
+#import "LectureViewContainer.h"
 #import "DrawView.h"
 
-@interface DrawViewController : UIViewController
+static NSString* const DrawViewControllerXIB = @"DrawViewController";
+
+@interface DrawViewController : UIViewController <LectureViewChild>
 
 @property NSInteger selectedColor;
 @property DrawView *drawView;

@@ -12,6 +12,11 @@
 @protocol LectureViewChild <NSObject>
 
 - (void)willSaveState;
+- (void)didSaveState;
+
+- (BOOL)shouldHavePersistantView;
+- (void)willSetUpPersistantView;
+- (UIView *)didSetUpPersistantView;
 
 @end
 
