@@ -60,12 +60,9 @@
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
-    if (self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
-        self.interfaceOrientation == UIInterfaceOrientationLandscapeRight)
-    {
+    if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)){
         [_colorSegmentedControl setFrame:CGRectMake(0, 0, self.toolbarView.frame.size.width - 200, COLOR_HEIGHT)];
-    } else if (self.interfaceOrientation == UIInterfaceOrientationPortrait)
-    {
+    } else if (UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)){
         [_colorSegmentedControl setFrame:CGRectMake(0, 0, self.toolbarView.frame.size.width - 200, COLOR_HEIGHT)];
     }
 }
@@ -75,7 +72,7 @@
 - (void)panToMove:(UIPanGestureRecognizer *)gesture
 {
     if ((gesture.state == UIGestureRecognizerStateChanged) ||
-        (gesture.state == UIGestureRecognizerStateEnded)) {
+        (gesture.state == UIGestureRecognizerStateEnded)){
         
         CGPoint translation = [gesture translationInView:self.view];        
         _drawView.center = CGPointMake(_drawView.center.x + translation.x, _drawView.center.y + translation.y);
@@ -98,7 +95,7 @@
             if (_drawView.frame.origin.y < -1020){
                 _drawView.frame = CGRectMake(_drawView.frame.origin.x, -1020, _drawView.frame.size.width, _drawView.frame.size.height);
             }
-        } else if (UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)) {
+        } else if (UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)){
             if (_drawView.frame.origin.x < -765){
                 _drawView.frame = CGRectMake(-765, _drawView.frame.origin.y, _drawView.frame.size.width, _drawView.frame.size.height);
             } 
