@@ -14,23 +14,20 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="2">
-            <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+            <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view opaque="NO" alpha="0.79999999999999982" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FRQ-2V-rZ2" userLabel="Toolbar">
-                    <rect key="frame" x="0.0" y="688" width="1024" height="80"/>
+                    <rect key="frame" x="0.0" y="944" width="768" height="80"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
-                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Myh-uY-bSV" userLabel="Pan Switch">
-                            <rect key="frame" x="935" y="24" width="51" height="31"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="McC-cO-jWD" userLabel="Clear Notes Button">
+                            <rect key="frame" x="620" y="16" width="44" height="47"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <connections>
-                                <action selector="togglePan:" destination="-1" eventType="valueChanged" id="boB-WG-cL2"/>
-                            </connections>
-                        </switch>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="McC-cO-jWD" userLabel="Clear Notes Button">
-                            <rect key="frame" x="876" y="16" width="44" height="47"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="44" id="WJS-ke-pWG"/>
+                                <constraint firstAttribute="height" constant="47" id="tsY-Qn-RbE"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                             <state key="normal" backgroundImage="ClearNotes.png">
                                 <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -43,10 +40,21 @@
                                 <action selector="clearNotesButtonPress:" destination="-1" eventType="touchUpInside" id="hkx-XM-b0Y"/>
                             </connections>
                         </button>
+                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Myh-uY-bSV" userLabel="Pan Switch">
+                            <rect key="frame" x="699" y="24" width="51" height="31"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <connections>
+                                <action selector="togglePan:" destination="-1" eventType="valueChanged" id="boB-WG-cL2"/>
+                            </connections>
+                        </switch>
                     </subviews>
                     <color key="backgroundColor" red="0.89707880429999998" green="0.89707880429999998" blue="0.89707880429999998" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
+                        <constraint firstItem="Myh-uY-bSV" firstAttribute="top" secondItem="FRQ-2V-rZ2" secondAttribute="top" constant="24" id="Kip-s6-vxk"/>
                         <constraint firstAttribute="height" constant="80" id="NqW-5m-qnc"/>
+                        <constraint firstAttribute="trailing" secondItem="McC-cO-jWD" secondAttribute="trailing" constant="104" id="RwC-Ct-DuI"/>
+                        <constraint firstItem="McC-cO-jWD" firstAttribute="top" secondItem="FRQ-2V-rZ2" secondAttribute="top" constant="16" id="qOC-BW-N7A"/>
+                        <constraint firstAttribute="trailing" secondItem="Myh-uY-bSV" secondAttribute="trailing" constant="20" id="uNb-Qb-IFm"/>
                     </constraints>
                 </view>
             </subviews>
@@ -57,10 +65,23 @@
                 <constraint firstItem="FRQ-2V-rZ2" firstAttribute="trailing" secondItem="2" secondAttribute="trailing" id="oIH-qj-pjO"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackOpaque"/>
-            <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
         </view>
     </objects>
     <resources>
         <image name="ClearNotes.png" width="72" height="72"/>
     </resources>
+    <classes>
+        <class className="DrawViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DrawViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="clearNotesButtonPress:"/>
+                <relationship kind="action" name="togglePan:"/>
+                <relationship kind="outlet" name="togglePanSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="toolbarView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+    </classes>
 </document>
