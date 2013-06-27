@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OpenLectureViewController : UITableViewController
+@interface OpenLectureViewController : UITableViewController<UIGestureRecognizerDelegate>
 
 - (IBAction)returnToHome:(id)sender;
-@property(nonatomic)NSMutableArray *diectories;
+@property(nonatomic)NSMutableArray *directories;
 @end
