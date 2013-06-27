@@ -57,7 +57,12 @@
 
 - (void)willSaveState
 {
-    [self.view setBackgroundColor:[UIColor grayColor]];
+    NSLog(@"Will save state");
+}
+
+- (void)didSaveState
+{
+    NSLog(@"Did save state");
 }
 
 #pragma mark Orientation
