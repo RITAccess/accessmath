@@ -235,7 +235,7 @@
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
-
+    
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
@@ -245,9 +245,17 @@
     [self setExpandOpen:NO];
 }
 
-- (BOOL)shouldAutomaticallyForwardAppearanceMethods{ return TRUE; }
+- (BOOL)shouldAutomaticallyForwardAppearanceMethods{ return YES; }
 
-- (BOOL)shouldAutomaticallyForwardRotationMethods { return TRUE; }
+- (BOOL)shouldAutomaticallyForwardRotationMethods { return YES; }
+
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    for (UIViewController *child in self.childViewControllers) {
+        [UIView animateWithDuration:duration animations:^{
+            child.view.frame = self.view.bounds;
+        }];
+    }
+}
 
 - (void)viewDidUnload {
     [self setSideMenu:nil];

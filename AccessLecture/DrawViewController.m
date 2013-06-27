@@ -61,8 +61,7 @@
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
-    if (self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
-        self.interfaceOrientation == UIInterfaceOrientationLandscapeRight)
+    if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation))
     {
         [_colorSegmentedControl setFrame:CGRectMake(0, 0, self.toolbarView.frame.size.width - 200, COLOR_HEIGHT)];
     } else if (self.interfaceOrientation == UIInterfaceOrientationPortrait)
