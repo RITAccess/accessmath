@@ -21,7 +21,6 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    NSLog(@"");
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetStrokeColorWithColor(context, [UIColor blackColor].CGColor);
     CGContextSetLineWidth(context, 1.0f);

@@ -9,12 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "TopNav.h"
 
-@interface LectureViewContainer : UIViewController
+@protocol LectureViewChild <NSObject>
 
+- (void)willSaveState;
+
+@end
+
+@interface LectureViewContainer : UIViewController
 
 - (IBAction)menuButtonTapped:(id)sender;
 - (IBAction)back:(id)sender;
-
 
 @property (weak, nonatomic) IBOutlet UIView *sideMenu;
 @property (weak, nonatomic) IBOutlet TopNav *navBar;

@@ -62,6 +62,8 @@
 		4C5C50C6177B59D90095801A /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C5C50C5177B59D90095801A /* pin.png */; };
 		4C5C50CD177B7B7C0095801A /* LectureViewContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5C50CC177B7B7C0095801A /* LectureViewContainer.m */; };
 		4C62BECD175651DB00CAF4CF /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F99F1FA1543641E0065CBB9 /* FileManager.m */; };
+		4C8ABE78177C87BD007C934C /* StreamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8ABE76177C87BD007C934C /* StreamViewController.m */; };
+		4C8ABE79177C87BD007C934C /* StreamViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C8ABE77177C87BD007C934C /* StreamViewController.xib */; };
 		4C96FA84176289DE002C0D74 /* ConnectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C96FA83176289DE002C0D74 /* ConnectViewController.m */; };
 		4C9AB8FE177C6895004A4F65 /* TopNav.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9AB8FD177C6895004A4F65 /* TopNav.m */; };
 		4CB832A11768C0BC008F0099 /* AccessLecture_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB832A01768C0AC008F0099 /* AccessLecture_Tests.m */; };
@@ -172,6 +174,9 @@
 		4C5C50C5177B59D90095801A /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin.png; sourceTree = "<group>"; };
 		4C5C50CB177B7B7C0095801A /* LectureViewContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LectureViewContainer.h; sourceTree = "<group>"; };
 		4C5C50CC177B7B7C0095801A /* LectureViewContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LectureViewContainer.m; sourceTree = "<group>"; };
+		4C8ABE75177C87BD007C934C /* StreamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamViewController.h; sourceTree = "<group>"; };
+		4C8ABE76177C87BD007C934C /* StreamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamViewController.m; sourceTree = "<group>"; };
+		4C8ABE77177C87BD007C934C /* StreamViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StreamViewController.xib; sourceTree = "<group>"; };
 		4C96FA82176289DE002C0D74 /* ConnectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectViewController.h; sourceTree = "<group>"; };
 		4C96FA83176289DE002C0D74 /* ConnectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectViewController.m; sourceTree = "<group>"; };
 		4C9AB8FC177C6895004A4F65 /* TopNav.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopNav.h; sourceTree = "<group>"; };
@@ -511,6 +516,7 @@
 		4C5C50C9177B7B300095801A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4C8ABE7A177C886C007C934C /* StreamViewController */,
 				4C5C50CA177B7B3A0095801A /* LectureViewController */,
 			);
 			name = Controllers;
@@ -524,6 +530,16 @@
 				4C5C50CC177B7B7C0095801A /* LectureViewContainer.m */,
 			);
 			name = LectureViewController;
+			sourceTree = "<group>";
+		};
+		4C8ABE7A177C886C007C934C /* StreamViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4C8ABE75177C87BD007C934C /* StreamViewController.h */,
+				4C8ABE76177C87BD007C934C /* StreamViewController.m */,
+				4C8ABE77177C87BD007C934C /* StreamViewController.xib */,
+			);
+			name = StreamViewController;
 			sourceTree = "<group>";
 		};
 		4C96FA81176289B4002C0D74 /* Connect View */ = {
@@ -642,6 +658,7 @@
 				3FED96531370909100D8D1B8 /* Invert.png in Resources */,
 				3FED96541370909100D8D1B8 /* Notes.png in Resources */,
 				4C5C50C6177B59D90095801A /* pin.png in Resources */,
+				4C8ABE79177C87BD007C934C /* StreamViewController.xib in Resources */,
 				3FED96551370909100D8D1B8 /* Save.png in Resources */,
 				3FED96561370909100D8D1B8 /* Selection.png in Resources */,
 				3FED96571370909100D8D1B8 /* Settings.png in Resources */,
@@ -700,6 +717,7 @@
 				3F6D11CA17625EA20066A4FA /* base64.c in Sources */,
 				3F6D11CB17625EA20066A4FA /* NSData+SRB64Additions.m in Sources */,
 				4C9AB8FE177C6895004A4F65 /* TopNav.m in Sources */,
+				4C8ABE78177C87BD007C934C /* StreamViewController.m in Sources */,
 				3F6D11CC17625EA20066A4FA /* SRWebSocket.m in Sources */,
 				4C96FA84176289DE002C0D74 /* ConnectViewController.m in Sources */,
 				2C6F39A01768DAEB00D700F7 /* UISegmentedControlExtension.m in Sources */,
