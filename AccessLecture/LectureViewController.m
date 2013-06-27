@@ -391,7 +391,6 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
     [self initColorSegmentedControl];
     
     lineDrawView.userInteractionEnabled = YES;
-    lineDrawView.isDrawing = YES;
     [lineDrawView setFrame:CGRectMake(0, 180, lineDrawView.frame.size.width, lineDrawView.frame.size.height)]; // Reset position...
     [self.view addSubview:lineDrawView];
     
@@ -432,7 +431,6 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
 //    }
     
     [colorSegmentedControl setHidden:!colorSegmentedControl.isHidden];
-    lineDrawView.isDrawing = !lineDrawView.isDrawing;
     
 	[alert show];
 }

@@ -12,6 +12,7 @@
 
 - (void)clearAllPaths;
 
+// Bezier Paths
 @property UIBezierPath *redBezierPath;
 @property UIBezierPath *greenBezierPath;
 @property UIBezierPath *blueBezierPath;
@@ -20,6 +21,5 @@
 @property UIBezierPath *eraserBezierPath;
 @property NSInteger currentPath;
 @property UIBezierPath *selectedPath;
-@property BOOL isDrawing;
 
 @end

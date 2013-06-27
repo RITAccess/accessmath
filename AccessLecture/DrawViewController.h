@@ -12,10 +12,12 @@
 
 @interface DrawViewController : UIViewController
 
-@property UIBezierPath *redBezierPath;
 @property NSInteger selectedColor;
 @property DrawView *drawView;
 @property UISegmentedControl *colorSegmentedControl;
 @property (weak, nonatomic) IBOutlet UIView *toolbarView;
+
+// Gestures
+@property UIPanGestureRecognizer *panGestureRecognzier;
 
 @end

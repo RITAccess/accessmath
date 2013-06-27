@@ -34,9 +34,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _redBezierPath = [[UIBezierPath alloc]init];
 
     _drawView = [[DrawView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - self.toolbarView.frame.size.height)];
+    
+    _panGestureRecognzier = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panToMove:)];
+    _panGestureRecognzier.maximumNumberOfTouches = 2;
+    [_panGestureRecognzier setTranslation:CGPointMake(40, 40) inView:_drawView];
+    [_drawView addGestureRecognizer:_panGestureRecognzier];
     
     [self.view addSubview:_drawView];
     [self initColorSegmentedControl];
@@ -52,6 +56,35 @@
     [super didReceiveMemoryWarning];
 }
 
+# pragma mark - Rotation Handling
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    if (self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
+        self.interfaceOrientation == UIInterfaceOrientationLandscapeRight)
+    {
+        [_colorSegmentedControl setFrame:CGRectMake(0, 0, self.toolbarView.frame.size.width - 200, COLOR_HEIGHT)];
+    } else if (self.interfaceOrientation == UIInterfaceOrientationPortrait)
+    {
+        [_colorSegmentedControl setFrame:CGRectMake(0, 0, self.toolbarView.frame.size.width - 200, COLOR_HEIGHT)];
+    }
+}
+
+# pragma  mark - Gestures
+
+- (void)panToMove:(UIPanGestureRecognizer *)gesture
+{
+    if ((gesture.state == UIGestureRecognizerStateChanged) ||
+        (gesture.state == UIGestureRecognizerStateEnded)) {
+        
+        NSLog(@"Panning...");
+        
+        CGPoint translation = [gesture translationInView:self.view];
+        _drawView.center = CGPointMake(_drawView.center.x + translation.x,
+                                          _drawView.center.y + translation.y);
+        [gesture setTranslation:CGPointMake(0, 0) inView:self.view];
+    }
+}
 
 # pragma mark - Color Methods
 
@@ -85,22 +118,7 @@
     [_colorSegmentedControl setTintColor:[UIColor whiteColor] forTag:ERASER_TAG];
     
     [self.toolbarView addSubview:_colorSegmentedControl];
-}
-
-#pragma mark - Rotation Handling
-
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
-{
-    if (self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
-        self.interfaceOrientation == UIInterfaceOrientationLandscapeRight){
-        if (_colorSegmentedControl){
-            [_colorSegmentedControl setFrame:CGRectMake(0, 0, self.toolbarView.frame.size.width - 200, COLOR_HEIGHT)];
-        }
-    } else if (self.interfaceOrientation == UIInterfaceOrientationPortrait){
-        if (_colorSegmentedControl){
-            [_colorSegmentedControl setFrame:CGRectMake(0, 0, self.toolbarView.frame.size.width - 200, COLOR_HEIGHT)];
-        }
-    }
+    [self.view bringSubviewToFront:self.toolbarView];
 }
 
 /**
@@ -108,6 +126,8 @@
  */
 - (void)segmentChanged:(id)sender
 {
+    _panGestureRecognzier.enabled = NO;
+    
     NSLog(@"Segment changed...");
     _selectedColor = [_colorSegmentedControl selectedSegmentIndex];
     
@@ -132,14 +152,4 @@
     }
 }
 
-/**
- * Override drawRect() to allow for custom drawing. No override causes performance issues.
- * Alternating setting stroke and stroking to handle each individual path.
- */
-- (void)drawRect:(CGRect)rect
-{
-    NSLog(@"Drawing Rect!");
-    [[UIColor redColor] setStroke];
-    [_redBezierPath stroke];
-}
 @end
