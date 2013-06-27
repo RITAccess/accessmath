@@ -10,6 +10,8 @@
 #import "UISegmentedControlExtension.h"
 #import "DrawView.h"
 
+static NSString* const DrawViewControllerXIB = @"DrawViewController";
+
 @interface DrawViewController : UIViewController
 
 @property NSInteger selectedColor;
