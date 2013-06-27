@@ -48,6 +48,7 @@
 
 - (void)viewDidUnload {
     [self setToolbarView:nil];
+    [self setTogglePanSwitch:nil];
     [super viewDidUnload];
 }
 
@@ -127,6 +128,7 @@
 - (void)segmentChanged:(id)sender
 {
     _panGestureRecognzier.enabled = NO;
+    self.togglePanSwitch.on = NO;
     
     NSLog(@"Segment changed...");
     _selectedColor = [_colorSegmentedControl selectedSegmentIndex];
@@ -152,4 +154,8 @@
     }
 }
 
+- (IBAction)togglePan:(id)sender
+{
+    self.panGestureRecognzier.enabled = !self.panGestureRecognzier.enabled;
+}
 @end

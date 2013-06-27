@@ -504,7 +504,6 @@
 		3FED963213708E5100D8D1B8 /* Lecture View */ = {
 			isa = PBXGroup;
 			children = (
-				2CBF3014177B700C0087C17C /* DrawViewController */,
 				3FAD0BF813A7B7AE00218B1F /* ColorViewController */,
 				2C76BDE41762140D00A1E6BA /* Settings View */,
 				3FAD0BFA13A7B7D800218B1F /* Lecture View  */,
@@ -532,6 +531,7 @@
 		4C5C50C9177B7B300095801A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2CBF3014177B700C0087C17C /* DrawViewController */,
 				4C8ABE7A177C886C007C934C /* StreamViewController */,
 				4C5C50CA177B7B3A0095801A /* LectureViewController */,
 			);
