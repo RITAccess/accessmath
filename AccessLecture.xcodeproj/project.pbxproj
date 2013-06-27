@@ -44,6 +44,8 @@
 		3F9C58A01770CE76001D4988 /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F9C589F1770CE76001D4988 /* pin.png */; };
 		3FAAA850137848AB00F79C0C /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAAA84F137848AB00F79C0C /* Icon.png */; };
 		3FAE785413C786F800796813 /* accesslecture.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAE785313C786F800796813 /* accesslecture.png */; };
+		3FB3E074177B7D3700B14118 /* NotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB3E072177B7D3700B14118 /* NotesViewController.m */; };
+		3FB3E075177B7D3700B14118 /* NotesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FB3E073177B7D3700B14118 /* NotesViewController.xib */; };
 		3FC32EBC13E05E0F00077291 /* biology.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FC32EBA13E05E0F00077291 /* biology.png */; };
 		3FC32EBD13E05E0F00077291 /* geometry.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FC32EBB13E05E0F00077291 /* geometry.png */; };
 		3FC85673139D2CF90028DEB5 /* LectureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FC85672139D2CF90028DEB5 /* LectureViewController.m */; };
@@ -135,6 +137,9 @@
 		3F9C589F1770CE76001D4988 /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin.png; sourceTree = "<group>"; };
 		3FAAA84F137848AB00F79C0C /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
 		3FAE785313C786F800796813 /* accesslecture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = accesslecture.png; sourceTree = "<group>"; };
+		3FB3E071177B7D3700B14118 /* NotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesViewController.h; sourceTree = "<group>"; };
+		3FB3E072177B7D3700B14118 /* NotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesViewController.m; sourceTree = "<group>"; };
+		3FB3E073177B7D3700B14118 /* NotesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotesViewController.xib; sourceTree = "<group>"; };
 		3FC32EBA13E05E0F00077291 /* biology.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = biology.png; path = ../biology.png; sourceTree = "<group>"; };
 		3FC32EBB13E05E0F00077291 /* geometry.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = geometry.png; path = ../geometry.png; sourceTree = "<group>"; };
 		3FC85672139D2CF90028DEB5 /* LectureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LectureViewController.m; sourceTree = "<group>"; };
@@ -363,9 +368,20 @@
 			name = "Lecture View ";
 			sourceTree = "<group>";
 		};
+		3FB3E070177B7D0F00B14118 /* NoteViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3FB3E071177B7D3700B14118 /* NotesViewController.h */,
+				3FB3E072177B7D3700B14118 /* NotesViewController.m */,
+				3FB3E073177B7D3700B14118 /* NotesViewController.xib */,
+			);
+			name = NoteViewController;
+			sourceTree = "<group>";
+		};
 		3FCD5D1115438265005F2A60 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3FB3E070177B7D0F00B14118 /* NoteViewController */,
 				3F78A40213D5C0DD0048A579 /* Accessible Subclasses */,
 				3FED963113708E4E00D8D1B8 /* Root View */,
 				3FED963213708E5100D8D1B8 /* Lecture View */,
@@ -610,6 +626,7 @@
 				3F959F0713C7555500A6DA79 /* ClearNotes.png in Resources */,
 				3FAE785413C786F800796813 /* accesslecture.png in Resources */,
 				3FF7FFD513D5E45300B89A5D /* AlertBG.png in Resources */,
+				3FB3E075177B7D3700B14118 /* NotesViewController.xib in Resources */,
 				3FC32EBC13E05E0F00077291 /* biology.png in Resources */,
 				3FC32EBD13E05E0F00077291 /* geometry.png in Resources */,
 				2CFC32A0175E60FC00384AEC /* MainStoryboard.storyboard in Resources */,
@@ -656,6 +673,7 @@
 				3FED96221370863E00D8D1B8 /* RootViewController.m in Sources */,
 				3FC85673139D2CF90028DEB5 /* LectureViewController.m in Sources */,
 				3F2DB24113A65C2D00041736 /* ColorViewController.m in Sources */,
+				3FB3E074177B7D3700B14118 /* NotesViewController.m in Sources */,
 				3F0DBDD613BD174900E3FEE8 /* AboutViewController.m in Sources */,
 				3F78A40713D5C1160048A579 /* UILargeAlertView.m in Sources */,
 				3F99F20215436E090065CBB9 /* Lecture.m in Sources */,

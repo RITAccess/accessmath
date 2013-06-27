@@ -2,9 +2,13 @@
 
 #import "RootViewController.h"
 #import "AccessLectureAppDelegate.h"
-
+#import "NotesViewController.h"
 @implementation RootViewController
 
+-(void)viewDidAppear:(BOOL)animated{
+    NotesViewController *noteController = [[NotesViewController alloc] initWithNibName:@"NotesViewController" bundle:nil];
+    [self presentModalViewController:noteController animated:YES];
+}
 - (void)viewDidLoad
 {
     self.navigationController.navigationBarHidden = YES; 

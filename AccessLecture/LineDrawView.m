@@ -61,7 +61,7 @@
             UIPanGestureRecognizer *panToMoveNote = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
             UILongPressGestureRecognizer *longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressToRemoveNote:)];
             
-            UILongPressGestureRecognizer *longPressGestureRecognizer2 = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressToRemoveNote:)];
+            UILongPressGestureRecognizer *longPressGestureRecognizer2 = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressToDisplayNote:)];
             longPressGestureRecognizer.numberOfTouchesRequired = 3;
             longPressGestureRecognizer2.numberOfTouchesRequired = 2;
 
@@ -75,7 +75,10 @@
             textBubble.layer.cornerRadius = 20;
             [textBubble setFont:[UIFont boldSystemFontOfSize:30]];
             [textBubble addGestureRecognizer:panToMoveNote];
+           [textBubble addGestureRecognizer:longPressGestureRecognizer2];
             [textBubble addGestureRecognizer:longPressGestureRecognizer];
+            
+
             [self addSubview:textBubble];
             [textBubble setClipsToBounds:NO];
         }
@@ -89,15 +92,14 @@
 
 - (void)longPressToRemoveNote:(UILongPressGestureRecognizer *)gestureRecognizer
 {
-    if(gestureRecognizer.numberOfTouchesRequired==3){
-        //[gestureRecognizer.view removeFromSuperview];
+            //[gestureRecognizer.view removeFromSuperview];
         [gestureRecognizer.view setHidden:YES];
-        
-    }
-    else if(gestureRecognizer.numberOfTouchesRequired==2)
-    {
-         [gestureRecognizer.view setHidden:YES];
-    }
+        NSLog(@"Three");
+   
+}
+- (void)longPressToDisplayNote:(UILongPressGestureRecognizer *)gestureRecognizer
+{
+        NSLog(@"Two");
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
