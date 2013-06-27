@@ -60,16 +60,4 @@
     <resources>
         <image name="ClearNotes.png" width="72" height="72"/>
     </resources>
-    <classes>
-        <class className="DrawViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DrawViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="clearNotesButtonPress:"/>
-                <relationship kind="outlet" name="toolbarView" candidateClass="UIView"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-    </classes>
 </document>
