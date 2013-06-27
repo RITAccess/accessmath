@@ -845,6 +845,82 @@ IAoKA
         <image name="accesslecture.png" width="695" height="512"/>
         <image name="pin.png" width="256" height="256"/>
     </resources>
+    <classes>
+        <class className="AboutViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AboutViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="returnToHome:"/>
+                <relationship kind="outlet" name="mainView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="ConnectViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ConnectViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addressChanged:"/>
+                <relationship kind="action" name="cancel:"/>
+                <relationship kind="action" name="downloadRequest:"/>
+                <relationship kind="action" name="streamRequest:"/>
+                <relationship kind="outlet" name="lectureName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="serverAddress" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="LectureViewContainer" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LectureViewContainer.h"/>
+            <relationships>
+                <relationship kind="action" name="back:"/>
+                <relationship kind="action" name="menuButtonTapped:"/>
+                <relationship kind="outlet" name="navBar" candidateClass="TopNav"/>
+                <relationship kind="outlet" name="sideMenu" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="LectureViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LectureViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backButtonPress:"/>
+                <relationship kind="action" name="binDropdown:"/>
+                <relationship kind="action" name="clearNotesButtonPress:"/>
+                <relationship kind="action" name="exitNotesButtonPress:"/>
+                <relationship kind="action" name="saveButtonPress:"/>
+                <relationship kind="action" name="startNotesButtonPress:"/>
+                <relationship kind="action" name="toggleNoteButtonPress:"/>
+                <relationship kind="action" name="zoomInButtonPress:"/>
+                <relationship kind="action" name="zoomOutButtonPress:"/>
+                <relationship kind="outlet" name="clearNotesButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="createNoteButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="exitNotesButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="navigationBar" candidateClass="UINavigationBar"/>
+                <relationship kind="outlet" name="navigationBarBackButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="navigationBarSettingsButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="saveNotesButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="startNotesButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="zoomInButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="zoomOutButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="RootViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RootViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="connectToServer:"/>
+                <relationship kind="action" name="openAbout:"/>
+                <relationship kind="action" name="openLecture:"/>
+            </relationships>
+        </class>
+        <class className="SettingsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="contrastSwitchToggle:"/>
+                <relationship kind="action" name="eraserSizeSlide:"/>
+                <relationship kind="action" name="penSizeSlide:"/>
+                <relationship kind="action" name="zoomIncrementStep:"/>
+            </relationships>
+        </class>
+        <class className="TopNav" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TopNav.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="lightContent"/>
         <simulatedOrientationMetrics key="orientation"/>
