@@ -3,7 +3,7 @@
 #import "LectureViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "UILargeAlertView.h"
-#import "LineDrawView.h"
+#import "DrawView.h"
 #import "FileManager.h"
 #import "AccessDocument.h"
 #import "AccessLectureRuntime.h"
@@ -43,7 +43,7 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
 - (void)viewDidLoad {
     defaults = [NSUserDefaults standardUserDefaults];
     
-    lineDrawView = [[LineDrawView alloc]initWithFrame:CGRectMake(0, 180, IPAD_MINI_HEIGHT, 468)];
+    lineDrawView = [[DrawView alloc]initWithFrame:CGRectMake(0, 180, IPAD_MINI_HEIGHT, 468)];
     
     // Zoom Setup
     ZOOM_STEP = [defaults floatForKey:@"userZoomIncrement"];
@@ -423,16 +423,15 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
 - (IBAction)toggleNoteButtonPress:(id)sender
 {
     UIAlertView *alert;
-    if (lineDrawView.isCreatingNote == YES){
-        alert = [[UILargeAlertView alloc] initWithText:
-                              NSLocalizedString(@"Exiting Note Mode!" , nil) fontSize:48];
-    } else {
-        alert = [[UILargeAlertView alloc]initWithText:
-                 NSLocalizedString(@"Entering Note Mode!", nil)fontSize:48];
-    }
+//    if (lineDrawView.isCreatingNote == YES){
+//        alert = [[UILargeAlertView alloc] initWithText:
+//                              NSLocalizedString(@"Exiting Note Mode!" , nil) fontSize:48];
+//    } else {
+//        alert = [[UILargeAlertView alloc]initWithText:
+//                 NSLocalizedString(@"Entering Note Mode!", nil)fontSize:48];
+//    }
     
     [colorSegmentedControl setHidden:!colorSegmentedControl.isHidden];
-    lineDrawView.isCreatingNote = !lineDrawView.isCreatingNote;
     lineDrawView.isDrawing = !lineDrawView.isDrawing;
     
 	[alert show];

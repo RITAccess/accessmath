@@ -26,7 +26,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        
     }
     return self;
 }
@@ -34,6 +34,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _redBezierPath = [[UIBezierPath alloc]init];
+
+    _drawView = [[DrawView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - self.toolbarView.frame.size.height)];
+    
+    [self.view addSubview:_drawView];
     [self initColorSegmentedControl];
 }
 
@@ -45,8 +50,10 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
+
+
+# pragma mark - Color Methods
 
 - (void)initColorSegmentedControl
 {
@@ -78,7 +85,6 @@
     [_colorSegmentedControl setTintColor:[UIColor whiteColor] forTag:ERASER_TAG];
     
     [self.toolbarView addSubview:_colorSegmentedControl];
-//    [self.view addSubview:_colorSegmentedControl];
 }
 
 #pragma mark - Rotation Handling
@@ -103,6 +109,37 @@
 - (void)segmentChanged:(id)sender
 {
     NSLog(@"Segment changed...");
-//    lineDrawView.currentPath = [_colorSegmentedControl selectedSegmentIndex];
+    _selectedColor = [_colorSegmentedControl selectedSegmentIndex];
+    
+    switch (_selectedColor) {
+        case 0:
+            _drawView.selectedPath = _drawView.redBezierPath;
+            break;
+        case 1:
+            _drawView.selectedPath = _drawView.greenBezierPath;
+            break;
+        case 2:
+            _drawView.selectedPath = _drawView.blueBezierPath;
+            break;
+        case 3:
+            _drawView.selectedPath = _drawView.blackBezierPath;
+            break;
+        case 4:
+            _drawView.selectedPath = _drawView.yellowBezierPath;
+            break;
+        default:
+            break;
+    }
+}
+
+/**
+ * Override drawRect() to allow for custom drawing. No override causes performance issues.
+ * Alternating setting stroke and stroking to handle each individual path.
+ */
+- (void)drawRect:(CGRect)rect
+{
+    NSLog(@"Drawing Rect!");
+    [[UIColor redColor] setStroke];
+    [_redBezierPath stroke];
 }
 @end

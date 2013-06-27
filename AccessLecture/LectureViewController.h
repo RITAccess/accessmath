@@ -2,7 +2,7 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
-#import "LineDrawView.h"
+#import "DrawView.h"
 #import "SettingsViewController.h"
 #import "AccessLectureRuntime.h"
 #import "AccessLectureRuntime.h"
@@ -33,7 +33,7 @@
     BOOL loading;
     
     // Notes
-    LineDrawView *lineDrawView;
+    DrawView *lineDrawView;
     
     // Settings
     NSUserDefaults* defaults;

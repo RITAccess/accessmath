@@ -7,7 +7,7 @@
 //
 
 #import "SettingsViewController.h"
-#import "LineDrawView.h"
+#import "DrawView.h"
 #import "LectureViewController.h"
 
 @interface SettingsViewController ()

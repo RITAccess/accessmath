@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2C0F886B1760D8EC0062BD16 /* LineDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F886A1760D8EC0062BD16 /* LineDrawView.m */; };
+		2C0F886B1760D8EC0062BD16 /* DrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F886A1760D8EC0062BD16 /* DrawView.m */; };
 		2C6F39A01768DAEB00D700F7 /* UISegmentedControlExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C6F399F1768DAEB00D700F7 /* UISegmentedControlExtension.m */; };
 		2C76BDE71762143300A1E6BA /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C76BDE61762143300A1E6BA /* SettingsViewController.m */; };
 		2CBF301C177B7AB10087C17C /* DrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBF301A177B7AB10087C17C /* DrawViewController.m */; };
@@ -83,8 +83,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2C0F88691760D8EC0062BD16 /* LineDrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineDrawView.h; sourceTree = "<group>"; };
-		2C0F886A1760D8EC0062BD16 /* LineDrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineDrawView.m; sourceTree = "<group>"; };
+		2C0F88691760D8EC0062BD16 /* DrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawView.h; sourceTree = "<group>"; };
+		2C0F886A1760D8EC0062BD16 /* DrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawView.m; sourceTree = "<group>"; };
 		2C6F399E1768DAEB00D700F7 /* UISegmentedControlExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISegmentedControlExtension.h; sourceTree = "<group>"; };
 		2C6F399F1768DAEB00D700F7 /* UISegmentedControlExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISegmentedControlExtension.m; sourceTree = "<group>"; };
 		2C76BDE51762143300A1E6BA /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
@@ -210,13 +210,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2C0F88681760D8D10062BD16 /* Line Draw View */ = {
+		2C544E29177C7E9A00BC1A32 /* DrawView */ = {
 			isa = PBXGroup;
 			children = (
-				2C0F88691760D8EC0062BD16 /* LineDrawView.h */,
-				2C0F886A1760D8EC0062BD16 /* LineDrawView.m */,
+				2C0F886A1760D8EC0062BD16 /* DrawView.m */,
+				2C0F88691760D8EC0062BD16 /* DrawView.h */,
 			);
-			name = "Line Draw View";
+			name = DrawView;
 			sourceTree = "<group>";
 		};
 		2C6F399A1768DA0300D700F7 /* Color Selection */ = {
@@ -240,11 +240,11 @@
 		2CBF3014177B700C0087C17C /* DrawViewController */ = {
 			isa = PBXGroup;
 			children = (
-				2C0F88681760D8D10062BD16 /* Line Draw View */,
-				2C6F399A1768DA0300D700F7 /* Color Selection */,
+				2C544E29177C7E9A00BC1A32 /* DrawView */,
 				2CBF3019177B7AB10087C17C /* DrawViewController.h */,
 				2CBF301A177B7AB10087C17C /* DrawViewController.m */,
 				2CBF301B177B7AB10087C17C /* DrawViewController.xib */,
+				2C6F399A1768DA0300D700F7 /* Color Selection */,
 			);
 			name = DrawViewController;
 			sourceTree = "<group>";
@@ -668,7 +668,7 @@
 				3F99F209154375270065CBB9 /* Position.m in Sources */,
 				3FCD5D1715438472005F2A60 /* AccessLectureRuntime.m in Sources */,
 				4C62BECD175651DB00CAF4CF /* FileManager.m in Sources */,
-				2C0F886B1760D8EC0062BD16 /* LineDrawView.m in Sources */,
+				2C0F886B1760D8EC0062BD16 /* DrawView.m in Sources */,
 				2C76BDE71762143300A1E6BA /* SettingsViewController.m in Sources */,
 				3F6D11C417625EA20066A4FA /* ALNetworkInterface.m in Sources */,
 				3F6D11C517625EA20066A4FA /* SocketIO.m in Sources */,
