@@ -39,7 +39,7 @@
     [self.view addSubview:_drawView];
     
     _panGestureRecognzier = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panToMove:)];
-    _panGestureRecognzier.maximumNumberOfTouches = 2;
+    _panGestureRecognzier.minimumNumberOfTouches = 2;
     [_panGestureRecognzier setTranslation:CGPointMake(40, 40) inView:_drawView];
     [_drawView addGestureRecognizer:_panGestureRecognzier];
     
@@ -48,8 +48,6 @@
 
 - (void)viewDidUnload
 {
-    [self setToolbarView:nil];
-    [self setTogglePanSwitch:nil];
     [super viewDidUnload];
 }
 
@@ -62,14 +60,7 @@
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
-    if (self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
-        self.interfaceOrientation == UIInterfaceOrientationLandscapeRight)
-    {
-        [_colorSegmentedControl setFrame:CGRectMake(0, 0, self.toolbarView.frame.size.width - 200, COLOR_HEIGHT)];
-    } else if (self.interfaceOrientation == UIInterfaceOrientationPortrait)
-    {
-        [_colorSegmentedControl setFrame:CGRectMake(0, 0, self.toolbarView.frame.size.width - 200, COLOR_HEIGHT)];
-    }
+    [_colorSegmentedControl setFrame:CGRectMake(0, 0, self.toolbarView.frame.size.width - 400, COLOR_HEIGHT)];
 }
 
 # pragma  mark - Gestures
@@ -77,7 +68,7 @@
 - (void)panToMove:(UIPanGestureRecognizer *)gesture
 {
     if ((gesture.state == UIGestureRecognizerStateChanged) ||
-        (gesture.state == UIGestureRecognizerStateEnded)) {
+        (gesture.state == UIGestureRecognizerStateEnded)){
         
         CGPoint translation = [gesture translationInView:self.view];        
         _drawView.center = CGPointMake(_drawView.center.x + translation.x, _drawView.center.y + translation.y);
@@ -100,7 +91,7 @@
             if (_drawView.frame.origin.y < -1020){
                 _drawView.frame = CGRectMake(_drawView.frame.origin.x, -1020, _drawView.frame.size.width, _drawView.frame.size.height);
             }
-        } else if (UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)) {
+        } else if (UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)){
             if (_drawView.frame.origin.x < -765){
                 _drawView.frame = CGRectMake(-765, _drawView.frame.origin.y, _drawView.frame.size.width, _drawView.frame.size.height);
             } 
@@ -118,16 +109,10 @@
 
 - (void)initColorSegmentedControl
 {
-    NSArray *segments = [[NSArray alloc] initWithObjects:@"", @"", @"", @"", @"", @"Eraser", nil];
+    NSArray *segments = [[NSArray alloc] initWithObjects:@"", @"", @"", @"", @"", @"", nil];
     _colorSegmentedControl = [[UISegmentedControl alloc] initWithItems:segments];
     [_colorSegmentedControl setSegmentedControlStyle:UISegmentedControlStyleBar];
-    
-    if (self.interfaceOrientation == UIInterfaceOrientationPortrait){
-        [_colorSegmentedControl setFrame:CGRectMake(0, 0, self.toolbarView.frame.size.width - 200, COLOR_HEIGHT)];
-    } else {
-        [_colorSegmentedControl setFrame:CGRectMake(0, 0, self.toolbarView.frame.size.width - 200, COLOR_HEIGHT)];
-    }
-    
+    [_colorSegmentedControl setFrame:CGRectMake(0, 0, self.toolbarView.frame.size.width - 400, COLOR_HEIGHT)];
     [_colorSegmentedControl addTarget:self action:@selector(segmentChanged:) forControlEvents:UIControlEventValueChanged];
     
     // Indices change; need to tag the segments before rendering.
@@ -154,10 +139,6 @@
  */
 - (void)segmentChanged:(id)sender
 {
-    _panGestureRecognzier.enabled = NO;
-    self.togglePanSwitch.on = NO;
-    
-    NSLog(@"Segment changed...");
     _selectedColor = [_colorSegmentedControl selectedSegmentIndex];
     
     switch (_selectedColor) {
@@ -181,14 +162,10 @@
     }
 }
 
-- (IBAction)togglePan:(id)sender
-{
-    self.panGestureRecognzier.enabled = !self.panGestureRecognzier.enabled;
-}
 
 - (IBAction)clearNotesButtonPress:(id)sender
 {
     [_drawView clearAllPaths];
-    [_drawView setNeedsDisplay];
+    [_drawView setNeedsDisplay]; // Calls DrawView's overriden drawRect() to update view.
 }
 @end

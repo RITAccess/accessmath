@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4457.6" systemVersion="12E55" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment version="1552" defaultVersion="1536" identifier="iOS"/>
+        <deployment version="1552" defaultVersion="1296" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3682.6"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DrawViewController">
             <connections>
-                <outlet property="togglePanSwitch" destination="Myh-uY-bSV" id="VCU-dF-oaF"/>
                 <outlet property="toolbarView" destination="FRQ-2V-rZ2" id="hhK-5p-Dr5"/>
                 <outlet property="view" destination="2" id="3"/>
             </connections>
@@ -22,7 +21,7 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="McC-cO-jWD" userLabel="Clear Notes Button">
-                            <rect key="frame" x="620" y="16" width="44" height="47"/>
+                            <rect key="frame" x="694" y="16" width="44" height="47"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="44" id="WJS-ke-pWG"/>
@@ -40,21 +39,12 @@
                                 <action selector="clearNotesButtonPress:" destination="-1" eventType="touchUpInside" id="hkx-XM-b0Y"/>
                             </connections>
                         </button>
-                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Myh-uY-bSV" userLabel="Pan Switch">
-                            <rect key="frame" x="699" y="24" width="51" height="31"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <connections>
-                                <action selector="togglePan:" destination="-1" eventType="valueChanged" id="boB-WG-cL2"/>
-                            </connections>
-                        </switch>
                     </subviews>
                     <color key="backgroundColor" red="0.89707880429999998" green="0.89707880429999998" blue="0.89707880429999998" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstItem="Myh-uY-bSV" firstAttribute="top" secondItem="FRQ-2V-rZ2" secondAttribute="top" constant="24" id="Kip-s6-vxk"/>
                         <constraint firstAttribute="height" constant="80" id="NqW-5m-qnc"/>
-                        <constraint firstAttribute="trailing" secondItem="McC-cO-jWD" secondAttribute="trailing" constant="104" id="RwC-Ct-DuI"/>
-                        <constraint firstItem="McC-cO-jWD" firstAttribute="top" secondItem="FRQ-2V-rZ2" secondAttribute="top" constant="16" id="qOC-BW-N7A"/>
-                        <constraint firstAttribute="trailing" secondItem="Myh-uY-bSV" secondAttribute="trailing" constant="20" id="uNb-Qb-IFm"/>
+                        <constraint firstItem="McC-cO-jWD" firstAttribute="top" secondItem="FRQ-2V-rZ2" secondAttribute="top" constant="16" id="sIE-xi-Ih6"/>
+                        <constraint firstAttribute="trailing" secondItem="McC-cO-jWD" secondAttribute="trailing" constant="30" id="tIg-UC-4pm"/>
                     </constraints>
                 </view>
             </subviews>
