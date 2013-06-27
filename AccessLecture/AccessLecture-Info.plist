@@ -18,9 +18,11 @@
 				<string>lec</string>
 			</array>
 			<key>Lecture</key>
-			<data></data>
+			<data>
+			</data>
 			<key>Notes</key>
-			<data></data>
+			<data>
+			</data>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
