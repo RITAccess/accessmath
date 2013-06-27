@@ -19,7 +19,7 @@
     self = [super initWithFrame:frame];
     
     if (self) {
-        self.backgroundColor=[UIColor clearColor];
+        self.backgroundColor = [UIColor clearColor];
         _selectedPath = [[UIBezierPath alloc]init];
         _redBezierPath = [[UIBezierPath alloc]init];
         _greenBezierPath = [[UIBezierPath alloc]init];

@@ -21,5 +21,6 @@
 @property UIPanGestureRecognizer *panGestureRecognzier;
 - (IBAction)togglePan:(id)sender;
 @property (weak, nonatomic) IBOutlet UISwitch *togglePanSwitch;
+- (IBAction)clearNotesButtonPress:(id)sender;
 
 @end
