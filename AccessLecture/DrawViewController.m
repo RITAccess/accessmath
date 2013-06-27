@@ -35,19 +35,20 @@
 {
     [super viewDidLoad];
 
-    _drawView = [[DrawView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - self.toolbarView.frame.size.height)];
+    _drawView = [[DrawView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width * 2, self.view.frame.size.height * 2)];
+    [self.view addSubview:_drawView];
     
     _panGestureRecognzier = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panToMove:)];
     _panGestureRecognzier.maximumNumberOfTouches = 2;
     [_panGestureRecognzier setTranslation:CGPointMake(40, 40) inView:_drawView];
     [_drawView addGestureRecognizer:_panGestureRecognzier];
     
-    [self.view addSubview:_drawView];
     [self initColorSegmentedControl];
 }
 
 - (void)viewDidUnload {
     [self setToolbarView:nil];
+    [self setTogglePanSwitch:nil];
     [super viewDidUnload];
 }
 
@@ -77,8 +78,6 @@
     if ((gesture.state == UIGestureRecognizerStateChanged) ||
         (gesture.state == UIGestureRecognizerStateEnded)) {
         
-        NSLog(@"Panning...");
-        
         CGPoint translation = [gesture translationInView:self.view];
         _drawView.center = CGPointMake(_drawView.center.x + translation.x,
                                           _drawView.center.y + translation.y);
@@ -102,7 +101,7 @@
     
     [_colorSegmentedControl addTarget:self action:@selector(segmentChanged:) forControlEvents:UIControlEventValueChanged];
     
-    // Indices change; need to set tags on the segments before rendering.
+    // Indices change; need to tag the segments before rendering.
     [_colorSegmentedControl setTag:RED_TAG forSegmentAtIndex:0];
     [_colorSegmentedControl setTag:GREEN_TAG forSegmentAtIndex:1];
     [_colorSegmentedControl setTag:BLUE_TAG forSegmentAtIndex:2];
@@ -127,6 +126,7 @@
 - (void)segmentChanged:(id)sender
 {
     _panGestureRecognzier.enabled = NO;
+    self.togglePanSwitch.on = NO;
     
     NSLog(@"Segment changed...");
     _selectedColor = [_colorSegmentedControl selectedSegmentIndex];
@@ -152,4 +152,14 @@
     }
 }
 
+- (IBAction)togglePan:(id)sender
+{
+    self.panGestureRecognzier.enabled = !self.panGestureRecognzier.enabled;
+}
+
+- (IBAction)clearNotesButtonPress:(id)sender
+{
+    [_drawView clearAllPaths];
+    [_drawView setNeedsDisplay];
+}
 @end

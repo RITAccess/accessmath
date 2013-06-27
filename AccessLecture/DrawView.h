@@ -10,7 +10,7 @@
 
 @interface DrawView : UIView
 
-- (void)clearAllPaths;
+- (void)clearAllPaths; 
 
 // Bezier Paths
 @property UIBezierPath *redBezierPath;
