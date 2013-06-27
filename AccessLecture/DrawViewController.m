@@ -39,7 +39,7 @@
     [self.view addSubview:_drawView];
     
     _panGestureRecognzier = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panToMove:)];
-    _panGestureRecognzier.maximumNumberOfTouches = 2;
+    _panGestureRecognzier.minimumNumberOfTouches = 2;
     [_panGestureRecognzier setTranslation:CGPointMake(40, 40) inView:_drawView];
     [_drawView addGestureRecognizer:_panGestureRecognzier];
     
@@ -48,8 +48,6 @@
 
 - (void)viewDidUnload
 {
-    [self setToolbarView:nil];
-    [self setTogglePanSwitch:nil];
     [super viewDidUnload];
 }
 
@@ -118,7 +116,7 @@
 
 - (void)initColorSegmentedControl
 {
-    NSArray *segments = [[NSArray alloc] initWithObjects:@"", @"", @"", @"", @"", @"Eraser", nil];
+    NSArray *segments = [[NSArray alloc] initWithObjects:@"", @"", @"", @"", @"", @"", nil];
     _colorSegmentedControl = [[UISegmentedControl alloc] initWithItems:segments];
     [_colorSegmentedControl setSegmentedControlStyle:UISegmentedControlStyleBar];
     
@@ -154,10 +152,6 @@
  */
 - (void)segmentChanged:(id)sender
 {
-    _panGestureRecognzier.enabled = NO;
-    self.togglePanSwitch.on = NO;
-    
-    NSLog(@"Segment changed...");
     _selectedColor = [_colorSegmentedControl selectedSegmentIndex];
     
     switch (_selectedColor) {
@@ -181,14 +175,10 @@
     }
 }
 
-- (IBAction)togglePan:(id)sender
-{
-    self.panGestureRecognzier.enabled = !self.panGestureRecognzier.enabled;
-}
 
 - (IBAction)clearNotesButtonPress:(id)sender
 {
     [_drawView clearAllPaths];
-    [_drawView setNeedsDisplay];
+    [_drawView setNeedsDisplay]; // Calls DrawView's overriden drawRect() to update view.
 }
 @end
