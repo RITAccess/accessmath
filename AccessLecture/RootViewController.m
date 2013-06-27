@@ -43,7 +43,7 @@
 
 - (IBAction)openLecture:(id)sender
 {
-    [self performSegueWithIdentifier:@"toLecture" sender:nil];    
+    [self performSegueWithIdentifier:@"toLectureController" sender:nil];    
 }
 
 /**

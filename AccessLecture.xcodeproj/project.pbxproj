@@ -59,8 +59,11 @@
 		4C0966B01768D6520063AED7 /* Networking.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0966AF1768D6520063AED7 /* Networking.m */; };
 		4C51C79D1768F5BE0045DF42 /* Lectures.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C51C79C1768F5BE0045DF42 /* Lectures.m */; };
 		4C5B55FB17720A15005B79CF /* server.crt in Resources */ = {isa = PBXBuildFile; fileRef = 4C5B55FA17720A15005B79CF /* server.crt */; };
+		4C5C50C6177B59D90095801A /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C5C50C5177B59D90095801A /* pin.png */; };
+		4C5C50CD177B7B7C0095801A /* LectureViewContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5C50CC177B7B7C0095801A /* LectureViewContainer.m */; };
 		4C62BECD175651DB00CAF4CF /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F99F1FA1543641E0065CBB9 /* FileManager.m */; };
 		4C96FA84176289DE002C0D74 /* ConnectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C96FA83176289DE002C0D74 /* ConnectViewController.m */; };
+		4C9AB8FE177C6895004A4F65 /* TopNav.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9AB8FD177C6895004A4F65 /* TopNav.m */; };
 		4CB832A11768C0BC008F0099 /* AccessLecture_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB832A01768C0AC008F0099 /* AccessLecture_Tests.m */; };
 		4CBF5D871768DAD200746377 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11D217625F150066A4FA /* libicucore.dylib */; };
 		4CBF5D881768DAD500746377 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11D017625F0D0066A4FA /* CFNetwork.framework */; };
@@ -166,8 +169,13 @@
 		4C0966AF1768D6520063AED7 /* Networking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Networking.m; sourceTree = "<group>"; };
 		4C51C79C1768F5BE0045DF42 /* Lectures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lectures.m; sourceTree = "<group>"; };
 		4C5B55FA17720A15005B79CF /* server.crt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = server.crt; sourceTree = "<group>"; };
+		4C5C50C5177B59D90095801A /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin.png; sourceTree = "<group>"; };
+		4C5C50CB177B7B7C0095801A /* LectureViewContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LectureViewContainer.h; sourceTree = "<group>"; };
+		4C5C50CC177B7B7C0095801A /* LectureViewContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LectureViewContainer.m; sourceTree = "<group>"; };
 		4C96FA82176289DE002C0D74 /* ConnectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectViewController.h; sourceTree = "<group>"; };
 		4C96FA83176289DE002C0D74 /* ConnectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectViewController.m; sourceTree = "<group>"; };
+		4C9AB8FC177C6895004A4F65 /* TopNav.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopNav.h; sourceTree = "<group>"; };
+		4C9AB8FD177C6895004A4F65 /* TopNav.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopNav.m; sourceTree = "<group>"; };
 		4CB8329E1768C0AC008F0099 /* AccessLecture Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AccessLecture Tests-Info.plist"; sourceTree = "<group>"; };
 		4CB8329F1768C0AC008F0099 /* AccessLecture Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AccessLecture Tests-Prefix.pch"; sourceTree = "<group>"; };
 		4CB832A01768C0AC008F0099 /* AccessLecture_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccessLecture_Tests.m; sourceTree = "<group>"; };
@@ -235,6 +243,7 @@
 		2CFC32A1175E7ED600384AEC /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				4C5C50C5177B59D90095801A /* pin.png */,
 				3FED964313708FC800D8D1B8 /* Lecture View Images */,
 				3F959F0613C7555500A6DA79 /* ClearNotes.png */,
 				3FAE785313C786F800796813 /* accesslecture.png */,
@@ -426,6 +435,7 @@
 		3FED96111370863E00D8D1B8 /* AccessLecture */ = {
 			isa = PBXGroup;
 			children = (
+				4C5C50C9177B7B300095801A /* Controllers */,
 				3F6D11AD17625E500066A4FA /* Networking */,
 				3FCD5D14154382F5005F2A60 /* Model */,
 				3FCD5D131543829A005F2A60 /* Application Architecture */,
@@ -498,6 +508,24 @@
 			name = "Lecture View Images";
 			sourceTree = "<group>";
 		};
+		4C5C50C9177B7B300095801A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4C5C50CA177B7B3A0095801A /* LectureViewController */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		4C5C50CA177B7B3A0095801A /* LectureViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4C9AB8FB177C6884004A4F65 /* Views */,
+				4C5C50CB177B7B7C0095801A /* LectureViewContainer.h */,
+				4C5C50CC177B7B7C0095801A /* LectureViewContainer.m */,
+			);
+			name = LectureViewController;
+			sourceTree = "<group>";
+		};
 		4C96FA81176289B4002C0D74 /* Connect View */ = {
 			isa = PBXGroup;
 			children = (
@@ -505,6 +533,15 @@
 				4C96FA83176289DE002C0D74 /* ConnectViewController.m */,
 			);
 			name = "Connect View";
+			sourceTree = "<group>";
+		};
+		4C9AB8FB177C6884004A4F65 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4C9AB8FC177C6895004A4F65 /* TopNav.h */,
+				4C9AB8FD177C6895004A4F65 /* TopNav.m */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		4CE742C71768BDE60026DE71 /* AccessLecture Tests */ = {
@@ -604,6 +641,7 @@
 				3FED96161370863E00D8D1B8 /* InfoPlist.strings in Resources */,
 				3FED96531370909100D8D1B8 /* Invert.png in Resources */,
 				3FED96541370909100D8D1B8 /* Notes.png in Resources */,
+				4C5C50C6177B59D90095801A /* pin.png in Resources */,
 				3FED96551370909100D8D1B8 /* Save.png in Resources */,
 				3FED96561370909100D8D1B8 /* Selection.png in Resources */,
 				3FED96571370909100D8D1B8 /* Settings.png in Resources */,
@@ -647,6 +685,7 @@
 				3F0DBDD613BD174900E3FEE8 /* AboutViewController.m in Sources */,
 				3F78A40713D5C1160048A579 /* UILargeAlertView.m in Sources */,
 				3F99F20215436E090065CBB9 /* Lecture.m in Sources */,
+				4C5C50CD177B7B7C0095801A /* LectureViewContainer.m in Sources */,
 				3F99F209154375270065CBB9 /* Position.m in Sources */,
 				3FCD5D1715438472005F2A60 /* AccessLectureRuntime.m in Sources */,
 				4C62BECD175651DB00CAF4CF /* FileManager.m in Sources */,
@@ -660,6 +699,7 @@
 				3F6D11C917625EA20066A4FA /* SocketIOTransportXHR.m in Sources */,
 				3F6D11CA17625EA20066A4FA /* base64.c in Sources */,
 				3F6D11CB17625EA20066A4FA /* NSData+SRB64Additions.m in Sources */,
+				4C9AB8FE177C6895004A4F65 /* TopNav.m in Sources */,
 				3F6D11CC17625EA20066A4FA /* SRWebSocket.m in Sources */,
 				4C96FA84176289DE002C0D74 /* ConnectViewController.m in Sources */,
 				2C6F39A01768DAEB00D700F7 /* UISegmentedControlExtension.m in Sources */,
@@ -754,8 +794,8 @@
 				INFOPLIST_FILE = "AccessLecture/AccessLecture-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "EC51EB3A-91E0-4B0D-8398-E553BBD0EE94";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EC51EB3A-91E0-4B0D-8398-E553BBD0EE94";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
@@ -778,8 +818,8 @@
 				INFOPLIST_FILE = "AccessLecture/AccessLecture-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "EC51EB3A-91E0-4B0D-8398-E553BBD0EE94";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EC51EB3A-91E0-4B0D-8398-E553BBD0EE94";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
