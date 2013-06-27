@@ -8,12 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "UISegmentedControlExtension.h"
-#import "LectureViewContainer.h"
 #import "DrawView.h"
 
 static NSString* const DrawViewControllerXIB = @"DrawViewController";
 
-@interface DrawViewController : UIViewController <LectureViewChild>
+@interface DrawViewController : UIViewController
 
 @property NSInteger selectedColor;
 @property DrawView *drawView;
@@ -22,5 +21,8 @@ static NSString* const DrawViewControllerXIB = @"DrawViewController";
 
 // Gestures
 @property UIPanGestureRecognizer *panGestureRecognzier;
+- (IBAction)togglePan:(id)sender;
+@property (weak, nonatomic) IBOutlet UISwitch *togglePanSwitch;
+- (IBAction)clearNotesButtonPress:(id)sender;
 
 @end
