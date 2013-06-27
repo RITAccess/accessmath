@@ -11,44 +11,6 @@
 
 
 @interface LectureViewController : UIViewController<UIScrollViewDelegate,UIAlertViewDelegate>
-{    
-    // UI
-	UIImageView *imageView;
-    
-    // Gestures
-    UIPanGestureRecognizer *panToMove;
-    UITapGestureRecognizer *tapToZoom;
-    
-    // Image grabbing
-    NSMutableData* receivedData;
-    UIImage* img;
-    
-    // Zooming
-    CGPoint screenSize;
-    BOOL isZoomedIn;
-    float ZOOM_STEP;
-    float oldZoomScale;
-    
-    // Connection
-    BOOL loading;
-    
-    // Notes
-    LineDrawView *lineDrawView;
-    
-    // Settings
-    NSUserDefaults* defaults;
-    
-    //Current Document Settings
-    AccessDocument *currentDocument;
-    AccessLectureRuntime *currentRuntime;
-    Lecture *currentLecture;
-    
-    // Color Selection
-    UISegmentedControl *colorSegmentedControl;
-    
-    // New ScrollView
-    UIScrollView *scrollView;
-}
 
 - (void)updateImageView;
 - (void)settingsChange;
@@ -62,7 +24,6 @@
 - (IBAction)exitNotesButtonPress:(id)sender;
 - (IBAction)toggleNoteButtonPress:(id)sender;
 
-
 @property (weak, nonatomic) IBOutlet UIButton *zoomOutButton;
 @property (weak, nonatomic) IBOutlet UIButton *zoomInButton;
 @property (weak, nonatomic) IBOutlet UIButton *clearNotesButton;
@@ -73,6 +34,11 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *navigationBarBackButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *navigationBarSettingsButton;
 @property (weak, nonatomic) IBOutlet UIButton *createNoteButton;
+
+
+/* New */
+- (IBAction)binDropdown:(id)sender;
+
 
 @end
 

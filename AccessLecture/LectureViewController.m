@@ -38,6 +38,43 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
 
 @implementation LectureViewController {
     __weak UIPopoverController *popover;
+
+    // UI
+	UIImageView *imageView;
+    
+    // Gestures
+    UIPanGestureRecognizer *panToMove;
+    UITapGestureRecognizer *tapToZoom;
+    
+    // Image grabbing
+    NSMutableData* receivedData;
+    UIImage* img;
+    
+    // Zooming
+    CGPoint screenSize;
+    BOOL isZoomedIn;
+    float ZOOM_STEP;
+    float oldZoomScale;
+    
+    // Connection
+    BOOL loading;
+    
+    // Notes
+    LineDrawView *lineDrawView;
+    
+    // Settings
+    NSUserDefaults* defaults;
+    
+    //Current Document Settings
+    AccessDocument *currentDocument;
+    AccessLectureRuntime *currentRuntime;
+    Lecture *currentLecture;
+    
+    // Color Selection
+    UISegmentedControl *colorSegmentedControl;
+    
+    // New ScrollView
+    UIScrollView *scrollView;
 }
 
 - (void)viewDidLoad {
