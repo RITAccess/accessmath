@@ -34,9 +34,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    NSLog(@"Loading DrawViewController....");
 
     _drawView = [[DrawView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width * 2, self.view.frame.size.height * 2)];
     [self.view addSubview:_drawView];
+    
+    [self.view addSubview:self.toolbarView];
     
     _panGestureRecognzier = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panToMove:)];
     _panGestureRecognzier.minimumNumberOfTouches = 2;
@@ -167,5 +171,39 @@
 {
     [_drawView clearAllPaths];
     [_drawView setNeedsDisplay]; // Calls DrawView's overriden drawRect() to update view.
+}
+
+#pragma mark Child View Controller Calls
+
+- (void)willMoveToParentViewController:(UIViewController *)parent
+{
+    NSLog(@"will have new parent %@", parent);
+}
+
+- (void)didMoveToParentViewController:(UIViewController *)parent
+{
+    NSLog(@"new parent %@", parent);
+    [self.view addSubview:self.toolbarView];
+}
+
+- (void)willSaveState
+{
+    NSLog(@"Will save state");
+}
+
+- (void)didSaveState
+{
+    NSLog(@"Did save state: %@", self.description);
+}
+
+- (void)willLeaveActiveState
+{
+    NSLog(@"Will leave active state");
+}
+
+- (void)didLeaveActiveState
+{
+    NSLog(@"Did leave active state: %@", self.description);
+    [self.toolbarView removeFromSuperview];
 }
 @end
