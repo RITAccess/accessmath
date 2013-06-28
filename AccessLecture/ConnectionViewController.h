@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ALNetworkInterface.h"
 
 static NSString* const ConnectionViewControllerXIB = @"ConnectionViewController";
 
 @protocol ConnectionView <NSObject>
 
-- (void)didCompleteWithConnection;
+- (void)didCompleteWithConnection:(ALNetworkInterface *)server;
 - (void)userDidCancel;
 
 @end
@@ -21,9 +22,13 @@ static NSString* const ConnectionViewControllerXIB = @"ConnectionViewController"
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activity;
 @property (weak, nonatomic) IBOutlet UITextField *connectionAddress;
+@property (weak, nonatomic) IBOutlet UIButton *streamButton;
+@property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
 
 @property id<ConnectionView> delegate;
 
 - (IBAction)checkAddress:(id)sender;
 - (IBAction)userDidCancel:(id)sender;
+- (IBAction)connectToStream:(id)sender;
+
 @end

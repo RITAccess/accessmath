@@ -34,6 +34,7 @@
     
     [_statusLabel setHidden:YES];
     [_activity stopAnimating];
+    [_streamButton setEnabled:NO];
     
     AccessLectureAppDelegate *app = [UIApplication sharedApplication].delegate;
     server = app.server;
@@ -43,6 +44,7 @@
         [_statusLabel setText:@"Connected"];
         [_statusLabel setHidden:NO];
         [_connectionAddress setText:server.connectionURL];
+        [_streamButton setEnabled:YES];
     }
     
 }
@@ -71,6 +73,15 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)connectToStream:(id)sender
+{
+    [server requestAccessToLectureSteam:@"Math Class"];
+    if ([_delegate respondsToSelector:@selector(didCompleteWithConnection:)]) {
+        [_delegate didCompleteWithConnection:server];
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark Connect
 
 - (void)connect
@@ -81,6 +92,7 @@
         if (success) {
             [_statusLabel setText:@"Connected"];
             [_activity stopAnimating];
+            [_streamButton setEnabled:YES];
         } else {
             [_statusLabel setText:@"Failed to connect to server"];
             [_activity stopAnimating];

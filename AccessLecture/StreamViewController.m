@@ -58,9 +58,9 @@
 
 #pragma mark Connection View Delegate Methods
 
-- (void)didCompleteWithConnection
+- (void)didCompleteWithConnection:(ALNetworkInterface *)server
 {
-    NSLog(@"Connection");
+    [server setDelegate:self];
 }
 
 - (void)userDidCancel
