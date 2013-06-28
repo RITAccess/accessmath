@@ -18,6 +18,10 @@
 - (void)didRecieveUpdate:(id)data;
 - (void)didFinishDownloadingLecture:(Lecture *)lecture;
 
+@optional
+
+- (void)currentStreamUpdatePercentage:(float)percent;
+
 @end
 
 @interface ALNetworkInterface : NSObject <SocketIODelegate>

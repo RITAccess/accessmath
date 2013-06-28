@@ -117,6 +117,11 @@
     NSLog(@"Recieved Data!");
 }
 
+- (void)currentStreamUpdatePercentage:(float)percent
+{
+    NSLog(@"%f", percent);
+}
+
 #pragma mark Orientation
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation

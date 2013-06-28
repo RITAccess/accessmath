@@ -20,6 +20,10 @@
     
     // For connection
     void (^connected)(BOOL);
+    
+    // For storing large updates
+    NSMutableArray *bulkData;
+    int updateSize;
 }
 
 @synthesize connectionURL = connectionURL;
@@ -120,9 +124,11 @@
     // Recive update
     if ([packet.name isEqualToString:@"update"]) {
         NSString *data = [packet.dataAsJSON valueForKeyPath:@"args"][0];
-        if ([_delegate respondsToSelector:@selector(didRecieveUpdate:)]) {
-            [_delegate didRecieveUpdate:data];
-        }
+        [self parseUpdate:data];
+    }
+    // Start/end update
+    if ([packet.name isEqualToString:@"update-info"]) {
+        [self bulkUpdate:[packet.dataAsJSON valueForKeyPath:@"args"][0]];
     }
     // On Termination
     if ([packet.name isEqualToString:@"termination"]) {
@@ -135,6 +141,34 @@
         [socketConnection sendEvent:@"set-name" withData:[[UIDevice currentDevice] name]];;
     }
     
+}
+
+/**
+ * Parse Updates
+ */
+- (void)parseUpdate:(id)data
+{
+    printf(".");
+}
+
+/**
+ * Bulk update
+ */
+- (void)bulkUpdate:(id)data
+{
+    if ([[data valueForKeyPath:@"info"] isEqualToString:@"start"]) {
+        updateSize = [[data valueForKeyPath:@"count"] intValue];
+        bulkData = [[NSMutableArray alloc] init];
+    } else if ([[data valueForKeyPath:@"info"] isEqualToString:@"update"]) {
+        float index = [[data valueForKeyPath:@"index"] floatValue];
+        float percent = (index / updateSize) * 100.0;
+        if ([_delegate respondsToSelector:@selector(currentStreamUpdatePercentage:)]) {
+            [_delegate currentStreamUpdatePercentage:percent];
+        }
+        [bulkData addObject:data];
+    } else if ([[data valueForKeyPath:@"info"] isEqualToString:@"end"]) {
+        NSLog(@"%@", bulkData);
+    }
 }
 
 /**
