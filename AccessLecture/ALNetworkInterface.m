@@ -167,7 +167,9 @@
         }
         [bulkData addObject:data];
     } else if ([[data valueForKeyPath:@"info"] isEqualToString:@"end"]) {
-        NSLog(@"%@", bulkData);
+        if ([_delegate respondsToSelector:@selector(didFinishRecievingBulkUpdate:)]) {
+            [_delegate didFinishRecievingBulkUpdate:bulkData];
+        }
     }
 }
 

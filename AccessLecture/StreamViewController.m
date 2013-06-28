@@ -119,7 +119,12 @@
 
 - (void)currentStreamUpdatePercentage:(float)percent
 {
-    NSLog(@"%f", percent);
+    
+}
+
+- (void)didFinishRecievingBulkUpdate:(NSArray *)data
+{
+    
 }
 
 #pragma mark Orientation
