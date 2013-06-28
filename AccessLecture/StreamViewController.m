@@ -7,8 +7,11 @@
 //
 
 #import "StreamViewController.h"
+#import "ConnectionViewController.h"
 
 @interface StreamViewController ()
+
+@property BOOL connectedToStream;
 
 @end
 
@@ -37,23 +40,49 @@
     test = [[UIView alloc] initWithFrame:CGRectMake(300, 400, 200, 200)];
     [test setBackgroundColor:[UIColor blackColor]];
     [self.view addSubview:test];
+    [UIView animateWithDuration:2.0 delay:0.0 options:UIViewAnimationOptionRepeat | UIViewAnimationOptionCurveLinear animations:^{
+        CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI);
+        test.transform = transform;
+    } completion:nil];
+}
+
+#pragma mark Actions
+
+- (IBAction)connectToStream:(id)sender
+{
+    ConnectionViewController *cvc = [[ConnectionViewController alloc] initWithNibName:ConnectionViewControllerXIB bundle:nil];
+    [cvc setDelegate:self];
+    [self presentViewController:cvc animated:YES completion:nil];
+    
+}
+
+#pragma mark Connection View Delegate Methods
+
+- (void)didCompleteWithConnection
+{
+    NSLog(@"Connection");
+}
+
+- (void)userDidCancel
+{
+    NSLog(@"User Canceled");
 }
 
 #pragma mark Child View Controller Calls
 
 - (void)willMoveToParentViewController:(UIViewController *)parent
 {
-    NSLog(@"will have new parent %@", parent);
+    
 }
 
 - (void)didMoveToParentViewController:(UIViewController *)parent
 {
-    NSLog(@"new parent %@", parent);
+    NSLog(@"Active!");
+    
+    
+    
+    
     [test setBackgroundColor:[UIColor orangeColor]];
-    [UIView animateWithDuration:2.0 delay:0.0 options:UIViewAnimationOptionRepeat | UIViewAnimationOptionCurveLinear animations:^{
-        CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI);
-        test.transform = transform;
-    } completion:nil];
 }
 
 - (void)willSaveState
@@ -75,6 +104,19 @@
 - (void)didLeaveActiveState
 {
     NSLog(@"Did leave active state");
+}
+
+#pragma mark Streaming
+
+- (void)didFinishDownloadingLecture:(Lecture *)lecture
+{
+    
+}
+
+- (void)didRecieveUpdate:(id)data
+{
+    NSLog(@"Recieved Data!");
+    NSLog(@"%@", data);
 }
 
 #pragma mark Orientation
