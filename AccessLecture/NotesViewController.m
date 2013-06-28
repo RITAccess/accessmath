@@ -103,25 +103,40 @@ if(_isCreatingNote)
 else if(_isDrawing)
     {
         [gestureRecognizer.view setFrame:CGRectMake(gestureRecognizer.view.frame.origin.x, gestureRecognizer.view.frame.origin.y, 5, 5)];
-      [gestureRecognizer.view gestureRecognizerShouldBegin:[[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)]];
+      for(UIGestureRecognizer *recognizer in gestureRecognizer.view.superview.gestureRecognizers)
+      {
+                   if([recognizer isKindOfClass:[UIPanGestureRecognizer class]])
+          {
+           
+              [recognizer setEnabled:YES];
+          }
+      }
     }
 }
 - (void)longPressToDisplayNote:(UILongPressGestureRecognizer *)gestureRecognizer
 {
 
-    if((_isCreatingNote)&&([gestureRecognizer.view isKindOfClass:[UIView class]])){
+    if((_isCreatingNote)&&([[[[gestureRecognizer view] subviews] objectAtIndex:0] isKindOfClass:[UITextView class]])){
     UITextView *temp = [[[gestureRecognizer view] subviews] objectAtIndex:0];
     [[[[gestureRecognizer view] subviews] objectAtIndex:0] removeFromSuperview];
       [temp setFrame:CGRectMake([gestureRecognizer locationInView:gestureRecognizer.view].x, [gestureRecognizer locationInView:gestureRecognizer.view].y, 300, 120)];
     [gestureRecognizer.view addSubview:temp];
     }
-    else if((_isDrawing)&&([gestureRecognizer.view isKindOfClass:[LineDrawView class]]))
+    else if((_isDrawing)&&([[[[gestureRecognizer view] subviews] objectAtIndex:0] isKindOfClass:[LineDrawView class]]))
     {
-        NSLog(@"Reached");
+      
         UITextView *temp = [[[gestureRecognizer view] subviews] objectAtIndex:0];
         [[[[gestureRecognizer view] subviews] objectAtIndex:0] removeFromSuperview];
         [temp setFrame:CGRectMake([gestureRecognizer locationInView:gestureRecognizer.view].x, [gestureRecognizer locationInView:gestureRecognizer.view].y, 400, 300)];
         [gestureRecognizer.view addSubview:temp];
+        for(UIGestureRecognizer *recognizer in gestureRecognizer.view.gestureRecognizers)
+        {
+            if([recognizer isKindOfClass:[UIPanGestureRecognizer class]])
+            {
+                
+                [recognizer setEnabled:NO];
+            }
+        }
     }
 }
 
@@ -157,8 +172,8 @@ else if(_isDrawing)
     [lineDrawView addGestureRecognizer:longPressGestureRecognizer];
     [outerView addGestureRecognizer:longPressGestureRecognizer2];
     [lineDrawView addSubview:anImageView];
-    outerView.layer.borderWidth = 2;
-    [outerView addSubview:lineDrawView];
+   
+       [outerView addSubview:lineDrawView];
     [self.view addSubview:outerView];
     
     
