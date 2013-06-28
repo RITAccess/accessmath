@@ -8,11 +8,12 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StreamViewController">
             <connections>
                 <outlet property="bottomToolbar" destination="sVb-RX-ws3" id="kud-gv-q98"/>
+                <outlet property="canvas" destination="2" id="fve-rf-nRx"/>
                 <outlet property="view" destination="2" id="3"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="2">
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="2" customClass="StreamDrawing">
             <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
@@ -43,11 +44,15 @@
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
         </class>
+        <class className="StreamDrawing" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/StreamDrawing.h"/>
+        </class>
         <class className="StreamViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/StreamViewController.h"/>
             <relationships>
                 <relationship kind="action" name="connectToStream:"/>
                 <relationship kind="outlet" name="bottomToolbar" candidateClass="UIToolbar"/>
+                <relationship kind="outlet" name="canvas" candidateClass="StreamDrawing"/>
             </relationships>
         </class>
     </classes>

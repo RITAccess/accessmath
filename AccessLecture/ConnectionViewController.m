@@ -39,6 +39,10 @@
     AccessLectureAppDelegate *app = [UIApplication sharedApplication].delegate;
     server = app.server;
     
+    // Testing
+    [_connectionAddress setText:@"students-imac.wireless.rit.edu"];
+    [self checkAddress:nil];
+    
     // Check if already connected
     if ([server connected]) {
         [_statusLabel setText:@"Connected"];

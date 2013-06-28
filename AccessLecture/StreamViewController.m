@@ -80,8 +80,6 @@
     NSLog(@"Active!");
     
     
-    
-    
     [test setBackgroundColor:[UIColor orangeColor]];
 }
 
@@ -117,7 +115,6 @@
 - (void)didRecieveUpdate:(id)data
 {
     NSLog(@"Recieved Data!");
-    NSLog(@"%@", data);
 }
 
 #pragma mark Orientation
