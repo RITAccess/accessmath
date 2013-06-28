@@ -14,7 +14,9 @@
 
 @end
 
-@implementation ConnectionViewController
+@implementation ConnectionViewController {
+    ALNetworkInterface *server;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,6 +34,16 @@
     
     [_statusLabel setHidden:YES];
     [_activity stopAnimating];
+    
+    AccessLectureAppDelegate *app = [UIApplication sharedApplication].delegate;
+    server = app.server;
+    
+    // Check if already connected
+    if ([server connected]) {
+        [_statusLabel setText:@"Connected"];
+        [_statusLabel setHidden:NO];
+        [_connectionAddress setText:server.connectionURL];
+    }
     
 }
 
@@ -63,8 +75,6 @@
 
 - (void)connect
 {
-    AccessLectureAppDelegate *app = [UIApplication sharedApplication].delegate;
-    ALNetworkInterface *server = app.server;
     [server disconnect];
     [server setConnectionURL:[_connectionAddress text]];
     [server connectCompletion:^(BOOL success) {
