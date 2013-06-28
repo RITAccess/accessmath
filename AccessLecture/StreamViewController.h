@@ -17,4 +17,5 @@ static NSString* const StreamViewControllerXIB = @"StreamViewController";
 @interface StreamViewController : UIViewController <LectureViewChild, LectureStreaming, ConnectionView>
 - (IBAction)connectToStream:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UIToolbar *bottomToolbar;
 @end

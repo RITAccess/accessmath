@@ -18,8 +18,8 @@
     // Completion Handles
     void (^lectureRequest)(Lecture *lecture, BOOL found);
     
-    // For testing
-    void (^onMessage)(NSString *);
+    // For connection
+    void (^connected)(BOOL);
 }
 
 @synthesize connectionURL = connectionURL;
@@ -82,10 +82,7 @@
 - (void)connectCompletion:(void (^)(BOOL success))handle
 {    
     [self connect];
-    while (socketConnection.isConnecting)
-        ;
-    handle(true);
-    
+    connected = handle;
 }
 
 - (void)disconnect
@@ -146,6 +143,7 @@
  */
 - (void)socketIODidConnect:(SocketIO *)socket {
     NSLog(@"Connection open");
+    connected(TRUE);
 }
 
 /**
@@ -154,6 +152,14 @@
 - (void)socketIODidDisconnect:(SocketIO *)socket disconnectedWithError:(NSError *)error {
     NSLog(@"Error: %@", error);
     _wasConnected = NO;
+}
+
+/**
+ * Failed connection
+ */
+- (void)socketIO:(SocketIO *)socket onError:(NSError *)error
+{
+    connected(FALSE);
 }
 
 @end

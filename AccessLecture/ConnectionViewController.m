@@ -65,13 +65,14 @@
 {
     AccessLectureAppDelegate *app = [UIApplication sharedApplication].delegate;
     ALNetworkInterface *server = app.server;
+    [server disconnect];
     [server setConnectionURL:[_connectionAddress text]];
     [server connectCompletion:^(BOOL success) {
         if (success) {
             [_statusLabel setText:@"Connected"];
             [_activity stopAnimating];
         } else {
-            [_statusLabel setText:@"Failed o connect to server"];
+            [_statusLabel setText:@"Failed to connect to server"];
             [_activity stopAnimating];
         }
     }];
