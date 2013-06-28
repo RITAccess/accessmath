@@ -16,6 +16,12 @@
 @property UITapGestureRecognizer *tapToCreateNote;
 @property UITapGestureRecognizer *tapToCreateNoteDrawingNote;
 - (IBAction)createDrawNote:(id)sender;
+
 - (IBAction)createTextNote:(id)sender;
+
+
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *drawNote;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *textNote;
+
 @property UITapGestureRecognizer *tapToDismissKeyboard;
 @end
