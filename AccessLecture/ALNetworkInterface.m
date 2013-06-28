@@ -120,7 +120,7 @@
     // Recive update
     if ([packet.name isEqualToString:@"update"]) {
         NSString *data = [packet.dataAsJSON valueForKeyPath:@"args"][0];
-        if ([_delegate respondsToSelector:@selector(didRecieveUpdate)]) {
+        if ([_delegate respondsToSelector:@selector(didRecieveUpdate:)]) {
             [_delegate didRecieveUpdate:data];
         }
     }
