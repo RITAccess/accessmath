@@ -1,7 +1,6 @@
 accessmath
 ==========
-Integrating an iOS application with mimio to provide an accessible avenue towards learning and education.
-
+Integrating an iOS application with Mimio to provide an accessible lecture stream.
 ### Current Contributors
 Led by [Stephanie Ludi](https://github.com/retrogamer80s), this project has previously seen development. Its current team consists of:
 * [Pratik Rasam] (https://github.com/rasampratik) CS Graduate 
