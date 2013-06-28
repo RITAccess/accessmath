@@ -18,8 +18,12 @@ static NSString* const ConnectionViewControllerXIB = @"ConnectionViewController"
 @end
 
 @interface ConnectionViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UILabel *statusLabel;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activity;
+@property (weak, nonatomic) IBOutlet UITextField *connectionAddress;
 
 @property id<ConnectionView> delegate;
 
+- (IBAction)checkAddress:(id)sender;
 - (IBAction)userDidCancel:(id)sender;
 @end

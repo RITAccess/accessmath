@@ -7,6 +7,8 @@
 //
 
 #import "ConnectionViewController.h"
+#import "AccessLectureAppDelegate.h"
+#import "ALNetworkInterface.h"
 
 @interface ConnectionViewController ()
 
@@ -27,6 +29,10 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    [_statusLabel setHidden:YES];
+    [_activity stopAnimating];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -35,8 +41,40 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)checkAddress:(id)sender
+{
+    [_activity startAnimating];
+    [_statusLabel setText:@"Checking connection"];
+    [_statusLabel setHidden:NO];
+    [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
+        [self connect];
+    }];
+}
+
 - (IBAction)userDidCancel:(id)sender
 {
+    if ([_delegate respondsToSelector:@selector(userDidCancel)]) {
+        [_delegate userDidCancel];
+    }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+#pragma mark Connect
+
+- (void)connect
+{
+    AccessLectureAppDelegate *app = [UIApplication sharedApplication].delegate;
+    ALNetworkInterface *server = app.server;
+    [server setConnectionURL:[_connectionAddress text]];
+    [server connectCompletion:^(BOOL success) {
+        if (success) {
+            [_statusLabel setText:@"Connected"];
+            [_activity stopAnimating];
+        } else {
+            [_statusLabel setText:@"Failed o connect to server"];
+            [_activity stopAnimating];
+        }
+    }];
+}
+
 @end
