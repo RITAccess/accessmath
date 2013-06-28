@@ -42,7 +42,6 @@
     switch (gesture.state) {
         case UIGestureRecognizerStateBegan:
         {
-            NSLog(@"Beginning...");
             CGPoint location = [gesture locationInView: self];
             [_selectedPath moveToPoint:location];
             break;
@@ -55,9 +54,6 @@
             break;
         }
             
-        case UIGestureRecognizerStateEnded:
-            NSLog(@"Ended!");
-            break;
         default:
             break;
     }
