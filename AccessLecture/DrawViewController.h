@@ -23,5 +23,7 @@ static NSString* const DrawViewControllerXIB = @"DrawViewController";
 // Gestures
 @property UIPanGestureRecognizer *panGestureRecognzier;
 - (IBAction)clearNotesButtonPress:(id)sender;
+- (IBAction)penSizeSlide:(id)sender;
+@property (weak, nonatomic) IBOutlet UISlider *penSizeSlider;
 
 @end

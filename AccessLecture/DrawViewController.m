@@ -35,8 +35,6 @@
 {
     [super viewDidLoad];
     
-    NSLog(@"Loading DrawViewController....");
-
     _drawView = [[DrawView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width * 2, self.view.frame.size.height * 2)];
     [self.view addSubview:_drawView];
     
@@ -52,6 +50,7 @@
 
 - (void)viewDidUnload
 {
+    [self setPenSizeSlider:nil];
     [super viewDidUnload];
 }
 
@@ -144,6 +143,7 @@
 - (void)segmentChanged:(id)sender
 {
     _selectedColor = [_colorSegmentedControl selectedSegmentIndex];
+    [self.penSizeSlider setValue:0];
     
     switch (_selectedColor) {
         case 0:
@@ -171,6 +171,12 @@
 {
     [_drawView clearAllPaths];
     [_drawView setNeedsDisplay]; // Calls DrawView's overriden drawRect() to update view.
+}
+
+- (IBAction)penSizeSlide:(id)sender
+{
+    _drawView.selectedPath.lineWidth = self.penSizeSlider.value * 10;
+    [_drawView setNeedsDisplay];
 }
 
 #pragma mark Child View Controller Calls
