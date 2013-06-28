@@ -7,19 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AMBezierPath.h"
 
 @interface DrawView : UIView
 
 - (void)clearAllPaths;
 
-// Bezier Paths
-@property UIBezierPath *redBezierPath;
-@property UIBezierPath *greenBezierPath;
-@property UIBezierPath *blueBezierPath;
-@property UIBezierPath *blackBezierPath;
-@property UIBezierPath *yellowBezierPath;
-@property UIBezierPath *eraserBezierPath;
-@property NSInteger currentPath;
-@property UIBezierPath *selectedPath;
+@property NSMutableArray *paths;
+@property float penSize;
+@property UIColor *penColor;
 
 @end

@@ -35,17 +35,17 @@
 {
     [super viewDidLoad];
     
+    // Adding the Drawing and Toolbar Views
     _drawView = [[DrawView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width * 2, self.view.frame.size.height * 2)];
     [self.view addSubview:_drawView];
-    
     [self.view addSubview:self.toolbarView];
+    [self initColorSegmentedControl];
     
+    // Adding Gestures
     _panGestureRecognzier = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panToMove:)];
     _panGestureRecognzier.minimumNumberOfTouches = 2;
     [_panGestureRecognzier setTranslation:CGPointMake(40, 40) inView:_drawView];
     [_drawView addGestureRecognizer:_panGestureRecognzier];
-    
-    [self initColorSegmentedControl];
 }
 
 - (void)viewDidUnload
@@ -143,23 +143,22 @@
 - (void)segmentChanged:(id)sender
 {
     _selectedColor = [_colorSegmentedControl selectedSegmentIndex];
-    [self.penSizeSlider setValue:0];
     
     switch (_selectedColor) {
         case 0:
-            _drawView.selectedPath = _drawView.redBezierPath;
+            [_drawView setPenColor:[UIColor redColor]];
             break;
         case 1:
-            _drawView.selectedPath = _drawView.greenBezierPath;
+            [_drawView setPenColor:[UIColor greenColor]];
             break;
         case 2:
-            _drawView.selectedPath = _drawView.blueBezierPath;
+            [_drawView setPenColor:[UIColor blueColor]];
             break;
         case 3:
-            _drawView.selectedPath = _drawView.blackBezierPath;
+            [_drawView setPenColor:[UIColor blackColor]];
             break;
         case 4:
-            _drawView.selectedPath = _drawView.yellowBezierPath;
+            [_drawView setPenColor:[UIColor yellowColor]];
             break;
         default:
             break;
@@ -175,7 +174,7 @@
 
 - (IBAction)penSizeSlide:(id)sender
 {
-    _drawView.selectedPath.lineWidth = self.penSizeSlider.value * 10;
+    [_drawView setPenSize:self.penSizeSlider.value];
     [_drawView setNeedsDisplay];
 }
 

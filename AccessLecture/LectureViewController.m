@@ -525,7 +525,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
  */
 - (void)segmentChanged:(id)sender
 {
-    lineDrawView.currentPath = [colorSegmentedControl selectedSegmentIndex];
+//    lineDrawView.currentPath = [colorSegmentedControl selectedSegmentIndex];
 }
 
 @end

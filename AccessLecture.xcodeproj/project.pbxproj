@@ -10,6 +10,7 @@
 		2C0F886B1760D8EC0062BD16 /* DrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F886A1760D8EC0062BD16 /* DrawView.m */; };
 		2C6F39A01768DAEB00D700F7 /* UISegmentedControlExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C6F399F1768DAEB00D700F7 /* UISegmentedControlExtension.m */; };
 		2C76BDE71762143300A1E6BA /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C76BDE61762143300A1E6BA /* SettingsViewController.m */; };
+		2C9EB6F0177DF3C6008EBAB6 /* AMBezierPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EB6EF177DF2BE008EBAB6 /* AMBezierPath.m */; };
 		2CBF301C177B7AB10087C17C /* DrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBF301A177B7AB10087C17C /* DrawViewController.m */; };
 		2CBF301D177B7AB10087C17C /* DrawViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CBF301B177B7AB10087C17C /* DrawViewController.xib */; };
 		2CFC32A0175E60FC00384AEC /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CFC329F175E60FC00384AEC /* MainStoryboard.storyboard */; };
@@ -94,6 +95,8 @@
 		2C6F399F1768DAEB00D700F7 /* UISegmentedControlExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISegmentedControlExtension.m; sourceTree = "<group>"; };
 		2C76BDE51762143300A1E6BA /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		2C76BDE61762143300A1E6BA /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		2C9EB6EE177DF2BE008EBAB6 /* AMBezierPath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMBezierPath.h; sourceTree = "<group>"; };
+		2C9EB6EF177DF2BE008EBAB6 /* AMBezierPath.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMBezierPath.m; sourceTree = "<group>"; };
 		2CBF3019177B7AB10087C17C /* DrawViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawViewController.h; sourceTree = "<group>"; };
 		2CBF301A177B7AB10087C17C /* DrawViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawViewController.m; sourceTree = "<group>"; };
 		2CBF301B177B7AB10087C17C /* DrawViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawViewController.xib; sourceTree = "<group>"; };
@@ -226,6 +229,7 @@
 		2C544E29177C7E9A00BC1A32 /* DrawView */ = {
 			isa = PBXGroup;
 			children = (
+				2C9EB6ED177DF29C008EBAB6 /* AMBezierPath */,
 				2C0F886A1760D8EC0062BD16 /* DrawView.m */,
 				2C0F88691760D8EC0062BD16 /* DrawView.h */,
 			);
@@ -248,6 +252,15 @@
 				2C76BDE61762143300A1E6BA /* SettingsViewController.m */,
 			);
 			name = "Settings View";
+			sourceTree = "<group>";
+		};
+		2C9EB6ED177DF29C008EBAB6 /* AMBezierPath */ = {
+			isa = PBXGroup;
+			children = (
+				2C9EB6EE177DF2BE008EBAB6 /* AMBezierPath.h */,
+				2C9EB6EF177DF2BE008EBAB6 /* AMBezierPath.m */,
+			);
+			name = AMBezierPath;
 			sourceTree = "<group>";
 		};
 		2CBF3014177B700C0087C17C /* DrawViewController */ = {
@@ -735,6 +748,7 @@
 				3F6D11CA17625EA20066A4FA /* base64.c in Sources */,
 				3F6D11CB17625EA20066A4FA /* NSData+SRB64Additions.m in Sources */,
 				4C9AB8FE177C6895004A4F65 /* TopNav.m in Sources */,
+				2C9EB6F0177DF3C6008EBAB6 /* AMBezierPath.m in Sources */,
 				4C8ABE78177C87BD007C934C /* StreamViewController.m in Sources */,
 				3F6D11CC17625EA20066A4FA /* SRWebSocket.m in Sources */,
 				4C96FA84176289DE002C0D74 /* ConnectViewController.m in Sources */,

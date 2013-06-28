@@ -20,16 +20,13 @@
     
     if (self) {
         self.backgroundColor = [UIColor clearColor];
-        _selectedPath = [[UIBezierPath alloc]init];
-        _redBezierPath = [[UIBezierPath alloc]init];
-        _greenBezierPath = [[UIBezierPath alloc]init];
-        _blueBezierPath = [[UIBezierPath alloc]init];
-        _blackBezierPath = [[UIBezierPath alloc]init];
-        _yellowBezierPath = [[UIBezierPath alloc]init];
-        _eraserBezierPath = [[UIBezierPath alloc]init];
         
         UIPanGestureRecognizer *fingerDrag = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(dragToDraw:)];
         [self addGestureRecognizer:fingerDrag];
+        
+        _paths = [[NSMutableArray alloc] init];
+        [_paths addObject:[[AMBezierPath alloc] init]];
+        self.penSize = 1;
     }
     
     return self;
@@ -43,14 +40,21 @@
         case UIGestureRecognizerStateBegan:
         {
             CGPoint location = [gesture locationInView: self];
-            [_selectedPath moveToPoint:location];
+            
+            [_paths addObject:[[AMBezierPath alloc] init]];
+            [[_paths objectAtIndex:_paths.count - 1] moveToPoint:location];
+            [[_paths lastObject] setLineWidth:self.penSize];
+            [[_paths lastObject] setColor:self.penColor];
+            
             break;
         }
             
         case UIGestureRecognizerStateChanged:
         {
             CGPoint location = [gesture locationInView: self];
-            [_selectedPath addLineToPoint:location];
+            
+            [[_paths objectAtIndex:_paths.count -1] addLineToPoint:location];
+            
             break;
         }
             
@@ -59,6 +63,7 @@
     }
     
     [self setNeedsDisplay];
+    
 }
 
 
@@ -66,12 +71,7 @@
 
 - (void)clearAllPaths
 {
-    [_redBezierPath removeAllPoints];
-    [_greenBezierPath removeAllPoints];
-    [_blueBezierPath removeAllPoints];
-    [_blackBezierPath removeAllPoints];
-    [_yellowBezierPath removeAllPoints];
-    [_eraserBezierPath removeAllPoints];
+    [_paths removeAllObjects];
 }
 
 /**
@@ -80,18 +80,12 @@
  */
 - (void)drawRect:(CGRect)rect
 {
-    [[UIColor redColor] setStroke];
-    [_redBezierPath stroke];
-    [[UIColor greenColor] setStroke];
-    [_greenBezierPath stroke];
-    [[UIColor blueColor] setStroke];
-    [_blueBezierPath stroke];
-    [[UIColor blackColor] setStroke];
-    [_blackBezierPath stroke];
-    [[UIColor yellowColor] setStroke];
-    [_yellowBezierPath stroke];
+    for (AMBezierPath *path in _paths)
+    {
+        [path.color setStroke];
+        [path stroke];
+    }
 }
-
 
 @end
 
