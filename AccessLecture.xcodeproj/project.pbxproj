@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2C0F886B1760D8EC0062BD16 /* LineDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F886A1760D8EC0062BD16 /* LineDrawView.m */; };
-		2C6F39A01768DAEB00D700F7 /* UISegmentedControlExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C6F399F1768DAEB00D700F7 /* UISegmentedControlExtension.m */; };
-		2C76BDE71762143300A1E6BA /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C76BDE61762143300A1E6BA /* SettingsViewController.m */; };
 		2CFC32A0175E60FC00384AEC /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CFC329F175E60FC00384AEC /* MainStoryboard.storyboard */; };
 		3F0DBDD613BD174900E3FEE8 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0DBDD413BD174900E3FEE8 /* AboutViewController.m */; };
 		3F0FFCFB1371A93A00299663 /* Back.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F0FFCFA1371A93A00299663 /* Back.png */; };
@@ -37,7 +34,6 @@
 		3FAE785413C786F800796813 /* accesslecture.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAE785313C786F800796813 /* accesslecture.png */; };
 		3FC32EBC13E05E0F00077291 /* biology.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FC32EBA13E05E0F00077291 /* biology.png */; };
 		3FC32EBD13E05E0F00077291 /* geometry.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FC32EBB13E05E0F00077291 /* geometry.png */; };
-		3FC85673139D2CF90028DEB5 /* LectureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FC85672139D2CF90028DEB5 /* LectureViewController.m */; };
 		3FCD5D0B15437D0A005F2A60 /* AccessDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F99F1FD154364270065CBB9 /* AccessDocument.m */; };
 		3FCD5D1715438472005F2A60 /* AccessLectureRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FCD5D1615438472005F2A60 /* AccessLectureRuntime.m */; };
 		3FED960C1370863E00D8D1B8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FED960B1370863E00D8D1B8 /* UIKit.framework */; };
@@ -73,6 +69,8 @@
 		4CE742C41768BDE60026DE71 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F9BA9C21758FE1C00BEFB55 /* SenTestingKit.framework */; };
 		4CE742C51768BDE60026DE71 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FED960D1370863E00D8D1B8 /* Foundation.framework */; };
 		4CE742C61768BDE60026DE71 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FED960B1370863E00D8D1B8 /* UIKit.framework */; };
+		4CEA1A03177CAAED00A1DE05 /* LectureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEA1A00177CAAED00A1DE05 /* LectureCell.m */; };
+		4CEA1A04177CAAED00A1DE05 /* OpenLectureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEA1A02177CAAED00A1DE05 /* OpenLectureViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,12 +84,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2C0F88691760D8EC0062BD16 /* LineDrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineDrawView.h; sourceTree = "<group>"; };
-		2C0F886A1760D8EC0062BD16 /* LineDrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineDrawView.m; sourceTree = "<group>"; };
-		2C6F399E1768DAEB00D700F7 /* UISegmentedControlExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISegmentedControlExtension.h; sourceTree = "<group>"; };
-		2C6F399F1768DAEB00D700F7 /* UISegmentedControlExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISegmentedControlExtension.m; sourceTree = "<group>"; };
-		2C76BDE51762143300A1E6BA /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
-		2C76BDE61762143300A1E6BA /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		2CFC329F175E60FC00384AEC /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		3F0DBDD313BD174900E3FEE8 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		3F0DBDD413BD174900E3FEE8 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
@@ -143,7 +135,6 @@
 		3FAE785313C786F800796813 /* accesslecture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = accesslecture.png; sourceTree = "<group>"; };
 		3FC32EBA13E05E0F00077291 /* biology.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = biology.png; path = ../biology.png; sourceTree = "<group>"; };
 		3FC32EBB13E05E0F00077291 /* geometry.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = geometry.png; path = ../geometry.png; sourceTree = "<group>"; };
-		3FC85672139D2CF90028DEB5 /* LectureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = LectureViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3FCD5D1515438472005F2A60 /* AccessLectureRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccessLectureRuntime.h; sourceTree = "<group>"; };
 		3FCD5D1615438472005F2A60 /* AccessLectureRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccessLectureRuntime.m; sourceTree = "<group>"; };
 		3FED96071370863E00D8D1B8 /* AccessLecture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AccessLecture.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,7 +149,6 @@
 		3FED961B1370863E00D8D1B8 /* AccessLectureAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccessLectureAppDelegate.m; sourceTree = "<group>"; };
 		3FED96201370863E00D8D1B8 /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		3FED96211370863E00D8D1B8 /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		3FED962B137089D100D8D1B8 /* LectureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LectureViewController.h; sourceTree = "<group>"; };
 		3FED96471370909100D8D1B8 /* Invert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Invert.png; path = "Lecture View Images/Invert.png"; sourceTree = "<group>"; };
 		3FED96481370909100D8D1B8 /* Notes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Notes.png; path = "Lecture View Images/Notes.png"; sourceTree = "<group>"; };
 		3FED96491370909100D8D1B8 /* Save.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Save.png; path = "Lecture View Images/Save.png"; sourceTree = "<group>"; };
@@ -185,6 +175,10 @@
 		4CB8329F1768C0AC008F0099 /* AccessLecture Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AccessLecture Tests-Prefix.pch"; sourceTree = "<group>"; };
 		4CB832A01768C0AC008F0099 /* AccessLecture_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccessLecture_Tests.m; sourceTree = "<group>"; };
 		4CE742C31768BDE60026DE71 /* AccessLecture Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "AccessLecture Tests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4CEA19FF177CAAED00A1DE05 /* LectureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LectureCell.h; sourceTree = "<group>"; };
+		4CEA1A00177CAAED00A1DE05 /* LectureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LectureCell.m; sourceTree = "<group>"; };
+		4CEA1A01177CAAED00A1DE05 /* OpenLectureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenLectureViewController.h; sourceTree = "<group>"; };
+		4CEA1A02177CAAED00A1DE05 /* OpenLectureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenLectureViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,33 +212,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2C0F88681760D8D10062BD16 /* Line Draw View */ = {
-			isa = PBXGroup;
-			children = (
-				2C0F88691760D8EC0062BD16 /* LineDrawView.h */,
-				2C0F886A1760D8EC0062BD16 /* LineDrawView.m */,
-			);
-			name = "Line Draw View";
-			sourceTree = "<group>";
-		};
-		2C6F399A1768DA0300D700F7 /* Color Selection */ = {
-			isa = PBXGroup;
-			children = (
-				2C6F399E1768DAEB00D700F7 /* UISegmentedControlExtension.h */,
-				2C6F399F1768DAEB00D700F7 /* UISegmentedControlExtension.m */,
-			);
-			name = "Color Selection";
-			sourceTree = "<group>";
-		};
-		2C76BDE41762140D00A1E6BA /* Settings View */ = {
-			isa = PBXGroup;
-			children = (
-				2C76BDE51762143300A1E6BA /* SettingsViewController.h */,
-				2C76BDE61762143300A1E6BA /* SettingsViewController.m */,
-			);
-			name = "Settings View";
-			sourceTree = "<group>";
-		};
 		2CFC32A1175E7ED600384AEC /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -359,15 +326,6 @@
 				3F2DB23E13A65C2D00041736 /* ColorViewController.h */,
 			);
 			name = ColorViewController;
-			sourceTree = "<group>";
-		};
-		3FAD0BFA13A7B7D800218B1F /* Lecture View  */ = {
-			isa = PBXGroup;
-			children = (
-				3FED962B137089D100D8D1B8 /* LectureViewController.h */,
-				3FC85672139D2CF90028DEB5 /* LectureViewController.m */,
-			);
-			name = "Lecture View ";
 			sourceTree = "<group>";
 		};
 		3FCD5D1115438265005F2A60 /* View */ = {
@@ -487,11 +445,11 @@
 		3FED963213708E5100D8D1B8 /* Lecture View */ = {
 			isa = PBXGroup;
 			children = (
-				2C6F399A1768DA0300D700F7 /* Color Selection */,
+				4CEA19FF177CAAED00A1DE05 /* LectureCell.h */,
+				4CEA1A00177CAAED00A1DE05 /* LectureCell.m */,
+				4CEA1A01177CAAED00A1DE05 /* OpenLectureViewController.h */,
+				4CEA1A02177CAAED00A1DE05 /* OpenLectureViewController.m */,
 				3FAD0BF813A7B7AE00218B1F /* ColorViewController */,
-				2C76BDE41762140D00A1E6BA /* Settings View */,
-				2C0F88681760D8D10062BD16 /* Line Draw View */,
-				3FAD0BFA13A7B7D800218B1F /* Lecture View  */,
 			);
 			name = "Lecture View";
 			sourceTree = "<group>";
@@ -695,9 +653,9 @@
 			files = (
 				3FCD5D0B15437D0A005F2A60 /* AccessDocument.m in Sources */,
 				3FED96191370863E00D8D1B8 /* main.m in Sources */,
+				4CEA1A03177CAAED00A1DE05 /* LectureCell.m in Sources */,
 				3FED961C1370863E00D8D1B8 /* AccessLectureAppDelegate.m in Sources */,
 				3FED96221370863E00D8D1B8 /* RootViewController.m in Sources */,
-				3FC85673139D2CF90028DEB5 /* LectureViewController.m in Sources */,
 				3F2DB24113A65C2D00041736 /* ColorViewController.m in Sources */,
 				3F0DBDD613BD174900E3FEE8 /* AboutViewController.m in Sources */,
 				3F78A40713D5C1160048A579 /* UILargeAlertView.m in Sources */,
@@ -706,8 +664,6 @@
 				3F99F209154375270065CBB9 /* Position.m in Sources */,
 				3FCD5D1715438472005F2A60 /* AccessLectureRuntime.m in Sources */,
 				4C62BECD175651DB00CAF4CF /* FileManager.m in Sources */,
-				2C0F886B1760D8EC0062BD16 /* LineDrawView.m in Sources */,
-				2C76BDE71762143300A1E6BA /* SettingsViewController.m in Sources */,
 				3F6D11C417625EA20066A4FA /* ALNetworkInterface.m in Sources */,
 				3F6D11C517625EA20066A4FA /* SocketIO.m in Sources */,
 				3F6D11C617625EA20066A4FA /* SocketIOJSONSerialization.m in Sources */,
@@ -717,10 +673,10 @@
 				3F6D11CA17625EA20066A4FA /* base64.c in Sources */,
 				3F6D11CB17625EA20066A4FA /* NSData+SRB64Additions.m in Sources */,
 				4C9AB8FE177C6895004A4F65 /* TopNav.m in Sources */,
+				4CEA1A04177CAAED00A1DE05 /* OpenLectureViewController.m in Sources */,
 				4C8ABE78177C87BD007C934C /* StreamViewController.m in Sources */,
 				3F6D11CC17625EA20066A4FA /* SRWebSocket.m in Sources */,
 				4C96FA84176289DE002C0D74 /* ConnectViewController.m in Sources */,
-				2C6F39A01768DAEB00D700F7 /* UISegmentedControlExtension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -810,7 +766,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "AccessLecture/AccessLecture-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "EC51EB3A-91E0-4B0D-8398-E553BBD0EE94";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EC51EB3A-91E0-4B0D-8398-E553BBD0EE94";
@@ -834,7 +790,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "AccessLecture/AccessLecture-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "EC51EB3A-91E0-4B0D-8398-E553BBD0EE94";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EC51EB3A-91E0-4B0D-8398-E553BBD0EE94";

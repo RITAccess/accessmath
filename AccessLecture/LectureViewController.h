@@ -7,7 +7,6 @@
 #import "AccessLectureRuntime.h"
 #import "AccessLectureRuntime.h"
 #import "Lecture.h"
-#import "UISegmentedControlExtension.h"
 
 
 @interface LectureViewController : UIViewController<UIScrollViewDelegate,UIAlertViewDelegate>
