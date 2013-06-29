@@ -34,10 +34,8 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *navigationBarSettingsButton;
 @property (weak, nonatomic) IBOutlet UIButton *createNoteButton;
 
-
 /* New */
 - (IBAction)binDropdown:(id)sender;
-
 
 @end
 
