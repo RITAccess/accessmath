@@ -10,15 +10,28 @@
 #import "TopNav.h"
 #import "PrimWrapper.h"
 
+/**
+ * The LectureViewChild protocol is required to be a valid subview controller of
+ * the LectureViewContainer. If you do not implement theses methods your controller
+ * will not fuction properly. LectureViewContainer is responsible for switching
+ * modes, saveing, handling zoom, and handling panning. DO NOT implement this 
+ * yourself. API's are subject to change.
+ */
 @protocol LectureViewChild <NSObject>
+@required
 
+/* Return the view you need to remain synced between multiple modes. */
+- (UIView *)willApplyTransformToView;
+
+@optional
+
+/* Will/Did Save state gets called during the save proccess. Prepare your view here. */
 - (void)willSaveState;
 - (void)didSaveState;
 
+/* Will/Did LeaveActiveState is called when your mode is about to lose primary. Remove any toolbars here. */
 - (void)willLeaveActiveState;
 - (void)didLeaveActiveState;
-
-- (UIView *)willApplyTransformToView;
 
 @end
 
