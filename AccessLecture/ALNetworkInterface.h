@@ -16,6 +16,7 @@
 @protocol LectureStreaming <NSObject>
 
 - (void)didRecieveUpdate:(id)data;
+- (void)didFinishRecievingUpdate:(NSArray *)data;
 - (void)didFinishDownloadingLecture:(Lecture *)lecture;
 
 @optional
