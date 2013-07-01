@@ -9,6 +9,8 @@
             <connections>
                 <outlet property="bottomToolbar" destination="sVb-RX-ws3" id="kud-gv-q98"/>
                 <outlet property="canvas" destination="2" id="fve-rf-nRx"/>
+                <outlet property="joinLeaveStream" destination="i45-QE-S0J" id="QGg-Cz-2dQ"/>
+                <outlet property="loadProgress" destination="09r-ra-9da" id="EXH-hc-uva"/>
                 <outlet property="view" destination="2" id="3"/>
             </connections>
         </placeholder>
@@ -28,7 +30,7 @@
                         </barButtonItem>
                     </items>
                 </toolbar>
-                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="09r-ra-9da">
+                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="09r-ra-9da">
                     <rect key="frame" x="437" y="383" width="150" height="2"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </progressView>
@@ -57,6 +59,8 @@
                 <relationship kind="action" name="connectToStream:"/>
                 <relationship kind="outlet" name="bottomToolbar" candidateClass="UIToolbar"/>
                 <relationship kind="outlet" name="canvas" candidateClass="StreamDrawing"/>
+                <relationship kind="outlet" name="joinLeaveStream" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="loadProgress" candidateClass="UIProgressView"/>
             </relationships>
         </class>
     </classes>
