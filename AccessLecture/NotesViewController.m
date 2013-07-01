@@ -94,6 +94,7 @@
     LineDrawView *lineDrawView = [[LineDrawView alloc]initWithFrame:CGRectMake([gesture locationInView:outerView].x + 20, [gesture locationInView:outerView].y + 15, 400, 300)];
     lineDrawView.userInteractionEnabled = YES;
     lineDrawView.isDrawing = YES;
+    //outerView.layer.borderWidth = 3;
     lineDrawView.layer.borderWidth = 3;
     lineDrawView.layer.cornerRadius = 20;
     UIImageView * anImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin.png" ]];
@@ -105,8 +106,7 @@
     [lineDrawView addSubview:anImageView];
     [outerView addSubview:lineDrawView];
     [self.view addSubview:outerView];
-    
-    
+   
 }
 
 - (void)handlePan:(UIPanGestureRecognizer *)gestureRecognizer
@@ -116,7 +116,7 @@
    }
     else if(_isDrawing)
     {
-        [gestureRecognizer.view setFrame:CGRectMake([gestureRecognizer locationInView:self.view].x, [gestureRecognizer locationInView:self.view].y, 500, 500)];
+        [gestureRecognizer.view setFrame:CGRectMake([gestureRecognizer locationInView:self.view].x, [gestureRecognizer locationInView:self.view].y, 50, 50)];
     }
 }
 
@@ -130,11 +130,11 @@ if(_isCreatingNote)
 else if(_isDrawing)
     {
         [gestureRecognizer.view setFrame:CGRectMake(gestureRecognizer.view.frame.origin.x, gestureRecognizer.view.frame.origin.y, 5, 5)];
+        [gestureRecognizer.view.superview setFrame:CGRectMake(gestureRecognizer.view.superview.frame.origin.x, gestureRecognizer.view.superview.frame.origin.y, 50, 50)];
       for(UIGestureRecognizer *recognizer in gestureRecognizer.view.superview.gestureRecognizers)
       {
                    if([recognizer isKindOfClass:[UIPanGestureRecognizer class]])
           {
-           
               [recognizer setEnabled:YES];
           }
       }
@@ -159,6 +159,7 @@ else if(_isDrawing)
         [[[[gestureRecognizer view] subviews] objectAtIndex:0] removeFromSuperview];
         [temp setFrame:CGRectMake([gestureRecognizer locationInView:gestureRecognizer.view].x, [gestureRecognizer locationInView:gestureRecognizer.view].y, 400, 300)];
         [gestureRecognizer.view addSubview:temp];
+         [gestureRecognizer.view setFrame:CGRectMake(gestureRecognizer.view.frame.origin.x, gestureRecognizer.view.frame.origin.y, 500, 500)];
         for(UIGestureRecognizer *recognizer in gestureRecognizer.view.gestureRecognizers)
         {
             if([recognizer isKindOfClass:[UIPanGestureRecognizer class]])
