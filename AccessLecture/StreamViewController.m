@@ -108,6 +108,11 @@
     NSLog(@"Did leave active state");
 }
 
+- (UIView *)willApplyTransformToView
+{
+    return self.canvas;
+}
+
 #pragma mark Streaming
 
 - (void)didFinishDownloadingLecture:(Lecture *)lecture
