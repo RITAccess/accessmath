@@ -19,8 +19,7 @@
 
 - (CGPoint)flipForCordinateSpace:(CGPoint)point
 {
-    float height = self.frame.size.height;
-    return CGPointMake(point.x, height - point.y);
+    return CGPointMake(point.x, ( self.bounds.size.height - point.y ) );
 }
 
 - (void)drawBulkUpdate:(NSArray *)dataPack

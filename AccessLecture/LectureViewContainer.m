@@ -54,8 +54,30 @@
     dcv = [[DrawViewController alloc] initWithNibName:DrawViewControllerXIB bundle:nil];
     svc = [[StreamViewController alloc] initWithNibName:StreamViewControllerXIB bundle:nil];
     
+    // Add pan and zoom
+    UIPinchGestureRecognizer *zoom = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(zoomHandle:)];
+    [self.view addGestureRecognizer:zoom];
+    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panHandle:)];
+    [pan setMinimumNumberOfTouches:2];
+    [self.view addGestureRecognizer:pan];
+    
+    // Close menus
     menuOpen = NO;
     [self setUpMenuItems];
+}
+
+- (void)zoomHandle:(UIPinchGestureRecognizer *)reg
+{
+    if (reg.state == UIGestureRecognizerStateBegan) {
+        [reg setValue:self.view.transform forKey:@"baseTransform"];
+    }
+    CGAffineTransform zoom = CGAffineTransformScale([reg valueForKey:@"baseTransform"], reg.scale, reg.scale);
+    self.view.transform = zoom;
+}
+
+- (void)panHandle:(UIPanGestureRecognizer *)reg
+{
+    NSLog(@"Pan");
 }
 
 - (void)setUpMenuItems
