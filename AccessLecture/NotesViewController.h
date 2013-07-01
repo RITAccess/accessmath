@@ -9,7 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "LineDrawView.h"
 @interface NotesViewController : UIViewController<UITextViewDelegate>
-   
+{
+    UIColor *textColor;
+    UIColor *drawcolor;
+}
 @property (nonatomic) BOOL isCreatingNote;
 @property (nonatomic) BOOL isDrawing;
 @property (nonatomic) CGPoint *start;

@@ -76,8 +76,6 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
     [imageView setTag:ZOOM_VIEW_TAG]; 
 
     [imageView setTag:ZOOM_VIEW_TAG];
-   
-    
     scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 180, IPAD_MINI_HEIGHT, 468)];
     scrollView.contentSize = CGSizeMake(IPAD_MINI_HEIGHT, 468);
     scrollView.contentInset = UIEdgeInsetsMake(0, 0, 80, 0);
