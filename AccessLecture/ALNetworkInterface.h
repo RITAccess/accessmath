@@ -11,11 +11,16 @@
 #import "SocketIO.h"
 #import "Lecture.h"
 
+typedef enum ALPointType : NSUInteger ALPointType;
+enum ALPointType : NSUInteger {
+    ALPointTypeMoveTo,
+    ALPointTypeLineTo
+};
 
 /* Lecture Steaming Protocol */
 @protocol LectureStreaming <NSObject>
 
-- (void)didRecieveUpdate:(id)data;
+- (void)didRecieveUpdate:(CGPoint)point type:(ALPointType)type;
 - (void)didFinishRecievingUpdate:(NSArray *)data;
 - (void)didFinishDownloadingLecture:(Lecture *)lecture;
 - (void)didFinishRecievingBulkUpdate:(NSArray *)data;

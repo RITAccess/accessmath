@@ -29,6 +29,8 @@
     for (id data in dataPack) {
         if ([[data valueForKeyPath:@"action"] isEqualToString:@"moveTo"]) {
             UIBezierPath *new = [UIBezierPath bezierPath];
+            [new setLineWidth:3.0];
+            [new setLineCapStyle:kCGLineCapRound];
             [new moveToPoint:[self pointFromData:data]];
             [update addObject:new];
         } else {
@@ -38,6 +40,19 @@
     [self setNeedsDisplay];
 }
 
+- (void)addPointToLine:(CGPoint)point
+{
+    [(UIBezierPath *)[update lastObject] addLineToPoint:[self flipForCordinateSpace:point]];
+}
+
+- (void)startNewLineAtPoint:(CGPoint)point
+{
+    UIBezierPath *new = [UIBezierPath bezierPath];
+    [new setLineWidth:3.0];
+    [new setLineCapStyle:kCGLineCapRound];
+    [new moveToPoint:[self flipForCordinateSpace:point]];
+    [update addObject:new];
+}
 
 - (void)drawRect:(CGRect)rect
 {

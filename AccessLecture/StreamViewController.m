@@ -115,9 +115,14 @@
     
 }
 
-- (void)didRecieveUpdate:(id)data
+- (void)didRecieveUpdate:(CGPoint)point type:(ALPointType)type
 {
-    NSLog(@"Recieved Data!");
+    if (type == ALPointTypeMoveTo) {
+        [_canvas startNewLineAtPoint:point];
+    } else {
+        [_canvas addPointToLine:point];
+    }
+    [_canvas setNeedsDisplay];
 }
 
 - (void)currentStreamUpdatePercentage:(float)percent

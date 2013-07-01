@@ -10,7 +10,8 @@
 
 @interface StreamDrawing : UIView
 
-
 - (void)drawBulkUpdate:(NSArray *)dataPack;
+- (void)addPointToLine:(CGPoint)point;
+- (void)startNewLineAtPoint:(CGPoint)point;
 
 @end

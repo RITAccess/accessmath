@@ -148,7 +148,11 @@
  */
 - (void)parseUpdate:(id)data
 {
-    printf(".");
+    CGPoint point = CGPointMake([[data valueForKeyPath:@"x"] floatValue], [[data valueForKeyPath:@"y"] floatValue]);
+    ALPointType type = [[data valueForKeyPath:@"action"] isEqualToString:@"moveTo"] ? ALPointTypeMoveTo : ALPointTypeLineTo;
+    if ([_delegate respondsToSelector:@selector(didRecieveUpdate:type:)]) {
+        [_delegate didRecieveUpdate:point type:type];
+    }
 }
 
 /**
