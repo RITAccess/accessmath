@@ -85,9 +85,6 @@
 - (void)didMoveToParentViewController:(UIViewController *)parent
 {
     NSLog(@"Active!");
-    
-    
-    [test setBackgroundColor:[UIColor orangeColor]];
 }
 
 - (void)willSaveState
@@ -103,7 +100,6 @@
 - (void)willLeaveActiveState
 {
     [_bottomToolbar setHidden:YES];
-    [test setBackgroundColor:[UIColor grayColor]];
     NSLog(@"Will leave active state");
 }
 
