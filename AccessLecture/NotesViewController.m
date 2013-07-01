@@ -20,12 +20,10 @@
     if (self) {
         _isCreatingNote = NO;
         _isDrawing = NO;
-//        _tapToCreateNote = [[UITapGestureRecognizer alloc]initWithTarget:self action
-//                                                                        :@selector(createNote:)];
         _tapToDismissKeyboard = [[UITapGestureRecognizer alloc]initWithTarget:self action
                                                                              :@selector(dismissKeyboard)];
         [self.view addGestureRecognizer:_tapToDismissKeyboard];
-      //  [self.view addGestureRecognizer:_tapToCreateNote];
+
 
     }
     return self;
@@ -69,6 +67,7 @@
             [anImageView setCenter:textBubble.bounds.origin];
             [anImageView setBounds:CGRectMake([gesture locationInView:self.view].x, [gesture locationInView:self.view].y, 50, 50)];
             textBubble.text = @"Type Notes Here...";
+            textBubble.delegate = self;
             textBubble.layer.borderWidth = 3;
             textBubble.layer.cornerRadius = 20;
             [textBubble setFont:[UIFont boldSystemFontOfSize:30]];
@@ -140,7 +139,7 @@ else if(_isDrawing)
           }
       }
     }
-}
+} 
 - (void)longPressToDisplayNote:(UILongPressGestureRecognizer *)gestureRecognizer
 {
 
@@ -169,6 +168,22 @@ else if(_isDrawing)
             }
         }
     }
+}
+
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView{
+  
+    return YES;
+}
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+      // textView.backgroundColor = [UIColor greenColor];
+}
+- (void)textViewDidChange:(UITextView *)textView{
+
+    CGRect frame = textView.frame;
+    frame.size.height = textView.contentSize.height;
+    textView.frame = frame;
+  //  [textView.superview setBounds:CGRectMake(textView.superview.bounds.origin.x, textView.superview.bounds.origin.y, textView.superview.bounds.size.width, textView.frame.size.height)];
+
 }
 
 - (IBAction)createDrawNote:(id)sender {

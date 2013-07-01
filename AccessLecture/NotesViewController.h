@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "LineDrawView.h"
-@interface NotesViewController : UIViewController
+@interface NotesViewController : UIViewController<UITextViewDelegate>
    
 @property (nonatomic) BOOL isCreatingNote;
 @property (nonatomic) BOOL isDrawing;
