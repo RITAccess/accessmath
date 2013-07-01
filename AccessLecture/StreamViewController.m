@@ -80,8 +80,6 @@
     NSLog(@"Active!");
     
     
-    
-    
     [test setBackgroundColor:[UIColor orangeColor]];
 }
 
@@ -117,7 +115,11 @@
 - (void)didRecieveUpdate:(id)data
 {
     NSLog(@"Recieved Data!");
-    NSLog(@"%@", data);
+}
+
+- (void)currentStreamUpdatePercentage:(float)percent
+{
+    NSLog(@"%f", percent);
 }
 
 #pragma mark Orientation
