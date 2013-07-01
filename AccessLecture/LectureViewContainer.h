@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "TopNav.h"
+#import "PrimWrapper.h"
 
 @protocol LectureViewChild <NSObject>
 
@@ -16,6 +17,8 @@
 
 - (void)willLeaveActiveState;
 - (void)didLeaveActiveState;
+
+- (UIView *)willApplyTransformToView;
 
 @end
 
@@ -26,5 +29,6 @@
 
 @property (weak, nonatomic) IBOutlet UIView *sideMenu;
 @property (weak, nonatomic) IBOutlet TopNav *navBar;
+@property (weak, nonatomic) IBOutlet UIView *container;
 
 @end

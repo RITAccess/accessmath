@@ -10,4 +10,7 @@
 
 @interface PrimWrapper : NSObject
 
++ (instancetype)wrapperWithTransform:(CGAffineTransform)trans;
+@property CGAffineTransform transform;
+
 @end

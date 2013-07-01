@@ -10,4 +10,11 @@
 
 @implementation PrimWrapper
 
++ (instancetype)wrapperWithTransform:(CGAffineTransform)trans
+{
+    PrimWrapper *prim = [[PrimWrapper alloc] init];
+    [prim setTransform:trans];
+    return prim;
+}
+
 @end

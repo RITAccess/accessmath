@@ -57,6 +57,7 @@
 		3FF7FFD513D5E45300B89A5D /* AlertBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FF7FFD413D5E45300B89A5D /* AlertBG.png */; };
 		3FFCFB2213A25388003DAB63 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FFCFB2113A25388003DAB63 /* MessageUI.framework */; };
 		4C0966B01768D6520063AED7 /* Networking.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0966AF1768D6520063AED7 /* Networking.m */; };
+		4C2A1B871781DD2800AE4147 /* PrimWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2A1B861781DD2800AE4147 /* PrimWrapper.m */; };
 		4C51C79D1768F5BE0045DF42 /* Lectures.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C51C79C1768F5BE0045DF42 /* Lectures.m */; };
 		4C5B55FB17720A15005B79CF /* server.crt in Resources */ = {isa = PBXBuildFile; fileRef = 4C5B55FA17720A15005B79CF /* server.crt */; };
 		4C5C50C6177B59D90095801A /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C5C50C5177B59D90095801A /* pin.png */; };
@@ -175,6 +176,8 @@
 		3FF7FFD413D5E45300B89A5D /* AlertBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AlertBG.png; path = AccessLecture/core/AlertBG.png; sourceTree = "<group>"; };
 		3FFCFB2113A25388003DAB63 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		4C0966AF1768D6520063AED7 /* Networking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Networking.m; sourceTree = "<group>"; };
+		4C2A1B851781DD2800AE4147 /* PrimWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrimWrapper.h; sourceTree = "<group>"; };
+		4C2A1B861781DD2800AE4147 /* PrimWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrimWrapper.m; sourceTree = "<group>"; };
 		4C51C79C1768F5BE0045DF42 /* Lectures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lectures.m; sourceTree = "<group>"; };
 		4C5B55FA17720A15005B79CF /* server.crt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = server.crt; sourceTree = "<group>"; };
 		4C5C50C5177B59D90095801A /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin.png; sourceTree = "<group>"; };
@@ -525,6 +528,15 @@
 			name = "Lecture View Images";
 			sourceTree = "<group>";
 		};
+		4C2A1B841781DD0500AE4147 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				4C2A1B851781DD2800AE4147 /* PrimWrapper.h */,
+				4C2A1B861781DD2800AE4147 /* PrimWrapper.m */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 		4C5C50C9177B7B300095801A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -539,6 +551,7 @@
 		4C5C50CA177B7B3A0095801A /* LectureViewController */ = {
 			isa = PBXGroup;
 			children = (
+				4C2A1B841781DD0500AE4147 /* Helpers */,
 				4C9AB8FB177C6884004A4F65 /* Views */,
 				4C5C50CB177B7B7C0095801A /* LectureViewContainer.h */,
 				4C5C50CC177B7B7C0095801A /* LectureViewContainer.m */,
@@ -766,6 +779,7 @@
 				3F6D11C817625EA20066A4FA /* SocketIOTransportWebsocket.m in Sources */,
 				3F6D11C917625EA20066A4FA /* SocketIOTransportXHR.m in Sources */,
 				3F6D11CA17625EA20066A4FA /* base64.c in Sources */,
+				4C2A1B871781DD2800AE4147 /* PrimWrapper.m in Sources */,
 				3F6D11CB17625EA20066A4FA /* NSData+SRB64Additions.m in Sources */,
 				4C9AB8FE177C6895004A4F65 /* TopNav.m in Sources */,
 				4CEA1A04177CAAED00A1DE05 /* OpenLectureViewController.m in Sources */,

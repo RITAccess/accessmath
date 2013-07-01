@@ -28,6 +28,8 @@
     NSArray *dcvPersistent;
     NSArray *svcPersistent;
     
+    PrimWrapper *wrapper;
+    
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -57,9 +59,8 @@
     // Add pan and zoom
     UIPinchGestureRecognizer *zoom = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(zoomHandle:)];
     [self.view addGestureRecognizer:zoom];
-    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panHandle:)];
-    [pan setMinimumNumberOfTouches:2];
-    [self.view addGestureRecognizer:pan];
+
+    [_container setBackgroundColor:[UIColor clearColor]];
     
     // Close menus
     menuOpen = NO;
@@ -68,16 +69,19 @@
 
 - (void)zoomHandle:(UIPinchGestureRecognizer *)reg
 {
-    if (reg.state == UIGestureRecognizerStateBegan) {
-        [reg setValue:self.view.transform forKey:@"baseTransform"];
+    if (reg.state == ( UIGestureRecognizerStateBegan | UIGestureRecognizerStateEnded ) ) {
+        wrapper = [PrimWrapper wrapperWithTransform:[[self.childViewControllers firstObject] view].transform];
     }
-    CGAffineTransform zoom = CGAffineTransformScale([reg valueForKey:@"baseTransform"], reg.scale, reg.scale);
-    self.view.transform = zoom;
-}
-
-- (void)panHandle:(UIPanGestureRecognizer *)reg
-{
-    NSLog(@"Pan");
+    CGAffineTransform zoom = CGAffineTransformScale(wrapper.transform, reg.scale, reg.scale);
+    CGPoint touchCenter = [reg locationInView:self.view];
+    [self.childViewControllers enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(id<LectureViewChild> obj, NSUInteger idx, BOOL *stop) {
+        if ([obj respondsToSelector:@selector(willApplyTransformToView)]) {
+            UIView *view = [obj willApplyTransformToView];
+            view.transform = zoom;
+            [view setCenter:touchCenter];
+            
+        }
+    }];
 }
 
 - (void)setUpMenuItems
@@ -147,7 +151,7 @@
     }
 }
 
-- (void)addController:(UIViewController *)vc
+- (void)addController:(UIViewController<LectureViewChild> *)vc
 {
     // Leave parent
     NSMutableArray *children = [[NSMutableArray alloc] initWithArray:self.childViewControllers];
@@ -159,9 +163,18 @@
     [self addChildViewController:vc];
     [self.view addSubview:vc.view];
     [vc.view setBackgroundColor:[UIColor clearColor]];
+    UIView *mainview = nil;
+    if ([vc respondsToSelector:@selector(willApplyTransformToView)]) {
+        mainview = [vc willApplyTransformToView];
+    }
+    if (mainview) {
+        [self.container addSubview:mainview];
+    }
+//    [self.view bringSubviewToFront:_container];
     [self.view bringSubviewToFront:_navBar];
     [self.view bringSubviewToFront:_sideMenu];
     for (UIViewController<LectureViewChild> *child in children) {
+        if ([child isEqual:vc]) continue;
         if ([child respondsToSelector:@selector(willLeaveActiveState)]) {
             [child didLeaveActiveState];
         }
