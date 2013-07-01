@@ -127,6 +127,7 @@
 
 - (void)didFinishRecievingBulkUpdate:(NSArray *)data
 {
+    [_canvas drawBulkUpdate:data];
     [_loadProgress setHidden:YES];
 }
 

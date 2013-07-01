@@ -10,4 +10,7 @@
 
 @interface StreamDrawing : UIView
 
+
+- (void)drawBulkUpdate:(NSArray *)dataPack;
+
 @end
