@@ -167,8 +167,8 @@
         }
         [bulkData addObject:data];
     } else if ([[data valueForKeyPath:@"info"] isEqualToString:@"end"]) {
-        if ([_delegate respondsToSelector:@selector(didFinishRecievingUpdate:)]) {
-            [_delegate didFinishRecievingUpdate:bulkData];
+        if ([_delegate respondsToSelector:@selector(didFinishRecievingBulkUpdate:)]) {
+            [_delegate didFinishRecievingBulkUpdate:bulkData];
         }
     }
 }

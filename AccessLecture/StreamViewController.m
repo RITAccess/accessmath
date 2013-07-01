@@ -16,7 +16,7 @@
 @end
 
 @implementation StreamViewController {
-    UIView *test;
+    ALNetworkInterface *_server;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -37,35 +37,42 @@
         [self.view setFrame:CGRectMake(0, 0, 1024, 768)];
     }
     // Do any additional setup after loading the view from its nib.
-    test = [[UIView alloc] initWithFrame:CGRectMake(300, 400, 200, 200)];
-    [test setBackgroundColor:[UIColor blackColor]];
-    [self.view addSubview:test];
-    [UIView animateWithDuration:2.0 delay:0.0 options:UIViewAnimationOptionRepeat | UIViewAnimationOptionCurveLinear animations:^{
-        CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI);
-        test.transform = transform;
-    } completion:nil];
+    [_loadProgress setProgress:0.0];
+    [_loadProgress setHidden:YES];
 }
 
 #pragma mark Actions
 
 - (IBAction)connectToStream:(id)sender
 {
-    ConnectionViewController *cvc = [[ConnectionViewController alloc] initWithNibName:ConnectionViewControllerXIB bundle:nil];
-    [cvc setDelegate:self];
-    [self presentViewController:cvc animated:YES completion:nil];
-    
+    if (!_connectedToStream) {
+        ConnectionViewController *cvc = [[ConnectionViewController alloc] initWithNibName:ConnectionViewControllerXIB bundle:nil];
+        [cvc setDelegate:self];
+        [self presentViewController:cvc animated:YES completion:^{
+            [_loadProgress setProgress:0.0];
+            [_loadProgress setHidden:NO];
+        }];
+    } else {
+        [_server disconnect];
+        _connectedToStream = NO;
+        [_joinLeaveStream setTitle:@"Join Stream"];
+    }
 }
 
 #pragma mark Connection View Delegate Methods
 
 - (void)didCompleteWithConnection:(ALNetworkInterface *)server
 {
+    [_joinLeaveStream setTitle:@"Disconnect"];
+    _connectedToStream = YES;
     [server setDelegate:self];
+    _server = server;
 }
 
 - (void)userDidCancel
 {
     NSLog(@"User Canceled");
+    [_loadProgress setHidden:YES];
 }
 
 #pragma mark Child View Controller Calls
@@ -78,9 +85,6 @@
 - (void)didMoveToParentViewController:(UIViewController *)parent
 {
     NSLog(@"Active!");
-    
-    
-    [test setBackgroundColor:[UIColor orangeColor]];
 }
 
 - (void)willSaveState
@@ -96,7 +100,6 @@
 - (void)willLeaveActiveState
 {
     [_bottomToolbar setHidden:YES];
-    [test setBackgroundColor:[UIColor grayColor]];
     NSLog(@"Will leave active state");
 }
 
@@ -119,7 +122,12 @@
 
 - (void)currentStreamUpdatePercentage:(float)percent
 {
-    NSLog(@"%f", percent);
+    [_loadProgress setProgress:percent/100 animated:YES];
+}
+
+- (void)didFinishRecievingBulkUpdate:(NSArray *)data
+{
+    [_loadProgress setHidden:YES];
 }
 
 #pragma mark Orientation

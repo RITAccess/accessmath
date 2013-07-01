@@ -18,6 +18,7 @@
 - (void)didRecieveUpdate:(id)data;
 - (void)didFinishRecievingUpdate:(NSArray *)data;
 - (void)didFinishDownloadingLecture:(Lecture *)lecture;
+- (void)didFinishRecievingBulkUpdate:(NSArray *)data;
 
 @optional
 
