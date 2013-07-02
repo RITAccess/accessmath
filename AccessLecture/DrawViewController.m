@@ -35,23 +35,22 @@
 {
     [super viewDidLoad];
     
-    NSLog(@"Loading DrawViewController....");
-
+    // Adding the Drawing and Toolbar Views
     _drawView = [[DrawView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width * 2, self.view.frame.size.height * 2)];
     [self.view addSubview:_drawView];
-    
     [self.view addSubview:self.toolbarView];
-    
-    _panGestureRecognzier = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panToMove:)];
-    _panGestureRecognzier.minimumNumberOfTouches = 2;
-    [_panGestureRecognzier setTranslation:CGPointMake(40, 40) inView:_drawView];
-    [_drawView addGestureRecognizer:_panGestureRecognzier];
-    
     [self initColorSegmentedControl];
+    
+    // Adding Gestures (API still changing, keeping gesture until we solidify a decision)
+//    _panGestureRecognzier = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panToMove:)];
+//    _panGestureRecognzier.minimumNumberOfTouches = 2;
+//    [_panGestureRecognzier setTranslation:CGPointMake(40, 40) inView:_drawView];
+//   [_drawView addGestureRecognizer:_panGestureRecognzier];
 }
 
 - (void)viewDidUnload
 {
+    [self setPenSizeSlider:nil];
     [super viewDidUnload];
 }
 
@@ -147,19 +146,22 @@
     
     switch (_selectedColor) {
         case 0:
-            _drawView.selectedPath = _drawView.redBezierPath;
+            [_drawView setPenColor:[UIColor redColor]];
             break;
         case 1:
-            _drawView.selectedPath = _drawView.greenBezierPath;
+            [_drawView setPenColor:[UIColor greenColor]];
             break;
         case 2:
-            _drawView.selectedPath = _drawView.blueBezierPath;
+            [_drawView setPenColor:[UIColor blueColor]];
             break;
         case 3:
-            _drawView.selectedPath = _drawView.blackBezierPath;
+            [_drawView setPenColor:[UIColor blackColor]];
             break;
         case 4:
-            _drawView.selectedPath = _drawView.yellowBezierPath;
+            [_drawView setPenColor:[UIColor yellowColor]];
+            break;
+        case 5:
+            [_drawView setPenColor:[UIColor whiteColor]];
             break;
         default:
             break;
@@ -171,6 +173,12 @@
 {
     [_drawView clearAllPaths];
     [_drawView setNeedsDisplay]; // Calls DrawView's overriden drawRect() to update view.
+}
+
+- (IBAction)penSizeSlide:(id)sender
+{
+    [_drawView setPenSize:self.penSizeSlider.value];
+    [_drawView setNeedsDisplay];
 }
 
 #pragma mark Child View Controller Calls

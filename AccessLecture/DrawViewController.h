@@ -15,13 +15,19 @@ static NSString* const DrawViewControllerXIB = @"DrawViewController";
 
 @interface DrawViewController : UIViewController <LectureViewChild>
 
-@property NSInteger selectedColor;
-@property DrawView *drawView;
-@property UISegmentedControl *colorSegmentedControl;
-@property (weak, nonatomic) IBOutlet UIView *toolbarView;
-
 // Gestures
 @property UIPanGestureRecognizer *panGestureRecognzier;
+
+// UI Elements
+@property DrawView *drawView;
+@property (weak, nonatomic) IBOutlet UISlider *penSizeSlider;
+@property UISegmentedControl *colorSegmentedControl;
+@property (weak, nonatomic) IBOutlet UIView *toolbarView;
+@property int selectedColor;
+
+
+// Interactions
 - (IBAction)clearNotesButtonPress:(id)sender;
+- (IBAction)penSizeSlide:(id)sender;
 
 @end
