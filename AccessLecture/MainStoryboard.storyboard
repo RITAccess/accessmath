@@ -246,6 +246,11 @@
                         <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ITE-Tv-tK0">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="748"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gfg-9I-Na3" userLabel="SideBar">
                                 <rect key="frame" x="1024" y="80" width="150" height="739"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -305,33 +310,38 @@
                                     <constraint firstAttribute="height" constant="80" type="user" id="Ihu-hU-xcy"/>
                                     <constraint firstItem="llf-BG-XW9" firstAttribute="leading" secondItem="ff3-bh-HnE" secondAttribute="leading" type="default" id="X0o-Rm-AdU"/>
                                     <constraint firstItem="llf-BG-XW9" firstAttribute="bottom" secondItem="OVo-Z4-U9s" secondAttribute="bottom" type="default" id="dLG-1R-xQe"/>
+                                    <constraint firstItem="OVo-Z4-U9s" firstAttribute="top" secondItem="ff3-bh-HnE" secondAttribute="top" type="default" id="kzs-tg-swt"/>
                                     <constraint firstItem="OVo-Z4-U9s" firstAttribute="bottom" secondItem="ff3-bh-HnE" secondAttribute="bottom" type="default" id="osy-GA-X7n"/>
-                                    <constraint firstItem="llf-BG-XW9" firstAttribute="top" secondItem="ff3-bh-HnE" secondAttribute="top" type="default" id="sCq-Yu-Qes"/>
                                     <constraint firstItem="llf-BG-XW9" firstAttribute="top" secondItem="OVo-Z4-U9s" secondAttribute="top" type="default" id="xcO-DP-hSG"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="ITE-Tv-tK0" firstAttribute="top" secondItem="ff3-bh-HnE" secondAttribute="top" type="default" id="2zh-di-H11"/>
                             <constraint firstItem="ff3-bh-HnE" firstAttribute="top" secondItem="w3Y-Ju-qTJ" secondAttribute="top" type="user" id="FPn-8j-ghn"/>
                             <constraint firstItem="Gfg-9I-Na3" firstAttribute="top" secondItem="w3Y-Ju-qTJ" secondAttribute="top" constant="80" type="user" id="GtE-j7-2Zs"/>
-                            <constraint firstItem="ff3-bh-HnE" firstAttribute="trailing" secondItem="w3Y-Ju-qTJ" secondAttribute="trailing" type="default" id="LkR-Oq-iOq"/>
+                            <constraint firstItem="ITE-Tv-tK0" firstAttribute="leading" secondItem="ff3-bh-HnE" secondAttribute="leading" type="default" id="Htd-P9-ZH9"/>
                             <constraint firstItem="Gfg-9I-Na3" firstAttribute="leading" secondItem="w3Y-Ju-qTJ" secondAttribute="leading" constant="1024" id="RXP-Ec-lzU"/>
                             <constraint firstAttribute="bottom" secondItem="Gfg-9I-Na3" secondAttribute="bottom" constant="-71" id="RZd-sw-faB"/>
-                            <constraint firstItem="ff3-bh-HnE" firstAttribute="leading" secondItem="w3Y-Ju-qTJ" secondAttribute="leading" type="default" id="wmO-Tb-fI8"/>
+                            <constraint firstItem="ff3-bh-HnE" firstAttribute="trailing" secondItem="ITE-Tv-tK0" secondAttribute="trailing" type="default" id="Ug6-zY-XKq"/>
+                            <constraint firstItem="ff3-bh-HnE" firstAttribute="trailing" secondItem="w3Y-Ju-qTJ" secondAttribute="trailing" type="default" id="emB-hK-AWz"/>
+                            <constraint firstItem="ITE-Tv-tK0" firstAttribute="leading" secondItem="w3Y-Ju-qTJ" secondAttribute="leading" type="default" id="j1P-6y-GR8"/>
+                            <constraint firstItem="ITE-Tv-tK0" firstAttribute="bottom" secondItem="w3Y-Ju-qTJ" secondAttribute="bottom" type="default" id="qcW-ME-uI1"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackOpaque"/>
                     <connections>
+                        <outlet property="container" destination="ITE-Tv-tK0" id="0O6-GU-Byy"/>
                         <outlet property="navBar" destination="ff3-bh-HnE" id="80P-fl-uT4"/>
                         <outlet property="sideMenu" destination="Gfg-9I-Na3" id="O4N-4R-UhG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vru-bT-4f7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1419" y="-483"/>
+            <point key="canvasLocation" x="1355" y="-473"/>
         </scene>
         <!--About View Controller-->
         <scene sceneID="nkT-Z3-fpK">
@@ -459,6 +469,22 @@ IAoKA
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yrs-bA-QSr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1254" y="658"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="jD8-Hh-wvd">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="hgG-H5-1Em" sceneMemberID="viewController">
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="iv5-OD-xLb">
+                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <toolbarItems/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JAa-bL-1jq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2542" y="-463"/>
         </scene>
     </scenes>
     <resources>
