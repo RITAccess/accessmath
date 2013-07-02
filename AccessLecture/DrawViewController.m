@@ -41,11 +41,11 @@
     [self.view addSubview:self.toolbarView];
     [self initColorSegmentedControl];
     
-    // Adding Gestures
-    _panGestureRecognzier = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panToMove:)];
-    _panGestureRecognzier.minimumNumberOfTouches = 2;
-    [_panGestureRecognzier setTranslation:CGPointMake(40, 40) inView:_drawView];
-    [_drawView addGestureRecognizer:_panGestureRecognzier];
+    // Adding Gestures (API still changing, keeping gesture until we solidify a decision)
+//    _panGestureRecognzier = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panToMove:)];
+//    _panGestureRecognzier.minimumNumberOfTouches = 2;
+//    [_panGestureRecognzier setTranslation:CGPointMake(40, 40) inView:_drawView];
+//   [_drawView addGestureRecognizer:_panGestureRecognzier];
 }
 
 - (void)viewDidUnload
@@ -159,6 +159,9 @@
             break;
         case 4:
             [_drawView setPenColor:[UIColor yellowColor]];
+            break;
+        case 5:
+            [_drawView setPenColor:[UIColor whiteColor]];
             break;
         default:
             break;
