@@ -11,6 +11,7 @@
 		2C6F39A01768DAEB00D700F7 /* UISegmentedControlExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C6F399F1768DAEB00D700F7 /* UISegmentedControlExtension.m */; };
 		2C76BDE71762143300A1E6BA /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C76BDE61762143300A1E6BA /* SettingsViewController.m */; };
 		2C9EB6F0177DF3C6008EBAB6 /* AMBezierPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EB6EF177DF2BE008EBAB6 /* AMBezierPath.m */; };
+		2CB1CF7717833C67004A76C5 /* undo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CB1CF7617833C67004A76C5 /* undo.png */; };
 		2CBF301C177B7AB10087C17C /* DrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBF301A177B7AB10087C17C /* DrawViewController.m */; };
 		2CBF301D177B7AB10087C17C /* DrawViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CBF301B177B7AB10087C17C /* DrawViewController.xib */; };
 		2CFC32A0175E60FC00384AEC /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CFC329F175E60FC00384AEC /* MainStoryboard.storyboard */; };
@@ -97,6 +98,7 @@
 		2C76BDE61762143300A1E6BA /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		2C9EB6EE177DF2BE008EBAB6 /* AMBezierPath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMBezierPath.h; sourceTree = "<group>"; };
 		2C9EB6EF177DF2BE008EBAB6 /* AMBezierPath.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMBezierPath.m; sourceTree = "<group>"; };
+		2CB1CF7617833C67004A76C5 /* undo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = undo.png; sourceTree = "<group>"; };
 		2CBF3019177B7AB10087C17C /* DrawViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawViewController.h; sourceTree = "<group>"; };
 		2CBF301A177B7AB10087C17C /* DrawViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawViewController.m; sourceTree = "<group>"; };
 		2CBF301B177B7AB10087C17C /* DrawViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawViewController.xib; sourceTree = "<group>"; };
@@ -270,6 +272,7 @@
 				2CBF3019177B7AB10087C17C /* DrawViewController.h */,
 				2CBF301A177B7AB10087C17C /* DrawViewController.m */,
 				2CBF301B177B7AB10087C17C /* DrawViewController.xib */,
+				2CB1CF7617833C67004A76C5 /* undo.png */,
 				2C6F399A1768DA0300D700F7 /* Color Selection */,
 			);
 			name = DrawViewController;
@@ -700,6 +703,7 @@
 				3F5E3F1E137C5CA30022F3C9 /* Default-Landscape~ipad.png in Resources */,
 				3F5E3F21137C5CAC0022F3C9 /* Default-Portrait~ipad.png in Resources */,
 				3F63540C13A157C40024E6E9 /* Settings.bundle in Resources */,
+				2CB1CF7717833C67004A76C5 /* undo.png in Resources */,
 				3F959F0713C7555500A6DA79 /* ClearNotes.png in Resources */,
 				3FAE785413C786F800796813 /* accesslecture.png in Resources */,
 				3FF7FFD513D5E45300B89A5D /* AlertBG.png in Resources */,

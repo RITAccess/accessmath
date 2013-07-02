@@ -29,5 +29,6 @@ static NSString* const DrawViewControllerXIB = @"DrawViewController";
 // Interactions
 - (IBAction)clearNotesButtonPress:(id)sender;
 - (IBAction)penSizeSlide:(id)sender;
+- (IBAction)undoButtonPress:(id)sender;
 
 @end

@@ -169,6 +169,8 @@
 }
 
 
+#pragma mark - Buttons and Sliders
+
 - (IBAction)clearNotesButtonPress:(id)sender
 {
     [_drawView clearAllPaths];
@@ -178,6 +180,12 @@
 - (IBAction)penSizeSlide:(id)sender
 {
     [_drawView setPenSize:self.penSizeSlider.value];
+    [_drawView setNeedsDisplay];
+}
+
+- (IBAction)undoButtonPress:(id)sender
+{
+    [[_drawView paths] removeLastObject];
     [_drawView setNeedsDisplay];
 }
 
