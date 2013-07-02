@@ -21,12 +21,17 @@
     if (self) {
         self.backgroundColor = [UIColor clearColor];
         
-        UIPanGestureRecognizer *fingerDrag = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(dragToDraw:)];
-        [self addGestureRecognizer:fingerDrag];
+        _fingerDrag = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(dragToDraw:)];
+        [self addGestureRecognizer:_fingerDrag];
+        
+        _tapStamp = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapToStamp:)];
+        [self addGestureRecognizer:_tapStamp];
         
         _paths = [[NSMutableArray alloc] init];
         [_paths addObject:[[AMBezierPath alloc] init]];
         self.penSize = 1;
+        
+        _shapes = [[NSMutableArray alloc] init];
     }
     
     return self;
@@ -40,21 +45,17 @@
         case UIGestureRecognizerStateBegan:
         {
             CGPoint location = [gesture locationInView: self];
-            
             [_paths addObject:[[AMBezierPath alloc] init]];
             [[_paths objectAtIndex:_paths.count - 1] moveToPoint:location];
             [[_paths lastObject] setLineWidth:self.penSize];
             [[_paths lastObject] setColor:self.penColor];
-            
             break;
         }
             
         case UIGestureRecognizerStateChanged:
         {
             CGPoint location = [gesture locationInView: self];
-            
             [[_paths objectAtIndex:_paths.count -1] addLineToPoint:location];
-            
             break;
         }
             
@@ -63,16 +64,19 @@
     }
     
     [self setNeedsDisplay];
-    
+}
+
+
+- (void)tapToStamp:(UITapGestureRecognizer *)gesture
+{
+    UIImageView *shapeImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"star.png"]];
+    [shapeImageView setFrame:CGRectMake([gesture locationInView:self].x, [gesture locationInView:self].y, 50, 50)];
+    [_shapes addObject:shapeImageView];
+    [self addSubview:shapeImageView];
 }
 
 
 # pragma mark - Drawing Methods
-
-- (void)clearAllPaths
-{
-    [_paths removeAllObjects];
-}
 
 /**
  * Override drawRect() to allow for custom drawing. No override causes performance issues.

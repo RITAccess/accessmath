@@ -12,6 +12,7 @@
 		2C76BDE71762143300A1E6BA /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C76BDE61762143300A1E6BA /* SettingsViewController.m */; };
 		2C9EB6F0177DF3C6008EBAB6 /* AMBezierPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EB6EF177DF2BE008EBAB6 /* AMBezierPath.m */; };
 		2CB1CF7717833C67004A76C5 /* undo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CB1CF7617833C67004A76C5 /* undo.png */; };
+		2CB1CF7917834A56004A76C5 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CB1CF7817834A56004A76C5 /* star.png */; };
 		2CBF301C177B7AB10087C17C /* DrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBF301A177B7AB10087C17C /* DrawViewController.m */; };
 		2CBF301D177B7AB10087C17C /* DrawViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CBF301B177B7AB10087C17C /* DrawViewController.xib */; };
 		2CFC32A0175E60FC00384AEC /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CFC329F175E60FC00384AEC /* MainStoryboard.storyboard */; };
@@ -99,6 +100,7 @@
 		2C9EB6EE177DF2BE008EBAB6 /* AMBezierPath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMBezierPath.h; sourceTree = "<group>"; };
 		2C9EB6EF177DF2BE008EBAB6 /* AMBezierPath.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMBezierPath.m; sourceTree = "<group>"; };
 		2CB1CF7617833C67004A76C5 /* undo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = undo.png; sourceTree = "<group>"; };
+		2CB1CF7817834A56004A76C5 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		2CBF3019177B7AB10087C17C /* DrawViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawViewController.h; sourceTree = "<group>"; };
 		2CBF301A177B7AB10087C17C /* DrawViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawViewController.m; sourceTree = "<group>"; };
 		2CBF301B177B7AB10087C17C /* DrawViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawViewController.xib; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 				2CBF3019177B7AB10087C17C /* DrawViewController.h */,
 				2CBF301A177B7AB10087C17C /* DrawViewController.m */,
 				2CBF301B177B7AB10087C17C /* DrawViewController.xib */,
+				2CB1CF7817834A56004A76C5 /* star.png */,
 				2CB1CF7617833C67004A76C5 /* undo.png */,
 				2C6F399A1768DA0300D700F7 /* Color Selection */,
 			);
@@ -697,6 +700,7 @@
 				3FED96571370909100D8D1B8 /* Settings.png in Resources */,
 				4C5B55FB17720A15005B79CF /* server.crt in Resources */,
 				3FED965B1370909100D8D1B8 /* ZoomIn.png in Resources */,
+				2CB1CF7917834A56004A76C5 /* star.png in Resources */,
 				3FED965C1370909100D8D1B8 /* ZoomOut.png in Resources */,
 				3F0FFCFB1371A93A00299663 /* Back.png in Resources */,
 				3FAAA850137848AB00F79C0C /* Icon.png in Resources */,

@@ -142,6 +142,8 @@
  */
 - (void)segmentChanged:(id)sender
 {
+    [[_drawView tapStamp] setEnabled:NO]; // Disabling stamping during drawing.
+    [[_drawView fingerDrag] setEnabled:YES];
     _selectedColor = [_colorSegmentedControl selectedSegmentIndex];
     
     switch (_selectedColor) {
@@ -173,7 +175,11 @@
 
 - (IBAction)clearNotesButtonPress:(id)sender
 {
-    [_drawView clearAllPaths];
+    for (UIImageView *imageView in [_drawView shapes]){
+        [imageView removeFromSuperview];
+    }
+    [[_drawView shapes] removeAllObjects];
+    [[_drawView paths] removeAllObjects];
     [_drawView setNeedsDisplay]; // Calls DrawView's overriden drawRect() to update view.
 }
 
@@ -187,6 +193,12 @@
 {
     [[_drawView paths] removeLastObject];
     [_drawView setNeedsDisplay];
+}
+
+- (IBAction)shapeButtonPress:(id)sender
+{
+    [[_drawView tapStamp] setEnabled:YES];
+    [[_drawView fingerDrag] setEnabled:NO];
 }
 
 #pragma mark Child View Controller Calls

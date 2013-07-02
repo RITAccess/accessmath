@@ -474,8 +474,6 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
 
 - (IBAction)clearNotesButtonPress:(id)sender
 {
-    [lineDrawView clearAllPaths];
-    
     // Removes all notes.
     for (UIView *view in [lineDrawView subviews]){
         [view removeFromSuperview];
