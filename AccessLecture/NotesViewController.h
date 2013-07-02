@@ -12,6 +12,7 @@
 {
     UIColor *textColor;
     UIColor *drawcolor;
+    CGFloat lastScale;
 }
 @property (nonatomic) BOOL isCreatingNote;
 @property (nonatomic) BOOL isDrawing;

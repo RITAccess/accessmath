@@ -51,6 +51,7 @@
 		3FC85673139D2CF90028DEB5 /* LectureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FC85672139D2CF90028DEB5 /* LectureViewController.m */; };
 		3FCD5D0B15437D0A005F2A60 /* AccessDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F99F1FD154364270065CBB9 /* AccessDocument.m */; };
 		3FCD5D1715438472005F2A60 /* AccessLectureRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FCD5D1615438472005F2A60 /* AccessLectureRuntime.m */; };
+		3FD109A81781F0200077D191 /* resize.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FD109A71781EFBD0077D191 /* resize.png */; };
 		3FED960C1370863E00D8D1B8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FED960B1370863E00D8D1B8 /* UIKit.framework */; };
 		3FED960E1370863E00D8D1B8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FED960D1370863E00D8D1B8 /* Foundation.framework */; };
 		3FED96101370863E00D8D1B8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FED960F1370863E00D8D1B8 /* CoreGraphics.framework */; };
@@ -145,6 +146,7 @@
 		3FC85672139D2CF90028DEB5 /* LectureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LectureViewController.m; sourceTree = "<group>"; };
 		3FCD5D1515438472005F2A60 /* AccessLectureRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccessLectureRuntime.h; sourceTree = "<group>"; };
 		3FCD5D1615438472005F2A60 /* AccessLectureRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccessLectureRuntime.m; sourceTree = "<group>"; };
+		3FD109A71781EFBD0077D191 /* resize.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = resize.png; sourceTree = "<group>"; };
 		3FED96071370863E00D8D1B8 /* AccessLecture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AccessLecture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FED960B1370863E00D8D1B8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3FED960D1370863E00D8D1B8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -220,6 +222,7 @@
 			children = (
 				3FED964313708FC800D8D1B8 /* Lecture View Images */,
 				3F959F0613C7555500A6DA79 /* ClearNotes.png */,
+				3FD109A71781EFBD0077D191 /* resize.png */,
 				3FAE785313C786F800796813 /* accesslecture.png */,
 				3F9C589F1770CE76001D4988 /* pin.png */,
 			);
@@ -620,6 +623,7 @@
 				3F0FFCFB1371A93A00299663 /* Back.png in Resources */,
 				3FAAA850137848AB00F79C0C /* Icon.png in Resources */,
 				3F5E3F1E137C5CA30022F3C9 /* Default-Landscape~ipad.png in Resources */,
+				3FD109A81781F0200077D191 /* resize.png in Resources */,
 				3F5E3F21137C5CAC0022F3C9 /* Default-Portrait~ipad.png in Resources */,
 				3F63540C13A157C40024E6E9 /* Settings.bundle in Resources */,
 				3F9C58A01770CE76001D4988 /* pin.png in Resources */,

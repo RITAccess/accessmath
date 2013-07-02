@@ -62,7 +62,6 @@
                         
             UITextView *textBubble = [[UITextView alloc]initWithFrame:CGRectMake([gesture locationInView:outerView].x + 20, [gesture locationInView:outerView].y + 15, 300, 120)];
             [outerView addSubview:textBubble];
-           
             UIImageView * anImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin.png" ]];
             [anImageView setCenter:textBubble.bounds.origin];
             [anImageView setBounds:CGRectMake([gesture locationInView:self.view].x, [gesture locationInView:self.view].y, 50, 50)];
@@ -85,25 +84,36 @@
 - (void)createNoteDraw:(UIGestureRecognizer *)gesture{
    //Initilize gesture recognizers for the view
     UIPanGestureRecognizer *panToMoveNote = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
+    UIPanGestureRecognizer *panToResize = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handleResize:)];
+    
     UILongPressGestureRecognizer *longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressToRemoveNote:)];
     UILongPressGestureRecognizer *longPressGestureRecognizer2 = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressToDisplayNote:)];
     longPressGestureRecognizer.numberOfTouchesRequired = 3;
     longPressGestureRecognizer2.numberOfTouchesRequired = 1;
-    UIView *outerView = [[UIView alloc] initWithFrame:CGRectMake([gesture locationInView:self.view].x+20, [gesture locationInView:self.view].y+15, 500, 500)];
+    UIView *outerView = [[UIView alloc] initWithFrame:CGRectMake([gesture locationInView:self.view].x+20, [gesture locationInView:self.view].y+15, 430, 330)];
     [panToMoveNote setEnabled:NO];
+    [panToResize setEnabled:NO];
     LineDrawView *lineDrawView = [[LineDrawView alloc]initWithFrame:CGRectMake([gesture locationInView:outerView].x + 20, [gesture locationInView:outerView].y + 15, 400, 300)];
     lineDrawView.userInteractionEnabled = YES;
     lineDrawView.isDrawing = YES;
+   
     //outerView.layer.borderWidth = 3;
     lineDrawView.layer.borderWidth = 3;
     lineDrawView.layer.cornerRadius = 20;
     UIImageView * anImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin.png" ]];
+    UIImageView * resizeView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"resize.png" ]];
+    CGPoint point = CGPointMake(outerView.bounds.size.width-20, outerView.bounds.size.height-20);
+    [resizeView setCenter:point];
     [anImageView setCenter:lineDrawView.bounds.origin];
+    [resizeView setBounds:CGRectMake([gesture locationInView:self.view].x, [gesture locationInView:self.view].y, 50, 50)];
     [anImageView setBounds:CGRectMake([gesture locationInView:self.view].x, [gesture locationInView:self.view].y, 50, 50)];
+   // resizeView.layer.borderWidth = 3;
     [outerView addGestureRecognizer:panToMoveNote];
     [lineDrawView addGestureRecognizer:longPressGestureRecognizer];
     [outerView addGestureRecognizer:longPressGestureRecognizer2];
     [lineDrawView addSubview:anImageView];
+    [outerView addGestureRecognizer:panToResize];
+    [outerView addSubview:resizeView];
     [outerView addSubview:lineDrawView];
     [self.view addSubview:outerView];
    
@@ -120,6 +130,24 @@
     }
 }
 
+- (void)handleResize:(UIPanGestureRecognizer *)gestureRecognizer {
+    if((_isDrawing)){
+       // NSLog(@"%d",gestureRecognizer.view.subviews.count);
+        UIImageView *temp = [[[gestureRecognizer view] subviews] objectAtIndex:0];
+        UIImageView *tempImage = [[[gestureRecognizer view] subviews] objectAtIndex:1];
+        [[[[gestureRecognizer view] subviews] objectAtIndex:0] removeFromSuperview];
+        [[[[gestureRecognizer view] subviews] objectAtIndex:0] removeFromSuperview];
+        [gestureRecognizer.view addSubview:temp];
+        [gestureRecognizer.view addSubview:tempImage];
+        [tempImage setFrame:CGRectMake(gestureRecognizer.view.superview.frame.origin.x, gestureRecognizer.view.superview.frame.origin.x,[gestureRecognizer locationInView:gestureRecognizer.view].x, [gestureRecognizer locationInView:gestureRecognizer.view].y)];
+        CGPoint point = CGPointMake(gestureRecognizer.view.frame.size.width-20, gestureRecognizer.view.frame.size.height-20);
+        [temp setCenter:point];
+       [temp setBounds:CGRectMake([gestureRecognizer locationInView:self.view].x, [gestureRecognizer locationInView:self.view].y, 50, 50)];
+        [gestureRecognizer.view setFrame:CGRectMake(gestureRecognizer.view.frame.origin.x, gestureRecognizer.view.frame.origin.y, [gestureRecognizer locationInView:gestureRecognizer.view].x+20, [gestureRecognizer locationInView:gestureRecognizer.view].y+20)];
+                       
+        
+    }
+}
 - (void)longPressToRemoveNote:(UILongPressGestureRecognizer *)gestureRecognizer
 {
 
@@ -129,16 +157,20 @@ if(_isCreatingNote)
 }
 else if(_isDrawing)
     {
+               
         [gestureRecognizer.view setFrame:CGRectMake(gestureRecognizer.view.frame.origin.x, gestureRecognizer.view.frame.origin.y, 5, 5)];
         [gestureRecognizer.view.superview setFrame:CGRectMake(gestureRecognizer.view.superview.frame.origin.x, gestureRecognizer.view.superview.frame.origin.y, 50, 50)];
-      for(UIGestureRecognizer *recognizer in gestureRecognizer.view.superview.gestureRecognizers)
+        [[gestureRecognizer.view.superview.subviews  objectAtIndex:0] setHidden:YES];
+        for(UIGestureRecognizer *recognizer in gestureRecognizer.view.superview.gestureRecognizers)
       {
                    if([recognizer isKindOfClass:[UIPanGestureRecognizer class]])
           {
               [recognizer setEnabled:YES];
-          }
+                        }
       }
+    [[gestureRecognizer.view.superview.gestureRecognizers objectAtIndex:2] setEnabled:NO];
     }
+    
 } 
 - (void)longPressToDisplayNote:(UILongPressGestureRecognizer *)gestureRecognizer
 {
@@ -153,22 +185,34 @@ else if(_isDrawing)
         [gestureRecognizer.view addSubview:temp];
         
     }
-    else if((_isDrawing)&&([[[[gestureRecognizer view] subviews] objectAtIndex:0] isKindOfClass:[LineDrawView class]]))
+    else if((_isDrawing)&&([[[[gestureRecognizer view] subviews] objectAtIndex:1] isKindOfClass:[LineDrawView class]])&&(gestureRecognizer.view.frame.size.width==50))
     {
-        UITextView *temp = [[[gestureRecognizer view] subviews] objectAtIndex:0];
-        [[[[gestureRecognizer view] subviews] objectAtIndex:0] removeFromSuperview];
+       
+       [[gestureRecognizer.view.subviews objectAtIndex:0] setHidden:NO];
+        UIImageView *temp = [[[gestureRecognizer view] subviews] objectAtIndex:1];
+        [[[[gestureRecognizer view] subviews] objectAtIndex:1] removeFromSuperview];
         [temp setFrame:CGRectMake([gestureRecognizer locationInView:gestureRecognizer.view].x, [gestureRecognizer locationInView:gestureRecognizer.view].y, 400, 300)];
         [gestureRecognizer.view addSubview:temp];
-         [gestureRecognizer.view setFrame:CGRectMake(gestureRecognizer.view.frame.origin.x, gestureRecognizer.view.frame.origin.y, 500, 500)];
+         [gestureRecognizer.view setFrame:CGRectMake(gestureRecognizer.view.frame.origin.x, gestureRecognizer.view.frame.origin.y, 430, 330)];
         for(UIGestureRecognizer *recognizer in gestureRecognizer.view.gestureRecognizers)
         {
             if([recognizer isKindOfClass:[UIPanGestureRecognizer class]])
             {
-                
                 [recognizer setEnabled:NO];
+                
+
             }
         }
+        
     }
+    else if(CGRectContainsPoint([[gestureRecognizer.view.subviews objectAtIndex:0] frame],[gestureRecognizer locationInView:gestureRecognizer.view] ))
+    {
+     
+
+        [[gestureRecognizer.view.gestureRecognizers objectAtIndex:2] setEnabled:!([[gestureRecognizer.view.gestureRecognizers objectAtIndex:2] isEnabled])];
+        return;
+    }
+    
 }
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView{
@@ -183,8 +227,6 @@ else if(_isDrawing)
     CGRect frame = textView.frame;
     frame.size.height = textView.contentSize.height;
     textView.frame = frame;
-  //  [textView.superview setBounds:CGRectMake(textView.superview.bounds.origin.x, textView.superview.bounds.origin.y, textView.superview.bounds.size.width, textView.frame.size.height)];
-
 }
 
 - (IBAction)createDrawNote:(id)sender {
