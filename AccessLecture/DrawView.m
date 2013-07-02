@@ -44,9 +44,8 @@
     switch (gesture.state) {
         case UIGestureRecognizerStateBegan:
         {
-            CGPoint location = [gesture locationInView: self];
             [_paths addObject:[[AMBezierPath alloc] init]];
-            [[_paths objectAtIndex:_paths.count - 1] moveToPoint:location];
+            [[_paths lastObject] moveToPoint:[gesture locationInView:self]];
             [[_paths lastObject] setLineWidth:self.penSize];
             [[_paths lastObject] setColor:self.penColor];
             break;
@@ -54,8 +53,13 @@
             
         case UIGestureRecognizerStateChanged:
         {
-            CGPoint location = [gesture locationInView: self];
-            [[_paths objectAtIndex:_paths.count -1] addLineToPoint:location];
+            [[_paths lastObject] addLineToPoint:[gesture locationInView:self]];
+            break;
+        }
+            
+        case UIGestureRecognizerStateEnded:
+        {
+            [_shapes addObject:[_paths lastObject]]; // Adding finished path to Shapes array.
             break;
         }
             

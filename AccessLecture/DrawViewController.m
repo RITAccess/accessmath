@@ -175,9 +175,12 @@
 
 - (IBAction)clearNotesButtonPress:(id)sender
 {
-    for (UIImageView *imageView in [_drawView shapes]){
-        [imageView removeFromSuperview];
+    for (NSObject *object in [_drawView shapes]){
+        if ([object isMemberOfClass:[UIImageView class]]){
+            [(UIView *)object removeFromSuperview];
+        }
     }
+    
     [[_drawView shapes] removeAllObjects];
     [[_drawView paths] removeAllObjects];
     [_drawView setNeedsDisplay]; // Calls DrawView's overriden drawRect() to update view.
@@ -190,8 +193,14 @@
 }
 
 - (IBAction)undoButtonPress:(id)sender
-{
-    [[_drawView paths] removeLastObject];
+{    
+    if ([[[_drawView shapes] lastObject] isMemberOfClass:[UIImageView class]]){
+         [[[_drawView shapes] lastObject] removeFromSuperview];
+    } else if ([[[_drawView shapes] lastObject] isMemberOfClass:[AMBezierPath class]]){
+        [[_drawView paths] removeLastObject]; // Removing AMBezierPaths...
+    }
+    
+    [[_drawView shapes] removeLastObject];
     [_drawView setNeedsDisplay];
 }
 
