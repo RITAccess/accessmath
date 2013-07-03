@@ -41,6 +41,7 @@
     [self.view addSubview:self.toolbarView];
     [self initColorSegmentedControl];
     
+    _buttonStrings = [[NSMutableArray alloc] initWithObjects:@"star.png", @"arrow.png", @"undo.png", @"circle.png", nil];
     // Adding Gestures (API still changing, keeping gesture until we solidify a decision)
 //    _panGestureRecognzier = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panToMove:)];
 //    _panGestureRecognzier.minimumNumberOfTouches = 2;
@@ -51,6 +52,7 @@
 - (void)viewDidUnload
 {
     [self setPenSizeSlider:nil];
+    [self setShapeButton:nil];
     [super viewDidUnload];
 }
 
@@ -206,8 +208,13 @@
 
 - (IBAction)shapeButtonPress:(id)sender
 {
+    shapeButtonIndex >= SHAPE_MAX - 1 ? shapeButtonIndex = 0 : shapeButtonIndex++;
+    
+    [[_drawView buttonString] setString:[_buttonStrings objectAtIndex:shapeButtonIndex]];
     [[_drawView tapStamp] setEnabled:YES];
     [[_drawView fingerDrag] setEnabled:NO];
+    
+    [self.shapeButton setBackgroundImage:[UIImage imageNamed:[_drawView buttonString]] forState:UIControlStateNormal];
 }
 
 #pragma mark Child View Controller Calls

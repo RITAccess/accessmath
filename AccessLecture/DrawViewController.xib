@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DrawViewController">
             <connections>
                 <outlet property="penSizeSlider" destination="rmB-wN-PhH" id="A7X-ja-29s"/>
+                <outlet property="shapeButton" destination="nvx-OO-dWO" id="voc-S2-mUw"/>
                 <outlet property="toolbarView" destination="FRQ-2V-rZ2" id="hhK-5p-Dr5"/>
                 <outlet property="view" destination="2" id="3"/>
             </connections>

@@ -15,6 +15,8 @@
 		2CB1CF7917834A56004A76C5 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CB1CF7817834A56004A76C5 /* star.png */; };
 		2CBF301C177B7AB10087C17C /* DrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBF301A177B7AB10087C17C /* DrawViewController.m */; };
 		2CBF301D177B7AB10087C17C /* DrawViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CBF301B177B7AB10087C17C /* DrawViewController.xib */; };
+		2CF6BA7D17845A8C00A695CC /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF6BA7C17845A8C00A695CC /* arrow.png */; };
+		2CF6BA7F1784789B00A695CC /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF6BA7E1784789B00A695CC /* circle.png */; };
 		2CFC32A0175E60FC00384AEC /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CFC329F175E60FC00384AEC /* MainStoryboard.storyboard */; };
 		3F0DBDD613BD174900E3FEE8 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0DBDD413BD174900E3FEE8 /* AboutViewController.m */; };
 		3F0FFCFB1371A93A00299663 /* Back.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F0FFCFA1371A93A00299663 /* Back.png */; };
@@ -104,6 +106,8 @@
 		2CBF3019177B7AB10087C17C /* DrawViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawViewController.h; sourceTree = "<group>"; };
 		2CBF301A177B7AB10087C17C /* DrawViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawViewController.m; sourceTree = "<group>"; };
 		2CBF301B177B7AB10087C17C /* DrawViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawViewController.xib; sourceTree = "<group>"; };
+		2CF6BA7C17845A8C00A695CC /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
+		2CF6BA7E1784789B00A695CC /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
 		2CFC329F175E60FC00384AEC /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		3F0DBDD313BD174900E3FEE8 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		3F0DBDD413BD174900E3FEE8 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
@@ -270,15 +274,25 @@
 		2CBF3014177B700C0087C17C /* DrawViewController */ = {
 			isa = PBXGroup;
 			children = (
+				2CF6BA80178478A200A695CC /* Shape Images */,
 				2C544E29177C7E9A00BC1A32 /* DrawView */,
 				2CBF3019177B7AB10087C17C /* DrawViewController.h */,
 				2CBF301A177B7AB10087C17C /* DrawViewController.m */,
 				2CBF301B177B7AB10087C17C /* DrawViewController.xib */,
-				2CB1CF7817834A56004A76C5 /* star.png */,
-				2CB1CF7617833C67004A76C5 /* undo.png */,
 				2C6F399A1768DA0300D700F7 /* Color Selection */,
 			);
 			name = DrawViewController;
+			sourceTree = "<group>";
+		};
+		2CF6BA80178478A200A695CC /* Shape Images */ = {
+			isa = PBXGroup;
+			children = (
+				2CB1CF7617833C67004A76C5 /* undo.png */,
+				2CB1CF7817834A56004A76C5 /* star.png */,
+				2CF6BA7C17845A8C00A695CC /* arrow.png */,
+				2CF6BA7E1784789B00A695CC /* circle.png */,
+			);
+			name = "Shape Images";
 			sourceTree = "<group>";
 		};
 		2CFC32A1175E7ED600384AEC /* Images */ = {
@@ -694,6 +708,7 @@
 				3FED96531370909100D8D1B8 /* Invert.png in Resources */,
 				3FED96541370909100D8D1B8 /* Notes.png in Resources */,
 				4C5C50C6177B59D90095801A /* pin.png in Resources */,
+				2CF6BA7D17845A8C00A695CC /* arrow.png in Resources */,
 				4C8ABE79177C87BD007C934C /* StreamViewController.xib in Resources */,
 				3FED96551370909100D8D1B8 /* Save.png in Resources */,
 				3FED96561370909100D8D1B8 /* Selection.png in Resources */,
@@ -709,6 +724,7 @@
 				3F63540C13A157C40024E6E9 /* Settings.bundle in Resources */,
 				2CB1CF7717833C67004A76C5 /* undo.png in Resources */,
 				3F959F0713C7555500A6DA79 /* ClearNotes.png in Resources */,
+				2CF6BA7F1784789B00A695CC /* circle.png in Resources */,
 				3FAE785413C786F800796813 /* accesslecture.png in Resources */,
 				3FF7FFD513D5E45300B89A5D /* AlertBG.png in Resources */,
 				3FC32EBC13E05E0F00077291 /* biology.png in Resources */,

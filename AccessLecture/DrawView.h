@@ -18,5 +18,6 @@
 
 @property UITapGestureRecognizer *tapStamp;
 @property UIPanGestureRecognizer *fingerDrag;
+@property NSMutableString *buttonString;
 
 @end

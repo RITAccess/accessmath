@@ -15,7 +15,7 @@
 @implementation DrawView
 
 - (id)initWithFrame:(CGRect)frame
-{
+{ 
     self = [super initWithFrame:frame];
     
     if (self) {
@@ -32,6 +32,7 @@
         self.penSize = 1;
         
         _shapes = [[NSMutableArray alloc] init];
+        _buttonString = [[NSMutableString alloc]init];
     }
     
     return self;
@@ -73,7 +74,7 @@
 
 - (void)tapToStamp:(UITapGestureRecognizer *)gesture
 {
-    UIImageView *shapeImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"star.png"]];
+    UIImageView *shapeImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:_buttonString]];
     [shapeImageView setFrame:CGRectMake([gesture locationInView:self].x, [gesture locationInView:self].y, 50, 50)];
     [_shapes addObject:shapeImageView];
     [self addSubview:shapeImageView];
