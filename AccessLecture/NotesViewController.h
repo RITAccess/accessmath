@@ -26,6 +26,11 @@
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *drawNote;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *textNote;
+- (IBAction)setBlueColor:(id)sender;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *setYellowColor;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *setRedColor;
+- (IBAction)setYellowColor:(id)sender;
+- (IBAction)setRedColor:(id)sender;
 
 @property UITapGestureRecognizer *tapToDismissKeyboard;
 @end

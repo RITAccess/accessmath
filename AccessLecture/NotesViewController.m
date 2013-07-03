@@ -56,8 +56,8 @@
             longPressGestureRecognizer.numberOfTouchesRequired = 3;
             longPressGestureRecognizer2.numberOfTouchesRequired = 1;
           
-            UIView *outerView = [[UIView alloc] initWithFrame:CGRectMake([gesture locationInView:self.view].x+20, [gesture locationInView:self.view].y+15, 350, 150)];
-                        
+            UIView *outerView = [[UIView alloc] initWithFrame:CGRectMake([gesture locationInView:self.view].x, [gesture locationInView:self.view].y, 350, 150)];
+           
             UITextView *textBubble = [[UITextView alloc]initWithFrame:CGRectMake([gesture locationInView:outerView].x + 20, [gesture locationInView:outerView].y + 15, 300, 120)];
             [outerView addSubview:textBubble];
             UIImageView * anImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin.png" ]];
@@ -121,7 +121,7 @@
 - (void)handlePan:(UIPanGestureRecognizer *)gestureRecognizer
 {
    if(_isCreatingNote){
-    [gestureRecognizer.view setFrame:CGRectMake([gestureRecognizer locationInView:self.view].x, [gestureRecognizer locationInView:self.view].y, 350, 150)];
+    [gestureRecognizer.view setFrame:CGRectMake([gestureRecognizer locationInView:self.view].x, [gestureRecognizer locationInView:self.view].y, [[[[gestureRecognizer view] subviews] objectAtIndex:0] size].width+20, [[[[gestureRecognizer view] subviews] objectAtIndex:0] size].height+20)];
    }
     else if(_isDrawing)
     {
@@ -131,7 +131,6 @@
 
 - (void)handleResize:(UIPanGestureRecognizer *)gestureRecognizer {
     if((_isDrawing)){
-       // NSLog(@"%d",gestureRecognizer.view.subviews.count);
         UIImageView *temp = [[[gestureRecognizer view] subviews] objectAtIndex:0];
         UIImageView *tempImage = [[[gestureRecognizer view] subviews] objectAtIndex:1];
         [[[[gestureRecognizer view] subviews] objectAtIndex:0] removeFromSuperview];
@@ -153,6 +152,7 @@
 if(_isCreatingNote)
 {
     [gestureRecognizer.view setFrame:CGRectMake(gestureRecognizer.view.frame.origin.x, gestureRecognizer.view.frame.origin.y, 5, 5)];
+    [gestureRecognizer.view.superview setFrame:CGRectMake(gestureRecognizer.view.superview.frame.origin.x, gestureRecognizer.view.superview.frame.origin.y, 50, 50)];
 }
 else if(_isDrawing)
     {
@@ -182,6 +182,7 @@ else if(_isDrawing)
         frame.size.height = temp.contentSize.height;
         temp.frame = frame;
         [gestureRecognizer.view addSubview:temp];
+        [gestureRecognizer.view setFrame:CGRectMake(gestureRecognizer.view.frame.origin.x, gestureRecognizer.view.frame.origin.y, temp.frame.size.width, temp.frame.size.height)];
         
     }
     else if((_isDrawing)&&([[[[gestureRecognizer view] subviews] objectAtIndex:1] isKindOfClass:[LineDrawView class]])&&(gestureRecognizer.view.frame.size.width==50))
@@ -199,8 +200,6 @@ else if(_isDrawing)
             if([recognizer isKindOfClass:[UIPanGestureRecognizer class]])
             {
                 [recognizer setEnabled:NO];
-                
-
             }
         }
         
@@ -220,13 +219,14 @@ else if(_isDrawing)
     return YES;
 }
 - (void)textViewDidBeginEditing:(UITextView *)textView {
-      // textView.backgroundColor = [UIColor greenColor];
+    textView.textColor = textColor;
 }
 - (void)textViewDidChange:(UITextView *)textView{
-
+ textView.textColor = textColor;
     CGRect frame = textView.frame;
     frame.size.height = textView.contentSize.height;
     textView.frame = frame;
+    [textView.superview setFrame:CGRectMake(textView.superview.frame.origin.x, textView.superview.frame.origin.y, textView.frame.size.width+20, textView.frame.size.height+20)];
 }
 
 - (IBAction)createDrawNote:(id)sender {
@@ -252,5 +252,16 @@ else if(_isDrawing)
     [self viewDidLoad];
     UIAlertView* alert = [[UILargeAlertView alloc] initWithText:NSLocalizedString(@"Text Mode", nil) fontSize:48];
     [alert show];
+}
+- (IBAction)setBlueColor:(id)sender {
+    NSLog(@"Blue");
+    textColor = [UIColor blueColor];
+}
+- (IBAction)setYellowColor:(id)sender {
+    textColor = [UIColor yellowColor];
+}
+
+- (IBAction)setRedColor:(id)sender {
+    textColor = [UIColor redColor];
 }
 @end

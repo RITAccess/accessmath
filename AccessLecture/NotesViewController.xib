@@ -8,6 +8,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NotesViewController">
             <connections>
                 <outlet property="drawNote" destination="PHK-ZG-JXm" id="vRj-6f-f3A"/>
+                <outlet property="setRedColor" destination="YBG-h8-Z2i" id="xba-UQ-HNw"/>
+                <outlet property="setYellowColor" destination="pB3-2N-wNg" id="3RI-UN-1EI"/>
+                <outlet property="textNote" destination="qX8-e6-xcc" id="32J-pG-0Rd"/>
                 <outlet property="view" destination="2" id="3"/>
             </connections>
         </placeholder>
@@ -57,12 +60,21 @@
                         </barButtonItem>
                         <barButtonItem tag="1" width="53" id="WWb-9P-utK">
                             <color key="tintColor" red="0.019702952209330826" green="0.10165635830261788" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="setBlueColor:" destination="-1" id="sC7-Kg-hsb"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem tag="2" width="53" id="pB3-2N-wNg">
                             <color key="tintColor" red="1" green="0.96756506727180314" blue="0.064470305556020735" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="setYellowColor:" destination="-1" id="NfO-ap-MMB"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem tag="3" width="53" id="YBG-h8-Z2i">
                             <color key="tintColor" red="1" green="0.011670429389079029" blue="0.012084895400035767" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="setRedColor:" destination="-1" id="L5m-ls-jT3"/>
+                            </connections>
                         </barButtonItem>
                     </items>
                 </toolbar>
@@ -76,4 +88,23 @@
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
         </view>
     </objects>
+    <classes>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="NotesViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NotesViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="createDrawNote:"/>
+                <relationship kind="action" name="createTextNote:"/>
+                <relationship kind="action" name="setBlueColor:"/>
+                <relationship kind="action" name="setRedColor:"/>
+                <relationship kind="action" name="setYellowColor:"/>
+                <relationship kind="outlet" name="drawNote" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="setRedColor" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="setYellowColor" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="textNote" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+    </classes>
 </document>
