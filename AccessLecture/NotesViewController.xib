@@ -8,8 +8,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NotesViewController">
             <connections>
                 <outlet property="drawNote" destination="PHK-ZG-JXm" id="vRj-6f-f3A"/>
-                <outlet property="setRedColor" destination="YBG-h8-Z2i" id="xba-UQ-HNw"/>
-                <outlet property="setYellowColor" destination="pB3-2N-wNg" id="3RI-UN-1EI"/>
                 <outlet property="textNote" destination="qX8-e6-xcc" id="32J-pG-0Rd"/>
                 <outlet property="view" destination="2" id="3"/>
             </connections>
@@ -58,23 +56,20 @@
                                 </connections>
                             </button>
                         </barButtonItem>
-                        <barButtonItem tag="1" width="53" id="WWb-9P-utK">
-                            <color key="tintColor" red="0.019702952209330826" green="0.10165635830261788" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <barButtonItem width="65" id="XR4-Eg-8Q3">
+                            <color key="tintColor" red="1" green="0.011670429390000001" blue="0.0120848954" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <action selector="setBlueColor:" destination="-1" id="sC7-Kg-hsb"/>
+                                <action selector="setRedColor:" destination="-1" id="e8h-nf-NkA"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem tag="2" width="53" id="pB3-2N-wNg">
-                            <color key="tintColor" red="1" green="0.96756506727180314" blue="0.064470305556020735" alpha="1" colorSpace="calibratedRGB"/>
+                        <barButtonItem width="55" id="dO4-a1-Akp">
+                            <color key="tintColor" red="0.019702952209999999" green="0.1016563583" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <action selector="setYellowColor:" destination="-1" id="NfO-ap-MMB"/>
+                                <action selector="setBlueColor:" destination="-1" id="TTU-xG-HvD"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem tag="3" width="53" id="YBG-h8-Z2i">
-                            <color key="tintColor" red="1" green="0.011670429389079029" blue="0.012084895400035767" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <action selector="setRedColor:" destination="-1" id="L5m-ls-jT3"/>
-                            </connections>
+                        <barButtonItem width="55" id="kDt-0G-kgk">
+                            <color key="tintColor" red="1" green="0.96756506730000003" blue="0.064470305559999996" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
                     </items>
                 </toolbar>

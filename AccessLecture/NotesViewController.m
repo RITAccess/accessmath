@@ -8,6 +8,7 @@
 
 #import "NotesViewController.h"
 #import "UILargeAlertView.h"
+#import "FTCoreTextView.h"
 @interface NotesViewController ()
 
 @end
@@ -58,6 +59,7 @@
           
             UIView *outerView = [[UIView alloc] initWithFrame:CGRectMake([gesture locationInView:self.view].x, [gesture locationInView:self.view].y, 350, 150)];
            
+            
             UITextView *textBubble = [[UITextView alloc]initWithFrame:CGRectMake([gesture locationInView:outerView].x + 20, [gesture locationInView:outerView].y + 15, 300, 120)];
             [outerView addSubview:textBubble];
             UIImageView * anImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin.png" ]];
@@ -94,7 +96,6 @@
     LineDrawView *lineDrawView = [[LineDrawView alloc]initWithFrame:CGRectMake([gesture locationInView:outerView].x + 20, [gesture locationInView:outerView].y + 15, 400, 300)];
     lineDrawView.userInteractionEnabled = YES;
     lineDrawView.isDrawing = YES;
-   
     //outerView.layer.borderWidth = 3;
     lineDrawView.layer.borderWidth = 3;
     lineDrawView.layer.cornerRadius = 20;
@@ -219,7 +220,13 @@ else if(_isDrawing)
     return YES;
 }
 - (void)textViewDidBeginEditing:(UITextView *)textView {
-    textView.textColor = textColor;
+//    NSMutableAttributedString* attString =
+//    [[NSMutableAttributedString alloc]initWithString:textView.text]; //view is my UITextView
+//    [attString addAttribute:(NSString*)NSForegroundColorAttributeName
+//                      value:[UIColor greenColor]
+//                      range:(NSRange){attString.length-8, 8}];
+//    textView.attributedText = attString;
+//    NSLog(@"Called");
 }
 - (void)textViewDidChange:(UITextView *)textView{
  textView.textColor = textColor;
@@ -227,7 +234,9 @@ else if(_isDrawing)
     frame.size.height = textView.contentSize.height;
     textView.frame = frame;
     [textView.superview setFrame:CGRectMake(textView.superview.frame.origin.x, textView.superview.frame.origin.y, textView.frame.size.width+20, textView.frame.size.height+20)];
-}
+    
+ 
+  }
 
 - (IBAction)createDrawNote:(id)sender {
     _isCreatingNote=NO;
@@ -239,6 +248,7 @@ else if(_isDrawing)
     [self viewDidLoad];
     UIAlertView* alert = [[UILargeAlertView alloc] initWithText:NSLocalizedString(@"Drawing Mode", nil) fontSize:48];
     [alert show];
+    
 }
 
 
@@ -256,6 +266,7 @@ else if(_isDrawing)
 - (IBAction)setBlueColor:(id)sender {
     NSLog(@"Blue");
     textColor = [UIColor blueColor];
+    
 }
 - (IBAction)setYellowColor:(id)sender {
     textColor = [UIColor yellowColor];
