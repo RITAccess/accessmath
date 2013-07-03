@@ -28,7 +28,6 @@ static int const SHAPE_MAX = 4;
 @property (weak, nonatomic) IBOutlet UIView *toolbarView;
 @property int selectedColor;
 @property (weak, nonatomic) IBOutlet UIButton *shapeButton;
-
 @property NSMutableArray *buttonStrings;
 
 

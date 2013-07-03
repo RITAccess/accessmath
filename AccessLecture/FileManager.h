@@ -11,7 +11,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "AccessDocument.h"
 @interface FileManager : NSObject
 
 //
@@ -19,6 +19,12 @@
 //  in iOS, this is the only place we are allowed to write files
 //
 + (NSURL *)localDocumentsDirectoryURL;
+
+//get the AccessMath directory of the current user
++ (NSURL *)accessMathDirectoryURL;
+
+// delete all files in AccessMath directory
++ (void) clearAllDocuments;
 
 //
 // get the iCloud documents directory
@@ -39,5 +45,7 @@
 //  returns nil if no file was found
 //
 + (NSURL *)findFileIn:(NSArray *)files thatFits:(BOOL(^)(NSURL*))condition;
+
+
 
 @end

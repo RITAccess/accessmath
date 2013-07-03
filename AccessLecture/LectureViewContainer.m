@@ -8,6 +8,8 @@
 
 #import "LectureViewContainer.h"
 #import "StreamViewController.h"
+#import "DrawViewController.h"
+#import "NotesViewController.h"
 
 @interface LectureViewContainer ()
 
@@ -16,6 +18,18 @@
 @implementation LectureViewContainer {
     BOOL menuOpen;
     NSArray *menuItems;
+    
+    // Controllers
+    NotesViewController *nvc;
+    DrawViewController *dcv;
+    StreamViewController *svc;
+    
+    NSArray *nvcPersistent;
+    NSArray *dcvPersistent;
+    NSArray *svcPersistent;
+    
+    PrimWrapper *wrapper;
+    
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -37,8 +51,37 @@
     [_sideMenu setBackgroundColor:[UIColor colorWithRed:0.97 green:0.97 blue:0.97 alpha:0.8]];
     [_navBar setBackgroundColor:[UIColor colorWithRed:0.97 green:0.97 blue:0.97 alpha:0.5]];
     
+    // Set up views
+    nvc = [[NotesViewController alloc] initWithNibName:NotesViewControllerXIB bundle:nil];
+    dcv = [[DrawViewController alloc] initWithNibName:DrawViewControllerXIB bundle:nil];
+    svc = [[StreamViewController alloc] initWithNibName:StreamViewControllerXIB bundle:nil];
+    
+    // Add pan and zoom
+    UIPinchGestureRecognizer *zoom = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(zoomHandle:)];
+    [self.view addGestureRecognizer:zoom];
+
+    [_container setBackgroundColor:[UIColor clearColor]];
+    
+    // Close menus
     menuOpen = NO;
     [self setUpMenuItems];
+}
+
+- (void)zoomHandle:(UIPinchGestureRecognizer *)reg
+{
+    if (reg.state == ( UIGestureRecognizerStateBegan | UIGestureRecognizerStateEnded ) ) {
+        wrapper = [PrimWrapper wrapperWithTransform:[[self.childViewControllers firstObject] view].transform];
+    }
+    CGAffineTransform zoom = CGAffineTransformScale(wrapper.transform, reg.scale, reg.scale);
+    CGPoint touchCenter = [reg locationInView:self.view];
+    [self.childViewControllers enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(id<LectureViewChild> obj, NSUInteger idx, BOOL *stop) {
+        if ([obj respondsToSelector:@selector(willApplyTransformToView)]) {
+            UIView *view = [obj willApplyTransformToView];
+            view.transform = zoom;
+            [view setCenter:touchCenter];
+            
+        }
+    }];
 }
 
 - (void)setUpMenuItems
@@ -73,26 +116,28 @@
 #pragma mark Actions
 
 - (void)action:(UITapGestureRecognizer *)reg
-{
+{    
     switch (reg.view.tag) {
         case 0:
             // Save
-            for (UIViewController<LectureViewChild> *children in self.childViewControllers) {
-                [children willSaveState];
-            }
+            [self startSave];
             break;
         case 1:
-            // Notes
+        {
+            [self addController:nvc];
             break;
+        }
         case 2:
+        {
             // Draw
+            [self addController:dcv];
             break;
+        }
         case 3:
         {
-            StreamViewController *svm = [[StreamViewController alloc] initWithNibName:StreamViewControllerXIB bundle:nil];
-            [self addChildViewController:svm];
-            [self addController:svm];
-            [svm didMoveToParentViewController:self];
+            // Stream
+            [self addController:svc];
+            break;
         }
             
         default:
@@ -106,13 +151,36 @@
     }
 }
 
-- (void)addController:(UIViewController *)vc
+- (void)addController:(UIViewController<LectureViewChild> *)vc
 {
+    // Leave parent
+    NSMutableArray *children = [[NSMutableArray alloc] initWithArray:self.childViewControllers];
+    for (UIViewController<LectureViewChild> *child in self.childViewControllers) {
+        if ([child respondsToSelector:@selector(willLeaveActiveState)]) {
+            [child willLeaveActiveState];
+        }
+    }
+    [self addChildViewController:vc];
     [self.view addSubview:vc.view];
-    
+    [vc.view setBackgroundColor:[UIColor clearColor]];
+    UIView *mainview = nil;
+    if ([vc respondsToSelector:@selector(willApplyTransformToView)]) {
+        mainview = [vc willApplyTransformToView];
+    }
+    if (mainview) {
+        [self.container addSubview:mainview];
+    }
+//    [self.view bringSubviewToFront:_container];
     [self.view bringSubviewToFront:_navBar];
     [self.view bringSubviewToFront:_sideMenu];
-    
+    for (UIViewController<LectureViewChild> *child in children) {
+        if ([child isEqual:vc]) continue;
+        if ([child respondsToSelector:@selector(willLeaveActiveState)]) {
+            [child didLeaveActiveState];
+        }
+    }
+    children = nil;
+    [vc didMoveToParentViewController:self];
 }
 
 - (IBAction)menuButtonTapped:(id)sender
@@ -133,7 +201,7 @@
             [self setExpandOpen:NO];
         }
     } else {
-        [self dismissModalViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
@@ -199,11 +267,30 @@
     }
 }
 
+#pragma mark Saving
+
+- (void)startSave
+{
+    for (UIViewController<LectureViewChild> *children in self.childViewControllers) {
+        if ([children respondsToSelector:@selector(willSaveState)]) {
+            [children willSaveState];
+        }
+    }
+    
+    // Do state saving
+    
+    for (UIViewController<LectureViewChild> *children in self.childViewControllers) {
+        if ([children respondsToSelector:@selector(didSaveState)]) {
+            [children didSaveState];
+        }
+    }
+}
+
 #pragma mark System calls
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
-    [_sideMenu setHidden:YES];
+    
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
@@ -213,9 +300,17 @@
     [self setExpandOpen:NO];
 }
 
-- (BOOL)shouldAutomaticallyForwardAppearanceMethods{ return TRUE; }
+- (BOOL)shouldAutomaticallyForwardAppearanceMethods{ return YES; }
 
-- (BOOL)shouldAutomaticallyForwardRotationMethods { return TRUE; }
+- (BOOL)shouldAutomaticallyForwardRotationMethods { return YES; }
+
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    for (UIViewController *child in self.childViewControllers) {
+        [UIView animateWithDuration:duration animations:^{
+            child.view.frame = self.view.bounds;
+        }];
+    }
+}
 
 - (void)viewDidUnload {
     [self setSideMenu:nil];

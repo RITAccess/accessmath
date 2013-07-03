@@ -3,6 +3,7 @@
 #import "RootViewController.h"
 #import "AccessLectureAppDelegate.h"
 #import "DrawViewController.h" // Only for testing
+#import "NotesViewController.h"
 
 @implementation RootViewController
 
@@ -13,7 +14,6 @@
     [super viewDidLoad];
 }
 
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -22,8 +22,8 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     // Instantiating DrawViewController for testing
-    DrawViewController *drawViewController = [[DrawViewController alloc] initWithNibName:@"DrawViewController" bundle:nil];
-    [self presentModalViewController:drawViewController animated:NO];
+//    DrawViewController *drawViewController = [[DrawViewController alloc] initWithNibName:@"DrawViewController" bundle:nil];
+//    [self presentModalViewController:drawViewController animated:NO];
 }
 
 /**

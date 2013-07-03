@@ -24,6 +24,6 @@
 //
 // currently, there is only support for one document.
 //
-- (void)openDocument;
+- (void)openDocument:(NSURL *) withURL;
 
 @end

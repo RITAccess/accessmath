@@ -15,17 +15,17 @@
 //  the key allows the serialized note to be stored in parts with key-value pairs
 //
 static NSString * POSITION_KEY = @"position_key";   // key to code for the position
-static NSString * IMAGE_KEY = @"image_key";         // key to code for the image
+static NSString * TEXT_KEY = @"text_key";         // key to code for the image
 
 @implementation Note
 
 @synthesize position = _position;
-@synthesize image = _image;
+@synthesize text = _text;
 
-- (id)init {
+- (id)initWithText:(UITextView *)textView andPosition:(Position *)position {
     if (self = [super init]) {
-        _position = [[Position alloc] init];
-        _image = [[UIImage alloc] init];
+        _position = position;
+        _text = textView;
     }
     return self;
 }
@@ -33,14 +33,14 @@ static NSString * IMAGE_KEY = @"image_key";         // key to code for the image
 - (id)initWithCoder:(NSCoder *)aCoder {
     if (self = [super init]) {
         _position = [aCoder decodeObjectForKey:POSITION_KEY];
-        _image = [aCoder decodeObjectForKey:IMAGE_KEY];
+        _text = [aCoder decodeObjectForKey:TEXT_KEY];
     }
     return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [aCoder encodeObject:_position forKey:POSITION_KEY];
-    [aCoder encodeObject:_image forKey:IMAGE_KEY];
+    [aCoder encodeObject:_text forKey:TEXT_KEY];
 }
 
 @end
