@@ -31,7 +31,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    startTag = @"<black>";
+    endTag = @"</black>";
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -58,26 +59,42 @@
             longPressGestureRecognizer2.numberOfTouchesRequired = 1;
           
             UIView *outerView = [[UIView alloc] initWithFrame:CGRectMake([gesture locationInView:self.view].x, [gesture locationInView:self.view].y, 350, 150)];
+         
+            FTCoreTextView *text = [[FTCoreTextView alloc]initWithFrame:CGRectMake([gesture locationInView:outerView].x+10 , [gesture locationInView:outerView].y+10 , 300, 120)];
+            [text setText:@"<bold>Type Notes...</bold>"];
+            [text addStyles:[self coreTextStyle]];
+            [text setUserInteractionEnabled:YES];
+            UITextView *textBubble = [[UITextView alloc]initWithFrame:CGRectMake([gesture locationInView:outerView].x, [gesture locationInView:outerView].y , 310, 120)];
+           //        outerView.layer.borderWidth = 3;
+            [outerView addSubview:text];
+           // text.layer.borderWidth = 3;
            
-            
-            UITextView *textBubble = [[UITextView alloc]initWithFrame:CGRectMake([gesture locationInView:outerView].x + 20, [gesture locationInView:outerView].y + 15, 300, 120)];
+            //text.layer.cornerRadius = 20;
             [outerView addSubview:textBubble];
-            UIImageView * anImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin.png" ]];
+                        UIImageView * anImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin.png" ]];
             [anImageView setCenter:textBubble.bounds.origin];
             [anImageView setBounds:CGRectMake([gesture locationInView:self.view].x, [gesture locationInView:self.view].y, 50, 50)];
-            textBubble.text = @"Type Notes Here...";
+           // textBubble.textColor = [UIColor clearColor];
+            textBubble.textAlignment = NSTextAlignmentJustified;
+           
+            textBubble.text = @"Type Notes...";
             textBubble.delegate = self;
             textBubble.layer.borderWidth = 3;
             textBubble.layer.cornerRadius = 20;
-            [textBubble setFont:[UIFont boldSystemFontOfSize:30]];
+            textBubble.backgroundColor = [UIColor clearColor];
+           [textBubble setFont:[UIFont boldSystemFontOfSize:30]];
             [outerView addGestureRecognizer:panToMoveNote];
             [textBubble addGestureRecognizer:longPressGestureRecognizer];
+            //[text addGestureRecognizer:longPressGestureRecognizer];
             [outerView addGestureRecognizer:longPressGestureRecognizer2];
             [textBubble addSubview:anImageView];
             [textBubble setScrollEnabled:YES];
             [textBubble scrollRectToVisible:CGRectMake([gesture locationInView:self.view].x+20, [gesture locationInView:self.view].y+15, 300, 120) animated:NO];
             [self.view addSubview:outerView];
             [textBubble setClipsToBounds:NO];
+            [textBubble becomeFirstResponder];
+         
+          
         }
     }
 }
@@ -116,6 +133,8 @@
     [outerView addSubview:resizeView];
     [outerView addSubview:lineDrawView];
     [self.view addSubview:outerView];
+
+
    
 }
 
@@ -123,6 +142,7 @@
 {
    if(_isCreatingNote){
     [gestureRecognizer.view setFrame:CGRectMake([gestureRecognizer locationInView:self.view].x, [gestureRecognizer locationInView:self.view].y, [[[[gestureRecognizer view] subviews] objectAtIndex:0] size].width+20, [[[[gestureRecognizer view] subviews] objectAtIndex:0] size].height+20)];
+//       [gestureRecognizer.view.superview setFrame:CGRectMake([gestureRecognizer locationInView:self.view].x, [gestureRecognizer locationInView:self.view].y, [[[[gestureRecognizer view] subviews] objectAtIndex:0] size].width+20, [[[[gestureRecognizer view] subviews] objectAtIndex:0] size].height+20)];
    }
     else if(_isDrawing)
     {
@@ -154,6 +174,7 @@ if(_isCreatingNote)
 {
     [gestureRecognizer.view setFrame:CGRectMake(gestureRecognizer.view.frame.origin.x, gestureRecognizer.view.frame.origin.y, 5, 5)];
     [gestureRecognizer.view.superview setFrame:CGRectMake(gestureRecognizer.view.superview.frame.origin.x, gestureRecognizer.view.superview.frame.origin.y, 50, 50)];
+     [[[gestureRecognizer.view.superview subviews] objectAtIndex:0] setFrame:CGRectMake(gestureRecognizer.view.superview.frame.origin.x, gestureRecognizer.view.superview.frame.origin.y, 5, 5)];
 }
 else if(_isDrawing)
     {
@@ -175,13 +196,18 @@ else if(_isDrawing)
 - (void)longPressToDisplayNote:(UILongPressGestureRecognizer *)gestureRecognizer
 {
 
-    if((_isCreatingNote)&&([[[[gestureRecognizer view] subviews] objectAtIndex:0] isKindOfClass:[UITextView class]])){
-    UITextView *temp = [[[gestureRecognizer view] subviews] objectAtIndex:0];
+    if((_isCreatingNote)&&([[[[gestureRecognizer view] subviews] objectAtIndex:1] isKindOfClass:[UITextView class]])){
+    UITextView *temp = [[[gestureRecognizer view] subviews] objectAtIndex:1];
+    FTCoreTextView *tempView = [[[gestureRecognizer view] subviews] objectAtIndex:0];
+    [[[[gestureRecognizer view] subviews] objectAtIndex:1] removeFromSuperview];
     [[[[gestureRecognizer view] subviews] objectAtIndex:0] removeFromSuperview];
       [temp setFrame:CGRectMake([gestureRecognizer locationInView:gestureRecognizer.view].x, [gestureRecognizer locationInView:gestureRecognizer.view].y, 300, 120)];
+        [tempView setFrame:CGRectMake([gestureRecognizer locationInView:gestureRecognizer.view].x, [gestureRecognizer locationInView:gestureRecognizer.view].y, 300, 120)];
         CGRect frame = temp.frame;
         frame.size.height = temp.contentSize.height;
         temp.frame = frame;
+        tempView.frame = frame;
+        [gestureRecognizer.view addSubview:tempView];
         [gestureRecognizer.view addSubview:temp];
         [gestureRecognizer.view setFrame:CGRectMake(gestureRecognizer.view.frame.origin.x, gestureRecognizer.view.frame.origin.y, temp.frame.size.width, temp.frame.size.height)];
         
@@ -216,28 +242,47 @@ else if(_isDrawing)
 }
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView{
-  
-    return YES;
+ 
+       return YES;
 }
 - (void)textViewDidBeginEditing:(UITextView *)textView {
-//    NSMutableAttributedString* attString =
-//    [[NSMutableAttributedString alloc]initWithString:textView.text]; //view is my UITextView
-//    [attString addAttribute:(NSString*)NSForegroundColorAttributeName
-//                      value:[UIColor greenColor]
-//                      range:(NSRange){attString.length-8, 8}];
-//    textView.attributedText = attString;
-//    NSLog(@"Called");
+
 }
 - (void)textViewDidChange:(UITextView *)textView{
- textView.textColor = textColor;
+        
+   
+    FTCoreTextView *temp =  [[textView.superview  subviews] objectAtIndex:0];
+    char tempchar = [textView.text characterAtIndex:[textView.text length]-1];
+    [[[textView.superview  subviews] objectAtIndex:0] setText:[NSString stringWithFormat:@"%@%@%c%@",temp.text,startTag,tempchar,endTag]];
+    textView.textColor = [UIColor clearColor];
     CGRect frame = textView.frame;
     frame.size.height = textView.contentSize.height;
+    frame.origin = textView.frame.origin;
     textView.frame = frame;
     [textView.superview setFrame:CGRectMake(textView.superview.frame.origin.x, textView.superview.frame.origin.y, textView.frame.size.width+20, textView.frame.size.height+20)];
-    
+   
+      [[[textView.superview  subviews] objectAtIndex:0] setFrame:CGRectMake(textView.frame.origin.x, textView.frame.origin.y, 300, textView.frame.size.height)];
+
+    [[[textView.superview  subviews] objectAtIndex:1] becomeFirstResponder];
+       //[textView becomeFirstResponder];
  
   }
-
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    if(text.length<=0)
+    {
+        FTCoreTextView *temp =  [[textView.superview  subviews] objectAtIndex:0];
+        NSRange selectedRange = NSMakeRange(0, (temp.text.length - startTag.length-endTag.length-1));
+        NSString *str = [temp.text substringWithRange:selectedRange];
+        NSLog(@"%@",str);
+        NSLog(@"backspace pressed");
+        [[[textView.superview  subviews] objectAtIndex:0] setText:str];
+        [[[textView.superview  subviews] objectAtIndex:0] setNeedsDisplay];
+        [textView becomeFirstResponder];
+        return true;
+    }
+   
+        return true;
+}
 - (IBAction)createDrawNote:(id)sender {
     _isCreatingNote=NO;
     _isDrawing = YES;
@@ -264,15 +309,48 @@ else if(_isDrawing)
     [alert show];
 }
 - (IBAction)setBlueColor:(id)sender {
-    NSLog(@"Blue");
     textColor = [UIColor blueColor];
-    
+    startTag = @"<blue>";
+    endTag = @"</blue>";
 }
 - (IBAction)setYellowColor:(id)sender {
     textColor = [UIColor yellowColor];
+    startTag = @"<yellow>";
+    endTag = @"</yellow>";
 }
 
 - (IBAction)setRedColor:(id)sender {
     textColor = [UIColor redColor];
+    startTag = @"<red>";
+    endTag = @"</red>";
+}
+- (NSArray *)coreTextStyle{
+    NSMutableArray *result = [NSMutableArray array];
+    FTCoreTextStyle *boldStyle = [FTCoreTextStyle new];
+    boldStyle.name = @"bold";
+    boldStyle.font = [UIFont boldSystemFontOfSize:30];
+    [result addObject:boldStyle];
+    FTCoreTextStyle *blueColor = [FTCoreTextStyle new];
+    [blueColor setName:@"blue"];
+    blueColor.font = [UIFont boldSystemFontOfSize:30];
+    [blueColor setColor:[UIColor blueColor]];
+    [result addObject:blueColor];
+    FTCoreTextStyle *redColor = [FTCoreTextStyle new];
+    [redColor setName:@"red"];
+     redColor.font = [UIFont boldSystemFontOfSize:30];
+    [redColor setColor:[UIColor redColor]];
+    [result addObject:redColor];
+    FTCoreTextStyle *yellowColor = [FTCoreTextStyle new];
+    [yellowColor setName:@"yellow"];
+    [yellowColor setColor:[UIColor yellowColor]];
+    yellowColor.font = [UIFont boldSystemFontOfSize:30];
+   [result addObject:yellowColor];
+    FTCoreTextStyle *blackColor = [FTCoreTextStyle new];
+    [blackColor setName:@"black"];
+    [blackColor setColor:[UIColor blackColor]];
+    blackColor.font = [UIFont boldSystemFontOfSize:30];
+    [result addObject:blackColor];
+    return result;
+
 }
 @end

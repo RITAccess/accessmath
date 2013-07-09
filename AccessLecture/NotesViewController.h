@@ -13,6 +13,8 @@
     UIColor *textColor;
     UIColor *drawcolor;
     CGFloat lastScale;
+    NSString *startTag;
+    NSString *endTag;
 }
 @property (nonatomic) BOOL isCreatingNote;
 @property (nonatomic) BOOL isDrawing;
