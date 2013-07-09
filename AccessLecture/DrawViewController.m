@@ -190,6 +190,9 @@
         }
     }
     
+    [_drawView setFrame:CGRectMake(0, 0, CGRectGetWidth(_drawView.frame), CGRectGetHeight(_drawView.frame))];
+    [_drawView setTransform:CGAffineTransformIdentity]; // Resets the view to state before transformation.
+    
     [[_drawView shapes] removeAllObjects];
     [[_drawView paths] removeAllObjects];
     [_drawView setNeedsDisplay];
