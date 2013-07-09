@@ -69,17 +69,20 @@
 
 - (void)zoomHandle:(UIPinchGestureRecognizer *)reg
 {
+    CGPoint touchCenter = [reg locationInView:self.view];
+    
     if (reg.state == ( UIGestureRecognizerStateBegan | UIGestureRecognizerStateEnded ) ) {
         wrapper = [PrimWrapper wrapperWithTransform:[[self.childViewControllers firstObject] view].transform];
     }
+    
     CGAffineTransform zoom = CGAffineTransformScale(wrapper.transform, reg.scale, reg.scale);
-    CGPoint touchCenter = [reg locationInView:self.view];
+    
     [self.childViewControllers enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(id<LectureViewChild> obj, NSUInteger idx, BOOL *stop) {
         if ([obj respondsToSelector:@selector(willApplyTransformToView)]) {
+        
             UIView *view = [obj willApplyTransformToView];
             view.transform = zoom;
             [view setCenter:touchCenter];
-            
         }
     }];
 }
@@ -165,7 +168,7 @@
     [vc.view setBackgroundColor:[UIColor clearColor]];
     UIView *mainview = nil;
     if ([vc respondsToSelector:@selector(willApplyTransformToView)]) {
-        mainview = [vc willApplyTransformToView];
+        mainview = [vc willReturnView];
     }
     if (mainview) {
         [self.container addSubview:mainview];
