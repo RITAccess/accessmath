@@ -53,6 +53,12 @@
     [update addObject:new];
 }
 
+- (void)clearScreen
+{
+    [update removeAllObjects];
+    [self setNeedsDisplay];
+}
+
 - (void)drawRect:(CGRect)rect
 {
     [[UIColor blackColor] setStroke];

@@ -26,6 +26,8 @@ enum ALPointType : NSUInteger {
 - (void)didFinishRecievingBulkUpdate:(NSArray *)data;
 - (void)didFailToConnectTo:(NSString *)lecture;
 
+- (void)didWantToClearScreen;
+
 @optional
 
 - (void)currentStreamUpdatePercentage:(float)percent;

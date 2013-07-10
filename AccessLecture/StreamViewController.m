@@ -154,6 +154,11 @@
     [failed show];
 }
 
+- (void)didWantToClearScreen
+{
+    [self.canvas clearScreen];
+}
+
 #pragma mark Orientation
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation

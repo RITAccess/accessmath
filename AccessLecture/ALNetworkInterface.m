@@ -152,7 +152,12 @@
     if ([packet.name isEqualToString:@"get-name"]) {
         [socketConnection sendEvent:@"set-name" withData:[[UIDevice currentDevice] name]];;
     }
-    
+    // Clear Screen
+    if ([packet.name isEqualToString:@"clear-screen"]) {
+        if ([_delegate respondsToSelector:@selector(didWantToClearScreen)]) {
+            [_delegate didWantToClearScreen];
+        }
+    }
 }
 
 /**
