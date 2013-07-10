@@ -40,7 +40,7 @@
     server = app.server;
     
     // Testing
-    [_connectionAddress setText:@"students-imac.wireless.rit.edu"];
+    [_connectionAddress setText:@"michaeltimbrook.com"]; // Just for testing...
     [self checkAddress:nil];
     
     // Check if already connected
