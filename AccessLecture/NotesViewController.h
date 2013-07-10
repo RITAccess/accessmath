@@ -23,6 +23,7 @@ static NSString* const NotesViewControllerXIB = @"NotesViewController";
     CGFloat lastScale;
     NSString *startTag;
     NSString *endTag;
+    BOOL isBackSpacePressed;
 }
 
 @property (nonatomic) BOOL isCreatingNote;

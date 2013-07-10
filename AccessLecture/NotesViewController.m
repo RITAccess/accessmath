@@ -33,6 +33,7 @@
     [super viewDidLoad];
     startTag = @"<black>";
     endTag = @"</black>";
+    isBackSpacePressed = FALSE;
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -61,17 +62,14 @@
             UIView *outerView = [[UIView alloc] initWithFrame:CGRectMake([gesture locationInView:self.view].x, [gesture locationInView:self.view].y, 350, 150)];
          
             FTCoreTextView *text = [[FTCoreTextView alloc]initWithFrame:CGRectMake([gesture locationInView:outerView].x+10 , [gesture locationInView:outerView].y+10 , 300, 120)];
-            [text setText:@"<bold>Type Notes...</bold>"];
+            [text setText:@"<FB>Type Notes...</FB>"];
             [text addStyles:[self coreTextStyle]];
             [text setUserInteractionEnabled:YES];
             UITextView *textBubble = [[UITextView alloc]initWithFrame:CGRectMake([gesture locationInView:outerView].x, [gesture locationInView:outerView].y , 310, 120)];
              //  outerView.layer.borderWidth = 3;
             [outerView addSubview:text];
-           // text.layer.borderWidth = 3;
-           
-            //text.layer.cornerRadius = 20;
             [outerView addSubview:textBubble];
-                        UIImageView * anImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin.png" ]];
+            UIImageView * anImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin.png" ]];
             [anImageView setCenter:textBubble.bounds.origin];
             [anImageView setBounds:CGRectMake([gesture locationInView:self.view].x, [gesture locationInView:self.view].y, 50, 50)];
             textBubble.textColor = [UIColor clearColor];
@@ -82,10 +80,9 @@
             textBubble.layer.borderWidth = 3;
             textBubble.layer.cornerRadius = 20;
             textBubble.backgroundColor = [UIColor clearColor];
-           [textBubble setFont:[UIFont boldSystemFontOfSize:30]];
+            [textBubble setFont:[UIFont boldSystemFontOfSize:30]];
             [outerView addGestureRecognizer:panToMoveNote];
             [textBubble addGestureRecognizer:longPressGestureRecognizer];
-            //[text addGestureRecognizer:longPressGestureRecognizer];
             [outerView addGestureRecognizer:longPressGestureRecognizer2];
             [textBubble addSubview:anImageView];
             [textBubble setScrollEnabled:YES];
@@ -112,7 +109,6 @@
     [panToResize setEnabled:NO];
     DrawView *lineDrawView = [[DrawView alloc]initWithFrame:CGRectMake([gesture locationInView:outerView].x + 20, [gesture locationInView:outerView].y + 15, 400, 300)];
     lineDrawView.userInteractionEnabled = YES;
-    //lineDrawView.isDrawing = YES;
     //outerView.layer.borderWidth = 3;
     lineDrawView.layer.borderWidth = 3;
     lineDrawView.layer.cornerRadius = 20;
@@ -123,7 +119,7 @@
     [anImageView setCenter:lineDrawView.bounds.origin];
     [resizeView setBounds:CGRectMake([gesture locationInView:self.view].x, [gesture locationInView:self.view].y, 50, 50)];
     [anImageView setBounds:CGRectMake([gesture locationInView:self.view].x, [gesture locationInView:self.view].y, 50, 50)];
-   // resizeView.layer.borderWidth = 3;
+   // resizeView.layer.borderWidth = 3; //Uncommment this line to view border for resizeView
     //Do not change the order in which the subviews and gestures are added
     [outerView addGestureRecognizer:panToMoveNote];
     [lineDrawView addGestureRecognizer:longPressGestureRecognizer];
@@ -133,9 +129,7 @@
     [outerView addSubview:resizeView];
     [outerView addSubview:lineDrawView];
     [self.view addSubview:outerView];
-
-
-   
+  
 }
 
 - (void)handlePan:(UIPanGestureRecognizer *)gestureRecognizer
@@ -201,7 +195,7 @@ else if(_isDrawing)
     FTCoreTextView *tempView = [[[gestureRecognizer view] subviews] objectAtIndex:0];
     [[[[gestureRecognizer view] subviews] objectAtIndex:1] removeFromSuperview];
     [[[[gestureRecognizer view] subviews] objectAtIndex:0] removeFromSuperview];
-      [temp setFrame:CGRectMake([gestureRecognizer locationInView:gestureRecognizer.view].x, [gestureRecognizer locationInView:gestureRecognizer.view].y, 300, 120)];
+      [temp setFrame:CGRectMake([gestureRecognizer locationInView:gestureRecognizer.view].x, [gestureRecognizer locationInView:gestureRecognizer.view].y, 310, 120)];
         [tempView setFrame:CGRectMake([gestureRecognizer locationInView:gestureRecognizer.view].x-20, [gestureRecognizer locationInView:gestureRecognizer.view].y-20, 300, 120)];
         CGRect frame = temp.frame;
         frame.size.height = temp.contentSize.height;
@@ -250,8 +244,7 @@ else if(_isDrawing)
 
 }
 - (void)textViewDidChange:(UITextView *)textView{
-        
-    NSLog(@"Called even when backspace pressed");
+    if(!isBackSpacePressed){
     FTCoreTextView *temp =  [[textView.superview  subviews] objectAtIndex:0];
     char tempchar = [textView.text characterAtIndex:[textView.text length]-1];
     [[[textView.superview  subviews] objectAtIndex:0] setText:[NSString stringWithFormat:@"%@%@%c%@",temp.text,startTag,tempchar,endTag]];
@@ -265,12 +258,12 @@ else if(_isDrawing)
       [[[textView.superview  subviews] objectAtIndex:0] setFrame:CGRectMake(textView.frame.origin.x, textView.frame.origin.y, 300, textView.frame.size.height)];
 
     [[[textView.superview  subviews] objectAtIndex:1] becomeFirstResponder];
-       //[textView becomeFirstResponder];
- 
+     }
   }
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
     if(text.length<=0)
     {
+        isBackSpacePressed = TRUE;
         FTCoreTextView *temp =  [[textView.superview  subviews] objectAtIndex:0];
         NSRange selectedRange = NSMakeRange(0, (temp.text.length - startTag.length-endTag.length-1));
         NSString *str = [temp.text substringWithRange:selectedRange];
@@ -282,8 +275,11 @@ else if(_isDrawing)
         [textView becomeFirstResponder];
         return true;
     }
-   
-        return true;
+    else{
+        isBackSpacePressed = FALSE;
+    }
+    return true;
+        
 }
 - (IBAction)createDrawNote:(id)sender {
     _isCreatingNote=NO;
@@ -312,43 +308,43 @@ else if(_isDrawing)
 }
 - (IBAction)setBlueColor:(id)sender {
     textColor = [UIColor blueColor];
-    startTag = @"<blue>";
-    endTag = @"</blue>";
+    startTag = @"<CB>";
+    endTag = @"</CB>";
 }
 - (IBAction)setYellowColor:(id)sender {
     textColor = [UIColor yellowColor];
-    startTag = @"<yellow>";
-    endTag = @"</yellow>";
+    startTag = @"<CY>";
+    endTag = @"</CY>";
 }
 
 - (IBAction)setRedColor:(id)sender {
     textColor = [UIColor redColor];
-    startTag = @"<red>";
-    endTag = @"</red>";
+    startTag = @"<CR>";
+    endTag = @"</CR>";
 }
 - (NSArray *)coreTextStyle{
     NSMutableArray *result = [NSMutableArray array];
     FTCoreTextStyle *boldStyle = [FTCoreTextStyle new];
-    boldStyle.name = @"bold";
+    boldStyle.name = @"FB";
     boldStyle.font = [UIFont boldSystemFontOfSize:30];
     [result addObject:boldStyle];
     FTCoreTextStyle *blueColor = [FTCoreTextStyle new];
-    [blueColor setName:@"blue"];
+    [blueColor setName:@"CB"];
     blueColor.font = [UIFont boldSystemFontOfSize:30];
     [blueColor setColor:[UIColor blueColor]];
     [result addObject:blueColor];
     FTCoreTextStyle *redColor = [FTCoreTextStyle new];
-    [redColor setName:@"red"];
+    [redColor setName:@"CR"];
      redColor.font = [UIFont boldSystemFontOfSize:30];
     [redColor setColor:[UIColor redColor]];
     [result addObject:redColor];
     FTCoreTextStyle *yellowColor = [FTCoreTextStyle new];
-    [yellowColor setName:@"yellow"];
+    [yellowColor setName:@"CY"];
     [yellowColor setColor:[UIColor yellowColor]];
     yellowColor.font = [UIFont boldSystemFontOfSize:30];
    [result addObject:yellowColor];
     FTCoreTextStyle *blackColor = [FTCoreTextStyle new];
-    [blackColor setName:@"black"];
+    [blackColor setName:@"CD"];//D-> Default color
     [blackColor setColor:[UIColor blackColor]];
     blackColor.font = [UIFont boldSystemFontOfSize:30];
     [result addObject:blackColor];
