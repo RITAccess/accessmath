@@ -31,6 +31,26 @@
     return ubiquity;
 }
 
++ (NSURL *)accessMathDirectoryURL{
+    NSFileManager *filemgr;
+    NSArray *dirPaths;
+    NSString *docsDir;
+    NSString *newDir;
+    filemgr =[NSFileManager defaultManager];
+    dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                   NSUserDomainMask, YES);
+   
+    docsDir = [dirPaths objectAtIndex:0];
+    newDir = [docsDir stringByAppendingPathComponent:@"AccessMath"];
+    if ([filemgr createDirectoryAtPath:newDir withIntermediateDirectories:YES attributes:nil error: NULL] == NO)
+    {
+        // Failed to create directory
+        return nil;
+    }
+    else{
+        return [NSURL URLWithString:newDir];
+    }
+ }
 + (NSArray *)documentsIn:(NSURL *)URL {
     NSError * error = nil;
     NSURL * docs = URL;
@@ -54,6 +74,25 @@
     }
    
     return nil;
+}
++ (void) clearAllDocuments{
+    NSString *path = [[NSMutableString alloc] init];
+    NSArray *docs = [FileManager documentsIn:[FileManager localDocumentsDirectoryURL]];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    for(NSURL *docURL in docs)
+    {
+        path = [docURL path];
+       
+        if ([fileManager fileExistsAtPath:path])
+        {
+            NSError *error;
+            if (![fileManager removeItemAtPath:path error:&error])
+            {
+                NSLog(@"Error removing file: %@", error);
+            };
+        }
+    }
+    NSLog(@"Files succesfully deleted");
 }
 
 @end

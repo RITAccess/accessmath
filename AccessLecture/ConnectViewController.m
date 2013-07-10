@@ -58,7 +58,7 @@
 #pragma mark UIButton actions
 
 - (IBAction)cancel:(id)sender {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)addressChanged:(id)sender {

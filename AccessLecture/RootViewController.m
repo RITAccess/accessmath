@@ -2,8 +2,17 @@
 
 #import "RootViewController.h"
 #import "AccessLectureAppDelegate.h"
-
+#import "DrawViewController.h" // Only for testing
+#import "NotesViewController.h"
+#import "InlineViewVController.h"
 @implementation RootViewController
+
+//-(void)viewDidAppear:(BOOL)animated{
+//    NotesViewController *noteController = [[NotesViewController alloc] initWithNibName:@"NotesViewController" bundle:nil];
+//    [self presentModalViewController:noteController animated:YES];
+////    InlineViewVController *noteController = [[InlineViewVController alloc] initWithNibName:@"InlineViewVController" bundle:nil];
+////    [self presentModalViewController:noteController animated:YES];
+//}
 
 - (void)viewDidLoad
 {
@@ -12,10 +21,16 @@
     [super viewDidLoad];
 }
 
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    // Instantiating DrawViewController for testing
+//    DrawViewController *drawViewController = [[DrawViewController alloc] initWithNibName:@"DrawViewController" bundle:nil];
+//    [self presentModalViewController:drawViewController animated:NO];
 }
 
 /**

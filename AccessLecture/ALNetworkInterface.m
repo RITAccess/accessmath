@@ -18,8 +18,14 @@
     // Completion Handles
     void (^lectureRequest)(Lecture *lecture, BOOL found);
     
-    // For testing
-    void (^onMessage)(NSString *);
+    // For connection
+    void (^connected)(BOOL);
+    
+    // For storing large updates
+    NSMutableArray *bulkData;
+    int updateSize;
+    
+    NSString *lecture;
 }
 
 @synthesize connectionURL = connectionURL;
@@ -61,6 +67,7 @@
  */
 - (void)requestAccessToLectureSteam:(NSString *)name
 {
+    lecture = name;
     [socketConnection sendEvent:@"steaming-request" withData:name];
 }
 
@@ -82,10 +89,7 @@
 - (void)connectCompletion:(void (^)(BOOL success))handle
 {    
     [self connect];
-    while (socketConnection.isConnecting)
-        ;
-    handle(true);
-    
+    connected = handle;
 }
 
 - (void)disconnect
@@ -120,13 +124,23 @@
     if ([packet.name isEqualToString:@"lecture-response-failed"]) {
         lectureRequest(nil, false);
     }
+    // General Info
+    if ([packet.name isEqualToString:@"info"]){
+        id data = [packet.dataAsJSON valueForKeyPath:@"args"][0];
+        if ([[data valueForKeyPath:@"request"] isEqualToString:@"failed"]) {
+            if ([_delegate respondsToSelector:@selector(didFailToConnectTo:)]) {
+                [_delegate didFailToConnectTo:lecture];
+            }
+        }
+    }
     // Recive update
     if ([packet.name isEqualToString:@"update"]) {
         NSString *data = [packet.dataAsJSON valueForKeyPath:@"args"][0];
-        NSLog(@"%@", data);
-        if ([_delegate respondsToSelector:@selector(didRecieveUpdate)]) {
-            [_delegate didRecieveUpdate:data];
-        }
+        [self parseUpdate:data];
+    }
+    // Start/end update
+    if ([packet.name isEqualToString:@"update-info"]) {
+        [self bulkUpdate:[packet.dataAsJSON valueForKeyPath:@"args"][0]];
     }
     // On Termination
     if ([packet.name isEqualToString:@"termination"]) {
@@ -138,7 +152,46 @@
     if ([packet.name isEqualToString:@"get-name"]) {
         [socketConnection sendEvent:@"set-name" withData:[[UIDevice currentDevice] name]];;
     }
-    
+    // Clear Screen
+    if ([packet.name isEqualToString:@"clear-screen"]) {
+        if ([_delegate respondsToSelector:@selector(didWantToClearScreen)]) {
+            [_delegate didWantToClearScreen];
+        }
+    }
+}
+
+/**
+ * Parse Updates
+ */
+- (void)parseUpdate:(id)data
+{
+    CGPoint point = CGPointMake([[data valueForKeyPath:@"x"] floatValue], [[data valueForKeyPath:@"y"] floatValue]);
+    ALPointType type = [[data valueForKeyPath:@"action"] isEqualToString:@"moveTo"] ? ALPointTypeMoveTo : ALPointTypeLineTo;
+    if ([_delegate respondsToSelector:@selector(didRecieveUpdate:type:)]) {
+        [_delegate didRecieveUpdate:point type:type];
+    }
+}
+
+/**
+ * Bulk update
+ */
+- (void)bulkUpdate:(id)data
+{
+    if ([[data valueForKeyPath:@"info"] isEqualToString:@"start"]) {
+        updateSize = [[data valueForKeyPath:@"count"] intValue];
+        bulkData = [[NSMutableArray alloc] init];
+    } else if ([[data valueForKeyPath:@"info"] isEqualToString:@"update"]) {
+        float index = [[data valueForKeyPath:@"index"] floatValue];
+        float percent = (index / updateSize) * 100.0;
+        if ([_delegate respondsToSelector:@selector(currentStreamUpdatePercentage:)]) {
+            [_delegate currentStreamUpdatePercentage:percent];
+        }
+        [bulkData addObject:data];
+    } else if ([[data valueForKeyPath:@"info"] isEqualToString:@"end"]) {
+        if ([_delegate respondsToSelector:@selector(didFinishRecievingBulkUpdate:)]) {
+            [_delegate didFinishRecievingBulkUpdate:bulkData];
+        }
+    }
 }
 
 /**
@@ -146,6 +199,7 @@
  */
 - (void)socketIODidConnect:(SocketIO *)socket {
     NSLog(@"Connection open");
+    connected(TRUE);
 }
 
 /**
@@ -154,6 +208,14 @@
 - (void)socketIODidDisconnect:(SocketIO *)socket disconnectedWithError:(NSError *)error {
     NSLog(@"Error: %@", error);
     _wasConnected = NO;
+}
+
+/**
+ * Failed connection
+ */
+- (void)socketIO:(SocketIO *)socket onError:(NSError *)error
+{
+    connected(FALSE);
 }
 
 @end

@@ -7,13 +7,13 @@
 //
 
 #import "LineDrawView.h"
-
+#import "AccessLectureRuntime.h"
 @interface LineDrawView ()
 
 @end
 
 @implementation LineDrawView
-
+@synthesize start;
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -61,16 +61,26 @@
             UIPanGestureRecognizer *panToMoveNote = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
             UILongPressGestureRecognizer *longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressToRemoveNote:)];
             
+            UILongPressGestureRecognizer *longPressGestureRecognizer2 = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressToDisplayNote:)];
             longPressGestureRecognizer.numberOfTouchesRequired = 3;
-            
+            longPressGestureRecognizer2.numberOfTouchesRequired = 2;
+
             UITextView *textBubble = [[UITextView alloc]initWithFrame:CGRectMake([gesture locationInView:self].x + 15, [gesture locationInView:self].y + 10, 300, 120)];
+            UIImageView * anImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin.png" ]];
+            [anImageView setCenter:textBubble.bounds.origin];
+            [anImageView setBounds:CGRectMake([gesture locationInView:self].x, [gesture locationInView:self].y, 50, 50)];
+            [textBubble addSubview:anImageView];
             textBubble.text = @"Type Notes Here...";
             textBubble.layer.borderWidth = 3;
             textBubble.layer.cornerRadius = 20;
             [textBubble setFont:[UIFont boldSystemFontOfSize:30]];
             [textBubble addGestureRecognizer:panToMoveNote];
+           [textBubble addGestureRecognizer:longPressGestureRecognizer2];
             [textBubble addGestureRecognizer:longPressGestureRecognizer];
+            
+
             [self addSubview:textBubble];
+            [textBubble setClipsToBounds:NO];
         }
     }
 }
@@ -82,13 +92,37 @@
 
 - (void)longPressToRemoveNote:(UILongPressGestureRecognizer *)gestureRecognizer
 {
-    [gestureRecognizer.view removeFromSuperview];
+            //[gestureRecognizer.view removeFromSuperview];
+        [gestureRecognizer.view setHidden:YES];
+        NSLog(@"Three");
+   
+}
+- (void)longPressToDisplayNote:(UILongPressGestureRecognizer *)gestureRecognizer
+{
+        NSLog(@"Two");
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    UITouch *touch = [[touches allObjects] objectAtIndex:0];
-    
+
+    UITouch *touch=[[touches allObjects] objectAtIndex:0];
+     switch (_currentPath) {
+        case 0:
+            [_bezierPath moveToPoint:[touch locationInView:self]];
+            break;
+        case 1:
+            [_bezierPath2 moveToPoint:[touch locationInView:self]];
+            break;
+        case 2:
+            [_bezierPath3 moveToPoint:[touch locationInView:self]];
+            break;
+        case 3:
+            [_bezierPath4 moveToPoint:[touch locationInView:self]];
+            break;
+        default:
+            [_bezierPath5 moveToPoint:[touch locationInView:self]];
+            break;
+    }
     if (_isDrawing){
         switch (_currentPath){
             case 0:
@@ -108,6 +142,7 @@
                 break;
         }
     }
+
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
@@ -140,6 +175,55 @@
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+
+    UITouch *aTouch = [touches anyObject];
+    //Boolean variable to decide whether current location needs to edit an existing note or create a new one
+    BOOL isNew = YES;
+    //Check for double tap
+    if (aTouch.tapCount >= 1 && [self subviews].count > 0)
+    {
+        for(UITextView *view in [self subviews] )
+            
+        {
+            if([view isKindOfClass:[UITextView class]])
+            {
+                view.hidden = YES;
+            }
+        }
+    
+      if(self.isCreatingNote == YES)
+        for(UITextView *view in [self subviews] )
+        {
+            if (CGRectContainsPoint(view.frame,[aTouch locationInView:self]))
+            {
+                isNew = NO;
+                view.hidden = NO;
+                [view becomeFirstResponder];
+            }
+            
+        }
+    }
+//    if (aTouch.tapCount >= 2) {
+//        //Fetch all UITextViews currently
+//        UITouch *touch=[[touches allObjects] objectAtIndex:0];
+//         if(isNew == YES && self.isCreatingNote == YES)
+//        {
+//            NSLog(@"Is Creating Note...");
+//            UIImageView * anImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin.png" ]];
+//            [anImageView setCenter:[touch locationInView:self]];
+//            [anImageView setBounds:CGRectMake([touch locationInView:self].x, [touch locationInView:self].y, 50, 50)];
+//            [self addSubview:anImageView];
+//            UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake([touch locationInView:self].x, [touch locationInView:self].y ,300,90)];
+//            [self addSubview:textView];
+//            textView.text = @"Tap to Enter Notes";
+//            [textView setScrollEnabled:YES];
+//            [textView setFont:[UIFont systemFontOfSize:25]];
+//            [textView setNeedsDisplay];
+//            [textView becomeFirstResponder];
+//            
+//        }
+ //   }
+
 }
 
 - (void)clearAllPaths
