@@ -22,6 +22,7 @@
         self.backgroundColor = [UIColor clearColor];
         
         _fingerDrag = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(dragToDraw:)];
+        _fingerDrag.maximumNumberOfTouches = 1;
         [self addGestureRecognizer:_fingerDrag];
         
         _tapStamp = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapToStamp:)];

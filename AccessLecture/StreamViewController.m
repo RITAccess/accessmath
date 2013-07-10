@@ -113,6 +113,11 @@
     return self.canvas;
 }
 
+- (UIView *)willReturnView
+{
+    return self.view;
+}
+
 #pragma mark Streaming
 
 - (void)didFinishDownloadingLecture:(Lecture *)lecture

@@ -16,6 +16,7 @@
 #define ERASER_TAG 116
 #define COLOR_HEIGHT 85
 
+
 @interface DrawViewController ()
 
 @end
@@ -47,6 +48,12 @@
 //    _panGestureRecognzier.minimumNumberOfTouches = 2;
 //    [_panGestureRecognzier setTranslation:CGPointMake(40, 40) inView:_drawView];
 //   [_drawView addGestureRecognizer:_panGestureRecognzier];
+    
+    if (UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)) {
+        [self.view setFrame:CGRectMake(0, 0, 768, 1024)];
+    } else {
+        [self.view setFrame:CGRectMake(0, 0, 1024, 768)];
+    }
 }
 
 - (void)viewDidUnload
@@ -183,6 +190,9 @@
         }
     }
     
+    [_drawView setFrame:CGRectMake(0, 0, CGRectGetWidth(_drawView.frame), CGRectGetHeight(_drawView.frame))];
+    [_drawView setTransform:CGAffineTransformIdentity]; // Resets the view to state before transformation.
+    
     [[_drawView shapes] removeAllObjects];
     [[_drawView paths] removeAllObjects];
     [_drawView setNeedsDisplay];
@@ -227,7 +237,7 @@
 - (void)didMoveToParentViewController:(UIViewController *)parent
 {
     NSLog(@"new parent %@", parent);
-    [self.view addSubview:self.toolbarView];
+    [self.toolbarView setHidden:NO];
 }
 
 - (void)willSaveState
@@ -248,7 +258,18 @@
 - (void)didLeaveActiveState
 {
     NSLog(@"Did leave active state: %@", self.description);
-    [self.toolbarView removeFromSuperview];
+    [self.toolbarView setHidden:YES];
 }
-    
+
+- (UIView *)willApplyTransformToView
+{
+    NSLog(@"Applying Draw View Controller Transformation!");
+    return _drawView;
+}
+
+- (UIView *)willReturnView
+{
+    return self.view;
+}
+
 @end

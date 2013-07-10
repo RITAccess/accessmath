@@ -33,6 +33,9 @@
 - (void)willLeaveActiveState;
 - (void)didLeaveActiveState;
 
+/* Returns the controller's view. */
+- (UIView *)willReturnView;
+
 @end
 
 @interface LectureViewContainer : UIViewController
