@@ -65,7 +65,7 @@
             [text addStyles:[self coreTextStyle]];
             [text setUserInteractionEnabled:YES];
             UITextView *textBubble = [[UITextView alloc]initWithFrame:CGRectMake([gesture locationInView:outerView].x, [gesture locationInView:outerView].y , 310, 120)];
-           //        outerView.layer.borderWidth = 3;
+             //  outerView.layer.borderWidth = 3;
             [outerView addSubview:text];
            // text.layer.borderWidth = 3;
            
@@ -74,9 +74,9 @@
                         UIImageView * anImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin.png" ]];
             [anImageView setCenter:textBubble.bounds.origin];
             [anImageView setBounds:CGRectMake([gesture locationInView:self.view].x, [gesture locationInView:self.view].y, 50, 50)];
-           // textBubble.textColor = [UIColor clearColor];
+            textBubble.textColor = [UIColor clearColor];
             textBubble.textAlignment = NSTextAlignmentJustified;
-           
+       
             textBubble.text = @"Type Notes...";
             textBubble.delegate = self;
             textBubble.layer.borderWidth = 3;
@@ -141,8 +141,8 @@
 - (void)handlePan:(UIPanGestureRecognizer *)gestureRecognizer
 {
    if(_isCreatingNote){
-    [gestureRecognizer.view setFrame:CGRectMake([gestureRecognizer locationInView:self.view].x, [gestureRecognizer locationInView:self.view].y, [[[[gestureRecognizer view] subviews] objectAtIndex:0] size].width+20, [[[[gestureRecognizer view] subviews] objectAtIndex:0] size].height+20)];
-//       [gestureRecognizer.view.superview setFrame:CGRectMake([gestureRecognizer locationInView:self.view].x, [gestureRecognizer locationInView:self.view].y, [[[[gestureRecognizer view] subviews] objectAtIndex:0] size].width+20, [[[[gestureRecognizer view] subviews] objectAtIndex:0] size].height+20)];
+    [gestureRecognizer.view setFrame:CGRectMake([gestureRecognizer locationInView:self.view].x, [gestureRecognizer locationInView:self.view].y, [[[[gestureRecognizer view] subviews] objectAtIndex:0] size].width+50, [[[[gestureRecognizer view] subviews] objectAtIndex:0] size].height+50)];
+    
    }
     else if(_isDrawing)
     {
@@ -202,7 +202,7 @@ else if(_isDrawing)
     [[[[gestureRecognizer view] subviews] objectAtIndex:1] removeFromSuperview];
     [[[[gestureRecognizer view] subviews] objectAtIndex:0] removeFromSuperview];
       [temp setFrame:CGRectMake([gestureRecognizer locationInView:gestureRecognizer.view].x, [gestureRecognizer locationInView:gestureRecognizer.view].y, 300, 120)];
-        [tempView setFrame:CGRectMake([gestureRecognizer locationInView:gestureRecognizer.view].x, [gestureRecognizer locationInView:gestureRecognizer.view].y, 300, 120)];
+        [tempView setFrame:CGRectMake([gestureRecognizer locationInView:gestureRecognizer.view].x-20, [gestureRecognizer locationInView:gestureRecognizer.view].y-20, 300, 120)];
         CGRect frame = temp.frame;
         frame.size.height = temp.contentSize.height;
         temp.frame = frame;
@@ -241,6 +241,7 @@ else if(_isDrawing)
     
 }
 
+
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView{
  
        return YES;
@@ -250,7 +251,7 @@ else if(_isDrawing)
 }
 - (void)textViewDidChange:(UITextView *)textView{
         
-   
+    NSLog(@"Called even when backspace pressed");
     FTCoreTextView *temp =  [[textView.superview  subviews] objectAtIndex:0];
     char tempchar = [textView.text characterAtIndex:[textView.text length]-1];
     [[[textView.superview  subviews] objectAtIndex:0] setText:[NSString stringWithFormat:@"%@%@%c%@",temp.text,startTag,tempchar,endTag]];
@@ -274,6 +275,7 @@ else if(_isDrawing)
         NSRange selectedRange = NSMakeRange(0, (temp.text.length - startTag.length-endTag.length-1));
         NSString *str = [temp.text substringWithRange:selectedRange];
         NSLog(@"%@",str);
+      
         NSLog(@"backspace pressed");
         [[[textView.superview  subviews] objectAtIndex:0] setText:str];
         [[[textView.superview  subviews] objectAtIndex:0] setNeedsDisplay];
