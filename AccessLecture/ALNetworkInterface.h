@@ -24,6 +24,7 @@ enum ALPointType : NSUInteger {
 - (void)didFinishRecievingUpdate:(NSArray *)data;
 - (void)didFinishDownloadingLecture:(Lecture *)lecture;
 - (void)didFinishRecievingBulkUpdate:(NSArray *)data;
+- (void)didFailToConnectTo:(NSString *)lecture;
 
 @optional
 
