@@ -125,6 +125,11 @@
     
 }
 
+- (void)didFinishRecievingUpdate:(NSArray *)data
+{
+    
+}
+
 - (void)didRecieveUpdate:(CGPoint)point type:(ALPointType)type
 {
     if (type == ALPointTypeMoveTo) {
