@@ -3,36 +3,36 @@
 <plist version="1.0">
 <dict>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>F8BB8EED-6231-48E3-A708-CA63DA0FA6E1</string>
+	<string>314866DB-3742-4FD5-B0B7-75FD0563D1A0</string>
 	<key>IDESourceControlProjectName</key>
 	<string>AccessLecture</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>AD4CD62F-1771-4CBE-AD67-862E95871C2E</key>
-		<string>https://github.com/RITAccess/accessmath</string>
+		<key>A5E4E2DD-A9AD-4EA0-8BDA-B2D50C2ADE5F</key>
+		<string>https://github.com/RITAccess/accessmath.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>AccessLecture.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>AD4CD62F-1771-4CBE-AD67-862E95871C2E</key>
+		<key>A5E4E2DD-A9AD-4EA0-8BDA-B2D50C2ADE5F</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/RITAccess/accessmath</string>
+	<string>https://github.com/RITAccess/accessmath.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>AD4CD62F-1771-4CBE-AD67-862E95871C2E</string>
+	<string>A5E4E2DD-A9AD-4EA0-8BDA-B2D50C2ADE5F</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>AD4CD62F-1771-4CBE-AD67-862E95871C2E</string>
+			<string>A5E4E2DD-A9AD-4EA0-8BDA-B2D50C2ADE5F</string>
 			<key>IDESourceControlWCCName</key>
-			<string>accessmath</string>
+			<string>AccessMath</string>
 		</dict>
 	</array>
 </dict>
