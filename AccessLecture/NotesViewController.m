@@ -31,8 +31,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    startTag = @"<black>";
-    endTag = @"</black>";
+    startTag = @"<CD>";
+    endTag = @"</CD>";
     isBackSpacePressed = FALSE;
     // Do any additional setup after loading the view from its nib.
 }
@@ -62,7 +62,7 @@
             UIView *outerView = [[UIView alloc] initWithFrame:CGRectMake([gesture locationInView:self.view].x, [gesture locationInView:self.view].y, 350, 150)];
          
             FTCoreTextView *text = [[FTCoreTextView alloc]initWithFrame:CGRectMake([gesture locationInView:outerView].x+10 , [gesture locationInView:outerView].y+10 , 300, 120)];
-            [text setText:@"<FB>Type Notes...</FB>"];
+           [text setText:@""];
             [text addStyles:[self coreTextStyle]];
             [text setUserInteractionEnabled:YES];
             UITextView *textBubble = [[UITextView alloc]initWithFrame:CGRectMake([gesture locationInView:outerView].x, [gesture locationInView:outerView].y , 310, 120)];
@@ -75,7 +75,7 @@
             textBubble.textColor = [UIColor clearColor];
             textBubble.textAlignment = NSTextAlignmentJustified;
        
-            textBubble.text = @"Type Notes...";
+            textBubble.text = @" ";
             textBubble.delegate = self;
             textBubble.layer.borderWidth = 3;
             textBubble.layer.cornerRadius = 20;
