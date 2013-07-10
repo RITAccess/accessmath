@@ -14,8 +14,8 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.imageView.layer.cornerRadius = 20;
-        self.imageView.layer.borderWidth = 1;
+       // self.imageView.layer.cornerRadius = 20;
+        //self.imageView.layer.borderWidth = 1;
     }
     return self;
 }
