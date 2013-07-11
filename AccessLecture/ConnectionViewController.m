@@ -32,7 +32,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    [_statusLabel setHidden:YES];
     [_activity stopAnimating];
     [_streamButton setEnabled:NO];
     
@@ -41,8 +40,7 @@
     
     // Check if already connected
     if ([server connected]) {
-        [_statusLabel setText:@"Connected"];
-        [_statusLabel setHidden:NO];
+        [_statusLabel.topItem setTitle:@"Connected"];
         [_connectionAddress setText:server.connectionURL];
         [_streamButton setEnabled:YES];
     }
@@ -58,8 +56,7 @@
 - (IBAction)checkAddress:(id)sender
 {
     [_activity startAnimating];
-    [_statusLabel setText:@"Checking connection"];
-    [_statusLabel setHidden:NO];
+    [_statusLabel.topItem setTitle:@"Checking connection"];
     [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
         [self connect];
     }];
@@ -90,11 +87,11 @@
     [server setConnectionURL:[_connectionAddress text]];
     [server connectCompletion:^(BOOL success) {
         if (success) {
-            [_statusLabel setText:@"Connected"];
+            [_statusLabel.topItem setTitle:@"Connected"];
             [_activity stopAnimating];
             [_streamButton setEnabled:YES];
         } else {
-            [_statusLabel setText:@"Failed to connect to server"];
+            [_statusLabel.topItem setTitle:@"Failed to connect to server"];
             [_activity stopAnimating];
         }
     }];

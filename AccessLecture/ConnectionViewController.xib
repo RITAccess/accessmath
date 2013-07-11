@@ -11,7 +11,7 @@
                 <outlet property="connectionAddress" destination="vNs-ie-IOp" id="2e2-xa-Eew"/>
                 <outlet property="lecture" destination="BXe-wN-F1f" id="rLR-Dt-oyC"/>
                 <outlet property="navigationBar" destination="hif-kF-7wZ" id="lt5-ti-bQ0"/>
-                <outlet property="statusLabel" destination="IwU-hA-Jxa" id="Rtc-vH-imM"/>
+                <outlet property="statusLabel" destination="hif-kF-7wZ" id="PD4-Iq-TBB"/>
                 <outlet property="streamButton" destination="nvm-oF-JJE" id="Bqz-D0-2kb"/>
                 <outlet property="view" destination="2" id="3"/>
             </connections>
@@ -57,16 +57,9 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ejI-6t-oIB">
-                    <rect key="frame" x="20" y="147" width="20" height="20"/>
+                    <rect key="frame" x="465" y="12" width="20" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </activityIndicatorView>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Checking connection..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IwU-hA-Jxa">
-                    <rect key="frame" x="48" y="147" width="466" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

@@ -74,7 +74,6 @@
 		4C62BECD175651DB00CAF4CF /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F99F1FA1543641E0065CBB9 /* FileManager.m */; };
 		4C861C06178EE0B600CD499C /* StreamLayout.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C861C05178EE0B600CD499C /* StreamLayout.storyboard */; };
 		4C8ABE78177C87BD007C934C /* StreamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8ABE76177C87BD007C934C /* StreamViewController.m */; };
-		4C8ABE79177C87BD007C934C /* StreamViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C8ABE77177C87BD007C934C /* StreamViewController.xib */; };
 		4C8ABE80177CA356007C934C /* NotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8ABE7E177CA356007C934C /* NotesViewController.m */; };
 		4C8ABE81177CA356007C934C /* NotesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C8ABE7F177CA356007C934C /* NotesViewController.xib */; };
 		4C96FA84176289DE002C0D74 /* ConnectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C96FA83176289DE002C0D74 /* ConnectViewController.m */; };
@@ -210,7 +209,6 @@
 		4C861C05178EE0B600CD499C /* StreamLayout.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StreamLayout.storyboard; sourceTree = "<group>"; };
 		4C8ABE75177C87BD007C934C /* StreamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamViewController.h; sourceTree = "<group>"; };
 		4C8ABE76177C87BD007C934C /* StreamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamViewController.m; sourceTree = "<group>"; };
-		4C8ABE77177C87BD007C934C /* StreamViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StreamViewController.xib; sourceTree = "<group>"; };
 		4C8ABE7D177CA356007C934C /* NotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesViewController.h; sourceTree = "<group>"; };
 		4C8ABE7E177CA356007C934C /* NotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesViewController.m; sourceTree = "<group>"; };
 		4C8ABE7F177CA356007C934C /* NotesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotesViewController.xib; sourceTree = "<group>"; };
@@ -628,7 +626,6 @@
 				4CD0A5EB177DC96E00864228 /* Connect */,
 				4C8ABE75177C87BD007C934C /* StreamViewController.h */,
 				4C8ABE76177C87BD007C934C /* StreamViewController.m */,
-				4C8ABE77177C87BD007C934C /* StreamViewController.xib */,
 				4C861C05178EE0B600CD499C /* StreamLayout.storyboard */,
 			);
 			name = StreamViewController;
@@ -786,7 +783,6 @@
 				3FED96541370909100D8D1B8 /* Notes.png in Resources */,
 				4C5C50C6177B59D90095801A /* pin.png in Resources */,
 				2CF6BA911784919300A695CC /* arrow.png in Resources */,
-				4C8ABE79177C87BD007C934C /* StreamViewController.xib in Resources */,
 				3FED96551370909100D8D1B8 /* Save.png in Resources */,
 				3FED96561370909100D8D1B8 /* Selection.png in Resources */,
 				4C8ABE81177CA356007C934C /* NotesViewController.xib in Resources */,

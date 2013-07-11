@@ -13,7 +13,6 @@
 #import "ConnectionViewController.h"
 #import "StreamDrawing.h"
 
-static NSString* const StreamViewControllerXIB = @"StreamViewController";
 static NSString* const StreamViewControllerStoryboard = @"StreamLayout";
 static NSString* const StreamViewControllerID = @"streamvc";
 
