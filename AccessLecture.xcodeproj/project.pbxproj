@@ -67,6 +67,8 @@
 		3FFCFB2213A25388003DAB63 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FFCFB2113A25388003DAB63 /* MessageUI.framework */; };
 		4C0966B01768D6520063AED7 /* Networking.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0966AF1768D6520063AED7 /* Networking.m */; };
 		4C2A1B871781DD2800AE4147 /* PrimWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2A1B861781DD2800AE4147 /* PrimWrapper.m */; };
+		4C4B8BFA178EF57200C2F94B /* QRScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B8BF9178EF57200C2F94B /* QRScanner.m */; };
+		4C4B8BFC178EF8D900C2F94B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C4B8BFB178EF8D900C2F94B /* AVFoundation.framework */; };
 		4C51C79D1768F5BE0045DF42 /* Lectures.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C51C79C1768F5BE0045DF42 /* Lectures.m */; };
 		4C5B55FB17720A15005B79CF /* server.crt in Resources */ = {isa = PBXBuildFile; fileRef = 4C5B55FA17720A15005B79CF /* server.crt */; };
 		4C5C50C6177B59D90095801A /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C5C50C5177B59D90095801A /* pin.png */; };
@@ -201,6 +203,9 @@
 		4C0966AF1768D6520063AED7 /* Networking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Networking.m; sourceTree = "<group>"; };
 		4C2A1B851781DD2800AE4147 /* PrimWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrimWrapper.h; sourceTree = "<group>"; };
 		4C2A1B861781DD2800AE4147 /* PrimWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrimWrapper.m; sourceTree = "<group>"; };
+		4C4B8BF8178EF57200C2F94B /* QRScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRScanner.h; sourceTree = "<group>"; };
+		4C4B8BF9178EF57200C2F94B /* QRScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRScanner.m; sourceTree = "<group>"; };
+		4C4B8BFB178EF8D900C2F94B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		4C51C79C1768F5BE0045DF42 /* Lectures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lectures.m; sourceTree = "<group>"; };
 		4C5B55FA17720A15005B79CF /* server.crt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = server.crt; sourceTree = "<group>"; };
 		4C5C50C5177B59D90095801A /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin.png; sourceTree = "<group>"; };
@@ -238,6 +243,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C4B8BFC178EF8D900C2F94B /* AVFoundation.framework in Frameworks */,
 				3F0F3B71178DCB8B00163C2A /* CoreText.framework in Frameworks */,
 				3FED960C1370863E00D8D1B8 /* UIKit.framework in Frameworks */,
 				3F6D11D617625F2D0066A4FA /* Security.framework in Frameworks */,
@@ -499,6 +505,7 @@
 		3FED960A1370863E00D8D1B8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4C4B8BFB178EF8D900C2F94B /* AVFoundation.framework */,
 				3F0F3B70178DCB8B00163C2A /* CoreText.framework */,
 				3F6D11D217625F150066A4FA /* libicucore.dylib */,
 				3F6D11D017625F0D0066A4FA /* CFNetwork.framework */,
@@ -670,6 +677,8 @@
 				4CD0A5EC177DC98600864228 /* ConnectionViewController.h */,
 				4CD0A5ED177DC98600864228 /* ConnectionViewController.m */,
 				4CD0A5EE177DC98600864228 /* ConnectionViewController.xib */,
+				4C4B8BF8178EF57200C2F94B /* QRScanner.h */,
+				4C4B8BF9178EF57200C2F94B /* QRScanner.m */,
 			);
 			name = Connect;
 			sourceTree = "<group>";
@@ -842,6 +851,7 @@
 				3F99F209154375270065CBB9 /* Position.m in Sources */,
 				3FCD5D1715438472005F2A60 /* AccessLectureRuntime.m in Sources */,
 				4C62BECD175651DB00CAF4CF /* FileManager.m in Sources */,
+				4C4B8BFA178EF57200C2F94B /* QRScanner.m in Sources */,
 				2C0F886B1760D8EC0062BD16 /* DrawView.m in Sources */,
 				3F6D11C417625EA20066A4FA /* ALNetworkInterface.m in Sources */,
 				3F0F3B6F178DBC1800163C2A /* FTCoreTextStyle.m in Sources */,

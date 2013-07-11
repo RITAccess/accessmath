@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "ALNetworkInterface.h"
+#import "QRScanner.h"
+#import <AVFoundation/AVFoundation.h>
 
 static NSString* const ConnectionViewControllerXIB = @"ConnectionViewController";
 
-@protocol ConnectionView <NSObject>
+@protocol ConnectionView <NSObject, AVCaptureMetadataOutputObjectsDelegate>
 
 - (void)didCompleteWithConnection:(ALNetworkInterface *)server;
 - (void)userDidCancel;
@@ -25,11 +27,13 @@ static NSString* const ConnectionViewControllerXIB = @"ConnectionViewController"
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *streamButton;
 @property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
 @property (weak, nonatomic) IBOutlet UITextField *lecture;
+@property (weak, nonatomic) IBOutlet UIView *previewView;
 
 @property id<ConnectionView> delegate;
 
 - (IBAction)checkAddress:(id)sender;
 - (IBAction)userDidCancel:(id)sender;
 - (IBAction)connectToStream:(id)sender;
+- (IBAction)scan:(id)sender;
 
 @end

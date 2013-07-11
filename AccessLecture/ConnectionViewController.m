@@ -79,6 +79,18 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)scan:(id)sender
+{
+    QRScanner *scanner = [QRScanner new];
+    [scanner startCapture];
+    AVCaptureSession *session  = [scanner session];
+    AVCaptureVideoPreviewLayer *preview = [[AVCaptureVideoPreviewLayer alloc] initWithSession:session];
+    [preview setVideoGravity:AVLayerVideoGravityResizeAspectFill];
+    [preview setBounds:_previewView.layer.bounds];
+    [preview setPosition:CGPointMake(CGRectGetMidX(_previewView.layer.bounds), CGRectGetMidY(_previewView.layer.bounds))];
+    [_previewView.layer addSublayer:preview];
+}
+
 #pragma mark Connect
 
 - (void)connect
