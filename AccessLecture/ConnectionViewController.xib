@@ -12,7 +12,7 @@
                 <outlet property="lecture" destination="BXe-wN-F1f" id="rLR-Dt-oyC"/>
                 <outlet property="navigationBar" destination="hif-kF-7wZ" id="lt5-ti-bQ0"/>
                 <outlet property="statusLabel" destination="IwU-hA-Jxa" id="Rtc-vH-imM"/>
-                <outlet property="streamButton" destination="gTm-PV-Bvn" id="QK7-3g-r3O"/>
+                <outlet property="streamButton" destination="nvm-oF-JJE" id="Bqz-D0-2kb"/>
                 <outlet property="view" destination="2" id="3"/>
             </connections>
         </placeholder>
@@ -29,6 +29,11 @@
                             <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="aHE-9t-yvo">
                                 <connections>
                                     <action selector="userDidCancel:" destination="-1" id="HJk-zu-RVW"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem key="rightBarButtonItem" enabled="NO" title="Join" id="nvm-oF-JJE">
+                                <connections>
+                                    <action selector="connectToStream:" destination="-1" id="VAg-sY-NUG"/>
                                 </connections>
                             </barButtonItem>
                         </navigationItem>
@@ -62,21 +67,6 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gTm-PV-Bvn">
-                    <rect key="frame" x="20" y="285" width="494" height="315"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="83"/>
-                    <state key="normal" title="Join Stream">
-                        <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <state key="highlighted">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="connectToStream:" destination="-1" eventType="touchUpInside" id="1Pr-N3-8Yj"/>
-                    </connections>
-                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

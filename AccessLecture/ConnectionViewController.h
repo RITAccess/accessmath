@@ -22,7 +22,7 @@ static NSString* const ConnectionViewControllerXIB = @"ConnectionViewController"
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activity;
 @property (weak, nonatomic) IBOutlet UITextField *connectionAddress;
-@property (weak, nonatomic) IBOutlet UIButton *streamButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *streamButton;
 @property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
 @property (weak, nonatomic) IBOutlet UITextField *lecture;
 
