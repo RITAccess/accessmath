@@ -90,18 +90,10 @@
 
 - (void)panHandle:(UIPanGestureRecognizer *)gesture
 {
-    
-    if (gesture.state == (UIGestureRecognizerStateBegan | UIGestureRecognizerStateEnded)){
-        wrapper = [PrimWrapper wrapperWithTransform:[[self.childViewControllers firstObject] view].transform];
-    }
-    
-    CGAffineTransform pan = CGAffineTransformTranslate(wrapper.transform, gesture.view.frame.origin.x, gesture.view.frame.origin.y);
-    
     [self.childViewControllers enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(id<LectureViewChild> obj, NSUInteger idx, BOOL *stop) {
         if ([obj respondsToSelector:@selector(willApplyTransformToView)]) {
             
             UIView *view = [obj willApplyTransformToView];
-            view.transform = pan;
             
             CGPoint translation = [gesture translationInView:self.view];
             

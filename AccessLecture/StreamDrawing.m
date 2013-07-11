@@ -53,6 +53,12 @@
     [update addObject:new];
 }
 
+- (void)clearScreen
+{
+    [update removeAllObjects];
+    [self setNeedsDisplay];
+}
+
 - (void)drawRect:(CGRect)rect
 {
     [self setBackgroundColor:[UIColor clearColor]]; // Ensuring background isn't white.

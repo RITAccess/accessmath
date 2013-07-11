@@ -24,6 +24,8 @@
     // For storing large updates
     NSMutableArray *bulkData;
     int updateSize;
+    
+    NSString *lecture;
 }
 
 @synthesize connectionURL = connectionURL;
@@ -65,6 +67,7 @@
  */
 - (void)requestAccessToLectureSteam:(NSString *)name
 {
+    lecture = name;
     [socketConnection sendEvent:@"steaming-request" withData:name];
 }
 
@@ -121,6 +124,15 @@
     if ([packet.name isEqualToString:@"lecture-response-failed"]) {
         lectureRequest(nil, false);
     }
+    // General Info
+    if ([packet.name isEqualToString:@"info"]){
+        id data = [packet.dataAsJSON valueForKeyPath:@"args"][0];
+        if ([[data valueForKeyPath:@"request"] isEqualToString:@"failed"]) {
+            if ([_delegate respondsToSelector:@selector(didFailToConnectTo:)]) {
+                [_delegate didFailToConnectTo:lecture];
+            }
+        }
+    }
     // Recive update
     if ([packet.name isEqualToString:@"update"]) {
         NSString *data = [packet.dataAsJSON valueForKeyPath:@"args"][0];
@@ -140,7 +152,12 @@
     if ([packet.name isEqualToString:@"get-name"]) {
         [socketConnection sendEvent:@"set-name" withData:[[UIDevice currentDevice] name]];;
     }
-    
+    // Clear Screen
+    if ([packet.name isEqualToString:@"clear-screen"]) {
+        if ([_delegate respondsToSelector:@selector(didWantToClearScreen)]) {
+            [_delegate didWantToClearScreen];
+        }
+    }
 }
 
 /**

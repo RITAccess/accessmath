@@ -91,8 +91,6 @@ NSString* urlString = @"http://michaeltimbrook.com/common/library/apps/Screen/te
     imageView = [[UIImageView alloc]initWithImage:img];
 	imageView.userInteractionEnabled = YES;
     [imageView setTag:ZOOM_VIEW_TAG];
-    [[AccessLectureRuntime defaultRuntime] openDocument];
-    
     scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 180, IPAD_MINI_HEIGHT, 468)];
     scrollView.contentSize = CGSizeMake(IPAD_MINI_HEIGHT, 468);
     scrollView.contentInset = UIEdgeInsetsMake(0, 0, 80, 0);

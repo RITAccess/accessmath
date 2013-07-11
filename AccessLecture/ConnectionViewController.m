@@ -79,7 +79,7 @@
 
 - (IBAction)connectToStream:(id)sender
 {
-    [server requestAccessToLectureSteam:@"Math Class"];
+    [server requestAccessToLectureSteam:_lecture.text];
     if ([_delegate respondsToSelector:@selector(didCompleteWithConnection:)]) {
         [_delegate didCompleteWithConnection:server];
     }
