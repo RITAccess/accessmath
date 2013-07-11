@@ -69,7 +69,16 @@
 
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection
 {
-    NSLog(@"Capture");
+    for (AVMetadataObject *meta in metadataObjects) {
+        if ([meta isKindOfClass:[AVMetadataMachineReadableCodeObject class]]) {
+            AVMetadataMachineReadableCodeObject *code = (AVMetadataMachineReadableCodeObject *)meta;
+            
+            id data = [NSJSONSerialization JSONObjectWithData:[code.stringValue dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:nil];
+        
+            NSLog(@"%@", data);
+            
+        }
+    }
 }
 
 @end
