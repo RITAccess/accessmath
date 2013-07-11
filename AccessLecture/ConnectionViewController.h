@@ -13,7 +13,7 @@
 
 static NSString* const ConnectionViewControllerXIB = @"ConnectionViewController";
 
-@protocol ConnectionView <NSObject, AVCaptureMetadataOutputObjectsDelegate>
+@protocol ConnectionView <NSObject>
 
 - (void)didCompleteWithConnection:(ALNetworkInterface *)server;
 - (void)userDidCancel;

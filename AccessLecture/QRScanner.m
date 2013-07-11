@@ -16,8 +16,8 @@
 
 @implementation QRScanner
 {
-    AVCaptureSession *session;
-    dispatch_queue_t _session_queue;
+    __strong AVCaptureSession *session;
+    __strong dispatch_queue_t _session_queue;
 }
 
 - (id)init
@@ -51,15 +51,6 @@
     if ([session canAddOutput:_metaData])
         [session addOutput:_metaData];
     
-    if ([[_metaData availableMetadataObjectTypes] containsObject:AVMetadataObjectTypeQRCode]) {
-        _metaData.metadataObjectTypes = @[AVMetadataObjectTypeQRCode];
-    } else {
-        // TODO tear down
-        NSLog(@"Failed");
-    }
-    
-    [[_metaData connectionWithMediaType:AVMediaTypeMetadata] setEnabled:YES];
-    
 }
 
 - (void)startCapture
@@ -67,16 +58,18 @@
     dispatch_sync(_session_queue, ^{
         [self setUpSession];
         [session startRunning];
+        if ([[_metaData availableMetadataObjectTypes] containsObject:AVMetadataObjectTypeQRCode]) {
+            _metaData.metadataObjectTypes = @[AVMetadataObjectTypeQRCode];
+        } else {
+            // TODO tear down
+            NSLog(@"Failed");
+        }
     });
 }
 
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection
 {
-    for (AVMetadataObject *meta in metadataObjects) {
-        if ([meta isKindOfClass:[AVMetadataObjectTypeFace class]]) {
-            NSLog(@"Face!");
-        }
-    }
+    NSLog(@"Capture");
 }
 
 @end

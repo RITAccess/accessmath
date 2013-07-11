@@ -16,6 +16,7 @@
 
 @implementation ConnectionViewController {
     ALNetworkInterface *server;
+    QRScanner *scanner;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -44,7 +45,7 @@
         [_connectionAddress setText:server.connectionURL];
         [_streamButton setEnabled:YES];
     }
-    
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -81,7 +82,7 @@
 
 - (IBAction)scan:(id)sender
 {
-    QRScanner *scanner = [QRScanner new];
+    scanner = [QRScanner new];
     [scanner startCapture];
     AVCaptureSession *session  = [scanner session];
     AVCaptureVideoPreviewLayer *preview = [[AVCaptureVideoPreviewLayer alloc] initWithSession:session];
