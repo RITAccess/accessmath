@@ -120,21 +120,4 @@
         <image name="star.png" width="1024" height="1024"/>
         <image name="undo.png" width="1024" height="1024"/>
     </resources>
-    <classes>
-        <class className="DrawViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DrawViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="clearNotesButtonPress:"/>
-                <relationship kind="action" name="penSizeSlide:"/>
-                <relationship kind="action" name="shapeButtonPress:"/>
-                <relationship kind="action" name="undoButtonPress:"/>
-                <relationship kind="outlet" name="penSizeSlider" candidateClass="UISlider"/>
-                <relationship kind="outlet" name="shapeButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="toolbarView" candidateClass="UIView"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-    </classes>
 </document>

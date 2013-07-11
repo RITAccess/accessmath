@@ -73,9 +73,8 @@
             [anImageView setCenter:textBubble.bounds.origin];
             [anImageView setBounds:CGRectMake([gesture locationInView:self.view].x, [gesture locationInView:self.view].y, 50, 50)];
             textBubble.textColor = [UIColor clearColor];
-            textBubble.textAlignment = NSTextAlignmentJustified;
-       
-            textBubble.text = @" ";
+            [textBubble setAutocorrectionType: UITextAutocorrectionTypeNo];
+            textBubble.text = @"";
             textBubble.delegate = self;
             textBubble.layer.borderWidth = 3;
             textBubble.layer.cornerRadius = 20;
@@ -228,7 +227,6 @@ else if(_isDrawing)
     else if(CGRectContainsPoint([[gestureRecognizer.view.subviews objectAtIndex:0] frame],[gestureRecognizer locationInView:gestureRecognizer.view] ))
     {
      
-
         [[gestureRecognizer.view.gestureRecognizers objectAtIndex:2] setEnabled:!([[gestureRecognizer.view.gestureRecognizers objectAtIndex:2] isEnabled])];
         return;
     }
@@ -244,36 +242,56 @@ else if(_isDrawing)
 
 }
 - (void)textViewDidChange:(UITextView *)textView{
-    if(!isBackSpacePressed){
-    FTCoreTextView *temp =  [[textView.superview  subviews] objectAtIndex:0];
-    char tempchar = [textView.text characterAtIndex:[textView.text length]-1];
+     FTCoreTextView *temp =  [[textView.superview  subviews] objectAtIndex:0];
+    if(!isBackSpacePressed&&(textView.text.length==textView.selectedRange.location)){
+     char tempchar = [textView.text characterAtIndex:[textView.text length]-1];
     [[[textView.superview  subviews] objectAtIndex:0] setText:[NSString stringWithFormat:@"%@%@%c%@",temp.text,startTag,tempchar,endTag]];
     textView.textColor = [UIColor clearColor];
     CGRect frame = textView.frame;
     frame.size.height = textView.contentSize.height;
+        frame.size.width = textView.contentSize.width;
     frame.origin = textView.frame.origin;
     textView.frame = frame;
     [textView.superview setFrame:CGRectMake(textView.superview.frame.origin.x, textView.superview.frame.origin.y, textView.frame.size.width+20, textView.frame.size.height+20)];
-   
-      [[[textView.superview  subviews] objectAtIndex:0] setFrame:CGRectMake(textView.frame.origin.x, textView.frame.origin.y, 300, textView.frame.size.height)];
-
-    [[[textView.superview  subviews] objectAtIndex:1] becomeFirstResponder];
+   [[[textView.superview  subviews] objectAtIndex:0] setFrame:CGRectMake(textView.frame.origin.x, textView.frame.origin.y, 300, textView.frame.size.height)];
+   [[[textView.superview  subviews] objectAtIndex:1] becomeFirstResponder];
      }
+    
+    if((!isBackSpacePressed)&&(textView.text.length>textView.selectedRange.location)){
+        NSRange preRange = NSMakeRange(0, (textView.selectedRange.location-1)*10);
+        NSRange postRange = NSMakeRange((textView.selectedRange.location-1)*10, (textView.text.length-textView.selectedRange.location)*10);
+        NSString *preText = [temp.text substringWithRange:preRange];
+        NSString *postText = [temp.text substringWithRange:postRange];
+        char tempchar = [textView.text characterAtIndex:textView.selectedRange.location-1];
+       [[[textView.superview  subviews] objectAtIndex:0] setText:[NSString stringWithFormat:@"%@%@%c%@%@",preText,startTag,tempchar,endTag,postText]];
+        [[[textView.superview  subviews] objectAtIndex:0] setNeedsDisplay];
+        [textView becomeFirstResponder];
+    }
   }
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+  FTCoreTextView *temp =  [[textView.superview  subviews] objectAtIndex:0];
     if(text.length<=0)
     {
-        isBackSpacePressed = TRUE;
-        FTCoreTextView *temp =  [[textView.superview  subviews] objectAtIndex:0];
+       isBackSpacePressed = TRUE;
+        if(textView.selectedRange.location==textView.text.length){
         NSRange selectedRange = NSMakeRange(0, (temp.text.length - startTag.length-endTag.length-1));
         NSString *str = [temp.text substringWithRange:selectedRange];
-        NSLog(@"%@",str);
-      
-        NSLog(@"backspace pressed");
+       // NSLog(@"%@",str);
         [[[textView.superview  subviews] objectAtIndex:0] setText:str];
         [[[textView.superview  subviews] objectAtIndex:0] setNeedsDisplay];
         [textView becomeFirstResponder];
         return true;
+        }
+        else{
+           NSRange preRange = NSMakeRange(0, (textView.selectedRange.location-1)*10);
+           NSRange postRange = NSMakeRange((textView.selectedRange.location)*10, ((textView.text.length-textView.selectedRange.location)*10));
+            NSString *preText = [temp.text substringWithRange:preRange];
+            NSString *postText = [temp.text substringWithRange:postRange];
+            [[[textView.superview  subviews] objectAtIndex:0] setText:[preText stringByAppendingString:postText]];
+            [[[textView.superview  subviews] objectAtIndex:0] setNeedsDisplay];
+            [textView becomeFirstResponder];
+
+        }
     }
     else{
         isBackSpacePressed = FALSE;

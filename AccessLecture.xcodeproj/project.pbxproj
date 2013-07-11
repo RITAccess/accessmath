@@ -23,6 +23,8 @@
 		3F0F3B6E178DBBBD00163C2A /* UIView+Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0F3B66178DBB6D00163C2A /* UIView+Layout.m */; };
 		3F0F3B6F178DBC1800163C2A /* FTCoreTextStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0F3B68178DBB8700163C2A /* FTCoreTextStyle.m */; };
 		3F0F3B71178DCB8B00163C2A /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F0F3B70178DCB8B00163C2A /* CoreText.framework */; };
+		3F0F3B74178DF32E00163C2A /* drawNote.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F0F3B72178DF32E00163C2A /* drawNote.png */; };
+		3F0F3B75178DF32E00163C2A /* TextNote.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F0F3B73178DF32E00163C2A /* TextNote.png */; };
 		3F0FFCFB1371A93A00299663 /* Back.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F0FFCFA1371A93A00299663 /* Back.png */; };
 		3F2DB24113A65C2D00041736 /* ColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DB23F13A65C2D00041736 /* ColorViewController.m */; };
 		3F5E3F1E137C5CA30022F3C9 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F5E3F1D137C5CA30022F3C9 /* Default-Landscape~ipad.png */; };
@@ -129,6 +131,8 @@
 		3F0F3B69178DBB8700163C2A /* FTCoreTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FTCoreTextView.h; sourceTree = "<group>"; };
 		3F0F3B6A178DBB8700163C2A /* FTCoreTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FTCoreTextView.m; sourceTree = "<group>"; };
 		3F0F3B70178DCB8B00163C2A /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		3F0F3B72178DF32E00163C2A /* drawNote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drawNote.png; sourceTree = "<group>"; };
+		3F0F3B73178DF32E00163C2A /* TextNote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TextNote.png; sourceTree = "<group>"; };
 		3F0FFCFA1371A93A00299663 /* Back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Back.png; path = "Lecture View Images/Back.png"; sourceTree = "<group>"; };
 		3F2DB23E13A65C2D00041736 /* ColorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorViewController.h; sourceTree = "<group>"; };
 		3F2DB23F13A65C2D00041736 /* ColorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorViewController.m; sourceTree = "<group>"; };
@@ -320,6 +324,8 @@
 		2CFC32A1175E7ED600384AEC /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				3F0F3B72178DF32E00163C2A /* drawNote.png */,
+				3F0F3B73178DF32E00163C2A /* TextNote.png */,
 				4C5C50C5177B59D90095801A /* pin.png */,
 				3FED964313708FC800D8D1B8 /* Lecture View Images */,
 				3F959F0613C7555500A6DA79 /* ClearNotes.png */,
@@ -782,6 +788,7 @@
 				3FED96531370909100D8D1B8 /* Invert.png in Resources */,
 				3FED96541370909100D8D1B8 /* Notes.png in Resources */,
 				4C5C50C6177B59D90095801A /* pin.png in Resources */,
+				3F0F3B74178DF32E00163C2A /* drawNote.png in Resources */,
 				2CF6BA911784919300A695CC /* arrow.png in Resources */,
 				4C8ABE79177C87BD007C934C /* StreamViewController.xib in Resources */,
 				3FED96551370909100D8D1B8 /* Save.png in Resources */,
@@ -796,6 +803,7 @@
 				2CF6BA981784920D00A695CC /* undo.png in Resources */,
 				3FAAA850137848AB00F79C0C /* Icon.png in Resources */,
 				3F5E3F1E137C5CA30022F3C9 /* Default-Landscape~ipad.png in Resources */,
+				3F0F3B75178DF32E00163C2A /* TextNote.png in Resources */,
 				3F5E3F21137C5CAC0022F3C9 /* Default-Portrait~ipad.png in Resources */,
 				3F63540C13A157C40024E6E9 /* Settings.bundle in Resources */,
 				3F959F0713C7555500A6DA79 /* ClearNotes.png in Resources */,
