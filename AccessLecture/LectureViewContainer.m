@@ -16,19 +16,16 @@
 @end
 
 @implementation LectureViewContainer {
-    BOOL menuOpen;
-    NSArray *menuItems;
-    
     // Controllers
     NotesViewController *nvc;
     DrawViewController *dcv;
     StreamViewController *svc;
     
-    NSArray *nvcPersistent;
-    NSArray *dcvPersistent;
-    NSArray *svcPersistent;
+    NSArray *menuItems, *nvcPersistent, *dcvPersistent, *svcPersistent;
     
-    BOOL isZoomed;  // Used for checking zoom double tap.
+    BOOL isZoomed, menuOpen;  // Used for checking zoom double tap.
+    
+    CGFloat currentScale;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -84,17 +81,29 @@
     }];
 }
 
-- (void)pinchZoom:(UIPinchGestureRecognizer *)reg
+/**
+ * Manages the scale of each view in the array of child view controllers. Currently
+ * trying to limit the rate at which the views are scaled.
+ */
+- (void)pinchZoom:(UIPinchGestureRecognizer *)gesture
 {
+    // Limiting scale speed.
+    if (gesture.state == UIGestureRecognizerStateBegan){
+        currentScale = gesture.scale;
+    }
+    
     [self.childViewControllers enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(id<LectureViewChild> obj, NSUInteger idx, BOOL *stop) {
         if ([obj respondsToSelector:@selector(willApplyTransformToView)]) {
             UIView *view = [obj willApplyTransformToView];
-            [view setTransform:CGAffineTransformScale(view.transform, reg.scale, reg.scale)];
+            [view setTransform:CGAffineTransformScale(view.transform, currentScale, currentScale)];
             isZoomed = true;
         }
     }];
 }
 
+/**
+ * Manages pan. Testing.
+ */
 - (void)panHandle:(UIPanGestureRecognizer *)gesture
 {
     [self.childViewControllers enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(id<LectureViewChild> obj, NSUInteger idx, BOOL *stop) {
@@ -105,31 +114,33 @@
             
             [gesture setTranslation:CGPointMake(0, 0) inView:view];
             
-            // Clamp Left and Top Sides of View
-            if (view.frame.origin.x > 0){
-                view.frame = CGRectMake(0, view.frame.origin.y, view.frame.size.width, view.frame.size.height);
-            }
-            
-            if (view.frame.origin.y > 0){
-                view.frame = CGRectMake(view.frame.origin.x, 0, view.frame.size.width, view.frame.size.height);
-            }
-            
-            // Clamp Right and Bottom Sides of View
-            if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)){
-                if (view.frame.origin.x < -500){
-                    view.frame = CGRectMake(-500, view.frame.origin.y, view.frame.size.width, view.frame.size.height);
+            if ([obj isMemberOfClass:[DrawViewController class]]){
+                // Clamp Left and Top Sides of View
+                if (view.frame.origin.x > 0){
+                    view.frame = CGRectMake(0, view.frame.origin.y, view.frame.size.width, view.frame.size.height);
                 }
                 
-                if (view.frame.origin.y < -1020){
-                    view.frame = CGRectMake(view.frame.origin.x, -1020, view.frame.size.width, view.frame.size.height);
-                }
-            } else if (UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)){
-                if (view.frame.origin.x < -765){
-                    view.frame = CGRectMake(-765, view.frame.origin.y, view.frame.size.width, view.frame.size.height);
+                if (view.frame.origin.y > 0){
+                    view.frame = CGRectMake(view.frame.origin.x, 0, view.frame.size.width, view.frame.size.height);
                 }
                 
-                if (view.frame.origin.y < -1020){
-                    view.frame = CGRectMake(view.frame.origin.x, -1020, view.frame.size.width, view.frame.size.height);
+                // Clamp Right and Bottom Sides of View
+                if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)){
+                    if (view.frame.origin.x < -500){
+                        view.frame = CGRectMake(-500, view.frame.origin.y, view.frame.size.width, view.frame.size.height);
+                    }
+                    
+                    if (view.frame.origin.y < -1020){
+                        view.frame = CGRectMake(view.frame.origin.x, -1020, view.frame.size.width, view.frame.size.height);
+                    }
+                } else if (UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)){
+                    if (view.frame.origin.x < -765){
+                        view.frame = CGRectMake(-765, view.frame.origin.y, view.frame.size.width, view.frame.size.height);
+                    }
+                    
+                    if (view.frame.origin.y < -1020){
+                        view.frame = CGRectMake(view.frame.origin.x, -1020, view.frame.size.width, view.frame.size.height);
+                    }
                 }
             }
             
@@ -246,7 +257,7 @@
     }
 }
 
-- (IBAction)back:(id)sender
+- (IBAction)backButtonTapped:(id)sender
 {
     if (menuOpen) {
         if (UIDeviceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
