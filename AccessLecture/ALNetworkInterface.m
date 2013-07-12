@@ -55,9 +55,9 @@
 
 - (void)getFullLecture:(NSString *)lectureName
 {
-    [self getFullLecture:lectureName completion:^(Lecture *lecture, BOOL found) {
+    [self getFullLecture:lectureName completion:^(Lecture *lecture_, BOOL found) {
         if([_delegate respondsToSelector:@selector(didFinishDownloadingLecture:)]) {
-            [_delegate didFinishDownloadingLecture:lecture]; 
+            [_delegate didFinishDownloadingLecture:lecture_];
         }
     }];
 }
