@@ -1,6 +1,6 @@
 accessmath
 ==========
-[![Stories in Ready](http://badge.waffle.io/ritaccess/accessmath.png)](http://waffle.io/ritaccess/accessmath)
+[![Stories in Ready](http://badge.waffle.io/ritaccess/accessmath.png)](http://waffle.io/ritaccess/accessmath) [![Build Status](https://travis-ci.org/RITAccess/accessmath.png?branch=master)](https://travis-ci.org/RITAccess/accessmath)
 
 Integrating an iOS application with Mimio to provide an accessible lecture stream.
 ### Current Contributors
