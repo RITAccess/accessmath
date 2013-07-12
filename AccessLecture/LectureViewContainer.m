@@ -95,8 +95,16 @@
     [self.childViewControllers enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(id<LectureViewChild> obj, NSUInteger idx, BOOL *stop) {
         if ([obj respondsToSelector:@selector(willApplyTransformToView)]) {
             UIView *view = [obj willApplyTransformToView];
-            [view setTransform:CGAffineTransformScale(view.transform, currentScale, currentScale)];
-            isZoomed = true;
+            if (view.frame.origin.x <= 0 || view.frame.origin.y <= 0){
+                [view setTransform:CGAffineTransformScale(view.transform, currentScale, currentScale)];
+                isZoomed = true;
+            }
+            
+            // Constraining outwards zoom from initial frame.
+            if (view.frame.origin.x >= 0 || view.frame.origin.y >= 0){
+                NSLog(@"Resetting frame to origin...");
+                [view setFrame:CGRectMake(0, 0, view.frame.size.width, view.frame.size.height)];
+            }
         }
     }];
 }
@@ -343,7 +351,6 @@
     }
     
     // Do state saving
-    
     for (UIViewController<LectureViewChild> *children in self.childViewControllers) {
         if ([children respondsToSelector:@selector(didSaveState)]) {
             [children didSaveState];
