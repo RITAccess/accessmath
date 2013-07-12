@@ -16,8 +16,9 @@
 
 @implementation QRScanner
 {
-    __strong AVCaptureSession *session;
-    __strong dispatch_queue_t _session_queue;
+    AVCaptureSession *session;
+    dispatch_queue_t _session_queue;
+    void(^didFinishWithInfo)(NSDictionary *);
 }
 
 - (id)init
