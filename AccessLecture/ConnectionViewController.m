@@ -49,6 +49,7 @@
     
     // Setup tap to scan
     _tapToScan = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scan:)];
+    [_tapToScan setCancelsTouchesInView:YES];
     [_previewView addGestureRecognizer:_tapToScan];
 
 }
