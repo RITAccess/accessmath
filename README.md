@@ -1,3 +1,4 @@
+[![Stories in Ready](http://badge.waffle.io/ritaccess/accessmath.png)](http://waffle.io/ritaccess/accessmath)  
 accessmath
 ==========
 Integrating an iOS application with Mimio to provide an accessible lecture stream.
