@@ -83,7 +83,21 @@
 - (IBAction)scan:(id)sender
 {
     scanner = [QRScanner new];
-    [scanner startCapture];
+    [scanner startCaptureWithCompletion:^(NSDictionary *info) {
+        [server disconnect];
+        [server setConnectionURL:info[@"url"]];
+        [server connectCompletion:^(BOOL success) {
+            if (success) {
+                [server requestAccessToLectureSteam:info[@"lecture"]];
+                if ([_delegate respondsToSelector:@selector(didCompleteWithConnection:)]) {
+                    [_delegate didCompleteWithConnection:server];
+                }
+                [self dismissViewControllerAnimated:YES completion:nil];
+            } else {
+                NSLog(@"fail");
+            }
+        }];
+    }];
     AVCaptureSession *session  = [scanner session];
     AVCaptureVideoPreviewLayer *preview = [[AVCaptureVideoPreviewLayer alloc] initWithSession:session];
     [preview setVideoGravity:AVLayerVideoGravityResizeAspectFill];

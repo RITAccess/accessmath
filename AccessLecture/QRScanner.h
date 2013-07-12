@@ -17,9 +17,10 @@
 - (void)setUpSession;
 
 /**
- * Start the QR capture
+ * Start the QR capture with a scan completion handler
+ * @param completion Scan did finish block
  */
-- (void)startCapture;
+- (void)startCaptureWithCompletion:(void(^)(NSDictionary *))completion;
 
 /**
  * @return The current AVCaptureSession

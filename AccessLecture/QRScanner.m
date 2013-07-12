@@ -53,15 +53,16 @@
     
 }
 
-- (void)startCapture
+- (void)startCaptureWithCompletion:(void(^)(NSDictionary *))completion
 {
+    didFinishWithInfo = completion;
     dispatch_sync(_session_queue, ^{
         [self setUpSession];
         [session startRunning];
         if ([[_metaData availableMetadataObjectTypes] containsObject:AVMetadataObjectTypeQRCode]) {
             _metaData.metadataObjectTypes = @[AVMetadataObjectTypeQRCode];
         } else {
-            // TODO tear down
+            // TODO tear down session
             NSLog(@"Failed");
         }
     });
@@ -73,10 +74,15 @@
         if ([meta isKindOfClass:[AVMetadataMachineReadableCodeObject class]]) {
             AVMetadataMachineReadableCodeObject *code = (AVMetadataMachineReadableCodeObject *)meta;
             
-            id data = [NSJSONSerialization JSONObjectWithData:[code.stringValue dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:nil];
-        
-            NSLog(@"%@", data);
-            
+            NSError *error;
+            NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[code.stringValue dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:&error];
+            if (!error && [[data allKeys] containsObject:@"url"] && [[data allKeys] containsObject:@"lecture"]) {
+                NSLog(@"Connect to %@ in class %@ read from QRCode", data[@"url"], data[@"lecture"]);
+                [session removeOutput:_metaData];
+                _metaData = nil;
+                // TODO tear down session
+                didFinishWithInfo(data);
+            }
         }
     }
 }
