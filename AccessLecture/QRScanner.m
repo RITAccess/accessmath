@@ -27,6 +27,7 @@
     if (self) {
         // init
         _session_queue = dispatch_queue_create("edu.rit.session", DISPATCH_QUEUE_SERIAL);
+        session = [[AVCaptureSession alloc] init];
     }
     return self;
 }
@@ -38,8 +39,6 @@
 
 - (void)setUpSession
 {
-    session = [[AVCaptureSession alloc] init];
-    
     AVCaptureDevice *videoDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
 	AVCaptureDeviceInput *videoIn = [[AVCaptureDeviceInput alloc] initWithDevice:videoDevice error:nil];
 	if ([session canAddInput:videoIn])

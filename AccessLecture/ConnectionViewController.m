@@ -17,6 +17,7 @@
 @implementation ConnectionViewController {
     ALNetworkInterface *server;
     QRScanner *scanner;
+    UITapGestureRecognizer *_tapToScan;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -45,6 +46,10 @@
         [_connectionAddress setText:server.connectionURL];
         [_streamButton setEnabled:YES];
     }
+    
+    // Setup tap to scan
+    _tapToScan = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scan:)];
+    [_previewView addGestureRecognizer:_tapToScan];
 
 }
 
@@ -80,8 +85,9 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (IBAction)scan:(id)sender
+- (void)scan:(UITapGestureRecognizer *)reg
 {
+    [_tapToScan setEnabled:NO];
     scanner = [QRScanner new];
     [scanner startCaptureWithCompletion:^(NSDictionary *info) {
         [server disconnect];
@@ -98,12 +104,16 @@
             }
         }];
     }];
-    AVCaptureSession *session  = [scanner session];
-    AVCaptureVideoPreviewLayer *preview = [[AVCaptureVideoPreviewLayer alloc] initWithSession:session];
-    [preview setVideoGravity:AVLayerVideoGravityResizeAspectFill];
-    [preview setBounds:_previewView.layer.bounds];
-    [preview setPosition:CGPointMake(CGRectGetMidX(_previewView.layer.bounds), CGRectGetMidY(_previewView.layer.bounds))];
-    [_previewView.layer addSublayer:preview];
+    [UIView animateWithDuration:0.4 animations:^{
+        [_previewView setFrame:self.view.frame];
+    } completion:^(BOOL finished) {
+        AVCaptureSession *session  = [scanner session];
+        AVCaptureVideoPreviewLayer *preview = [[AVCaptureVideoPreviewLayer alloc] initWithSession:session];
+        [preview setVideoGravity:AVLayerVideoGravityResizeAspectFill];
+        [preview setBounds:_previewView.layer.bounds];
+        [preview setPosition:CGPointMake(CGRectGetMidX(_previewView.layer.bounds), CGRectGetMidY(_previewView.layer.bounds))];
+        [_previewView.layer addSublayer:preview];
+    }];
 }
 
 #pragma mark Connect
