@@ -30,6 +30,7 @@
     
     PrimWrapper *wrapper;
     
+    BOOL isZoomed;  // Used for checking zoom double tap.
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -46,7 +47,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
     
     [_sideMenu setBackgroundColor:[UIColor colorWithRed:0.97 green:0.97 blue:0.97 alpha:0.8]];
     [_navBar setBackgroundColor:[UIColor colorWithRed:0.97 green:0.97 blue:0.97 alpha:0.5]];
@@ -56,13 +56,17 @@
     dcv = [[DrawViewController alloc] initWithNibName:DrawViewControllerXIB bundle:nil];
     svc = [[StreamViewController alloc] initWithNibName:StreamViewControllerXIB bundle:nil];
     
-    // Add pan and zoom
-    UIPinchGestureRecognizer *zoom = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(zoomHandle:)];
-    [self.view addGestureRecognizer:zoom];
+    // Adding gestures
+    UIPinchGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchZoom:)];
+    [self.view addGestureRecognizer:pinch];
     
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panHandle:)];
     pan.minimumNumberOfTouches = 2;
     [self.view addGestureRecognizer:pan];
+    
+    UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapZoom:)];
+    doubleTap.numberOfTapsRequired = 2;
+    [self.view addGestureRecognizer:doubleTap];
 
     [_container setBackgroundColor:[UIColor clearColor]];
     
@@ -71,19 +75,22 @@
     [self setUpMenuItems];
 }
 
-- (void)zoomHandle:(UIPinchGestureRecognizer *)reg
+- (void)tapZoom:(UITapGestureRecognizer *)gesture
 {
-    if (reg.state == ( UIGestureRecognizerStateBegan | UIGestureRecognizerStateEnded ) ) {
-        wrapper = [PrimWrapper wrapperWithTransform:[[self.childViewControllers firstObject] view].transform];
-    }
-    
-    CGAffineTransform zoom = CGAffineTransformScale(wrapper.transform, reg.scale, reg.scale);
-    
+    [self.childViewControllers enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(id<LectureViewChild> obj, NSUInteger idx, BOOL *stop) {
+        UIView *view = [obj willApplyTransformToView];
+        isZoomed ? [view setTransform:CGAffineTransformIdentity] : [view setTransform:CGAffineTransformScale(view.transform, 1.5, 1.5)];
+        isZoomed = !isZoomed;
+    }];
+}
+
+- (void)pinchZoom:(UIPinchGestureRecognizer *)reg
+{
     [self.childViewControllers enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(id<LectureViewChild> obj, NSUInteger idx, BOOL *stop) {
         if ([obj respondsToSelector:@selector(willApplyTransformToView)]) {
-            
             UIView *view = [obj willApplyTransformToView];
-            view.transform = zoom;
+            [view setTransform:CGAffineTransformScale(view.transform, reg.scale, reg.scale)];
+            isZoomed = true;
         }
     }];
 }

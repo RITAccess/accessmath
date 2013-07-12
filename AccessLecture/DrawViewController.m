@@ -216,7 +216,6 @@
 
 - (UIView *)willApplyTransformToView
 {
-    NSLog(@"Applying Draw View Controller Transformation!");
     return _drawView;
 }
 
