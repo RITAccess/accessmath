@@ -59,7 +59,7 @@
     [_activity startAnimating];
     [_statusLabel.topItem setTitle:@"Checking connection"];
     [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
-        [self connect];
+        [self connectWithURL:[NSURL URLWithString:_connectionAddress.text]];
     }];
 }
 
@@ -108,10 +108,10 @@
 
 #pragma mark Connect
 
-- (void)connect
+- (void)connectWithURL:(NSURL *)url
 {
     [server disconnect];
-    [server setConnectionURL:[_connectionAddress text]];
+    [server setConnectionURL:url.description];
     [server connectCompletion:^(BOOL success) {
         if (success) {
             [_statusLabel.topItem setTitle:@"Connected"];
