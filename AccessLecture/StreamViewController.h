@@ -13,7 +13,8 @@
 #import "ConnectionViewController.h"
 #import "StreamDrawing.h"
 
-static NSString* const StreamViewControllerXIB = @"StreamViewController";
+static NSString* const StreamViewControllerStoryboard = @"StreamLayout";
+static NSString* const StreamViewControllerID = @"streamvc";
 
 @interface StreamViewController : UIViewController <LectureViewChild, LectureStreaming, ConnectionView>
 - (IBAction)connectToStream:(id)sender; // Or leave

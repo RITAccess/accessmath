@@ -51,10 +51,13 @@
     [_sideMenu setBackgroundColor:[UIColor colorWithRed:0.97 green:0.97 blue:0.97 alpha:0.8]];
     [_navBar setBackgroundColor:[UIColor colorWithRed:0.97 green:0.97 blue:0.97 alpha:0.5]];
     
-    // Set up views
+    // Set up viewControllers
+    
     nvc = [[NotesViewController alloc] initWithNibName:NotesViewControllerXIB bundle:nil];
     dcv = [[DrawViewController alloc] initWithNibName:DrawViewControllerXIB bundle:nil];
-    svc = [[StreamViewController alloc] initWithNibName:StreamViewControllerXIB bundle:nil];
+    
+    svc = (StreamViewController *)[[UIStoryboard storyboardWithName:StreamViewControllerStoryboard bundle:nil] instantiateViewControllerWithIdentifier:StreamViewControllerID];
+
     
     // Add pan and zoom
     UIPinchGestureRecognizer *zoom = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(zoomHandle:)];
@@ -90,22 +93,48 @@
 
 - (void)panHandle:(UIPanGestureRecognizer *)gesture
 {
-    
-    if (gesture.state == (UIGestureRecognizerStateBegan | UIGestureRecognizerStateEnded)){
-        wrapper = [PrimWrapper wrapperWithTransform:[[self.childViewControllers firstObject] view].transform];
-    }
-    
-    CGAffineTransform pan = CGAffineTransformTranslate(wrapper.transform, gesture.view.frame.origin.x, gesture.view.frame.origin.y);
-    
     [self.childViewControllers enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(id<LectureViewChild> obj, NSUInteger idx, BOOL *stop) {
         if ([obj respondsToSelector:@selector(willApplyTransformToView)]) {
             
+            
             UIView *view = [obj willApplyTransformToView];
-            view.transform = pan;
             
             CGPoint translation = [gesture translationInView:self.view];
             
             [gesture setTranslation:CGPointMake(0, 0) inView:view];
+            
+            if ([obj isMemberOfClass:[DrawViewController class]])
+            {
+                // Clamp Left and Top Sides of View
+                if (view.frame.origin.x > 0){
+                    view.frame = CGRectMake(0, view.frame.origin.y, view.frame.size.width, view.frame.size.height);
+                }
+                
+                if (view.frame.origin.y > 0){
+                    view.frame = CGRectMake(view.frame.origin.x, 0, view.frame.size.width, view.frame.size.height);
+                }
+                
+                // Clamp Right and Bottom Sides of View
+                if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)){
+                    if (view.frame.origin.x < -500){
+                        view.frame = CGRectMake(-500, view.frame.origin.y, view.frame.size.width, view.frame.size.height);
+                    }
+                    
+                    if (view.frame.origin.y < -1020){
+                        view.frame = CGRectMake(view.frame.origin.x, -1020, view.frame.size.width, view.frame.size.height);
+                    }
+                } else if (UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)){
+                    if (view.frame.origin.x < -765){
+                        view.frame = CGRectMake(-765, view.frame.origin.y, view.frame.size.width, view.frame.size.height);
+                    }
+                    
+                    if (view.frame.origin.y < -1020){
+                        view.frame = CGRectMake(view.frame.origin.x, -1020, view.frame.size.width, view.frame.size.height);
+                    }
+                }
+                
+            }
+        
             
             [view setCenter:CGPointMake(view.center.x + translation.x, view.center.y + translation.y)];
         }
