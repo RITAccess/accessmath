@@ -46,6 +46,8 @@
 		3F959F0713C7555500A6DA79 /* ClearNotes.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F959F0613C7555500A6DA79 /* ClearNotes.png */; };
 		3F99F20215436E090065CBB9 /* Lecture.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F99F20115436E090065CBB9 /* Lecture.m */; };
 		3F99F209154375270065CBB9 /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F99F208154375270065CBB9 /* Position.m */; };
+		3FA6119717905EDF00A2B4C8 /* blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FA6119517905EDF00A2B4C8 /* blue.png */; };
+		3FA6119817905EDF00A2B4C8 /* redNote.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FA6119617905EDF00A2B4C8 /* redNote.png */; };
 		3FAAA850137848AB00F79C0C /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAAA84F137848AB00F79C0C /* Icon.png */; };
 		3FAE785413C786F800796813 /* accesslecture.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAE785313C786F800796813 /* accesslecture.png */; };
 		3FC32EBC13E05E0F00077291 /* biology.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FC32EBA13E05E0F00077291 /* biology.png */; };
@@ -177,6 +179,8 @@
 		3F99F207154375270065CBB9 /* Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Position.h; sourceTree = "<group>"; };
 		3F99F208154375270065CBB9 /* Position.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Position.m; sourceTree = "<group>"; };
 		3F9BA9C21758FE1C00BEFB55 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		3FA6119517905EDF00A2B4C8 /* blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue.png; sourceTree = "<group>"; };
+		3FA6119617905EDF00A2B4C8 /* redNote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redNote.png; sourceTree = "<group>"; };
 		3FAAA84F137848AB00F79C0C /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
 		3FAE785313C786F800796813 /* accesslecture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = accesslecture.png; sourceTree = "<group>"; };
 		3FC32EBA13E05E0F00077291 /* biology.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = biology.png; path = ../biology.png; sourceTree = "<group>"; };
@@ -324,6 +328,8 @@
 		2CFC32A1175E7ED600384AEC /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				3FA6119517905EDF00A2B4C8 /* blue.png */,
+				3FA6119617905EDF00A2B4C8 /* redNote.png */,
 				3F0F3B72178DF32E00163C2A /* drawNote.png */,
 				3F0F3B73178DF32E00163C2A /* TextNote.png */,
 				4C5C50C5177B59D90095801A /* pin.png */,
@@ -784,8 +790,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CBF301D177B7AB10087C17C /* DrawViewController.xib in Resources */,
+				3FA6119817905EDF00A2B4C8 /* redNote.png in Resources */,
 				3FED96161370863E00D8D1B8 /* InfoPlist.strings in Resources */,
 				3FED96531370909100D8D1B8 /* Invert.png in Resources */,
+				3FA6119717905EDF00A2B4C8 /* blue.png in Resources */,
 				3FED96541370909100D8D1B8 /* Notes.png in Resources */,
 				4C5C50C6177B59D90095801A /* pin.png in Resources */,
 				3F0F3B74178DF32E00163C2A /* drawNote.png in Resources */,

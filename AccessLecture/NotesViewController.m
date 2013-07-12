@@ -61,7 +61,7 @@
           
             UIView *outerView = [[UIView alloc] initWithFrame:CGRectMake([gesture locationInView:self.view].x, [gesture locationInView:self.view].y, 350, 150)];
          
-            FTCoreTextView *text = [[FTCoreTextView alloc]initWithFrame:CGRectMake([gesture locationInView:outerView].x+10 , [gesture locationInView:outerView].y+10 , 300, 120)];
+            FTCoreTextView *text = [[FTCoreTextView alloc]initWithFrame:CGRectMake(outerView.frame.origin.x+10 , outerView.frame.origin.y+10 , 300, 120)];
            [text setText:@""];
             [text addStyles:[self coreTextStyle]];
             [text setUserInteractionEnabled:YES];
@@ -243,17 +243,18 @@ else if(_isDrawing)
 }
 - (void)textViewDidChange:(UITextView *)textView{
      FTCoreTextView *temp =  [[textView.superview  subviews] objectAtIndex:0];
+     CGRect frame = textView.frame;
     if(!isBackSpacePressed&&(textView.text.length==textView.selectedRange.location)){
      char tempchar = [textView.text characterAtIndex:[textView.text length]-1];
     [[[textView.superview  subviews] objectAtIndex:0] setText:[NSString stringWithFormat:@"%@%@%c%@",temp.text,startTag,tempchar,endTag]];
-    textView.textColor = [UIColor clearColor];
-    CGRect frame = textView.frame;
+    //textView.textColor = [UIColor clearColor];
+   
     frame.size.height = textView.contentSize.height;
         frame.size.width = textView.contentSize.width;
     frame.origin = textView.frame.origin;
     textView.frame = frame;
     [textView.superview setFrame:CGRectMake(textView.superview.frame.origin.x, textView.superview.frame.origin.y, textView.frame.size.width+20, textView.frame.size.height+20)];
-   [[[textView.superview  subviews] objectAtIndex:0] setFrame:CGRectMake(textView.frame.origin.x, textView.frame.origin.y, 300, textView.frame.size.height)];
+   [[[textView.superview  subviews] objectAtIndex:0] setFrame:CGRectMake(textView.frame.origin.x+10, textView.frame.origin.y+10, 300, textView.frame.size.height)];
    [[[textView.superview  subviews] objectAtIndex:1] becomeFirstResponder];
      }
     
@@ -263,11 +264,18 @@ else if(_isDrawing)
         NSString *preText = [temp.text substringWithRange:preRange];
         NSString *postText = [temp.text substringWithRange:postRange];
         char tempchar = [textView.text characterAtIndex:textView.selectedRange.location-1];
-       [[[textView.superview  subviews] objectAtIndex:0] setText:[NSString stringWithFormat:@"%@%@%c%@%@",preText,startTag,tempchar,endTag,postText]];
+        [[[textView.superview  subviews] objectAtIndex:0] setText:[NSString stringWithFormat:@"%@%@%c%@%@",preText,startTag,tempchar,endTag,postText]];
         [[[textView.superview  subviews] objectAtIndex:0] setNeedsDisplay];
-        [textView becomeFirstResponder];
+        frame.size.height = textView.contentSize.height;
+        frame.size.width = textView.contentSize.width;
+        frame.origin = textView.frame.origin;
+        textView.frame = frame;
+        [textView.superview setFrame:CGRectMake(textView.superview.frame.origin.x, textView.superview.frame.origin.y, textView.frame.size.width+20, textView.frame.size.height+20)];
+        [[[textView.superview  subviews] objectAtIndex:0] setFrame:CGRectMake(textView.frame.origin.x+10, textView.frame.origin.y+10, 300, textView.frame.size.height)];
+        [[[textView.superview  subviews] objectAtIndex:1] becomeFirstResponder];
     }
   }
+
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
   FTCoreTextView *temp =  [[textView.superview  subviews] objectAtIndex:0];
     if(text.length<=0)
@@ -385,6 +393,8 @@ else if(_isDrawing)
 - (void)willSaveState
 {
     NSLog(@"Will save state");
+    
+
 }
 
 - (void)didSaveState
@@ -395,6 +405,7 @@ else if(_isDrawing)
 - (void)willLeaveActiveState
 {
     NSLog(@"Will leave active state");
+      
 }
 
 - (void)didLeaveActiveState
