@@ -1,4 +1,3 @@
 language: objective-c
 
-before_script: scripts/pre.sh
 script: scripts/run.sh
