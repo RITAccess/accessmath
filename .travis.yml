@@ -1,6 +1,7 @@
 language: objective-c
 
 before_script:
-- sudo brew install xctools
+- brew update
+- brew install xctool
 script: 
 - xctool -project AccessLescture.xcodeproj -scheme AccessLecture build test
