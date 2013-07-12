@@ -28,8 +28,6 @@
     NSArray *dcvPersistent;
     NSArray *svcPersistent;
     
-    PrimWrapper *wrapper;
-    
     BOOL isZoomed;  // Used for checking zoom double tap.
 }
 
@@ -55,7 +53,6 @@
     
     nvc = [[NotesViewController alloc] initWithNibName:NotesViewControllerXIB bundle:nil];
     dcv = [[DrawViewController alloc] initWithNibName:DrawViewControllerXIB bundle:nil];
-    
     svc = (StreamViewController *)[[UIStoryboard storyboardWithName:StreamViewControllerStoryboard bundle:nil] instantiateViewControllerWithIdentifier:StreamViewControllerID];
 
     
@@ -103,9 +100,7 @@
     [self.childViewControllers enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(id<LectureViewChild> obj, NSUInteger idx, BOOL *stop) {
         if ([obj respondsToSelector:@selector(willApplyTransformToView)]) {
             
-            
             UIView *view = [obj willApplyTransformToView];
-            
             CGPoint translation = [gesture translationInView:self.view];
             
             [gesture setTranslation:CGPointMake(0, 0) inView:view];
