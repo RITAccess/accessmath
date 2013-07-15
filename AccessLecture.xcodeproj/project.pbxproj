@@ -48,6 +48,7 @@
 		3F99F209154375270065CBB9 /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F99F208154375270065CBB9 /* Position.m */; };
 		3FA6119717905EDF00A2B4C8 /* blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FA6119517905EDF00A2B4C8 /* blue.png */; };
 		3FA6119817905EDF00A2B4C8 /* redNote.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FA6119617905EDF00A2B4C8 /* redNote.png */; };
+		3FA6119A17906A8B00A2B4C8 /* yellowNote.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FA6119917906A8B00A2B4C8 /* yellowNote.png */; };
 		3FAAA850137848AB00F79C0C /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAAA84F137848AB00F79C0C /* Icon.png */; };
 		3FAE785413C786F800796813 /* accesslecture.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAE785313C786F800796813 /* accesslecture.png */; };
 		3FC32EBC13E05E0F00077291 /* biology.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FC32EBA13E05E0F00077291 /* biology.png */; };
@@ -181,6 +182,8 @@
 		3F9BA9C21758FE1C00BEFB55 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		3FA6119517905EDF00A2B4C8 /* blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue.png; sourceTree = "<group>"; };
 		3FA6119617905EDF00A2B4C8 /* redNote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redNote.png; sourceTree = "<group>"; };
+		3FA6119917906A8B00A2B4C8 /* yellowNote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellowNote.png; sourceTree = "<group>"; };
+		3FA6119B17906E1A00A2B4C8 /* resizeDrawNote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = resizeDrawNote.png; sourceTree = "<group>"; };
 		3FAAA84F137848AB00F79C0C /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
 		3FAE785313C786F800796813 /* accesslecture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = accesslecture.png; sourceTree = "<group>"; };
 		3FC32EBA13E05E0F00077291 /* biology.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = biology.png; path = ../biology.png; sourceTree = "<group>"; };
@@ -328,6 +331,8 @@
 		2CFC32A1175E7ED600384AEC /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				3FA6119B17906E1A00A2B4C8 /* resizeDrawNote.png */,
+				3FA6119917906A8B00A2B4C8 /* yellowNote.png */,
 				3FA6119517905EDF00A2B4C8 /* blue.png */,
 				3FA6119617905EDF00A2B4C8 /* redNote.png */,
 				3F0F3B72178DF32E00163C2A /* drawNote.png */,
@@ -808,6 +813,7 @@
 				3FED965C1370909100D8D1B8 /* ZoomOut.png in Resources */,
 				3F0FFCFB1371A93A00299663 /* Back.png in Resources */,
 				4CD0A5F0177DC98600864228 /* ConnectionViewController.xib in Resources */,
+				3FA6119A17906A8B00A2B4C8 /* yellowNote.png in Resources */,
 				2CF6BA981784920D00A695CC /* undo.png in Resources */,
 				3FAAA850137848AB00F79C0C /* Icon.png in Resources */,
 				3F5E3F1E137C5CA30022F3C9 /* Default-Landscape~ipad.png in Resources */,

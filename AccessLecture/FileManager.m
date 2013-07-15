@@ -11,7 +11,8 @@
 //
 
 #import "FileManager.h"
-
+#import "UILargeAlertView.h"
+#import "Lecture.h"
 @implementation FileManager
 
 + (NSURL *)localDocumentsDirectoryURL {
@@ -93,6 +94,50 @@
         }
     }
     NSLog(@"Files succesfully deleted");
+}
++(BOOL) saveDocument:(AccessDocument *)document{
+    
+    AccessDocument *currentDocument;
+    Lecture *currentLecture = document.lecture;
+    NSURL * currentDirectory = [FileManager iCloudDirectoryURL];
+    if (currentDirectory == nil) currentDirectory = [FileManager localDocumentsDirectoryURL];
+    NSArray * docs = [FileManager documentsIn:currentDirectory];
+    
+  
+    NSString *docsPath =[[currentDirectory absoluteString] stringByAppendingString:[NSString stringWithFormat:@"/%@.lecture",currentLecture.name]];
+    NSURL *docURL = [NSURL URLWithString:docsPath];
+    NSURL *temp = [docs objectAtIndex:0];
+    
+    currentDocument = [[AccessDocument alloc] initWithFileURL:docURL];
+  //  currentLecture.image = UIImagePNGRepresentation(saveImage);
+    currentDocument.lecture = document.lecture;
+    currentDocument.notes = document.notes;
+    if([[NSFileManager defaultManager] fileExistsAtPath:[docURL path]])
+    {
+        [currentDocument saveToURL:docURL
+                  forSaveOperation:UIDocumentSaveForOverwriting
+                 completionHandler:^(BOOL success) {
+                     if (success){
+                         UIAlertView* alert = [[UILargeAlertView alloc] initWithText:NSLocalizedString(@"Notes Overwitten!", nil) fontSize:48];
+                         [alert show];
+                     } else {
+                         NSLog(@"Not saved for overwriting");
+                     }
+                 }];
+        
+    } else {
+        [currentDocument saveToURL:docURL
+                  forSaveOperation:UIDocumentSaveForCreating
+                 completionHandler:^(BOOL success) {
+                     if (success){
+                         UIAlertView* alert = [[UILargeAlertView alloc] initWithText:NSLocalizedString(@"New Notes Created!", nil) fontSize:48];
+                         [alert show];
+                     } else {
+                         NSLog(@"Not created");
+                     }
+                 }];
+    }
+    return true;
 }
 
 @end

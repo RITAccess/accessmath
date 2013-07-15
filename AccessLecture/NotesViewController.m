@@ -156,7 +156,6 @@
         [temp setCenter:point];
        [temp setBounds:CGRectMake([gestureRecognizer locationInView:self.view].x, [gestureRecognizer locationInView:self.view].y, 50, 50)];
         [gestureRecognizer.view setFrame:CGRectMake(gestureRecognizer.view.frame.origin.x, gestureRecognizer.view.frame.origin.y, [gestureRecognizer locationInView:gestureRecognizer.view].x+20, [gestureRecognizer locationInView:gestureRecognizer.view].y+20)];
-                       
         
     }
 }
@@ -331,6 +330,9 @@ else if(_isDrawing)
     [self viewDidLoad];
     UIAlertView* alert = [[UILargeAlertView alloc] initWithText:NSLocalizedString(@"Text Mode", nil) fontSize:48];
     [alert show];
+}
+
+- (IBAction)resizeDraw:(id)sender {
 }
 - (IBAction)setBlueColor:(id)sender {
     textColor = [UIColor blueColor];
