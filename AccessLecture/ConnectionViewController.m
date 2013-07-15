@@ -88,6 +88,13 @@
 - (void)scan:(UITapGestureRecognizer *)reg
 {
     [_tapToScan setEnabled:NO];
+    [_previewView.subviews enumerateObjectsUsingBlock:^(UIView *obj, NSUInteger idx, BOOL *stop) {
+        [UIView animateWithDuration:0.4 animations:^{
+            [obj setAlpha:0.0];
+        } completion:^(BOOL finished) {
+            [obj removeFromSuperview];
+        }];
+    }];
     scanner = [QRScanner new];
     [scanner startCaptureWithCompletion:^(NSDictionary *info) {
         [server disconnect];
@@ -113,6 +120,13 @@
         [preview setBounds:_previewView.layer.bounds];
         [preview setPosition:CGPointMake(CGRectGetMidX(_previewView.layer.bounds), CGRectGetMidY(_previewView.layer.bounds))];
         [_previewView.layer addSublayer:preview];
+        
+        UIButton *cancel = [UIButton new];
+        [cancel setTitle:@"Cancel" forState:UIControlStateNormal];
+        [cancel setFrame:CGRectMake(5, 5, 100, 30)];
+        [_previewView addSubview:cancel];
+        [_previewView bringSubviewToFront:cancel];
+        
     }];
 }
 
