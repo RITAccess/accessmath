@@ -1,4 +1,4 @@
-accessmath
+AccessMath
 ==========
 [![Stories in Ready](http://badge.waffle.io/ritaccess/accessmath.png)](http://waffle.io/ritaccess/accessmath) [![Build Status](https://travis-ci.org/RITAccess/accessmath.png?branch=master)](https://travis-ci.org/RITAccess/accessmath)
 ###### If failling, due to the iOS 7 SDK not being on CI servers
