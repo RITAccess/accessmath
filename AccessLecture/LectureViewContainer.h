@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "TopNav.h"
-#import "PrimWrapper.h"
 
 /**
  * The LectureViewChild protocol is required to be a valid subview controller of
@@ -25,7 +24,9 @@
 
 @optional
 
-/* Will/Did Save state gets called during the save proccess. Prepare your view here. */
+/**
+ * Will save state gets called during the save process. Prepare the view here.
+ */
 - (void)willSaveState;
 - (void)didSaveState;
 
@@ -41,7 +42,7 @@
 @interface LectureViewContainer : UIViewController
 
 - (IBAction)menuButtonTapped:(id)sender;
-- (IBAction)back:(id)sender;
+- (IBAction)backButtonTapped:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UIView *sideMenu;
 @property (weak, nonatomic) IBOutlet TopNav *navBar;

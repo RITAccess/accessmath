@@ -43,11 +43,6 @@
     [self initColorSegmentedControl];
     
     _buttonStrings = [[NSMutableArray alloc] initWithObjects:@"star.png", @"arrow.png", @"undo.png", @"circle.png", nil];
-    // Adding Gestures (API still changing, keeping gesture until we solidify a decision)
-//    _panGestureRecognzier = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panToMove:)];
-//    _panGestureRecognzier.minimumNumberOfTouches = 2;
-//    [_panGestureRecognzier setTranslation:CGPointMake(40, 40) inView:_drawView];
-//   [_drawView addGestureRecognizer:_panGestureRecognzier];
     
     if (UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)) {
         [self.view setFrame:CGRectMake(0, 0, 768, 1024)];
@@ -221,7 +216,6 @@
 
 - (UIView *)willApplyTransformToView
 {
-    NSLog(@"Applying Draw View Controller Transformation!");
     return _drawView;
 }
 

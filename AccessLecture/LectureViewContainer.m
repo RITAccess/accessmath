@@ -16,20 +16,16 @@
 @end
 
 @implementation LectureViewContainer {
-    BOOL menuOpen;
-    NSArray *menuItems;
-    
     // Controllers
     NotesViewController *nvc;
     DrawViewController *dcv;
     StreamViewController *svc;
     
-    NSArray *nvcPersistent;
-    NSArray *dcvPersistent;
-    NSArray *svcPersistent;
+    NSArray *menuItems, *nvcPersistent, *dcvPersistent, *svcPersistent;
     
-    PrimWrapper *wrapper;
+    BOOL isZoomed, menuOpen;  // Used for checking zoom double tap.
     
+    CGFloat currentScale;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -46,7 +42,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
     
     [_sideMenu setBackgroundColor:[UIColor colorWithRed:0.97 green:0.97 blue:0.97 alpha:0.8]];
     [_navBar setBackgroundColor:[UIColor colorWithRed:0.97 green:0.97 blue:0.97 alpha:0.5]];
@@ -55,17 +50,20 @@
     
     nvc = [[NotesViewController alloc] initWithNibName:NotesViewControllerXIB bundle:nil];
     dcv = [[DrawViewController alloc] initWithNibName:DrawViewControllerXIB bundle:nil];
-    
     svc = (StreamViewController *)[[UIStoryboard storyboardWithName:StreamViewControllerStoryboard bundle:nil] instantiateViewControllerWithIdentifier:StreamViewControllerID];
 
     
-    // Add pan and zoom
-    UIPinchGestureRecognizer *zoom = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(zoomHandle:)];
-    [self.view addGestureRecognizer:zoom];
+    // Adding gestures
+    UIPinchGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchZoom:)];
+    [self.view addGestureRecognizer:pinch];
     
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panHandle:)];
     pan.minimumNumberOfTouches = 2;
     [self.view addGestureRecognizer:pan];
+    
+    UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapZoom:)];
+    doubleTap.numberOfTapsRequired = 2;
+    [self.view addGestureRecognizer:doubleTap];
 
     [_container setBackgroundColor:[UIColor clearColor]];
     
@@ -74,37 +72,57 @@
     [self setUpMenuItems];
 }
 
-- (void)zoomHandle:(UIPinchGestureRecognizer *)reg
+- (void)tapZoom:(UITapGestureRecognizer *)gesture
 {
-    if (reg.state == ( UIGestureRecognizerStateBegan | UIGestureRecognizerStateEnded ) ) {
-        wrapper = [PrimWrapper wrapperWithTransform:[[self.childViewControllers firstObject] view].transform];
+    [self.childViewControllers enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(id<LectureViewChild> obj, NSUInteger idx, BOOL *stop) {
+        UIView *view = [obj willApplyTransformToView];
+        isZoomed ? [view setTransform:CGAffineTransformIdentity] : [view setTransform:CGAffineTransformScale(view.transform, 1.5, 1.5)];
+        isZoomed = !isZoomed;
+    }];
+}
+
+/**
+ * Manages the scale of each view in the array of child view controllers. Currently
+ * trying to limit the rate at which the views are scaled.
+ */
+- (void)pinchZoom:(UIPinchGestureRecognizer *)gesture
+{
+    // Limiting scale speed.
+    if (gesture.state == UIGestureRecognizerStateBegan){
+        currentScale = gesture.scale;
     }
-    
-    CGAffineTransform zoom = CGAffineTransformScale(wrapper.transform, reg.scale, reg.scale);
     
     [self.childViewControllers enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(id<LectureViewChild> obj, NSUInteger idx, BOOL *stop) {
         if ([obj respondsToSelector:@selector(willApplyTransformToView)]) {
-            
             UIView *view = [obj willApplyTransformToView];
-            view.transform = zoom;
+            if (view.frame.origin.x <= 0 || view.frame.origin.y <= 0){
+                [view setTransform:CGAffineTransformScale(view.transform, currentScale, currentScale)];
+                isZoomed = true;
+            }
+            
+            // Constraining outwards zoom from initial frame.
+            if (view.frame.origin.x >= 0 || view.frame.origin.y >= 0){
+                NSLog(@"Resetting frame to origin...");
+                [view setFrame:CGRectMake(0, 0, view.frame.size.width, view.frame.size.height)];
+            }
         }
     }];
 }
 
+/**
+ * Manages pan. Testing.
+ */
 - (void)panHandle:(UIPanGestureRecognizer *)gesture
 {
     [self.childViewControllers enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(id<LectureViewChild> obj, NSUInteger idx, BOOL *stop) {
         if ([obj respondsToSelector:@selector(willApplyTransformToView)]) {
             
-            
             UIView *view = [obj willApplyTransformToView];
-            
             CGPoint translation = [gesture translationInView:self.view];
             
             [gesture setTranslation:CGPointMake(0, 0) inView:view];
             
-            if ([obj isMemberOfClass:[DrawViewController class]])
-            {
+            if ([obj isMemberOfClass:[DrawViewController class]]){
                 // Clamp Left and Top Sides of View
                 if (view.frame.origin.x > 0){
                     view.frame = CGRectMake(0, view.frame.origin.y, view.frame.size.width, view.frame.size.height);
@@ -132,9 +150,7 @@
                         view.frame = CGRectMake(view.frame.origin.x, -1020, view.frame.size.width, view.frame.size.height);
                     }
                 }
-                
             }
-        
             
             [view setCenter:CGPointMake(view.center.x + translation.x, view.center.y + translation.y)];
         }
@@ -249,7 +265,7 @@
     }
 }
 
-- (IBAction)back:(id)sender
+- (IBAction)backButtonTapped:(id)sender
 {
     if (menuOpen) {
         if (UIDeviceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
@@ -335,7 +351,6 @@
     }
     
     // Do state saving
-    
     for (UIViewController<LectureViewChild> *children in self.childViewControllers) {
         if ([children respondsToSelector:@selector(didSaveState)]) {
             [children didSaveState];
