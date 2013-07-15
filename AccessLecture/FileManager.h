@@ -45,7 +45,7 @@
 //  returns nil if no file was found
 //
 + (NSURL *)findFileIn:(NSArray *)files thatFits:(BOOL(^)(NSURL*))condition;
-
++(BOOL) saveDocument:(AccessDocument *)document;
 
 
 @end

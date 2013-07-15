@@ -31,8 +31,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    startTag = @"<black>";
-    endTag = @"</black>";
+    startTag = @"<CD>";
+    endTag = @"</CD>";
+    isBackSpacePressed = FALSE;
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -60,32 +61,27 @@
           
             UIView *outerView = [[UIView alloc] initWithFrame:CGRectMake([gesture locationInView:self.view].x, [gesture locationInView:self.view].y, 350, 150)];
          
-            FTCoreTextView *text = [[FTCoreTextView alloc]initWithFrame:CGRectMake([gesture locationInView:outerView].x+10 , [gesture locationInView:outerView].y+10 , 300, 120)];
-            [text setText:@"<bold>Type Notes...</bold>"];
+            FTCoreTextView *text = [[FTCoreTextView alloc]initWithFrame:CGRectMake(outerView.frame.origin.x+10 , outerView.frame.origin.y+10 , 300, 120)];
+           [text setText:@""];
             [text addStyles:[self coreTextStyle]];
             [text setUserInteractionEnabled:YES];
             UITextView *textBubble = [[UITextView alloc]initWithFrame:CGRectMake([gesture locationInView:outerView].x, [gesture locationInView:outerView].y , 310, 120)];
              //  outerView.layer.borderWidth = 3;
             [outerView addSubview:text];
-           // text.layer.borderWidth = 3;
-           
-            //text.layer.cornerRadius = 20;
             [outerView addSubview:textBubble];
-                        UIImageView * anImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin.png" ]];
+            UIImageView * anImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin.png" ]];
             [anImageView setCenter:textBubble.bounds.origin];
             [anImageView setBounds:CGRectMake([gesture locationInView:self.view].x, [gesture locationInView:self.view].y, 50, 50)];
             textBubble.textColor = [UIColor clearColor];
-            textBubble.textAlignment = NSTextAlignmentJustified;
-       
-            textBubble.text = @"Type Notes...";
+            [textBubble setAutocorrectionType: UITextAutocorrectionTypeNo];
+            textBubble.text = @"";
             textBubble.delegate = self;
             textBubble.layer.borderWidth = 3;
             textBubble.layer.cornerRadius = 20;
             textBubble.backgroundColor = [UIColor clearColor];
-           [textBubble setFont:[UIFont boldSystemFontOfSize:30]];
+            [textBubble setFont:[UIFont boldSystemFontOfSize:30]];
             [outerView addGestureRecognizer:panToMoveNote];
             [textBubble addGestureRecognizer:longPressGestureRecognizer];
-            //[text addGestureRecognizer:longPressGestureRecognizer];
             [outerView addGestureRecognizer:longPressGestureRecognizer2];
             [textBubble addSubview:anImageView];
             [textBubble setScrollEnabled:YES];
@@ -112,7 +108,6 @@
     [panToResize setEnabled:NO];
     DrawView *lineDrawView = [[DrawView alloc]initWithFrame:CGRectMake([gesture locationInView:outerView].x + 20, [gesture locationInView:outerView].y + 15, 400, 300)];
     lineDrawView.userInteractionEnabled = YES;
-    //lineDrawView.isDrawing = YES;
     //outerView.layer.borderWidth = 3;
     lineDrawView.layer.borderWidth = 3;
     lineDrawView.layer.cornerRadius = 20;
@@ -123,7 +118,7 @@
     [anImageView setCenter:lineDrawView.bounds.origin];
     [resizeView setBounds:CGRectMake([gesture locationInView:self.view].x, [gesture locationInView:self.view].y, 50, 50)];
     [anImageView setBounds:CGRectMake([gesture locationInView:self.view].x, [gesture locationInView:self.view].y, 50, 50)];
-   // resizeView.layer.borderWidth = 3;
+   // resizeView.layer.borderWidth = 3; //Uncommment this line to view border for resizeView
     //Do not change the order in which the subviews and gestures are added
     [outerView addGestureRecognizer:panToMoveNote];
     [lineDrawView addGestureRecognizer:longPressGestureRecognizer];
@@ -133,9 +128,7 @@
     [outerView addSubview:resizeView];
     [outerView addSubview:lineDrawView];
     [self.view addSubview:outerView];
-
-
-   
+  
 }
 
 - (void)handlePan:(UIPanGestureRecognizer *)gestureRecognizer
@@ -163,7 +156,6 @@
         [temp setCenter:point];
        [temp setBounds:CGRectMake([gestureRecognizer locationInView:self.view].x, [gestureRecognizer locationInView:self.view].y, 50, 50)];
         [gestureRecognizer.view setFrame:CGRectMake(gestureRecognizer.view.frame.origin.x, gestureRecognizer.view.frame.origin.y, [gestureRecognizer locationInView:gestureRecognizer.view].x+20, [gestureRecognizer locationInView:gestureRecognizer.view].y+20)];
-                       
         
     }
 }
@@ -201,7 +193,7 @@ else if(_isDrawing)
     FTCoreTextView *tempView = [[[gestureRecognizer view] subviews] objectAtIndex:0];
     [[[[gestureRecognizer view] subviews] objectAtIndex:1] removeFromSuperview];
     [[[[gestureRecognizer view] subviews] objectAtIndex:0] removeFromSuperview];
-      [temp setFrame:CGRectMake([gestureRecognizer locationInView:gestureRecognizer.view].x, [gestureRecognizer locationInView:gestureRecognizer.view].y, 300, 120)];
+      [temp setFrame:CGRectMake([gestureRecognizer locationInView:gestureRecognizer.view].x, [gestureRecognizer locationInView:gestureRecognizer.view].y, 310, 120)];
         [tempView setFrame:CGRectMake([gestureRecognizer locationInView:gestureRecognizer.view].x-20, [gestureRecognizer locationInView:gestureRecognizer.view].y-20, 300, 120)];
         CGRect frame = temp.frame;
         frame.size.height = temp.contentSize.height;
@@ -234,7 +226,6 @@ else if(_isDrawing)
     else if(CGRectContainsPoint([[gestureRecognizer.view.subviews objectAtIndex:0] frame],[gestureRecognizer locationInView:gestureRecognizer.view] ))
     {
      
-
         [[gestureRecognizer.view.gestureRecognizers objectAtIndex:2] setEnabled:!([[gestureRecognizer.view.gestureRecognizers objectAtIndex:2] isEnabled])];
         return;
     }
@@ -250,40 +241,70 @@ else if(_isDrawing)
 
 }
 - (void)textViewDidChange:(UITextView *)textView{
-        
-    NSLog(@"Called even when backspace pressed");
-    FTCoreTextView *temp =  [[textView.superview  subviews] objectAtIndex:0];
-    char tempchar = [textView.text characterAtIndex:[textView.text length]-1];
+     FTCoreTextView *temp =  [[textView.superview  subviews] objectAtIndex:0];
+     CGRect frame = textView.frame;
+    if(!isBackSpacePressed&&(textView.text.length==textView.selectedRange.location)){
+     char tempchar = [textView.text characterAtIndex:[textView.text length]-1];
     [[[textView.superview  subviews] objectAtIndex:0] setText:[NSString stringWithFormat:@"%@%@%c%@",temp.text,startTag,tempchar,endTag]];
-    textView.textColor = [UIColor clearColor];
-    CGRect frame = textView.frame;
+    //textView.textColor = [UIColor clearColor];
+   
     frame.size.height = textView.contentSize.height;
+        frame.size.width = textView.contentSize.width;
     frame.origin = textView.frame.origin;
     textView.frame = frame;
     [textView.superview setFrame:CGRectMake(textView.superview.frame.origin.x, textView.superview.frame.origin.y, textView.frame.size.width+20, textView.frame.size.height+20)];
-   
-      [[[textView.superview  subviews] objectAtIndex:0] setFrame:CGRectMake(textView.frame.origin.x, textView.frame.origin.y, 300, textView.frame.size.height)];
-
-    [[[textView.superview  subviews] objectAtIndex:1] becomeFirstResponder];
-       //[textView becomeFirstResponder];
- 
+   [[[textView.superview  subviews] objectAtIndex:0] setFrame:CGRectMake(textView.frame.origin.x+10, textView.frame.origin.y+10, 300, textView.frame.size.height)];
+   [[[textView.superview  subviews] objectAtIndex:1] becomeFirstResponder];
+     }
+    
+    if((!isBackSpacePressed)&&(textView.text.length>textView.selectedRange.location)){
+        NSRange preRange = NSMakeRange(0, (textView.selectedRange.location-1)*10);
+        NSRange postRange = NSMakeRange((textView.selectedRange.location-1)*10, (textView.text.length-textView.selectedRange.location)*10);
+        NSString *preText = [temp.text substringWithRange:preRange];
+        NSString *postText = [temp.text substringWithRange:postRange];
+        char tempchar = [textView.text characterAtIndex:textView.selectedRange.location-1];
+        [[[textView.superview  subviews] objectAtIndex:0] setText:[NSString stringWithFormat:@"%@%@%c%@%@",preText,startTag,tempchar,endTag,postText]];
+        [[[textView.superview  subviews] objectAtIndex:0] setNeedsDisplay];
+        frame.size.height = textView.contentSize.height;
+        frame.size.width = textView.contentSize.width;
+        frame.origin = textView.frame.origin;
+        textView.frame = frame;
+        [textView.superview setFrame:CGRectMake(textView.superview.frame.origin.x, textView.superview.frame.origin.y, textView.frame.size.width+20, textView.frame.size.height+20)];
+        [[[textView.superview  subviews] objectAtIndex:0] setFrame:CGRectMake(textView.frame.origin.x+10, textView.frame.origin.y+10, 300, textView.frame.size.height)];
+        [[[textView.superview  subviews] objectAtIndex:1] becomeFirstResponder];
+    }
   }
+
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+  FTCoreTextView *temp =  [[textView.superview  subviews] objectAtIndex:0];
     if(text.length<=0)
     {
-        FTCoreTextView *temp =  [[textView.superview  subviews] objectAtIndex:0];
+       isBackSpacePressed = TRUE;
+        if(textView.selectedRange.location==textView.text.length){
         NSRange selectedRange = NSMakeRange(0, (temp.text.length - startTag.length-endTag.length-1));
         NSString *str = [temp.text substringWithRange:selectedRange];
-        NSLog(@"%@",str);
-      
-        NSLog(@"backspace pressed");
+       // NSLog(@"%@",str);
         [[[textView.superview  subviews] objectAtIndex:0] setText:str];
         [[[textView.superview  subviews] objectAtIndex:0] setNeedsDisplay];
         [textView becomeFirstResponder];
         return true;
+        }
+        else{
+           NSRange preRange = NSMakeRange(0, (textView.selectedRange.location-1)*10);
+           NSRange postRange = NSMakeRange((textView.selectedRange.location)*10, ((textView.text.length-textView.selectedRange.location)*10));
+            NSString *preText = [temp.text substringWithRange:preRange];
+            NSString *postText = [temp.text substringWithRange:postRange];
+            [[[textView.superview  subviews] objectAtIndex:0] setText:[preText stringByAppendingString:postText]];
+            [[[textView.superview  subviews] objectAtIndex:0] setNeedsDisplay];
+            [textView becomeFirstResponder];
+
+        }
     }
-   
-        return true;
+    else{
+        isBackSpacePressed = FALSE;
+    }
+    return true;
+        
 }
 - (IBAction)createDrawNote:(id)sender {
     _isCreatingNote=NO;
@@ -310,45 +331,48 @@ else if(_isDrawing)
     UIAlertView* alert = [[UILargeAlertView alloc] initWithText:NSLocalizedString(@"Text Mode", nil) fontSize:48];
     [alert show];
 }
+
+- (IBAction)resizeDraw:(id)sender {
+}
 - (IBAction)setBlueColor:(id)sender {
     textColor = [UIColor blueColor];
-    startTag = @"<blue>";
-    endTag = @"</blue>";
+    startTag = @"<CB>";
+    endTag = @"</CB>";
 }
 - (IBAction)setYellowColor:(id)sender {
     textColor = [UIColor yellowColor];
-    startTag = @"<yellow>";
-    endTag = @"</yellow>";
+    startTag = @"<CY>";
+    endTag = @"</CY>";
 }
 
 - (IBAction)setRedColor:(id)sender {
     textColor = [UIColor redColor];
-    startTag = @"<red>";
-    endTag = @"</red>";
+    startTag = @"<CR>";
+    endTag = @"</CR>";
 }
 - (NSArray *)coreTextStyle{
     NSMutableArray *result = [NSMutableArray array];
     FTCoreTextStyle *boldStyle = [FTCoreTextStyle new];
-    boldStyle.name = @"bold";
+    boldStyle.name = @"FB";
     boldStyle.font = [UIFont boldSystemFontOfSize:30];
     [result addObject:boldStyle];
     FTCoreTextStyle *blueColor = [FTCoreTextStyle new];
-    [blueColor setName:@"blue"];
+    [blueColor setName:@"CB"];
     blueColor.font = [UIFont boldSystemFontOfSize:30];
     [blueColor setColor:[UIColor blueColor]];
     [result addObject:blueColor];
     FTCoreTextStyle *redColor = [FTCoreTextStyle new];
-    [redColor setName:@"red"];
+    [redColor setName:@"CR"];
      redColor.font = [UIFont boldSystemFontOfSize:30];
     [redColor setColor:[UIColor redColor]];
     [result addObject:redColor];
     FTCoreTextStyle *yellowColor = [FTCoreTextStyle new];
-    [yellowColor setName:@"yellow"];
+    [yellowColor setName:@"CY"];
     [yellowColor setColor:[UIColor yellowColor]];
     yellowColor.font = [UIFont boldSystemFontOfSize:30];
    [result addObject:yellowColor];
     FTCoreTextStyle *blackColor = [FTCoreTextStyle new];
-    [blackColor setName:@"black"];
+    [blackColor setName:@"CD"];//D-> Default color
     [blackColor setColor:[UIColor blackColor]];
     blackColor.font = [UIFont boldSystemFontOfSize:30];
     [result addObject:blackColor];
@@ -371,6 +395,8 @@ else if(_isDrawing)
 - (void)willSaveState
 {
     NSLog(@"Will save state");
+    
+
 }
 
 - (void)didSaveState
@@ -381,6 +407,7 @@ else if(_isDrawing)
 - (void)willLeaveActiveState
 {
     NSLog(@"Will leave active state");
+      
 }
 
 - (void)didLeaveActiveState

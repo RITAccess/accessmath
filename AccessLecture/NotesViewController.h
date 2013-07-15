@@ -12,10 +12,6 @@
 #import "DrawView.h"
 
 static NSString* const NotesViewControllerXIB = @"NotesViewController";
-
-
-
-
 @interface NotesViewController : UIViewController<UITextViewDelegate,LectureViewChild>
 {
     UIColor *textColor;
@@ -23,6 +19,7 @@ static NSString* const NotesViewControllerXIB = @"NotesViewController";
     CGFloat lastScale;
     NSString *startTag;
     NSString *endTag;
+    BOOL isBackSpacePressed;
 }
 
 @property (nonatomic) BOOL isCreatingNote;
@@ -30,19 +27,16 @@ static NSString* const NotesViewControllerXIB = @"NotesViewController";
 @property (nonatomic) CGPoint *start;
 @property UITapGestureRecognizer *tapToCreateNote;
 @property UITapGestureRecognizer *tapToCreateNoteDrawingNote;
-- (IBAction)createDrawNote:(id)sender;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
-
-- (IBAction)createTextNote:(id)sender;
-
-
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *drawNote;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *textNote;
-- (IBAction)setBlueColor:(id)sender;
+@property UITapGestureRecognizer *tapToDismissKeyboard;
 
+- (IBAction)setBlueColor:(id)sender;
+- (IBAction)createDrawNote:(id)sender;
 - (IBAction)setYellowColor:(id)sender;
 - (IBAction)setRedColor:(id)sender;
-
-@property UITapGestureRecognizer *tapToDismissKeyboard;
+- (IBAction)createTextNote:(id)sender;
+- (IBAction)resizeDraw:(id)sender;
 
 @end
