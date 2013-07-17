@@ -23,7 +23,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
@@ -36,9 +35,17 @@
     } else {
         [self.view setFrame:CGRectMake(0, 0, 1024, 768)];
     }
+    
     // Do any additional setup after loading the view from its nib.
     [_loadProgress setProgress:0.0];
     [_loadProgress setHidden:YES];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    if (self.displayConnectView){
+        [self connectToStream:nil];
+    }
 }
 
 #pragma mark Actions
