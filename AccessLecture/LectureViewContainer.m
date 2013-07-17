@@ -47,11 +47,9 @@
     [_navBar setBackgroundColor:[UIColor colorWithRed:0.97 green:0.97 blue:0.97 alpha:0.5]];
     
     // Set up viewControllers
-    
     nvc = [[NotesViewController alloc] initWithNibName:NotesViewControllerXIB bundle:nil];
     dcv = [[DrawViewController alloc] initWithNibName:DrawViewControllerXIB bundle:nil];
     svc = (StreamViewController *)[[UIStoryboard storyboardWithName:StreamViewControllerStoryboard bundle:nil] instantiateViewControllerWithIdentifier:StreamViewControllerID];
-
     
     // Adding gestures
     UIPinchGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchZoom:)];
@@ -76,8 +74,14 @@
 {
     [self.childViewControllers enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(id<LectureViewChild> obj, NSUInteger idx, BOOL *stop) {
         UIView *view = [obj willApplyTransformToView];
-        isZoomed ? [view setTransform:CGAffineTransformIdentity] : [view setTransform:CGAffineTransformScale(view.transform, 1.5, 1.5)];
-        isZoomed = !isZoomed;
+        
+        if (isZoomed){
+            [view setTransform:CGAffineTransformIdentity];
+            isZoomed = false;
+        } else {
+            [view setTransform:CGAffineTransformScale(view.transform, 1.5, 1.5)];
+            isZoomed = true;
+        }
     }];
 }
 
@@ -102,7 +106,6 @@
             
             // Constraining outwards zoom from initial frame.
             if (view.frame.origin.x >= 0 || view.frame.origin.y >= 0){
-                NSLog(@"Resetting frame to origin...");
                 [view setFrame:CGRectMake(0, 0, view.frame.size.width, view.frame.size.height)];
             }
         }
@@ -110,7 +113,7 @@
 }
 
 /**
- * Manages pan. Testing.
+ * Manages the pan gesture. Clamps the view the prevent from endless scrolling.
  */
 - (void)panHandle:(UIPanGestureRecognizer *)gesture
 {
