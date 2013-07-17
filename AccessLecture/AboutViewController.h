@@ -1,11 +1,14 @@
-//  Copyright 2011 Access Lecture. All rights reserved.
+//
+//  AboutViewController.h
+//  AccessLecture
+//
+//  Modified by Piper Chester on 7/17/13
+//
+//
+
 #import <UIKit/UIKit.h>
 
-@interface AboutViewController : UIViewController<UIScrollViewDelegate>
-{
-    UIScrollView* scrollView;
-    IBOutlet UIView *mainView;
-}
+@interface AboutViewController : UIViewController
 
 - (IBAction)returnToHome:(id)sender;
 

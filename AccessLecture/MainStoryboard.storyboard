@@ -471,7 +471,7 @@ IAoKA
                                     <constraint firstAttribute="height" constant="80" type="user" id="y9Q-56-ezS"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rit_tiger.gif" translatesAutoresizingMaskIntoConstraints="NO" id="9xE-sc-XrY">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rit-tiger.gif" translatesAutoresizingMaskIntoConstraints="NO" id="9xE-sc-XrY">
                                 <rect key="frame" x="812" y="585" width="129" height="119"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
@@ -518,7 +518,7 @@ IAoKA
     </scenes>
     <resources>
         <image name="accesslecture.png" width="695" height="512"/>
-        <image name="rit_tiger.gif" width="367" height="335"/>
+        <image name="rit-tiger.gif" width="367" height="335"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="lightContent"/>

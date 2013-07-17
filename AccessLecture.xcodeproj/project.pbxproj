@@ -10,7 +10,7 @@
 		2C0F886B1760D8EC0062BD16 /* DrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F886A1760D8EC0062BD16 /* DrawView.m */; };
 		2CBF301C177B7AB10087C17C /* DrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBF301A177B7AB10087C17C /* DrawViewController.m */; };
 		2CBF301D177B7AB10087C17C /* DrawViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CBF301B177B7AB10087C17C /* DrawViewController.xib */; };
-		2CF45FDB1796D15400E6C69E /* rit_tiger.gif in Resources */ = {isa = PBXBuildFile; fileRef = 2CF45FDA1796D15300E6C69E /* rit_tiger.gif */; };
+		2CF45FDB1796D15400E6C69E /* rit-tiger.gif in Resources */ = {isa = PBXBuildFile; fileRef = 2CF45FDA1796D15300E6C69E /* rit-tiger.gif */; };
 		2CF6BA901784919300A695CC /* AMBezierPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF6BA8D1784919300A695CC /* AMBezierPath.m */; };
 		2CF6BA911784919300A695CC /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF6BA8E1784919300A695CC /* arrow.png */; };
 		2CF6BA921784919300A695CC /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF6BA8F1784919300A695CC /* circle.png */; };
@@ -109,7 +109,7 @@
 		2CBF3019177B7AB10087C17C /* DrawViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawViewController.h; sourceTree = "<group>"; };
 		2CBF301A177B7AB10087C17C /* DrawViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawViewController.m; sourceTree = "<group>"; };
 		2CBF301B177B7AB10087C17C /* DrawViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawViewController.xib; sourceTree = "<group>"; };
-		2CF45FDA1796D15300E6C69E /* rit_tiger.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = rit_tiger.gif; path = ../../../rit_tiger.gif; sourceTree = "<group>"; };
+		2CF45FDA1796D15300E6C69E /* rit-tiger.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = "rit-tiger.gif"; path = "../../../rit-tiger.gif"; sourceTree = "<group>"; };
 		2CF6BA8C1784919300A695CC /* AMBezierPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMBezierPath.h; sourceTree = "<group>"; };
 		2CF6BA8D1784919300A695CC /* AMBezierPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMBezierPath.m; sourceTree = "<group>"; };
 		2CF6BA8E1784919300A695CC /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
@@ -321,7 +321,7 @@
 		2CFC32A1175E7ED600384AEC /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				2CF45FDA1796D15300E6C69E /* rit_tiger.gif */,
+				2CF45FDA1796D15300E6C69E /* rit-tiger.gif */,
 				4C5C50C5177B59D90095801A /* pin.png */,
 				3FED964313708FC800D8D1B8 /* Lecture View Images */,
 				3F959F0613C7555500A6DA79 /* ClearNotes.png */,
@@ -330,13 +330,13 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
-		3F0DBDCC13BD170C00E3FEE8 /* About View */ = {
+		3F0DBDCC13BD170C00E3FEE8 /* AboutViewController */ = {
 			isa = PBXGroup;
 			children = (
 				3F0DBDD313BD174900E3FEE8 /* AboutViewController.h */,
 				3F0DBDD413BD174900E3FEE8 /* AboutViewController.m */,
 			);
-			name = "About View";
+			name = AboutViewController;
 			sourceTree = "<group>";
 		};
 		3F0F3B62178DBB6D00163C2A /* categories */ = {
@@ -453,7 +453,6 @@
 				3F78A40213D5C0DD0048A579 /* Accessible Subclasses */,
 				3FED963113708E4E00D8D1B8 /* Root View */,
 				3FED963213708E5100D8D1B8 /* Lecture View */,
-				3F0DBDCC13BD170C00E3FEE8 /* About View */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -592,6 +591,7 @@
 		4C5C50C9177B7B300095801A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3F0DBDCC13BD170C00E3FEE8 /* AboutViewController */,
 				2CBF3014177B700C0087C17C /* DrawViewController */,
 				4C8ABE7C177CA341007C934C /* NotesViewController */,
 				4C8ABE7A177C886C007C934C /* StreamViewController */,
@@ -792,7 +792,7 @@
 				3F63540C13A157C40024E6E9 /* Settings.bundle in Resources */,
 				3F959F0713C7555500A6DA79 /* ClearNotes.png in Resources */,
 				2CF6BA921784919300A695CC /* circle.png in Resources */,
-				2CF45FDB1796D15400E6C69E /* rit_tiger.gif in Resources */,
+				2CF45FDB1796D15400E6C69E /* rit-tiger.gif in Resources */,
 				3FAE785413C786F800796813 /* accesslecture.png in Resources */,
 				3FF7FFD513D5E45300B89A5D /* AlertBG.png in Resources */,
 				2CF6BA961784920100A695CC /* star.png in Resources */,
