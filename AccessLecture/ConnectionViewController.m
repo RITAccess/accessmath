@@ -51,23 +51,22 @@
         [_streamButton setEnabled:YES];
     }
     
-    // Setup tap to scan
-    if ([[[AVCaptureMetadataOutput new] availableMetadataObjectTypes] containsObject:@"org.iso.QRCode"]) {
+    // Checking for proper OS. We might need to enhance this check later.
+    if ([[[UIDevice currentDevice]systemVersion] isEqualToString:@"7.0"]){
         _tapToScan = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scan:)];
         [_tapToScan setCancelsTouchesInView:YES];
         [_previewView addGestureRecognizer:_tapToScan];
         [_previewView setBackgroundColor:[UIColor redColor]];
-    } else { // Not available
+    } else {
         [_previewView setBackgroundColor:[UIColor grayColor]];
         UILabel *nope = [[UILabel alloc] initWithFrame:CGRectMake(_previewView.frame.size.width / 2 - 125, _previewView.frame.size.height / 2 - 15, 250, 30)];
         [nope setBackgroundColor:[UIColor clearColor]];
         [nope setTextColor:[UIColor whiteColor]];
         [nope setTextAlignment:NSTextAlignmentCenter];
-        [nope setText:@"Scanning not available"];
+        [nope setText:@"Scanning not available..."];
         [_previewView addSubview:nope];
         [_connectionAddress becomeFirstResponder];
     }
-
 }
 
 - (void)didReceiveMemoryWarning
@@ -121,6 +120,7 @@
             }
         }];
     }];
+    
     [UIView animateWithDuration:0.4 animations:^{
         [_previewView setFrame:self.view.frame];
     } completion:^(BOOL finished) {
@@ -130,6 +130,12 @@
         [preview setBounds:_previewView.layer.bounds];
         [preview setPosition:CGPointMake(CGRectGetMidX(_previewView.layer.bounds), CGRectGetMidY(_previewView.layer.bounds))];
         [_previewView.layer addSublayer:preview];
+        
+        UIButton *cancelButton = [[UIButton alloc] initWithFrame:CGRectMake(_previewView.frame.size.width - 100, _previewView.frame.size.height - 50, 100, 50)];
+        [cancelButton addTarget:self action:@selector(userDidCancel:) forControlEvents:UIControlEventTouchDown];
+        [cancelButton setBackgroundColor:[UIColor clearColor]];
+        [cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
+        [_previewView addSubview:cancelButton];
     }];
 }
 
