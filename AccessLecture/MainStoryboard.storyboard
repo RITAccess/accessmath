@@ -24,7 +24,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7kQ-H5-RJO">
                                 <rect key="frame" x="419" y="598" width="186" height="109"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="108" id="sX7-Fr-atb"/>
+                                    <constraint firstAttribute="height" constant="108" type="user" id="sX7-Fr-atb"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="35"/>
                                 <state key="normal" title="About">
@@ -41,7 +41,6 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sbZ-Bw-DiI">
                                 <rect key="frame" x="419" y="500" width="186" height="91"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="90" id="MWm-Zd-R1g"/>
                                     <constraint firstAttribute="width" constant="186" id="miS-MO-asm"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="35"/>
@@ -72,19 +71,41 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="51u-tP-MB2">
+                                <rect key="frame" x="93" y="500" width="186" height="91"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="186" type="user" id="U26-MV-5Tt"/>
+                                    <constraint firstAttribute="width" constant="186" type="user" id="slF-xk-bBK"/>
+                                    <constraint firstAttribute="height" constant="90" id="xar-x9-OOt"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <state key="normal" title="Connect">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="AWi-60-pMo" firstAttribute="top" secondItem="PYl-bd-Q14" secondAttribute="top" constant="71" id="4X7-um-bgf"/>
                             <constraint firstItem="w9Z-RI-LPo" firstAttribute="top" secondItem="sbZ-Bw-DiI" secondAttribute="top" type="default" id="6Ht-zi-A6J"/>
                             <constraint firstAttribute="trailing" secondItem="w9Z-RI-LPo" secondAttribute="trailing" constant="95" id="JZB-tF-hFc"/>
+                            <constraint firstItem="51u-tP-MB2" firstAttribute="bottom" secondItem="sbZ-Bw-DiI" secondAttribute="bottom" type="user" id="LTF-7N-S6s"/>
                             <constraint firstItem="7kQ-H5-RJO" firstAttribute="leading" secondItem="sbZ-Bw-DiI" secondAttribute="leading" type="default" id="UD4-Tf-n44"/>
-                            <constraint firstAttribute="bottom" secondItem="7kQ-H5-RJO" secondAttribute="bottom" constant="42" id="aEh-hi-kCA"/>
-                            <constraint firstItem="7kQ-H5-RJO" firstAttribute="top" secondItem="sbZ-Bw-DiI" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="aIq-8o-saP"/>
+                            <constraint firstAttribute="bottom" secondItem="7kQ-H5-RJO" secondAttribute="bottom" constant="42" type="user" id="aEh-hi-kCA"/>
+                            <constraint firstItem="7kQ-H5-RJO" firstAttribute="top" secondItem="sbZ-Bw-DiI" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="aIq-8o-saP"/>
+                            <constraint firstAttribute="bottom" secondItem="51u-tP-MB2" secondAttribute="bottom" constant="158" type="user" id="fIf-Fc-ps4"/>
                             <constraint firstItem="w9Z-RI-LPo" firstAttribute="bottom" secondItem="sbZ-Bw-DiI" secondAttribute="bottom" type="default" id="j3K-6P-lgb"/>
                             <constraint firstItem="AWi-60-pMo" firstAttribute="centerX" secondItem="PYl-bd-Q14" secondAttribute="centerX" type="default" id="jT5-wI-dJe"/>
+                            <constraint firstItem="51u-tP-MB2" firstAttribute="top" secondItem="sbZ-Bw-DiI" secondAttribute="top" type="default" id="oik-16-m8E"/>
                             <constraint firstItem="sbZ-Bw-DiI" firstAttribute="trailing" secondItem="7kQ-H5-RJO" secondAttribute="trailing" type="default" id="sea-3d-fPh"/>
+                            <constraint firstItem="51u-tP-MB2" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="PYl-bd-Q14" secondAttribute="leading" constant="76" type="user" id="wfb-K6-BIW"/>
                             <constraint firstItem="AWi-60-pMo" firstAttribute="centerX" secondItem="sbZ-Bw-DiI" secondAttribute="centerX" type="default" id="yAz-1k-TkC"/>
+                            <constraint firstItem="51u-tP-MB2" firstAttribute="leading" secondItem="PYl-bd-Q14" secondAttribute="leading" constant="93" id="zbc-Zz-jmq"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
