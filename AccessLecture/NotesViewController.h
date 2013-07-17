@@ -10,7 +10,10 @@
 #import "FTCoreTextView.h"
 #import "LectureViewContainer.h"
 #import "DrawView.h"
-
+#import "Lecture.h"
+#import "AccessDocument.h"
+#import "FileManager.h"
+#import "AccessLectureRuntime.h"
 static NSString* const NotesViewControllerXIB = @"NotesViewController";
 @interface NotesViewController : UIViewController<UITextViewDelegate,LectureViewChild>
 {
@@ -20,6 +23,14 @@ static NSString* const NotesViewControllerXIB = @"NotesViewController";
     NSString *startTag;
     NSString *endTag;
     BOOL isBackSpacePressed;
+    Lecture *currentLecture;
+    AccessDocument *currentDocument;
+    BOOL isOpened;
+    UIPanGestureRecognizer *panToMoveNote;
+    UIPanGestureRecognizer *panToResize;
+    UILongPressGestureRecognizer *longPressGestureRecognizer;
+    UILongPressGestureRecognizer *longPressGestureRecognizer2;
+
 }
 
 @property (nonatomic) BOOL isCreatingNote;

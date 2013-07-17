@@ -3,61 +3,36 @@
 <plist version="1.0">
 <dict>
 	<key>IDESourceControlProjectIdentifier</key>
-<<<<<<< HEAD
-	<string>10B7861B-9E88-4D7D-9ACE-7EAF8BC12687</string>
-=======
-	<string>ECE441E0-AB03-4815-9B82-381C07BB0204</string>
->>>>>>> 2e6525af621a1c3a04d19014803b8419020011b7
+	<string>9FA962DE-3E08-4431-A891-B1EDE8DF3EC6</string>
 	<key>IDESourceControlProjectName</key>
 	<string>AccessLecture</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-<<<<<<< HEAD
-		<key>B3975077-BDCE-4D33-B956-CD399B648A51</key>
-		<string>https://github.com/RITAccess/accessmath</string>
-=======
-		<key>56169B61-5BEC-4D24-8F92-523028F9C8CD</key>
-		<string>ssh://github.com/RITAccess/accessmath.git</string>
->>>>>>> 2e6525af621a1c3a04d19014803b8419020011b7
+		<key>1DF48FF7-44FA-4DE1-8368-E29720E115F0</key>
+		<string>https://github.com/RITAccess/accessmath.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>AccessLecture.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-<<<<<<< HEAD
-		<key>B3975077-BDCE-4D33-B956-CD399B648A51</key>
+		<key>1DF48FF7-44FA-4DE1-8368-E29720E115F0</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/RITAccess/accessmath</string>
+	<string>https://github.com/RITAccess/accessmath.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>B3975077-BDCE-4D33-B956-CD399B648A51</string>
-=======
-		<key>56169B61-5BEC-4D24-8F92-523028F9C8CD</key>
-		<string>../..</string>
-	</dict>
-	<key>IDESourceControlProjectURL</key>
-	<string>ssh://github.com/RITAccess/accessmath.git</string>
-	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
-	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>56169B61-5BEC-4D24-8F92-523028F9C8CD</string>
->>>>>>> 2e6525af621a1c3a04d19014803b8419020011b7
+	<string>1DF48FF7-44FA-4DE1-8368-E29720E115F0</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-<<<<<<< HEAD
-			<string>B3975077-BDCE-4D33-B956-CD399B648A51</string>
-=======
-			<string>56169B61-5BEC-4D24-8F92-523028F9C8CD</string>
->>>>>>> 2e6525af621a1c3a04d19014803b8419020011b7
+			<string>1DF48FF7-44FA-4DE1-8368-E29720E115F0</string>
 			<key>IDESourceControlWCCName</key>
-			<string>accessmath</string>
+			<string>AccessMath</string>
 		</dict>
 	</array>
 </dict>

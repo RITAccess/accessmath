@@ -9,11 +9,42 @@
 #import "NotesViewController.h"
 #import "UILargeAlertView.h"
 
+@interface noteLoader:NSObject{
+   
+}
+@property(nonatomic) UIView *view;
+@property(nonatomic) NSString *styleText;
+@end
+static NSString * VIEW_KEY = @"position_key";   // key to code for the position
+static NSString * TEXT_KEY = @"text_key";         // key to code for the image
+
+@implementation noteLoader
+
+-(id)init:(UIView*)noteView{
+   self= [super init];
+    _view = noteView;
+    _styleText = [[[noteView subviews] objectAtIndex:0] text];
+    return self;
+}
+- (id)initWithCoder:(NSCoder *)aCoder {
+    if (self = [super init]) {
+        _view = [aCoder decodeObjectForKey:VIEW_KEY];
+        _styleText = [aCoder decodeObjectForKey:TEXT_KEY];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:_view forKey:VIEW_KEY];
+    [aCoder encodeObject:_styleText forKey:TEXT_KEY];
+}
+@end
 @interface NotesViewController ()
 
 @end
-
-@implementation NotesViewController
+@implementation NotesViewController{
+    }
+ 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -25,18 +56,59 @@
                                                                              :@selector(dismissKeyboard)];
         [self.view addGestureRecognizer:_tapToDismissKeyboard];
     }
+    
     return self;
 }
 
+-(void)viewDidAppear:(BOOL)animated{
+    isOpened = YES;
+    currentLecture.name = @"Lecture001";
+    NSURL * currentDirectory = [FileManager iCloudDirectoryURL];
+    if (currentDirectory == nil) currentDirectory = [FileManager localDocumentsDirectoryURL];
+    NSString *docsPath =[[currentDirectory absoluteString] stringByAppendingString:[NSString stringWithFormat:@"AccessMath/%@.lecture",currentLecture.name]];
+    NSURL *docURL = [NSURL URLWithString:docsPath];
+    [[AccessLectureRuntime defaultRuntime] openDocument:docURL];
+     currentDocument = [AccessLectureRuntime defaultRuntime].currentDocument;
+   }
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     startTag = @"<CD>";
     endTag = @"</CD>";
     isBackSpacePressed = FALSE;
     // Do any additional setup after loading the view from its nib.
+    currentLecture = [[Lecture alloc] initWithName:@"Lecture001"];
+       if([[currentDocument.notes objectAtIndex:0] description]!=NULL){
+
+        [self loadNotes:currentDocument.notes];
+
+          }
+
 }
 
+-(void)loadNotes:(NSMutableArray *)notes{
+    for(noteLoader *viewer in notes){
+        panToMoveNote = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
+        panToResize = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handleResize:)];
+        longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressToRemoveNote:)];
+        
+        longPressGestureRecognizer2 = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressToDisplayNote:)];
+        longPressGestureRecognizer.numberOfTouchesRequired = 3;
+        longPressGestureRecognizer2.numberOfTouchesRequired = 1;
+        [[viewer.view.subviews objectAtIndex:0] setText:viewer.styleText];
+        [[viewer.view.subviews objectAtIndex:0] addStyles:[self coreTextStyle]];
+        [[[viewer.view.subviews objectAtIndex:1] layer] setBorderWidth:3];
+        [[[viewer.view.subviews objectAtIndex:1] layer] setCornerRadius:20];
+        [[viewer.view.subviews objectAtIndex:1] setDelegate:self];
+        [[viewer.view.subviews objectAtIndex:1] setClipsToBounds:NO];
+        [viewer.view addGestureRecognizer:panToMoveNote];
+        [[viewer.view.subviews objectAtIndex:1] addGestureRecognizer:longPressGestureRecognizer];
+        [viewer.view addGestureRecognizer:longPressGestureRecognizer2];
+        [self.view addSubview:viewer.view];
+        
+    }
+    }
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -51,14 +123,13 @@
 {
     if (_isCreatingNote){
         if(self.isCreatingNote){
-          //Initilize gesture recognizers for the view
-            UIPanGestureRecognizer *panToMoveNote = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
-            UILongPressGestureRecognizer *longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressToRemoveNote:)];
+            panToMoveNote = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
+            panToResize = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handleResize:)];
+            longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressToRemoveNote:)];
             
-            UILongPressGestureRecognizer *longPressGestureRecognizer2 = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressToDisplayNote:)];
+            longPressGestureRecognizer2 = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressToDisplayNote:)];
             longPressGestureRecognizer.numberOfTouchesRequired = 3;
             longPressGestureRecognizer2.numberOfTouchesRequired = 1;
-          
             UIView *outerView = [[UIView alloc] initWithFrame:CGRectMake([gesture locationInView:self.view].x, [gesture locationInView:self.view].y, 350, 150)];
          
             FTCoreTextView *text = [[FTCoreTextView alloc]initWithFrame:CGRectMake(outerView.frame.origin.x+10 , outerView.frame.origin.y+10 , 300, 120)];
@@ -89,20 +160,13 @@
             [self.view addSubview:outerView];
             [textBubble setClipsToBounds:NO];
             [textBubble becomeFirstResponder];
-         
-          
+                 
         }
     }
 }
 - (void)createNoteDraw:(UIGestureRecognizer *)gesture{
    //Initilize gesture recognizers for the view
-    UIPanGestureRecognizer *panToMoveNote = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
-    UIPanGestureRecognizer *panToResize = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handleResize:)];
-    
-    UILongPressGestureRecognizer *longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressToRemoveNote:)];
-    UILongPressGestureRecognizer *longPressGestureRecognizer2 = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressToDisplayNote:)];
-    longPressGestureRecognizer.numberOfTouchesRequired = 3;
-    longPressGestureRecognizer2.numberOfTouchesRequired = 1;
+
     UIView *outerView = [[UIView alloc] initWithFrame:CGRectMake([gesture locationInView:self.view].x+20, [gesture locationInView:self.view].y+15, 430, 330)];
     [panToMoveNote setEnabled:NO];
     [panToResize setEnabled:NO];
@@ -118,7 +182,6 @@
     [anImageView setCenter:lineDrawView.bounds.origin];
     [resizeView setBounds:CGRectMake([gesture locationInView:self.view].x, [gesture locationInView:self.view].y, 50, 50)];
     [anImageView setBounds:CGRectMake([gesture locationInView:self.view].x, [gesture locationInView:self.view].y, 50, 50)];
-   // resizeView.layer.borderWidth = 3; //Uncommment this line to view border for resizeView
     //Do not change the order in which the subviews and gestures are added
     [outerView addGestureRecognizer:panToMoveNote];
     [lineDrawView addGestureRecognizer:longPressGestureRecognizer];
@@ -394,9 +457,21 @@ else if(_isDrawing)
 
 - (void)willSaveState
 {
+   
     NSLog(@"Will save state");
+    NSMutableArray *notes = [[NSMutableArray alloc] init];
+    for(UIView *saver in [self.view subviews])
+    {
+        if(![saver isKindOfClass:[UIToolbar class]])
+            {
+                noteLoader *loader = [[noteLoader alloc] init:saver];
+                [notes addObject:loader];
+            }
+    }
     
-
+    currentDocument.notes = notes;
+    currentDocument.lecture = currentLecture;
+    [FileManager saveDocument:currentDocument];
 }
 
 - (void)didSaveState
@@ -426,5 +501,6 @@ else if(_isDrawing)
 {
     return self.view;
 }
+
 
 @end

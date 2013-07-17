@@ -44,7 +44,7 @@ static NSString * DEFAULT_FILENAME = @"Lecture001";
         if (url != nil) return YES;
         return NO;
     }];
-     if (document == nil) {
+    if (document == nil) {
         NSString * filename = [DEFAULT_FILENAME stringByAppendingPathExtension:[AccessDocument fileType]];
         document = [currentDirectory URLByAppendingPathComponent:filename];
         }
@@ -55,6 +55,7 @@ static NSString * DEFAULT_FILENAME = @"Lecture001";
             {
                 NSLog(@"Success");
                 [AccessLectureRuntime defaultRuntime].currentDocument = _currentDocument;
+               
             }
             else{
                 [_currentDocument saveToURL:withURL
