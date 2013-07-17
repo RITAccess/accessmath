@@ -10,6 +10,8 @@
 #import "AboutViewController.h"
 #import "Lecture.h"
 #import "ALNetworkInterface.h"
+#import "LectureViewContainer.h"
+
 
 @interface RootViewController : UIViewController
 {
@@ -20,5 +22,6 @@
 -(IBAction)openAbout:(id)sender;
 - (IBAction)connectToServer:(id)sender;
 - (IBAction)openLecture:(id)sender;
+- (IBAction)openConnect:(id)sender;
 
 @end

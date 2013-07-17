@@ -88,7 +88,9 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="openConnect:" destination="SP6-Rd-Xf7" eventType="touchUpInside" id="AZ9-AP-Dxn"/>
                                     <action selector="openLecture:" destination="SP6-Rd-Xf7" eventType="touchUpInside" id="kgr-Bw-D80"/>
+                                    <segue destination="8Co-Mi-Y02" kind="modal" identifier="toLectureConnect" id="CU0-Qd-R6I"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -216,6 +218,7 @@
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationItem key="navigationItem" id="B1E-hu-xO5"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackOpaque"/>
                     <connections>
                         <outlet property="container" destination="ITE-Tv-tK0" id="0O6-GU-Byy"/>
@@ -397,4 +400,7 @@ IAoKA
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="CU0-Qd-R6I"/>
+    </inferredMetricsTieBreakers>
 </document>
