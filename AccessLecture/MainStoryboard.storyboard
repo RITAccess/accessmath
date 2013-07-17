@@ -243,7 +243,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.86124320649999997" green="0.86124320649999997" blue="0.86124320649999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="583" id="osG-Gf-CbJ"/>
+                                    <constraint firstAttribute="width" constant="984" type="user" id="JBJ-Ij-ZSs"/>
+                                    <constraint firstAttribute="height" constant="583" type="user" id="osG-Gf-CbJ"/>
                                 </constraints>
                                 <attributedString key="attributedText">
                                     <fragment>
@@ -374,13 +375,17 @@ IAoKA
                         <color key="backgroundColor" white="0.85999999999999999" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="PMH-wg-B3C" firstAttribute="leading" secondItem="Awu-V3-w53" secondAttribute="leading" type="default" id="AuQ-Vu-8ZJ"/>
-                            <constraint firstItem="j9g-tP-9tn" firstAttribute="top" secondItem="Awu-V3-w53" secondAttribute="top" constant="136" id="et5-k7-L8N"/>
+                            <constraint firstItem="j9g-tP-9tn" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Awu-V3-w53" secondAttribute="leading" constant="20" type="user" id="Lz1-MQ-uw9"/>
+                            <constraint firstItem="j9g-tP-9tn" firstAttribute="top" secondItem="Awu-V3-w53" secondAttribute="top" constant="136" type="user" id="et5-k7-L8N"/>
                             <constraint firstAttribute="bottom" secondItem="9xE-sc-XrY" secondAttribute="bottom" constant="44" id="g7j-Yy-s1o"/>
+                            <constraint firstAttribute="bottom" secondItem="j9g-tP-9tn" secondAttribute="bottom" constant="29" type="user" id="gLB-hg-Utq"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="9xE-sc-XrY" secondAttribute="trailing" constant="83" type="user" id="hTI-Bl-mgY"/>
                             <constraint firstItem="PMH-wg-B3C" firstAttribute="centerX" secondItem="j9g-tP-9tn" secondAttribute="centerX" type="default" id="jkC-6V-hIi"/>
-                            <constraint firstItem="j9g-tP-9tn" firstAttribute="leading" secondItem="Awu-V3-w53" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="lKx-c5-Z4q"/>
+                            <constraint firstItem="j9g-tP-9tn" firstAttribute="leading" secondItem="Awu-V3-w53" secondAttribute="leading" constant="20" symbolic="YES" type="user" id="lKx-c5-Z4q"/>
                             <constraint firstAttribute="trailing" secondItem="9xE-sc-XrY" secondAttribute="trailing" constant="83" id="luX-WY-afc"/>
-                            <constraint firstAttribute="trailing" secondItem="j9g-tP-9tn" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="sML-nA-n0e"/>
+                            <constraint firstAttribute="trailing" secondItem="j9g-tP-9tn" secondAttribute="trailing" constant="20" symbolic="YES" type="user" id="sML-nA-n0e"/>
                             <constraint firstItem="PMH-wg-B3C" firstAttribute="top" secondItem="Awu-V3-w53" secondAttribute="top" type="default" id="vtT-0r-Ptb"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="9xE-sc-XrY" secondAttribute="bottom" constant="44" type="user" id="wyV-92-T4Q"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
