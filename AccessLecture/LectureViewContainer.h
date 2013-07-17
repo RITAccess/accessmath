@@ -13,7 +13,7 @@
  * The LectureViewChild protocol is required to be a valid subview controller of
  * the LectureViewContainer. If you do not implement theses methods your controller
  * will not fuction properly. LectureViewContainer is responsible for switching
- * modes, saveing, handling zoom, and handling panning. DO NOT implement this 
+ * modes, saving, handling zoom, and handling panning. DO NOT implement this 
  * yourself. API's are subject to change.
  */
 @protocol LectureViewChild <NSObject>
