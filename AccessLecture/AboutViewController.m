@@ -1,59 +1,28 @@
-//  Copyright 2011 Access Lecture. All rights reserved.
+//
+//  AboutViewController.m
+//  AccessLecture
+//
+//  Modified by Piper Chester on 7/17/13.
+//
+//
 
 #import "AboutViewController.h"
 
-#define ZOOM_STEP 1.5
-#define MINIMUM_ZOOM_SCALE 1.5
-
 @implementation AboutViewController
-
-#pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
-    // Completely zoom out when user double taps
-    UITapGestureRecognizer *fullZoomOutRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resetImageZoom:)];
-    [fullZoomOutRecognizer setNumberOfTapsRequired:2];
-    [fullZoomOutRecognizer setNumberOfTouchesRequired:2];
-    [scrollView addGestureRecognizer:fullZoomOutRecognizer];
-    
     [super viewDidLoad];
 }
 
 - (void)viewDidUnload
 {
-    scrollView = nil;
-    mainView = nil;
     [super viewDidUnload];
 }
 
 /**
- Resetting the scrollView to be completely zoomed out
+ * Dismisses about view and returns to home view.
  */
--(void)resetImageZoom: (UIGestureRecognizer *)gestureRecognizer
-{
-    [scrollView setZoomScale:1.0 animated:YES];
-}
-
-#pragma mark UIScrollViewDelegate protocol
-
-/**
- * Required scrollview delegate method.
- */
-- (UIView *)viewForZoomingInScrollView:(UIScrollView *)sv
-{
-	return mainView;
-}
-
-/**
- * Required scrollview delegate method.
- */
-- (void)scrollViewDidEndZooming:(UIScrollView *)sv withView:(UIView *)view atScale:(float)scale
-{
-    [sv setZoomScale:scale+0.01 animated:NO];
-    [sv setZoomScale:scale animated:NO];
-}
-
 - (IBAction)returnToHome:(id)sender
 {
     [self dismissViewControllerAnimated:YES completion:^{}];
