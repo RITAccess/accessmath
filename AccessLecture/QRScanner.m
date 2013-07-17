@@ -53,18 +53,27 @@
     
 }
 
+- (void)tearDown
+{
+    dispatch_sync(_session_queue, ^{
+        [session stopRunning];
+    });
+}
+
 - (void)startCaptureWithCompletion:(void(^)(NSDictionary *))completion
 {
     didFinishWithInfo = completion;
     dispatch_sync(_session_queue, ^{
         [self setUpSession];
         [session startRunning];
-        if ([[_metaData availableMetadataObjectTypes] containsObject:AVMetadataObjectTypeQRCode]) {
+        
+        if ([[_metaData availableMetadataObjectTypes] containsObject:@"org.iso.QRCode"]) { // This is not optimal but the string const doesn't exist on 6.1
             _metaData.metadataObjectTypes = @[AVMetadataObjectTypeQRCode];
         } else {
-            // TODO tear down session
-            NSLog(@"Failed");
+            NSLog(@"QRScanning is not available");
+            [self tearDown];
         }
+        
     });
 }
 
@@ -80,7 +89,7 @@
                 NSLog(@"Connect to %@ in class %@ read from QRCode", data[@"url"], data[@"lecture"]);
                 [session removeOutput:_metaData];
                 _metaData = nil;
-                // TODO tear down session
+                [self tearDown];
                 didFinishWithInfo(data);
             }
         }

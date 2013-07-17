@@ -48,9 +48,21 @@
     }
     
     // Setup tap to scan
-    _tapToScan = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scan:)];
-    [_tapToScan setCancelsTouchesInView:YES];
-    [_previewView addGestureRecognizer:_tapToScan];
+    if ([[[AVCaptureMetadataOutput new] availableMetadataObjectTypes] containsObject:@"org.iso.QRCode"]) {
+        _tapToScan = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scan:)];
+        [_tapToScan setCancelsTouchesInView:YES];
+        [_previewView addGestureRecognizer:_tapToScan];
+        [_previewView setBackgroundColor:[UIColor redColor]];
+    } else { // Not available
+        [_previewView setBackgroundColor:[UIColor grayColor]];
+        UILabel *nope = [[UILabel alloc] initWithFrame:CGRectMake(_previewView.frame.size.width / 2 - 125, _previewView.frame.size.height / 2 - 15, 250, 30)];
+        [nope setBackgroundColor:[UIColor clearColor]];
+        [nope setTextColor:[UIColor whiteColor]];
+        [nope setTextAlignment:NSTextAlignmentCenter];
+        [nope setText:@"Scanning not available"];
+        [_previewView addSubview:nope];
+        [_connectionAddress becomeFirstResponder];
+    }
 
 }
 
