@@ -350,13 +350,13 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j9g-tP-9tn">
                                 <rect key="frame" x="20" y="136" width="984" height="583"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.86124320649999997" green="0.86124320649999997" blue="0.86124320649999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="583" id="osG-Gf-CbJ"/>
                                 </constraints>
                                 <attributedString key="attributedText">
                                     <fragment>
-                                        <string key="content">AccessMath is being developed by students at the Rochester Institute of Technology. 
+                                        <string key="content">AccessMath is being developed by students at the Rochester Institute of Technology. All of our code is publicly hosted on GitHub and we encourage contributions.
 
 </string>
                                         <attributes>
@@ -472,7 +472,7 @@ IAoKA
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.85999999999999999" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="PMH-wg-B3C" firstAttribute="leading" secondItem="Awu-V3-w53" secondAttribute="leading" type="default" id="AuQ-Vu-8ZJ"/>
                             <constraint firstItem="j9g-tP-9tn" firstAttribute="top" secondItem="Awu-V3-w53" secondAttribute="top" constant="136" id="et5-k7-L8N"/>
