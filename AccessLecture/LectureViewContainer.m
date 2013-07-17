@@ -117,47 +117,14 @@
  */
 - (void)panHandle:(UIPanGestureRecognizer *)gesture
 {
-    [self.childViewControllers enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(id<LectureViewChild> obj, NSUInteger idx, BOOL *stop) {
+    CGPoint translation = [gesture translationInView:self.view];
+    [gesture setTranslation:CGPointMake(0, 0) inView:self.view];
+    for (id<LectureViewChild> obj in self.childViewControllers) {
         if ([obj respondsToSelector:@selector(willApplyTransformToView)]) {
-            
             UIView *view = [obj willApplyTransformToView];
-            CGPoint translation = [gesture translationInView:self.view];
-            
-            [gesture setTranslation:CGPointMake(0, 0) inView:view];
-            
-            if ([obj isMemberOfClass:[DrawViewController class]]){
-                // Clamp Left and Top Sides of View
-                if (view.frame.origin.x > 0){
-                    view.frame = CGRectMake(0, view.frame.origin.y, view.frame.size.width, view.frame.size.height);
-                }
-                
-                if (view.frame.origin.y > 0){
-                    view.frame = CGRectMake(view.frame.origin.x, 0, view.frame.size.width, view.frame.size.height);
-                }
-                
-                // Clamp Right and Bottom Sides of View
-                if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)){
-                    if (view.frame.origin.x < -500){
-                        view.frame = CGRectMake(-500, view.frame.origin.y, view.frame.size.width, view.frame.size.height);
-                    }
-                    
-                    if (view.frame.origin.y < -1020){
-                        view.frame = CGRectMake(view.frame.origin.x, -1020, view.frame.size.width, view.frame.size.height);
-                    }
-                } else if (UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)){
-                    if (view.frame.origin.x < -765){
-                        view.frame = CGRectMake(-765, view.frame.origin.y, view.frame.size.width, view.frame.size.height);
-                    }
-                    
-                    if (view.frame.origin.y < -1020){
-                        view.frame = CGRectMake(view.frame.origin.x, -1020, view.frame.size.width, view.frame.size.height);
-                    }
-                }
-            }
-            
             [view setCenter:CGPointMake(view.center.x + translation.x, view.center.y + translation.y)];
         }
-    }];
+    }
 }
 
 - (void)setUpMenuItems
