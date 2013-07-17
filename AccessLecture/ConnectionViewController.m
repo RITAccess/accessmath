@@ -120,6 +120,7 @@
             }
         }];
     }];
+    
     [UIView animateWithDuration:0.4 animations:^{
         [_previewView setFrame:self.view.frame];
     } completion:^(BOOL finished) {
@@ -129,6 +130,12 @@
         [preview setBounds:_previewView.layer.bounds];
         [preview setPosition:CGPointMake(CGRectGetMidX(_previewView.layer.bounds), CGRectGetMidY(_previewView.layer.bounds))];
         [_previewView.layer addSublayer:preview];
+        
+        UIButton *cancelButton = [[UIButton alloc] initWithFrame:CGRectMake(_previewView.frame.size.width - 100, _previewView.frame.size.height - 50, 100, 50)];
+        [cancelButton addTarget:self action:@selector(userDidCancel:) forControlEvents:UIControlEventTouchDown];
+        [cancelButton setBackgroundColor:[UIColor clearColor]];
+        [cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
+        [_previewView addSubview:cancelButton];
     }];
 }
 
