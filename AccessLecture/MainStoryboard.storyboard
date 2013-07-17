@@ -471,13 +471,23 @@ IAoKA
                                     <constraint firstAttribute="height" constant="80" type="user" id="y9Q-56-ezS"/>
                                 </constraints>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rit_tiger.gif" translatesAutoresizingMaskIntoConstraints="NO" id="9xE-sc-XrY">
+                                <rect key="frame" x="812" y="585" width="129" height="119"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="129" id="d0n-CM-1wS"/>
+                                    <constraint firstAttribute="height" constant="119" id="qdZ-aa-vCz"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.85999999999999999" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="PMH-wg-B3C" firstAttribute="leading" secondItem="Awu-V3-w53" secondAttribute="leading" type="default" id="AuQ-Vu-8ZJ"/>
                             <constraint firstItem="j9g-tP-9tn" firstAttribute="top" secondItem="Awu-V3-w53" secondAttribute="top" constant="136" id="et5-k7-L8N"/>
+                            <constraint firstAttribute="bottom" secondItem="9xE-sc-XrY" secondAttribute="bottom" constant="44" id="g7j-Yy-s1o"/>
                             <constraint firstItem="PMH-wg-B3C" firstAttribute="centerX" secondItem="j9g-tP-9tn" secondAttribute="centerX" type="default" id="jkC-6V-hIi"/>
                             <constraint firstItem="j9g-tP-9tn" firstAttribute="leading" secondItem="Awu-V3-w53" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="lKx-c5-Z4q"/>
+                            <constraint firstAttribute="trailing" secondItem="9xE-sc-XrY" secondAttribute="trailing" constant="83" id="luX-WY-afc"/>
                             <constraint firstAttribute="trailing" secondItem="j9g-tP-9tn" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="sML-nA-n0e"/>
                             <constraint firstItem="PMH-wg-B3C" firstAttribute="top" secondItem="Awu-V3-w53" secondAttribute="top" type="default" id="vtT-0r-Ptb"/>
                         </constraints>
@@ -508,6 +518,7 @@ IAoKA
     </scenes>
     <resources>
         <image name="accesslecture.png" width="695" height="512"/>
+        <image name="rit_tiger.gif" width="367" height="335"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="lightContent"/>
