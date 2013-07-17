@@ -9,6 +9,7 @@
 #import "ConnectionViewController.h"
 #import "AccessLectureAppDelegate.h"
 #import "ALNetworkInterface.h"
+#import <QuartzCore/CATransform3D.h>
 
 @interface ConnectionViewController ()
 
@@ -137,6 +138,19 @@
         [cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
         [_previewView addSubview:cancelButton];
     }];
+}
+
+# pragma mark - Rotation Handling
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    if (_previewView){
+        if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)){
+            [_previewView.layer setTransform:CATransform3DMakeRotation(90.0 / 180.0 * M_PI, 0.0, 0.0, 1.0)];
+        } else if (UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)){
+            [_previewView.layer setTransform:CATransform3DMakeRotation(0 / 180.0 * M_PI, 0.0, 0.0, 1.0)];
+        }
+    }
 }
 
 #pragma mark Connect
