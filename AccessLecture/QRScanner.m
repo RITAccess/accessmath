@@ -68,7 +68,7 @@
         [self setUpSession];
         [session startRunning];
         
-        if ([[_metaData availableMetadataObjectTypes] containsObject:@"org.iso.QRCode"]) { // This is not optimal but the string const doesn't exist on 6.1
+        if ([[_metaData availableMetadataObjectTypes] containsObject:AVMetadataObjectTypeQRCode]) { // This is not optimal but the string const doesn't exist on 6.1
             _metaData.metadataObjectTypes = @[AVMetadataObjectTypeQRCode];
         } else {
             NSLog(@"QRScanning is not available");
