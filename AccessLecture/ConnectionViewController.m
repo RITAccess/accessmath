@@ -19,6 +19,8 @@
     ALNetworkInterface *server;
     QRScanner *scanner;
     UITapGestureRecognizer *_tapToScan;
+    AVCaptureVideoPreviewLayer *preview;
+    UIButton *cancelButton;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -126,13 +128,13 @@
         [_previewView setFrame:self.view.frame];
     } completion:^(BOOL finished) {
         AVCaptureSession *session  = [scanner session];
-        AVCaptureVideoPreviewLayer *preview = [[AVCaptureVideoPreviewLayer alloc] initWithSession:session];
+        preview = [[AVCaptureVideoPreviewLayer alloc] initWithSession:session];
         [preview setVideoGravity:AVLayerVideoGravityResizeAspectFill];
         [preview setBounds:_previewView.layer.bounds];
         [preview setPosition:CGPointMake(CGRectGetMidX(_previewView.layer.bounds), CGRectGetMidY(_previewView.layer.bounds))];
         [_previewView.layer addSublayer:preview];
         
-        UIButton *cancelButton = [[UIButton alloc] initWithFrame:CGRectMake(_previewView.frame.size.width - 100, _previewView.frame.size.height - 50, 100, 50)];
+        cancelButton = [[UIButton alloc] initWithFrame:CGRectMake(_previewView.frame.size.width - 100, _previewView.frame.size.height - 50, 100, 50)];
         [cancelButton addTarget:self action:@selector(userDidCancel:) forControlEvents:UIControlEventTouchDown];
         [cancelButton setBackgroundColor:[UIColor clearColor]];
         [cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
@@ -147,10 +149,29 @@
     if (_previewView){
         if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)){
             [_previewView.layer setTransform:CATransform3DMakeRotation(90.0 / 180.0 * M_PI, 0.0, 0.0, 1.0)];
+//            [_previewView setTransform:CGAffineTransformMakeRotation(90 * M_PI / 180)];
+            [self configureScanViewWithDuration:0 withLandscape:YES];
+            
         } else if (UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)){
             [_previewView.layer setTransform:CATransform3DMakeRotation(0 / 180.0 * M_PI, 0.0, 0.0, 1.0)];
+//            [_previewView setTransform:CGAffineTransformMakeRotation(0 / 180 * M_PI)];
+            [self configureScanViewWithDuration:0 withLandscape:NO];
         }
     }
+}
+
+/**
+ * Resets scan view to fill the view. Used for handling rotation.
+ */
+- (void)configureScanViewWithDuration:(NSTimeInterval)seconds withLandscape:(BOOL)isLandscape
+{
+    [UIView animateWithDuration:seconds animations:^{
+        [_previewView setFrame:self.view.frame];
+    } completion:^(BOOL finished) {
+        [preview setVideoGravity:AVLayerVideoGravityResizeAspectFill];
+        [preview setBounds:_previewView.layer.bounds];
+        [preview setPosition:CGPointMake(CGRectGetMidX(_previewView.layer.bounds), CGRectGetMidY(_previewView.layer.bounds))];
+    }];
 }
 
 #pragma mark Connect
