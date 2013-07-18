@@ -162,21 +162,18 @@
  */
 - (void)configureScanViewWithDuration:(NSTimeInterval)seconds withLandscape:(BOOL)isLandscape
 {
-    [UIView animateWithDuration:seconds animations:^{
-        [_previewView setFrame:self.view.frame];
-    } completion:^(BOOL finished) {
-        [preview setVideoGravity:AVLayerVideoGravityResizeAspectFill];
-        [preview setBounds:_previewView.layer.bounds];
-        [preview setPosition:CGPointMake(CGRectGetMidX(_previewView.layer.bounds), CGRectGetMidY(_previewView.layer.bounds))];
-        
-        if (isLandscape){
-            [cancelButton setTransform:CGAffineTransformMakeRotation(270 * M_PI / 180)];
-            [cancelButton setFrame:CGRectMake(_previewView.frame.size.width + 25, _previewView.frame.size.height - 620, 50, 100)];
-        } else {
-            [cancelButton setTransform:CGAffineTransformMakeRotation(0 * M_PI / 180)];
-            [cancelButton setFrame:CGRectMake(_previewView.frame.size.width - 100, _previewView.frame.size.height - 50, 100, 50)];
-        }
-    }];
+    [_previewView setFrame:self.view.frame];
+    [preview setVideoGravity:AVLayerVideoGravityResizeAspectFill];
+    [preview setBounds:_previewView.layer.bounds];
+    [preview setPosition:CGPointMake(CGRectGetMidX(_previewView.layer.bounds), CGRectGetMidY(_previewView.layer.bounds))];
+    
+    if (isLandscape){
+        [cancelButton setTransform:CGAffineTransformMakeRotation(270 * M_PI / 180)];
+        [cancelButton setFrame:CGRectMake(_previewView.frame.size.width + 25, _previewView.frame.size.height - 620, 50, 100)];
+    } else {
+        [cancelButton setTransform:CGAffineTransformMakeRotation(0 * M_PI / 180)];
+        [cancelButton setFrame:CGRectMake(_previewView.frame.size.width - 100, _previewView.frame.size.height - 50, 100, 50)];
+    }
 }
 
 #pragma mark Connect
