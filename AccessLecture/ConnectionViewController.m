@@ -75,7 +75,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (IBAction)checkAddress:(id)sender
@@ -150,16 +149,16 @@
     if (_previewView){
         if ([UIDevice currentDevice].orientation == UIInterfaceOrientationPortrait){
             [_previewView.layer setTransform:CATransform3DMakeRotation(0 / 180.0 * M_PI, 0.0, 0.0, 1.0)];
-            [self configureScanViewWithDuration:0 withOrientation:0];
+            [self configureScanViewWithOrientation:0];
         } else if ([UIDevice currentDevice].orientation == UIInterfaceOrientationLandscapeLeft){
             [_previewView.layer setTransform:CATransform3DMakeRotation(90.0 / 180.0 * M_PI, 0.0, 0.0, 1.0)];
-            [self configureScanViewWithDuration:0 withOrientation:90];
+            [self configureScanViewWithOrientation:90];
         } else if ([UIDevice currentDevice].orientation == UIInterfaceOrientationPortraitUpsideDown){
             [_previewView.layer setTransform:CATransform3DMakeRotation(180.0 / 180.0 * M_PI, 0.0, 0.0, 1.0)];
-            [self configureScanViewWithDuration:0 withOrientation:180];
+            [self configureScanViewWithOrientation:180];
         }else if ([UIDevice currentDevice].orientation == UIInterfaceOrientationLandscapeRight){
             [_previewView.layer setTransform:CATransform3DMakeRotation(270.0 / 180.0 * M_PI, 0.0, 0.0, 1.0)];
-            [self configureScanViewWithDuration:0 withOrientation:270];
+            [self configureScanViewWithOrientation:270];
         }
     }
 }
@@ -167,7 +166,7 @@
 /**
  * Resets scan view to fill the view. Used for handling rotation.
  */
-- (void)configureScanViewWithDuration:(NSTimeInterval)seconds withOrientation:(int)orientation
+- (void)configureScanViewWithOrientation:(int)orientation
 {
     [_previewView setFrame:self.view.frame];
     [preview setVideoGravity:AVLayerVideoGravityResizeAspectFill];
