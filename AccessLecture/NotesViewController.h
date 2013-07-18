@@ -10,7 +10,10 @@
 #import "FTCoreTextView.h"
 #import "LectureViewContainer.h"
 #import "DrawView.h"
-
+#import "Lecture.h"
+#import "AccessDocument.h"
+#import "FileManager.h"
+#import "AccessLectureRuntime.h"
 static NSString* const NotesViewControllerXIB = @"NotesViewController";
 @interface NotesViewController : UIViewController<UITextViewDelegate,LectureViewChild>
 {
@@ -20,8 +23,16 @@ static NSString* const NotesViewControllerXIB = @"NotesViewController";
     NSString *startTag;
     NSString *endTag;
     BOOL isBackSpacePressed;
-}
+    Lecture *currentLecture;
+    AccessDocument *currentDocument;
+    BOOL isOpened;
+    UIPanGestureRecognizer *panToMoveNote;
+    UIPanGestureRecognizer *panToResize;
+    UILongPressGestureRecognizer *longPressGestureRecognizer;
+    UILongPressGestureRecognizer *longPressGestureRecognizer2;
 
+}
+@property UIView *mainView;
 @property (nonatomic) BOOL isCreatingNote;
 @property (nonatomic) BOOL isDrawing;
 @property (nonatomic) CGPoint *start;
@@ -31,6 +42,8 @@ static NSString* const NotesViewControllerXIB = @"NotesViewController";
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *drawNote;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *textNote;
 @property UITapGestureRecognizer *tapToDismissKeyboard;
+@property (weak, nonatomic) IBOutlet UIImageView *trashBin;
+@property (weak, nonatomic) IBOutlet UIView *toolbarView;
 
 - (IBAction)setBlueColor:(id)sender;
 - (IBAction)createDrawNote:(id)sender;
