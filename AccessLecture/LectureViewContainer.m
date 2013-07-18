@@ -73,11 +73,11 @@
     [self.view setBackgroundColor:[UIColor grayColor]];
     
     // Set up viewControllers
-//    nvc = [[NotesViewController alloc] initWithNibName:NotesViewControllerXIB bundle:nil];
+    nvc = [[NotesViewController alloc] initWithNibName:NotesViewControllerXIB bundle:nil];
     dcv = [[DrawViewController alloc] initWithNibName:DrawViewControllerXIB bundle:nil];
     svc = (StreamViewController *)[[UIStoryboard storyboardWithName:StreamViewControllerStoryboard bundle:nil] instantiateViewControllerWithIdentifier:StreamViewControllerID];
     
-//    [self addController:nvc];
+    [self addController:nvc];
     [self addController:dcv];
     [self addController:svc];
     [self addController:[VCBlank new]];

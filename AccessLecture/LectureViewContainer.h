@@ -19,13 +19,21 @@
 @protocol LectureViewChild <NSObject>
 @required
 
-/* The view that will have pan/zoom */
+/**
+ * The view that will have pan/zoom. This will be your content area. 
+ * NOTE bounds are the full size of the area. For example 2000 x 2000. The frame
+ * is the size of the view on the screen. So if we are zoomed out, the frame may
+ * only be 300 x 300.
+ */
 - (UIView *)contentView;
 
-/* Updated your code to handle the different sized content area, DO NOT update your content size */
-- (void)contentSizeChanging:(CGSize)size;
-
 @optional
+
+/**
+ * Updated your code to handle the different sized content area, DO NOT update your content size 
+ * Not implemented yet, doesn't get called.
+ */
+- (void)contentSizeChanging:(CGSize)size;
 
 /**
  * Will save state gets called during the save process. Prepare the view here.
@@ -33,7 +41,9 @@
 - (void)willSaveState;
 - (void)didSaveState;
 
-/* Will/Did LeaveActiveState is called when your mode is about to lose primary. Remove any toolbars here. */
+/** 
+ * Will/Did LeaveActiveState is called when your mode is about to lose primary. Remove any toolbars here. 
+ */
 - (void)willLeaveActiveState;
 - (void)didLeaveActiveState;
 
