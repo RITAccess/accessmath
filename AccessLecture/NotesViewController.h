@@ -42,6 +42,7 @@ static NSString* const NotesViewControllerXIB = @"NotesViewController";
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *drawNote;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *textNote;
 @property UITapGestureRecognizer *tapToDismissKeyboard;
+@property (weak, nonatomic) IBOutlet UIImageView *trashBin;
 
 - (IBAction)setBlueColor:(id)sender;
 - (IBAction)createDrawNote:(id)sender;

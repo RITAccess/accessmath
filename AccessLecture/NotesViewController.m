@@ -14,22 +14,40 @@
 }
 @property(nonatomic) UIView *view;
 @property(nonatomic) NSString *styleText;
+@property(nonatomic) NSString *noteType;
+@property(nonatomic) DrawView *drawContent;
 @end
+
 static NSString * VIEW_KEY = @"position_key";   // key to code for the position
 static NSString * TEXT_KEY = @"text_key";         // key to code for the image
-
+static NSString * TYPE_KEY = @"type_key";
+static NSString * DRAW_KEY = @"draw_key";
 @implementation noteLoader
 
--(id)init:(UIView*)noteView{
+-(id)init:(UIView*)noteView type:(NSString *)nType{
    self= [super init];
+   
+    if([nType isEqualToString:@"textNote"]){
     _view = noteView;
-    _styleText = [[[noteView subviews] objectAtIndex:0] text];
+        _styleText = [[[noteView subviews] objectAtIndex:0] text];
+    _noteType =[NSString stringWithString:nType];
+        _drawContent = nil;
+    }
+    else if([nType isEqualToString:@"drawNote"]){
+               _view = noteView;
+        _styleText = @"";
+        _noteType =[NSString stringWithString:nType];
+        _drawContent = [[noteView subviews] objectAtIndex:1];
+    }
     return self;
 }
 - (id)initWithCoder:(NSCoder *)aCoder {
     if (self = [super init]) {
         _view = [aCoder decodeObjectForKey:VIEW_KEY];
         _styleText = [aCoder decodeObjectForKey:TEXT_KEY];
+        _noteType = [aCoder decodeObjectForKey:TYPE_KEY];
+        _drawContent = [aCoder decodeObjectForKey:DRAW_KEY];
+        
     }
     return self;
 }
@@ -37,6 +55,8 @@ static NSString * TEXT_KEY = @"text_key";         // key to code for the image
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [aCoder encodeObject:_view forKey:VIEW_KEY];
     [aCoder encodeObject:_styleText forKey:TEXT_KEY];
+    [aCoder encodeObject:_noteType forKey:TYPE_KEY];
+    [aCoder encodeObject:_drawContent forKey:DRAW_KEY];
 }
 @end
 @interface NotesViewController ()
@@ -55,6 +75,7 @@ static NSString * TEXT_KEY = @"text_key";         // key to code for the image
         _tapToDismissKeyboard = [[UITapGestureRecognizer alloc]initWithTarget:self action
                                                                              :@selector(dismissKeyboard)];
         [self.view addGestureRecognizer:_tapToDismissKeyboard];
+        
     }
     
     return self;
@@ -73,15 +94,16 @@ static NSString * TEXT_KEY = @"text_key";         // key to code for the image
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [self.trashBin setImage:[UIImage imageNamed:@"RecycleBin.png"]];
+    [self.trashBin setFrame:CGRectMake(self.trashBin.frame.origin.x, self.trashBin.frame.origin.y, 60, 60)];
     startTag = @"<CD>";
     endTag = @"</CD>";
     isBackSpacePressed = FALSE;
     // Do any additional setup after loading the view from its nib.
     currentLecture = [[Lecture alloc] initWithName:@"Lecture001"];
-       if([[currentDocument.notes objectAtIndex:0] description]!=NULL){
+       if([currentDocument.notes count]>0){
 
-        [self loadNotes:currentDocument.notes];
+      [self loadNotes:currentDocument.notes];
 
           }
 
@@ -89,11 +111,12 @@ static NSString * TEXT_KEY = @"text_key";         // key to code for the image
 
 -(void)loadNotes:(NSMutableArray *)notes{
     for(noteLoader *viewer in notes){
+        NSLog(@"%@",viewer.noteType);
+        if([viewer.noteType isEqualToString:@"textNote"]){
         panToMoveNote = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
         panToResize = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handleResize:)];
         longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressToRemoveNote:)];
-        
-        longPressGestureRecognizer2 = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressToDisplayNote:)];
+           longPressGestureRecognizer2 = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressToDisplayNote:)];
         longPressGestureRecognizer.numberOfTouchesRequired = 3;
         longPressGestureRecognizer2.numberOfTouchesRequired = 1;
         [[viewer.view.subviews objectAtIndex:0] setText:viewer.styleText];
@@ -106,7 +129,29 @@ static NSString * TEXT_KEY = @"text_key";         // key to code for the image
         [[viewer.view.subviews objectAtIndex:1] addGestureRecognizer:longPressGestureRecognizer];
         [viewer.view addGestureRecognizer:longPressGestureRecognizer2];
         [self.view addSubview:viewer.view];
-        
+        }
+        else if([viewer.noteType isEqualToString:@"drawNote"]){
+            panToMoveNote = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
+            panToResize = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handleResize:)];
+            longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressToRemoveNote:)];
+            
+            longPressGestureRecognizer2 = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressToDisplayNote:)];
+            longPressGestureRecognizer.numberOfTouchesRequired = 3;
+            longPressGestureRecognizer2.numberOfTouchesRequired = 1;
+            [panToMoveNote setEnabled:NO];
+            [panToResize setEnabled:NO];
+            [[[viewer.view subviews] objectAtIndex:1] removeFromSuperview];
+            [viewer.view addSubview:viewer.drawContent];
+            [[[viewer.view.subviews objectAtIndex:1] layer] setBorderWidth:3];
+            [[[viewer.view.subviews objectAtIndex:1] layer] setCornerRadius:20];
+            [viewer.view addGestureRecognizer:panToMoveNote];
+            [[viewer.view.subviews objectAtIndex:1]addGestureRecognizer:longPressGestureRecognizer];
+            NSLog(@"%@",[[viewer.view.subviews objectAtIndex:1] description]);
+            [viewer.view addGestureRecognizer:longPressGestureRecognizer2];
+           
+            [viewer.view addGestureRecognizer:panToResize];
+            [self.view addSubview:viewer.view];
+        }
     }
     }
 - (void)didReceiveMemoryWarning
@@ -198,6 +243,10 @@ static NSString * TEXT_KEY = @"text_key";         // key to code for the image
 {
    if(_isCreatingNote){
     [gestureRecognizer.view setFrame:CGRectMake([gestureRecognizer locationInView:self.view].x, [gestureRecognizer locationInView:self.view].y, [[[[gestureRecognizer view] subviews] objectAtIndex:0] size].width+50, [[[[gestureRecognizer view] subviews] objectAtIndex:0] size].height+50)];
+       if(CGRectContainsPoint(self.trashBin.frame, gestureRecognizer.view.frame.origin)){
+        [gestureRecognizer.view removeFromSuperview];
+           return;
+       }
     
    }
     else if(_isDrawing)
@@ -462,16 +511,25 @@ else if(_isDrawing)
     NSMutableArray *notes = [[NSMutableArray alloc] init];
     for(UIView *saver in [self.view subviews])
     {
-        if(![saver isKindOfClass:[UIToolbar class]])
+        if(![saver isKindOfClass:[UIToolbar class]]&&![saver isKindOfClass:[UIImageView class]])
             {
-                noteLoader *loader = [[noteLoader alloc] init:saver];
+                
+                if([[[saver subviews] objectAtIndex:1] isKindOfClass:[DrawView class]]){
+                    noteLoader *loader = [[noteLoader alloc] init:saver type:@"drawNote"];
                 [notes addObject:loader];
+                   
+                }
+                else if([[[saver subviews] objectAtIndex:0] isKindOfClass:[FTCoreTextView class]])
+                {
+                    noteLoader *loader = [[noteLoader alloc] init:saver type:@"textNote"];
+                    [notes addObject:loader];
+                }
             }
     }
     
     currentDocument.notes = notes;
     currentDocument.lecture = currentLecture;
-    [FileManager saveDocument:currentDocument];
+   [FileManager saveDocument:currentDocument];
 }
 
 - (void)didSaveState
