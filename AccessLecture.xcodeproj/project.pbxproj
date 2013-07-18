@@ -10,7 +10,6 @@
 		2C0F886B1760D8EC0062BD16 /* DrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F886A1760D8EC0062BD16 /* DrawView.m */; };
 		2CBF301C177B7AB10087C17C /* DrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBF301A177B7AB10087C17C /* DrawViewController.m */; };
 		2CBF301D177B7AB10087C17C /* DrawViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CBF301B177B7AB10087C17C /* DrawViewController.xib */; };
-		2CF45FDB1796D15400E6C69E /* rit-tiger.gif in Resources */ = {isa = PBXBuildFile; fileRef = 2CF45FDA1796D15300E6C69E /* rit-tiger.gif */; };
 		2CF6BA901784919300A695CC /* AMBezierPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF6BA8D1784919300A695CC /* AMBezierPath.m */; };
 		2CF6BA911784919300A695CC /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF6BA8E1784919300A695CC /* arrow.png */; };
 		2CF6BA921784919300A695CC /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF6BA8F1784919300A695CC /* circle.png */; };
@@ -109,7 +108,6 @@
 		2CBF3019177B7AB10087C17C /* DrawViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawViewController.h; sourceTree = "<group>"; };
 		2CBF301A177B7AB10087C17C /* DrawViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawViewController.m; sourceTree = "<group>"; };
 		2CBF301B177B7AB10087C17C /* DrawViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawViewController.xib; sourceTree = "<group>"; };
-		2CF45FDA1796D15300E6C69E /* rit-tiger.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = "rit-tiger.gif"; path = "../../../rit-tiger.gif"; sourceTree = "<group>"; };
 		2CF6BA8C1784919300A695CC /* AMBezierPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMBezierPath.h; sourceTree = "<group>"; };
 		2CF6BA8D1784919300A695CC /* AMBezierPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMBezierPath.m; sourceTree = "<group>"; };
 		2CF6BA8E1784919300A695CC /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
@@ -128,6 +126,8 @@
 		3F0F3B69178DBB8700163C2A /* FTCoreTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FTCoreTextView.h; sourceTree = "<group>"; };
 		3F0F3B6A178DBB8700163C2A /* FTCoreTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FTCoreTextView.m; sourceTree = "<group>"; };
 		3F0F3B70178DCB8B00163C2A /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		3F0F3B72178DF32E00163C2A /* drawNote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drawNote.png; sourceTree = "<group>"; };
+		3F0F3B73178DF32E00163C2A /* TextNote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TextNote.png; sourceTree = "<group>"; };
 		3F0FFCFA1371A93A00299663 /* Back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Back.png; path = "Lecture View Images/Back.png"; sourceTree = "<group>"; };
 		3F2DB23E13A65C2D00041736 /* ColorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorViewController.h; sourceTree = "<group>"; };
 		3F2DB23F13A65C2D00041736 /* ColorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorViewController.m; sourceTree = "<group>"; };
@@ -172,8 +172,14 @@
 		3F99F207154375270065CBB9 /* Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Position.h; sourceTree = "<group>"; };
 		3F99F208154375270065CBB9 /* Position.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Position.m; sourceTree = "<group>"; };
 		3F9BA9C21758FE1C00BEFB55 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		3FA6119517905EDF00A2B4C8 /* blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue.png; sourceTree = "<group>"; };
+		3FA6119617905EDF00A2B4C8 /* redNote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redNote.png; sourceTree = "<group>"; };
+		3FA6119917906A8B00A2B4C8 /* yellowNote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellowNote.png; sourceTree = "<group>"; };
+		3FA6119B17906E1A00A2B4C8 /* resizeDrawNote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = resizeDrawNote.png; sourceTree = "<group>"; };
 		3FAAA84F137848AB00F79C0C /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
 		3FAE785313C786F800796813 /* accesslecture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = accesslecture.png; sourceTree = "<group>"; };
+		3FC32EBA13E05E0F00077291 /* biology.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = biology.png; path = ../biology.png; sourceTree = "<group>"; };
+		3FC32EBB13E05E0F00077291 /* geometry.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = geometry.png; path = ../geometry.png; sourceTree = "<group>"; };
 		3FCD5D1515438472005F2A60 /* AccessLectureRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccessLectureRuntime.h; sourceTree = "<group>"; };
 		3FCD5D1615438472005F2A60 /* AccessLectureRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccessLectureRuntime.m; sourceTree = "<group>"; };
 		3FED96071370863E00D8D1B8 /* AccessLecture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AccessLecture.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -270,8 +276,8 @@
 			isa = PBXGroup;
 			children = (
 				2CF6BA93178491D100A695CC /* AMBezierPath */,
-				2C0F886A1760D8EC0062BD16 /* DrawView.m */,
 				2C0F88691760D8EC0062BD16 /* DrawView.h */,
+				2C0F886A1760D8EC0062BD16 /* DrawView.m */,
 			);
 			name = DrawView;
 			sourceTree = "<group>";
@@ -321,7 +327,12 @@
 		2CFC32A1175E7ED600384AEC /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				2CF45FDA1796D15300E6C69E /* rit-tiger.gif */,
+				3FA6119B17906E1A00A2B4C8 /* resizeDrawNote.png */,
+				3FA6119917906A8B00A2B4C8 /* yellowNote.png */,
+				3FA6119517905EDF00A2B4C8 /* blue.png */,
+				3FA6119617905EDF00A2B4C8 /* redNote.png */,
+				3F0F3B72178DF32E00163C2A /* drawNote.png */,
+				3F0F3B73178DF32E00163C2A /* TextNote.png */,
 				4C5C50C5177B59D90095801A /* pin.png */,
 				3FED964313708FC800D8D1B8 /* Lecture View Images */,
 				3F959F0613C7555500A6DA79 /* ClearNotes.png */,
@@ -330,13 +341,13 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
-		3F0DBDCC13BD170C00E3FEE8 /* AboutViewController */ = {
+		3F0DBDCC13BD170C00E3FEE8 /* About View */ = {
 			isa = PBXGroup;
 			children = (
 				3F0DBDD313BD174900E3FEE8 /* AboutViewController.h */,
 				3F0DBDD413BD174900E3FEE8 /* AboutViewController.m */,
 			);
-			name = AboutViewController;
+			name = "About View";
 			sourceTree = "<group>";
 		};
 		3F0F3B62178DBB6D00163C2A /* categories */ = {
@@ -451,7 +462,9 @@
 			children = (
 				4C96FA81176289B4002C0D74 /* Connect View */,
 				3F78A40213D5C0DD0048A579 /* Accessible Subclasses */,
+				3FED963113708E4E00D8D1B8 /* Root View */,
 				3FED963213708E5100D8D1B8 /* Lecture View */,
+				3F0DBDCC13BD170C00E3FEE8 /* About View */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -551,13 +564,13 @@
 			name = "App Delegate";
 			sourceTree = "<group>";
 		};
-		3FED963113708E4E00D8D1B8 /* RootViewController */ = {
+		3FED963113708E4E00D8D1B8 /* Root View */ = {
 			isa = PBXGroup;
 			children = (
 				3FED96201370863E00D8D1B8 /* RootViewController.h */,
 				3FED96211370863E00D8D1B8 /* RootViewController.m */,
 			);
-			name = RootViewController;
+			name = "Root View";
 			sourceTree = "<group>";
 		};
 		3FED963213708E5100D8D1B8 /* Lecture View */ = {
@@ -575,6 +588,8 @@
 		3FED964313708FC800D8D1B8 /* Lecture View Images */ = {
 			isa = PBXGroup;
 			children = (
+				3FC32EBA13E05E0F00077291 /* biology.png */,
+				3FC32EBB13E05E0F00077291 /* geometry.png */,
 				3F0FFCFA1371A93A00299663 /* Back.png */,
 				3FED96471370909100D8D1B8 /* Invert.png */,
 				3FED96481370909100D8D1B8 /* Notes.png */,
@@ -590,8 +605,6 @@
 		4C5C50C9177B7B300095801A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				3FED963113708E4E00D8D1B8 /* RootViewController */,
-				3F0DBDCC13BD170C00E3FEE8 /* AboutViewController */,
 				2CBF3014177B700C0087C17C /* DrawViewController */,
 				4C8ABE7C177CA341007C934C /* NotesViewController */,
 				4C8ABE7A177C886C007C934C /* StreamViewController */,
@@ -792,7 +805,6 @@
 				3F63540C13A157C40024E6E9 /* Settings.bundle in Resources */,
 				3F959F0713C7555500A6DA79 /* ClearNotes.png in Resources */,
 				2CF6BA921784919300A695CC /* circle.png in Resources */,
-				2CF45FDB1796D15400E6C69E /* rit-tiger.gif in Resources */,
 				3FAE785413C786F800796813 /* accesslecture.png in Resources */,
 				3FF7FFD513D5E45300B89A5D /* AlertBG.png in Resources */,
 				2CF6BA961784920100A695CC /* star.png in Resources */,
@@ -931,7 +943,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
 				CODE_SIGN_IDENTITY = "";
@@ -957,7 +968,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
 				CODE_SIGN_IDENTITY = "";
@@ -1000,7 +1010,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
-					"$(SYSTEM_APPS_DIR)/Xcode5-DP.app/Contents/Developer/Library/Frameworks",
+					"$(SYSTEM_APPS_DIR)/Xcode5-DP.app/Contents/Frameworks",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1015,11 +1025,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "AccessLecture Tests/AccessLecture Tests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = 2;
+				PROVISIONING_PROFILE = "D3F506A0-12F7-41BD-93F2-4801DAF818E6";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -1048,7 +1057,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
-					"$(SYSTEM_APPS_DIR)/Xcode5-DP.app/Contents/Developer/Library/Frameworks",
+					"$(SYSTEM_APPS_DIR)/Xcode5-DP.app/Contents/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AccessLecture Tests/AccessLecture Tests-Prefix.pch";
@@ -1058,10 +1067,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "AccessLecture Tests/AccessLecture Tests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = 2;
+				PROVISIONING_PROFILE = "D3F506A0-12F7-41BD-93F2-4801DAF818E6";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = octest;
