@@ -39,6 +39,11 @@
     // Do any additional setup after loading the view from its nib.
     [_loadProgress setProgress:0.0];
     [_loadProgress setHidden:YES];
+    
+    [self.canvas setHidden:YES];
+    
+    // Clear view
+    [self.view setBackgroundColor:[UIColor clearColor]];
 }
 
 #pragma mark Actions
@@ -67,6 +72,7 @@
     _connectedToStream = YES;
     [server setDelegate:self];
     _server = server;
+    [self.canvas setHidden:NO];
 }
 
 - (void)userDidCancel
@@ -108,14 +114,9 @@
     NSLog(@"Did leave active state");
 }
 
-- (UIView *)willApplyTransformToView
+- (UIView *)contentView
 {
     return self.canvas;
-}
-
-- (UIView *)willReturnView
-{
-    return self.view;
 }
 
 #pragma mark Streaming

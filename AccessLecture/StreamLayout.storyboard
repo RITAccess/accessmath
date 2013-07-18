@@ -60,6 +60,7 @@
                         <outlet property="canvas" destination="oT6-t9-2NY" id="T7h-z8-Dwd"/>
                         <outlet property="joinLeaveStream" destination="zPr-cg-Eqj" id="GQS-B5-Slb"/>
                         <outlet property="loadProgress" destination="RoR-QX-LKt" id="b2i-iE-mQK"/>
+                        <outlet property="view" destination="n5C-3y-2Lw" id="Wew-P6-wGc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zCZ-Vl-5DT" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -19,8 +19,11 @@
 @protocol LectureViewChild <NSObject>
 @required
 
-/* Return the view you need to remain synced between multiple modes. */
-- (UIView *)willApplyTransformToView;
+/* The view that will have pan/zoom */
+- (UIView *)contentView;
+
+/* Updated your code to handle the different sized content area, DO NOT update your content size */
+- (void)contentSizeChanging:(CGSize)size;
 
 @optional
 
@@ -34,9 +37,6 @@
 - (void)willLeaveActiveState;
 - (void)didLeaveActiveState;
 
-/* Returns the controller's view. */
-- (UIView *)willReturnView;
-
 @end
 
 @interface LectureViewContainer : UIViewController
@@ -46,6 +46,5 @@
 
 @property (weak, nonatomic) IBOutlet UIView *sideMenu;
 @property (weak, nonatomic) IBOutlet TopNav *navBar;
-@property (weak, nonatomic) IBOutlet UIView *container;
 
 @end

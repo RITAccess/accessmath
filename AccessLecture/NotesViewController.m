@@ -35,6 +35,9 @@
     endTag = @"</CD>";
     isBackSpacePressed = FALSE;
     // Do any additional setup after loading the view from its nib.
+    
+    // Clear view
+    [self.view setBackgroundColor:[UIColor clearColor]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -416,13 +419,7 @@ else if(_isDrawing)
     [self.toolBar setHidden:YES];
 }
 
-- (UIView *)willApplyTransformToView
-{
-    NSLog(@"Applying Draw View Controller Transformation!");
-    return self.view;
-}
-
-- (UIView *)willReturnView
+- (UIView *)contentView
 {
     return self.view;
 }

@@ -37,7 +37,7 @@
     [super viewDidLoad];
     
     // Adding the Drawing and Toolbar Views
-    _drawView = [[DrawView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width * 2, self.view.frame.size.height * 2)];
+    _drawView = [[DrawView alloc]initWithFrame:self.view.frame];
     [self.view addSubview:_drawView];
     [self.view addSubview:self.toolbarView];
     [self initColorSegmentedControl];
@@ -49,6 +49,9 @@
     } else {
         [self.view setFrame:CGRectMake(0, 0, 1024, 768)];
     }
+    
+    // Clear view
+    [self.view setBackgroundColor:[UIColor clearColor]];
 }
 
 - (void)viewDidUnload
@@ -214,14 +217,9 @@
     [self.toolbarView setHidden:YES];
 }
 
-- (UIView *)willApplyTransformToView
+- (UIView *)contentView
 {
     return _drawView;
-}
-
-- (UIView *)willReturnView
-{
-    return self.view;
 }
 
 @end
