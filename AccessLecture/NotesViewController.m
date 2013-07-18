@@ -35,7 +35,6 @@
     endTag = @"</CD>";
     isBackSpacePressed = FALSE;
     // Do any additional setup after loading the view from its nib.
-    
     // Clear view
     [self.view setBackgroundColor:[UIColor clearColor]];
 }
