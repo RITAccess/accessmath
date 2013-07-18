@@ -149,8 +149,7 @@
 }
 
 /**
- * Manages the scale of each view in the array of child view controllers. Currently
- * trying to limit the rate at which the views are scaled.
+ * Pinch to zoom handle
  */
 - (void)pinchZoom:(UIPinchGestureRecognizer *)gesture
 {
@@ -165,15 +164,10 @@
                 CGAffineTransform zoom = CGAffineTransformScale(content.transform, scale, scale);
                 content.transform = zoom;
                 
+                [content setFrame:CGRectMake(self.center.x, self.center.y, content.frame.size.width, content.frame.size.height)];
+                
                 break;
             }
-             
-            case UIGestureRecognizerStateCancelled:
-            case UIGestureRecognizerStateEnded:
-                
-                
-
-                break;
             default:
                 break;
         }
@@ -183,7 +177,7 @@
 }
 
 /**
- * Manages the pan gesture. Clamps the view the prevent from endless scrolling.
+ * Manages the pan gesture.
  */
 - (void)panHandle:(UIPanGestureRecognizer *)gesture
 {
