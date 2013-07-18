@@ -146,13 +146,20 @@
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
+    //  NOTE: decimal points in the CATransform are necessary.
     if (_previewView){
-        if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)){
-            [_previewView.layer setTransform:CATransform3DMakeRotation(90.0 / 180.0 * M_PI, 0.0, 0.0, 1.0)];
-            [self configureScanViewWithDuration:0 withLandscape:YES];
-        } else if (UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)){
+        if ([UIDevice currentDevice].orientation == UIInterfaceOrientationPortrait){
             [_previewView.layer setTransform:CATransform3DMakeRotation(0 / 180.0 * M_PI, 0.0, 0.0, 1.0)];
-            [self configureScanViewWithDuration:0 withLandscape:NO];
+            [self configureScanViewWithDuration:0 withOrientation:0];
+        } else if ([UIDevice currentDevice].orientation == UIInterfaceOrientationLandscapeLeft){
+            [_previewView.layer setTransform:CATransform3DMakeRotation(90.0 / 180.0 * M_PI, 0.0, 0.0, 1.0)];
+            [self configureScanViewWithDuration:0 withOrientation:90];
+        } else if ([UIDevice currentDevice].orientation == UIInterfaceOrientationPortraitUpsideDown){
+            [_previewView.layer setTransform:CATransform3DMakeRotation(180.0 / 180.0 * M_PI, 0.0, 0.0, 1.0)];
+            [self configureScanViewWithDuration:0 withOrientation:180];
+        }else if ([UIDevice currentDevice].orientation == UIInterfaceOrientationLandscapeRight){
+            [_previewView.layer setTransform:CATransform3DMakeRotation(270.0 / 180.0 * M_PI, 0.0, 0.0, 1.0)];
+            [self configureScanViewWithDuration:0 withOrientation:270];
         }
     }
 }
@@ -160,19 +167,36 @@
 /**
  * Resets scan view to fill the view. Used for handling rotation.
  */
-- (void)configureScanViewWithDuration:(NSTimeInterval)seconds withLandscape:(BOOL)isLandscape
+- (void)configureScanViewWithDuration:(NSTimeInterval)seconds withOrientation:(int)orientation
 {
     [_previewView setFrame:self.view.frame];
     [preview setVideoGravity:AVLayerVideoGravityResizeAspectFill];
     [preview setBounds:_previewView.layer.bounds];
     [preview setPosition:CGPointMake(CGRectGetMidX(_previewView.layer.bounds), CGRectGetMidY(_previewView.layer.bounds))];
     
-    if (isLandscape){
-        [cancelButton setTransform:CGAffineTransformMakeRotation(270 * M_PI / 180)];
-        [cancelButton setFrame:CGRectMake(_previewView.frame.size.width + 25, _previewView.frame.size.height - 620, 50, 100)];
-    } else {
-        [cancelButton setTransform:CGAffineTransformMakeRotation(0 * M_PI / 180)];
-        [cancelButton setFrame:CGRectMake(_previewView.frame.size.width - 100, _previewView.frame.size.height - 50, 100, 50)];
+    switch (orientation) {
+        case 0:
+            [cancelButton setTransform:CGAffineTransformMakeRotation(0 * M_PI / 180)];
+            [cancelButton setFrame:CGRectMake(_previewView.frame.size.width - 100, _previewView.frame.size.height - 50, 100, 50)];
+            break;
+            
+        case 90:
+            [cancelButton setTransform:CGAffineTransformMakeRotation(270 * M_PI / 180)];
+            [cancelButton setFrame:CGRectMake(_previewView.frame.size.width + 25, _previewView.frame.size.height - 620, 50, 100)];
+            break;
+        
+        case 180:
+            [cancelButton setTransform:CGAffineTransformMakeRotation(180 * M_PI / 180)];
+            [cancelButton setFrame:CGRectMake(7, _previewView.frame.size.height - 615, 100, 50)];
+            break;
+        
+        case 270:
+            [cancelButton setTransform:CGAffineTransformMakeRotation(90 * M_PI / 180)];
+            [cancelButton setFrame:CGRectMake(0, _previewView.frame.size.height - 175, 50, 100)];
+            break;
+            
+        default:
+            break;
     }
 }
 
