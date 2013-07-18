@@ -69,13 +69,13 @@
         [scanLabel sizeToFit];
         [_previewView addSubview:scanLabel];
     } else {
-        [_previewView setBackgroundColor:[UIColor grayColor]];
-        UILabel *nope = [[UILabel alloc] initWithFrame:CGRectMake(_previewView.frame.size.width / 2 - 125, _previewView.frame.size.height / 2 - 15, 250, 30)];
-        [nope setBackgroundColor:[UIColor clearColor]]; 
-        [nope setTextColor:[UIColor whiteColor]];
-        [nope setTextAlignment:NSTextAlignmentCenter];
-        [nope setText:@"Scanning not available..."];
-        [_previewView addSubview:nope];
+        [_previewView setBackgroundColor:[UIColor lightGrayColor]];
+        UILabel *noScanLabel = [[UILabel alloc] initWithFrame:CGRectMake(_previewView.frame.size.width / 2 - 125, _previewView.frame.size.height / 2 - 15, 250, 30)];
+        [noScanLabel setTextColor:[UIColor whiteColor]];
+        [noScanLabel setFont:[UIFont systemFontOfSize:22]];
+        [noScanLabel setTextAlignment:NSTextAlignmentCenter];
+        [noScanLabel setText:@"Scanning not available..."];
+        [_previewView addSubview:noScanLabel];
         [_connectionAddress becomeFirstResponder];
     }
 }
