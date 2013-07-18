@@ -12,7 +12,7 @@
 #import "NotesViewController.h"
 
 // Default content size
-#define LC_WIDTH 3000
+#define LC_WIDTH 2000
 #define LC_HEIGHT 2000
 
 #pragma mark Blank Canvas Class
@@ -78,10 +78,11 @@
     svc = (StreamViewController *)[[UIStoryboard storyboardWithName:StreamViewControllerStoryboard bundle:nil] instantiateViewControllerWithIdentifier:StreamViewControllerID];
     
 //    [self addController:nvc];
-//    [self addController:dcv];
-//    [self addController:svc];
+    [self addController:dcv];
+    [self addController:svc];
     [self addController:[VCBlank new]];
     
+    [self setContentSize:CGSizeMake(LC_WIDTH, LC_HEIGHT)];
     
     // Close menus
     menuOpen = NO;
@@ -153,7 +154,32 @@
  */
 - (void)pinchZoom:(UIPinchGestureRecognizer *)gesture
 {
+    float scale = [gesture scale];
+    [gesture setScale:1.0];
+    [self.childViewControllers enumerateObjectsUsingBlock:^(UIViewController<LectureViewChild> *child, NSUInteger idx, BOOL *stop) {
+        UIView *content = [child contentView];
+        
+        switch (gesture.state) {
+            case UIGestureRecognizerStateChanged: {
+                
+                CGAffineTransform zoom = CGAffineTransformScale(content.transform, scale, scale);
+                content.transform = zoom;
+                
+                break;
+            }
+             
+            case UIGestureRecognizerStateCancelled:
+            case UIGestureRecognizerStateEnded:
+                
+                
+
+                break;
+            default:
+                break;
+        }
+        
     
+    }];
 }
 
 /**
@@ -229,9 +255,10 @@
         }
     }
     
+    [vc.contentView removeConstraints:vc.contentView.constraints];
+    
     children = nil;
     [vc didMoveToParentViewController:self];
-    [self setContentSize:CGSizeMake(LC_WIDTH, LC_HEIGHT)];
     [self.view setBackgroundColor:[UIColor grayColor]];
 }
 
