@@ -149,12 +149,9 @@
     if (_previewView){
         if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)){
             [_previewView.layer setTransform:CATransform3DMakeRotation(90.0 / 180.0 * M_PI, 0.0, 0.0, 1.0)];
-//            [_previewView setTransform:CGAffineTransformMakeRotation(90 * M_PI / 180)];
             [self configureScanViewWithDuration:0 withLandscape:YES];
-            
         } else if (UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)){
             [_previewView.layer setTransform:CATransform3DMakeRotation(0 / 180.0 * M_PI, 0.0, 0.0, 1.0)];
-//            [_previewView setTransform:CGAffineTransformMakeRotation(0 / 180 * M_PI)];
             [self configureScanViewWithDuration:0 withLandscape:NO];
         }
     }
@@ -171,6 +168,14 @@
         [preview setVideoGravity:AVLayerVideoGravityResizeAspectFill];
         [preview setBounds:_previewView.layer.bounds];
         [preview setPosition:CGPointMake(CGRectGetMidX(_previewView.layer.bounds), CGRectGetMidY(_previewView.layer.bounds))];
+        
+        if (isLandscape){
+            [cancelButton setTransform:CGAffineTransformMakeRotation(270 * M_PI / 180)];
+            [cancelButton setFrame:CGRectMake(_previewView.frame.size.width + 25, _previewView.frame.size.height - 620, 50, 100)];
+        } else {
+            [cancelButton setTransform:CGAffineTransformMakeRotation(0 * M_PI / 180)];
+            [cancelButton setFrame:CGRectMake(_previewView.frame.size.width - 100, _previewView.frame.size.height - 50, 100, 50)];
+        }
     }];
 }
 
