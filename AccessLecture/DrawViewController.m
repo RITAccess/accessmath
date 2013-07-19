@@ -190,33 +190,31 @@
 
 - (void)willMoveToParentViewController:(UIViewController *)parent
 {
-    NSLog(@"will have new parent %@", parent);
+
 }
 
 - (void)didMoveToParentViewController:(UIViewController *)parent
 {
-    NSLog(@"new parent %@", parent);
     [self.toolbarView setHidden:NO];
 }
 
 - (void)willSaveState
 {
-    NSLog(@"Will save state");
+
 }
 
 - (void)didSaveState
 {
-    NSLog(@"Did save state: %@", self.description);
+
 }
 
 - (void)willLeaveActiveState
 {
-    NSLog(@"Will leave active state");
+    
 }
 
 - (void)didLeaveActiveState
 {
-    NSLog(@"Did leave active state: %@", self.description);
     [self.toolbarView setHidden:YES];
 }
 

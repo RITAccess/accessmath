@@ -90,28 +90,27 @@
 
 - (void)didMoveToParentViewController:(UIViewController *)parent
 {
-    NSLog(@"Active!");
+    
 }
 
 - (void)willSaveState
 {
-    NSLog(@"Will save state");
+    
 }
 
 - (void)didSaveState
 {
-    NSLog(@"Did save state");
+    
 }
 
 - (void)willLeaveActiveState
 {
     [_bottomToolbar setHidden:YES];
-    NSLog(@"Will leave active state");
 }
 
 - (void)didLeaveActiveState
 {
-    NSLog(@"Did leave active state");
+
 }
 
 - (UIView *)contentView
