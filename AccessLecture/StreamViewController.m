@@ -36,14 +36,13 @@
     } else {
         [self.view setFrame:CGRectMake(0, 0, 1024, 768)];
     }
+    
     // Do any additional setup after loading the view from its nib.
     [_loadProgress setProgress:0.0];
     [_loadProgress setHidden:YES];
-    
+    [self.serverAddressLabel setHidden:YES];
     [self.canvas setHidden:YES];
-    
-    // Clear view
-    [self.view setBackgroundColor:[UIColor clearColor]];
+    [self.view setBackgroundColor:[UIColor clearColor]];  // Ensuring the view is clear.
 }
 
 #pragma mark Actions
@@ -66,13 +65,20 @@
 
 #pragma mark Connection View Delegate Methods
 
-- (void)didCompleteWithConnection:(ALNetworkInterface *)server
+/**
+ * Called after a complete connection is made. Displays appropriate labels and draws canvas.
+ */
+- (void)didCompleteWithConnection:(ALNetworkInterface *)server toLecture:(NSString *)lectureName from:(NSString *)connectionAddress
 {
-    [_joinLeaveStream setTitle:@"Disconnect"];
     _connectedToStream = YES;
     [server setDelegate:self];
     _server = server;
-    [self.canvas setHidden:NO];
+    [_joinLeaveStream setTitle:@"Disconnect"];
+    [_lectureNameLabel setText:lectureName];
+    [_canvas setHidden:NO];
+    [_serverAddressLabel setText:connectionAddress];
+    [_serverAddressLabel setHidden:NO];
+    
 }
 
 - (void)userDidCancel
@@ -123,7 +129,7 @@
 
 - (void)didFinishDownloadingLecture:(Lecture *)lecture
 {
-    
+    // TODO: Implement once we have true lectures.
 }
 
 - (void)didFinishRecievingUpdate:(NSArray *)data
