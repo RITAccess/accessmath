@@ -28,7 +28,7 @@ static NSString* const ConnectionViewControllerXIB = @"ConnectionViewController"
 @property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
 @property (weak, nonatomic) IBOutlet UITextField *lecture;
 @property (weak, nonatomic) IBOutlet UIView *previewView;
-
+@property (weak, nonatomic) IBOutlet UIView *scanButtonView;
 @property id<ConnectionView> delegate;
 
 - (IBAction)checkAddress:(id)sender;

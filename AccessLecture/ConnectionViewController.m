@@ -18,7 +18,6 @@
 @implementation ConnectionViewController {
     ALNetworkInterface *server;
     QRScanner *scanner;
-    UITapGestureRecognizer *_tapToScan;
     AVCaptureVideoPreviewLayer *preview;
     UIButton *cancelButton;
     UILabel *scanLabel;
@@ -57,9 +56,6 @@
     
     // Checking for proper OS. We might need to enhance this check later.
     if ([[[UIDevice currentDevice]systemVersion] isEqualToString:@"7.0"]){
-        _tapToScan = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(startScan:)];
-        [_tapToScan setCancelsTouchesInView:YES];
-        [_previewView addGestureRecognizer:_tapToScan];
         [_previewView setBackgroundColor:[UIColor greenColor]];
         
         scanLabel = [[UILabel alloc] initWithFrame:CGRectMake(_previewView.frame.size.width / 2 - 125, _previewView.frame.size.height / 2 - 70, 250, 30)];
@@ -80,41 +76,10 @@
     }
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
 
-- (IBAction)checkAddress:(id)sender
+- (IBAction)startScan:(id)sender
 {
-    [_activity startAnimating];
-    [_statusLabel.topItem setTitle:@"Checking connection"];
-    [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
-        [self connectWithURL:[NSURL URLWithString:_connectionAddress.text]];
-    }];
-}
-
-- (IBAction)userDidCancel:(id)sender
-{
-    if ([_delegate respondsToSelector:@selector(userDidCancel)]) {
-        [_delegate userDidCancel];
-    }
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (IBAction)connectToStream:(id)sender
-{
-    [server requestAccessToLectureSteam:_lecture.text];
-    if ([_delegate respondsToSelector:@selector(didCompleteWithConnection: toLecture: from:)]) {
-        [_delegate didCompleteWithConnection:server toLecture:_lecture.text from:_connectionAddress.text];
-    }
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)startScan:(UITapGestureRecognizer *)reg
-{
-    [_tapToScan setEnabled:NO];
+    [_scanButtonView setHidden:YES];
     
     [scanLabel setText:@"Loading..."];
     [scanLabel setFont:[UIFont boldSystemFontOfSize:55]];
@@ -155,12 +120,46 @@
     }];
 }
 
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+}
+
+- (IBAction)checkAddress:(id)sender
+{
+    [_activity startAnimating];
+    [_statusLabel.topItem setTitle:@"Checking connection"];
+    [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
+        [self connectWithURL:[NSURL URLWithString:_connectionAddress.text]];
+    }];
+}
+
+- (IBAction)userDidCancel:(id)sender
+{
+    if ([_delegate respondsToSelector:@selector(userDidCancel)]) {
+        [_delegate userDidCancel];
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)connectToStream:(id)sender
+{
+    [server requestAccessToLectureSteam:_lecture.text];
+    if ([_delegate respondsToSelector:@selector(didCompleteWithConnection: toLecture: from:)]) {
+        [_delegate didCompleteWithConnection:server toLecture:_lecture.text from:_connectionAddress.text];
+    }
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+
 # pragma mark - Rotation Handling
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     //  NOTE: decimal points in the CATransform are necessary.
-    if (_previewView && (_tapToScan.enabled == NO)){
+    if (_previewView && (_scanButtonView.hidden == YES)){
         if ([UIDevice currentDevice].orientation == UIInterfaceOrientationPortrait){
             [_previewView.layer setTransform:CATransform3DMakeRotation(0 / 180.0 * M_PI, 0.0, 0.0, 1.0)];
             [self configureScanViewWithOrientation:0];

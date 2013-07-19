@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2C0F886B1760D8EC0062BD16 /* DrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F886A1760D8EC0062BD16 /* DrawView.m */; };
+		2C7C981A17999B5C00F8ECE4 /* sample-qr.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C7C981917999B5C00F8ECE4 /* sample-qr.png */; };
 		2CBF301C177B7AB10087C17C /* DrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBF301A177B7AB10087C17C /* DrawViewController.m */; };
 		2CBF301D177B7AB10087C17C /* DrawViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CBF301B177B7AB10087C17C /* DrawViewController.xib */; };
 		2CF45FDD17971C0400E6C69E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF45FDC17971C0400E6C69E /* QuartzCore.framework */; };
@@ -114,6 +115,7 @@
 /* Begin PBXFileReference section */
 		2C0F88691760D8EC0062BD16 /* DrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawView.h; sourceTree = "<group>"; };
 		2C0F886A1760D8EC0062BD16 /* DrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawView.m; sourceTree = "<group>"; };
+		2C7C981917999B5C00F8ECE4 /* sample-qr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sample-qr.png"; sourceTree = "<group>"; };
 		2CBF3019177B7AB10087C17C /* DrawViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawViewController.h; sourceTree = "<group>"; };
 		2CBF301A177B7AB10087C17C /* DrawViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawViewController.m; sourceTree = "<group>"; };
 		2CBF301B177B7AB10087C17C /* DrawViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawViewController.xib; sourceTree = "<group>"; };
@@ -688,6 +690,7 @@
 				4CD0A5EC177DC98600864228 /* ConnectionViewController.h */,
 				4CD0A5ED177DC98600864228 /* ConnectionViewController.m */,
 				4CD0A5EE177DC98600864228 /* ConnectionViewController.xib */,
+				2C7C981917999B5C00F8ECE4 /* sample-qr.png */,
 				4C4B8BF8178EF57200C2F94B /* QRScanner.h */,
 				4C4B8BF9178EF57200C2F94B /* QRScanner.m */,
 			);
@@ -831,6 +834,7 @@
 				3FC32EBD13E05E0F00077291 /* geometry.png in Resources */,
 				4C861C06178EE0B600CD499C /* StreamLayout.storyboard in Resources */,
 				3FADD94917983F7A00ADEF76 /* RecycleBin.png in Resources */,
+				2C7C981A17999B5C00F8ECE4 /* sample-qr.png in Resources */,
 				2CFC32A0175E60FC00384AEC /* MainStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
