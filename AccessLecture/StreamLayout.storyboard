@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4471.1" systemVersion="13A510d" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="smy-cM-cef">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4471.1" systemVersion="12E55" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="smy-cM-cef">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
+        <development version="5000" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3697.3"/>
     </dependencies>
     <scenes>
@@ -40,18 +41,45 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not Connected" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DVC-Sy-98J">
+                                <rect key="frame" x="200" y="991" width="369" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="211-EW-4Ly"/>
+                                    <constraint firstAttribute="height" constant="21" id="Ydd-dQ-kfm"/>
+                                    <constraint firstAttribute="width" constant="369" id="gTk-mi-k3c"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="testingtesting.com" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SSf-xZ-5qy">
+                                <rect key="frame" x="544" y="991" width="198" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="198" id="eXh-tX-GAK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="RoR-QX-LKt" secondAttribute="centerX" id="200-MP-7nU"/>
                             <constraint firstItem="oT6-t9-2NY" firstAttribute="trailing" secondItem="n5C-3y-2Lw" secondAttribute="trailing" id="DSx-ey-WyW"/>
                             <constraint firstItem="b5L-T8-j1F" firstAttribute="bottom" secondItem="n5C-3y-2Lw" secondAttribute="bottom" id="LZ2-mz-QSc"/>
+                            <constraint firstItem="DVC-Sy-98J" firstAttribute="leading" secondItem="n5C-3y-2Lw" secondAttribute="leading" constant="200" id="Swf-dc-5p0"/>
+                            <constraint firstAttribute="trailing" secondItem="SSf-xZ-5qy" secondAttribute="trailing" constant="26" id="TDY-S9-iBq"/>
                             <constraint firstItem="oT6-t9-2NY" firstAttribute="leading" secondItem="n5C-3y-2Lw" secondAttribute="leading" id="Yfm-1E-GV0"/>
+                            <constraint firstItem="SSf-xZ-5qy" firstAttribute="top" secondItem="DVC-Sy-98J" secondAttribute="top" id="eQ7-O7-f3I"/>
                             <constraint firstItem="oT6-t9-2NY" firstAttribute="bottom" secondItem="n5C-3y-2Lw" secondAttribute="bottom" id="neX-iD-fZI"/>
+                            <constraint firstItem="DVC-Sy-98J" firstAttribute="trailing" secondItem="RoR-QX-LKt" secondAttribute="trailing" constant="110" id="r3L-xp-wrd"/>
                             <constraint firstItem="b5L-T8-j1F" firstAttribute="trailing" secondItem="n5C-3y-2Lw" secondAttribute="trailing" id="sIA-Bc-t7Y"/>
                             <constraint firstItem="RoR-QX-LKt" firstAttribute="top" secondItem="n5C-3y-2Lw" secondAttribute="top" constant="383" id="sIG-E5-wXr"/>
                             <constraint firstItem="b5L-T8-j1F" firstAttribute="leading" secondItem="n5C-3y-2Lw" secondAttribute="leading" id="tOY-Ns-eUj"/>
+                            <constraint firstItem="SSf-xZ-5qy" firstAttribute="baseline" secondItem="DVC-Sy-98J" secondAttribute="baseline" id="tji-If-uic"/>
                             <constraint firstItem="oT6-t9-2NY" firstAttribute="top" secondItem="n5C-3y-2Lw" secondAttribute="top" id="vAk-b2-245"/>
+                            <constraint firstItem="mgW-v6-bgi" firstAttribute="top" secondItem="DVC-Sy-98J" secondAttribute="bottom" constant="12" id="zOx-fg-P7X"/>
                         </constraints>
                     </view>
                     <keyCommands/>
@@ -59,7 +87,9 @@
                         <outlet property="bottomToolbar" destination="b5L-T8-j1F" id="FKQ-bh-kTb"/>
                         <outlet property="canvas" destination="oT6-t9-2NY" id="T7h-z8-Dwd"/>
                         <outlet property="joinLeaveStream" destination="zPr-cg-Eqj" id="GQS-B5-Slb"/>
+                        <outlet property="lectureNameLabel" destination="DVC-Sy-98J" id="12n-Si-wxJ"/>
                         <outlet property="loadProgress" destination="RoR-QX-LKt" id="b2i-iE-mQK"/>
+                        <outlet property="serverAddressLabel" destination="SSf-xZ-5qy" id="zhb-HO-cDa"/>
                         <outlet property="view" destination="n5C-3y-2Lw" id="Wew-P6-wGc"/>
                     </connections>
                 </viewController>
