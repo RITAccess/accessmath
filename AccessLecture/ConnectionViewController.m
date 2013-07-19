@@ -51,9 +51,10 @@
     
     // Checking for proper OS. We might need to enhance this check later.
     if ([[[UIDevice currentDevice]systemVersion] isEqualToString:@"7.0"]){
-        [_previewView setBackgroundColor:[UIColor greenColor]];
+        [_scanStatusLabel removeFromSuperview];
     } else {
-        [_scanButtonView setHidden:YES];  // Hiding QR Scan! Button and QR image.
+        [_scanButtonView removeFromSuperview];  // Hiding QR Scan! Button and QR image.
+        [_previewView setBackgroundColor:[UIColor redColor]];
     }
     
     isScanning = NO;
@@ -63,7 +64,12 @@
 - (IBAction)startScan:(id)sender
 {
     isScanning = YES;
+    
+    // Hiding UI elements.
     [_scanButtonView setHidden:YES];
+    [_connectionAddress setHidden:YES];
+    [_lecture setHidden:YES];
+    [_statusLabel setHidden:YES];
     
     scanner = [QRScanner new];
     [scanner startCaptureWithCompletion:^(NSDictionary *info) {

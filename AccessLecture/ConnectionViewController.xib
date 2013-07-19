@@ -13,6 +13,7 @@
                 <outlet property="navigationBar" destination="hif-kF-7wZ" id="lt5-ti-bQ0"/>
                 <outlet property="previewView" destination="bCl-KA-pWb" id="Kl0-rk-VId"/>
                 <outlet property="scanButtonView" destination="Zeh-q3-gHN" id="Dqe-EZ-Sfb"/>
+                <outlet property="scanStatusLabel" destination="UfU-Ih-RAf" id="ZEa-Jc-auX"/>
                 <outlet property="statusLabel" destination="hif-kF-7wZ" id="PD4-Iq-TBB"/>
                 <outlet property="streamButton" destination="nvm-oF-JJE" id="Bqz-D0-2kb"/>
                 <outlet property="view" destination="2" id="3"/>
@@ -66,9 +67,18 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </activityIndicatorView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bCl-KA-pWb" userLabel="Camera View">
-                    <rect key="frame" x="0.0" y="580" width="540" height="1"/>
+                    <rect key="frame" x="0.0" y="549" width="540" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <subviews>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Current iOS Doesn't Support QR Scanning" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UfU-Ih-RAf">
+                            <rect key="frame" x="118" y="5" width="304" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <gestureRecognizers/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zeh-q3-gHN" userLabel="QR Scan View">
@@ -111,7 +121,7 @@
             <constraints>
                 <constraint firstItem="Zeh-q3-gHN" firstAttribute="trailing" secondItem="vNs-ie-IOp" secondAttribute="trailing" id="1Ry-Kk-Ykl"/>
                 <constraint firstItem="vNs-ie-IOp" firstAttribute="top" secondItem="2" secondAttribute="top" constant="71" id="1oj-aS-6hW"/>
-                <constraint firstItem="bCl-KA-pWb" firstAttribute="top" secondItem="2" secondAttribute="top" constant="580" id="5Nr-f8-jHA"/>
+                <constraint firstItem="bCl-KA-pWb" firstAttribute="top" secondItem="2" secondAttribute="top" constant="549" id="5Nr-f8-jHA"/>
                 <constraint firstItem="vNs-ie-IOp" firstAttribute="leading" secondItem="BXe-wN-F1f" secondAttribute="leading" id="6n7-qS-PFW"/>
                 <constraint firstItem="hif-kF-7wZ" firstAttribute="centerY" secondItem="ejI-6t-oIB" secondAttribute="centerY" id="A1d-pg-zgw"/>
                 <constraint firstItem="hif-kF-7wZ" firstAttribute="trailing" secondItem="bCl-KA-pWb" secondAttribute="trailing" id="ATy-sr-xto"/>
@@ -131,6 +141,11 @@
                 <constraint firstAttribute="trailing" secondItem="Zeh-q3-gHN" secondAttribute="trailing" constant="26" id="ozI-Tm-zqH"/>
             </constraints>
             <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+        <view contentMode="scaleToFill" id="x1M-08-Uih">
+            <rect key="frame" x="0.0" y="0.0" width="768" height="1004"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
         </view>
     </objects>
     <resources>
