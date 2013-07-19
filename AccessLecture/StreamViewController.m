@@ -66,12 +66,13 @@
 
 #pragma mark Connection View Delegate Methods
 
-- (void)didCompleteWithConnection:(ALNetworkInterface *)server
+- (void)didCompleteWithConnection:(ALNetworkInterface *)server toLecture:(NSString *)lectureName
 {
     [_joinLeaveStream setTitle:@"Disconnect"];
     _connectedToStream = YES;
     [server setDelegate:self];
     _server = server;
+    [self.lectureNameLabel setText:lectureName];
     [self.canvas setHidden:NO];
 }
 

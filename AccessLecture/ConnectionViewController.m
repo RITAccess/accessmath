@@ -97,9 +97,10 @@
 - (IBAction)connectToStream:(id)sender
 {
     [server requestAccessToLectureSteam:_lecture.text];
-    if ([_delegate respondsToSelector:@selector(didCompleteWithConnection:)]) {
-        [_delegate didCompleteWithConnection:server];
+    if ([_delegate respondsToSelector:@selector(didCompleteWithConnection: toLecture:)]) {
+        [_delegate didCompleteWithConnection:server toLecture:_lecture.text];
     }
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -113,8 +114,8 @@
         [server connectCompletion:^(BOOL success) {
             if (success) {
                 [server requestAccessToLectureSteam:info[@"lecture"]];
-                if ([_delegate respondsToSelector:@selector(didCompleteWithConnection:)]) {
-                    [_delegate didCompleteWithConnection:server];
+                if ([_delegate respondsToSelector:@selector(didCompleteWithConnection: toLecture:)]) {
+                    [_delegate didCompleteWithConnection:server toLecture:_lecture.text];
                 }
                 [self dismissViewControllerAnimated:YES completion:nil];
             } else {
