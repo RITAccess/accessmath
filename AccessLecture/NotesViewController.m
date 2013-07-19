@@ -221,6 +221,13 @@ static NSString * DRAW_KEY = @"draw_key";
 }
 - (void)createNoteDraw:(UIGestureRecognizer *)gesture{
    //Initilize gesture recognizers for the view
+    panToMoveNote = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
+    panToResize = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handleResize:)];
+    longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressToRemoveNote:)];
+    
+    longPressGestureRecognizer2 = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressToDisplayNote:)];
+    longPressGestureRecognizer.numberOfTouchesRequired = 3;
+    longPressGestureRecognizer2.numberOfTouchesRequired = 1;
 
     UIView *outerView = [[UIView alloc] initWithFrame:CGRectMake([gesture locationInView:self.view].x+20, [gesture locationInView:self.view].y+15, 430, 330)];
     [panToMoveNote setEnabled:NO];
