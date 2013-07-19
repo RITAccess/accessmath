@@ -95,16 +95,14 @@ static NSString * DRAW_KEY = @"draw_key";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-   
     startTag = @"<CD>";
     endTag = @"</CD>";
     isBackSpacePressed = FALSE;
     // Do any additional setup after loading the view from its nib.
     if(([currentDocument.notes count]>=0)&&(!isOpened)){
         [self initializeView];
-     [self loadNotes:currentDocument.notes];
+        [self loadNotes:currentDocument.notes];
         isOpened = YES;
-        NSLog(@"Opened");
     }
     // Clear view
     [self.view setBackgroundColor:[UIColor clearColor]];
@@ -182,7 +180,6 @@ static NSString * DRAW_KEY = @"draw_key";
             panToMoveNote = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
             panToResize = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handleResize:)];
             longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressToRemoveNote:)];
-            
             longPressGestureRecognizer2 = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressToDisplayNote:)];
             longPressGestureRecognizer.numberOfTouchesRequired = 3;
             longPressGestureRecognizer2.numberOfTouchesRequired = 1;
@@ -444,9 +441,13 @@ else if(_isDrawing)
     _tapToCreateNote.numberOfTapsRequired = 2;
     [self.view addGestureRecognizer:_tapToCreateNote];
     [self viewDidLoad];
-    UIAlertView* alert = [[UILargeAlertView alloc] initWithText:NSLocalizedString(@"Drawing Mode", nil) fontSize:48];
-    [alert show];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notes"
+                                                    message:@"Draw Note Selected" delegate:self cancelButtonTitle: @"OK"
+                                          otherButtonTitles: nil];
     
+    //note above delegate property
+    
+    [alert show];
 }
 
 
@@ -458,8 +459,10 @@ else if(_isDrawing)
     _tapToCreateNote.numberOfTapsRequired = 2;
     [self.view addGestureRecognizer:_tapToCreateNote];
     [self viewDidLoad];
-    UIAlertView* alert = [[UILargeAlertView alloc] initWithText:NSLocalizedString(@"Text Mode", nil) fontSize:48];
-    [alert show];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notes"
+                                                    message:@"Text Note Selected" delegate:self cancelButtonTitle: @"OK"
+                                          otherButtonTitles: nil];
+     [alert show];
 }
 
 - (IBAction)resizeDraw:(id)sender {
