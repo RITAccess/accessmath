@@ -19,15 +19,6 @@
     ALNetworkInterface *_server;
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -40,10 +31,9 @@
     [_loadProgress setProgress:0.0];
     [_loadProgress setHidden:YES];
     
-    [self.canvas setHidden:YES];
-    
     // Clear view
     [self.view setBackgroundColor:[UIColor clearColor]];
+    [_canvas setBackgroundColor:[UIColor clearColor]];
 }
 
 #pragma mark Actions
@@ -72,7 +62,6 @@
     _connectedToStream = YES;
     [server setDelegate:self];
     _server = server;
-    [self.canvas setHidden:NO];
 }
 
 - (void)userDidCancel
@@ -125,11 +114,6 @@
     
 }
 
-- (void)didFinishRecievingUpdate:(NSArray *)data
-{
-    
-}
-
 - (void)didRecieveUpdate:(CGPoint)point type:(ALPointType)type
 {
     if (type == ALPointTypeMoveTo) {
@@ -162,19 +146,6 @@
 - (void)didWantToClearScreen
 {
     [self.canvas clearScreen];
-}
-
-#pragma mark Orientation
-
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
-{
-    [UIView animateWithDuration:0.1 animations:^{
-        if (UIInterfaceOrientationIsPortrait(fromInterfaceOrientation)) {
-            [self.view setFrame:CGRectMake(0, 0, 1024, 768)];
-        } else {
-            [self.view setFrame:CGRectMake(0, 0, 768, 1024)];
-        }
-    }];
 }
 
 @end
