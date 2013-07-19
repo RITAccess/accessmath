@@ -24,15 +24,31 @@
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
 	<string>DA606256-290C-4D4D-9664-001C96A2BC6A</string>
+	<string>C00B20B3-D8D4-45DF-929A-37EFE4C3DC52</string>
+
+		<key>1DF48FF7-44FA-4DE1-8368-E29720E115F0</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/RITAccess/accessmath.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>1DF48FF7-44FA-4DE1-8368-E29720E115F0</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>DA606256-290C-4D4D-9664-001C96A2BC6A</string>
+			<string>C00B20B3-D8D4-45DF-929A-37EFE4C3DC52</string>
+
+			<string>C00B20B3-D8D4-45DF-929A-37EFE4C3DC52</string>
+
+			<string>1DF48FF7-44FA-4DE1-8368-E29720E115F0</string>
+
 			<key>IDESourceControlWCCName</key>
-			<string>accessmath</string>
+			<string>AccessMath</string>
 		</dict>
 	</array>
 </dict>
