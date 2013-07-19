@@ -63,6 +63,7 @@ static NSString * DRAW_KEY = @"draw_key";
 
 @end
 @implementation NotesViewController{
+    
     }
  
 
@@ -82,7 +83,7 @@ static NSString * DRAW_KEY = @"draw_key";
 }
 
 -(void)viewDidAppear:(BOOL)animated{
-    isOpened = YES;
+    isOpened = NO;
     currentLecture.name = @"Lecture001";
     NSURL * currentDirectory = [FileManager iCloudDirectoryURL];
     if (currentDirectory == nil) currentDirectory = [FileManager localDocumentsDirectoryURL];
@@ -90,6 +91,7 @@ static NSString * DRAW_KEY = @"draw_key";
     NSURL *docURL = [NSURL URLWithString:docsPath];
     [[AccessLectureRuntime defaultRuntime] openDocument:docURL];
      currentDocument = [AccessLectureRuntime defaultRuntime].currentDocument;
+    NSLog(@"Opened appear");
    }
 - (void)viewDidLoad
 {
@@ -99,24 +101,26 @@ static NSString * DRAW_KEY = @"draw_key";
     endTag = @"</CD>";
     isBackSpacePressed = FALSE;
     // Do any additional setup after loading the view from its nib.
-
-    _mainView = [[UIView alloc] initWithFrame:self.view.frame];
-    if([currentDocument.notes count]>0){
-        
-        [self loadNotes:currentDocument.notes];
-        
+    NSLog(@"%u is the count",[currentDocument.notes count]);
+    if(([currentDocument.notes count]>=0)&&(!isOpened)){
+        [self initializeView];
+     [self loadNotes:currentDocument.notes];
+        isOpened = YES;
+        NSLog(@"Opened");
     }
+    // Clear view
+    [self.view setBackgroundColor:[UIColor clearColor]];
+
+}
+-(void)initializeView{
+    _mainView = [[UIView alloc] initWithFrame:self.view.frame];
     self.toolBar.layer.cornerRadius = 20;
     [self.toolbarView addSubview:self.toolBar];
     [self.view addSubview:_mainView];
     [self.view addSubview:self.toolbarView];
     [self.toolbarView addSubview:self.toolBar];
     [self.view bringSubviewToFront:self.toolbarView];
-        currentLecture = [[Lecture alloc] initWithName:@"Lecture001"];
-       
-    // Clear view
-    [self.view setBackgroundColor:[UIColor clearColor]];
-
+    currentLecture = [[Lecture alloc] initWithName:@"Lecture001"];
 }
 
 -(void)loadNotes:(NSMutableArray *)notes{
@@ -138,6 +142,7 @@ static NSString * DRAW_KEY = @"draw_key";
         [[viewer.view.subviews objectAtIndex:1] addGestureRecognizer:longPressGestureRecognizer];
         [viewer.view addGestureRecognizer:longPressGestureRecognizer2];
         [_mainView addSubview:viewer.view];
+       
         }
         else if([viewer.noteType isEqualToString:@"drawNote"]){
             panToMoveNote = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
@@ -155,9 +160,7 @@ static NSString * DRAW_KEY = @"draw_key";
             [[[viewer.view.subviews objectAtIndex:1] layer] setCornerRadius:20];
             [viewer.view addGestureRecognizer:panToMoveNote];
             [[viewer.view.subviews objectAtIndex:1]addGestureRecognizer:longPressGestureRecognizer];
-            NSLog(@"%@",[[viewer.view.subviews objectAtIndex:1] description]);
             [viewer.view addGestureRecognizer:longPressGestureRecognizer2];
-           
             [viewer.view addGestureRecognizer:panToResize];
             [_mainView addSubview:viewer.view];
         }
@@ -229,7 +232,7 @@ static NSString * DRAW_KEY = @"draw_key";
     longPressGestureRecognizer.numberOfTouchesRequired = 3;
     longPressGestureRecognizer2.numberOfTouchesRequired = 1;
 
-    UIView *outerView = [[UIView alloc] initWithFrame:CGRectMake([gesture locationInView:self.view].x+20, [gesture locationInView:self.view].y+15, 430, 330)];
+    UIView *outerView = [[UIView alloc] initWithFrame:CGRectMake([gesture locationInView:_mainView].x+20, [gesture locationInView:_mainView].y+15, 430, 330)];
     [panToMoveNote setEnabled:NO];
     [panToResize setEnabled:NO];
     DrawView *lineDrawView = [[DrawView alloc]initWithFrame:CGRectMake([gesture locationInView:outerView].x + 20, [gesture locationInView:outerView].y + 15, 400, 300)];
@@ -259,7 +262,7 @@ static NSString * DRAW_KEY = @"draw_key";
 - (void)handlePan:(UIPanGestureRecognizer *)gestureRecognizer
 {
    if(_isCreatingNote){
-    [gestureRecognizer.view setFrame:CGRectMake([gestureRecognizer locationInView:self.view].x, [gestureRecognizer locationInView:self.view].y, [[[[gestureRecognizer view] subviews] objectAtIndex:0] size].width+50, [[[[gestureRecognizer view] subviews] objectAtIndex:0] size].height+50)];
+    [gestureRecognizer.view setFrame:CGRectMake([gestureRecognizer locationInView:_mainView].x, [gestureRecognizer locationInView:_mainView].y, [[[[gestureRecognizer view] subviews] objectAtIndex:0] size].width+50, [[[[gestureRecognizer view] subviews] objectAtIndex:0] size].height+50)];
        if(CGRectContainsPoint(self.trashBin.frame, gestureRecognizer.view.frame.origin)){
         [gestureRecognizer.view removeFromSuperview];
            return;
@@ -268,7 +271,7 @@ static NSString * DRAW_KEY = @"draw_key";
    }
     else if(_isDrawing)
     {
-        [gestureRecognizer.view setFrame:CGRectMake([gestureRecognizer locationInView:self.view].x, [gestureRecognizer locationInView:self.view].y, 50, 50)];
+        [gestureRecognizer.view setFrame:CGRectMake([gestureRecognizer locationInView:_mainView].x, [gestureRecognizer locationInView:_mainView].y, 50, 50)];
     }
 }
 
