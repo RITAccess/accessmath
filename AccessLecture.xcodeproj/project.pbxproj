@@ -50,6 +50,7 @@
 		3FA6119817905EDF00A2B4C8 /* redNote.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FA6119617905EDF00A2B4C8 /* redNote.png */; };
 		3FA6119A17906A8B00A2B4C8 /* yellowNote.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FA6119917906A8B00A2B4C8 /* yellowNote.png */; };
 		3FAAA850137848AB00F79C0C /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAAA84F137848AB00F79C0C /* Icon.png */; };
+		3FADD94917983F7A00ADEF76 /* RecycleBin.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FADD94817983F7400ADEF76 /* RecycleBin.png */; };
 		3FAE785413C786F800796813 /* accesslecture.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAE785313C786F800796813 /* accesslecture.png */; };
 		3FC32EBC13E05E0F00077291 /* biology.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FC32EBA13E05E0F00077291 /* biology.png */; };
 		3FC32EBD13E05E0F00077291 /* geometry.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FC32EBB13E05E0F00077291 /* geometry.png */; };
@@ -186,6 +187,7 @@
 		3FA6119917906A8B00A2B4C8 /* yellowNote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellowNote.png; sourceTree = "<group>"; };
 		3FA6119B17906E1A00A2B4C8 /* resizeDrawNote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = resizeDrawNote.png; sourceTree = "<group>"; };
 		3FAAA84F137848AB00F79C0C /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
+		3FADD94817983F7400ADEF76 /* RecycleBin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecycleBin.png; sourceTree = "<group>"; };
 		3FAE785313C786F800796813 /* accesslecture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = accesslecture.png; sourceTree = "<group>"; };
 		3FC32EBA13E05E0F00077291 /* biology.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = biology.png; path = ../biology.png; sourceTree = "<group>"; };
 		3FC32EBB13E05E0F00077291 /* geometry.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = geometry.png; path = ../geometry.png; sourceTree = "<group>"; };
@@ -337,6 +339,7 @@
 		2CFC32A1175E7ED600384AEC /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				3FADD94817983F7400ADEF76 /* RecycleBin.png */,
 				3FA6119B17906E1A00A2B4C8 /* resizeDrawNote.png */,
 				3FA6119917906A8B00A2B4C8 /* yellowNote.png */,
 				3FA6119517905EDF00A2B4C8 /* blue.png */,
@@ -827,6 +830,7 @@
 				2CF6BA961784920100A695CC /* star.png in Resources */,
 				3FC32EBD13E05E0F00077291 /* geometry.png in Resources */,
 				4C861C06178EE0B600CD499C /* StreamLayout.storyboard in Resources */,
+				3FADD94917983F7A00ADEF76 /* RecycleBin.png in Resources */,
 				2CFC32A0175E60FC00384AEC /* MainStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -963,8 +967,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Pratik Rasam (RTRNBL5XYF)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Pratik Rasam (RTRNBL5XYF)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -974,8 +978,8 @@
 				INFOPLIST_FILE = "AccessLecture/AccessLecture-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "EC51EB3A-91E0-4B0D-8398-E553BBD0EE94";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EC51EB3A-91E0-4B0D-8398-E553BBD0EE94";
+				PROVISIONING_PROFILE = "E9A28986-40E6-45BD-BBB0-020FDD0DB8C4";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E9A28986-40E6-45BD-BBB0-020FDD0DB8C4";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
@@ -988,8 +992,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Pratik Rasam (RTRNBL5XYF)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Pratik Rasam (RTRNBL5XYF)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AccessLecture/AccessLecture-Prefix.pch";
@@ -998,8 +1002,8 @@
 				INFOPLIST_FILE = "AccessLecture/AccessLecture-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "EC51EB3A-91E0-4B0D-8398-E553BBD0EE94";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EC51EB3A-91E0-4B0D-8398-E553BBD0EE94";
+				PROVISIONING_PROFILE = "E9A28986-40E6-45BD-BBB0-020FDD0DB8C4";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E9A28986-40E6-45BD-BBB0-020FDD0DB8C4";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;

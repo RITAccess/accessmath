@@ -101,13 +101,10 @@
     Lecture *currentLecture = document.lecture;
     NSURL * currentDirectory = [FileManager iCloudDirectoryURL];
     if (currentDirectory == nil) currentDirectory = [FileManager localDocumentsDirectoryURL];
-    NSArray * docs = [FileManager documentsIn:currentDirectory];
-    
+      
   
-    NSString *docsPath =[[currentDirectory absoluteString] stringByAppendingString:[NSString stringWithFormat:@"/%@.lecture",currentLecture.name]];
+    NSString *docsPath =[[currentDirectory absoluteString] stringByAppendingString:[NSString stringWithFormat:@"AccessMath/%@.lecture",currentLecture.name]];
     NSURL *docURL = [NSURL URLWithString:docsPath];
-    NSURL *temp = [docs objectAtIndex:0];
-    
     currentDocument = [[AccessDocument alloc] initWithFileURL:docURL];
   //  currentLecture.image = UIImagePNGRepresentation(saveImage);
     currentDocument.lecture = document.lecture;
