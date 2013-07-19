@@ -9,6 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "TopNav.h"
 
+typedef struct {
+    CGPoint root;
+    CGPoint end;
+} Vector;
+extern Vector VectorMake(CGPoint root, CGPoint end);
+extern void VectorApplyScale(CGFloat scale, Vector *vector);
+
 /**
  * The LectureViewChild protocol is required to be a valid subview controller of
  * the LectureViewContainer. If you do not implement theses methods your controller

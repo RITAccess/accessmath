@@ -12,8 +12,24 @@
 #import "NotesViewController.h"
 
 // Default content size
-#define LC_WIDTH 2000
-#define LC_HEIGHT 2000
+#define LC_WIDTH 1000
+#define LC_HEIGHT 1000
+
+Vector VectorMake(CGPoint root, CGPoint end) {
+    Vector *v = malloc(sizeof(Vector));
+    v->root = root;
+    v->end = end;
+    return *v;
+}
+
+void VectorApplyScale(CGFloat scale, Vector *vector) {
+    CGPoint *root = &vector->root;
+    CGPoint *end = &vector->end;
+    float nxd = (end->x - root->x) * scale;
+    float nyd = (end->y - root->y) * scale;
+    end->x = root->x + nxd;
+    end->y = root->y + nyd;
+}
 
 #pragma mark Blank Canvas Class
 
@@ -155,6 +171,12 @@
 {
     float scale = [gesture scale];
     [gesture setScale:1.0];
+    
+    CGPoint touch = [gesture locationInView:self.view];
+    Vector relation = VectorMake(touch, self.center);
+    VectorApplyScale(scale, &relation);
+    self.center = relation.end;
+    
     [self.childViewControllers enumerateObjectsUsingBlock:^(UIViewController<LectureViewChild> *child, NSUInteger idx, BOOL *stop) {
         UIView *content = [child contentView];
         
@@ -163,8 +185,7 @@
                 
                 CGAffineTransform zoom = CGAffineTransformScale(content.transform, scale, scale);
                 content.transform = zoom;
-                
-                [content setFrame:CGRectMake(self.center.x, self.center.y, content.frame.size.width, content.frame.size.height)];
+                [content setCenter:self.center];
                 
                 break;
             }
