@@ -23,7 +23,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                             <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="RoR-QX-LKt">
-                                <rect key="frame" x="309" y="383" width="150" height="2"/>
+                                <rect key="frame" x="309" y="511" width="150" height="2"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="4MB-F9-gPG"/>
@@ -43,15 +43,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="RoR-QX-LKt" secondAttribute="centerX" id="200-MP-7nU"/>
-                            <constraint firstItem="oT6-t9-2NY" firstAttribute="trailing" secondItem="n5C-3y-2Lw" secondAttribute="trailing" id="DSx-ey-WyW"/>
+                            <constraint firstAttribute="centerX" secondItem="RoR-QX-LKt" secondAttribute="centerX" id="6R6-45-02r"/>
+                            <constraint firstItem="oT6-t9-2NY" firstAttribute="trailing" secondItem="n5C-3y-2Lw" secondAttribute="trailing" placeholder="YES" id="DSx-ey-WyW"/>
                             <constraint firstItem="b5L-T8-j1F" firstAttribute="bottom" secondItem="n5C-3y-2Lw" secondAttribute="bottom" id="LZ2-mz-QSc"/>
-                            <constraint firstItem="oT6-t9-2NY" firstAttribute="leading" secondItem="n5C-3y-2Lw" secondAttribute="leading" id="Yfm-1E-GV0"/>
-                            <constraint firstItem="oT6-t9-2NY" firstAttribute="bottom" secondItem="n5C-3y-2Lw" secondAttribute="bottom" id="neX-iD-fZI"/>
+                            <constraint firstAttribute="centerY" secondItem="RoR-QX-LKt" secondAttribute="centerY" id="QT9-rE-wYy"/>
+                            <constraint firstItem="oT6-t9-2NY" firstAttribute="leading" secondItem="n5C-3y-2Lw" secondAttribute="leading" placeholder="YES" id="Yfm-1E-GV0"/>
+                            <constraint firstItem="oT6-t9-2NY" firstAttribute="bottom" secondItem="n5C-3y-2Lw" secondAttribute="bottom" placeholder="YES" id="neX-iD-fZI"/>
                             <constraint firstItem="b5L-T8-j1F" firstAttribute="trailing" secondItem="n5C-3y-2Lw" secondAttribute="trailing" id="sIA-Bc-t7Y"/>
-                            <constraint firstItem="RoR-QX-LKt" firstAttribute="top" secondItem="n5C-3y-2Lw" secondAttribute="top" constant="383" id="sIG-E5-wXr"/>
                             <constraint firstItem="b5L-T8-j1F" firstAttribute="leading" secondItem="n5C-3y-2Lw" secondAttribute="leading" id="tOY-Ns-eUj"/>
-                            <constraint firstItem="oT6-t9-2NY" firstAttribute="top" secondItem="n5C-3y-2Lw" secondAttribute="top" id="vAk-b2-245"/>
+                            <constraint firstItem="oT6-t9-2NY" firstAttribute="top" secondItem="n5C-3y-2Lw" secondAttribute="top" placeholder="YES" id="vAk-b2-245"/>
                         </constraints>
                     </view>
                     <keyCommands/>
