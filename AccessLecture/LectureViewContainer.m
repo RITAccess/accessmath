@@ -12,8 +12,8 @@
 #import "NotesViewController.h"
 
 // Default content size
-#define LC_WIDTH 1000
-#define LC_HEIGHT 1000
+#define LC_WIDTH 1024
+#define LC_HEIGHT 768
 
 Vector VectorMake(CGPoint root, CGPoint end) {
     Vector *v = malloc(sizeof(Vector));
@@ -34,7 +34,6 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
 #pragma mark Blank Canvas Class
 
 @interface VCBlank : UIViewController <LectureViewChild>
-
 @end
 
 @implementation VCBlank
@@ -55,6 +54,7 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
 @interface LectureViewContainer ()
 
 @property CGPoint center;
+@property CGSize space;
 
 @end
 
@@ -66,6 +66,9 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
     
     NSArray *menuItems;
     BOOL menuOpen;
+    
+    // Zoom
+    CGAffineTransform _zoomLevel;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -93,12 +96,15 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
     dcv = [[DrawViewController alloc] initWithNibName:DrawViewControllerXIB bundle:nil];
     svc = (StreamViewController *)[[UIStoryboard storyboardWithName:StreamViewControllerStoryboard bundle:nil] instantiateViewControllerWithIdentifier:StreamViewControllerID];
     
+    _space = CGSizeMake(LC_WIDTH, LC_HEIGHT);
+    
     [self addController:nvc];
     [self addController:dcv];
     [self addController:svc];
     [self addController:[VCBlank new]];
     
-    [self setContentSize:CGSizeMake(LC_WIDTH, LC_HEIGHT)];
+    _center = CGPointMake(CGRectGetMidY(self.view.frame), CGRectGetMidX(self.view.frame));
+    [self setContentSize:_space];
     
     // Close menus
     menuOpen = NO;
@@ -154,8 +160,8 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
 {
     [self.childViewControllers enumerateObjectsUsingBlock:^(id<LectureViewChild> obj, NSUInteger idx, BOOL *stop) {
         UIView *content = [obj contentView];
-        [content removeConstraints:content.constraints];
-        [content setFrame:CGRectMake(self.center.x, self.center.y, size.width, size.height)];
+        [content setBounds:CGRectMake(0, 0, size.width, size.height)];
+        [content setCenter:_center];
     }];
 }
 
@@ -177,23 +183,15 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
     VectorApplyScale(scale, &relation);
     self.center = relation.end;
     
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _zoomLevel = CGAffineTransformIdentity;
+    });
+    _zoomLevel = CGAffineTransformScale(_zoomLevel, scale, scale);
     [self.childViewControllers enumerateObjectsUsingBlock:^(UIViewController<LectureViewChild> *child, NSUInteger idx, BOOL *stop) {
         UIView *content = [child contentView];
-        
-        switch (gesture.state) {
-            case UIGestureRecognizerStateChanged: {
-                
-                CGAffineTransform zoom = CGAffineTransformScale(content.transform, scale, scale);
-                content.transform = zoom;
-                [content setCenter:self.center];
-                
-                break;
-            }
-            default:
-                break;
-        }
-        
-    
+            content.transform = _zoomLevel;
+            [content setCenter:self.center];
     }];
 }
 
@@ -274,7 +272,6 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
     
     children = nil;
     [vc didMoveToParentViewController:self];
-    [self.view setBackgroundColor:[UIColor grayColor]];
 }
 
 - (IBAction)menuButtonTapped:(id)sender

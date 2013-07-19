@@ -116,7 +116,7 @@
 
 - (UIView *)contentView
 {
-    return self.canvas;
+    return _canvas;
 }
 
 #pragma mark Streaming
