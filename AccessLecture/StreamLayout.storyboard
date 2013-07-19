@@ -41,7 +41,7 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not Connected...." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DVC-Sy-98J">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not Connected" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DVC-Sy-98J">
                                 <rect key="frame" x="200" y="991" width="369" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
@@ -49,7 +49,7 @@
                                     <constraint firstAttribute="height" constant="21" id="Ydd-dQ-kfm"/>
                                     <constraint firstAttribute="width" constant="369" id="gTk-mi-k3c"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -68,6 +68,7 @@
                             <constraint firstAttribute="centerX" secondItem="RoR-QX-LKt" secondAttribute="centerX" id="200-MP-7nU"/>
                             <constraint firstItem="oT6-t9-2NY" firstAttribute="trailing" secondItem="n5C-3y-2Lw" secondAttribute="trailing" id="DSx-ey-WyW"/>
                             <constraint firstItem="b5L-T8-j1F" firstAttribute="bottom" secondItem="n5C-3y-2Lw" secondAttribute="bottom" id="LZ2-mz-QSc"/>
+                            <constraint firstItem="DVC-Sy-98J" firstAttribute="leading" secondItem="n5C-3y-2Lw" secondAttribute="leading" constant="200" id="Swf-dc-5p0"/>
                             <constraint firstAttribute="trailing" secondItem="SSf-xZ-5qy" secondAttribute="trailing" constant="26" id="TDY-S9-iBq"/>
                             <constraint firstItem="oT6-t9-2NY" firstAttribute="leading" secondItem="n5C-3y-2Lw" secondAttribute="leading" id="Yfm-1E-GV0"/>
                             <constraint firstItem="SSf-xZ-5qy" firstAttribute="top" secondItem="DVC-Sy-98J" secondAttribute="top" id="eQ7-O7-f3I"/>
