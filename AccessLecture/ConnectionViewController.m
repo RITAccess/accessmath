@@ -160,7 +160,7 @@
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     //  NOTE: decimal points in the CATransform are necessary.
-    if (_previewView){
+    if (_previewView && (_tapToScan.enabled == NO)){
         if ([UIDevice currentDevice].orientation == UIInterfaceOrientationPortrait){
             [_previewView.layer setTransform:CATransform3DMakeRotation(0 / 180.0 * M_PI, 0.0, 0.0, 1.0)];
             [self configureScanViewWithOrientation:0];
