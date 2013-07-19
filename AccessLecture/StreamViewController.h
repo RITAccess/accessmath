@@ -23,4 +23,6 @@ static NSString* const StreamViewControllerID = @"streamvc";
 @property (weak, nonatomic) IBOutlet UIToolbar *bottomToolbar;
 @property (weak, nonatomic) IBOutlet UIProgressView *loadProgress;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *joinLeaveStream;
+@property (weak, nonatomic) IBOutlet UILabel *lectureNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *serverAddressLabel;
 @end
