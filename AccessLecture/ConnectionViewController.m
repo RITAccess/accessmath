@@ -21,6 +21,7 @@
     UITapGestureRecognizer *_tapToScan;
     AVCaptureVideoPreviewLayer *preview;
     UIButton *cancelButton;
+    UILabel *scanLabel;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -56,18 +57,25 @@
     
     // Checking for proper OS. We might need to enhance this check later.
     if ([[[UIDevice currentDevice]systemVersion] isEqualToString:@"7.0"]){
-        _tapToScan = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scan:)];
+        _tapToScan = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(startScan:)];
         [_tapToScan setCancelsTouchesInView:YES];
         [_previewView addGestureRecognizer:_tapToScan];
-        [_previewView setBackgroundColor:[UIColor redColor]];
+        [_previewView setBackgroundColor:[UIColor greenColor]];
+        
+        scanLabel = [[UILabel alloc] initWithFrame:CGRectMake(_previewView.frame.size.width / 2 - 125, _previewView.frame.size.height / 2 - 70, 250, 30)];
+        [scanLabel setFont:[UIFont boldSystemFontOfSize:100]];
+        [scanLabel setText:@"Scan!"];
+        [scanLabel setTextColor:[UIColor whiteColor]];
+        [scanLabel sizeToFit];
+        [_previewView addSubview:scanLabel];
     } else {
-        [_previewView setBackgroundColor:[UIColor grayColor]];
-        UILabel *nope = [[UILabel alloc] initWithFrame:CGRectMake(_previewView.frame.size.width / 2 - 125, _previewView.frame.size.height / 2 - 15, 250, 30)];
-        [nope setBackgroundColor:[UIColor clearColor]];
-        [nope setTextColor:[UIColor whiteColor]];
-        [nope setTextAlignment:NSTextAlignmentCenter];
-        [nope setText:@"Scanning not available..."];
-        [_previewView addSubview:nope];
+        [_previewView setBackgroundColor:[UIColor lightGrayColor]];
+        UILabel *noScanLabel = [[UILabel alloc] initWithFrame:CGRectMake(_previewView.frame.size.width / 2 - 125, _previewView.frame.size.height / 2 - 15, 250, 30)];
+        [noScanLabel setTextColor:[UIColor whiteColor]];
+        [noScanLabel setFont:[UIFont systemFontOfSize:22]];
+        [noScanLabel setTextAlignment:NSTextAlignmentCenter];
+        [noScanLabel setText:@"Scanning not available..."];
+        [_previewView addSubview:noScanLabel];
         [_connectionAddress becomeFirstResponder];
     }
 }
@@ -97,15 +105,20 @@
 - (IBAction)connectToStream:(id)sender
 {
     [server requestAccessToLectureSteam:_lecture.text];
-    if ([_delegate respondsToSelector:@selector(didCompleteWithConnection:)]) {
-        [_delegate didCompleteWithConnection:server];
+    if ([_delegate respondsToSelector:@selector(didCompleteWithConnection: toLecture: from:)]) {
+        [_delegate didCompleteWithConnection:server toLecture:_lecture.text from:_connectionAddress.text];
     }
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)scan:(UITapGestureRecognizer *)reg
+- (void)startScan:(UITapGestureRecognizer *)reg
 {
     [_tapToScan setEnabled:NO];
+    
+    [scanLabel setText:@"Loading..."];
+    [scanLabel setFont:[UIFont boldSystemFontOfSize:55]];
+    
     scanner = [QRScanner new];
     [scanner startCaptureWithCompletion:^(NSDictionary *info) {
         [server disconnect];
@@ -113,8 +126,8 @@
         [server connectCompletion:^(BOOL success) {
             if (success) {
                 [server requestAccessToLectureSteam:info[@"lecture"]];
-                if ([_delegate respondsToSelector:@selector(didCompleteWithConnection:)]) {
-                    [_delegate didCompleteWithConnection:server];
+                if ([_delegate respondsToSelector:@selector(didCompleteWithConnection: toLecture: from:)]) {
+                    [_delegate didCompleteWithConnection:server toLecture:_lecture.text from:_connectionAddress.text];
                 }
                 [self dismissViewControllerAnimated:YES completion:nil];
             } else {
@@ -132,6 +145,7 @@
         [preview setBounds:_previewView.layer.bounds];
         [preview setPosition:CGPointMake(CGRectGetMidX(_previewView.layer.bounds), CGRectGetMidY(_previewView.layer.bounds))];
         [_previewView.layer addSublayer:preview];
+        [_previewView setBackgroundColor:[UIColor clearColor]];
         
         cancelButton = [[UIButton alloc] initWithFrame:CGRectMake(_previewView.frame.size.width - 100, _previewView.frame.size.height - 50, 100, 50)];
         [cancelButton addTarget:self action:@selector(userDidCancel:) forControlEvents:UIControlEventTouchDown];
@@ -146,7 +160,7 @@
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     //  NOTE: decimal points in the CATransform are necessary.
-    if (_previewView){
+    if (_previewView && (_tapToScan.enabled == NO)){
         if ([UIDevice currentDevice].orientation == UIInterfaceOrientationPortrait){
             [_previewView.layer setTransform:CATransform3DMakeRotation(0 / 180.0 * M_PI, 0.0, 0.0, 1.0)];
             [self configureScanViewWithOrientation:0];

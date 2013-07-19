@@ -91,7 +91,6 @@ static NSString * DRAW_KEY = @"draw_key";
     NSURL *docURL = [NSURL URLWithString:docsPath];
     [[AccessLectureRuntime defaultRuntime] openDocument:docURL];
      currentDocument = [AccessLectureRuntime defaultRuntime].currentDocument;
-    NSLog(@"Opened appear");
    }
 - (void)viewDidLoad
 {
@@ -101,7 +100,6 @@ static NSString * DRAW_KEY = @"draw_key";
     endTag = @"</CD>";
     isBackSpacePressed = FALSE;
     // Do any additional setup after loading the view from its nib.
-    NSLog(@"%u is the count",[currentDocument.notes count]);
     if(([currentDocument.notes count]>=0)&&(!isOpened)){
         [self initializeView];
      [self loadNotes:currentDocument.notes];
@@ -116,8 +114,10 @@ static NSString * DRAW_KEY = @"draw_key";
     _mainView = [[UIView alloc] initWithFrame:self.view.frame];
     self.toolBar.layer.cornerRadius = 20;
     [self.toolbarView addSubview:self.toolBar];
+    [self.toolbarView setBackgroundColor:[UIColor clearColor]];
     [self.view addSubview:_mainView];
     [self.view addSubview:self.toolbarView];
+   [self.view addSubview:self.trashBin];
     [self.toolbarView addSubview:self.toolBar];
     [self.view bringSubviewToFront:self.toolbarView];
     currentLecture = [[Lecture alloc] initWithName:@"Lecture001"];
@@ -148,7 +148,6 @@ static NSString * DRAW_KEY = @"draw_key";
             panToMoveNote = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
             panToResize = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handleResize:)];
             longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressToRemoveNote:)];
-            
             longPressGestureRecognizer2 = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressToDisplayNote:)];
             longPressGestureRecognizer.numberOfTouchesRequired = 3;
             longPressGestureRecognizer2.numberOfTouchesRequired = 1;
@@ -188,9 +187,8 @@ static NSString * DRAW_KEY = @"draw_key";
             longPressGestureRecognizer.numberOfTouchesRequired = 3;
             longPressGestureRecognizer2.numberOfTouchesRequired = 1;
             UIView *outerView = [[UIView alloc] initWithFrame:CGRectMake([gesture locationInView:self.view].x, [gesture locationInView:self.view].y, 350, 150)];
-         
             FTCoreTextView *text = [[FTCoreTextView alloc]initWithFrame:CGRectMake(outerView.frame.origin.x+10 , outerView.frame.origin.y+10 , 300, 120)];
-           [text setText:@""];
+            [text setText:@""];
             [text addStyles:[self coreTextStyle]];
             [text setUserInteractionEnabled:YES];
             UITextView *textBubble = [[UITextView alloc]initWithFrame:CGRectMake([gesture locationInView:outerView].x, [gesture locationInView:outerView].y , 310, 120)];
@@ -375,7 +373,7 @@ else if(_isDrawing)
 - (void)textViewDidChange:(UITextView *)textView{
      FTCoreTextView *temp =  [[textView.superview  subviews] objectAtIndex:0];
      CGRect frame = textView.frame;
-    if(!isBackSpacePressed&&(textView.text.length==textView.selectedRange.location)){
+    if(!isBackSpacePressed&&(textView.text.length==textView.selectedRange.location)&&(textView.selectedRange.location>0)){
      char tempchar = [textView.text characterAtIndex:[textView.text length]-1];
     [[[textView.superview  subviews] objectAtIndex:0] setText:[NSString stringWithFormat:@"%@%@%c%@",temp.text,startTag,tempchar,endTag]];
     //textView.textColor = [UIColor clearColor];
@@ -389,7 +387,7 @@ else if(_isDrawing)
    [[[textView.superview  subviews] objectAtIndex:1] becomeFirstResponder];
      }
     
-    if((!isBackSpacePressed)&&(textView.text.length>textView.selectedRange.location)){
+    if((!isBackSpacePressed)&&(textView.text.length>textView.selectedRange.location)&&(textView.selectedRange.location>0)){
         NSRange preRange = NSMakeRange(0, (textView.selectedRange.location-1)*10);
         NSRange postRange = NSMakeRange((textView.selectedRange.location-1)*10, (textView.text.length-textView.selectedRange.location)*10);
         NSString *preText = [temp.text substringWithRange:preRange];
@@ -409,7 +407,7 @@ else if(_isDrawing)
 
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
   FTCoreTextView *temp =  [[textView.superview  subviews] objectAtIndex:0];
-    if(text.length<=0)
+    if((text.length<=0)&&(textView.selectedRange.location>0))
     {
        isBackSpacePressed = TRUE;
         if(textView.selectedRange.location==textView.text.length){

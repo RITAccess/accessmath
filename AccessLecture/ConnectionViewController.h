@@ -15,7 +15,7 @@ static NSString* const ConnectionViewControllerXIB = @"ConnectionViewController"
 
 @protocol ConnectionView <NSObject>
 
-- (void)didCompleteWithConnection:(ALNetworkInterface *)server;
+- (void)didCompleteWithConnection:(ALNetworkInterface *)server toLecture:(NSString *)lectureName from:(NSString *)connectionAddress;
 - (void)userDidCancel;
 
 @end
@@ -34,6 +34,6 @@ static NSString* const ConnectionViewControllerXIB = @"ConnectionViewController"
 - (IBAction)checkAddress:(id)sender;
 - (IBAction)userDidCancel:(id)sender;
 - (IBAction)connectToStream:(id)sender;
-- (IBAction)scan:(id)sender;
+- (IBAction)startScan:(id)sender;
 
 @end

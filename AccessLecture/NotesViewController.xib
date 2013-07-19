@@ -10,6 +10,7 @@
                 <outlet property="drawNote" destination="PHK-ZG-JXm" id="vRj-6f-f3A"/>
                 <outlet property="textNote" destination="qX8-e6-xcc" id="32J-pG-0Rd"/>
                 <outlet property="toolbarView" destination="4q4-U1-h2B" id="6EA-kJ-Fm4"/>
+                <outlet property="trashBin" destination="ndw-Ze-twa" id="gMc-TW-Q0S"/>
                 <outlet property="view" destination="2" id="3"/>
             </connections>
         </placeholder>
@@ -121,10 +122,16 @@
                         <constraint firstAttribute="trailing" secondItem="j7r-yD-pMj" secondAttribute="trailing" id="MSN-qR-DZe"/>
                     </constraints>
                 </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="RecycleBin.png" translatesAutoresizingMaskIntoConstraints="NO" id="ndw-Ze-twa">
+                    <rect key="frame" x="702" y="894" width="66" height="62"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="4q4-U1-h2B" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="KTG-90-2Uo"/>
+                <constraint firstItem="4q4-U1-h2B" firstAttribute="top" secondItem="ndw-Ze-twa" secondAttribute="bottom" constant="-3" id="LFo-Zu-24E"/>
+                <constraint firstAttribute="trailing" secondItem="ndw-Ze-twa" secondAttribute="trailing" constant="8" id="SPD-dU-Dtt"/>
                 <constraint firstAttribute="trailing" secondItem="4q4-U1-h2B" secondAttribute="trailing" id="Vgr-lH-jQK"/>
                 <constraint firstAttribute="bottom" secondItem="4q4-U1-h2B" secondAttribute="bottom" id="aHg-d8-M0b"/>
             </constraints>
@@ -132,6 +139,7 @@
         </view>
     </objects>
     <resources>
+        <image name="RecycleBin.png" width="54" height="54"/>
         <image name="TextNote.png" width="256" height="256"/>
         <image name="accesslecture.png" width="695" height="512"/>
         <image name="blue.png" width="322.53851318359375" height="224.14506530761719"/>
