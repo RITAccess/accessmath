@@ -3,28 +3,19 @@
 <plist version="1.0">
 <dict>
 	<key>IDESourceControlProjectIdentifier</key>
-
-	<string>7B0068D0-2847-4CFC-9977-D323E0F896D9</string>
-
-	<string>9FA962DE-3E08-4431-A891-B1EDE8DF3EC6</string>
-
+	<string>D8B56095-F2FF-4CF6-B1DC-A62E62C3A2B0</string>
 	<key>IDESourceControlProjectName</key>
 	<string>AccessLecture</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>C00B20B3-D8D4-45DF-929A-37EFE4C3DC52</key>
+		<key>BBC1455B-01BB-4C99-A2B4-529F9A953E32</key>
 		<string>ssh://github.com/RITAccess/accessmath.git</string>
-
-		<key>1DF48FF7-44FA-4DE1-8368-E29720E115F0</key>
-		<string>https://github.com/RITAccess/accessmath.git</string>
-
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>AccessLecture.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-
-		<key>C00B20B3-D8D4-45DF-929A-37EFE4C3DC52</key>
+		<key>BBC1455B-01BB-4C99-A2B4-529F9A953E32</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
@@ -32,31 +23,16 @@
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>C00B20B3-D8D4-45DF-929A-37EFE4C3DC52</string>
-
-		<key>1DF48FF7-44FA-4DE1-8368-E29720E115F0</key>
-		<string>../..</string>
-	</dict>
-	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/RITAccess/accessmath.git</string>
-	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
-	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>1DF48FF7-44FA-4DE1-8368-E29720E115F0</string>
-
+	<string>BBC1455B-01BB-4C99-A2B4-529F9A953E32</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-
-			<string>C00B20B3-D8D4-45DF-929A-37EFE4C3DC52</string>
-
-			<string>1DF48FF7-44FA-4DE1-8368-E29720E115F0</string>
-
+			<string>BBC1455B-01BB-4C99-A2B4-529F9A953E32</string>
 			<key>IDESourceControlWCCName</key>
-			<string>AccessMath</string>
+			<string>accessmath</string>
 		</dict>
 	</array>
 </dict>
