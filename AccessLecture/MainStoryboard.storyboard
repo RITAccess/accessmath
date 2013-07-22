@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4457.9" systemVersion="12E55" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="SP6-Rd-Xf7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4471.1" systemVersion="13A510d" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="SP6-Rd-Xf7">
     <dependencies>
         <deployment version="1536" defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3682.9"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3697.3"/>
     </dependencies>
     <scenes>
         <!--Root View Controller-->
         <scene sceneID="ziG-oz-goB">
             <objects>
                 <viewController storyboardIdentifier="RootViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="SP6-Rd-Xf7" customClass="RootViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HYm-yu-JP3"/>
+                        <viewControllerLayoutGuide type="bottom" id="2cW-8X-OBr"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="PYl-bd-Q14">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -71,6 +75,24 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Df-hy-0tS">
+                                <rect key="frame" x="115" y="520" width="186" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="Vph-UG-I8l"/>
+                                    <constraint firstAttribute="width" constant="186" id="e99-nz-bMI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="35"/>
+                                <state key="normal" title="Connect">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="openConnect:" destination="SP6-Rd-Xf7" eventType="touchUpInside" id="xUb-mw-cnj"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -101,6 +123,10 @@
         <scene sceneID="Dq3-eJ-EFo">
             <objects>
                 <viewController id="8Co-Mi-Y02" customClass="LectureViewContainer" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hl1-sL-V6I"/>
+                        <viewControllerLayoutGuide type="bottom" id="0Jx-KL-dEm"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="w3Y-Ju-qTJ">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -196,6 +222,10 @@
         <scene sceneID="xKA-8C-K9A">
             <objects>
                 <viewController autoresizesArchivedViewToFullSize="NO" id="pIb-Nv-pIW" customClass="SettingsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="P59-fr-mbv"/>
+                        <viewControllerLayoutGuide type="bottom" id="fb3-t2-ec9"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kU9-Ev-PsL">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -334,6 +364,10 @@
         <scene sceneID="nkT-Z3-fpK">
             <objects>
                 <viewController storyboardIdentifier="AboutViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JQs-Rh-thK" customClass="AboutViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="a6s-1k-qHS"/>
+                        <viewControllerLayoutGuide type="bottom" id="fa1-aF-I6E"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Awu-V3-w53">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -461,6 +495,10 @@ IAoKA
         <scene sceneID="jD8-Hh-wvd">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="hgG-H5-1Em" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="NAu-uq-bGx"/>
+                        <viewControllerLayoutGuide type="bottom" id="tT2-ow-DIM"/>
+                    </layoutGuides>
                     <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="iv5-OD-xLb">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
