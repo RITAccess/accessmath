@@ -13,7 +13,14 @@
 @end
 
 @implementation DrawView
-
+static NSString * PATH_KEY = @"path_key";
+static NSString * SHAPE_KEY = @"shape_key";
+static NSString * PENSIZE_KEY = @"pensize_key";
+static NSString * PENCOLOR_KEY = @"pencolor_key";
+static NSString * SHAPESELECT_KEY = @"shapeselect_key";
+static NSString * TAMPSTAMP_KEY = @"tamstamp_key";
+static NSString * FINGER_KEY = @"finger_key";
+static NSString * BUTTON_KEY = @"button_key";
 - (id)initWithFrame:(CGRect)frame
 { 
     self = [super initWithFrame:frame];
@@ -96,6 +103,35 @@
         [path stroke];
     }
 }
+//- (id)initWithCoder:(NSCoder *)aCoder {
+//    if (self = [super init]) {
+//        _paths = [aCoder decodeObjectForKey:PATH_KEY];
+//        _penSize = [aCoder decodeFloatForKey:PENSIZE_KEY];
+//        _penColor = [aCoder decodeObjectForKey:PENCOLOR_KEY];
+//        _shapes = [aCoder decodeObjectForKey:SHAPE_KEY];
+//        _shapeSelected = [aCoder decodeBoolForKey:SHAPESELECT_KEY];
+//        _tapStamp = [aCoder decodeObjectForKey:TAMPSTAMP_KEY];
+//        _fingerDrag = [aCoder decodeObjectForKey:FINGER_KEY];
+//        _buttonString = [aCoder decodeObjectForKey:BUTTON_KEY];
+//        
+//      
+//        
+//    }
+//    return self;
+//}
+//
+//- (void)encodeWithCoder:(NSCoder *)aCoder {
+//   // [aCoder encodeObject:_view forKey:VIEW_KEY];
+//    [aCoder encodeObject:_paths forKey:PATH_KEY];
+//    [aCoder encodeFloat:_penSize forKey:PENSIZE_KEY];
+//    [aCoder encodeObject:_penColor forKey:PENCOLOR_KEY];
+//    [aCoder encodeObject:_shapes forKey:SHAPE_KEY];
+//    [aCoder encodeBool:_shapeSelected forKey:SHAPESELECT_KEY];
+//    [aCoder encodeObject:_tapStamp forKey:TAMPSTAMP_KEY];
+//    [aCoder encodeObject:_fingerDrag forKey:FINGER_KEY];
+//    [aCoder encodeObject:_buttonString forKey:BUTTON_KEY];
+//
+//}
 
 @end
 

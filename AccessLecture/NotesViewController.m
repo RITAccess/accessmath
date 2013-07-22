@@ -84,6 +84,7 @@ static NSString * DRAW_KEY = @"draw_key";
 
 -(void)viewDidAppear:(BOOL)animated{
     isOpened = NO;
+   //assign this value from stream view controller lecture name
     currentLecture.name = @"Lecture001";
     NSURL * currentDirectory = [FileManager iCloudDirectoryURL];
     if (currentDirectory == nil) currentDirectory = [FileManager localDocumentsDirectoryURL];
@@ -99,9 +100,9 @@ static NSString * DRAW_KEY = @"draw_key";
     endTag = @"</CD>";
     isBackSpacePressed = FALSE;
     // Do any additional setup after loading the view from its nib.
-    if(([currentDocument.notes count]>=0)&&(!isOpened)){
+    if((!isOpened)){
         [self initializeView];
-        [self loadNotes:currentDocument.notes];
+      // [self loadNotes:currentDocument.notes];
         isOpened = YES;
     }
     // Clear view
@@ -115,7 +116,7 @@ static NSString * DRAW_KEY = @"draw_key";
     [self.toolbarView setBackgroundColor:[UIColor clearColor]];
     [self.view addSubview:_mainView];
     [self.view addSubview:self.toolbarView];
-   [self.view addSubview:self.trashBin];
+    [self.view addSubview:self.trashBin];
     [self.toolbarView addSubview:self.toolBar];
     [self.view bringSubviewToFront:self.toolbarView];
     currentLecture = [[Lecture alloc] initWithName:@"Lecture001"];
@@ -151,8 +152,11 @@ static NSString * DRAW_KEY = @"draw_key";
             longPressGestureRecognizer2.numberOfTouchesRequired = 1;
             [panToMoveNote setEnabled:NO];
             [panToResize setEnabled:NO];
-            [[[viewer.view subviews] objectAtIndex:1] removeFromSuperview];
+           [[[viewer.view subviews] objectAtIndex:1] removeFromSuperview];
+            
             [viewer.view addSubview:viewer.drawContent];
+            [viewer.view.layer setBorderWidth:3];
+            [[[viewer.view.subviews objectAtIndex:0] layer] setBorderWidth:3];
             [[[viewer.view.subviews objectAtIndex:1] layer] setBorderWidth:3];
             [[[viewer.view.subviews objectAtIndex:1] layer] setCornerRadius:20];
             [viewer.view addGestureRecognizer:panToMoveNote];
@@ -209,7 +213,7 @@ static NSString * DRAW_KEY = @"draw_key";
             [textBubble addSubview:anImageView];
             [textBubble setScrollEnabled:YES];
             [textBubble scrollRectToVisible:CGRectMake([gesture locationInView:self.view].x+20, [gesture locationInView:self.view].y+15, 300, 120) animated:NO];
-            NSLog(@"%@",[[[self.view subviews] objectAtIndex:0] description]);
+           
             [[[self.view subviews] objectAtIndex:1] addSubview:outerView];
             [textBubble setClipsToBounds:NO];
             [textBubble becomeFirstResponder];
@@ -246,18 +250,20 @@ static NSString * DRAW_KEY = @"draw_key";
     [outerView addGestureRecognizer:panToMoveNote];
     [lineDrawView addGestureRecognizer:longPressGestureRecognizer];
     [outerView addGestureRecognizer:longPressGestureRecognizer2];
-    [lineDrawView addSubview:anImageView];
     [outerView addGestureRecognizer:panToResize];
+    [lineDrawView addSubview:anImageView];
     [outerView addSubview:resizeView];
     [outerView addSubview:lineDrawView];
     [[[self.view subviews] objectAtIndex:1] addSubview:outerView];
+    
   
 }
 
 - (void)handlePan:(UIPanGestureRecognizer *)gestureRecognizer
 {
    if(_isCreatingNote){
-    [gestureRecognizer.view setFrame:CGRectMake([gestureRecognizer locationInView:_mainView].x, [gestureRecognizer locationInView:_mainView].y, [[[[gestureRecognizer view] subviews] objectAtIndex:0] size].width+50, [[[[gestureRecognizer view] subviews] objectAtIndex:0] size].height+50)];
+       NSLog(@"%@",[gestureRecognizer.view description]);
+       [gestureRecognizer.view setFrame:CGRectMake([gestureRecognizer locationInView:_mainView].x, [gestureRecognizer locationInView:_mainView].y, [[[[gestureRecognizer view] subviews] objectAtIndex:0] size].width+50, [[[[gestureRecognizer view] subviews] objectAtIndex:0] size].height+50)];
        if(CGRectContainsPoint(self.trashBin.frame, gestureRecognizer.view.frame.origin)){
         [gestureRecognizer.view removeFromSuperview];
            return;
@@ -267,6 +273,10 @@ static NSString * DRAW_KEY = @"draw_key";
     else if(_isDrawing)
     {
         [gestureRecognizer.view setFrame:CGRectMake([gestureRecognizer locationInView:_mainView].x, [gestureRecognizer locationInView:_mainView].y, 50, 50)];
+        if(CGRectContainsPoint(self.trashBin.frame, gestureRecognizer.view.frame.origin)){
+            [gestureRecognizer.view removeFromSuperview];
+            return;
+        }
     }
 }
 
@@ -321,7 +331,7 @@ else if(_isDrawing)
     [[[[gestureRecognizer view] subviews] objectAtIndex:1] removeFromSuperview];
     [[[[gestureRecognizer view] subviews] objectAtIndex:0] removeFromSuperview];
       [temp setFrame:CGRectMake([gestureRecognizer locationInView:gestureRecognizer.view].x, [gestureRecognizer locationInView:gestureRecognizer.view].y, 310, 120)];
-        [tempView setFrame:CGRectMake([gestureRecognizer locationInView:gestureRecognizer.view].x-20, [gestureRecognizer locationInView:gestureRecognizer.view].y-20, 300, 120)];
+        [tempView setFrame:CGRectMake([gestureRecognizer locationInView:gestureRecognizer.view].x, [gestureRecognizer locationInView:gestureRecognizer.view].y, 300, 120)];
         CGRect frame = temp.frame;
         frame.size.height = temp.contentSize.height;
         temp.frame = frame;
@@ -374,7 +384,7 @@ else if(_isDrawing)
      char tempchar = [textView.text characterAtIndex:[textView.text length]-1];
     [[[textView.superview  subviews] objectAtIndex:0] setText:[NSString stringWithFormat:@"%@%@%c%@",temp.text,startTag,tempchar,endTag]];
     //textView.textColor = [UIColor clearColor];
-   
+      //  [textView setSelectedRange:NSMakeRange(0, 5)];
     frame.size.height = textView.contentSize.height;
         frame.size.width = textView.contentSize.width;
     frame.origin = textView.frame.origin;
@@ -444,9 +454,6 @@ else if(_isDrawing)
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notes"
                                                     message:@"Draw Note Selected" delegate:self cancelButtonTitle: @"OK"
                                           otherButtonTitles: nil];
-    
-    //note above delegate property
-    
     [alert show];
 }
 
@@ -540,6 +547,7 @@ else if(_isDrawing)
                 [notes addObject:loader];
                    
                 }
+                
                 else if([[[saver subviews] objectAtIndex:0] isKindOfClass:[FTCoreTextView class]])
                 {
                     noteLoader *loader = [[noteLoader alloc] init:saver type:@"textNote"];
@@ -575,6 +583,7 @@ else if(_isDrawing)
 {
     return _mainView;
 }
+
 
 
 @end
