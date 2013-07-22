@@ -25,4 +25,6 @@ static NSString* const StreamViewControllerID = @"streamvc";
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *joinLeaveStream;
 @property (weak, nonatomic) IBOutlet UILabel *lectureNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *serverAddressLabel;
+@property (nonatomic) BOOL displayConnectView;  // YES displays the connect XIB on viewDidAppear
+
 @end

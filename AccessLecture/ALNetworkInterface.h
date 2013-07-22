@@ -20,15 +20,14 @@ enum ALPointType : NSUInteger {
 /* Lecture Steaming Protocol */
 @protocol LectureStreaming <NSObject>
 
+@optional
+
 - (void)didRecieveUpdate:(CGPoint)point type:(ALPointType)type;
-- (void)didFinishRecievingUpdate:(NSArray *)data;
 - (void)didFinishDownloadingLecture:(Lecture *)lecture;
 - (void)didFinishRecievingBulkUpdate:(NSArray *)data;
 - (void)didFailToConnectTo:(NSString *)lecture;
 
 - (void)didWantToClearScreen;
-
-@optional
 
 - (void)currentStreamUpdatePercentage:(float)percent;
 

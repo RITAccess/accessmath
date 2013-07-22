@@ -39,11 +39,11 @@
     Lecture *lect = [[Lecture alloc] initWithName:@"Test Name"];
     STAssertTrue([lect.date timeIntervalSinceDate:startDate] < 60, @"Time is to far off.");
 }
-
-- (void)testCreateLectureWithCoder
-{
-    STFail(@"Not implemented in tests yet.");
-}
+//
+//- (void)testCreateLectureWithCoder
+//{
+//    STFail(@"Not implemented in tests yet.");
+//}
 
 - (void)testCreateLectureWithPacket1
 {

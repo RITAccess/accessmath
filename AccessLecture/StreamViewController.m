@@ -27,6 +27,7 @@
     } else {
         [self.view setFrame:CGRectMake(0, 0, 1024, 768)];
     }
+    
     // Do any additional setup after loading the view from its nib.
     [_loadProgress setProgress:0.0];
     [_loadProgress setHidden:YES];
@@ -34,6 +35,13 @@
     // Clear view
     [self.view setBackgroundColor:[UIColor clearColor]];
     [_canvas setBackgroundColor:[UIColor clearColor]];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    if (self.displayConnectView){
+        [self connectToStream:nil];
+    }
 }
 
 #pragma mark Actions
@@ -108,11 +116,6 @@
 }
 
 #pragma mark Streaming
-
-- (void)didFinishDownloadingLecture:(Lecture *)lecture
-{
-    
-}
 
 - (void)didRecieveUpdate:(CGPoint)point type:(ALPointType)type
 {

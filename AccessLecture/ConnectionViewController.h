@@ -34,6 +34,5 @@ static NSString* const ConnectionViewControllerXIB = @"ConnectionViewController"
 - (IBAction)checkAddress:(id)sender;
 - (IBAction)userDidCancel:(id)sender;
 - (IBAction)connectToStream:(id)sender;
-- (IBAction)startScan:(id)sender;
 
 @end
