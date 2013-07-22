@@ -107,11 +107,15 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
     [self addController:[VCBlank new]];
     
     _center = CGPointMake(CGRectGetMidY(self.view.frame), CGRectGetMidX(self.view.frame));
-    [self setContentSize:_space];
     
     // Close menus
     menuOpen = NO;
     [self setUpMenuItems];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self setContentSize:_space];
 }
 
 - (void)setUpGestures
@@ -165,6 +169,9 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
         UIView *content = [obj contentView];
         [content setBounds:CGRectMake(0, 0, size.width, size.height)];
         [content setCenter:_center];
+        if ([obj respondsToSelector:@selector(contentSizeChanging:)]) {
+            [obj contentSizeChanging:size];
+        }
     }];
 }
 
@@ -274,7 +281,6 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
     if ([vc isKindOfClass:[VCBlank class]]) {
         [self.view sendSubviewToBack:vc.contentView];
         [vc.view removeConstraints:vc.view.constraints];
-        [vc.view setAutoresizingMask:UIViewAutoresizingNone];
     }
     
 #if SHOWLAYERS
@@ -420,6 +426,7 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
             child.view.frame = self.view.bounds;
         }];
     }
+    [self setContentSize:_space];
 }
 
 - (void)viewDidUnload {
