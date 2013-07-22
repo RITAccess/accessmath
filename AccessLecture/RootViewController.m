@@ -38,7 +38,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([[segue identifier] isEqualToString:@"toLectureConnect"]){
+    if ([sender isEqualToString:@"connect"]){
         LectureViewContainer *lectureViewContainer = [segue destinationViewController];
         StreamViewController *svc = (StreamViewController *)[[UIStoryboard storyboardWithName:StreamViewControllerStoryboard bundle:nil] instantiateViewControllerWithIdentifier:StreamViewControllerID];
         [lectureViewContainer addController:svc];
@@ -50,20 +50,12 @@
 
 - (IBAction)openAbout:(id)sender
 {
-    [self performSegueWithIdentifier:@"toAbout" sender:nil];
-}
-
-/**
- * Open an active connection to the server.
- */
-- (IBAction)connectToServer:(id)sender
-{
-    [self performSegueWithIdentifier:@"showConnect"sender:nil];
+    [self performSegueWithIdentifier:@"toAbout" sender:@""];
 }
 
 - (IBAction)openLecture:(id)sender
 {
-    [self performSegueWithIdentifier:@"toLectureController" sender:nil];    
+    [self performSegueWithIdentifier:@"toLectureController" sender:@""];
 }
 
 /**
@@ -71,7 +63,7 @@
  */
 - (IBAction)openConnect:(id)sender
 {
-    [self performSegueWithIdentifier:@"toLectureConnect" sender:nil];
+    [self performSegueWithIdentifier:@"toLectureController" sender:@"connect"];
 }
 
 @end

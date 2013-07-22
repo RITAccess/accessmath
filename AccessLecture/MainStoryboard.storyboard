@@ -57,7 +57,6 @@
                                 </state>
                                 <connections>
                                     <action selector="openLecture:" destination="SP6-Rd-Xf7" eventType="touchUpInside" id="dT6-7N-D7S"/>
-                                    <segue destination="8Co-Mi-Y02" kind="modal" identifier="toLectureController" id="PNH-vl-zyv"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w9Z-RI-LPo">
@@ -75,7 +74,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Df-hy-0tS">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Df-hy-0tS">
                                 <rect key="frame" x="115" y="520" width="186" height="90"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="90" id="Vph-UG-I8l"/>
@@ -99,12 +98,14 @@
                             <constraint firstItem="AWi-60-pMo" firstAttribute="top" secondItem="PYl-bd-Q14" secondAttribute="top" constant="71" id="4X7-um-bgf"/>
                             <constraint firstItem="w9Z-RI-LPo" firstAttribute="top" secondItem="sbZ-Bw-DiI" secondAttribute="top" id="6Ht-zi-A6J"/>
                             <constraint firstAttribute="trailing" secondItem="w9Z-RI-LPo" secondAttribute="trailing" constant="95" id="JZB-tF-hFc"/>
+                            <constraint firstItem="8Df-hy-0tS" firstAttribute="leading" secondItem="PYl-bd-Q14" secondAttribute="leading" constant="115" id="NQf-Hi-Xqp"/>
                             <constraint firstItem="7kQ-H5-RJO" firstAttribute="leading" secondItem="sbZ-Bw-DiI" secondAttribute="leading" id="UD4-Tf-n44"/>
                             <constraint firstAttribute="bottom" secondItem="7kQ-H5-RJO" secondAttribute="bottom" constant="42" id="aEh-hi-kCA"/>
                             <constraint firstItem="7kQ-H5-RJO" firstAttribute="top" secondItem="sbZ-Bw-DiI" secondAttribute="bottom" constant="8" symbolic="YES" id="aIq-8o-saP"/>
                             <constraint firstItem="w9Z-RI-LPo" firstAttribute="bottom" secondItem="sbZ-Bw-DiI" secondAttribute="bottom" id="j3K-6P-lgb"/>
                             <constraint firstItem="AWi-60-pMo" firstAttribute="centerX" secondItem="PYl-bd-Q14" secondAttribute="centerX" id="jT5-wI-dJe"/>
                             <constraint firstItem="sbZ-Bw-DiI" firstAttribute="trailing" secondItem="7kQ-H5-RJO" secondAttribute="trailing" id="sea-3d-fPh"/>
+                            <constraint firstItem="8Df-hy-0tS" firstAttribute="baseline" secondItem="sbZ-Bw-DiI" secondAttribute="baseline" id="tBO-O6-G78"/>
                             <constraint firstItem="AWi-60-pMo" firstAttribute="centerX" secondItem="sbZ-Bw-DiI" secondAttribute="centerX" id="yAz-1k-TkC"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -113,6 +114,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <segue destination="JQs-Rh-thK" kind="modal" identifier="toAbout" id="bTm-Qb-wQl"/>
+                        <segue destination="8Co-Mi-Y02" kind="modal" identifier="toLectureController" id="1pI-4g-MBm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rA3-sa-Cr6" userLabel="First Responder" sceneMemberID="firstResponder"/>
