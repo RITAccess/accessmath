@@ -16,6 +16,8 @@
 #define LC_HEIGHT 1080
 #define SHOWLAYERS 0
 
+#pragma mark Vectors
+
 Vector VectorMake(CGPoint root, CGPoint end) {
     Vector *v = malloc(sizeof(Vector));
     v->root = root;
