@@ -109,6 +109,7 @@ static NSString * DRAW_KEY = @"draw_key";
     [super viewDidLoad];
     startTag = @"<CD>";
     endTag = @"</CD>";
+    drawcolor = [UIColor blackColor];
     isBackSpacePressed = FALSE;
     // Do any additional setup after loading the view from its nib.
     if((!isOpened)){
@@ -122,7 +123,6 @@ static NSString * DRAW_KEY = @"draw_key";
 }
 -(void)initializeView{
     _mainView = [[UIView alloc] initWithFrame:self.view.frame];
-  
     self.toolBar.layer.cornerRadius = 20;
     [self.toolbarView addSubview:self.toolBar];
     [self.toolbarView setBackgroundColor:[UIColor clearColor]];
@@ -254,6 +254,7 @@ static NSString * DRAW_KEY = @"draw_key";
     [panToMoveNote setEnabled:NO];
     [panToResize setEnabled:YES];
     DrawView *lineDrawView = [[DrawView alloc]initWithFrame:CGRectMake([gesture locationInView:outerView].x + 20, [gesture locationInView:outerView].y + 15, 400, 300)];
+    [lineDrawView setPenColor:drawcolor];
     lineDrawView.userInteractionEnabled = YES;
     //outerView.layer.borderWidth = 3;
     lineDrawView.layer.borderWidth = 3;
@@ -493,20 +494,53 @@ static NSString * DRAW_KEY = @"draw_key";
 - (IBAction)resizeDraw:(id)sender {
 }
 - (IBAction)setBlueColor:(id)sender {
+    if(_isCreatingNote){
     textColor = [UIColor blueColor];
     startTag = @"<CB>";
     endTag = @"</CB>";
+    }
+    else if(_isDrawing){
+        drawcolor = [UIColor blueColor];
+        for(DrawView *draws in [[[self.view subviews] objectAtIndex:1] subviews ]){
+           if([[[draws subviews] objectAtIndex:1] isKindOfClass:[DrawView class]]){
+               [[[draws subviews] objectAtIndex:1]setPenColor:drawcolor];
+           }
+        }
+    }
+    
 }
 - (IBAction)setYellowColor:(id)sender {
+    if(_isCreatingNote){
     textColor = [UIColor yellowColor];
     startTag = @"<CY>";
     endTag = @"</CY>";
+    }
+    else if(_isDrawing){
+        drawcolor = [UIColor yellowColor];
+        for(DrawView *draws in [[[self.view subviews] objectAtIndex:1] subviews ]){
+            if([[[draws subviews] objectAtIndex:1] isKindOfClass:[DrawView class]]){
+                [[[draws subviews] objectAtIndex:1]setPenColor:drawcolor];
+            }
+        }
+    }
 }
 
 - (IBAction)setRedColor:(id)sender {
+   if(_isCreatingNote){
     textColor = [UIColor redColor];
     startTag = @"<CR>";
     endTag = @"</CR>";
+   }
+   else if(_isDrawing){
+       drawcolor = [UIColor redColor];
+       for(DrawView *draws in [[[self.view subviews] objectAtIndex:1] subviews ]){
+           if([[[draws subviews] objectAtIndex:1] isKindOfClass:[DrawView class]]){
+               [[[draws subviews] objectAtIndex:1]setPenColor:drawcolor];
+           }
+       }
+       
+   }
+    
 }
 - (NSArray *)coreTextStyle{
     NSMutableArray *result = [NSMutableArray array];
@@ -569,7 +603,7 @@ static NSString * DRAW_KEY = @"draw_key";
                 }
             }
     }
-     currentDocument.notes = notes;
+    currentDocument.notes = notes;
     currentDocument.lecture = currentLecture;
    [FileManager saveDocument:currentDocument];
 }
