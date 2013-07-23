@@ -44,7 +44,6 @@
     AccessLectureAppDelegate *app = [UIApplication sharedApplication].delegate;
     server = app.server;
     
-    _connectionAddress.text = @"michaeltimbrook.com";
     [self checkAddress:nil];
     _lecture.text = @"Testing";
     

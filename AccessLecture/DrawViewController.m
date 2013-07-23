@@ -172,8 +172,6 @@
 - (IBAction)shapeButtonPress:(id)sender
 {
     
-    NSLog(@"%f, %f", self.drawView.bounds.size.height, self.drawView.bounds.size.width);
-    
     shapeButtonIndex >= SHAPE_MAX - 1 ? shapeButtonIndex = 0 : shapeButtonIndex++;
     
     [[_drawView buttonString] setString:[_buttonStrings objectAtIndex:shapeButtonIndex]];
