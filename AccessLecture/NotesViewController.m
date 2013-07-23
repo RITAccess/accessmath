@@ -197,7 +197,7 @@ static NSString * DRAW_KEY = @"draw_key";
             [text addStyles:[self coreTextStyle]];
             [text setUserInteractionEnabled:YES];
             UITextView *textBubble = [[UITextView alloc]initWithFrame:CGRectMake([gesture locationInView:outerView].x, [gesture locationInView:outerView].y , 310, 120)];
-             //  outerView.layer.borderWidth = 3;
+             // outerView.layer.borderWidth = 3;
             [outerView addSubview:text];
             [outerView addSubview:textBubble];
             UIImageView * anImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin.png" ]];
@@ -238,7 +238,7 @@ static NSString * DRAW_KEY = @"draw_key";
     [panToResize setEnabled:YES];
     DrawView *lineDrawView = [[DrawView alloc]initWithFrame:CGRectMake([gesture locationInView:outerView].x + 20, [gesture locationInView:outerView].y + 15, 400, 300)];
     lineDrawView.userInteractionEnabled = YES;
-    //outerView.layer.borderWidth = 3;
+  //outerView.layer.borderWidth = 3;
     lineDrawView.layer.borderWidth = 3;
     lineDrawView.layer.cornerRadius = 20;
     UIImageView * anImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin.png" ]];
@@ -310,6 +310,7 @@ if(_isCreatingNote)
 else if(_isDrawing)
     {
                
+      
         [gestureRecognizer.view setFrame:CGRectMake(gestureRecognizer.view.frame.origin.x, gestureRecognizer.view.frame.origin.y, 5, 5)];
         [gestureRecognizer.view.superview setFrame:CGRectMake(gestureRecognizer.view.superview.frame.origin.x, gestureRecognizer.view.superview.frame.origin.y, 50, 50)];
         [[gestureRecognizer.view.superview.subviews  objectAtIndex:0] setHidden:YES];
@@ -350,9 +351,9 @@ else if(_isDrawing)
         [[gestureRecognizer.view.subviews objectAtIndex:0] setHidden:NO];
         UIImageView *temp = [[[gestureRecognizer view] subviews] objectAtIndex:1];
         [[[[gestureRecognizer view] subviews] objectAtIndex:1] removeFromSuperview];
-        [temp setFrame:CGRectMake([gestureRecognizer locationInView:gestureRecognizer.view].x, [gestureRecognizer locationInView:gestureRecognizer.view].y, [[gestureRecognizer.view.subviews  objectAtIndex:0] center].x, [[gestureRecognizer.view.subviews  objectAtIndex:0] center].y)];
+        [temp setFrame:CGRectMake(temp.frame.origin.x, temp.frame.origin.y, [[gestureRecognizer.view.subviews  objectAtIndex:0] center].x, [[gestureRecognizer.view.subviews  objectAtIndex:0] center].y)];
         [gestureRecognizer.view addSubview:temp];
-         [gestureRecognizer.view setFrame:CGRectMake(gestureRecognizer.view.frame.origin.x, gestureRecognizer.view.frame.origin.y, [[gestureRecognizer.view.subviews  objectAtIndex:0] center].x+20, [[gestureRecognizer.view.subviews  objectAtIndex:0] center].y+20)];
+         [gestureRecognizer.view setFrame:CGRectMake(gestureRecognizer.view.frame.origin.x, gestureRecognizer.view.frame.origin.y, [[gestureRecognizer.view.subviews  objectAtIndex:0] center].x+25, [[gestureRecognizer.view.subviews  objectAtIndex:0] center].y+25)];
         for(UIGestureRecognizer *recognizer in gestureRecognizer.view.gestureRecognizers)
         {
             if([recognizer isKindOfClass:[UIPanGestureRecognizer class]])
@@ -360,16 +361,8 @@ else if(_isDrawing)
             [recognizer setEnabled:NO];
             }
         }
-        
-    }
-    else if(CGRectContainsPoint([[gestureRecognizer.view.subviews objectAtIndex:0] frame],[gestureRecognizer locationInView:gestureRecognizer.view] )&&([[[[gestureRecognizer view] subviews] objectAtIndex:1] isKindOfClass:[DrawView class]]))
-    {
-     
-        [[gestureRecognizer.view.gestureRecognizers objectAtIndex:2] isEnabled];
-        // [[gestureRecognizer.view.gestureRecognizers objectAtIndex:2] setEnabled:!([[gestureRecognizer.view.gestureRecognizers objectAtIndex:2] isEnabled])];
-        return;
-    }
-    
+      [[gestureRecognizer.view.gestureRecognizers objectAtIndex:2] setEnabled:YES];
+    }    
 }
 
 
