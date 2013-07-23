@@ -189,7 +189,26 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
  */
 - (void)fullZoomOut
 {
+    dispatch_once(&getZoomIdentity, ^{
+        _zoomLevel = CGAffineTransformIdentity;
+    });
+    _center = CGPointMake(CGRectGetMidY(self.view.frame), CGRectGetMidX(self.view.frame));
+    CGFloat zoomScale = (1.0 - ((self.view.frame.size.width + 125.0) / self.space.width));
+    _zoomLevel = CGAffineTransformMakeScale(zoomScale, zoomScale);
+    [self.childViewControllers enumerateObjectsUsingBlock:^(UIViewController<LectureViewChild> *child, NSUInteger idx, BOOL *stop) {
+        [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationCurveEaseInOut animations:^{
+            UIView *content = [child contentView];
+            content.transform = _zoomLevel;
+            content.center = _center;
+        } completion:nil];
+    }];
     
+    // Dismiss menu
+    if (UIDeviceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
+        [self setMenuOpen:NO];
+    } else {
+        [self setExpandOpen:NO];
+    }
 }
 
 /**
