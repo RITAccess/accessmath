@@ -245,7 +245,6 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
     Vector relation = VectorMake(touch, self.center);
     VectorApplyScale(scale, &relation);
     self.center = relation.end;
-    free(&relation);
     
     dispatch_once(&getZoomIdentity, ^{
         _zoomLevel = CGAffineTransformIdentity;
