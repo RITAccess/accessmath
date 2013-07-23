@@ -194,6 +194,7 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
     Vector relation = VectorMake(touch, self.center);
     VectorApplyScale(scale, &relation);
     self.center = relation.end;
+    free(&relation);
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -202,8 +203,8 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
     _zoomLevel = CGAffineTransformScale(_zoomLevel, scale, scale);
     [self.childViewControllers enumerateObjectsUsingBlock:^(UIViewController<LectureViewChild> *child, NSUInteger idx, BOOL *stop) {
         UIView *content = [child contentView];
-            content.transform = _zoomLevel;
-            [content setCenter:self.center];
+        content.transform = _zoomLevel;
+        [content setCenter:self.center];
     }];
 }
 
