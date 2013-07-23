@@ -10,6 +10,7 @@
 #import "StreamViewController.h"
 #import "DrawViewController.h"
 #import "NotesViewController.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 // Default content size
 #define LC_WIDTH 1920
