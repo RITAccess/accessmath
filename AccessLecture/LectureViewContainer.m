@@ -139,6 +139,16 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
 - (void)viewDidAppear:(BOOL)animated
 {
     [self setContentSize:_space];
+    [self setUpStartingLocation];
+}
+
+- (void)setUpStartingLocation
+{
+    [self.childViewControllers enumerateContentViewsWithBlock:^(UIView *content, NSUInteger idx, BOOL *stop) {
+        CGRect frame = content.frame;
+        frame.origin = CGPointZero;
+        [content setFrame:frame];
+    }];
 }
 
 - (void)setUpGestures
