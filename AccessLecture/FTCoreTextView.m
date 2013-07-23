@@ -436,20 +436,20 @@ CTFontRef CTFontCreateFromUIFont(UIFont *font)
     return ctFont;
 }
 
-UITextAlignment UITextAlignmentFromCoreTextAlignment(FTCoreTextAlignement alignment)
-{
-	switch (alignment) {
-		case FTCoreTextAlignementCenter:
-			return UITextAlignmentCenter;
-			break;
-		case FTCoreTextAlignementRight:
-			return UITextAlignmentRight;
-			break;
-		default:
-			return UITextAlignmentLeft;
-			break;
-	}
-}
+//UITextAlignment UITextAlignmentFromCoreTextAlignment(FTCoreTextAlignement alignment)
+//{
+//	switch (alignment) {
+//		case FTCoreTextAlignementCenter:
+//			return UITextAlignmentCenter;
+//			break;
+//		case FTCoreTextAlignementRight:
+//			return UITextAlignmentRight;
+//			break;
+//		default:
+//			return UITextAlignmentLeft;
+//			break;
+//	}
+//}
 
 #pragma mark - FTCoreTextView business
 #pragma mark -
