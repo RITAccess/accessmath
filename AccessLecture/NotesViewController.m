@@ -121,7 +121,11 @@ static NSString * DRAW_KEY = @"draw_key";
     [self.view bringSubviewToFront:self.toolbarView];
     currentLecture = [[Lecture alloc] initWithName:@"Lecture001"];
 }
-
+/**
+ * Loads saved notes from the current document's notes array
+ * 
+ *
+ */
 -(void)loadNotes:(NSMutableArray *)notes{
     for(noteLoader *viewer in notes){
         if([viewer.noteType isEqualToString:@"textNote"]){
@@ -226,14 +230,12 @@ static NSString * DRAW_KEY = @"draw_key";
     panToMoveNote = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
     panToResize = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handleResize:)];
     longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressToRemoveNote:)];
-    
-    longPressGestureRecognizer2 = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressToDisplayNote:)];
+        longPressGestureRecognizer2 = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressToDisplayNote:)];
     longPressGestureRecognizer.numberOfTouchesRequired = 3;
     longPressGestureRecognizer2.numberOfTouchesRequired = 1;
-
     UIView *outerView = [[UIView alloc] initWithFrame:CGRectMake([gesture locationInView:_mainView].x+20, [gesture locationInView:_mainView].y+15, 430, 330)];
     [panToMoveNote setEnabled:NO];
-    [panToResize setEnabled:NO];
+    [panToResize setEnabled:YES];
     DrawView *lineDrawView = [[DrawView alloc]initWithFrame:CGRectMake([gesture locationInView:outerView].x + 20, [gesture locationInView:outerView].y + 15, 400, 300)];
     lineDrawView.userInteractionEnabled = YES;
     //outerView.layer.borderWidth = 3;
@@ -262,7 +264,7 @@ static NSString * DRAW_KEY = @"draw_key";
 - (void)handlePan:(UIPanGestureRecognizer *)gestureRecognizer
 {
    if(_isCreatingNote){
-       NSLog(@"%@",[gestureRecognizer.view description]);
+      
        [gestureRecognizer.view setFrame:CGRectMake([gestureRecognizer locationInView:_mainView].x, [gestureRecognizer locationInView:_mainView].y, [[[[gestureRecognizer view] subviews] objectAtIndex:0] size].width+50, [[[[gestureRecognizer view] subviews] objectAtIndex:0] size].height+50)];
        if(CGRectContainsPoint(self.trashBin.frame, gestureRecognizer.view.frame.origin)){
         [gestureRecognizer.view removeFromSuperview];
@@ -325,7 +327,7 @@ else if(_isDrawing)
 - (void)longPressToDisplayNote:(UILongPressGestureRecognizer *)gestureRecognizer
 {
 
-    if((_isCreatingNote)&&([[[[gestureRecognizer view] subviews] objectAtIndex:1] isKindOfClass:[UITextView class]])){
+    if((_isCreatingNote)&&([[[[gestureRecognizer view] subviews] objectAtIndex:1] isKindOfClass:[UITextView class]])&&(gestureRecognizer.view.frame.size.width==50)){
     UITextView *temp = [[[gestureRecognizer view] subviews] objectAtIndex:1];
     FTCoreTextView *tempView = [[[gestureRecognizer view] subviews] objectAtIndex:0];
     [[[[gestureRecognizer view] subviews] objectAtIndex:1] removeFromSuperview];
@@ -355,15 +357,16 @@ else if(_isDrawing)
         {
             if([recognizer isKindOfClass:[UIPanGestureRecognizer class]])
             {
-                [recognizer setEnabled:NO];
+            [recognizer setEnabled:NO];
             }
         }
         
     }
-    else if(CGRectContainsPoint([[gestureRecognizer.view.subviews objectAtIndex:0] frame],[gestureRecognizer locationInView:gestureRecognizer.view] ))
+    else if(CGRectContainsPoint([[gestureRecognizer.view.subviews objectAtIndex:0] frame],[gestureRecognizer locationInView:gestureRecognizer.view] )&&([[[[gestureRecognizer view] subviews] objectAtIndex:1] isKindOfClass:[DrawView class]]))
     {
      
-        [[gestureRecognizer.view.gestureRecognizers objectAtIndex:2] setEnabled:!([[gestureRecognizer.view.gestureRecognizers objectAtIndex:2] isEnabled])];
+        [[gestureRecognizer.view.gestureRecognizers objectAtIndex:2] isEnabled];
+        // [[gestureRecognizer.view.gestureRecognizers objectAtIndex:2] setEnabled:!([[gestureRecognizer.view.gestureRecognizers objectAtIndex:2] isEnabled])];
         return;
     }
     
