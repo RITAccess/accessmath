@@ -10,6 +10,7 @@
                 <outlet property="drawNote" destination="PHK-ZG-JXm" id="vRj-6f-f3A"/>
                 <outlet property="textNote" destination="qX8-e6-xcc" id="32J-pG-0Rd"/>
                 <outlet property="toolbarView" destination="4q4-U1-h2B" id="6EA-kJ-Fm4"/>
+                <outlet property="trashBin" destination="ndw-Ze-twa" id="gMc-TW-Q0S"/>
                 <outlet property="view" destination="2" id="3"/>
             </connections>
         </placeholder>
@@ -18,11 +19,11 @@
             <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4q4-U1-h2B">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4q4-U1-h2B">
                     <rect key="frame" x="0.0" y="964" width="768" height="60"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" ambiguous="YES" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="j7r-yD-pMj">
+                        <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="j7r-yD-pMj">
                             <rect key="frame" x="0.0" y="17" width="768" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             <rect key="contentStretch" x="0.0" y="1" width="1" height="1"/>
@@ -119,12 +120,24 @@
                     <constraints>
                         <constraint firstItem="j7r-yD-pMj" firstAttribute="leading" secondItem="4q4-U1-h2B" secondAttribute="leading" id="FaE-Ep-jWG"/>
                         <constraint firstAttribute="trailing" secondItem="j7r-yD-pMj" secondAttribute="trailing" id="MSN-qR-DZe"/>
+                        <constraint firstItem="j7r-yD-pMj" firstAttribute="top" secondItem="4q4-U1-h2B" secondAttribute="top" constant="17" id="xQu-MG-rhI"/>
                     </constraints>
                 </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RecycleBin.png" translatesAutoresizingMaskIntoConstraints="NO" id="ndw-Ze-twa">
+                    <rect key="frame" x="702" y="894" width="66" height="62"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="66" id="7fs-jN-6uX"/>
+                        <constraint firstAttribute="height" constant="62" id="tOm-gD-C7a"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="4q4-U1-h2B" firstAttribute="top" secondItem="ndw-Ze-twa" secondAttribute="bottom" constant="8" symbolic="YES" id="85P-Cc-3Il"/>
                 <constraint firstItem="4q4-U1-h2B" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="KTG-90-2Uo"/>
+                <constraint firstAttribute="bottom" secondItem="ndw-Ze-twa" secondAttribute="bottom" constant="68" id="MnJ-uk-76o"/>
+                <constraint firstItem="ndw-Ze-twa" firstAttribute="trailing" secondItem="4q4-U1-h2B" secondAttribute="trailing" id="OhI-6o-v12"/>
                 <constraint firstAttribute="trailing" secondItem="4q4-U1-h2B" secondAttribute="trailing" id="Vgr-lH-jQK"/>
                 <constraint firstAttribute="bottom" secondItem="4q4-U1-h2B" secondAttribute="bottom" id="aHg-d8-M0b"/>
             </constraints>
@@ -132,6 +145,7 @@
         </view>
     </objects>
     <resources>
+        <image name="RecycleBin.png" width="54" height="54"/>
         <image name="TextNote.png" width="256" height="256"/>
         <image name="accesslecture.png" width="695" height="512"/>
         <image name="blue.png" width="322.53851318359375" height="224.14506530761719"/>
