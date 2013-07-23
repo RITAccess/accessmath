@@ -59,7 +59,6 @@
     isScanning = NO;
 }
 
-
 - (IBAction)startScan:(id)sender
 {
     isScanning = YES;
@@ -69,6 +68,7 @@
     [_connectionAddress setHidden:YES];
     [_lecture setHidden:YES];
     [_statusLabel setHidden:YES];
+    [self.view endEditing:YES];  // Along with method override, dimisses keyboard.
     
     scanner = [QRScanner new];
     [scanner startCaptureWithCompletion:^(NSDictionary *info) {
@@ -143,6 +143,10 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (BOOL)disablesAutomaticKeyboardDismissal
+{
+    return NO;
+}
 
 
 # pragma mark - Rotation Handling
