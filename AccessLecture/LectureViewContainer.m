@@ -53,6 +53,25 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
 
 @end
 
+#pragma mark NSArray Category
+
+@interface NSArray (EnumerateChildren)
+
+- (void)enumerateContentViewsWithBlock:(void (^)(UIView *content, NSUInteger idx, BOOL *stop))block;
+
+@end
+
+@implementation NSArray (EnumerateChildren)
+
+- (void)enumerateContentViewsWithBlock:(void (^)(UIView *content, NSUInteger, BOOL *))block
+{
+    [self enumerateObjectsUsingBlock:^(id<LectureViewChild> obj, NSUInteger idx, BOOL *stop) {
+        block([obj contentView], idx, stop);
+    }];
+}
+
+@end
+
 #pragma mark Lecture Container Class
 
 @interface LectureViewContainer ()
