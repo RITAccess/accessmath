@@ -140,10 +140,9 @@
 
 - (void)didFailToConnectTo:(NSString *)lecture
 {
-    UIAlertView *failed = [[UIAlertView alloc] initWithTitle:@"No Class Found" message:[NSString stringWithFormat:@"Failed to connect to %@.", lecture] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
     [self connectToStream:nil];
     [_loadProgress setHidden:YES];
-    [failed show];
+    NSLog(@"Failed to connect to %@", lecture);
 }
 
 - (void)didWantToClearScreen

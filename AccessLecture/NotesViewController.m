@@ -7,7 +7,6 @@
 //
 
 #import "NotesViewController.h"
-#import "UILargeAlertView.h"
 
 @interface noteLoader:NSObject{
    
@@ -436,9 +435,6 @@ else if(_isDrawing)
     _tapToCreateNote.numberOfTapsRequired = 2;
     [self.view addGestureRecognizer:_tapToCreateNote];
     [self viewDidLoad];
-    UIAlertView* alert = [[UILargeAlertView alloc] initWithText:NSLocalizedString(@"Drawing Mode", nil) fontSize:48];
-    [alert show];
-    
 }
 
 
@@ -450,8 +446,6 @@ else if(_isDrawing)
     _tapToCreateNote.numberOfTapsRequired = 2;
     [self.view addGestureRecognizer:_tapToCreateNote];
     [self viewDidLoad];
-    UIAlertView* alert = [[UILargeAlertView alloc] initWithText:NSLocalizedString(@"Text Mode", nil) fontSize:48];
-    [alert show];
 }
 
 - (IBAction)resizeDraw:(id)sender {

@@ -11,8 +11,8 @@
 //
 
 #import "FileManager.h"
-#import "UILargeAlertView.h"
 #import "Lecture.h"
+
 @implementation FileManager
 
 + (NSURL *)localDocumentsDirectoryURL {
@@ -114,10 +114,7 @@
         [currentDocument saveToURL:docURL
                   forSaveOperation:UIDocumentSaveForOverwriting
                  completionHandler:^(BOOL success) {
-                     if (success){
-                         UIAlertView* alert = [[UILargeAlertView alloc] initWithText:NSLocalizedString(@"Notes Overwitten!", nil) fontSize:48];
-                         [alert show];
-                     } else {
+                     if (!success){
                          NSLog(@"Not saved for overwriting");
                      }
                  }];
@@ -126,10 +123,7 @@
         [currentDocument saveToURL:docURL
                   forSaveOperation:UIDocumentSaveForCreating
                  completionHandler:^(BOOL success) {
-                     if (success){
-                         UIAlertView* alert = [[UILargeAlertView alloc] initWithText:NSLocalizedString(@"New Notes Created!", nil) fontSize:48];
-                         [alert show];
-                     } else {
+                     if (!success){
                          NSLog(@"Not created");
                      }
                  }];
