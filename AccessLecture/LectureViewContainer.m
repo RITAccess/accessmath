@@ -15,6 +15,7 @@
 #define LC_WIDTH 1920
 #define LC_HEIGHT 1080
 #define SHOWLAYERS 0
+#define TAPZOOMFACTOR 1.5
 
 #pragma mark Vectors
 
@@ -72,6 +73,7 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
     BOOL menuOpen;
 
     // Zoom
+    dispatch_once_t getZoomIdentity;
     CGAffineTransform _zoomLevel;
 }
 
@@ -131,6 +133,7 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
     
     UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapZoom:)];
     doubleTap.numberOfTapsRequired = 2;
+    doubleTap.numberOfTouchesRequired = 2;
     [self.view addGestureRecognizer:doubleTap];
 }
 
@@ -177,9 +180,21 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
     }];
 }
 
-- (void)tapZoom:(UITapGestureRecognizer *)gesture
+- (void)tapZoom:(UITapGestureRecognizer *)reg
 {
-    
+    CGPoint tap = [reg locationInView:self.view];
+    Vector relation = VectorMake(tap, self.center);
+    VectorApplyScale(TAPZOOMFACTOR, &relation);
+    self.center = relation.end;
+    dispatch_once(&getZoomIdentity, ^{
+        _zoomLevel = CGAffineTransformIdentity;
+    });
+    _zoomLevel = CGAffineTransformScale(_zoomLevel, TAPZOOMFACTOR, TAPZOOMFACTOR);
+    [self.childViewControllers enumerateObjectsUsingBlock:^(UIViewController<LectureViewChild> *child, NSUInteger idx, BOOL *stop) {
+        UIView *content = [child contentView];
+        content.transform = _zoomLevel;
+        [content setCenter:self.center];
+    }];
 }
 
 /**
@@ -196,8 +211,7 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
     self.center = relation.end;
     free(&relation);
     
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
+    dispatch_once(&getZoomIdentity, ^{
         _zoomLevel = CGAffineTransformIdentity;
     });
     _zoomLevel = CGAffineTransformScale(_zoomLevel, scale, scale);
