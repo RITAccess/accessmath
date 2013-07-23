@@ -11,21 +11,13 @@
 #import "ALNetworkInterface.h"
 #import <QuartzCore/CATransform3D.h>
 
-@implementation ConnectionViewController {
+@implementation ConnectionViewController
+{
     ALNetworkInterface *server;
     QRScanner *scanner;
     AVCaptureVideoPreviewLayer *preview;
     UIButton *cancelButton;
     BOOL isScanning;
-}
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        self.modalPresentationStyle = UIModalPresentationFormSheet;
-    }
-    return self;
 }
 
 - (void)viewDidLoad
@@ -39,7 +31,6 @@
     server = app.server;
     
     [self checkAddress:nil];
-    _lecture.text = @"Testing";
     
     // Check if already connected
     if ([server connected]) {
@@ -57,6 +48,18 @@
     }
     
     isScanning = NO;
+}
+
+
+# pragma mark - UI Events
+
+- (IBAction)checkAddress:(id)sender
+{
+    [_activity startAnimating];
+    [_statusLabel.topItem setTitle:@"Checking connection"];
+    [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
+        [self connectWithURL:[NSURL URLWithString:_connectionAddress.text]];
+    }];
 }
 
 - (IBAction)startScan:(id)sender
@@ -106,28 +109,14 @@
     }];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
-
-- (IBAction)checkAddress:(id)sender
-{
-    [_activity startAnimating];
-    [_statusLabel.topItem setTitle:@"Checking connection"];
-    [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
-        [self connectWithURL:[NSURL URLWithString:_connectionAddress.text]];
-    }];
-}
-
 /**
- * Called when 'Cancel' button is pressed. Sets scanning flag to NO, dismisses ConnectionViewController nib. 
+ * Called when 'Cancel' button is pressed. Sets scanning flag to NO, dismisses ConnectionViewController nib.
  */
 - (IBAction)userDidCancel:(id)sender
 {
     isScanning = NO;
     if ([_delegate respondsToSelector:@selector(userDidCancel)]) {
-
+        
         [_delegate userDidCancel];
     }
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -142,12 +131,6 @@
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
-- (BOOL)disablesAutomaticKeyboardDismissal
-{
-    return NO;
-}
-
 
 # pragma mark - Rotation Handling
 
@@ -223,6 +206,21 @@
             [_activity stopAnimating];
         }
     }];
+}
+
+# pragma mark - Helpers
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+}
+
+/**
+ * Overriding to allow for automatic keyboard dismissal once scan button is pressed.
+ */
+- (BOOL)disablesAutomaticKeyboardDismissal
+{
+    return NO;
 }
 
 @end
