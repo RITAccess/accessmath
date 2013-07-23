@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4471.1" systemVersion="13A510d" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="SP6-Rd-Xf7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4471.1" systemVersion="12E55" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="SP6-Rd-Xf7">
     <dependencies>
         <deployment version="1536" defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3697.3"/>
@@ -10,8 +10,8 @@
             <objects>
                 <viewController storyboardIdentifier="RootViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="SP6-Rd-Xf7" customClass="RootViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="HYm-yu-JP3"/>
-                        <viewControllerLayoutGuide type="bottom" id="2cW-8X-OBr"/>
+                        <viewControllerLayoutGuide type="top" id="fte-Wl-e8f"/>
+                        <viewControllerLayoutGuide type="bottom" id="EVg-bz-iDW"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="PYl-bd-Q14">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
@@ -126,8 +126,8 @@
             <objects>
                 <viewController id="8Co-Mi-Y02" customClass="LectureViewContainer" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="hl1-sL-V6I"/>
-                        <viewControllerLayoutGuide type="bottom" id="0Jx-KL-dEm"/>
+                        <viewControllerLayoutGuide type="top" id="XYT-bB-kfZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="u9o-Tn-rQ3"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="w3Y-Ju-qTJ">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
@@ -225,8 +225,8 @@
             <objects>
                 <viewController autoresizesArchivedViewToFullSize="NO" id="pIb-Nv-pIW" customClass="SettingsViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="P59-fr-mbv"/>
-                        <viewControllerLayoutGuide type="bottom" id="fb3-t2-ec9"/>
+                        <viewControllerLayoutGuide type="top" id="BKZ-Xz-pCP"/>
+                        <viewControllerLayoutGuide type="bottom" id="Pfy-V2-Tol"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kU9-Ev-PsL">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
@@ -367,8 +367,8 @@
             <objects>
                 <viewController storyboardIdentifier="AboutViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JQs-Rh-thK" customClass="AboutViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="a6s-1k-qHS"/>
-                        <viewControllerLayoutGuide type="bottom" id="fa1-aF-I6E"/>
+                        <viewControllerLayoutGuide type="top" id="QdD-Er-Wg2"/>
+                        <viewControllerLayoutGuide type="bottom" id="iMh-CS-BON"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Awu-V3-w53">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
@@ -498,8 +498,8 @@ IAoKA
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="hgG-H5-1Em" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="NAu-uq-bGx"/>
-                        <viewControllerLayoutGuide type="bottom" id="tT2-ow-DIM"/>
+                        <viewControllerLayoutGuide type="top" id="9XM-if-Ti8"/>
+                        <viewControllerLayoutGuide type="bottom" id="y2d-Wv-Lo5"/>
                     </layoutGuides>
                     <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="iv5-OD-xLb">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
