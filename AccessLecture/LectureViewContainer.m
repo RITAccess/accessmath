@@ -163,7 +163,11 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
     [stream setUserInteractionEnabled:YES];
     [stream addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(action:)]];
     
-    menuItems = @[save, notes, draw, stream];
+    UIImageView *zoom = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Invert.png"]];
+    [zoom setUserInteractionEnabled:YES];
+    [zoom addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fullZoomOut)]];
+    
+    menuItems = @[save, notes, draw, stream, zoom];
 }
 
 #pragma mark Actions
@@ -180,6 +184,17 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
     }];
 }
 
+/**
+ * Zoom out to see full content
+ */
+- (void)fullZoomOut
+{
+    
+}
+
+/**
+ * Handle tap to zoom in
+ */
 - (void)tapZoom:(UITapGestureRecognizer *)reg
 {
     CGPoint tap = [reg locationInView:self.view];
@@ -191,9 +206,11 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
     });
     _zoomLevel = CGAffineTransformScale(_zoomLevel, TAPZOOMFACTOR, TAPZOOMFACTOR);
     [self.childViewControllers enumerateObjectsUsingBlock:^(UIViewController<LectureViewChild> *child, NSUInteger idx, BOOL *stop) {
-        UIView *content = [child contentView];
-        content.transform = _zoomLevel;
-        [content setCenter:self.center];
+        [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationCurveEaseInOut animations:^{
+            UIView *content = [child contentView];
+            content.transform = _zoomLevel;
+            [content setCenter:self.center];
+        } completion:nil];
     }];
 }
 
