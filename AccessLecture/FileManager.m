@@ -101,12 +101,9 @@
     Lecture *currentLecture = document.lecture;
     NSURL * currentDirectory = [FileManager iCloudDirectoryURL];
     if (currentDirectory == nil) currentDirectory = [FileManager localDocumentsDirectoryURL];
-      
-  
-    NSString *docsPath =[[currentDirectory absoluteString] stringByAppendingString:[NSString stringWithFormat:@"AccessMath/%@.lecture",currentLecture.name]];
+     NSString *docsPath =[[currentDirectory absoluteString] stringByAppendingString:[NSString stringWithFormat:@"AccessMath/%@.lecture",currentLecture.name]];
     NSURL *docURL = [NSURL URLWithString:docsPath];
     currentDocument = [[AccessDocument alloc] initWithFileURL:docURL];
-  //  currentLecture.image = UIImagePNGRepresentation(saveImage);
     currentDocument.lecture = document.lecture;
     currentDocument.notes = document.notes;
     if([[NSFileManager defaultManager] fileExistsAtPath:[docURL path]])
@@ -114,7 +111,13 @@
         [currentDocument saveToURL:docURL
                   forSaveOperation:UIDocumentSaveForOverwriting
                  completionHandler:^(BOOL success) {
-                     if (!success){
+                     if (success){
+                         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notes"
+                                                                         message:@"Notes Overwritten" delegate:self cancelButtonTitle: @"OK"
+                                                               otherButtonTitles: nil];
+                         [alert show];
+                     } else {
+
                          NSLog(@"Not saved for overwriting");
                      }
                  }];
@@ -123,7 +126,13 @@
         [currentDocument saveToURL:docURL
                   forSaveOperation:UIDocumentSaveForCreating
                  completionHandler:^(BOOL success) {
-                     if (!success){
+
+                     if (success){
+                         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notes"
+                                                                         message:@"Note Created" delegate:self cancelButtonTitle: @"OK"
+                                                               otherButtonTitles: nil];
+                         [alert show];
+                     } else {
                          NSLog(@"Not created");
                      }
                  }];
