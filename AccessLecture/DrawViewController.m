@@ -146,9 +146,6 @@
         }
     }
     
-    [_drawView setFrame:CGRectMake(0, 0, CGRectGetWidth(_drawView.frame), CGRectGetHeight(_drawView.frame))];
-    [_drawView setTransform:CGAffineTransformIdentity]; // Resets the view to state before transformation.
-    
     [[_drawView shapes] removeAllObjects];
     [[_drawView paths] removeAllObjects];
     [_drawView setNeedsDisplay];
@@ -175,8 +172,6 @@
 - (IBAction)shapeButtonPress:(id)sender
 {
     
-    NSLog(@"%f, %f", self.drawView.bounds.size.height, self.drawView.bounds.size.width);
-    
     shapeButtonIndex >= SHAPE_MAX - 1 ? shapeButtonIndex = 0 : shapeButtonIndex++;
     
     [[_drawView buttonString] setString:[_buttonStrings objectAtIndex:shapeButtonIndex]];
@@ -190,33 +185,31 @@
 
 - (void)willMoveToParentViewController:(UIViewController *)parent
 {
-    NSLog(@"will have new parent %@", parent);
+
 }
 
 - (void)didMoveToParentViewController:(UIViewController *)parent
 {
-    NSLog(@"new parent %@", parent);
     [self.toolbarView setHidden:NO];
 }
 
 - (void)willSaveState
 {
-    NSLog(@"Will save state");
+
 }
 
 - (void)didSaveState
 {
-    NSLog(@"Did save state: %@", self.description);
+
 }
 
 - (void)willLeaveActiveState
 {
-    NSLog(@"Will leave active state");
+    
 }
 
 - (void)didLeaveActiveState
 {
-    NSLog(@"Did leave active state: %@", self.description);
     [self.toolbarView setHidden:YES];
 }
 

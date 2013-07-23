@@ -53,8 +53,6 @@
 		3FAAA850137848AB00F79C0C /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAAA84F137848AB00F79C0C /* Icon.png */; };
 		3FADD94917983F7A00ADEF76 /* RecycleBin.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FADD94817983F7400ADEF76 /* RecycleBin.png */; };
 		3FAE785413C786F800796813 /* accesslecture.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAE785313C786F800796813 /* accesslecture.png */; };
-		3FC32EBC13E05E0F00077291 /* biology.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FC32EBA13E05E0F00077291 /* biology.png */; };
-		3FC32EBD13E05E0F00077291 /* geometry.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FC32EBB13E05E0F00077291 /* geometry.png */; };
 		3FCD5D0B15437D0A005F2A60 /* AccessDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F99F1FD154364270065CBB9 /* AccessDocument.m */; };
 		3FCD5D1715438472005F2A60 /* AccessLectureRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FCD5D1615438472005F2A60 /* AccessLectureRuntime.m */; };
 		3FED960C1370863E00D8D1B8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FED960B1370863E00D8D1B8 /* UIKit.framework */; };
@@ -829,9 +827,7 @@
 				2CF6BA921784919300A695CC /* circle.png in Resources */,
 				3FAE785413C786F800796813 /* accesslecture.png in Resources */,
 				3FF7FFD513D5E45300B89A5D /* AlertBG.png in Resources */,
-				3FC32EBC13E05E0F00077291 /* biology.png in Resources */,
 				2CF6BA961784920100A695CC /* star.png in Resources */,
-				3FC32EBD13E05E0F00077291 /* geometry.png in Resources */,
 				4C861C06178EE0B600CD499C /* StreamLayout.storyboard in Resources */,
 				3FADD94917983F7A00ADEF76 /* RecycleBin.png in Resources */,
 				2C7C981A17999B5C00F8ECE4 /* sample-qr.png in Resources */,

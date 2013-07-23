@@ -60,6 +60,7 @@ extern void VectorApplyScale(CGFloat scale, Vector *vector);
 
 - (IBAction)menuButtonTapped:(id)sender;
 - (IBAction)backButtonTapped:(id)sender;
+- (void)addController:(UIViewController<LectureViewChild> *)vc;
 
 @property (weak, nonatomic) IBOutlet UIView *sideMenu;
 @property (weak, nonatomic) IBOutlet TopNav *navBar;

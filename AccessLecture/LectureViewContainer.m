@@ -12,8 +12,11 @@
 #import "NotesViewController.h"
 
 // Default content size
-#define LC_WIDTH 1024
-#define LC_HEIGHT 768
+#define LC_WIDTH 1920
+#define LC_HEIGHT 1080
+#define SHOWLAYERS 0
+
+#pragma mark Vectors
 
 Vector VectorMake(CGPoint root, CGPoint end) {
     Vector *v = malloc(sizeof(Vector));
@@ -64,9 +67,10 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
     DrawViewController *dcv;
     StreamViewController *svc;
     
+    // Menu
     NSArray *menuItems;
     BOOL menuOpen;
-    
+
     // Zoom
     CGAffineTransform _zoomLevel;
 }
@@ -90,6 +94,7 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
     [_sideMenu setBackgroundColor:[UIColor colorWithRed:0.97 green:0.97 blue:0.97 alpha:0.8]];
     [_navBar setBackgroundColor:[UIColor colorWithRed:0.97 green:0.97 blue:0.97 alpha:0.5]];
     [self.view setBackgroundColor:[UIColor grayColor]];
+    [self.view setClipsToBounds:YES];
     
     // Set up viewControllers
     nvc = [[NotesViewController alloc] initWithNibName:NotesViewControllerXIB bundle:nil];
@@ -104,11 +109,15 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
     [self addController:[VCBlank new]];
     
     _center = CGPointMake(CGRectGetMidY(self.view.frame), CGRectGetMidX(self.view.frame));
-    [self setContentSize:_space];
     
     // Close menus
     menuOpen = NO;
     [self setUpMenuItems];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self setContentSize:_space];
 }
 
 - (void)setUpGestures
@@ -162,6 +171,9 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
         UIView *content = [obj contentView];
         [content setBounds:CGRectMake(0, 0, size.width, size.height)];
         [content setCenter:_center];
+        if ([obj respondsToSelector:@selector(contentSizeChanging:)]) {
+            [obj contentSizeChanging:size];
+        }
     }];
 }
 
@@ -268,7 +280,23 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
         }
     }
     
-    [vc.contentView removeConstraints:vc.contentView.constraints];
+    if ([vc isKindOfClass:[VCBlank class]]) {
+        [self.view sendSubviewToBack:vc.contentView];
+        [vc.view removeConstraints:vc.view.constraints];
+    }
+    
+#if SHOWLAYERS
+    // Testing code
+    if ([vc isKindOfClass:[DrawViewController class]]) {
+        [vc.contentView setBackgroundColor:[UIColor colorWithRed:0.0 green:1.0 blue:0.0 alpha:0.5]];
+    }
+    if ([vc isKindOfClass:[StreamViewController class]]) {
+        [vc.contentView setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:1.0 alpha:0.5]];
+    }
+    if ([vc isKindOfClass:[NotesViewController class]]) {
+        [vc.contentView setBackgroundColor:[UIColor colorWithRed:1.0 green:0.0 blue:0.0 alpha:0.5]];
+    }
+#endif
     
     children = nil;
     [vc didMoveToParentViewController:self];
@@ -390,7 +418,7 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
     [self setExpandOpen:NO];
 }
 
-- (BOOL)shouldAutomaticallyForwardAppearanceMethods{ return YES; }
+- (BOOL)shouldAutomaticallyForwardAppearanceMethods { return YES; }
 
 - (BOOL)shouldAutomaticallyForwardRotationMethods { return YES; }
 
@@ -400,6 +428,7 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
             child.view.frame = self.view.bounds;
         }];
     }
+    [self setContentSize:_space];
 }
 
 - (void)viewDidUnload {

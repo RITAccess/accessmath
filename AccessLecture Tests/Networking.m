@@ -44,34 +44,34 @@
     }];
 }
 
-- (void)testConnectingToServer2
-{
-    [server connect];
-    while (server.isConnecting)
-        ;
-    STAssertTrue(server.connected, @"Did not connect to server");
-}
-
-- (void)testConnectingToServer3
-{
-    ALNetworkInterface *test = [[ALNetworkInterface alloc] initWithURL:TESTSERVER];
-    [test connectCompletion:^(BOOL success) {
-        if (success) {
-            STAssertTrue(server.connected, @"Did not connect to server");
-        } else {
-            STFail(@"Server did not respond");
-        }
-    }];
-}
-
-- (void)testConnectingToServer4
-{
-    SocketIO *newSocket = [[SocketIO alloc] initWithDelegate:self];
-    [newSocket connectToHost:TESTSERVER onPort:9000];
-    while (newSocket.isConnecting)
-        ;
-    STAssertTrue(newSocket.isConnected, @"Failed to connect to server");
-}
+//- (void)testConnectingToServer2
+//{
+//    [server connect];
+//    while (server.isConnecting)
+//        ;
+//    STAssertTrue(server.connected, @"Did not connect to server");
+//}
+//
+//- (void)testConnectingToServer3
+//{
+//    ALNetworkInterface *test = [[ALNetworkInterface alloc] initWithURL:TESTSERVER];
+//    [test connectCompletion:^(BOOL success) {
+//        if (success) {
+//            STAssertTrue(server.connected, @"Did not connect to server");
+//        } else {
+//            STFail(@"Server did not respond");
+//        }
+//    }];
+//}
+//
+//- (void)testConnectingToServer4
+//{
+//    SocketIO *newSocket = [[SocketIO alloc] initWithDelegate:self];
+//    [newSocket connectToHost:TESTSERVER onPort:9000];
+//    while (newSocket.isConnecting)
+//        ;
+//    STAssertTrue(newSocket.isConnected, @"Failed to connect to server");
+//}
 
 @end
 

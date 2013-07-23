@@ -19,15 +19,6 @@
     ALNetworkInterface *_server;
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -40,9 +31,17 @@
     // Do any additional setup after loading the view from its nib.
     [_loadProgress setProgress:0.0];
     [_loadProgress setHidden:YES];
-    [self.serverAddressLabel setHidden:YES];
-    [self.canvas setHidden:YES];
-    [self.view setBackgroundColor:[UIColor clearColor]];  // Ensuring the view is clear.
+    
+    // Clear view
+    [self.view setBackgroundColor:[UIColor clearColor]];
+    [_canvas setBackgroundColor:[UIColor clearColor]];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    if (self.displayConnectView){
+        [self connectToStream:nil];
+    }
 }
 
 #pragma mark Actions
@@ -65,20 +64,12 @@
 
 #pragma mark Connection View Delegate Methods
 
-/**
- * Called after a complete connection is made. Displays appropriate labels and draws canvas.
- */
-- (void)didCompleteWithConnection:(ALNetworkInterface *)server toLecture:(NSString *)lectureName from:(NSString *)connectionAddress
+- (void)didCompleteWithConnection:(ALNetworkInterface *)server
 {
+    [_joinLeaveStream setTitle:@"Disconnect"];
     _connectedToStream = YES;
     [server setDelegate:self];
     _server = server;
-    [_joinLeaveStream setTitle:@"Disconnect"];
-    [_lectureNameLabel setText:lectureName];
-    [_canvas setHidden:NO];
-    [_serverAddressLabel setText:connectionAddress];
-    [_serverAddressLabel setHidden:NO];
-    
 }
 
 - (void)userDidCancel
@@ -96,28 +87,27 @@
 
 - (void)didMoveToParentViewController:(UIViewController *)parent
 {
-    NSLog(@"Active!");
+    
 }
 
 - (void)willSaveState
 {
-    NSLog(@"Will save state");
+    
 }
 
 - (void)didSaveState
 {
-    NSLog(@"Did save state");
+    
 }
 
 - (void)willLeaveActiveState
 {
     [_bottomToolbar setHidden:YES];
-    NSLog(@"Will leave active state");
 }
 
 - (void)didLeaveActiveState
 {
-    NSLog(@"Did leave active state");
+
 }
 
 - (UIView *)contentView
@@ -126,16 +116,6 @@
 }
 
 #pragma mark Streaming
-
-- (void)didFinishDownloadingLecture:(Lecture *)lecture
-{
-    // TODO: Implement once we have true lectures.
-}
-
-- (void)didFinishRecievingUpdate:(NSArray *)data
-{
-    
-}
 
 - (void)didRecieveUpdate:(CGPoint)point type:(ALPointType)type
 {
@@ -169,19 +149,6 @@
 - (void)didWantToClearScreen
 {
     [self.canvas clearScreen];
-}
-
-#pragma mark Orientation
-
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
-{
-    [UIView animateWithDuration:0.1 animations:^{
-        if (UIInterfaceOrientationIsPortrait(fromInterfaceOrientation)) {
-            [self.view setFrame:CGRectMake(0, 0, 1024, 768)];
-        } else {
-            [self.view setFrame:CGRectMake(0, 0, 768, 1024)];
-        }
-    }];
 }
 
 @end
