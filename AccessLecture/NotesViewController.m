@@ -113,6 +113,7 @@ static NSString * DRAW_KEY = @"draw_key";
     drawcolor = [UIColor blackColor];
     isBackSpacePressed = FALSE;
     // Do any additional setup after loading the view from its nib.
+   
     if((!isOpened)){
         [self initializeView];
     //  [self loadNotes:currentDocument.notes];
@@ -301,7 +302,7 @@ static NSString * DRAW_KEY = @"draw_key";
 
            return;
        }
-    
+   
    }
     else if(_isDrawing)
     {
@@ -312,7 +313,6 @@ static NSString * DRAW_KEY = @"draw_key";
                                                             message:@"Note deleted" delegate:self cancelButtonTitle: @"OK"
                                                   otherButtonTitles: nil];
             [alert show];
-
             return;
         }
     }
@@ -378,7 +378,7 @@ static NSString * DRAW_KEY = @"draw_key";
     }
     else if((_isDrawing)&&([[[[gestureRecognizer view] subviews] objectAtIndex:1] isKindOfClass:[DrawView class]])&&(gestureRecognizer.view.frame.size.width==50)){
       
-       NSLog(@"%u", [[[[self.view subviews] objectAtIndex:1] subviews] indexOfObject:gestureRecognizer.view]);
+      
         [[gestureRecognizer.view.subviews objectAtIndex:0] setHidden:NO];
         UIImageView *temp = [[[gestureRecognizer view] subviews] objectAtIndex:1];
         [[[[gestureRecognizer view] subviews] objectAtIndex:1] removeFromSuperview];
@@ -491,6 +491,7 @@ static NSString * DRAW_KEY = @"draw_key";
     _tapToCreateNote = [[UITapGestureRecognizer alloc]initWithTarget:self action
                                                                     :@selector(createNoteText:)];
     _tapToCreateNote.numberOfTapsRequired = 2;
+   // [_mainView addGestureRecognizer:_tapToCreateNote];
     [self.view addGestureRecognizer:_tapToCreateNote];
     [self viewDidLoad];
 
@@ -505,7 +506,7 @@ static NSString * DRAW_KEY = @"draw_key";
 
 - (IBAction)undoButtonPressed:(id)sender {
    // DrawView *tdrawView = [[[[[[self.view subviews] objectAtIndex:1] subviews] objectAtIndex:drawIndex] subviews] objectAtIndex:1];
-    //[[[[[[self.view subviews] objectAtIndex:1] subviews] objectAtIndex:drawIndex] subviews] objectAtIndex:1] => is the drawView currently in 
+    //[[[[[[self.view subviews] objectAtIndex:1] subviews] objectAtIndex:drawIndex] subviews] objectAtIndex:1] => is the drawView currently in focus
     if ([[[[[[[[[self.view subviews] objectAtIndex:1] subviews] objectAtIndex:drawIndex] subviews] objectAtIndex:1] shapes] lastObject] isMemberOfClass:[UIImageView class]]){
         [[[[[[[[[self.view subviews] objectAtIndex:1] subviews] objectAtIndex:drawIndex] subviews] objectAtIndex:1] shapes] lastObject] removeFromSuperview];
     } else if ([[[[[[[[[self.view subviews] objectAtIndex:1] subviews] objectAtIndex:drawIndex] subviews] objectAtIndex:1] shapes] lastObject] isMemberOfClass:[AMBezierPath class]]){
