@@ -32,11 +32,13 @@ static NSString* const NotesViewControllerXIB = @"NotesViewController";
 @property (weak, nonatomic) IBOutlet UIImageView *trashBin;
 @property (weak, nonatomic) IBOutlet UIView *toolbarView;
 
+- (void)loadNotes:(NSMutableArray *)notes;
 - (IBAction)setBlueColor:(id)sender;
 - (IBAction)createDrawNote:(id)sender;
 - (IBAction)setYellowColor:(id)sender;
 - (IBAction)setRedColor:(id)sender;
 - (IBAction)createTextNote:(id)sender;
 - (IBAction)resizeDraw:(id)sender;
+- (IBAction)undoButtonPressed:(id)sender;
 
 @end
