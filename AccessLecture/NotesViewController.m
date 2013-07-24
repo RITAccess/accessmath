@@ -74,6 +74,7 @@ static NSString * DRAW_KEY = @"draw_key";
     UIPanGestureRecognizer *panToResize;
     UILongPressGestureRecognizer *longPressGestureRecognizer;
     UILongPressGestureRecognizer *longPressGestureRecognizer2;
+    NSInteger drawIndex;
     }
  
 
@@ -114,13 +115,18 @@ static NSString * DRAW_KEY = @"draw_key";
     // Do any additional setup after loading the view from its nib.
     if((!isOpened)){
         [self initializeView];
-      // [self loadNotes:currentDocument.notes];
+    //  [self loadNotes:currentDocument.notes];
         isOpened = YES;
     }
     // Clear view
     [self.view setBackgroundColor:[UIColor clearColor]];
 
 }
+/**
+ * Inititlizes main notes view which contains subviews for text notes and  drawing notes
+ * 
+ *
+ */
 -(void)initializeView{
     _mainView = [[UIView alloc] initWithFrame:self.view.frame];
     self.toolBar.layer.cornerRadius = 20;
@@ -132,6 +138,7 @@ static NSString * DRAW_KEY = @"draw_key";
     [self.toolbarView addSubview:self.toolBar];
     [self.view bringSubviewToFront:self.toolbarView];
     currentLecture = [[Lecture alloc] initWithName:@"Lecture001"];
+    
 }
 /**
  * Loads saved notes from the current document's notes array
@@ -275,7 +282,8 @@ static NSString * DRAW_KEY = @"draw_key";
     [outerView addSubview:resizeView];
     [outerView addSubview:lineDrawView];
     [[[self.view subviews] objectAtIndex:1] addSubview:outerView];
-    
+     //NSLog(@"%u", [[[[self.view subviews] objectAtIndex:1] subviews] indexOfObject:outerView]);
+    drawIndex = [[[[self.view subviews] objectAtIndex:1] subviews] indexOfObject:outerView];
   
 }
 
@@ -313,6 +321,7 @@ static NSString * DRAW_KEY = @"draw_key";
 - (void)handleResize:(UIPanGestureRecognizer *)gestureRecognizer
 {
     if((_isDrawing)){
+        drawIndex = [[[[self.view subviews] objectAtIndex:1] subviews] indexOfObject:gestureRecognizer.view];
         UIImageView *temp = [[[gestureRecognizer view] subviews] objectAtIndex:0];
         UIImageView *tempImage = [[[gestureRecognizer view] subviews] objectAtIndex:1];
         [[[[gestureRecognizer view] subviews] objectAtIndex:0] removeFromSuperview];
@@ -368,8 +377,8 @@ static NSString * DRAW_KEY = @"draw_key";
         
     }
     else if((_isDrawing)&&([[[[gestureRecognizer view] subviews] objectAtIndex:1] isKindOfClass:[DrawView class]])&&(gestureRecognizer.view.frame.size.width==50)){
-       
       
+       NSLog(@"%u", [[[[self.view subviews] objectAtIndex:1] subviews] indexOfObject:gestureRecognizer.view]);
         [[gestureRecognizer.view.subviews objectAtIndex:0] setHidden:NO];
         UIImageView *temp = [[[gestureRecognizer view] subviews] objectAtIndex:1];
         [[[[gestureRecognizer view] subviews] objectAtIndex:1] removeFromSuperview];
@@ -492,6 +501,19 @@ static NSString * DRAW_KEY = @"draw_key";
 }
 
 - (IBAction)resizeDraw:(id)sender {
+}
+
+- (IBAction)undoButtonPressed:(id)sender {
+   // DrawView *tdrawView = [[[[[[self.view subviews] objectAtIndex:1] subviews] objectAtIndex:drawIndex] subviews] objectAtIndex:1];
+    //[[[[[[self.view subviews] objectAtIndex:1] subviews] objectAtIndex:drawIndex] subviews] objectAtIndex:1] => is the drawView currently in 
+    if ([[[[[[[[[self.view subviews] objectAtIndex:1] subviews] objectAtIndex:drawIndex] subviews] objectAtIndex:1] shapes] lastObject] isMemberOfClass:[UIImageView class]]){
+        [[[[[[[[[self.view subviews] objectAtIndex:1] subviews] objectAtIndex:drawIndex] subviews] objectAtIndex:1] shapes] lastObject] removeFromSuperview];
+    } else if ([[[[[[[[[self.view subviews] objectAtIndex:1] subviews] objectAtIndex:drawIndex] subviews] objectAtIndex:1] shapes] lastObject] isMemberOfClass:[AMBezierPath class]]){
+        [[[[[[[[self.view subviews] objectAtIndex:1] subviews] objectAtIndex:drawIndex] subviews] objectAtIndex:1] paths] removeLastObject]; // Removing AMBezierPaths...
+    }
+    
+    [[[[[[[[self.view subviews] objectAtIndex:1] subviews] objectAtIndex:drawIndex] subviews] objectAtIndex:1] shapes] removeLastObject];
+    [[[[[[[self.view subviews] objectAtIndex:1] subviews] objectAtIndex:drawIndex] subviews] objectAtIndex:1] setNeedsDisplay];
 }
 - (IBAction)setBlueColor:(id)sender {
     if(_isCreatingNote){
