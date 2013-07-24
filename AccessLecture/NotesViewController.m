@@ -516,6 +516,12 @@ static NSString * DRAW_KEY = @"draw_key";
     [[[[[[[[self.view subviews] objectAtIndex:1] subviews] objectAtIndex:drawIndex] subviews] objectAtIndex:1] shapes] removeLastObject];
     [[[[[[[self.view subviews] objectAtIndex:1] subviews] objectAtIndex:drawIndex] subviews] objectAtIndex:1] setNeedsDisplay];
 }
+
+- (IBAction)erasePressed:(id)sender {
+    [[[[[[[self.view subviews] objectAtIndex:1] subviews] objectAtIndex:drawIndex] subviews] objectAtIndex:1] setPenColor:[UIColor whiteColor]];
+    [[[[[[[self.view subviews] objectAtIndex:1] subviews] objectAtIndex:drawIndex] subviews] objectAtIndex:1] setPenSize:20];
+    
+}
 - (IBAction)setBlueColor:(id)sender {
     if(_isCreatingNote){
     textColor = [UIColor blueColor];
@@ -524,6 +530,7 @@ static NSString * DRAW_KEY = @"draw_key";
     }
     else if(_isDrawing){
         drawcolor = [UIColor blueColor];
+        [[[[[[[self.view subviews] objectAtIndex:1] subviews] objectAtIndex:drawIndex] subviews] objectAtIndex:1] setPenSize:1];
         for(DrawView *draws in [[[self.view subviews] objectAtIndex:1] subviews ]){
            if([[[draws subviews] objectAtIndex:1] isKindOfClass:[DrawView class]]){
                [[[draws subviews] objectAtIndex:1]setPenColor:drawcolor];
@@ -540,6 +547,7 @@ static NSString * DRAW_KEY = @"draw_key";
     }
     else if(_isDrawing){
         drawcolor = [UIColor yellowColor];
+        [[[[[[[self.view subviews] objectAtIndex:1] subviews] objectAtIndex:drawIndex] subviews] objectAtIndex:1] setPenSize:1];
         for(DrawView *draws in [[[self.view subviews] objectAtIndex:1] subviews ]){
             if([[[draws subviews] objectAtIndex:1] isKindOfClass:[DrawView class]]){
                 [[[draws subviews] objectAtIndex:1]setPenColor:drawcolor];
@@ -556,6 +564,7 @@ static NSString * DRAW_KEY = @"draw_key";
    }
    else if(_isDrawing){
        drawcolor = [UIColor redColor];
+       [[[[[[[self.view subviews] objectAtIndex:1] subviews] objectAtIndex:drawIndex] subviews] objectAtIndex:1] setPenSize:1];
        for(DrawView *draws in [[[self.view subviews] objectAtIndex:1] subviews ]){
            if([[[draws subviews] objectAtIndex:1] isKindOfClass:[DrawView class]]){
                [[[draws subviews] objectAtIndex:1]setPenColor:drawcolor];
