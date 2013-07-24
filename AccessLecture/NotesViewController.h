@@ -40,5 +40,6 @@ static NSString* const NotesViewControllerXIB = @"NotesViewController";
 - (IBAction)createTextNote:(id)sender;
 - (IBAction)resizeDraw:(id)sender;
 - (IBAction)undoButtonPressed:(id)sender;
+- (IBAction)erasePressed:(id)sender;
 
 @end
