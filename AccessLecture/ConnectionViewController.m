@@ -69,6 +69,7 @@
     // Hiding UI elements.
     [_scanButtonView setHidden:YES];
     [_connectionAddress setHidden:YES];
+    [_favoritesToolbar setHidden:YES];
     [_lecture setHidden:YES];
     [_statusLabel setHidden:YES];
     [self.view endEditing:YES];  // Along with method override, dimisses keyboard.
