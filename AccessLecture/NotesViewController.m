@@ -219,7 +219,7 @@ static NSString * DRAW_KEY = @"draw_key";
             [text addStyles:[self coreTextStyle]];
             [text setUserInteractionEnabled:YES];
             UITextView *textBubble = [[UITextView alloc]initWithFrame:CGRectMake([gesture locationInView:outerView].x, [gesture locationInView:outerView].y , 310, 120)];
-             outerView.layer.borderWidth = 3;
+             //outerView.layer.borderWidth = 3;
             [outerView addSubview:text];
             [outerView addSubview:textBubble];
             UIImageView * anImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin.png" ]];
