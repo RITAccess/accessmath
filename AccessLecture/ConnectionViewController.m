@@ -256,13 +256,19 @@
         [_connectionAddress setText:[[[tableView cellForRowAtIndexPath:indexPath] textLabel] text]];
     }
     
+    [self checkAddress:nil];  // After selected cell, check the address.
+    
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
     UITableViewCell *headerView = [tableView dequeueReusableCellWithIdentifier:@"SectionHeader"];
-    headerView.textLabel.font = [UIFont boldSystemFontOfSize:14];
-    headerView.textLabel.text = @"Lectures";
+    headerView.textLabel.font = [UIFont boldSystemFontOfSize:12];
+    headerView.textLabel.textColor = [UIColor grayColor];
     headerView.backgroundColor = [UIColor clearColor];
+    
+    (section == 0) ? [[headerView textLabel] setText:@"Lectures"] : [[headerView textLabel] setText:@"Servers"];
+    
     return headerView;
 }
 
