@@ -98,7 +98,7 @@
 		4CE742C61768BDE60026DE71 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FED960B1370863E00D8D1B8 /* UIKit.framework */; };
 		4CEA1A03177CAAED00A1DE05 /* LectureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEA1A00177CAAED00A1DE05 /* LectureCell.m */; };
 		4CEA1A04177CAAED00A1DE05 /* OpenLectureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEA1A02177CAAED00A1DE05 /* OpenLectureViewController.m */; };
-		4CF0DD8717A1A99D0036F57D /* ZoomBounds.c in Sources */ = {isa = PBXBuildFile; fileRef = 4CF0DD8517A1A99D0036F57D /* ZoomBounds.c */; };
+		4CF0DD8A17A1AB100036F57D /* ZoomBounds.c in Sources */ = {isa = PBXBuildFile; fileRef = 4CF0DD8817A1AB100036F57D /* ZoomBounds.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -247,8 +247,8 @@
 		4CEA1A00177CAAED00A1DE05 /* LectureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LectureCell.m; sourceTree = "<group>"; };
 		4CEA1A01177CAAED00A1DE05 /* OpenLectureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenLectureViewController.h; sourceTree = "<group>"; };
 		4CEA1A02177CAAED00A1DE05 /* OpenLectureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenLectureViewController.m; sourceTree = "<group>"; };
-		4CF0DD8517A1A99D0036F57D /* ZoomBounds.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ZoomBounds.c; sourceTree = "<group>"; };
-		4CF0DD8617A1A99D0036F57D /* ZoomBounds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoomBounds.h; sourceTree = "<group>"; };
+		4CF0DD8817A1AB100036F57D /* ZoomBounds.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ZoomBounds.c; sourceTree = "<group>"; };
+		4CF0DD8917A1AB100036F57D /* ZoomBounds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoomBounds.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -624,8 +624,8 @@
 				4C9AB8FB177C6884004A4F65 /* Views */,
 				4C5C50CB177B7B7C0095801A /* LectureViewContainer.h */,
 				4C5C50CC177B7B7C0095801A /* LectureViewContainer.m */,
-				4CF0DD8517A1A99D0036F57D /* ZoomBounds.c */,
-				4CF0DD8617A1A99D0036F57D /* ZoomBounds.h */,
+				4CF0DD8817A1AB100036F57D /* ZoomBounds.c */,
+				4CF0DD8917A1AB100036F57D /* ZoomBounds.h */,
 			);
 			name = LectureViewController;
 			sourceTree = "<group>";
@@ -880,7 +880,7 @@
 				3F6D11CC17625EA20066A4FA /* SRWebSocket.m in Sources */,
 				4CADF4F2178DEC19005978C0 /* UISegmentedControlExtension.m in Sources */,
 				4C96FA84176289DE002C0D74 /* ConnectViewController.m in Sources */,
-				4CF0DD8717A1A99D0036F57D /* ZoomBounds.c in Sources */,
+				4CF0DD8A17A1AB100036F57D /* ZoomBounds.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
