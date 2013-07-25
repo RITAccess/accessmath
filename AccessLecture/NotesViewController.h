@@ -38,7 +38,6 @@ static NSString* const NotesViewControllerXIB = @"NotesViewController";
 - (IBAction)setYellowColor:(id)sender;
 - (IBAction)setRedColor:(id)sender;
 - (IBAction)createTextNote:(id)sender;
-- (IBAction)resizeDraw:(id)sender;
 - (IBAction)undoButtonPressed:(id)sender;
 - (IBAction)erasePressed:(id)sender;
 

@@ -135,7 +135,7 @@ static NSString * DRAW_KEY = @"draw_key";
     [self.toolbarView setBackgroundColor:[UIColor clearColor]];
     [self.view addSubview:_mainView];
     [self.view addSubview:self.toolbarView];
-    [self.view addSubview:self.trashBin];
+    [_mainView addSubview:self.trashBin];
     [self.toolbarView addSubview:self.toolBar];
     [self.view bringSubviewToFront:self.toolbarView];
     currentLecture = [[Lecture alloc] initWithName:@"Lecture001"];
@@ -294,8 +294,7 @@ static NSString * DRAW_KEY = @"draw_key";
        [gestureRecognizer.view setFrame:CGRectMake([gestureRecognizer locationInView:_mainView].x, [gestureRecognizer locationInView:_mainView].y, [[[[gestureRecognizer view] subviews] objectAtIndex:0] size].width+50, [[[[gestureRecognizer view] subviews] objectAtIndex:0] size].height+50)];
        if(CGRectContainsPoint(self.trashBin.frame, gestureRecognizer.view.frame.origin)){
         [gestureRecognizer.view removeFromSuperview];
-           NSLog(@"Called");
-           UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notes"
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notes"
                                                            message:@"Note deleted" delegate:self cancelButtonTitle: @"OK"
                                                  otherButtonTitles: nil];
            [alert show];
@@ -373,6 +372,7 @@ static NSString * DRAW_KEY = @"draw_key";
         [gestureRecognizer.view addSubview:tempView];
         [gestureRecognizer.view addSubview:temp];
         [gestureRecognizer.view setFrame:CGRectMake(gestureRecognizer.view.frame.origin.x, gestureRecognizer.view.frame.origin.y, temp.frame.size.width, temp.frame.size.height)];
+        NSLog(@"Exe");
         
     }
     else if((_isDrawing)&&([[[[gestureRecognizer view] subviews] objectAtIndex:1] isKindOfClass:[DrawView class]])&&(gestureRecognizer.view.frame.size.width==50)){
