@@ -11,13 +11,12 @@
 #import "ALNetworkInterface.h"
 #import <QuartzCore/CATransform3D.h>
 
-@implementation ConnectionViewController
-{
+@implementation ConnectionViewController {
     ALNetworkInterface *server;
     QRScanner *scanner;
     AVCaptureVideoPreviewLayer *preview;
     UIButton *cancelButton;
-    BOOL isScanning;
+    BOOL isScanning, adding, deleting;
     NSMutableArray *lectureFavorites, *serverFavorites;
 }
 
@@ -53,6 +52,18 @@
     if (!serverFavorites) serverFavorites = [NSMutableArray new];
     
     [self populateFavorites];
+    
+    UILongPressGestureRecognizer *holdToDelete = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(handleCell:)];
+    holdToDelete.minimumPressDuration = .25;
+    [_tableView addGestureRecognizer:holdToDelete];
+    
+    UISwipeGestureRecognizer *swipeToAdd = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleCell:)];
+    [swipeToAdd setDirection:UISwipeGestureRecognizerDirectionRight];
+    [_tableView addGestureRecognizer:swipeToAdd];
+    
+    UISwipeGestureRecognizer *swipeToHide = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleCell:)];
+    [swipeToAdd setDirection:UISwipeGestureRecognizerDirectionLeft];
+    [_tableView addGestureRecognizer:swipeToHide];
 }
 
 # pragma mark - UI Events
@@ -225,6 +236,23 @@
     [_tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:1]] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
+- (void)handleCell:(UIGestureRecognizer *)gesture
+{
+    if ([gesture isMemberOfClass:[UILongPressGestureRecognizer class]]){
+        deleting = YES;
+        [_tableView setEditing:YES];
+    } else if ([gesture isMemberOfClass:[UISwipeGestureRecognizer class]]){
+        deleting = NO;
+        if (_tableView.editing == YES){
+            adding = NO;
+            [_tableView setEditing:NO];
+        } else if (_tableView.editing == NO) {
+            adding = YES;
+            [_tableView setEditing:YES];
+        }
+    }
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 2;
@@ -257,6 +285,7 @@
     }
     
     [self checkAddress:nil];  // After selected cell, check the address.
+    [self setEditing:YES];
     
 }
 
@@ -271,6 +300,39 @@
     
     return headerView;
 }
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [lectureFavorites removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        [lectureFavorites insertObject:@"New Lecture!" atIndex:0];
+        [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (adding) {
+        return UITableViewCellEditingStyleInsert;
+    } else if (deleting) {
+        return UITableViewCellEditingStyleDelete;
+    } else {
+        return UITableViewCellEditingStyleNone;
+    }
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return NO;
+}
+
 
 # pragma mark - Helpers
 
