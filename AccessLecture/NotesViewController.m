@@ -372,7 +372,7 @@ static NSString * DRAW_KEY = @"draw_key";
         [gestureRecognizer.view addSubview:tempView];
         [gestureRecognizer.view addSubview:temp];
         [gestureRecognizer.view setFrame:CGRectMake(gestureRecognizer.view.frame.origin.x, gestureRecognizer.view.frame.origin.y, temp.frame.size.width, temp.frame.size.height)];
-        NSLog(@"Exe");
+        
         
     }
     else if((_isDrawing)&&([[[[gestureRecognizer view] subviews] objectAtIndex:1] isKindOfClass:[DrawView class]])&&(gestureRecognizer.view.frame.size.width==50)){
