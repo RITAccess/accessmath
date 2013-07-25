@@ -507,6 +507,7 @@ static NSString * DRAW_KEY = @"draw_key";
 - (IBAction)undoButtonPressed:(id)sender {
    // DrawView *tdrawView = [[[[[[self.view subviews] objectAtIndex:1] subviews] objectAtIndex:drawIndex] subviews] objectAtIndex:1];
     //[[[[[[self.view subviews] objectAtIndex:1] subviews] objectAtIndex:drawIndex] subviews] objectAtIndex:1] => is the drawView currently in focus
+    if(_isDrawing&&([[[[[[self.view subviews] objectAtIndex:1] subviews] objectAtIndex:drawIndex] subviews] count]!=0)){
     if ([[[[[[[[[self.view subviews] objectAtIndex:1] subviews] objectAtIndex:drawIndex] subviews] objectAtIndex:1] shapes] lastObject] isMemberOfClass:[UIImageView class]]){
         [[[[[[[[[self.view subviews] objectAtIndex:1] subviews] objectAtIndex:drawIndex] subviews] objectAtIndex:1] shapes] lastObject] removeFromSuperview];
     } else if ([[[[[[[[[self.view subviews] objectAtIndex:1] subviews] objectAtIndex:drawIndex] subviews] objectAtIndex:1] shapes] lastObject] isMemberOfClass:[AMBezierPath class]]){
@@ -515,7 +516,14 @@ static NSString * DRAW_KEY = @"draw_key";
     
     [[[[[[[[self.view subviews] objectAtIndex:1] subviews] objectAtIndex:drawIndex] subviews] objectAtIndex:1] shapes] removeLastObject];
     [[[[[[[self.view subviews] objectAtIndex:1] subviews] objectAtIndex:drawIndex] subviews] objectAtIndex:1] setNeedsDisplay];
-}
+    }
+    else{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notes"
+                                                        message:@"Nothing to undo! Please select draw mode." delegate:self cancelButtonTitle: @"OK"
+                                              otherButtonTitles: nil];
+        [alert show];
+    }
+    }
 
 - (IBAction)erasePressed:(id)sender {
     [[[[[[[self.view subviews] objectAtIndex:1] subviews] objectAtIndex:drawIndex] subviews] objectAtIndex:1] setPenColor:[UIColor whiteColor]];
