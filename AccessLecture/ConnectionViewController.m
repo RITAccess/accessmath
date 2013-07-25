@@ -252,9 +252,11 @@
         if (_tableView.editing == YES){
             adding = NO;
             [_tableView setEditing:NO];
-        } else if (_tableView.editing == NO) {
-            adding = YES;
-            [_tableView setEditing:YES];
+        } else if (_tableView.editing == NO && (![_lecture.text isEqualToString:@""] || ![_connectionAddress.text isEqualToString:@""])) {
+            if (![lectureFavorites containsObject:_lecture.text] || ![serverFavorites containsObject:_connectionAddress.text]){
+                adding = YES;
+                [_tableView setEditing:YES];
+            }
         }
     }
 }
@@ -315,11 +317,24 @@
         [lectureFavorites removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        
-        // If the lecture isn't blank, add the lecture to a favorite.
-        if (![_lecture.text isEqualToString:@""]){
+        [self addFavoriteCellAtSection:indexPath.section];
+        [_tableView setEditing:NO];  // Reset editing style after addition.
+    }
+}
+
+
+- (void)addFavoriteCellAtSection:(int)section
+{
+    if (section == 0){
+        if (![lectureFavorites containsObject:_lecture.text] && ![_lecture.text isEqualToString:@""]){
             [lectureFavorites insertObject:_lecture.text atIndex:0];
-            [_tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:indexPath.section]] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [_tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:section]] withRowAnimation:UITableViewRowAnimationAutomatic];
+        }
+    }
+    else if (section == 1){
+        if (![serverFavorites containsObject:_connectionAddress.text] && ![_connectionAddress.text isEqualToString:@""]){
+            [serverFavorites insertObject:_connectionAddress.text atIndex:0];
+            [_tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:section]] withRowAnimation:UITableViewRowAnimationAutomatic];
         }
     }
 }
