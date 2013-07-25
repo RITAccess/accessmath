@@ -165,7 +165,7 @@
                                     <constraint firstAttribute="height" constant="327" id="M1N-ad-IRT"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SectionHeader" rowHeight="56" id="9h9-Cw-QwR">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HeaderCell" rowHeight="56" id="9h9-Cw-QwR">
                                         <rect key="frame" x="0.0" y="22" width="494" height="56"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9h9-Cw-QwR" id="Ts8-B7-vgY">

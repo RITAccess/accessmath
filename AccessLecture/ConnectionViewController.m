@@ -16,7 +16,7 @@
     QRScanner *scanner;
     AVCaptureVideoPreviewLayer *preview;
     UIButton *cancelButton;
-    BOOL isScanning, adding, deleting;
+    BOOL isScanning, isDeleting;
     NSMutableArray *lectureFavorites, *serverFavorites;
 }
 
@@ -49,20 +49,15 @@
     // Initializing Lecture and Server arays.
     if (!lectureFavorites) lectureFavorites = [NSMutableArray new];
     if (!serverFavorites) serverFavorites = [NSMutableArray new];
-    [self populateFavorites];
     
-    // Adding Gestures to TableView.
-    UILongPressGestureRecognizer *holdToDelete = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(handleCell:)];
-    holdToDelete.minimumPressDuration = .25;
-    [_tableView addGestureRecognizer:holdToDelete];
+    // Adding Gestures.
+    UISwipeGestureRecognizer *swipeToDelete = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleCell:)];
+    [swipeToDelete setDirection:UISwipeGestureRecognizerDirectionRight];
+    [_tableView addGestureRecognizer:swipeToDelete];
     
-    UISwipeGestureRecognizer *swipeToAdd = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleCell:)];
-    [swipeToAdd setDirection:UISwipeGestureRecognizerDirectionRight];
-    [_tableView addGestureRecognizer:swipeToAdd];
-    
-    UISwipeGestureRecognizer *swipeToHide = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleCell:)];
-    [swipeToAdd setDirection:UISwipeGestureRecognizerDirectionLeft];
-    [_tableView addGestureRecognizer:swipeToHide];
+    UITapGestureRecognizer *tapToAdd = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(addFavoriteCellAtSection:)];
+    [tapToAdd setNumberOfTapsRequired:2];
+    [self.view addGestureRecognizer:tapToAdd];
     
     isScanning = NO;  // Flag for QR scanning. Hides on load.
 }
@@ -142,8 +137,129 @@
     if ([_delegate respondsToSelector:@selector(didCompleteWithConnection: toLecture: from:)]) {
         [_delegate didCompleteWithConnection:server toLecture:_lecture.text from:_connectionAddress.text];
     }
-    
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark Connect
+
+- (void)connectWithURL:(NSURL *)url
+{
+    [server disconnect];
+    [server setConnectionURL:url.description];
+    [server connectCompletion:^(BOOL success) {
+        if (success) {
+            [_statusLabel.topItem setTitle:@"Connected"];
+            [_activity stopAnimating];
+            [_streamButton setEnabled:YES];
+        } else {
+            [_statusLabel.topItem setTitle:@"Failed to connect to server"];
+            [_activity stopAnimating];
+        }
+    }];
+}
+
+#pragma mark - Table View
+
+/**
+ * Handles gestures on table view cells. Hold to delete, swipe in either direction to show insert mode.
+ */
+- (void)handleCell:(UIGestureRecognizer *)gesture
+{
+    if (_tableView.editing == YES){
+        isDeleting = NO;
+        [_tableView setEditing:NO];
+    } else {
+        isDeleting = YES;
+        [_tableView setEditing:YES];
+    }
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [UITableViewCell new];
+    if (indexPath.section == 0){
+        cell = [tableView dequeueReusableCellWithIdentifier:@"LectureCell" forIndexPath:indexPath];
+        cell.textLabel.text = [lectureFavorites[indexPath.row] description];
+    } else if (indexPath.section == 1) {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"ServerCell" forIndexPath:indexPath];
+        cell.textLabel.text = [serverFavorites[indexPath.row] description];
+    }
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0){
+        [_lecture setText:[[[tableView cellForRowAtIndexPath:indexPath] textLabel] text]];
+    } else if (indexPath.section == 1) {
+        [_connectionAddress setText:[[[tableView cellForRowAtIndexPath:indexPath] textLabel] text]];
+    }
+    
+    [self checkAddress:nil];  // After selected cell, check the address.
+    [self setEditing:YES animated:YES];
+}
+
+/**
+ * Setting up headers.
+ */
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UITableViewCell *headerCell = [tableView dequeueReusableCellWithIdentifier:@"HeaderCell"];
+    [headerCell.textLabel setFont:[UIFont boldSystemFontOfSize:12]];
+    [headerCell.textLabel setTextColor:[UIColor grayColor]];
+    [headerCell setBackgroundColor:[UIColor clearColor]];
+    
+    (section == 0) ? [[headerCell textLabel] setText:@"Lectures"] : [[headerCell textLabel] setText:@"Servers"];
+    return headerCell;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        if (indexPath.section == 0){
+            [lectureFavorites removeObjectAtIndex:indexPath.row];
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        } else if (indexPath.section == 1){
+            [serverFavorites removeObjectAtIndex:indexPath.row];
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        }
+        isDeleting = NO;
+        [_tableView setEditing:NO animated:NO];
+    }
+}
+
+- (void)addFavoriteCellAtSection:(int)section
+{
+    if (![lectureFavorites containsObject:_lecture.text] && ![_lecture.text isEqualToString:@""]){
+        [lectureFavorites insertObject:_lecture.text atIndex:0];
+        [_tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+    
+    if (![serverFavorites containsObject:_connectionAddress.text] && ![_connectionAddress.text isEqualToString:@""]){
+        [serverFavorites insertObject:_connectionAddress.text atIndex:0];
+        [_tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:1]] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return isDeleting ? UITableViewCellEditingStyleDelete : UITableViewCellEditingStyleNone;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 2;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return (section == 0) ? lectureFavorites.count : serverFavorites.count;
+}
+
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
 }
 
 # pragma mark - Rotation Handling
@@ -188,12 +304,12 @@
             [cancelButton setTransform:CGAffineTransformMakeRotation(270 * M_PI / 180)];
             [cancelButton setFrame:CGRectMake(_previewView.frame.size.width + 25, _previewView.frame.size.height - 620, 50, 100)];
             break;
-        
+            
         case 180:
             [cancelButton setTransform:CGAffineTransformMakeRotation(180 * M_PI / 180)];
             [cancelButton setFrame:CGRectMake(7, _previewView.frame.size.height - 615, 100, 50)];
             break;
-        
+            
         case 270:
             [cancelButton setTransform:CGAffineTransformMakeRotation(90 * M_PI / 180)];
             [cancelButton setFrame:CGRectMake(0, _previewView.frame.size.height - 175, 50, 100)];
@@ -204,157 +320,6 @@
     }
 }
 
-#pragma mark Connect
-
-- (void)connectWithURL:(NSURL *)url
-{
-    [server disconnect];
-    [server setConnectionURL:url.description];
-    [server connectCompletion:^(BOOL success) {
-        if (success) {
-            [_statusLabel.topItem setTitle:@"Connected"];
-            [_activity stopAnimating];
-            [_streamButton setEnabled:YES];
-        } else {
-            [_statusLabel.topItem setTitle:@"Failed to connect to server"];
-            [_activity stopAnimating];
-        }
-    }];
-}
-
-#pragma mark - Table View
-
-/**
- * Adds favorite items to proper sections.
- */
-- (void)populateFavorites
-{
-    [lectureFavorites insertObject:@"Physics" atIndex:0];
-    [lectureFavorites insertObject:@"Math" atIndex:1];
-    [lectureFavorites insertObject:@"Testing" atIndex:2];
-    [_tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
-    
-    [serverFavorites insertObject:@"michaeltimbrook.com" atIndex:0];
-    [serverFavorites insertObject:@"testing.rit.edu" atIndex:1];
-    [_tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:1]] withRowAnimation:UITableViewRowAnimationAutomatic];
-}
-
-/**
- * Handles gestures on table view cells. Hold to delete, swipe in either direction to show insert mode.
- */
-- (void)handleCell:(UIGestureRecognizer *)gesture
-{
-    if ([gesture isMemberOfClass:[UILongPressGestureRecognizer class]]){
-        deleting = YES;
-        [_tableView setEditing:YES];
-    } else if ([gesture isMemberOfClass:[UISwipeGestureRecognizer class]]){
-        deleting = NO;
-        if (_tableView.editing == YES){
-            adding = NO;
-            [_tableView setEditing:NO];
-        } else if (_tableView.editing == NO && (![_lecture.text isEqualToString:@""] || ![_connectionAddress.text isEqualToString:@""])) {
-            if (![lectureFavorites containsObject:_lecture.text] || ![serverFavorites containsObject:_connectionAddress.text]){
-                adding = YES;
-                [_tableView setEditing:YES];
-            }
-        }
-    }
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 2;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return (section == 0) ? lectureFavorites.count : serverFavorites.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [UITableViewCell new];
-    if (indexPath.section == 0){
-        cell = [tableView dequeueReusableCellWithIdentifier:@"LectureCell" forIndexPath:indexPath];
-        cell.textLabel.text = [lectureFavorites[indexPath.row] description];
-    } else if (indexPath.section == 1) {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"ServerCell" forIndexPath:indexPath];
-        cell.textLabel.text = [serverFavorites[indexPath.row] description];
-    }
-    return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.section == 0){
-        [_lecture setText:[[[tableView cellForRowAtIndexPath:indexPath] textLabel] text]];
-    } else {
-        [_connectionAddress setText:[[[tableView cellForRowAtIndexPath:indexPath] textLabel] text]];
-    }
-    
-    [self checkAddress:nil];  // After selected cell, check the address.
-    [self setEditing:YES];
-}
-
-/**
- * Setting up headers.
- */
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    
-    UITableViewCell *headerView = [tableView dequeueReusableCellWithIdentifier:@"SectionHeader"];
-    headerView.textLabel.font = [UIFont boldSystemFontOfSize:12];
-    headerView.textLabel.textColor = [UIColor grayColor];
-    headerView.backgroundColor = [UIColor clearColor];
-    
-    (section == 0) ? [[headerView textLabel] setText:@"Lectures"] : [[headerView textLabel] setText:@"Servers"];
-    
-    return headerView;
-}
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [lectureFavorites removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        [self addFavoriteCellAtSection:indexPath.section];
-        [_tableView setEditing:NO];  // Reset editing style after addition.
-    }
-}
-
-
-- (void)addFavoriteCellAtSection:(int)section
-{
-    if (section == 0){
-        if (![lectureFavorites containsObject:_lecture.text] && ![_lecture.text isEqualToString:@""]){
-            [lectureFavorites insertObject:_lecture.text atIndex:0];
-            [_tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:section]] withRowAnimation:UITableViewRowAnimationAutomatic];
-        }
-    }
-    else if (section == 1){
-        if (![serverFavorites containsObject:_connectionAddress.text] && ![_connectionAddress.text isEqualToString:@""]){
-            [serverFavorites insertObject:_connectionAddress.text atIndex:0];
-            [_tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:section]] withRowAnimation:UITableViewRowAnimationAutomatic];
-        }
-    }
-}
-
-- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (adding) {
-        return UITableViewCellEditingStyleInsert;
-    } else if (deleting) {
-        return UITableViewCellEditingStyleDelete;
-    } else {
-        return UITableViewCellEditingStyleNone;
-    }
-}
-
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return YES;
-}
-
 # pragma mark - Helpers
 
 - (void)didReceiveMemoryWarning
@@ -362,9 +327,6 @@
     [super didReceiveMemoryWarning];
 }
 
-/**
- * Overriding to allow for automatic keyboard dismissal once scan button is pressed.
- */
 - (BOOL)disablesAutomaticKeyboardDismissal
 {
     return NO;
