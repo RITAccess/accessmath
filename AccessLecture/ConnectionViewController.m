@@ -46,13 +46,12 @@
         [_previewView setBackgroundColor:[UIColor redColor]];
     }
     
-    isScanning = NO;
-    
+    // Initializing Lecture and Server arays.
     if (!lectureFavorites) lectureFavorites = [NSMutableArray new];
     if (!serverFavorites) serverFavorites = [NSMutableArray new];
-    
     [self populateFavorites];
     
+    // Adding Gestures to TableView.
     UILongPressGestureRecognizer *holdToDelete = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(handleCell:)];
     holdToDelete.minimumPressDuration = .25;
     [_tableView addGestureRecognizer:holdToDelete];
@@ -64,6 +63,8 @@
     UISwipeGestureRecognizer *swipeToHide = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleCell:)];
     [swipeToAdd setDirection:UISwipeGestureRecognizerDirectionLeft];
     [_tableView addGestureRecognizer:swipeToHide];
+    
+    isScanning = NO;  // Flag for QR scanning. Hides on load.
 }
 
 # pragma mark - UI Events
@@ -84,6 +85,8 @@
     // Hiding UI elements.
     [_connectionAddress setHidden:YES];
     [_lecture setHidden:YES];
+    [_tableView setHidden:YES];
+    [_scanButton setHidden:YES];
     [_statusLabel setHidden:YES];
     [self.view endEditing:YES];  // Along with method override, dimisses keyboard.
     
@@ -104,6 +107,7 @@
         }];
     }];
     
+    // Set up Scan View.
     [UIView animateWithDuration:0.4 animations:^{
         [_previewView setFrame:self.view.frame];
     } completion:^(BOOL finished) {
@@ -129,10 +133,6 @@
 - (IBAction)userDidCancel:(id)sender
 {
     isScanning = NO;
-    if ([_delegate respondsToSelector:@selector(userDidCancel)]) {
-        
-        [_delegate userDidCancel];
-    }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -224,6 +224,9 @@
 
 #pragma mark - Table View
 
+/**
+ * Adds favorite items to proper sections.
+ */
 - (void)populateFavorites
 {
     [lectureFavorites insertObject:@"Physics" atIndex:0];
@@ -236,6 +239,9 @@
     [_tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:1]] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
+/**
+ * Handles gestures on table view cells. Hold to delete, swipe in either direction to show insert mode.
+ */
 - (void)handleCell:(UIGestureRecognizer *)gesture
 {
     if ([gesture isMemberOfClass:[UILongPressGestureRecognizer class]]){
@@ -286,9 +292,11 @@
     
     [self checkAddress:nil];  // After selected cell, check the address.
     [self setEditing:YES];
-    
 }
 
+/**
+ * Setting up headers.
+ */
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
     UITableViewCell *headerView = [tableView dequeueReusableCellWithIdentifier:@"SectionHeader"];
@@ -301,7 +309,7 @@
     return headerView;
 }
 
--(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [lectureFavorites removeObjectAtIndex:indexPath.row];
@@ -327,12 +335,6 @@
 {
     return YES;
 }
-
-- (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return NO;
-}
-
 
 # pragma mark - Helpers
 
