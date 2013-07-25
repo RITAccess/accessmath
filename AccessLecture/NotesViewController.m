@@ -121,7 +121,7 @@ static NSString * DRAW_KEY = @"draw_key";
     }
     // Clear view
     [self.view setBackgroundColor:[UIColor clearColor]];
-
+    
 }
 /**
  * Inititlizes main notes view which contains subviews for text notes and  drawing notes
@@ -156,7 +156,7 @@ static NSString * DRAW_KEY = @"draw_key";
         longPressGestureRecognizer2 = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressToDisplayNote:)];
         longPressGestureRecognizer.numberOfTouchesRequired = 3;
         longPressGestureRecognizer2.numberOfTouchesRequired = 1;
-       
+     
         [[viewer.view.subviews objectAtIndex:0] setText:viewer.styleText];
         [[viewer.view.subviews objectAtIndex:0] addStyles:[self coreTextStyle]];
         [[[viewer.view.subviews objectAtIndex:1] layer] setBorderWidth:3];
@@ -179,7 +179,6 @@ static NSString * DRAW_KEY = @"draw_key";
             longPressGestureRecognizer2.numberOfTouchesRequired = 1;
             [panToMoveNote setEnabled:NO];
             [panToResize setEnabled:NO];
-           
             [[[viewer.view subviews] objectAtIndex:1] removeFromSuperview];
             [viewer.view addSubview:viewer.drawContent];
             [viewer.view.layer setBorderWidth:3];
@@ -220,7 +219,7 @@ static NSString * DRAW_KEY = @"draw_key";
             [text addStyles:[self coreTextStyle]];
             [text setUserInteractionEnabled:YES];
             UITextView *textBubble = [[UITextView alloc]initWithFrame:CGRectMake([gesture locationInView:outerView].x, [gesture locationInView:outerView].y , 310, 120)];
-             // outerView.layer.borderWidth = 3;
+             outerView.layer.borderWidth = 3;
             [outerView addSubview:text];
             [outerView addSubview:textBubble];
             UIImageView * anImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin.png" ]];
@@ -295,12 +294,12 @@ static NSString * DRAW_KEY = @"draw_key";
        [gestureRecognizer.view setFrame:CGRectMake([gestureRecognizer locationInView:_mainView].x, [gestureRecognizer locationInView:_mainView].y, [[[[gestureRecognizer view] subviews] objectAtIndex:0] size].width+50, [[[[gestureRecognizer view] subviews] objectAtIndex:0] size].height+50)];
        if(CGRectContainsPoint(self.trashBin.frame, gestureRecognizer.view.frame.origin)){
         [gestureRecognizer.view removeFromSuperview];
+           NSLog(@"Called");
            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notes"
                                                            message:@"Note deleted" delegate:self cancelButtonTitle: @"OK"
                                                  otherButtonTitles: nil];
            [alert show];
-
-           return;
+                    return;
        }
    
    }
@@ -525,10 +524,18 @@ static NSString * DRAW_KEY = @"draw_key";
     }
     }
 
-- (IBAction)erasePressed:(id)sender {
+- (IBAction)erasePressed:(id)sender
+{
+    if(_isDrawing){
     [[[[[[[self.view subviews] objectAtIndex:1] subviews] objectAtIndex:drawIndex] subviews] objectAtIndex:1] setPenColor:[UIColor whiteColor]];
     [[[[[[[self.view subviews] objectAtIndex:1] subviews] objectAtIndex:drawIndex] subviews] objectAtIndex:1] setPenSize:20];
-    
+    }
+        else{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notes"
+                                                        message:@"Nothing to erase! Please select draw mode." delegate:self cancelButtonTitle: @"OK"
+                                              otherButtonTitles: nil];
+        [alert show];
+    }
 }
 - (IBAction)setBlueColor:(id)sender {
     if(_isCreatingNote){
@@ -545,6 +552,7 @@ static NSString * DRAW_KEY = @"draw_key";
            }
         }
     }
+    
     
 }
 - (IBAction)setYellowColor:(id)sender {
