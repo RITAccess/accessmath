@@ -18,6 +18,7 @@
     AVCaptureVideoPreviewLayer *preview;
     UIButton *cancelButton;
     BOOL isScanning;
+    NSMutableArray *lectureFavorites;
 }
 
 - (void)viewDidLoad
@@ -43,13 +44,17 @@
     if ([[[UIDevice currentDevice]systemVersion] isEqualToString:@"7.0"]){
         [_scanStatusLabel removeFromSuperview];
     } else {
-        [_scanButtonView removeFromSuperview];  // Hiding QR Scan! Button and QR image.
         [_previewView setBackgroundColor:[UIColor redColor]];
     }
     
     isScanning = NO;
+    
+    if (!lectureFavorites) {
+        lectureFavorites = [[NSMutableArray alloc] init];
+    }
+    
+    [self populateFavorites];
 }
-
 
 # pragma mark - UI Events
 
@@ -67,9 +72,7 @@
     isScanning = YES;
     
     // Hiding UI elements.
-    [_scanButtonView setHidden:YES];
     [_connectionAddress setHidden:YES];
-    [_favoritesToolbar setHidden:YES];
     [_lecture setHidden:YES];
     [_statusLabel setHidden:YES];
     [self.view endEditing:YES];  // Along with method override, dimisses keyboard.
@@ -207,6 +210,46 @@
             [_activity stopAnimating];
         }
     }];
+}
+
+#pragma mark - Table View
+
+- (void)populateFavorites
+{
+    [lectureFavorites insertObject:@"Physics" atIndex:0];
+    [lectureFavorites insertObject:@"Math" atIndex:1];
+    [lectureFavorites insertObject:@"Programming" atIndex:2];
+    [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return lectureFavorites.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    cell.textLabel.text = [lectureFavorites[indexPath.row] description];
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [_lecture setText:[[[tableView cellForRowAtIndexPath:indexPath] textLabel] text]];
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UITableViewCell *headerView = [tableView dequeueReusableCellWithIdentifier:@"SectionHeader"];
+    headerView.textLabel.font = [UIFont boldSystemFontOfSize:14];
+    headerView.textLabel.text = @"Lectures";
+    headerView.backgroundColor = [UIColor clearColor];
+    return headerView;
 }
 
 # pragma mark - Helpers

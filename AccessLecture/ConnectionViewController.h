@@ -20,7 +20,7 @@ static NSString* const ConnectionViewControllerXIB = @"ConnectionViewController"
 
 @end
 
-@interface ConnectionViewController : UIViewController
+@interface ConnectionViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UINavigationBar *statusLabel;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activity;
 @property (weak, nonatomic) IBOutlet UITextField *connectionAddress;
@@ -28,10 +28,11 @@ static NSString* const ConnectionViewControllerXIB = @"ConnectionViewController"
 @property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
 @property (weak, nonatomic) IBOutlet UITextField *lecture;
 @property (weak, nonatomic) IBOutlet UIView *previewView;
-@property (weak, nonatomic) IBOutlet UIView *scanButtonView;
-@property (weak, nonatomic) IBOutlet UIView *favoritesToolbar;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *scanStatusLabel;
 @property id<ConnectionView> delegate;
+@property (weak, nonatomic) IBOutlet UITableView *lectureFavoritesTable;
+@property (weak, nonatomic) IBOutlet UIButton *scanButton;
 
 - (IBAction)checkAddress:(id)sender;
 - (IBAction)userDidCancel:(id)sender;
