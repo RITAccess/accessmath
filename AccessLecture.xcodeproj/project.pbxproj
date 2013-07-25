@@ -459,7 +459,6 @@
 			isa = PBXGroup;
 			children = (
 				4C96FA81176289B4002C0D74 /* Connect View */,
-				3FED963113708E4E00D8D1B8 /* Root View */,
 				3FED963213708E5100D8D1B8 /* Lecture View */,
 				3F0DBDCC13BD170C00E3FEE8 /* About View */,
 			);
@@ -562,13 +561,13 @@
 			name = "App Delegate";
 			sourceTree = "<group>";
 		};
-		3FED963113708E4E00D8D1B8 /* Root View */ = {
+		3FED963113708E4E00D8D1B8 /* RootViewController */ = {
 			isa = PBXGroup;
 			children = (
 				3FED96201370863E00D8D1B8 /* RootViewController.h */,
 				3FED96211370863E00D8D1B8 /* RootViewController.m */,
 			);
-			name = "Root View";
+			name = RootViewController;
 			sourceTree = "<group>";
 		};
 		3FED963213708E5100D8D1B8 /* Lecture View */ = {
@@ -603,6 +602,7 @@
 		4C5C50C9177B7B300095801A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3FED963113708E4E00D8D1B8 /* RootViewController */,
 				2CBF3014177B700C0087C17C /* DrawViewController */,
 				4C8ABE7C177CA341007C934C /* NotesViewController */,
 				4C8ABE7A177C886C007C934C /* StreamViewController */,

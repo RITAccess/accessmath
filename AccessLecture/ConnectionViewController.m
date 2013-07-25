@@ -217,7 +217,7 @@
 {
     [lectureFavorites insertObject:@"Physics" atIndex:0];
     [lectureFavorites insertObject:@"Math" atIndex:1];
-    [lectureFavorites insertObject:@"Programming" atIndex:2];
+    [lectureFavorites insertObject:@"Testing" atIndex:2];
     [_tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
     
     [serverFavorites insertObject:@"michaeltimbrook.com" atIndex:0];

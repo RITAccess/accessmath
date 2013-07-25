@@ -91,7 +91,11 @@
                                                 <action selector="userDidCancel:" destination="QD5-34-n2w" id="f2z-LN-K4I"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Join" id="OB2-Bn-PiN"/>
+                                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Join" id="OB2-Bn-PiN">
+                                            <connections>
+                                                <action selector="connectToStream:" destination="QD5-34-n2w" id="TXn-bp-kQe"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
