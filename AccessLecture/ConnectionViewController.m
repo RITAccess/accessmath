@@ -18,7 +18,7 @@
     AVCaptureVideoPreviewLayer *preview;
     UIButton *cancelButton;
     BOOL isScanning;
-    NSMutableArray *lectureFavorites;
+    NSMutableArray *lectureFavorites, *serverFavorites;
 }
 
 - (void)viewDidLoad
@@ -49,9 +49,8 @@
     
     isScanning = NO;
     
-    if (!lectureFavorites) {
-        lectureFavorites = [[NSMutableArray alloc] init];
-    }
+    if (!lectureFavorites) lectureFavorites = [NSMutableArray new];
+    if (!serverFavorites) serverFavorites = [NSMutableArray new];
     
     [self populateFavorites];
 }
@@ -219,29 +218,44 @@
     [lectureFavorites insertObject:@"Physics" atIndex:0];
     [lectureFavorites insertObject:@"Math" atIndex:1];
     [lectureFavorites insertObject:@"Programming" atIndex:2];
-    [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+    [_tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+    [serverFavorites insertObject:@"michaeltimbrook.com" atIndex:0];
+    [serverFavorites insertObject:@"testing.rit.edu" atIndex:1];
+    [_tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:1]] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return lectureFavorites.count;
+    return (section == 0) ? lectureFavorites.count : serverFavorites.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    cell.textLabel.text = [lectureFavorites[indexPath.row] description];
+    UITableViewCell *cell = [UITableViewCell new];
+    if (indexPath.section == 0){
+        cell = [tableView dequeueReusableCellWithIdentifier:@"LectureCell" forIndexPath:indexPath];
+        cell.textLabel.text = [lectureFavorites[indexPath.row] description];
+    } else if (indexPath.section == 1) {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"ServerCell" forIndexPath:indexPath];
+        cell.textLabel.text = [serverFavorites[indexPath.row] description];
+    }
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [_lecture setText:[[[tableView cellForRowAtIndexPath:indexPath] textLabel] text]];
+    if (indexPath.section == 0){
+        [_lecture setText:[[[tableView cellForRowAtIndexPath:indexPath] textLabel] text]];
+    } else {
+        [_connectionAddress setText:[[[tableView cellForRowAtIndexPath:indexPath] textLabel] text]];
+    }
+    
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
