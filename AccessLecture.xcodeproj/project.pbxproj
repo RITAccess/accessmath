@@ -71,6 +71,7 @@
 		3FF7FFD513D5E45300B89A5D /* AlertBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FF7FFD413D5E45300B89A5D /* AlertBG.png */; };
 		3FFCFB2213A25388003DAB63 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FFCFB2113A25388003DAB63 /* MessageUI.framework */; };
 		4C0966B01768D6520063AED7 /* Networking.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0966AF1768D6520063AED7 /* Networking.m */; };
+		4C0B3A8817A15FB20092B8F5 /* ZoomBounds.c in Sources */ = {isa = PBXBuildFile; fileRef = 4C0B3A8717A15FB20092B8F5 /* ZoomBounds.c */; };
 		4C4B8BFA178EF57200C2F94B /* QRScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B8BF9178EF57200C2F94B /* QRScanner.m */; };
 		4C4B8BFC178EF8D900C2F94B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C4B8BFB178EF8D900C2F94B /* AVFoundation.framework */; };
 		4C51C79D1768F5BE0045DF42 /* Lectures.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C51C79C1768F5BE0045DF42 /* Lectures.m */; };
@@ -261,6 +262,8 @@
 		3FF7FFD413D5E45300B89A5D /* AlertBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AlertBG.png; path = AccessLecture/core/AlertBG.png; sourceTree = "<group>"; };
 		3FFCFB2113A25388003DAB63 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		4C0966AF1768D6520063AED7 /* Networking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Networking.m; sourceTree = "<group>"; };
+		4C0B3A8717A15FB20092B8F5 /* ZoomBounds.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ZoomBounds.c; sourceTree = "<group>"; };
+		4C0B3A8E17A15FD60092B8F5 /* ZoomBounds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoomBounds.h; sourceTree = "<group>"; };
 		4C4B8BF8178EF57200C2F94B /* QRScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRScanner.h; sourceTree = "<group>"; };
 		4C4B8BF9178EF57200C2F94B /* QRScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRScanner.m; sourceTree = "<group>"; };
 		4C4B8BFB178EF8D900C2F94B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -671,6 +674,8 @@
 				4C9AB8FB177C6884004A4F65 /* Views */,
 				4C5C50CB177B7B7C0095801A /* LectureViewContainer.h */,
 				4C5C50CC177B7B7C0095801A /* LectureViewContainer.m */,
+				4C0B3A8E17A15FD60092B8F5 /* ZoomBounds.h */,
+				4C0B3A8717A15FB20092B8F5 /* ZoomBounds.c */,
 			);
 			name = LectureViewController;
 			sourceTree = "<group>";
@@ -959,6 +964,7 @@
 				3FED96191370863E00D8D1B8 /* main.m in Sources */,
 				3F0F3B6E178DBBBD00163C2A /* UIView+Layout.m in Sources */,
 				3F0F3B6D178DBBB900163C2A /* UIColor+Tools.m in Sources */,
+				4C0B3A8817A15FB20092B8F5 /* ZoomBounds.c in Sources */,
 				3F0F3B6B178DBB9D00163C2A /* FTCoreTextView.m in Sources */,
 				4CEA1A03177CAAED00A1DE05 /* LectureCell.m in Sources */,
 				3FED961C1370863E00D8D1B8 /* AccessLectureAppDelegate.m in Sources */,

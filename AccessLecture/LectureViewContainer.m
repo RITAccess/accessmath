@@ -11,6 +11,7 @@
 #import "DrawViewController.h"
 #import "NotesViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import "ZoomBounds.h"
 
 // Default content size
 #define LC_WIDTH 1920
@@ -77,16 +78,21 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
 
 @interface LectureViewContainer ()
 
-@property CGPoint center;
-@property CGSize space;
+// Zoom/pan handles
+@property (nonatomic) CGPoint center;
+@property (nonatomic) CGSize space;
+@property (nonatomic) CGAffineTransform zoomLevel;
+@property (nonatomic) BOOL finish;
 
 @end
 
-@implementation LectureViewContainer {
+@implementation LectureViewContainer
+{
     // Controllers
     NotesViewController *nvc;
     DrawViewController *dcv;
     StreamViewController *svc;
+    VCBlank *blank;
     
     // Menu
     NSArray *menuItems;
@@ -94,7 +100,6 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
 
     // Zoom
     dispatch_once_t getZoomIdentity;
-    CGAffineTransform _zoomLevel;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -125,10 +130,12 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
     
     _space = CGSizeMake(LC_WIDTH, LC_HEIGHT);
     
+    blank = [VCBlank new];
+    
     [self addController:nvc];
     [self addController:dcv];
     [self addController:svc];
-    [self addController:[VCBlank new]];
+    [self addController:blank];
     
     _center = CGPointMake(CGRectGetMidY(self.view.frame), CGRectGetMidX(self.view.frame));
     
@@ -215,6 +222,41 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
 }
 
 /**
+ * Apply the global transforms on the sub views
+ */
+- (void)applyTransforms
+{
+    // Handle bounds and stretching
+    
+    CGPoint calcCenter;
+    CGPoint centerLimit;
+    apply_bounds_with_bounce(_center, blank.view.frame.size, [[UIScreen mainScreen] bounds].size, &calcCenter, &centerLimit);
+    
+    CGAffineTransform calcZoom;
+    CGAffineTransform zoomLimit;
+    
+    CGFloat zoomScaleMin = (1.0 - ((self.view.frame.size.width + 125.0) / self.space.width));
+    apply_zoom_limit_with_bounce(CGAffineTransformMakeScale(zoomScaleMin, zoomScaleMin), CGAffineTransformMakeScale(4.0, 4.0), _zoomLevel, &calcZoom, &zoomLimit);
+    
+    // Apply transforms
+    [self.childViewControllers enumerateContentViewsWithBlock:^(UIView *content, NSUInteger idx, BOOL *stop) {
+        content.transform = calcZoom;
+        content.center = calcCenter;
+    }];
+    if (_finish) {
+        _center = centerLimit;
+        _zoomLevel = zoomLimit;
+        _finish = NO;
+        [self.childViewControllers enumerateContentViewsWithBlock:^(UIView *content, NSUInteger idx, BOOL *stop) {
+            [UIView animateWithDuration:0.2 animations:^{
+                content.transform = _zoomLevel;
+                content.center = _center;
+            }];
+        }];
+    }
+}
+
+/**
  * Zoom out to see full content
  */
 - (void)fullZoomOut
@@ -225,13 +267,8 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
     _center = CGPointMake(CGRectGetMidY(self.view.frame), CGRectGetMidX(self.view.frame));
     CGFloat zoomScale = (1.0 - ((self.view.frame.size.width + 125.0) / self.space.width));
     _zoomLevel = CGAffineTransformMakeScale(zoomScale, zoomScale);
-    [self.childViewControllers enumerateObjectsUsingBlock:^(UIViewController<LectureViewChild> *child, NSUInteger idx, BOOL *stop) {
-        [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationCurveEaseInOut animations:^{
-            UIView *content = [child contentView];
-            content.transform = _zoomLevel;
-            content.center = _center;
-        } completion:nil];
-    }];
+    
+    [self applyTransforms];
     
     // Dismiss menu
     if (UIDeviceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
@@ -254,13 +291,12 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
         _zoomLevel = CGAffineTransformIdentity;
     });
     _zoomLevel = CGAffineTransformScale(_zoomLevel, TAPZOOMFACTOR, TAPZOOMFACTOR);
-    [self.childViewControllers enumerateObjectsUsingBlock:^(UIViewController<LectureViewChild> *child, NSUInteger idx, BOOL *stop) {
-        [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationCurveEaseInOut animations:^{
-            UIView *content = [child contentView];
-            content.transform = _zoomLevel;
-            [content setCenter:self.center];
-        } completion:nil];
-    }];
+    
+    _finish = (reg.state == UIGestureRecognizerStateEnded ||
+               reg.state == UIGestureRecognizerStateFailed ||
+               reg.state == UIGestureRecognizerStateCancelled );
+    [self applyTransforms];
+    
 }
 
 /**
@@ -280,11 +316,11 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
         _zoomLevel = CGAffineTransformIdentity;
     });
     _zoomLevel = CGAffineTransformScale(_zoomLevel, scale, scale);
-    [self.childViewControllers enumerateObjectsUsingBlock:^(UIViewController<LectureViewChild> *child, NSUInteger idx, BOOL *stop) {
-        UIView *content = [child contentView];
-        content.transform = _zoomLevel;
-        [content setCenter:self.center];
-    }];
+    
+    _finish = (gesture.state == UIGestureRecognizerStateEnded ||
+               gesture.state == UIGestureRecognizerStateFailed ||
+               gesture.state == UIGestureRecognizerStateCancelled );
+    [self applyTransforms];
 }
 
 /**
@@ -294,13 +330,13 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
 {
     CGPoint translation = [gesture translationInView:self.view];
     [gesture setTranslation:CGPointMake(0, 0) inView:self.view];
-    for (id<LectureViewChild> obj in self.childViewControllers) {
-        if ([obj respondsToSelector:@selector(contentView)]) {
-            UIView *view = [obj contentView];
-            [view setCenter:CGPointMake(view.center.x + translation.x, view.center.y + translation.y)];
-        }
-    }
     self.center = CGPointMake(self.center.x + translation.x, self.center.y + translation.y);
+
+    _finish = (gesture.state == UIGestureRecognizerStateEnded ||
+               gesture.state == UIGestureRecognizerStateFailed ||
+               gesture.state == UIGestureRecognizerStateCancelled );
+    
+    [self applyTransforms];
 }
 
 - (void)action:(UITapGestureRecognizer *)reg
