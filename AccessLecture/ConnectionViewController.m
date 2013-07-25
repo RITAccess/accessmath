@@ -315,8 +315,12 @@
         [lectureFavorites removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        [lectureFavorites insertObject:@"New Lecture!" atIndex:0];
-        [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+        
+        // If the lecture isn't blank, add the lecture to a favorite.
+        if (![_lecture.text isEqualToString:@""]){
+            [lectureFavorites insertObject:_lecture.text atIndex:0];
+            [_tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:indexPath.section]] withRowAnimation:UITableViewRowAnimationAutomatic];
+        }
     }
 }
 
