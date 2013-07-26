@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2C0F886B1760D8EC0062BD16 /* DrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F886A1760D8EC0062BD16 /* DrawView.m */; };
+		2C3BFE6517A2BF7B00404B9C /* ZoomBounds.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C3BFE6317A2BF7B00404B9C /* ZoomBounds.c */; };
 		2C7C981A17999B5C00F8ECE4 /* sample-qr.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C7C981917999B5C00F8ECE4 /* sample-qr.png */; };
 		2CBF301C177B7AB10087C17C /* DrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBF301A177B7AB10087C17C /* DrawViewController.m */; };
 		2CBF301D177B7AB10087C17C /* DrawViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CBF301B177B7AB10087C17C /* DrawViewController.xib */; };
@@ -111,6 +112,8 @@
 /* Begin PBXFileReference section */
 		2C0F88691760D8EC0062BD16 /* DrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawView.h; sourceTree = "<group>"; };
 		2C0F886A1760D8EC0062BD16 /* DrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawView.m; sourceTree = "<group>"; };
+		2C3BFE6317A2BF7B00404B9C /* ZoomBounds.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ZoomBounds.c; path = AccessLecture/ZoomBounds.c; sourceTree = "<group>"; };
+		2C3BFE6417A2BF7B00404B9C /* ZoomBounds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZoomBounds.h; path = AccessLecture/ZoomBounds.h; sourceTree = "<group>"; };
 		2C7C981917999B5C00F8ECE4 /* sample-qr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sample-qr.png"; sourceTree = "<group>"; };
 		2CBF3019177B7AB10087C17C /* DrawViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawViewController.h; sourceTree = "<group>"; };
 		2CBF301A177B7AB10087C17C /* DrawViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawViewController.m; sourceTree = "<group>"; };
@@ -486,6 +489,8 @@
 		3FED95FC1370863E00D8D1B8 = {
 			isa = PBXGroup;
 			children = (
+				2C3BFE6317A2BF7B00404B9C /* ZoomBounds.c */,
+				2C3BFE6417A2BF7B00404B9C /* ZoomBounds.h */,
 				3FF7FFD413D5E45300B89A5D /* AlertBG.png */,
 				3F63540B13A157C40024E6E9 /* Settings.bundle */,
 				3FED96111370863E00D8D1B8 /* AccessLecture */,
@@ -867,6 +872,7 @@
 				3F6D11CC17625EA20066A4FA /* SRWebSocket.m in Sources */,
 				4CADF4F2178DEC19005978C0 /* UISegmentedControlExtension.m in Sources */,
 				4C96FA84176289DE002C0D74 /* ConnectViewController.m in Sources */,
+				2C3BFE6517A2BF7B00404B9C /* ZoomBounds.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -20,7 +20,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4q4-U1-h2B">
-                    <rect key="frame" x="0.0" y="964" width="768" height="60"/>
+                    <rect key="frame" x="0.0" y="963" width="768" height="61"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="j7r-yD-pMj">
@@ -113,14 +113,48 @@
                                         </connections>
                                     </button>
                                 </barButtonItem>
+                                <barButtonItem image="undo.png" style="plain" id="5eP-ub-38y">
+                                    <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="C3C-jR-K4F">
+                                        <rect key="frame" x="431" y="6" width="73" height="33"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" image="undo.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="undoButtonPressed:" destination="-1" eventType="touchUpInside" id="bJ2-I1-WoJ"/>
+                                        </connections>
+                                    </button>
+                                </barButtonItem>
+                                <barButtonItem style="plain" id="bn0-ON-Q1l">
+                                    <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Hgd-9g-Ipn">
+                                        <rect key="frame" x="514" y="6" width="73" height="33"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" image="eraser.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="erasePressed:" destination="-1" eventType="touchUpInside" id="uMP-Or-Mpl"/>
+                                        </connections>
+                                    </button>
+                                </barButtonItem>
                             </items>
                         </toolbar>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="j7r-yD-pMj" firstAttribute="leading" secondItem="4q4-U1-h2B" secondAttribute="leading" id="FaE-Ep-jWG"/>
-                        <constraint firstAttribute="trailing" secondItem="j7r-yD-pMj" secondAttribute="trailing" id="MSN-qR-DZe"/>
-                        <constraint firstItem="j7r-yD-pMj" firstAttribute="top" secondItem="4q4-U1-h2B" secondAttribute="top" constant="17" id="xQu-MG-rhI"/>
+                        <constraint firstItem="j7r-yD-pMj" firstAttribute="trailing" secondItem="4q4-U1-h2B" secondAttribute="trailing" id="805-Xp-gbB"/>
+                        <constraint firstItem="j7r-yD-pMj" firstAttribute="bottom" secondItem="4q4-U1-h2B" secondAttribute="bottom" id="SQB-a7-sLz"/>
+                        <constraint firstItem="j7r-yD-pMj" firstAttribute="leading" secondItem="4q4-U1-h2B" secondAttribute="leading" id="mVR-bK-Tfu"/>
                     </constraints>
                 </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RecycleBin.png" translatesAutoresizingMaskIntoConstraints="NO" id="ndw-Ze-twa">
@@ -134,12 +168,12 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="4q4-U1-h2B" firstAttribute="top" secondItem="ndw-Ze-twa" secondAttribute="bottom" constant="8" symbolic="YES" id="85P-Cc-3Il"/>
-                <constraint firstItem="4q4-U1-h2B" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="KTG-90-2Uo"/>
+                <constraint firstItem="4q4-U1-h2B" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="5Ir-hg-6q9"/>
+                <constraint firstItem="4q4-U1-h2B" firstAttribute="top" secondItem="ndw-Ze-twa" secondAttribute="bottom" constant="7" id="LcE-EM-bSU"/>
                 <constraint firstAttribute="bottom" secondItem="ndw-Ze-twa" secondAttribute="bottom" constant="68" id="MnJ-uk-76o"/>
-                <constraint firstItem="ndw-Ze-twa" firstAttribute="trailing" secondItem="4q4-U1-h2B" secondAttribute="trailing" id="OhI-6o-v12"/>
-                <constraint firstAttribute="trailing" secondItem="4q4-U1-h2B" secondAttribute="trailing" id="Vgr-lH-jQK"/>
-                <constraint firstAttribute="bottom" secondItem="4q4-U1-h2B" secondAttribute="bottom" id="aHg-d8-M0b"/>
+                <constraint firstItem="4q4-U1-h2B" firstAttribute="trailing" secondItem="ndw-Ze-twa" secondAttribute="trailing" id="djx-Ut-s6u"/>
+                <constraint firstItem="4q4-U1-h2B" firstAttribute="trailing" secondItem="2" secondAttribute="trailing" id="qJe-TJ-fZl"/>
+                <constraint firstItem="4q4-U1-h2B" firstAttribute="bottom" secondItem="2" secondAttribute="bottom" id="sne-FJ-pdA"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
         </view>
@@ -150,7 +184,9 @@
         <image name="accesslecture.png" width="695" height="512"/>
         <image name="blue.png" width="322.53851318359375" height="224.14506530761719"/>
         <image name="drawNote.png" width="256" height="256"/>
+        <image name="eraser.png" width="150" height="150"/>
         <image name="redNote.png" width="322.53851318359375" height="224.14506530761719"/>
+        <image name="undo.png" width="1024" height="1024"/>
         <image name="yellowNote.png" width="1171" height="691"/>
     </resources>
 </document>

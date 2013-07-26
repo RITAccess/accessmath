@@ -53,8 +53,7 @@ static NSString * DEFAULT_FILENAME = @"Lecture001";
         [_currentDocument openWithCompletionHandler:^(BOOL success){
             if(success)
             {
-                NSLog(@"Success");
-                [AccessLectureRuntime defaultRuntime].currentDocument = _currentDocument;
+            [AccessLectureRuntime defaultRuntime].currentDocument = _currentDocument;
                
             }
             else{
