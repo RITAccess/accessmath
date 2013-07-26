@@ -56,7 +56,7 @@
     [swipeToDelete setDirection:UISwipeGestureRecognizerDirectionRight];
     [_tableView addGestureRecognizer:swipeToDelete];
     
-    UITapGestureRecognizer *tapToAdd = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(addFavoriteCellAtSection:)];
+    UITapGestureRecognizer *tapToAdd = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(addFavoriteCell)];
     [tapToAdd setNumberOfTapsRequired:2];
     [self.view addGestureRecognizer:tapToAdd];
     
@@ -115,6 +115,7 @@
         [_previewView.layer addSublayer:preview];
         [_previewView setBackgroundColor:[UIColor clearColor]];
         
+        // Initializing QR Cancel button.
         cancelButton = [[UIButton alloc] initWithFrame:CGRectMake(_previewView.frame.size.width - 100, _previewView.frame.size.height - 50, 100, 50)];
         [cancelButton addTarget:self action:@selector(userDidCancel:) forControlEvents:UIControlEventTouchDown];
         [cancelButton setBackgroundColor:[UIColor clearColor]];
@@ -229,7 +230,7 @@
     }
 }
 
-- (void)addFavoriteCellAtSection:(int)section
+- (void)addFavoriteCell
 {
     if (![lectureFavorites containsObject:_lecture.text] && ![_lecture.text isEqualToString:@""]){
         [lectureFavorites insertObject:_lecture.text atIndex:0];
@@ -256,7 +257,6 @@
 {
     return (section == 0) ? lectureFavorites.count : serverFavorites.count;
 }
-
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -320,13 +320,16 @@
     }
 }
 
-# pragma mark - Helpers
+#pragma mark - Helpers
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
 }
 
+/**
+ * Overriding to dismiss keyboard on scan.
+ */
 - (BOOL)disablesAutomaticKeyboardDismissal
 {
     return NO;
