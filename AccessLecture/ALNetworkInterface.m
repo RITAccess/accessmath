@@ -41,6 +41,16 @@
     return self;
 }
 
+#pragma mark Getting stream info
+
+- (NSString *)getCurrentLectureName
+{
+    if (socketConnection.isConnected) {
+        return lecture;
+    }
+    return nil;
+}
+
 #pragma mark Accessing Lecture
 
 /**

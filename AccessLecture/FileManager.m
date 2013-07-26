@@ -95,7 +95,7 @@
     }
     NSLog(@"Files succesfully deleted");
 }
-+(BOOL) saveDocument:(AccessDocument *)document{
++ (BOOL)saveDocument:(AccessDocument *)document{
     
     AccessDocument *currentDocument;
     Lecture *currentLecture = document.lecture;

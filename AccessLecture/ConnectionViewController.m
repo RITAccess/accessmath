@@ -11,7 +11,8 @@
 #import "ALNetworkInterface.h"
 #import <QuartzCore/CATransform3D.h>
 
-@implementation ConnectionViewController {
+@implementation ConnectionViewController
+{
     ALNetworkInterface *server;
     QRScanner *scanner;
     AVCaptureVideoPreviewLayer *preview;
@@ -266,7 +267,6 @@
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
-    //  NOTE: decimal points in the CATransform are necessary.
     if (_previewView && isScanning){
         if ([UIDevice currentDevice].orientation == UIInterfaceOrientationPortrait){
             [_previewView.layer setTransform:CATransform3DMakeRotation(0 / 180.0 * M_PI, 0.0, 0.0, 1.0)];
