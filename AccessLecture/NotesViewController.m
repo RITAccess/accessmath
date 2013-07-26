@@ -13,7 +13,9 @@ static NSString * TEXT_KEY = @"text_key";         // key to code for the image
 static NSString * TYPE_KEY = @"type_key";
 static NSString * DRAW_KEY = @"draw_key";
 
+
 @interface noteLoader:NSObject
+   
 
 @property(nonatomic) UIView *view;
 @property(nonatomic) NSString *styleText;
@@ -60,23 +62,7 @@ static NSString * DRAW_KEY = @"draw_key";
 @interface NotesViewController ()
 
 @end
-@implementation NotesViewController{
-    UIColor *textColor;
-    UIColor *drawcolor;
-    CGFloat lastScale;
-    NSString *startTag;
-    NSString *endTag;
-    BOOL isBackSpacePressed;
-    Lecture *currentLecture;
-    AccessDocument *currentDocument;
-    BOOL isOpened;
-    UIPanGestureRecognizer *panToMoveNote;
-    UIPanGestureRecognizer *panToResize;
-    UILongPressGestureRecognizer *longPressGestureRecognizer;
-    UILongPressGestureRecognizer *longPressGestureRecognizer2;
-    NSInteger drawIndex;
-    }
- 
+@implementation NotesViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -372,7 +358,7 @@ static NSString * DRAW_KEY = @"draw_key";
         [gestureRecognizer.view addSubview:tempView];
         [gestureRecognizer.view addSubview:temp];
         [gestureRecognizer.view setFrame:CGRectMake(gestureRecognizer.view.frame.origin.x, gestureRecognizer.view.frame.origin.y, temp.frame.size.width, temp.frame.size.height)];
-        NSLog(@"Exe");
+        
         
     }
     else if((_isDrawing)&&([[[[gestureRecognizer view] subviews] objectAtIndex:1] isKindOfClass:[DrawView class]])&&(gestureRecognizer.view.frame.size.width==50)){
