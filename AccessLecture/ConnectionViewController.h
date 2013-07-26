@@ -23,6 +23,7 @@ static NSString* const ConnectionViewControllerXIB = @"ConnectionViewController"
 @end
 
 @interface ConnectionViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
 @property (weak, nonatomic) IBOutlet UINavigationBar *statusLabel;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activity;
 @property (weak, nonatomic) IBOutlet UITextField *connectionAddress;
