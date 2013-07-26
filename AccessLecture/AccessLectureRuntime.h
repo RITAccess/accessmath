@@ -17,7 +17,7 @@
 - (id)init;
 
 //
-// use this to get a "singlton" instance of the current runtime.
+// use this to get a "singleton" instance of the current runtime.
 //
 + (AccessLectureRuntime *)defaultRuntime;
 

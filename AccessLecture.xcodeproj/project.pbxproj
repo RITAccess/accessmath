@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2C0F886B1760D8EC0062BD16 /* DrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F886A1760D8EC0062BD16 /* DrawView.m */; };
+		2C3BFE6517A2BF7B00404B9C /* ZoomBounds.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C3BFE6317A2BF7B00404B9C /* ZoomBounds.c */; };
 		2C7C981A17999B5C00F8ECE4 /* sample-qr.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C7C981917999B5C00F8ECE4 /* sample-qr.png */; };
 		2CBF301C177B7AB10087C17C /* DrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBF301A177B7AB10087C17C /* DrawViewController.m */; };
 		2CBF301D177B7AB10087C17C /* DrawViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CBF301B177B7AB10087C17C /* DrawViewController.xib */; };
@@ -52,7 +53,6 @@
 		3FAAA850137848AB00F79C0C /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAAA84F137848AB00F79C0C /* Icon.png */; };
 		3FADD94917983F7A00ADEF76 /* RecycleBin.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FADD94817983F7400ADEF76 /* RecycleBin.png */; };
 		3FAE785413C786F800796813 /* accesslecture.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAE785313C786F800796813 /* accesslecture.png */; };
-		3FC2123617A05B26007A6A99 /* eraser.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FC2123517A05B26007A6A99 /* eraser.png */; };
 		3FCD5D0B15437D0A005F2A60 /* AccessDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F99F1FD154364270065CBB9 /* AccessDocument.m */; };
 		3FCD5D1715438472005F2A60 /* AccessLectureRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FCD5D1615438472005F2A60 /* AccessLectureRuntime.m */; };
 		3FED960C1370863E00D8D1B8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FED960B1370863E00D8D1B8 /* UIKit.framework */; };
@@ -90,14 +90,12 @@
 		4CBF5D881768DAD500746377 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11D017625F0D0066A4FA /* CFNetwork.framework */; };
 		4CBF5D891768DAD700746377 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11CE17625F060066A4FA /* Security.framework */; };
 		4CD0A5EF177DC98600864228 /* ConnectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD0A5ED177DC98600864228 /* ConnectionViewController.m */; };
-		4CD0A5F0177DC98600864228 /* ConnectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CD0A5EE177DC98600864228 /* ConnectionViewController.xib */; };
 		4CD0A5F8177E1D6800864228 /* StreamDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD0A5F7177E1D6800864228 /* StreamDrawing.m */; };
 		4CE742C41768BDE60026DE71 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F9BA9C21758FE1C00BEFB55 /* SenTestingKit.framework */; };
 		4CE742C51768BDE60026DE71 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FED960D1370863E00D8D1B8 /* Foundation.framework */; };
 		4CE742C61768BDE60026DE71 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FED960B1370863E00D8D1B8 /* UIKit.framework */; };
 		4CEA1A03177CAAED00A1DE05 /* LectureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEA1A00177CAAED00A1DE05 /* LectureCell.m */; };
 		4CEA1A04177CAAED00A1DE05 /* OpenLectureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEA1A02177CAAED00A1DE05 /* OpenLectureViewController.m */; };
-		4CF0DD8A17A1AB100036F57D /* ZoomBounds.c in Sources */ = {isa = PBXBuildFile; fileRef = 4CF0DD8817A1AB100036F57D /* ZoomBounds.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +111,8 @@
 /* Begin PBXFileReference section */
 		2C0F88691760D8EC0062BD16 /* DrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawView.h; sourceTree = "<group>"; };
 		2C0F886A1760D8EC0062BD16 /* DrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawView.m; sourceTree = "<group>"; };
+		2C3BFE6317A2BF7B00404B9C /* ZoomBounds.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ZoomBounds.c; sourceTree = "<group>"; };
+		2C3BFE6417A2BF7B00404B9C /* ZoomBounds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoomBounds.h; sourceTree = "<group>"; };
 		2C7C981917999B5C00F8ECE4 /* sample-qr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sample-qr.png"; sourceTree = "<group>"; };
 		2CBF3019177B7AB10087C17C /* DrawViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawViewController.h; sourceTree = "<group>"; };
 		2CBF301A177B7AB10087C17C /* DrawViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawViewController.m; sourceTree = "<group>"; };
@@ -186,7 +186,6 @@
 		3FAAA84F137848AB00F79C0C /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
 		3FADD94817983F7400ADEF76 /* RecycleBin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecycleBin.png; sourceTree = "<group>"; };
 		3FAE785313C786F800796813 /* accesslecture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = accesslecture.png; sourceTree = "<group>"; };
-		3FC2123517A05B26007A6A99 /* eraser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eraser.png; sourceTree = "<group>"; };
 		3FC32EBA13E05E0F00077291 /* biology.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = biology.png; path = ../biology.png; sourceTree = "<group>"; };
 		3FC32EBB13E05E0F00077291 /* geometry.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = geometry.png; path = ../geometry.png; sourceTree = "<group>"; };
 		3FCD5D1515438472005F2A60 /* AccessLectureRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccessLectureRuntime.h; sourceTree = "<group>"; };
@@ -236,7 +235,6 @@
 		4CB832A01768C0AC008F0099 /* AccessLecture_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccessLecture_Tests.m; sourceTree = "<group>"; };
 		4CD0A5EC177DC98600864228 /* ConnectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionViewController.h; sourceTree = "<group>"; };
 		4CD0A5ED177DC98600864228 /* ConnectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionViewController.m; sourceTree = "<group>"; };
-		4CD0A5EE177DC98600864228 /* ConnectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConnectionViewController.xib; sourceTree = "<group>"; };
 		4CD0A5F6177E1D6800864228 /* StreamDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamDrawing.h; sourceTree = "<group>"; };
 		4CD0A5F7177E1D6800864228 /* StreamDrawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamDrawing.m; sourceTree = "<group>"; };
 		4CE742C31768BDE60026DE71 /* AccessLecture Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "AccessLecture Tests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -244,8 +242,6 @@
 		4CEA1A00177CAAED00A1DE05 /* LectureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LectureCell.m; sourceTree = "<group>"; };
 		4CEA1A01177CAAED00A1DE05 /* OpenLectureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenLectureViewController.h; sourceTree = "<group>"; };
 		4CEA1A02177CAAED00A1DE05 /* OpenLectureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenLectureViewController.m; sourceTree = "<group>"; };
-		4CF0DD8817A1AB100036F57D /* ZoomBounds.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ZoomBounds.c; sourceTree = "<group>"; };
-		4CF0DD8917A1AB100036F57D /* ZoomBounds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoomBounds.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -337,7 +333,7 @@
 		2CFC32A1175E7ED600384AEC /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				3FC2123517A05B26007A6A99 /* eraser.png */,
+				2C7C981917999B5C00F8ECE4 /* sample-qr.png */,
 				3FADD94817983F7400ADEF76 /* RecycleBin.png */,
 				3FA6119B17906E1A00A2B4C8 /* resizeDrawNote.png */,
 				3FA6119917906A8B00A2B4C8 /* yellowNote.png */,
@@ -462,7 +458,7 @@
 		3FCD5D1115438265005F2A60 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				3FED963113708E4E00D8D1B8 /* Root View */,
+				4C96FA81176289B4002C0D74 /* Connect View */,
 				3FED963213708E5100D8D1B8 /* Lecture View */,
 				3F0DBDCC13BD170C00E3FEE8 /* About View */,
 			);
@@ -565,13 +561,13 @@
 			name = "App Delegate";
 			sourceTree = "<group>";
 		};
-		3FED963113708E4E00D8D1B8 /* Root View */ = {
+		3FED963113708E4E00D8D1B8 /* RootViewController */ = {
 			isa = PBXGroup;
 			children = (
 				3FED96201370863E00D8D1B8 /* RootViewController.h */,
 				3FED96211370863E00D8D1B8 /* RootViewController.m */,
 			);
-			name = "Root View";
+			name = RootViewController;
 			sourceTree = "<group>";
 		};
 		3FED963213708E5100D8D1B8 /* Lecture View */ = {
@@ -606,6 +602,7 @@
 		4C5C50C9177B7B300095801A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3FED963113708E4E00D8D1B8 /* RootViewController */,
 				2CBF3014177B700C0087C17C /* DrawViewController */,
 				4C8ABE7C177CA341007C934C /* NotesViewController */,
 				4C8ABE7A177C886C007C934C /* StreamViewController */,
@@ -618,10 +615,10 @@
 			isa = PBXGroup;
 			children = (
 				4C9AB8FB177C6884004A4F65 /* Views */,
+				2C3BFE6417A2BF7B00404B9C /* ZoomBounds.h */,
+				2C3BFE6317A2BF7B00404B9C /* ZoomBounds.c */,
 				4C5C50CB177B7B7C0095801A /* LectureViewContainer.h */,
 				4C5C50CC177B7B7C0095801A /* LectureViewContainer.m */,
-				4CF0DD8917A1AB100036F57D /* ZoomBounds.h */,
-				4CF0DD8817A1AB100036F57D /* ZoomBounds.c */,
 			);
 			name = LectureViewController;
 			sourceTree = "<group>";
@@ -653,6 +650,13 @@
 			name = NotesViewController;
 			sourceTree = "<group>";
 		};
+		4C96FA81176289B4002C0D74 /* Connect View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Connect View";
+			sourceTree = "<group>";
+		};
 		4C9AB8FB177C6884004A4F65 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -667,8 +671,6 @@
 			children = (
 				4CD0A5EC177DC98600864228 /* ConnectionViewController.h */,
 				4CD0A5ED177DC98600864228 /* ConnectionViewController.m */,
-				4CD0A5EE177DC98600864228 /* ConnectionViewController.xib */,
-				2C7C981917999B5C00F8ECE4 /* sample-qr.png */,
 				4C4B8BF8178EF57200C2F94B /* QRScanner.h */,
 				4C4B8BF9178EF57200C2F94B /* QRScanner.m */,
 			);
@@ -748,7 +750,7 @@
 		3FED95FE1370863E00D8D1B8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0460;
 				TargetAttributes = {
 					4CE742C21768BDE60026DE71 = {
 						TestTargetID = 3FED96061370863E00D8D1B8;
@@ -779,7 +781,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CBF301D177B7AB10087C17C /* DrawViewController.xib in Resources */,
-				3FC2123617A05B26007A6A99 /* eraser.png in Resources */,
 				3FA6119817905EDF00A2B4C8 /* redNote.png in Resources */,
 				3FED96161370863E00D8D1B8 /* InfoPlist.strings in Resources */,
 				3FED96531370909100D8D1B8 /* Invert.png in Resources */,
@@ -796,7 +797,6 @@
 				3FED965B1370909100D8D1B8 /* ZoomIn.png in Resources */,
 				3FED965C1370909100D8D1B8 /* ZoomOut.png in Resources */,
 				3F0FFCFB1371A93A00299663 /* Back.png in Resources */,
-				4CD0A5F0177DC98600864228 /* ConnectionViewController.xib in Resources */,
 				3FA6119A17906A8B00A2B4C8 /* yellowNote.png in Resources */,
 				2CF6BA981784920D00A695CC /* undo.png in Resources */,
 				3FAAA850137848AB00F79C0C /* Icon.png in Resources */,
@@ -866,7 +866,7 @@
 				4C8ABE78177C87BD007C934C /* StreamViewController.m in Sources */,
 				3F6D11CC17625EA20066A4FA /* SRWebSocket.m in Sources */,
 				4CADF4F2178DEC19005978C0 /* UISegmentedControlExtension.m in Sources */,
-				4CF0DD8A17A1AB100036F57D /* ZoomBounds.c in Sources */,
+				2C3BFE6517A2BF7B00404B9C /* ZoomBounds.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -905,6 +905,7 @@
 		3FED96261370863E00D8D1B8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -915,7 +916,6 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
-				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "EC51EB3A-91E0-4B0D-8398-E553BBD0EE94";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EC51EB3A-91E0-4B0D-8398-E553BBD0EE94";
 				SDKROOT = iphoneos;
@@ -926,6 +926,7 @@
 		3FED96271370863E00D8D1B8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -954,13 +955,8 @@
 				GCC_PREFIX_HEADER = "AccessLecture/AccessLecture-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_UNUSED_FUNCTION = YES;
-				HEADER_SEARCH_PATHS = (
-					"\"$(BUILD_ROOT)/../IntermediateBuildFilesPath/UninstalledProducts/include\"",
-					"$(inherited)",
-				);
 				INFOPLIST_FILE = "AccessLecture/AccessLecture-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "EC51EB3A-91E0-4B0D-8398-E553BBD0EE94";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EC51EB3A-91E0-4B0D-8398-E553BBD0EE94";
@@ -983,13 +979,8 @@
 				GCC_PREFIX_HEADER = "AccessLecture/AccessLecture-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_UNUSED_FUNCTION = YES;
-				HEADER_SEARCH_PATHS = (
-					"\"$(BUILD_ROOT)/../IntermediateBuildFilesPath/UninstalledProducts/include\"",
-					"$(inherited)",
-				);
 				INFOPLIST_FILE = "AccessLecture/AccessLecture-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "EC51EB3A-91E0-4B0D-8398-E553BBD0EE94";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EC51EB3A-91E0-4B0D-8398-E553BBD0EE94";

@@ -15,9 +15,21 @@
 #import "FileManager.h"
 #import "AccessLectureRuntime.h"
 static NSString* const NotesViewControllerXIB = @"NotesViewController";
-@interface NotesViewController : UIViewController<UITextViewDelegate,LectureViewChild>
-{
-   
+@interface NotesViewController : UIViewController<UITextViewDelegate,LectureViewChild>{
+    UIColor *textColor;
+    UIColor *drawcolor;
+    CGFloat lastScale;
+    NSString *startTag;
+    NSString *endTag;
+    BOOL isBackSpacePressed;
+    Lecture *currentLecture;
+    AccessDocument *currentDocument;
+    BOOL isOpened;
+    UIPanGestureRecognizer *panToMoveNote;
+    UIPanGestureRecognizer *panToResize;
+    UILongPressGestureRecognizer *longPressGestureRecognizer;
+    UILongPressGestureRecognizer *longPressGestureRecognizer2;
+    NSInteger drawIndex;
 }
 @property UIView *mainView;
 @property (nonatomic) BOOL isCreatingNote;

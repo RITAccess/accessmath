@@ -35,8 +35,6 @@ static NSString * DEFAULT_FILENAME = @"Lecture001";
 }
 
 - (void)openDocument:(NSURL *) withURL{
-  //  NSURL *dirURL=[FileManager accessMathDirectoryURL];
-  //  [FileManager clearAllDocuments];
     NSURL * currentDirectory = [FileManager iCloudDirectoryURL];
     if (currentDirectory == nil) currentDirectory = [FileManager accessMathDirectoryURL];
     NSArray * docs = [FileManager documentsIn:currentDirectory];
