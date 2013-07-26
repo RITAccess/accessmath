@@ -35,6 +35,14 @@ enum ALPointType : NSUInteger {
 
 @interface ALNetworkInterface : NSObject <SocketIODelegate>
 
+/**
+ * Gets the current lecture name that the server is connected to, returns nil if
+ * not connected
+ *
+ * @return lecture name
+ */
+- (NSString *)getCurrentLectureName;
+
 /* Delegate */
 @property (nonatomic, strong) id<LectureStreaming> delegate;
 
