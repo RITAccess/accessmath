@@ -37,7 +37,7 @@
                                     <barButtonItem title="Join Stream" id="zPr-cg-Eqj">
                                         <connections>
                                             <action selector="connectToStream:" destination="smy-cM-cef" id="mV5-7s-efd"/>
-                                            <segue destination="QD5-34-n2w" kind="modal" id="fUR-1O-LQf"/>
+                                            <segue destination="QD5-34-n2w" kind="modal" identifier="toServerConnect" id="fUR-1O-LQf"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>

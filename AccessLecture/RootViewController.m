@@ -36,16 +36,6 @@
     return UIInterfaceOrientationIsPortrait(interfaceOrientation);
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([sender isEqualToString:@"connect"]){
-        LectureViewContainer *lectureViewContainer = [segue destinationViewController];
-        StreamViewController *svc = (StreamViewController *)[[UIStoryboard storyboardWithName:StreamViewControllerStoryboard bundle:nil] instantiateViewControllerWithIdentifier:StreamViewControllerID];
-        [lectureViewContainer addController:svc];
-        svc.displayConnectView = YES;
-    }
-}
-
 #pragma mark - Buttons
 
 - (IBAction)openAbout:(id)sender
@@ -64,6 +54,16 @@
 - (IBAction)openConnect:(id)sender
 {
     [self performSegueWithIdentifier:@"toLectureController" sender:@"connect"];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([sender isEqualToString:@"connect"]){
+        LectureViewContainer *lectureViewContainer = [segue destinationViewController];
+        StreamViewController *svc = (StreamViewController *)[[UIStoryboard storyboardWithName:StreamViewControllerStoryboard bundle:nil] instantiateViewControllerWithIdentifier:StreamViewControllerID];
+        [lectureViewContainer addController:svc];
+        [svc setDisplayServerConnectView:YES];   // Segue directly into the ServerConnectView.
+    }
 }
 
 @end

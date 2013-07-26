@@ -39,8 +39,9 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    if (self.displayConnectView){
-        [self connectToStream:nil];
+    // Segueing directly from Connect Button on RootViewController.
+    if (_displayServerConnectView){
+        [self performSegueWithIdentifier:@"toServerConnect" sender:nil];
     }
 }
 
@@ -64,7 +65,7 @@
 
 #pragma mark Connection View Delegate Methods
 
-- (void)didCompleteWithConnection:(ALNetworkInterface *)server
+- (void)didCompleteWithConnection:(ALNetworkInterface *)server toLecture:(NSString *)lectureName from:(NSString *)connectionAddress
 {
     [_joinLeaveStream setTitle:@"Disconnect"];
     _connectedToStream = YES;
