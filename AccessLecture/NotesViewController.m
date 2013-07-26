@@ -8,19 +8,19 @@
 
 #import "NotesViewController.h"
 
-@interface noteLoader:NSObject{
-   
-}
+static NSString * VIEW_KEY = @"position_key";   // key to code for the position
+static NSString * TEXT_KEY = @"text_key";         // key to code for the image
+static NSString * TYPE_KEY = @"type_key";
+static NSString * DRAW_KEY = @"draw_key";
+
+@interface noteLoader:NSObject
+
 @property(nonatomic) UIView *view;
 @property(nonatomic) NSString *styleText;
 @property(nonatomic) NSString *noteType;
 @property(nonatomic) DrawView *drawContent;
 @end
 
-static NSString * VIEW_KEY = @"position_key";   // key to code for the position
-static NSString * TEXT_KEY = @"text_key";         // key to code for the image
-static NSString * TYPE_KEY = @"type_key";
-static NSString * DRAW_KEY = @"draw_key";
 @implementation noteLoader
 
 -(id)init:(UIView*)noteView type:(NSString *)nType{

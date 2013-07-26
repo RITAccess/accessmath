@@ -171,7 +171,6 @@
 
 - (IBAction)shapeButtonPress:(id)sender
 {
-    
     shapeButtonIndex >= SHAPE_MAX - 1 ? shapeButtonIndex = 0 : shapeButtonIndex++;
     
     [[_drawView buttonString] setString:[_buttonStrings objectAtIndex:shapeButtonIndex]];
