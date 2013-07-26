@@ -83,7 +83,6 @@
 		4C8ABE78177C87BD007C934C /* StreamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8ABE76177C87BD007C934C /* StreamViewController.m */; };
 		4C8ABE80177CA356007C934C /* NotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8ABE7E177CA356007C934C /* NotesViewController.m */; };
 		4C8ABE81177CA356007C934C /* NotesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C8ABE7F177CA356007C934C /* NotesViewController.xib */; };
-		4C96FA84176289DE002C0D74 /* ConnectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C96FA83176289DE002C0D74 /* ConnectViewController.m */; };
 		4C9AB8FE177C6895004A4F65 /* TopNav.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9AB8FD177C6895004A4F65 /* TopNav.m */; };
 		4CADF4F2178DEC19005978C0 /* UISegmentedControlExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CADF4F1178DEC19005978C0 /* UISegmentedControlExtension.m */; };
 		4CB832A11768C0BC008F0099 /* AccessLecture_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB832A01768C0AC008F0099 /* AccessLecture_Tests.m */; };
@@ -228,8 +227,6 @@
 		4C8ABE7D177CA356007C934C /* NotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesViewController.h; sourceTree = "<group>"; };
 		4C8ABE7E177CA356007C934C /* NotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesViewController.m; sourceTree = "<group>"; };
 		4C8ABE7F177CA356007C934C /* NotesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotesViewController.xib; sourceTree = "<group>"; };
-		4C96FA82176289DE002C0D74 /* ConnectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectViewController.h; sourceTree = "<group>"; };
-		4C96FA83176289DE002C0D74 /* ConnectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectViewController.m; sourceTree = "<group>"; };
 		4C9AB8FC177C6895004A4F65 /* TopNav.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopNav.h; sourceTree = "<group>"; };
 		4C9AB8FD177C6895004A4F65 /* TopNav.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopNav.m; sourceTree = "<group>"; };
 		4CADF4F0178DEC19005978C0 /* UISegmentedControlExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISegmentedControlExtension.h; sourceTree = "<group>"; };
@@ -465,7 +462,6 @@
 		3FCD5D1115438265005F2A60 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				4C96FA81176289B4002C0D74 /* Connect View */,
 				3FED963113708E4E00D8D1B8 /* Root View */,
 				3FED963213708E5100D8D1B8 /* Lecture View */,
 				3F0DBDCC13BD170C00E3FEE8 /* About View */,
@@ -655,15 +651,6 @@
 				4C8ABE7F177CA356007C934C /* NotesViewController.xib */,
 			);
 			name = NotesViewController;
-			sourceTree = "<group>";
-		};
-		4C96FA81176289B4002C0D74 /* Connect View */ = {
-			isa = PBXGroup;
-			children = (
-				4C96FA82176289DE002C0D74 /* ConnectViewController.h */,
-				4C96FA83176289DE002C0D74 /* ConnectViewController.m */,
-			);
-			name = "Connect View";
 			sourceTree = "<group>";
 		};
 		4C9AB8FB177C6884004A4F65 /* Views */ = {
@@ -879,7 +866,6 @@
 				4C8ABE78177C87BD007C934C /* StreamViewController.m in Sources */,
 				3F6D11CC17625EA20066A4FA /* SRWebSocket.m in Sources */,
 				4CADF4F2178DEC19005978C0 /* UISegmentedControlExtension.m in Sources */,
-				4C96FA84176289DE002C0D74 /* ConnectViewController.m in Sources */,
 				4CF0DD8A17A1AB100036F57D /* ZoomBounds.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
