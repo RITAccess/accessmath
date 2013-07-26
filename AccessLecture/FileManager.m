@@ -76,7 +76,7 @@
    
     return nil;
 }
-+ (void) clearAllDocuments{
++ (void)clearAllDocuments{
     NSString *path = [[NSMutableString alloc] init];
     NSArray *docs = [FileManager documentsIn:[FileManager localDocumentsDirectoryURL]];
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -93,9 +93,13 @@
             };
         }
     }
-    NSLog(@"Files succesfully deleted");
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notes"
+                                                    message:@"All lectures removed" delegate:self cancelButtonTitle: @"OK"
+                                          otherButtonTitles: nil];
+    [alert show];
+
 }
-+(BOOL) saveDocument:(AccessDocument *)document{
++ (BOOL)saveDocument:(AccessDocument *)document{
     
     AccessDocument *currentDocument;
     Lecture *currentLecture = document.lecture;

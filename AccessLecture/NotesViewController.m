@@ -8,9 +8,8 @@
 
 #import "NotesViewController.h"
 
-@interface noteLoader:NSObject{
+@interface noteLoader:NSObject
    
-}
 @property(nonatomic) UIView *view;
 @property(nonatomic) NSString *styleText;
 @property(nonatomic) NSString *noteType;
@@ -60,23 +59,7 @@ static NSString * DRAW_KEY = @"draw_key";
 @interface NotesViewController ()
 
 @end
-@implementation NotesViewController{
-    UIColor *textColor;
-    UIColor *drawcolor;
-    CGFloat lastScale;
-    NSString *startTag;
-    NSString *endTag;
-    BOOL isBackSpacePressed;
-    Lecture *currentLecture;
-    AccessDocument *currentDocument;
-    BOOL isOpened;
-    UIPanGestureRecognizer *panToMoveNote;
-    UIPanGestureRecognizer *panToResize;
-    UILongPressGestureRecognizer *longPressGestureRecognizer;
-    UILongPressGestureRecognizer *longPressGestureRecognizer2;
-    NSInteger drawIndex;
-    }
- 
+@implementation NotesViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
