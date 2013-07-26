@@ -620,8 +620,8 @@
 				4C9AB8FB177C6884004A4F65 /* Views */,
 				4C5C50CB177B7B7C0095801A /* LectureViewContainer.h */,
 				4C5C50CC177B7B7C0095801A /* LectureViewContainer.m */,
-				4CF0DD8817A1AB100036F57D /* ZoomBounds.c */,
 				4CF0DD8917A1AB100036F57D /* ZoomBounds.h */,
+				4CF0DD8817A1AB100036F57D /* ZoomBounds.c */,
 			);
 			name = LectureViewController;
 			sourceTree = "<group>";

@@ -96,9 +96,6 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
     // Menu
     NSArray *menuItems;
     BOOL menuOpen;
-
-    // Zoom
-    dispatch_once_t getZoomIdentity;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -137,6 +134,7 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
     [self addController:blank];
     
     _center = CGPointMake(CGRectGetMidY(self.view.frame), CGRectGetMidX(self.view.frame));
+    _zoomLevel = CGAffineTransformIdentity;
     
     // Close menus
     menuOpen = NO;
@@ -229,7 +227,7 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
     
     CGPoint calcCenter;
     CGPoint centerLimit;
-    apply_bounds_with_bounce(_center, blank.view.frame.size, [[UIScreen mainScreen] bounds].size, &calcCenter, &centerLimit);
+    apply_bounds_with_bounce(_center, blank.view.frame.size, self.view.bounds.size, &calcCenter, &centerLimit);
     
     CGAffineTransform calcZoom;
     CGAffineTransform zoomLimit;
@@ -260,9 +258,6 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
  */
 - (void)fullZoomOut
 {
-    dispatch_once(&getZoomIdentity, ^{
-        _zoomLevel = CGAffineTransformIdentity;
-    });
     _center = CGPointMake(CGRectGetMidY(self.view.frame), CGRectGetMidX(self.view.frame));
     CGFloat zoomScale = (1.0 - ((self.view.frame.size.width + 125.0) / self.space.width));
     _zoomLevel = CGAffineTransformMakeScale(zoomScale, zoomScale);
@@ -286,9 +281,6 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
     Vector relation = VectorMake(tap, self.center);
     VectorApplyScale(TAPZOOMFACTOR, &relation);
     self.center = relation.end;
-    dispatch_once(&getZoomIdentity, ^{
-        _zoomLevel = CGAffineTransformIdentity;
-    });
     _zoomLevel = CGAffineTransformScale(_zoomLevel, TAPZOOMFACTOR, TAPZOOMFACTOR);
     
     _finish = (reg.state == UIGestureRecognizerStateEnded ||
@@ -310,10 +302,6 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
     Vector relation = VectorMake(touch, self.center);
     VectorApplyScale(scale, &relation);
     self.center = relation.end;
-    
-    dispatch_once(&getZoomIdentity, ^{
-        _zoomLevel = CGAffineTransformIdentity;
-    });
     _zoomLevel = CGAffineTransformScale(_zoomLevel, scale, scale);
     
     _finish = (gesture.state == UIGestureRecognizerStateEnded ||
@@ -547,6 +535,12 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
 }
 
 - (void)viewDidUnload {
+    
+    svc = nil;
+    dcv = nil;
+    nvc = nil;
+    blank = nil;
+    
     [self setSideMenu:nil];
     [self setNavBar:nil];
     [super viewDidUnload];
