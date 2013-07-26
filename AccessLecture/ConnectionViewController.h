@@ -15,6 +15,8 @@ static NSString* const ConnectionViewControllerXIB = @"ConnectionViewController"
 
 @protocol ConnectionView <NSObject>
 
+@optional
+
 - (void)didCompleteWithConnection:(ALNetworkInterface *)server toLecture:(NSString *)lectureName from:(NSString *)connectionAddress;
 - (void)userDidCancel;
 
