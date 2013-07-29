@@ -93,19 +93,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 }
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    //Use a segue to forward the changes from itemViewController to inventoryViewController
-//    if([segue.identifier isEqualToString:@"Lecture"])
-//    {
-//        LectureViewController *controller = [segue destinationViewController];
-//        controller.isOpened = YES;
-//        controller.documentURL = [directories objectAtIndex:self.tableView.indexPathForSelectedRow.row];
-//     dispatch_async(dispatch_get_main_queue(), ^{
-//                        [[AccessLectureRuntime defaultRuntime] openDocument:controller.documentURL];
-//        
-//                    });
-//                   
-//
-//}
+ 
 }
 
 @end

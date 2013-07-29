@@ -83,6 +83,7 @@ static NSString * DRAW_KEY = @"draw_key";
     isOpened = NO;
    //assign this value from stream view controller lecture name
    [self.toolbarView setHidden:YES];
+    [self.trashBin setHidden:YES];
     currentLecture.name = @"Lecture001";
     NSURL * currentDirectory = [FileManager iCloudDirectoryURL];
     if (currentDirectory == nil) currentDirectory = [FileManager localDocumentsDirectoryURL];
@@ -103,6 +104,7 @@ static NSString * DRAW_KEY = @"draw_key";
     if((!isOpened)){
         [self initializeView];
     //  [self loadNotes:currentDocument.notes];
+        [self.trashBin setHidden:NO];
         isOpened = YES;
     }
     // Clear view
@@ -121,7 +123,7 @@ static NSString * DRAW_KEY = @"draw_key";
     [self.toolbarView setBackgroundColor:[UIColor clearColor]];
     [self.view addSubview:_mainView];
     [self.view addSubview:self.toolbarView];
-    [_mainView addSubview:self.trashBin];
+    [self.view addSubview:self.trashBin];
     [self.toolbarView addSubview:self.toolBar];
     [self.view bringSubviewToFront:self.toolbarView];
     currentLecture = [[Lecture alloc] initWithName:@"Lecture001"];
@@ -249,7 +251,7 @@ static NSString * DRAW_KEY = @"draw_key";
     DrawView *lineDrawView = [[DrawView alloc]initWithFrame:CGRectMake([gesture locationInView:outerView].x + 20, [gesture locationInView:outerView].y + 15, 400, 300)];
     [lineDrawView setPenColor:drawcolor];
     lineDrawView.userInteractionEnabled = YES;
-    //outerView.layer.borderWidth = 3;
+  // outerView.layer.borderWidth = 3;
     lineDrawView.layer.borderWidth = 3;
     lineDrawView.layer.cornerRadius = 20;
     UIImageView * anImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin.png" ]];
@@ -306,13 +308,15 @@ static NSString * DRAW_KEY = @"draw_key";
 {
     if((_isDrawing)){
         drawIndex = [[[[self.view subviews] objectAtIndex:1] subviews] indexOfObject:gestureRecognizer.view];
+        UIView *view = [[_mainView subviews] objectAtIndex:drawIndex];
         UIImageView *temp = [[[gestureRecognizer view] subviews] objectAtIndex:0];
         UIImageView *tempImage = [[[gestureRecognizer view] subviews] objectAtIndex:1];
         [[[[gestureRecognizer view] subviews] objectAtIndex:0] removeFromSuperview];
         [[[[gestureRecognizer view] subviews] objectAtIndex:0] removeFromSuperview];
         [gestureRecognizer.view addSubview:temp];
         [gestureRecognizer.view addSubview:tempImage];
-        [tempImage setFrame:CGRectMake(gestureRecognizer.view.superview.frame.origin.x, gestureRecognizer.view.superview.frame.origin.x,[gestureRecognizer locationInView:gestureRecognizer.view].x, [gestureRecognizer locationInView:gestureRecognizer.view].y)];
+        [tempImage setBounds:gestureRecognizer.view.bounds];
+        [tempImage setFrame:CGRectMake(_mainView.frame.origin.x,_mainView.frame.origin.y,[gestureRecognizer locationInView:gestureRecognizer.view].x, [gestureRecognizer locationInView:gestureRecognizer.view].y)];
         CGPoint point = CGPointMake(gestureRecognizer.view.frame.size.width-20, gestureRecognizer.view.frame.size.height-20);
         [temp setCenter:point];
         [temp setBounds:CGRectMake([gestureRecognizer locationInView:self.view].x, [gestureRecognizer locationInView:self.view].y, 50, 50)];
@@ -489,8 +493,8 @@ static NSString * DRAW_KEY = @"draw_key";
 - (IBAction)resizeDraw:(id)sender {
 }
 
-- (IBAction)undoButtonPressed:(id)sender {
-   // DrawView *tdrawView = [[[[[[self.view subviews] objectAtIndex:1] subviews] objectAtIndex:drawIndex] subviews] objectAtIndex:1];
+- (IBAction)undoButtonPressed:(id)sender
+{
     //[[[[[[self.view subviews] objectAtIndex:1] subviews] objectAtIndex:drawIndex] subviews] objectAtIndex:1] => is the drawView currently in focus
     if(_isDrawing&&([[[[[[self.view subviews] objectAtIndex:1] subviews] objectAtIndex:drawIndex] subviews] count]!=0)){
     if ([[[[[[[[[self.view subviews] objectAtIndex:1] subviews] objectAtIndex:drawIndex] subviews] objectAtIndex:1] shapes] lastObject] isMemberOfClass:[UIImageView class]]){
