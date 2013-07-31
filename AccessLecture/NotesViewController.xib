@@ -7,8 +7,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NotesViewController">
             <connections>
-                <outlet property="drawNote" destination="PHK-ZG-JXm" id="vRj-6f-f3A"/>
-                <outlet property="textNote" destination="qX8-e6-xcc" id="32J-pG-0Rd"/>
                 <outlet property="toolbarView" destination="4q4-U1-h2B" id="6EA-kJ-Fm4"/>
                 <outlet property="trashBin" destination="ndw-Ze-twa" id="gMc-TW-Q0S"/>
                 <outlet property="view" destination="2" id="3"/>
@@ -23,138 +21,96 @@
                     <rect key="frame" x="0.0" y="963" width="768" height="61"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="j7r-yD-pMj">
-                            <rect key="frame" x="0.0" y="17" width="768" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                            <rect key="contentStretch" x="0.0" y="1" width="1" height="1"/>
-                            <items>
-                                <barButtonItem image="accesslecture.png" style="plain" id="qX8-e6-xcc">
-                                    <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="IxN-qI-1Oi">
-                                        <rect key="frame" x="16" y="6" width="73" height="33"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" title="Text" image="TextNote.png">
-                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="createTextNote:" destination="-1" eventType="touchUpInside" id="fHT-Iv-KgF"/>
-                                        </connections>
-                                    </button>
-                                </barButtonItem>
-                                <barButtonItem style="plain" id="8fS-8N-90m">
-                                    <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="PHK-ZG-JXm">
-                                        <rect key="frame" x="99" y="6" width="73" height="33"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" title="Draw" image="drawNote.png">
-                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="createDrawNote:" destination="-1" eventType="touchUpInside" id="Auf-iD-3bu"/>
-                                        </connections>
-                                    </button>
-                                </barButtonItem>
-                                <barButtonItem style="plain" id="XMA-Ec-uUx">
-                                    <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="8mo-UF-IPO">
-                                        <rect key="frame" x="182" y="6" width="73" height="33"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" title="Red" image="redNote.png">
-                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="setRedColor:" destination="-1" eventType="touchUpInside" id="Try-4x-YDf"/>
-                                        </connections>
-                                    </button>
-                                </barButtonItem>
-                                <barButtonItem style="plain" id="pOc-oO-NCA">
-                                    <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Zb2-Te-NE0">
-                                        <rect key="frame" x="265" y="6" width="73" height="33"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" title="Blue" image="blue.png">
-                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="setBlueColor:" destination="-1" eventType="touchUpInside" id="e0b-Zp-Bgo"/>
-                                        </connections>
-                                    </button>
-                                </barButtonItem>
-                                <barButtonItem style="plain" id="OWU-SX-bdo">
-                                    <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4gs-bx-yYS">
-                                        <rect key="frame" x="348" y="6" width="73" height="33"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" title="Yellow" image="yellowNote.png">
-                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="setYellowColor:" destination="-1" eventType="touchUpInside" id="WAh-f9-dxF"/>
-                                        </connections>
-                                    </button>
-                                </barButtonItem>
-                                <barButtonItem image="undo.png" style="plain" id="5eP-ub-38y">
-                                    <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="C3C-jR-K4F">
-                                        <rect key="frame" x="431" y="6" width="73" height="33"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" image="undo.png">
-                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="undoButtonPressed:" destination="-1" eventType="touchUpInside" id="bJ2-I1-WoJ"/>
-                                        </connections>
-                                    </button>
-                                </barButtonItem>
-                                <barButtonItem style="plain" id="bn0-ON-Q1l">
-                                    <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Hgd-9g-Ipn">
-                                        <rect key="frame" x="514" y="6" width="73" height="33"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" image="eraser.png">
-                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="erasePressed:" destination="-1" eventType="touchUpInside" id="uMP-Or-Mpl"/>
-                                        </connections>
-                                    </button>
-                                </barButtonItem>
-                            </items>
-                        </toolbar>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ThL-8v-Elu">
+                            <rect key="frame" x="582" y="7" width="57" height="47"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="57" id="FPW-Jc-fr4"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <state key="normal" backgroundImage="TextNote.png">
+                                <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="createTextNote:" destination="-1" eventType="touchUpInside" id="4df-4H-mx7"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8cQ-xP-8Rj">
+                            <rect key="frame" x="658" y="7" width="73" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="73" id="vR0-ai-Maq"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <state key="normal" backgroundImage="drawNote.png">
+                                <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="createDrawNote:" destination="-1" eventType="touchUpInside" id="xze-lK-cVV"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HnT-o5-nb5">
+                            <rect key="frame" x="500" y="8" width="73" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="73" id="9wf-9h-CDa"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <state key="normal" backgroundImage="eraser.png">
+                                <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="erasePressed:" destination="-1" eventType="touchUpInside" id="t7k-jZ-HcL"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="orc-fk-KeF">
+                            <rect key="frame" x="417" y="7" width="73" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="73" id="FLn-NO-nfa"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <state key="normal" backgroundImage="undo.png">
+                                <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="undoButtonPressed:" destination="-1" eventType="touchUpInside" id="44w-pl-ask"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="j7r-yD-pMj" firstAttribute="trailing" secondItem="4q4-U1-h2B" secondAttribute="trailing" id="805-Xp-gbB"/>
-                        <constraint firstItem="j7r-yD-pMj" firstAttribute="bottom" secondItem="4q4-U1-h2B" secondAttribute="bottom" id="SQB-a7-sLz"/>
-                        <constraint firstItem="j7r-yD-pMj" firstAttribute="leading" secondItem="4q4-U1-h2B" secondAttribute="leading" id="mVR-bK-Tfu"/>
+                        <constraint firstItem="ThL-8v-Elu" firstAttribute="centerY" secondItem="4q4-U1-h2B" secondAttribute="centerY" id="0rJ-Ck-Q3h"/>
+                        <constraint firstItem="HnT-o5-nb5" firstAttribute="leading" secondItem="orc-fk-KeF" secondAttribute="trailing" constant="10" id="2vm-8r-Vgr"/>
+                        <constraint firstItem="8cQ-xP-8Rj" firstAttribute="leading" secondItem="ThL-8v-Elu" secondAttribute="trailing" constant="19" id="5n0-Qb-DCs"/>
+                        <constraint firstItem="ThL-8v-Elu" firstAttribute="baseline" secondItem="8cQ-xP-8Rj" secondAttribute="baseline" id="6Ix-l7-pe5"/>
+                        <constraint firstItem="HnT-o5-nb5" firstAttribute="centerY" secondItem="ThL-8v-Elu" secondAttribute="centerY" id="9Yc-db-XJD"/>
+                        <constraint firstItem="ThL-8v-Elu" firstAttribute="leading" secondItem="HnT-o5-nb5" secondAttribute="trailing" constant="9" id="DeB-yt-U7R"/>
+                        <constraint firstItem="HnT-o5-nb5" firstAttribute="top" secondItem="4q4-U1-h2B" secondAttribute="top" constant="8" id="Is1-A4-MHO"/>
+                        <constraint firstAttribute="bottom" secondItem="8cQ-xP-8Rj" secondAttribute="bottom" constant="10" id="Nij-qS-HEX"/>
+                        <constraint firstItem="orc-fk-KeF" firstAttribute="baseline" secondItem="8cQ-xP-8Rj" secondAttribute="baseline" id="Nwx-fT-fqz"/>
+                        <constraint firstItem="orc-fk-KeF" firstAttribute="baseline" secondItem="ThL-8v-Elu" secondAttribute="baseline" id="Xpj-lu-qXX"/>
+                        <constraint firstAttribute="trailing" secondItem="8cQ-xP-8Rj" secondAttribute="trailing" constant="37" id="cWe-2t-z0R"/>
+                        <constraint firstItem="orc-fk-KeF" firstAttribute="bottom" secondItem="8cQ-xP-8Rj" secondAttribute="bottom" id="hL9-xI-lj4"/>
+                        <constraint firstItem="ThL-8v-Elu" firstAttribute="top" secondItem="8cQ-xP-8Rj" secondAttribute="top" id="mEC-IT-txT"/>
+                        <constraint firstItem="8cQ-xP-8Rj" firstAttribute="top" secondItem="4q4-U1-h2B" secondAttribute="top" constant="7" id="tlJ-hj-20D"/>
+                        <constraint firstItem="orc-fk-KeF" firstAttribute="top" secondItem="ThL-8v-Elu" secondAttribute="top" id="x7o-oV-s18"/>
                     </constraints>
                 </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RecycleBin.png" translatesAutoresizingMaskIntoConstraints="NO" id="ndw-Ze-twa">
@@ -181,12 +137,8 @@
     <resources>
         <image name="RecycleBin.png" width="54" height="54"/>
         <image name="TextNote.png" width="256" height="256"/>
-        <image name="accesslecture.png" width="695" height="512"/>
-        <image name="blue.png" width="322.53851318359375" height="224.14506530761719"/>
         <image name="drawNote.png" width="256" height="256"/>
         <image name="eraser.png" width="150" height="150"/>
-        <image name="redNote.png" width="322.53851318359375" height="224.14506530761719"/>
         <image name="undo.png" width="1024" height="1024"/>
-        <image name="yellowNote.png" width="1171" height="691"/>
     </resources>
 </document>
