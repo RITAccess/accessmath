@@ -307,11 +307,11 @@ static NSString * DRAW_KEY = @"draw_key";
             longPressGestureRecognizer2.numberOfTouchesRequired = 1;
             UIView *outerView = [[UIView alloc] initWithFrame:CGRectMake([gesture locationInView:self.view].x, [gesture locationInView:self.view].y, 350, 150)];
             FTCoreTextView *text = [[FTCoreTextView alloc]initWithFrame:CGRectMake(outerView.frame.origin.x+10 , outerView.frame.origin.y+10 , 300, 120)];
-            [text setText:@""];
+            [text setText:@"<CD></CD>"];
             [text addStyles:[self coreTextStyle]];
             [text setUserInteractionEnabled:YES];
             UITextView *textBubble = [[UITextView alloc]initWithFrame:CGRectMake([gesture locationInView:outerView].x, [gesture locationInView:outerView].y , 310, 120)];
-             //outerView.layer.borderWidth = 3;
+            //outerView.layer.borderWidth = 3;
             [outerView addSubview:text];
             [outerView addSubview:textBubble];
             UIImageView * anImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin.png" ]];
@@ -554,7 +554,12 @@ static NSString * DRAW_KEY = @"draw_key";
 
         }
     }
+    else if((text.length<=0)&&(textView.selectedRange.location==0)){
+        [[[textView.superview  subviews] objectAtIndex:0] setText:@"<CD></CD>"];
+        [[[textView.superview  subviews] objectAtIndex:0] setNeedsDisplay];
+    }
     else{
+       
         isBackSpacePressed = FALSE;
     }
     return true;
@@ -724,7 +729,7 @@ static NSString * DRAW_KEY = @"draw_key";
 
 - (UIView *)contentView
 {
-
+   
    _mainView.frame = self.view.frame;
     return _mainView;
 }
