@@ -1,4 +1,4 @@
- // Copyright 2011 Access Lecture. All rights reserved.
+// Copyright 2011 Access Lecture. All rights reserved.
 
 #import <UIKit/UIKit.h>
 #import "AccessLectureAppDelegate.h"
