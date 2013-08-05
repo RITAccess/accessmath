@@ -92,7 +92,8 @@ static NSString * DRAW_KEY = @"draw_key";
 
 -(void)viewDidAppear:(BOOL)animated{
     isOpened = NO;
-   //assign this value from stream view controller lecture name
+    drawIndex = -1;//No drawing mode set yet, value changes as per indexed fetched from current view
+    //assign this value from stream view controller lecture name
    [self.toolbarView setHidden:YES];
     [self.trashBin setHidden:YES];
     currentLecture.name = @"Lecture001";
@@ -144,7 +145,7 @@ static NSString * DRAW_KEY = @"draw_key";
 
 - (void)initColorSegmentedControl
 {
-    NSArray *segments = [[NSArray alloc] initWithObjects:@"", @"", @"", @"", @"", @"", nil];
+    NSArray *segments = [[NSArray alloc] initWithObjects:@"", @"", @"", @"", @"", nil];
     _notesPanelControl = [[UISegmentedControl alloc] initWithItems:segments];
     [_notesPanelControl setSegmentedControlStyle:UISegmentedControlStyleBar];
     [_notesPanelControl setFrame:CGRectMake(0, 0, self.toolbarView.frame.size.width - 400, COLOR_HEIGHT)];
@@ -243,7 +244,7 @@ static NSString * DRAW_KEY = @"draw_key";
 -(void)loadNotes:(NSMutableArray *)notes{
     for(noteLoader *viewer in notes){
         if([viewer.noteType isEqualToString:@"textNote"]){
-       
+      
         panToMoveNote = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
         panToResize = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handleResize:)];
         longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressToRemoveNote:)];
@@ -301,15 +302,16 @@ static NSString * DRAW_KEY = @"draw_key";
 {
     if (_isCreatingNote){
         if(self.isCreatingNote){
+             _mainView.frame = self.view.frame;
             panToMoveNote = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
             panToResize = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handleResize:)];
             longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressToRemoveNote:)];
             longPressGestureRecognizer2 = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressToDisplayNote:)];
             longPressGestureRecognizer.numberOfTouchesRequired = 3;
             longPressGestureRecognizer2.numberOfTouchesRequired = 1;
-            UIView *outerView = [[UIView alloc] initWithFrame:CGRectMake([gesture locationInView:self.view].x, [gesture locationInView:self.view].y, 350, 150)];
+            UIView *outerView = [[UIView alloc] initWithFrame:CGRectMake([gesture locationInView:_mainView].x, [gesture locationInView:_mainView].y, 350, 150)];
             FTCoreTextView *text = [[FTCoreTextView alloc]initWithFrame:CGRectMake(outerView.frame.origin.x+10 , outerView.frame.origin.y+10 , 300, 120)];
-            [text setText:@"<CD></CD>"];
+            [text setText:@"<CD> </CD>"];
             [text addStyles:[self coreTextStyle]];
             [text setUserInteractionEnabled:YES];
             UITextView *textBubble = [[UITextView alloc]initWithFrame:CGRectMake([gesture locationInView:outerView].x, [gesture locationInView:outerView].y , 310, 120)];
@@ -321,7 +323,7 @@ static NSString * DRAW_KEY = @"draw_key";
             [anImageView setBounds:CGRectMake([gesture locationInView:self.view].x, [gesture locationInView:self.view].y, 50, 50)];
             textBubble.textColor = [UIColor clearColor];
             [textBubble setAutocorrectionType: UITextAutocorrectionTypeNo];
-            textBubble.text = @"";
+            textBubble.text = @" ";
             textBubble.delegate = self;
             textBubble.layer.borderWidth = 3;
             textBubble.layer.cornerRadius = 20;
@@ -358,7 +360,7 @@ static NSString * DRAW_KEY = @"draw_key";
     DrawView *lineDrawView = [[DrawView alloc]initWithFrame:CGRectMake([gesture locationInView:outerView].x + 20, [gesture locationInView:outerView].y + 15, 400, 300)];
     [lineDrawView setPenColor:drawcolor];
     lineDrawView.userInteractionEnabled = YES;
-    outerView.layer.borderWidth = 3;
+    //outerView.layer.borderWidth = 3;
     lineDrawView.layer.borderWidth = 3;
     lineDrawView.layer.cornerRadius = 20;
     UIImageView * anImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin.png" ]];
@@ -377,7 +379,6 @@ static NSString * DRAW_KEY = @"draw_key";
     [outerView addSubview:resizeView];
     [outerView addSubview:lineDrawView];
     [[[self.view subviews] objectAtIndex:1] addSubview:outerView];
-     //NSLog(@"%u", [[[[self.view subviews] objectAtIndex:1] subviews] indexOfObject:outerView]);
     drawIndex = [[[[self.view subviews] objectAtIndex:1] subviews] indexOfObject:outerView];
   
 }
@@ -414,14 +415,14 @@ static NSString * DRAW_KEY = @"draw_key";
 - (void)handleResize:(UIPanGestureRecognizer *)gestureRecognizer
 {
     if((_isDrawing)){
+        [_mainView setFrame:self.view.frame];
         drawIndex = [[[[self.view subviews] objectAtIndex:1] subviews] indexOfObject:gestureRecognizer.view];
-        UIImageView *temp = [[[gestureRecognizer view] subviews] objectAtIndex:0];
-        UIImageView *tempImage = [[[gestureRecognizer view] subviews] objectAtIndex:1];
+        UIImageView *temp = [[[gestureRecognizer view] subviews] objectAtIndex:0];//pin
+        UIImageView *tempImage = [[[gestureRecognizer view] subviews] objectAtIndex:1];//drawView
         [[[[gestureRecognizer view] subviews] objectAtIndex:0] removeFromSuperview];
         [[[[gestureRecognizer view] subviews] objectAtIndex:0] removeFromSuperview];
         [gestureRecognizer.view addSubview:temp];
         [gestureRecognizer.view addSubview:tempImage];
-        [tempImage setBounds:gestureRecognizer.view.bounds];
         [tempImage setFrame:CGRectMake(_mainView.frame.origin.x,_mainView.frame.origin.y,[gestureRecognizer locationInView:gestureRecognizer.view].x, [gestureRecognizer locationInView:gestureRecognizer.view].y)];
         CGPoint point = CGPointMake(gestureRecognizer.view.frame.size.width-20, gestureRecognizer.view.frame.size.height-20);
         [temp setCenter:point];
@@ -498,11 +499,15 @@ static NSString * DRAW_KEY = @"draw_key";
      FTCoreTextView *temp =  [[textView.superview  subviews] objectAtIndex:0];
      CGRect frame = textView.frame;
     if(!isBackSpacePressed&&(textView.text.length==textView.selectedRange.location)&&(textView.selectedRange.location>0)){
-     char tempchar = [textView.text characterAtIndex:[textView.text length]-1];
+       
+    char tempchar = [textView.text characterAtIndex:[textView.text length]-1];
     [[[textView.superview  subviews] objectAtIndex:0] setText:[NSString stringWithFormat:@"%@%@%c%@",temp.text,startTag,tempchar,endTag]];
-    //textView.textColor = [UIColor clearColor];
-      //  [textView setSelectedRange:NSMakeRange(0, 5)];
-    frame.size.height = textView.contentSize.height;
+       FTCoreTextView *check =  [[textView.superview  subviews] objectAtIndex:0];
+        if((check.text.length)<(textView.text.length*10)){
+            [textView setText:[textView.text substringToIndex:textView.text.length-1]];
+        }
+        
+        frame.size.height = textView.contentSize.height;
         frame.size.width = textView.contentSize.width;
     frame.origin = textView.frame.origin;
     textView.frame = frame;
@@ -533,13 +538,14 @@ static NSString * DRAW_KEY = @"draw_key";
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
     FTCoreTextView *temp =  [[textView.superview  subviews] objectAtIndex:0];
+    
     if((text.length<=0)&&(textView.selectedRange.location>0))
     {
        isBackSpacePressed = TRUE;
         if(textView.selectedRange.location==textView.text.length){
         NSRange selectedRange = NSMakeRange(0, (temp.text.length - startTag.length-endTag.length-1));
         NSString *str = [temp.text substringWithRange:selectedRange];
-       // NSLog(@"%@",str);
+ 
         [[[textView.superview  subviews] objectAtIndex:0] setText:str];
         [[[textView.superview  subviews] objectAtIndex:0] setNeedsDisplay];
         [textView becomeFirstResponder];
@@ -606,8 +612,7 @@ static NSString * DRAW_KEY = @"draw_key";
 
 - (IBAction)undoButtonPressed:(id)sender
 {
-    //[[[[[[self.view subviews] objectAtIndex:1] subviews] objectAtIndex:drawIndex] subviews] objectAtIndex:1] => is the drawView currently in focus
-    if(_isDrawing&&([[[[[[self.view subviews] objectAtIndex:1] subviews] objectAtIndex:drawIndex] subviews] count]!=0)){
+    if((_isDrawing)&&(drawIndex!=-1)){
     if ([[[[[[[[[self.view subviews] objectAtIndex:1] subviews] objectAtIndex:drawIndex] subviews] objectAtIndex:1] shapes] lastObject] isMemberOfClass:[UIImageView class]]){
         [[[[[[[[[self.view subviews] objectAtIndex:1] subviews] objectAtIndex:drawIndex] subviews] objectAtIndex:1] shapes] lastObject] removeFromSuperview];
     } else if ([[[[[[[[[self.view subviews] objectAtIndex:1] subviews] objectAtIndex:drawIndex] subviews] objectAtIndex:1] shapes] lastObject] isMemberOfClass:[AMBezierPath class]]){
@@ -627,7 +632,7 @@ static NSString * DRAW_KEY = @"draw_key";
 
 - (IBAction)erasePressed:(id)sender
 {
-    if(_isDrawing){
+    if((_isDrawing)&&(drawIndex!=-1)){
     [[[[[[[self.view subviews] objectAtIndex:1] subviews] objectAtIndex:drawIndex] subviews] objectAtIndex:1] setPenColor:[UIColor whiteColor]];
     [[[[[[[self.view subviews] objectAtIndex:1] subviews] objectAtIndex:drawIndex] subviews] objectAtIndex:1] setPenSize:20];
     }
