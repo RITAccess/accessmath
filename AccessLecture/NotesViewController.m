@@ -311,7 +311,7 @@ static NSString * DRAW_KEY = @"draw_key";
             [text addStyles:[self coreTextStyle]];
             [text setUserInteractionEnabled:YES];
             UITextView *textBubble = [[UITextView alloc]initWithFrame:CGRectMake([gesture locationInView:outerView].x, [gesture locationInView:outerView].y , 310, 120)];
-            //outerView.layer.borderWidth = 3;
+            outerView.layer.borderWidth = 3;
             [outerView addSubview:text];
             [outerView addSubview:textBubble];
             UIImageView * anImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin.png" ]];
@@ -435,7 +435,7 @@ static NSString * DRAW_KEY = @"draw_key";
     if(_isCreatingNote){
         [gestureRecognizer.view setFrame:CGRectMake(gestureRecognizer.view.frame.origin.x, gestureRecognizer.view.frame.origin.y, 5, 5)];
         [gestureRecognizer.view.superview setFrame:CGRectMake(gestureRecognizer.view.superview.frame.origin.x, gestureRecognizer.view.superview.frame.origin.y, 50, 50)];
-        [[[gestureRecognizer.view.superview subviews] objectAtIndex:0] setFrame:CGRectMake(gestureRecognizer.view.superview.frame.origin.x, gestureRecognizer.view.superview.frame.origin.y, 5, 5)];
+      //  [[[gestureRecognizer.view.superview subviews] objectAtIndex:0] setFrame:CGRectMake(gestureRecognizer.view.superview.frame.origin.x, gestureRecognizer.view.superview.frame.origin.y, 5, 5)];
     }
     else if(_isDrawing){
     
@@ -455,6 +455,7 @@ static NSString * DRAW_KEY = @"draw_key";
 - (void)longPressToDisplayNote:(UILongPressGestureRecognizer *)gestureRecognizer
 {
     if((_isCreatingNote)&&([[[[gestureRecognizer view] subviews] objectAtIndex:1] isKindOfClass:[UITextView class]])&&(gestureRecognizer.view.frame.size.width==50)){
+        NSLog(@"Reached");
         UITextView *temp = [[[gestureRecognizer view] subviews] objectAtIndex:1];
         FTCoreTextView *tempView = [[[gestureRecognizer view] subviews] objectAtIndex:0];
         [[[[gestureRecognizer view] subviews] objectAtIndex:1] removeFromSuperview];
