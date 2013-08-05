@@ -40,11 +40,10 @@
         [_streamButton setEnabled:YES];
     }
     
-    // Checking for proper OS. We might need to enhance this check later.
-    if ([[[UIDevice currentDevice]systemVersion] isEqualToString:@"7.0"]){
-        [_scanStatusLabel removeFromSuperview];
-    } else {
+    // Checking for proper OS. Hiding functionality from user is OS doesn't support scan.
+    if (![[[UIDevice currentDevice]systemVersion] isEqualToString:@"7.0"]){
         [_previewView setBackgroundColor:[UIColor redColor]];
+        [_scanButton removeFromSuperview];
     }
     
     // Initializing Lecture and Server arrays.
