@@ -80,7 +80,11 @@ static NSString * DRAW_KEY = @"draw_key";
                                                                              :@selector(dismissKeyboard)];
        
         [self.view addGestureRecognizer:_tapToDismissKeyboard];
-        
+        if (UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)) {
+            [self.view setFrame:CGRectMake(0, 0, 768, 1024)];
+        } else {
+            [self.view setFrame:CGRectMake(0, 0, 1024, 768)];
+        }
     }
     
     return self;
@@ -114,6 +118,7 @@ static NSString * DRAW_KEY = @"draw_key";
         isOpened = YES;
     }
     // Clear view
+   
     [self.view setBackgroundColor:[UIColor clearColor]];
     
 }
