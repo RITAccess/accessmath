@@ -41,7 +41,7 @@
 {
     // Segueing directly from Connect Button on RootViewController.
     if (_displayServerConnectView){
-        [self performSegueWithIdentifier:@"toServerConnect" sender:nil];
+        [self connectToStream:nil];
     }
 }
 
@@ -50,7 +50,7 @@
 - (IBAction)connectToStream:(id)sender
 {
     if (!_connectedToStream) {
-        ConnectionViewController *cvc = [[ConnectionViewController alloc] initWithNibName:ConnectionViewControllerXIB bundle:nil];
+        ConnectionViewController *cvc = [[UIStoryboard storyboardWithName:ConnectionViewControllerStoryBoard bundle:nil] instantiateViewControllerWithIdentifier:ConnectionViewControllerSBID];
         [cvc setDelegate:self];
         [self presentViewController:cvc animated:YES completion:^{
             [_loadProgress setProgress:0.0];

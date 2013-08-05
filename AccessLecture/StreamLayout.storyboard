@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4488.1" systemVersion="12E55" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="smy-cM-cef">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4488.1" systemVersion="13A524d" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="smy-cM-cef">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
         <development version="5000" identifier="xcode"/>
@@ -37,7 +37,6 @@
                                     <barButtonItem title="Join Stream" id="zPr-cg-Eqj">
                                         <connections>
                                             <action selector="connectToStream:" destination="smy-cM-cef" id="mV5-7s-efd"/>
-                                            <segue destination="QD5-34-n2w" kind="modal" identifier="toServerConnect" id="fUR-1O-LQf"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -72,7 +71,7 @@
         <!--Connection View Controller-->
         <scene sceneID="X2s-oX-BWa">
             <objects>
-                <viewController modalPresentationStyle="formSheet" id="QD5-34-n2w" customClass="ConnectionViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="connectionVC" modalPresentationStyle="formSheet" id="QD5-34-n2w" customClass="ConnectionViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MGd-2L-A9G"/>
                         <viewControllerLayoutGuide type="bottom" id="Vlj-XF-AA0"/>
