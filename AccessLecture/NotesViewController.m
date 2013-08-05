@@ -457,7 +457,6 @@ static NSString * DRAW_KEY = @"draw_key";
 - (void)longPressToDisplayNote:(UILongPressGestureRecognizer *)gestureRecognizer
 {
     if((_isCreatingNote)&&([[[[gestureRecognizer view] subviews] objectAtIndex:1] isKindOfClass:[UITextView class]])&&(gestureRecognizer.view.frame.size.width==50)){
-        NSLog(@"Reached");
         UITextView *temp = [[[gestureRecognizer view] subviews] objectAtIndex:1];
         FTCoreTextView *tempView = [[[gestureRecognizer view] subviews] objectAtIndex:0];
         [[[[gestureRecognizer view] subviews] objectAtIndex:1] removeFromSuperview];
