@@ -19,11 +19,11 @@ static float find_rightmost_point_for_center(CGSize size) {
 }
 
 static float find_lowermost_point_for_center(CGSize size, CGSize screen) {
-    return screen.height - (size.height / 2);
+    return size.height / 2;
 }
 
 static float find_uppermost_point_for_center(CGSize size, CGSize screen) {
-    return size.height / 2;
+    return screen.height - (size.height / 2);
 }
 
 // Calculate bounce
@@ -61,17 +61,17 @@ void apply_bounds_with_bounce(CGPoint center, CGSize size, CGSize screen, CGPoin
         newCenter->x = find_stretch_lefttop_bound(centerLimit->x, center.x, screen);
     }
     
-//    // Catch top edge
-//    if (center.y > find_lowermost_point_for_center(size, screen)) {
-//        centerLimit->y = find_lowermost_point_for_center(size, screen);
-//        newCenter->y = find_stretch_lefttop_bound(centerLimit->y, center.y, screen);
-//    }
-//    
-//    // Catch bottom edge
-//    if (center.y < find_uppermost_point_for_center(size, screen)) {
-//        centerLimit->y = find_uppermost_point_for_center(size, screen);
-//        newCenter->y = find_stretch_rightbottom_bound(centerLimit->y, center.y, screen);
-//    }
+    // Catch top edge
+    if (center.y > find_lowermost_point_for_center(size, screen)) {
+        centerLimit->y = find_lowermost_point_for_center(size, screen);
+        newCenter->y = find_stretch_lefttop_bound(centerLimit->y, center.y, screen);
+    }
+
+    // Catch bottom edge
+    if (center.y < find_uppermost_point_for_center(size, screen)) {
+        centerLimit->y = find_uppermost_point_for_center(size, screen);
+        newCenter->y = find_stretch_rightbottom_bound(centerLimit->y, center.y, screen);
+    }
     
 }
 
