@@ -458,7 +458,6 @@
 		3FCD5D1115438265005F2A60 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				4C96FA81176289B4002C0D74 /* Connect View */,
 				3FED963213708E5100D8D1B8 /* Lecture View */,
 				3F0DBDCC13BD170C00E3FEE8 /* About View */,
 			);
@@ -648,13 +647,6 @@
 				4C8ABE7F177CA356007C934C /* NotesViewController.xib */,
 			);
 			name = NotesViewController;
-			sourceTree = "<group>";
-		};
-		4C96FA81176289B4002C0D74 /* Connect View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "Connect View";
 			sourceTree = "<group>";
 		};
 		4C9AB8FB177C6884004A4F65 /* Views */ = {
@@ -946,6 +938,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_STATIC_ANALYZER_MODE = deep;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -960,6 +953,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "EC51EB3A-91E0-4B0D-8398-E553BBD0EE94";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EC51EB3A-91E0-4B0D-8398-E553BBD0EE94";
+				RUN_CLANG_STATIC_ANALYZER = NO;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
@@ -971,6 +965,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_STATIC_ANALYZER_MODE = deep;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -984,6 +979,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "EC51EB3A-91E0-4B0D-8398-E553BBD0EE94";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EC51EB3A-91E0-4B0D-8398-E553BBD0EE94";
+				RUN_CLANG_STATIC_ANALYZER = YES;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
