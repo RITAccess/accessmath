@@ -18,11 +18,14 @@
     UIButton *cancelButton;
     BOOL isScanning, isDeleting;
     NSMutableArray *lectureFavorites, *serverFavorites;
+    dispatch_queue_t _activityQueue;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    _activityQueue = dispatch_queue_create("edu.rit.accessLecture.network", DISPATCH_QUEUE_SERIAL);
     
     [_activity stopAnimating];
     [_streamButton setEnabled:NO];
@@ -44,7 +47,7 @@
         [_previewView setBackgroundColor:[UIColor redColor]];
     }
     
-    // Initializing Lecture and Server arays.
+    // Initializing Lecture and Server arrays.
     if (!lectureFavorites) lectureFavorites = [NSMutableArray new];
     if (!serverFavorites) serverFavorites = [NSMutableArray new];
     
@@ -64,11 +67,13 @@
 
 - (IBAction)checkAddress:(id)sender
 {
+    if (server.connected)
+        return;
     [_activity startAnimating];
     [_statusLabel.topItem setTitle:@"Checking connection"];
-    [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
+    dispatch_async(_activityQueue, ^{
         [self connectWithURL:[NSURL URLWithString:_connectionAddress.text]];
-    }];
+    });
 }
 
 - (IBAction)startScan:(id)sender
@@ -90,7 +95,7 @@
         [server connectCompletion:^(BOOL success) {
             if (success) {
                 [server requestAccessToLectureSteam:info[@"lecture"]];
-                if ([_delegate respondsToSelector:@selector(didCompleteWithConnection: toLecture: from:)]) {
+                if ([_delegate respondsToSelector:@selector(didCompleteWithConnection:toLecture:from:)]) {
                     [_delegate didCompleteWithConnection:server toLecture:_lecture.text from:_connectionAddress.text];
                 }
                 [self dismissViewControllerAnimated:YES completion:nil];
@@ -133,10 +138,12 @@
 - (IBAction)connectToStream:(id)sender
 {
     [server requestAccessToLectureSteam:_lecture.text];
-    if ([_delegate respondsToSelector:@selector(didCompleteWithConnection: toLecture: from:)]) {
+    if ([_delegate respondsToSelector:@selector(didCompleteWithConnection:toLecture:from:)]) {
         [_delegate didCompleteWithConnection:server toLecture:_lecture.text from:_connectionAddress.text];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    } else {
+        NSLog(@"Delegate is nil");
     }
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark Connect

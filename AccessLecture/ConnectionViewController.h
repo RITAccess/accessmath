@@ -11,7 +11,8 @@
 #import "QRScanner.h"
 #import <AVFoundation/AVFoundation.h>
 
-static NSString* const ConnectionViewControllerXIB = @"ConnectionViewController";
+static NSString *const ConnectionViewControllerStoryBoard = @"StreamLayout";
+static NSString *const ConnectionViewControllerSBID = @"connectionVC";
 
 @protocol ConnectionView <NSObject>
 
@@ -34,7 +35,7 @@ static NSString* const ConnectionViewControllerXIB = @"ConnectionViewController"
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *scanStatusLabel;
 @property (weak, nonatomic) IBOutlet UIButton *scanButton;
-@property id<ConnectionView> delegate;
+@property (strong, nonatomic)id<ConnectionView> delegate;
 
 - (IBAction)checkAddress:(id)sender;
 - (IBAction)userDidCancel:(id)sender;
