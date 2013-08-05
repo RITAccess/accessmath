@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4488.1" systemVersion="13A524d" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="smy-cM-cef">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4488.1" systemVersion="12E55" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="smy-cM-cef">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
         <development version="5000" identifier="xcode"/>
@@ -123,17 +123,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TUe-Bu-TnF" userLabel="Camera View">
-                                <rect key="frame" x="0.0" y="549" width="540" height="32"/>
+                                <rect key="frame" x="0.0" y="581" width="540" height="0.0"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Current iOS Doesn't Support QR Scanning" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ryw-eQ-2RK">
-                                        <rect key="frame" x="118" y="5" width="304" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                             </view>
@@ -197,28 +188,27 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="TUe-Bu-TnF" firstAttribute="trailing" secondItem="9kn-te-dBm" secondAttribute="trailing" id="1ts-br-tfF"/>
                             <constraint firstItem="DWm-5P-eDY" firstAttribute="centerX" secondItem="mkK-mS-2ld" secondAttribute="centerX" id="2X4-VW-pxc"/>
                             <constraint firstItem="mkK-mS-2ld" firstAttribute="top" secondItem="PzK-G8-hYy" secondAttribute="bottom" constant="8" symbolic="YES" id="Ac3-rI-vXk"/>
-                            <constraint firstItem="TUe-Bu-TnF" firstAttribute="top" secondItem="bdb-Pb-jMo" secondAttribute="top" constant="549" id="FqA-rp-H3v"/>
                             <constraint firstItem="mkK-mS-2ld" firstAttribute="leading" secondItem="bdb-Pb-jMo" secondAttribute="leading" constant="20" symbolic="YES" id="HD9-qe-Hvw"/>
                             <constraint firstItem="bno-eE-4c0" firstAttribute="top" secondItem="9kn-te-dBm" secondAttribute="bottom" constant="27" id="IPj-4r-vp7"/>
                             <constraint firstItem="bno-eE-4c0" firstAttribute="top" secondItem="bdb-Pb-jMo" secondAttribute="top" constant="71" id="Ijc-HC-wJj"/>
                             <constraint firstItem="mkK-mS-2ld" firstAttribute="trailing" secondItem="PzK-G8-hYy" secondAttribute="trailing" id="J4w-ze-9hg"/>
-                            <constraint firstItem="TUe-Bu-TnF" firstAttribute="top" secondItem="mkK-mS-2ld" secondAttribute="bottom" constant="8" symbolic="YES" id="PY5-9N-yS1"/>
+                            <constraint firstItem="TUe-Bu-TnF" firstAttribute="leading" secondItem="9kn-te-dBm" secondAttribute="leading" id="L52-dg-9hm"/>
                             <constraint firstItem="PzK-G8-hYy" firstAttribute="top" secondItem="bno-eE-4c0" secondAttribute="bottom" constant="15" id="QbP-bG-Q74"/>
-                            <constraint firstItem="9kn-te-dBm" firstAttribute="leading" secondItem="TUe-Bu-TnF" secondAttribute="leading" id="Thl-bl-AsH"/>
                             <constraint firstItem="9kn-te-dBm" firstAttribute="centerY" secondItem="RKV-TK-Y6d" secondAttribute="centerY" id="Uef-8s-HcW"/>
                             <constraint firstItem="mkK-mS-2ld" firstAttribute="trailing" secondItem="bno-eE-4c0" secondAttribute="trailing" id="Usl-1B-Vid"/>
                             <constraint firstItem="9kn-te-dBm" firstAttribute="trailing" secondItem="bdb-Pb-jMo" secondAttribute="trailing" id="VkV-4F-J6v"/>
+                            <constraint firstItem="Vlj-XF-AA0" firstAttribute="top" secondItem="TUe-Bu-TnF" secondAttribute="bottom" constant="39" id="Y3k-Ly-MhK"/>
                             <constraint firstAttribute="trailing" secondItem="mkK-mS-2ld" secondAttribute="trailing" constant="26" id="YX0-y9-j5G"/>
-                            <constraint firstItem="9kn-te-dBm" firstAttribute="trailing" secondItem="TUe-Bu-TnF" secondAttribute="trailing" id="aKG-CG-6H1"/>
                             <constraint firstItem="Vlj-XF-AA0" firstAttribute="top" secondItem="DWm-5P-eDY" secondAttribute="bottom" constant="19" id="h1w-ah-IFb"/>
                             <constraint firstAttribute="trailing" secondItem="RKV-TK-Y6d" secondAttribute="trailing" constant="55" id="hNT-Ke-eFA"/>
                             <constraint firstItem="mkK-mS-2ld" firstAttribute="leading" secondItem="PzK-G8-hYy" secondAttribute="leading" id="hqa-ff-UbF"/>
                             <constraint firstItem="mkK-mS-2ld" firstAttribute="top" secondItem="bdb-Pb-jMo" secondAttribute="top" constant="214" id="lEl-ah-nRK"/>
                             <constraint firstItem="mkK-mS-2ld" firstAttribute="leading" secondItem="bno-eE-4c0" secondAttribute="leading" id="qKQ-CN-5P5"/>
                             <constraint firstItem="DWm-5P-eDY" firstAttribute="top" secondItem="mkK-mS-2ld" secondAttribute="bottom" constant="8" symbolic="YES" id="rPi-4U-u2t"/>
-                            <constraint firstItem="Vlj-XF-AA0" firstAttribute="top" secondItem="TUe-Bu-TnF" secondAttribute="bottom" constant="39" id="wOL-w7-cd4"/>
+                            <constraint firstItem="TUe-Bu-TnF" firstAttribute="top" secondItem="mkK-mS-2ld" secondAttribute="bottom" constant="40" id="vzy-Bh-cSf"/>
                             <constraint firstItem="9kn-te-dBm" firstAttribute="leading" secondItem="bdb-Pb-jMo" secondAttribute="leading" id="xVW-x3-CqM"/>
                         </constraints>
                         <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
