@@ -47,7 +47,7 @@
         [_previewView setBackgroundColor:[UIColor redColor]];
     }
     
-    // Initializing Lecture and Server arays.
+    // Initializing Lecture and Server arrays.
     if (!lectureFavorites) lectureFavorites = [NSMutableArray new];
     if (!serverFavorites) serverFavorites = [NSMutableArray new];
     
