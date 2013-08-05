@@ -63,13 +63,7 @@ static NSString * DRAW_KEY = @"draw_key";
 
 @end
 @implementation NotesViewController
-#define RED_TAG 111
-#define GREEN_TAG 112
-#define BLUE_TAG 113
-#define BLACK_TAG 114
-#define HILIGHT_TAG 115
-#define ERASER_TAG 116
-#define COLOR_HEIGHT 85
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -89,7 +83,6 @@ static NSString * DRAW_KEY = @"draw_key";
     isOpened = NO;
    //assign this value from stream view controller lecture name
    [self.toolbarView setHidden:YES];
-    [self.trashBin setHidden:YES];
     currentLecture.name = @"Lecture001";
     NSURL * currentDirectory = [FileManager iCloudDirectoryURL];
     if (currentDirectory == nil) currentDirectory = [FileManager localDocumentsDirectoryURL];
@@ -110,7 +103,6 @@ static NSString * DRAW_KEY = @"draw_key";
     if((!isOpened)){
         [self initializeView];
     //  [self loadNotes:currentDocument.notes];
-        [self.trashBin setHidden:NO];
         isOpened = YES;
     }
     // Clear view
@@ -124,115 +116,17 @@ static NSString * DRAW_KEY = @"draw_key";
  */
 -(void)initializeView{
     _mainView = [[UIView alloc] initWithFrame:self.view.frame];
-   
-    
+    self.toolBar.layer.cornerRadius = 20;
+    [self.toolbarView addSubview:self.toolBar];
+    [self.toolbarView setBackgroundColor:[UIColor clearColor]];
     [self.view addSubview:_mainView];
     [self.view addSubview:self.toolbarView];
-    [self initColorSegmentedControl];
-    [self.view addSubview:self.trashBin];
-    //[self.toolbarView addSubview:self.toolBar];
-   // [self.view bringSubviewToFront:self.toolbarView];
+    [_mainView addSubview:self.trashBin];
+    [self.toolbarView addSubview:self.toolBar];
+    [self.view bringSubviewToFront:self.toolbarView];
     currentLecture = [[Lecture alloc] initWithName:@"Lecture001"];
     
 }
-
-- (void)initColorSegmentedControl
-{
-    NSArray *segments = [[NSArray alloc] initWithObjects:@"", @"", @"", @"", @"", @"", nil];
-    _notesPanelControl = [[UISegmentedControl alloc] initWithItems:segments];
-    [_notesPanelControl setSegmentedControlStyle:UISegmentedControlStyleBar];
-    [_notesPanelControl setFrame:CGRectMake(0, 0, self.toolbarView.frame.size.width - 400, COLOR_HEIGHT)];
-    [_notesPanelControl addTarget:self action:@selector(segmentChanged:) forControlEvents:UIControlEventValueChanged];
-    
-    // Indices change; need to tag the segments before rendering.
-    [_notesPanelControl setTag:RED_TAG forSegmentAtIndex:0];
-    [_notesPanelControl setTag:GREEN_TAG forSegmentAtIndex:1];
-    [_notesPanelControl setTag:BLUE_TAG forSegmentAtIndex:2];
-    [_notesPanelControl setTag:BLACK_TAG forSegmentAtIndex:3];
-    [_notesPanelControl setTag:HILIGHT_TAG forSegmentAtIndex:4];
-   
-    
-    [_notesPanelControl setTintColor:[UIColor redColor] forTag:RED_TAG];
-    [_notesPanelControl setTintColor:[UIColor greenColor] forTag:GREEN_TAG];
-    [_notesPanelControl setTintColor:[UIColor blueColor] forTag:BLUE_TAG];
-    [_notesPanelControl setTintColor:[UIColor blackColor] forTag:BLACK_TAG];
-    [_notesPanelControl setTintColor:[UIColor yellowColor] forTag:HILIGHT_TAG];
-    
-    [self.toolbarView addSubview:_notesPanelControl];
-    [self.view bringSubviewToFront:self.toolbarView];
-}
-- (void)segmentChanged:(id)sender
-{
-    if(_isDrawing){
-    switch ([_notesPanelControl selectedSegmentIndex]) {
-        case 0:
-           drawcolor = [UIColor redColor];
-            break;
-        case 1:
-             drawcolor = [UIColor greenColor];
-            break;
-        case 2:
-            drawcolor = [UIColor blueColor];
-            break;
-        case 3:
-             drawcolor = [UIColor blackColor];
-            break;
-        case 4:
-            drawcolor = [UIColor yellowColor];
-            break;
-        case 5:
-           drawcolor = [UIColor whiteColor];
-            break;
-        default:
-            break;
-    }
-    for(DrawView *draws in [[[self.view subviews] objectAtIndex:1] subviews ]){
-        if([[[draws subviews] objectAtIndex:1] isKindOfClass:[DrawView class]]){
-            [[[draws subviews] objectAtIndex:1]setPenColor:drawcolor];
-            [[[draws subviews] objectAtIndex:1]setPenSize:2];
-        }
-    }
-    }
-    else if(_isCreatingNote){
-        switch ([_notesPanelControl selectedSegmentIndex]) {
-            case 0:
-                textColor = [UIColor redColor];
-                startTag = @"<CR>";
-                endTag = @"</CR>";
-                break;
-            case 1:
-                textColor = [UIColor greenColor];
-                startTag = @"<CG>";
-                endTag = @"</CG>";
-                break;
-            case 2:
-                textColor = [UIColor blueColor];
-                startTag = @"<CB>";
-                endTag = @"</CB>";
-                break;
-            case 3:
-                textColor = [UIColor blackColor];
-                startTag = @"<CD>";
-                endTag = @"</CD>";
-                break;
-            case 4:
-                textColor = [UIColor yellowColor];
-                startTag = @"<CY>";
-                endTag = @"</CY>";
-                break;
-            case 5:
-               
-                break;
-            default:
-                break;
-        }
-    }
-}
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
-{
-    [_notesPanelControl setFrame:CGRectMake(0, 0, self.toolbarView.frame.size.width - 400, COLOR_HEIGHT)];
-}
-
 /**
  * Loads saved notes from the current document's notes array
  * 
@@ -294,7 +188,7 @@ static NSString * DRAW_KEY = @"draw_key";
 {
     [self.view endEditing:YES];
 }
-# pragma mark - TextNote Creation
+
 - (void)createNoteText:(UIGestureRecognizer *)gesture
 {
     if (_isCreatingNote){
@@ -338,17 +232,16 @@ static NSString * DRAW_KEY = @"draw_key";
         }
     }
 }
-# pragma mark - DrawNote Creation
 - (void)createNoteDraw:(UIGestureRecognizer *)gesture
 {
    //Initilize gesture recognizers for the view
-   
     panToMoveNote = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
     panToResize = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handleResize:)];
     longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressToRemoveNote:)];
         longPressGestureRecognizer2 = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressToDisplayNote:)];
     longPressGestureRecognizer.numberOfTouchesRequired = 3;
     longPressGestureRecognizer2.numberOfTouchesRequired = 1;
+   
     //Outerview contains lineDrawView for drawing, anImageView for displaying pin, and resizeView  for displaying red resize circle
     UIView *outerView = [[UIView alloc] initWithFrame:CGRectMake([gesture locationInView:_mainView].x+20, [gesture locationInView:_mainView].y+15, 430, 330)];
     [panToMoveNote setEnabled:NO];
@@ -356,7 +249,7 @@ static NSString * DRAW_KEY = @"draw_key";
     DrawView *lineDrawView = [[DrawView alloc]initWithFrame:CGRectMake([gesture locationInView:outerView].x + 20, [gesture locationInView:outerView].y + 15, 400, 300)];
     [lineDrawView setPenColor:drawcolor];
     lineDrawView.userInteractionEnabled = YES;
-  // outerView.layer.borderWidth = 3;
+    //outerView.layer.borderWidth = 3;
     lineDrawView.layer.borderWidth = 3;
     lineDrawView.layer.cornerRadius = 20;
     UIImageView * anImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin.png" ]];
@@ -379,7 +272,7 @@ static NSString * DRAW_KEY = @"draw_key";
     drawIndex = [[[[self.view subviews] objectAtIndex:1] subviews] indexOfObject:outerView];
   
 }
-# pragma mark - Handle pan for text and draw note
+
 - (void)handlePan:(UIPanGestureRecognizer *)gestureRecognizer
 {
    if(_isCreatingNote){
@@ -408,7 +301,7 @@ static NSString * DRAW_KEY = @"draw_key";
         }
     }
 }
-# pragma mark - Handle resize for draw note
+
 - (void)handleResize:(UIPanGestureRecognizer *)gestureRecognizer
 {
     if((_isDrawing)){
@@ -419,8 +312,7 @@ static NSString * DRAW_KEY = @"draw_key";
         [[[[gestureRecognizer view] subviews] objectAtIndex:0] removeFromSuperview];
         [gestureRecognizer.view addSubview:temp];
         [gestureRecognizer.view addSubview:tempImage];
-        [tempImage setBounds:gestureRecognizer.view.bounds];
-        [tempImage setFrame:CGRectMake(_mainView.frame.origin.x,_mainView.frame.origin.y,[gestureRecognizer locationInView:gestureRecognizer.view].x, [gestureRecognizer locationInView:gestureRecognizer.view].y)];
+        [tempImage setFrame:CGRectMake(gestureRecognizer.view.superview.frame.origin.x, gestureRecognizer.view.superview.frame.origin.x,[gestureRecognizer locationInView:gestureRecognizer.view].x, [gestureRecognizer locationInView:gestureRecognizer.view].y)];
         CGPoint point = CGPointMake(gestureRecognizer.view.frame.size.width-20, gestureRecognizer.view.frame.size.height-20);
         [temp setCenter:point];
         [temp setBounds:CGRectMake([gestureRecognizer locationInView:self.view].x, [gestureRecognizer locationInView:self.view].y, 50, 50)];
@@ -428,7 +320,6 @@ static NSString * DRAW_KEY = @"draw_key";
         
     }
 }
-# pragma mark - Hide notes on long tap using three fingers
 - (void)longPressToRemoveNote:(UILongPressGestureRecognizer *)gestureRecognizer
 {
 
@@ -451,7 +342,6 @@ static NSString * DRAW_KEY = @"draw_key";
     }
     
 } 
-# pragma mark - Display hidden note by long press using one finger on pin
 - (void)longPressToDisplayNote:(UILongPressGestureRecognizer *)gestureRecognizer
 {
     if((_isCreatingNote)&&([[[[gestureRecognizer view] subviews] objectAtIndex:1] isKindOfClass:[UITextView class]])&&(gestureRecognizer.view.frame.size.width==50)){
@@ -490,7 +380,11 @@ static NSString * DRAW_KEY = @"draw_key";
     }    
 }
 
-# pragma mark - Render FTCoreTextView behind transparent textView
+
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView{
+        return YES;
+}
+
 - (void)textViewDidChange:(UITextView *)textView
 {
      FTCoreTextView *temp =  [[textView.superview  subviews] objectAtIndex:0];
@@ -527,7 +421,6 @@ static NSString * DRAW_KEY = @"draw_key";
     }
 }
 
-# pragma mark - Handle backspace press events
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
     FTCoreTextView *temp =  [[textView.superview  subviews] objectAtIndex:0];
@@ -561,15 +454,14 @@ static NSString * DRAW_KEY = @"draw_key";
         
 }
 - (IBAction)createDrawNote:(id)sender {
- 
     _isCreatingNote=NO;
     _isDrawing = YES;
     _tapToCreateNote = [[UITapGestureRecognizer alloc]initWithTarget:self action
                                                                     :@selector(createNoteDraw:)];
     _tapToCreateNote.numberOfTapsRequired = 2;
-   
+    [self.view addGestureRecognizer:_tapToCreateNote];
     [self viewDidLoad];
-    [_mainView addGestureRecognizer:_tapToCreateNote];
+
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notes"
                                                     message:@"Draw Note Selected" delegate:self cancelButtonTitle: @"OK"
                                           otherButtonTitles: nil];
@@ -579,26 +471,26 @@ static NSString * DRAW_KEY = @"draw_key";
 
 
 - (IBAction)createTextNote:(id)sender {
-   
     _isDrawing = NO;
     _isCreatingNote = YES;
     _tapToCreateNote = [[UITapGestureRecognizer alloc]initWithTarget:self action
                                                                     :@selector(createNoteText:)];
     _tapToCreateNote.numberOfTapsRequired = 2;
-    
-    //[self.view addGestureRecognizer:_tapToCreateNote];
+   // [_mainView addGestureRecognizer:_tapToCreateNote];
+    [self.view addGestureRecognizer:_tapToCreateNote];
     [self viewDidLoad];
-     [_mainView addGestureRecognizer:_tapToCreateNote];
-  [_mainView addGestureRecognizer:_tapToCreateNote];
+
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notes"
                                                     message:@"Text Note Selected" delegate:self cancelButtonTitle: @"OK"
                                           otherButtonTitles: nil];
      [alert show];
 }
 
+- (IBAction)resizeDraw:(id)sender {
+}
 
-- (IBAction)undoButtonPressed:(id)sender
-{
+- (IBAction)undoButtonPressed:(id)sender {
+   // DrawView *tdrawView = [[[[[[self.view subviews] objectAtIndex:1] subviews] objectAtIndex:drawIndex] subviews] objectAtIndex:1];
     //[[[[[[self.view subviews] objectAtIndex:1] subviews] objectAtIndex:drawIndex] subviews] objectAtIndex:1] => is the drawView currently in focus
     if(_isDrawing&&([[[[[[self.view subviews] objectAtIndex:1] subviews] objectAtIndex:drawIndex] subviews] count]!=0)){
     if ([[[[[[[[[self.view subviews] objectAtIndex:1] subviews] objectAtIndex:drawIndex] subviews] objectAtIndex:1] shapes] lastObject] isMemberOfClass:[UIImageView class]]){
@@ -631,7 +523,59 @@ static NSString * DRAW_KEY = @"draw_key";
         [alert show];
     }
 }
+- (IBAction)setBlueColor:(id)sender {
+    if(_isCreatingNote){
+    textColor = [UIColor blueColor];
+    startTag = @"<CB>";
+    endTag = @"</CB>";
+    }
+    else if(_isDrawing){
+        drawcolor = [UIColor blueColor];
+        [[[[[[[self.view subviews] objectAtIndex:1] subviews] objectAtIndex:drawIndex] subviews] objectAtIndex:1] setPenSize:1];
+        for(DrawView *draws in [[[self.view subviews] objectAtIndex:1] subviews ]){
+           if([[[draws subviews] objectAtIndex:1] isKindOfClass:[DrawView class]]){
+               [[[draws subviews] objectAtIndex:1]setPenColor:drawcolor];
+           }
+        }
+    }
+    
+    
+}
+- (IBAction)setYellowColor:(id)sender {
+    if(_isCreatingNote){
+    textColor = [UIColor yellowColor];
+    startTag = @"<CY>";
+    endTag = @"</CY>";
+    }
+    else if(_isDrawing){
+        drawcolor = [UIColor yellowColor];
+        [[[[[[[self.view subviews] objectAtIndex:1] subviews] objectAtIndex:drawIndex] subviews] objectAtIndex:1] setPenSize:1];
+        for(DrawView *draws in [[[self.view subviews] objectAtIndex:1] subviews ]){
+            if([[[draws subviews] objectAtIndex:1] isKindOfClass:[DrawView class]]){
+                [[[draws subviews] objectAtIndex:1]setPenColor:drawcolor];
+            }
+        }
+    }
+}
 
+- (IBAction)setRedColor:(id)sender {
+   if(_isCreatingNote){
+    textColor = [UIColor redColor];
+    startTag = @"<CR>";
+    endTag = @"</CR>";
+   }
+   else if(_isDrawing){
+       drawcolor = [UIColor redColor];
+       [[[[[[[self.view subviews] objectAtIndex:1] subviews] objectAtIndex:drawIndex] subviews] objectAtIndex:1] setPenSize:1];
+       for(DrawView *draws in [[[self.view subviews] objectAtIndex:1] subviews ]){
+           if([[[draws subviews] objectAtIndex:1] isKindOfClass:[DrawView class]]){
+               [[[draws subviews] objectAtIndex:1]setPenColor:drawcolor];
+           }
+       }
+       
+   }
+    
+}
 - (NSArray *)coreTextStyle{
     NSMutableArray *result = [NSMutableArray array];
     FTCoreTextStyle *boldStyle = [FTCoreTextStyle new];
@@ -658,12 +602,6 @@ static NSString * DRAW_KEY = @"draw_key";
     [blackColor setColor:[UIColor blackColor]];
     blackColor.font = [UIFont boldSystemFontOfSize:30];
     [result addObject:blackColor];
-
-    FTCoreTextStyle *greenColor = [FTCoreTextStyle new];
-    [greenColor setName:@"CG"];//D-> Default color
-    [greenColor setColor:[UIColor greenColor]];
-    greenColor.font = [UIFont boldSystemFontOfSize:30];
-    [result addObject:greenColor];
     return result;
 
 }
@@ -724,8 +662,6 @@ static NSString * DRAW_KEY = @"draw_key";
 
 - (UIView *)contentView
 {
-
-   _mainView.frame = self.view.frame;
     return _mainView;
 }
 

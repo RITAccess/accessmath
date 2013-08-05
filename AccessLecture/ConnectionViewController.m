@@ -30,8 +30,6 @@
     AccessLectureAppDelegate *app = [UIApplication sharedApplication].delegate;
     server = app.server;
     
-    [self checkAddress:nil];
-    
     // Check if already connected
     if ([server connected]) {
         [_statusLabel.topItem setTitle:@"Connected"];

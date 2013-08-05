@@ -14,7 +14,6 @@
 #import "AccessDocument.h"
 #import "FileManager.h"
 #import "AccessLectureRuntime.h"
-#import "UISegmentedControlExtension.h"
 static NSString* const NotesViewControllerXIB = @"NotesViewController";
 @interface NotesViewController : UIViewController<UITextViewDelegate,LectureViewChild>{
     UIColor *textColor;
@@ -38,13 +37,18 @@ static NSString* const NotesViewControllerXIB = @"NotesViewController";
 @property (nonatomic) CGPoint *start;
 @property UITapGestureRecognizer *tapToCreateNote;
 @property UITapGestureRecognizer *tapToCreateNoteDrawingNote;
-@property UISegmentedControl *notesPanelControl;
+@property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *drawNote;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *textNote;
 @property UITapGestureRecognizer *tapToDismissKeyboard;
 @property (weak, nonatomic) IBOutlet UIImageView *trashBin;
 @property (weak, nonatomic) IBOutlet UIView *toolbarView;
 
-
+- (void)loadNotes:(NSMutableArray *)notes;
+- (IBAction)setBlueColor:(id)sender;
 - (IBAction)createDrawNote:(id)sender;
+- (IBAction)setYellowColor:(id)sender;
+- (IBAction)setRedColor:(id)sender;
 - (IBAction)createTextNote:(id)sender;
 - (IBAction)undoButtonPressed:(id)sender;
 - (IBAction)erasePressed:(id)sender;
