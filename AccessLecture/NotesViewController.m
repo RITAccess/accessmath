@@ -415,7 +415,8 @@ static NSString * DRAW_KEY = @"draw_key";
 - (void)handleResize:(UIPanGestureRecognizer *)gestureRecognizer
 {
     if((_isDrawing)){
-        [_mainView setFrame:self.view.frame];
+    [_mainView setFrame:self.view.frame];
+       // [_mainView setFrame:[[[self.view subviews] objectAtIndex:1] frame]];
         drawIndex = [[[[self.view subviews] objectAtIndex:1] subviews] indexOfObject:gestureRecognizer.view];
         UIImageView *temp = [[[gestureRecognizer view] subviews] objectAtIndex:0];//pin
         UIImageView *tempImage = [[[gestureRecognizer view] subviews] objectAtIndex:1];//drawView
