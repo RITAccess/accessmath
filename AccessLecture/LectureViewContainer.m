@@ -50,7 +50,6 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
     return new;
 }
 - (UIView *)contentView { return self.view; }
-- (void)contentSizeChanging:(CGSize)size { }
 
 @end
 
