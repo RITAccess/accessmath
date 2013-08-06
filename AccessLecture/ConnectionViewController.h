@@ -33,7 +33,6 @@ static NSString *const ConnectionViewControllerSBID = @"connectionVC";
 @property (weak, nonatomic) IBOutlet UITextField *lecture;
 @property (weak, nonatomic) IBOutlet UIView *previewView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UILabel *scanStatusLabel;
 @property (weak, nonatomic) IBOutlet UIButton *scanButton;
 @property (strong, nonatomic)id<ConnectionView> delegate;
 
