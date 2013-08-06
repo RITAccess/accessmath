@@ -693,6 +693,7 @@
 				4CE742C81768BDE60026DE71 /* Supporting Files */,
 				2CCA61AD17B13AB9002DA6A3 /* DrawViewTests.m */,
 				2CCA979717B14DD700669275 /* DrawViewControllerTests.m */,
+				4CE742C81768BDE60026DE71 /* Supporting Files */,
 			);
 			path = "AccessLecture Tests";
 			sourceTree = "<group>";
