@@ -692,6 +692,7 @@
 			children = (
 				4C5219ED17B1485A00601A4D /* LectureContainer.m */,
 				4C51C79C1768F5BE0045DF42 /* Lectures.m */,
+				4CE742C81768BDE60026DE71 /* Supporting Files */,
 				2CCA61AD17B13AB9002DA6A3 /* DrawViewTests.m */,
 				3FB653D817B1836D00AE8FB5 /* NotesViewControllerTests.m */,
 				2CCA979717B14DD700669275 /* DrawViewControllerTests.m */,
