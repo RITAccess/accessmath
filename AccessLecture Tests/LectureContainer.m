@@ -78,7 +78,7 @@
     [_testLVC applyTransforms];
     UIView *cont = [(id<LectureViewChild>)[_testLVC.childViewControllers objectAtIndex:rand() % _testLVC.childViewControllers.count] contentView];
     CGPoint testCenter = cont.center;
-    STAssertEquals(testCenter, CGPointMake(500, [UIScreen mainScreen].bounds.size.height - (cont.frame.size.height / 2)), @"View not transformed correctly");
+    STAssertEqualsWithAccuracy(testCenter.y, [UIScreen mainScreen].bounds.size.height - (cont.frame.size.height / 2), 20, @"View not transformed correctly");
 }
 
 @end
