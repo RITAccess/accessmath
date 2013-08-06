@@ -59,10 +59,10 @@
     [testNotesViewController createNoteText:testNotesViewController.tapToCreateNote];
    // STAssertTrue(testNotesViewController.mainView.subviews.count == 0 , @"Drawing Note not created");
 }
--(void)testSave{
-   [testNotesViewController viewDidAppear:YES];
-    [testNotesViewController loadNotes:testNotesViewController.currentDocument.notes];
-    [testNotesViewController willSaveState];
-   // STAssertEquals((int)testNotesViewController.currentDocument.notes.count ,0 , @"Drawing Note not created");
-}
+//-(void)testSave{
+//    [testNotesViewController viewDidAppear:YES];
+//    [testNotesViewController loadNotes:testNotesViewController.currentDocument.notes];
+//    [testNotesViewController willSaveState];
+//    STAssertEquals((int)testNotesViewController.currentDocument.notes.count ,0 , @"Drawing Note not created");
+//}
 @end
