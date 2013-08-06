@@ -84,14 +84,14 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
 
 @end
 
+static dispatch_once_t createControllers;
+static NotesViewController *nvc;
+static DrawViewController *dcv;
+static StreamViewController *svc;
+static VCBlank *blank;
+
 @implementation LectureViewContainer
 {
-    // Controllers
-    NotesViewController *nvc;
-    DrawViewController *dcv;
-    StreamViewController *svc;
-    VCBlank *blank;
-    
     // Menu
     NSArray *menuItems;
     BOOL menuOpen;
@@ -119,13 +119,14 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
     [self.view setClipsToBounds:YES];
     
     // Set up viewControllers
-    nvc = [[NotesViewController alloc] initWithNibName:NotesViewControllerXIB bundle:nil];
-    dcv = [[DrawViewController alloc] initWithNibName:DrawViewControllerXIB bundle:nil];
-    svc = (StreamViewController *)[[UIStoryboard storyboardWithName:StreamViewControllerStoryboard bundle:nil] instantiateViewControllerWithIdentifier:StreamViewControllerID];
+    dispatch_once(&createControllers, ^{
+        nvc = [[NotesViewController alloc] initWithNibName:NotesViewControllerXIB bundle:nil];
+        dcv = [[DrawViewController alloc] initWithNibName:DrawViewControllerXIB bundle:nil];
+        svc = (StreamViewController *)[[UIStoryboard storyboardWithName:StreamViewControllerStoryboard bundle:nil] instantiateViewControllerWithIdentifier:StreamViewControllerID];
+        blank = [VCBlank new];
+    });
     
     _space = CGSizeMake(LC_WIDTH, LC_HEIGHT);
-    
-    blank = [VCBlank new];
     
     [self addController:nvc];
     [self addController:dcv];
