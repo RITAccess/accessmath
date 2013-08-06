@@ -73,6 +73,7 @@
 		4C4B8BFA178EF57200C2F94B /* QRScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B8BF9178EF57200C2F94B /* QRScanner.m */; };
 		4C4B8BFC178EF8D900C2F94B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C4B8BFB178EF8D900C2F94B /* AVFoundation.framework */; };
 		4C51C79D1768F5BE0045DF42 /* Lectures.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C51C79C1768F5BE0045DF42 /* Lectures.m */; };
+		4C5219EE17B1485A00601A4D /* LectureContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5219ED17B1485A00601A4D /* LectureContainer.m */; };
 		4C5B55FB17720A15005B79CF /* server.crt in Resources */ = {isa = PBXBuildFile; fileRef = 4C5B55FA17720A15005B79CF /* server.crt */; };
 		4C5C50C6177B59D90095801A /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C5C50C5177B59D90095801A /* pin.png */; };
 		4C5C50CD177B7B7C0095801A /* LectureViewContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5C50CC177B7B7C0095801A /* LectureViewContainer.m */; };
@@ -212,6 +213,7 @@
 		4C4B8BF9178EF57200C2F94B /* QRScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRScanner.m; sourceTree = "<group>"; };
 		4C4B8BFB178EF8D900C2F94B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		4C51C79C1768F5BE0045DF42 /* Lectures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lectures.m; sourceTree = "<group>"; };
+		4C5219ED17B1485A00601A4D /* LectureContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LectureContainer.m; sourceTree = "<group>"; };
 		4C5B55FA17720A15005B79CF /* server.crt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = server.crt; sourceTree = "<group>"; };
 		4C5C50C5177B59D90095801A /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin.png; sourceTree = "<group>"; };
 		4C5C50CB177B7B7C0095801A /* LectureViewContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LectureViewContainer.h; sourceTree = "<group>"; };
@@ -684,6 +686,7 @@
 		4CE742C71768BDE60026DE71 /* AccessLecture Tests */ = {
 			isa = PBXGroup;
 			children = (
+				4C5219ED17B1485A00601A4D /* LectureContainer.m */,
 				4C51C79C1768F5BE0045DF42 /* Lectures.m */,
 				4CB832A01768C0AC008F0099 /* AccessLecture_Tests.m */,
 				4CE742C81768BDE60026DE71 /* Supporting Files */,
@@ -869,6 +872,7 @@
 			files = (
 				4CB832A11768C0BC008F0099 /* AccessLecture_Tests.m in Sources */,
 				4C51C79D1768F5BE0045DF42 /* Lectures.m in Sources */,
+				4C5219EE17B1485A00601A4D /* LectureContainer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
