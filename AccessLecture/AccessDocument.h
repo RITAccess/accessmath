@@ -20,16 +20,16 @@
 
 @interface AccessDocument : UIDocument
 
-// a collection of notes in the lecture
+// A collection of notes in the lecture
 @property (strong, nonatomic) NSMutableArray * notes;
 // the lecture object
 @property (strong, nonatomic) Lecture * lecture;
 
-//
-//  The file extension of the document.
-//  Not necessary for the Document at all, but a convienent location
-//  to store this kind of information.
-//
+/**
+* The file extension of the document.
+* Not necessary for the Document at all, but a convienent location
+* to store this kind of information.
+ */
 + (NSString *)fileType;
 
 @end

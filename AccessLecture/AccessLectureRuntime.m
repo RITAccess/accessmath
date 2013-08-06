@@ -3,6 +3,7 @@
 //  AccessLecture
 //
 //  Created by Steven Brunwasser on 4/21/12.
+//  Modified by Pratik Rasam on 6/26/2013
 //  Copyright (c) 2012 Rochester Institute of Technology. All rights reserved.
 //
 
@@ -26,14 +27,19 @@ static NSString * DEFAULT_FILENAME = @"Lecture001";
     }
     return self;
 }
-
+/**
+ * Returns the global runtime object containing the current document
+ */
 + (AccessLectureRuntime *)defaultRuntime {
     static AccessLectureRuntime * defaults;
     if (defaults) return defaults;
     defaults = [[AccessLectureRuntime alloc] init];
     return defaults;
 }
-
+/**
+ * Opens the AccessDocument with the specified URL. The docuement is then attached to the default runtime
+ * object.
+ */
 - (void)openDocument:(NSURL *) withURL{
     NSURL * currentDirectory = [FileManager iCloudDirectoryURL];
     if (currentDirectory == nil) currentDirectory = [FileManager accessMathDirectoryURL];
@@ -52,7 +58,6 @@ static NSString * DEFAULT_FILENAME = @"Lecture001";
             if(success)
             {
             [AccessLectureRuntime defaultRuntime].currentDocument = _currentDocument;
-               
             }
             else{
                 [_currentDocument saveToURL:withURL

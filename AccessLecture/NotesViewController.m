@@ -2,7 +2,7 @@
 //  NotesViewController.m
 //  AccessLecture
 //
-//  Created by Student on 6/26/13.
+//  Created by Pratik Rasam on 6/26/13.
 //
 //
 
@@ -42,6 +42,9 @@ static NSString * DRAW_KEY = @"draw_key";
     }
     return self;
 }
+/**
+ * Serialization of noteLoader objects
+ */
 - (id)initWithCoder:(NSCoder *)aCoder {
     if (self = [super init]) {
         _view = [aCoder decodeObjectForKey:VIEW_KEY];
@@ -86,16 +89,20 @@ static NSString * DRAW_KEY = @"draw_key";
             [self.view setFrame:CGRectMake(0, 0, 1024, 768)];
         }
     }
-    
+  
     return self;
 }
 
+/**
+ * When connected to a lecture, lecture notes for connected lecture will be loaded to current lecture
+ */
 -(void)viewDidAppear:(BOOL)animated{
     isOpened = NO;
     drawIndex = -1;//No drawing mode set yet, value changes as per indexed fetched from current view
-    //assign this value from stream view controller lecture name
-   [self.toolbarView setHidden:YES];
+  
+    [self.toolbarView setHidden:YES];
     [self.trashBin setHidden:YES];
+     //Assign this value from stream view controller lecture name
     currentLecture.name = @"Lecture001";
     NSURL * currentDirectory = [FileManager iCloudDirectoryURL];
     if (currentDirectory == nil) currentDirectory = [FileManager localDocumentsDirectoryURL];
@@ -104,17 +111,23 @@ static NSString * DRAW_KEY = @"draw_key";
     [[AccessLectureRuntime defaultRuntime] openDocument:docURL];
      currentDocument = [AccessLectureRuntime defaultRuntime].currentDocument;
    }
+
+/**
+ * Initialize view if loading for the first time, set default color and font values for notes
+ */
 - (void)viewDidLoad
 {
+    
     [super viewDidLoad];
-    startTag = @"<CD>";
+        startTag = @"<CD>";
     endTag = @"</CD>";
     drawcolor = [UIColor blackColor];
     isBackSpacePressed = FALSE;
+   
     // Do any additional setup after loading the view from its nib.
         if((!isOpened)){
         [self initializeView];
-    //  [self loadNotes:currentDocument.notes];
+  //  [self loadNotes:currentDocument.notes]; // Uncomment to load any previous notes
         [self.trashBin setHidden:NO];
         isOpened = YES;
     }
@@ -123,22 +136,21 @@ static NSString * DRAW_KEY = @"draw_key";
     [self.view setBackgroundColor:[UIColor clearColor]];
     
 }
+- (void)viewDidUnload
+{
+    
+    [super viewDidUnload];
+}
 /**
- * Inititlizes main notes view which contains subviews for text notes and  drawing notes
- * 
- *
+ * Called by viewDidLoad(). Initializes main content view and
  */
 -(void)initializeView{
     
     _mainView = [[UIView alloc] initWithFrame:self.view.frame];
-   
-    
     [self.view addSubview:_mainView];
     [self.view addSubview:self.toolbarView];
     [self initColorSegmentedControl];
     [self.view addSubview:self.trashBin];
-    //[self.toolbarView addSubview:self.toolBar];
-   // [self.view bringSubviewToFront:self.toolbarView];
     currentLecture = [[Lecture alloc] initWithName:@"Lecture001"];
     
 }
@@ -238,8 +250,6 @@ static NSString * DRAW_KEY = @"draw_key";
 
 /**
  * Loads saved notes from the current document's notes array
- * 
- *
  */
 -(void)loadNotes:(NSMutableArray *)notes{
     for(noteLoader *viewer in notes){
@@ -293,6 +303,7 @@ static NSString * DRAW_KEY = @"draw_key";
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 - (void)dismissKeyboard
 {
     [self.view endEditing:YES];
@@ -415,7 +426,9 @@ static NSString * DRAW_KEY = @"draw_key";
 - (void)handleResize:(UIPanGestureRecognizer *)gestureRecognizer
 {
     if((_isDrawing)){
-        [_mainView setFrame:self.view.frame];
+    
+       [_mainView setFrame:self.view.frame];
+       // [_mainView setFrame:[[[self.view subviews] objectAtIndex:1] frame]];
         drawIndex = [[[[self.view subviews] objectAtIndex:1] subviews] indexOfObject:gestureRecognizer.view];
         UIImageView *temp = [[[gestureRecognizer view] subviews] objectAtIndex:0];//pin
         UIImageView *tempImage = [[[gestureRecognizer view] subviews] objectAtIndex:1];//drawView
@@ -423,7 +436,7 @@ static NSString * DRAW_KEY = @"draw_key";
         [[[[gestureRecognizer view] subviews] objectAtIndex:0] removeFromSuperview];
         [gestureRecognizer.view addSubview:temp];
         [gestureRecognizer.view addSubview:tempImage];
-        [tempImage setFrame:CGRectMake(_mainView.frame.origin.x,_mainView.frame.origin.y,[gestureRecognizer locationInView:gestureRecognizer.view].x, [gestureRecognizer locationInView:gestureRecognizer.view].y)];
+        [tempImage setFrame:CGRectMake(_mainView.superview.frame.origin.x,_mainView.superview.frame.origin.y,[gestureRecognizer locationInView:gestureRecognizer.view].x, [gestureRecognizer locationInView:gestureRecognizer.view].y)];
         CGPoint point = CGPointMake(gestureRecognizer.view.frame.size.width-20, gestureRecognizer.view.frame.size.height-20);
         [temp setCenter:point];
         [temp setBounds:CGRectMake([gestureRecognizer locationInView:self.view].x, [gestureRecognizer locationInView:self.view].y, 50, 50)];
@@ -609,6 +622,9 @@ static NSString * DRAW_KEY = @"draw_key";
      [alert show];
 }
 
+/**
+ * Undo the previous drawing on the view determined by the drawIndex.
+ */
 
 - (IBAction)undoButtonPressed:(id)sender
 {
@@ -629,7 +645,9 @@ static NSString * DRAW_KEY = @"draw_key";
         [alert show];
     }
     }
-
+/**
+ * Erase the drawing on the view determined by the drawIndex.
+ */
 - (IBAction)erasePressed:(id)sender
 {
     if((_isDrawing)&&(drawIndex!=-1)){
@@ -643,6 +661,9 @@ static NSString * DRAW_KEY = @"draw_key";
         [alert show];
     }
 }
+/**
+ * Returns an array with text styles for FTCoreText object.
+ */
 
 - (NSArray *)coreTextStyle{
     NSMutableArray *result = [NSMutableArray array];
@@ -680,7 +701,6 @@ static NSString * DRAW_KEY = @"draw_key";
 
 }
 #pragma mark Child View Controller Calls
-
 - (void)willMoveToParentViewController:(UIViewController *)parent
 {
 
@@ -690,6 +710,9 @@ static NSString * DRAW_KEY = @"draw_key";
 {
     [self.toolbarView setHidden:NO];
 }
+/**
+ * Creates noteLoader objects and packs all views in the current Document to be saved by file manager
+ */
 
 - (void)willSaveState
 {
@@ -730,13 +753,13 @@ static NSString * DRAW_KEY = @"draw_key";
 - (void)didLeaveActiveState
 {
     [self.toolbarView setHidden:YES];
-   // [self.trashBin setHidden:YES];
+   [self.trashBin setHidden:YES];
 
 }
 
 - (UIView *)contentView
 {
-   _mainView.frame = self.view.frame;
+    [_mainView setFrame:self.view.frame];
     return _mainView;
 }
 

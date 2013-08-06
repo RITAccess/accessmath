@@ -3,6 +3,7 @@
 //  AccessLecture
 //
 //  Created by Steven Brunwasser on 4/21/12.
+//  Modified by Pratik Rasam on 6/26/2013
 //  Copyright (c) 2012 Rochester Institute of Technology. All rights reserved.
 //
 
@@ -22,7 +23,7 @@
 + (AccessLectureRuntime *)defaultRuntime;
 
 //
-// currently, there is only support for one document.
+// Loads the document with the specified url
 //
 - (void)openDocument:(NSURL *) withURL;
 

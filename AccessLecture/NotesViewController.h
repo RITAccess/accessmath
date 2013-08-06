@@ -2,7 +2,7 @@
 //  NotesViewController.h
 //  AccessLecture
 //
-//  Created by Student on 6/26/13.
+//  Created by Pratik Rasam on 6/26/13.
 //
 //
 
@@ -15,11 +15,11 @@
 #import "FileManager.h"
 #import "AccessLectureRuntime.h"
 #import "UISegmentedControlExtension.h"
+#import "Note.h"
 static NSString* const NotesViewControllerXIB = @"NotesViewController";
 @interface NotesViewController : UIViewController<UITextViewDelegate,LectureViewChild>{
     UIColor *textColor;
     UIColor *drawcolor;
-    CGFloat lastScale;
     NSString *startTag;
     NSString *endTag;
     BOOL isBackSpacePressed;
@@ -32,17 +32,22 @@ static NSString* const NotesViewControllerXIB = @"NotesViewController";
     UILongPressGestureRecognizer *longPressGestureRecognizer2;
     NSInteger drawIndex;
 }
+//UI Elements
 @property UIView *mainView;
+//Determine whether current note is a text note or draw note
 @property (nonatomic) BOOL isCreatingNote;
 @property (nonatomic) BOOL isDrawing;
-@property (nonatomic) CGPoint *start;
+
+@property (weak, nonatomic) IBOutlet UIImageView *trashBin;
+@property (weak, nonatomic) IBOutlet UIView *toolbarView;
+
+//Gestures
 @property UITapGestureRecognizer *tapToCreateNote;
 @property UITapGestureRecognizer *tapToCreateNoteDrawingNote;
 @property UISegmentedControl *notesPanelControl;
 @property UITapGestureRecognizer *tapToDismissKeyboard;
-@property (weak, nonatomic) IBOutlet UIImageView *trashBin;
-@property (weak, nonatomic) IBOutlet UIView *toolbarView;
 
+//Interactions
 
 - (IBAction)createDrawNote:(id)sender;
 - (IBAction)createTextNote:(id)sender;
