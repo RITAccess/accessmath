@@ -15,6 +15,7 @@
 #import "FileManager.h"
 #import "AccessLectureRuntime.h"
 #import "UISegmentedControlExtension.h"
+#import "Note.h"
 static NSString* const NotesViewControllerXIB = @"NotesViewController";
 @interface NotesViewController : UIViewController<UITextViewDelegate,LectureViewChild>{
     UIColor *textColor;

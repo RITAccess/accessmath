@@ -86,7 +86,7 @@ static NSString * DRAW_KEY = @"draw_key";
             [self.view setFrame:CGRectMake(0, 0, 1024, 768)];
         }
     }
-    
+  
     return self;
 }
 
@@ -106,8 +106,9 @@ static NSString * DRAW_KEY = @"draw_key";
    }
 - (void)viewDidLoad
 {
+    
     [super viewDidLoad];
-    startTag = @"<CD>";
+        startTag = @"<CD>";
     endTag = @"</CD>";
     drawcolor = [UIColor blackColor];
     isBackSpacePressed = FALSE;
@@ -123,11 +124,12 @@ static NSString * DRAW_KEY = @"draw_key";
     [self.view setBackgroundColor:[UIColor clearColor]];
     
 }
-/**
- * Inititlizes main notes view which contains subviews for text notes and  drawing notes
- * 
- *
- */
+- (void)viewDidUnload
+{
+    
+    [super viewDidUnload];
+}
+
 -(void)initializeView{
     
     _mainView = [[UIView alloc] initWithFrame:self.view.frame];
@@ -415,7 +417,9 @@ static NSString * DRAW_KEY = @"draw_key";
 - (void)handleResize:(UIPanGestureRecognizer *)gestureRecognizer
 {
     if((_isDrawing)){
-        [_mainView setFrame:self.view.frame];
+    
+       [_mainView setFrame:self.view.frame];
+       // [_mainView setFrame:[[[self.view subviews] objectAtIndex:1] frame]];
         drawIndex = [[[[self.view subviews] objectAtIndex:1] subviews] indexOfObject:gestureRecognizer.view];
         UIImageView *temp = [[[gestureRecognizer view] subviews] objectAtIndex:0];//pin
         UIImageView *tempImage = [[[gestureRecognizer view] subviews] objectAtIndex:1];//drawView
@@ -423,7 +427,7 @@ static NSString * DRAW_KEY = @"draw_key";
         [[[[gestureRecognizer view] subviews] objectAtIndex:0] removeFromSuperview];
         [gestureRecognizer.view addSubview:temp];
         [gestureRecognizer.view addSubview:tempImage];
-        [tempImage setFrame:CGRectMake(_mainView.frame.origin.x,_mainView.frame.origin.y,[gestureRecognizer locationInView:gestureRecognizer.view].x, [gestureRecognizer locationInView:gestureRecognizer.view].y)];
+        [tempImage setFrame:CGRectMake(_mainView.superview.frame.origin.x,_mainView.superview.frame.origin.y,[gestureRecognizer locationInView:gestureRecognizer.view].x, [gestureRecognizer locationInView:gestureRecognizer.view].y)];
         CGPoint point = CGPointMake(gestureRecognizer.view.frame.size.width-20, gestureRecognizer.view.frame.size.height-20);
         [temp setCenter:point];
         [temp setBounds:CGRectMake([gestureRecognizer locationInView:self.view].x, [gestureRecognizer locationInView:self.view].y, 50, 50)];
@@ -736,7 +740,7 @@ static NSString * DRAW_KEY = @"draw_key";
 
 - (UIView *)contentView
 {
-   _mainView.frame = self.view.frame;
+    [_mainView setFrame:self.view.frame];
     return _mainView;
 }
 
