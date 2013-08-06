@@ -12,6 +12,7 @@
 		2C7C981A17999B5C00F8ECE4 /* sample-qr.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C7C981917999B5C00F8ECE4 /* sample-qr.png */; };
 		2CBF301C177B7AB10087C17C /* DrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBF301A177B7AB10087C17C /* DrawViewController.m */; };
 		2CBF301D177B7AB10087C17C /* DrawViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CBF301B177B7AB10087C17C /* DrawViewController.xib */; };
+		2CCA61AE17B13AB9002DA6A3 /* DrawViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CCA61AD17B13AB9002DA6A3 /* DrawViewTests.m */; };
 		2CF45FDD17971C0400E6C69E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF45FDC17971C0400E6C69E /* QuartzCore.framework */; };
 		2CF6BA901784919300A695CC /* AMBezierPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF6BA8D1784919300A695CC /* AMBezierPath.m */; };
 		2CF6BA911784919300A695CC /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF6BA8E1784919300A695CC /* arrow.png */; };
@@ -116,6 +117,7 @@
 		2CBF3019177B7AB10087C17C /* DrawViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawViewController.h; sourceTree = "<group>"; };
 		2CBF301A177B7AB10087C17C /* DrawViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawViewController.m; sourceTree = "<group>"; };
 		2CBF301B177B7AB10087C17C /* DrawViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawViewController.xib; sourceTree = "<group>"; };
+		2CCA61AD17B13AB9002DA6A3 /* DrawViewTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawViewTests.m; sourceTree = "<group>"; };
 		2CF45FDC17971C0400E6C69E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		2CF6BA8C1784919300A695CC /* AMBezierPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMBezierPath.h; sourceTree = "<group>"; };
 		2CF6BA8D1784919300A695CC /* AMBezierPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMBezierPath.m; sourceTree = "<group>"; };
@@ -690,6 +692,7 @@
 				4C51C79C1768F5BE0045DF42 /* Lectures.m */,
 				4CB832A01768C0AC008F0099 /* AccessLecture_Tests.m */,
 				4CE742C81768BDE60026DE71 /* Supporting Files */,
+				2CCA61AD17B13AB9002DA6A3 /* DrawViewTests.m */,
 			);
 			path = "AccessLecture Tests";
 			sourceTree = "<group>";
@@ -874,6 +877,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CB832A11768C0BC008F0099 /* AccessLecture_Tests.m in Sources */,
+				2CCA61AE17B13AB9002DA6A3 /* DrawViewTests.m in Sources */,
 				4C51C79D1768F5BE0045DF42 /* Lectures.m in Sources */,
 				4C5219EE17B1485A00601A4D /* LectureContainer.m in Sources */,
 			);
