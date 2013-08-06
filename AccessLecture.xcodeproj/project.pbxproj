@@ -54,6 +54,7 @@
 		3FAAA850137848AB00F79C0C /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAAA84F137848AB00F79C0C /* Icon.png */; };
 		3FADD94917983F7A00ADEF76 /* RecycleBin.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FADD94817983F7400ADEF76 /* RecycleBin.png */; };
 		3FAE785413C786F800796813 /* accesslecture.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAE785313C786F800796813 /* accesslecture.png */; };
+		3FB653D917B1836D00AE8FB5 /* NotesViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB653D817B1836D00AE8FB5 /* NotesViewControllerTests.m */; };
 		3FCD5D0B15437D0A005F2A60 /* AccessDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F99F1FD154364270065CBB9 /* AccessDocument.m */; };
 		3FCD5D1715438472005F2A60 /* AccessLectureRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FCD5D1615438472005F2A60 /* AccessLectureRuntime.m */; };
 		3FED960C1370863E00D8D1B8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FED960B1370863E00D8D1B8 /* UIKit.framework */; };
@@ -187,6 +188,7 @@
 		3FAAA84F137848AB00F79C0C /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
 		3FADD94817983F7400ADEF76 /* RecycleBin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecycleBin.png; sourceTree = "<group>"; };
 		3FAE785313C786F800796813 /* accesslecture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = accesslecture.png; sourceTree = "<group>"; };
+		3FB653D817B1836D00AE8FB5 /* NotesViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesViewControllerTests.m; sourceTree = "<group>"; };
 		3FC32EBA13E05E0F00077291 /* biology.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = biology.png; path = ../biology.png; sourceTree = "<group>"; };
 		3FC32EBB13E05E0F00077291 /* geometry.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = geometry.png; path = ../geometry.png; sourceTree = "<group>"; };
 		3FCD5D1515438472005F2A60 /* AccessLectureRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccessLectureRuntime.h; sourceTree = "<group>"; };
@@ -691,6 +693,7 @@
 				4C5219ED17B1485A00601A4D /* LectureContainer.m */,
 				4C51C79C1768F5BE0045DF42 /* Lectures.m */,
 				2CCA61AD17B13AB9002DA6A3 /* DrawViewTests.m */,
+				3FB653D817B1836D00AE8FB5 /* NotesViewControllerTests.m */,
 				2CCA979717B14DD700669275 /* DrawViewControllerTests.m */,
 				4CE742C81768BDE60026DE71 /* Supporting Files */,
 			);
@@ -879,6 +882,7 @@
 				2CCA979817B14DD700669275 /* DrawViewControllerTests.m in Sources */,
 				2CCA61AE17B13AB9002DA6A3 /* DrawViewTests.m in Sources */,
 				4C51C79D1768F5BE0045DF42 /* Lectures.m in Sources */,
+				3FB653D917B1836D00AE8FB5 /* NotesViewControllerTests.m in Sources */,
 				4C5219EE17B1485A00601A4D /* LectureContainer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

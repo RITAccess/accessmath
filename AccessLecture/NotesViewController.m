@@ -66,6 +66,8 @@ static NSString * DRAW_KEY = @"draw_key";
 
 @end
 @implementation NotesViewController
+@synthesize currentLecture;
+@synthesize currentDocument;
 #define RED_TAG 111
 #define GREEN_TAG 112
 #define BLUE_TAG 113
@@ -311,6 +313,7 @@ static NSString * DRAW_KEY = @"draw_key";
 # pragma mark - TextNote Creation
 - (void)createNoteText:(UIGestureRecognizer *)gesture
 {
+
     if (_isCreatingNote){
         if(self.isCreatingNote){
              _mainView.frame = self.view.frame;

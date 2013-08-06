@@ -23,8 +23,6 @@ static NSString* const NotesViewControllerXIB = @"NotesViewController";
     NSString *startTag;
     NSString *endTag;
     BOOL isBackSpacePressed;
-    Lecture *currentLecture;
-    AccessDocument *currentDocument;
     BOOL isOpened;
     UIPanGestureRecognizer *panToMoveNote;
     UIPanGestureRecognizer *panToResize;
@@ -37,7 +35,8 @@ static NSString* const NotesViewControllerXIB = @"NotesViewController";
 //Determine whether current note is a text note or draw note
 @property (nonatomic) BOOL isCreatingNote;
 @property (nonatomic) BOOL isDrawing;
-
+@property (nonatomic)Lecture *currentLecture;
+@property (nonatomic)AccessDocument *currentDocument;
 @property (weak, nonatomic) IBOutlet UIImageView *trashBin;
 @property (weak, nonatomic) IBOutlet UIView *toolbarView;
 
@@ -48,7 +47,8 @@ static NSString* const NotesViewControllerXIB = @"NotesViewController";
 @property UITapGestureRecognizer *tapToDismissKeyboard;
 
 //Interactions
-
+- (void)loadNotes:(NSMutableArray *)notes;
+- (void)createNoteText:(UIGestureRecognizer *)gesture;
 - (IBAction)createDrawNote:(id)sender;
 - (IBAction)createTextNote:(id)sender;
 - (IBAction)undoButtonPressed:(id)sender;
