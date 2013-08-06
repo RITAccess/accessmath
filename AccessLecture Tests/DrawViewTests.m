@@ -26,13 +26,7 @@
 
 - (void)tearDown
 {
-    // Put teardown code here; it will be run once, after the last test case.
     [super tearDown];
-}
-
-- (void)testExample
-{
-    STFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
 }
 
 - (void)testAddStampToShapeArray
