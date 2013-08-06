@@ -45,4 +45,19 @@
     STAssertTrue(testDrawViewController.drawView.paths.count == 0, @"Paths array not being emptied by clear button press.");
 }
 
+- (void)testPenSizeChange
+{
+    [testDrawViewController penSizeSlide:nil];
+    STAssertEquals(testDrawViewController.drawView.penSize, testDrawViewController.penSizeSlider.value, @"Slider does not equal pen size value.");
+}
+
+- (void)testRemoveLastObjectFromUndoButtonPress
+{
+    [testDrawViewController.drawView.shapes insertObject:@"TestShape" atIndex:0];
+    NSString *testObject = testDrawViewController.drawView.shapes.lastObject;
+    STAssertEqualObjects(@"TestShape", testObject, @"Objects don't match.");
+    [testDrawViewController undoButtonPress:nil];
+    STAssertTrue(![testDrawViewController.drawView.shapes containsObject:testObject], @"Object was not removed.");
+}
+
 @end
