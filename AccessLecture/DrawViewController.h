@@ -14,9 +14,7 @@
 static NSString* const DrawViewControllerXIB = @"DrawViewController";
 static int const SHAPE_MAX = 4;
 
-@interface DrawViewController : UIViewController <LectureViewChild> {
-    int shapeButtonIndex;
-}
+@interface DrawViewController : UIViewController <LectureViewChild>
 
 // Gestures
 @property UIPanGestureRecognizer *panGestureRecognzier;
@@ -26,7 +24,7 @@ static int const SHAPE_MAX = 4;
 @property (weak, nonatomic) IBOutlet UISlider *penSizeSlider;
 @property UISegmentedControl *colorSegmentedControl;
 @property (weak, nonatomic) IBOutlet UIView *toolbarView;
-@property int selectedColor;
+@property int selectedColor, shapeButtonIndex;
 @property (weak, nonatomic) IBOutlet UIButton *shapeButton;
 @property NSMutableArray *buttonStrings;
 

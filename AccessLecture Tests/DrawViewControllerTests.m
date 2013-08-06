@@ -24,6 +24,10 @@
     testDrawViewController.drawView = [DrawView new];
     testDrawViewController.drawView.shapes = [NSMutableArray new];
     testDrawViewController.drawView.paths = [NSMutableArray new];
+    testDrawViewController.drawView.tapStamp = [UITapGestureRecognizer new];
+    testDrawViewController.drawView.fingerDrag = [UIPanGestureRecognizer new];
+    testDrawViewController.drawView.buttonString = [NSMutableString new];
+    testDrawViewController.buttonStrings = [[NSMutableArray alloc] initWithObjects:@"star.png", @"arrow.png", @"undo.png", @"circle.png", nil];;
 }
 
 - (void)tearDown
@@ -58,6 +62,24 @@
     STAssertEqualObjects(@"TestShape", testObject, @"Objects don't match.");
     [testDrawViewController undoButtonPress:nil];
     STAssertTrue(![testDrawViewController.drawView.shapes containsObject:testObject], @"Object was not removed.");
+}
+
+- (void)testButtonStringAssign
+{
+    [testDrawViewController shapeButtonPress:nil];
+    STAssertTrue([testDrawViewController.drawView.buttonString isEqualToString:[testDrawViewController.buttonStrings objectAtIndex:testDrawViewController.shapeButtonIndex]], @"Button strings are not being assigned correctly.");
+}
+
+- (void)testTapGestureEnableFromShapeButtonPress
+{
+    [testDrawViewController shapeButtonPress:nil];
+    STAssertTrue(testDrawViewController.drawView.tapStamp.enabled == YES, @"Tap gesture is not enabled.");
+}
+
+- (void)testSwipeGestureDisableFromShapeButtonPress
+{
+    [testDrawViewController shapeButtonPress:nil];
+    STAssertTrue(testDrawViewController.drawView.fingerDrag.enabled == NO, @"Swipe gesture is still enabled.");
 }
 
 @end

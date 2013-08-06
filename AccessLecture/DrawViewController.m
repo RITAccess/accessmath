@@ -171,9 +171,9 @@
 
 - (IBAction)shapeButtonPress:(id)sender
 {
-    shapeButtonIndex >= SHAPE_MAX - 1 ? shapeButtonIndex = 0 : shapeButtonIndex++;
+    _shapeButtonIndex >= SHAPE_MAX - 1 ? _shapeButtonIndex = 0 : _shapeButtonIndex++;
     
-    [[_drawView buttonString] setString:[_buttonStrings objectAtIndex:shapeButtonIndex]];
+    [[_drawView buttonString] setString:[_buttonStrings objectAtIndex:_shapeButtonIndex]];
     [[_drawView tapStamp] setEnabled:YES];
     [[_drawView fingerDrag] setEnabled:NO];
     
