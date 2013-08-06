@@ -76,10 +76,22 @@
     STAssertTrue(testDrawViewController.drawView.tapStamp.enabled == YES, @"Tap gesture is not enabled.");
 }
 
-- (void)testSwipeGestureDisableFromShapeButtonPress
+- (void)testPanGestureDisableFromShapeButtonPress
 {
     [testDrawViewController shapeButtonPress:nil];
     STAssertTrue(testDrawViewController.drawView.fingerDrag.enabled == NO, @"Swipe gesture is still enabled.");
+}
+
+- (void)testDisableTapStampFromSegmentSelect
+{
+    [testDrawViewController segmentChanged:nil];
+    STAssertTrue(testDrawViewController.drawView.tapStamp.enabled == NO, @"Tap gesture is still enabled.");
+}
+
+- (void)testPanGestureEnableFromSegmentSelect
+{
+    [testDrawViewController segmentChanged:nil];
+    STAssertTrue(testDrawViewController.drawView.fingerDrag.enabled == YES, @"Pan gesture is not enabled.");
 }
 
 @end

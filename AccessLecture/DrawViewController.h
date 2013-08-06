@@ -34,5 +34,6 @@ static int const SHAPE_MAX = 4;
 - (IBAction)penSizeSlide:(id)sender;
 - (IBAction)undoButtonPress:(id)sender;
 - (IBAction)shapeButtonPress:(id)sender;
+- (void)segmentChanged:(id)sender;
 
 @end
