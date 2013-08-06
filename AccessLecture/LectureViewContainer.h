@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "TopNav.h"
 
+static NSString *const LectureViewContainerSBID = @"lectureVC";
+
 typedef struct {
     CGPoint root;
     CGPoint end;
