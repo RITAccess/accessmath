@@ -469,8 +469,8 @@ static NSString * DRAW_KEY = @"draw_key";
 } 
 # pragma mark - Display hidden note by long press using one finger on pin
 - (void)longPressToDisplayNote:(UILongPressGestureRecognizer *)gestureRecognizer
-{
-    if((_isCreatingNote)&&([[[[gestureRecognizer view] subviews] objectAtIndex:1] isKindOfClass:[UITextView class]])&&(gestureRecognizer.view.frame.size.width==50)){
+{   
+    if((_isCreatingNote)&&([[[[gestureRecognizer view] subviews] objectAtIndex:1] isKindOfClass:[UITextView class]])&&(gestureRecognizer.view.frame.size.width<=55)){
         UITextView *temp = [[[gestureRecognizer view] subviews] objectAtIndex:1];
         FTCoreTextView *tempView = [[[gestureRecognizer view] subviews] objectAtIndex:0];
         [[[[gestureRecognizer view] subviews] objectAtIndex:1] removeFromSuperview];
