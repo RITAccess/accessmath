@@ -12,6 +12,8 @@
 		2C7C981A17999B5C00F8ECE4 /* sample-qr.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C7C981917999B5C00F8ECE4 /* sample-qr.png */; };
 		2CBF301C177B7AB10087C17C /* DrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBF301A177B7AB10087C17C /* DrawViewController.m */; };
 		2CBF301D177B7AB10087C17C /* DrawViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CBF301B177B7AB10087C17C /* DrawViewController.xib */; };
+		2CCA61AE17B13AB9002DA6A3 /* DrawViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CCA61AD17B13AB9002DA6A3 /* DrawViewTests.m */; };
+		2CCA979817B14DD700669275 /* DrawViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CCA979717B14DD700669275 /* DrawViewControllerTests.m */; };
 		2CF45FDD17971C0400E6C69E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF45FDC17971C0400E6C69E /* QuartzCore.framework */; };
 		2CF6BA901784919300A695CC /* AMBezierPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF6BA8D1784919300A695CC /* AMBezierPath.m */; };
 		2CF6BA911784919300A695CC /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF6BA8E1784919300A695CC /* arrow.png */; };
@@ -84,7 +86,6 @@
 		4C8ABE81177CA356007C934C /* NotesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C8ABE7F177CA356007C934C /* NotesViewController.xib */; };
 		4C9AB8FE177C6895004A4F65 /* TopNav.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9AB8FD177C6895004A4F65 /* TopNav.m */; };
 		4CADF4F2178DEC19005978C0 /* UISegmentedControlExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CADF4F1178DEC19005978C0 /* UISegmentedControlExtension.m */; };
-		4CB832A11768C0BC008F0099 /* AccessLecture_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB832A01768C0AC008F0099 /* AccessLecture_Tests.m */; };
 		4CBF5D871768DAD200746377 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11D217625F150066A4FA /* libicucore.dylib */; };
 		4CBF5D881768DAD500746377 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11D017625F0D0066A4FA /* CFNetwork.framework */; };
 		4CBF5D891768DAD700746377 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11CE17625F060066A4FA /* Security.framework */; };
@@ -116,6 +117,8 @@
 		2CBF3019177B7AB10087C17C /* DrawViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawViewController.h; sourceTree = "<group>"; };
 		2CBF301A177B7AB10087C17C /* DrawViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawViewController.m; sourceTree = "<group>"; };
 		2CBF301B177B7AB10087C17C /* DrawViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawViewController.xib; sourceTree = "<group>"; };
+		2CCA61AD17B13AB9002DA6A3 /* DrawViewTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawViewTests.m; sourceTree = "<group>"; };
+		2CCA979717B14DD700669275 /* DrawViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawViewControllerTests.m; sourceTree = "<group>"; };
 		2CF45FDC17971C0400E6C69E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		2CF6BA8C1784919300A695CC /* AMBezierPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMBezierPath.h; sourceTree = "<group>"; };
 		2CF6BA8D1784919300A695CC /* AMBezierPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMBezierPath.m; sourceTree = "<group>"; };
@@ -230,7 +233,6 @@
 		4CADF4F1178DEC19005978C0 /* UISegmentedControlExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISegmentedControlExtension.m; sourceTree = "<group>"; };
 		4CB8329E1768C0AC008F0099 /* AccessLecture Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AccessLecture Tests-Info.plist"; sourceTree = "<group>"; };
 		4CB8329F1768C0AC008F0099 /* AccessLecture Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AccessLecture Tests-Prefix.pch"; sourceTree = "<group>"; };
-		4CB832A01768C0AC008F0099 /* AccessLecture_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccessLecture_Tests.m; sourceTree = "<group>"; };
 		4CD0A5EC177DC98600864228 /* ConnectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionViewController.h; sourceTree = "<group>"; };
 		4CD0A5ED177DC98600864228 /* ConnectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionViewController.m; sourceTree = "<group>"; };
 		4CD0A5F6177E1D6800864228 /* StreamDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamDrawing.h; sourceTree = "<group>"; };
@@ -688,7 +690,8 @@
 			children = (
 				4C5219ED17B1485A00601A4D /* LectureContainer.m */,
 				4C51C79C1768F5BE0045DF42 /* Lectures.m */,
-				4CB832A01768C0AC008F0099 /* AccessLecture_Tests.m */,
+				2CCA61AD17B13AB9002DA6A3 /* DrawViewTests.m */,
+				2CCA979717B14DD700669275 /* DrawViewControllerTests.m */,
 				4CE742C81768BDE60026DE71 /* Supporting Files */,
 			);
 			path = "AccessLecture Tests";
@@ -873,7 +876,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4CB832A11768C0BC008F0099 /* AccessLecture_Tests.m in Sources */,
+				2CCA979817B14DD700669275 /* DrawViewControllerTests.m in Sources */,
+				2CCA61AE17B13AB9002DA6A3 /* DrawViewTests.m in Sources */,
 				4C51C79D1768F5BE0045DF42 /* Lectures.m in Sources */,
 				4C5219EE17B1485A00601A4D /* LectureContainer.m in Sources */,
 			);
