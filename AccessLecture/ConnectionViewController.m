@@ -132,6 +132,10 @@
 - (IBAction)userDidCancel:(id)sender
 {
     isScanning = NO;
+    if ([_delegate respondsToSelector:@selector(userDidCancel)]) {
+
+        [_delegate userDidCancel];
+    }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
