@@ -11,16 +11,20 @@
 #import "QRScanner.h"
 #import <AVFoundation/AVFoundation.h>
 
-static NSString* const ConnectionViewControllerXIB = @"ConnectionViewController";
+static NSString *const ConnectionViewControllerStoryBoard = @"StreamLayout";
+static NSString *const ConnectionViewControllerSBID = @"connectionVC";
 
 @protocol ConnectionView <NSObject>
 
-- (void)didCompleteWithConnection:(ALNetworkInterface *)server;
+@optional
+
+- (void)didCompleteWithConnection:(ALNetworkInterface *)server toLecture:(NSString *)lectureName from:(NSString *)connectionAddress;
 - (void)userDidCancel;
 
 @end
 
-@interface ConnectionViewController : UIViewController
+@interface ConnectionViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
 @property (weak, nonatomic) IBOutlet UINavigationBar *statusLabel;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activity;
 @property (weak, nonatomic) IBOutlet UITextField *connectionAddress;
@@ -28,11 +32,13 @@ static NSString* const ConnectionViewControllerXIB = @"ConnectionViewController"
 @property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
 @property (weak, nonatomic) IBOutlet UITextField *lecture;
 @property (weak, nonatomic) IBOutlet UIView *previewView;
-
-@property id<ConnectionView> delegate;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIButton *scanButton;
+@property (strong, nonatomic)id<ConnectionView> delegate;
 
 - (IBAction)checkAddress:(id)sender;
 - (IBAction)userDidCancel:(id)sender;
 - (IBAction)connectToStream:(id)sender;
+- (IBAction)startScan:(id)sender;
 
 @end

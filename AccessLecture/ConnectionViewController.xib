@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="4471.1" systemVersion="13A510d" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4457.9" systemVersion="12E55" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3697.3"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3682.9"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ConnectionViewController">
@@ -12,6 +12,8 @@
                 <outlet property="lecture" destination="BXe-wN-F1f" id="rLR-Dt-oyC"/>
                 <outlet property="navigationBar" destination="hif-kF-7wZ" id="lt5-ti-bQ0"/>
                 <outlet property="previewView" destination="bCl-KA-pWb" id="Kl0-rk-VId"/>
+                <outlet property="scanButtonView" destination="Zeh-q3-gHN" id="Dqe-EZ-Sfb"/>
+                <outlet property="scanStatusLabel" destination="UfU-Ih-RAf" id="ZEa-Jc-auX"/>
                 <outlet property="statusLabel" destination="hif-kF-7wZ" id="PD4-Iq-TBB"/>
                 <outlet property="streamButton" destination="nvm-oF-JJE" id="Bqz-D0-2kb"/>
                 <outlet property="view" destination="2" id="3"/>
@@ -22,7 +24,7 @@
             <rect key="frame" x="0.0" y="0.0" width="540" height="620"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hif-kF-7wZ">
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hif-kF-7wZ">
                     <rect key="frame" x="0.0" y="0.0" width="540" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <items>
@@ -40,9 +42,12 @@
                         </navigationItem>
                     </items>
                 </navigationBar>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Address" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="26" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="vNs-ie-IOp">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Address" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="26" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="vNs-ie-IOp">
                     <rect key="frame" x="20" y="71" width="494" height="60"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="R6k-hg-xii"/>
+                    </constraints>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="26"/>
                     <textInputTraits key="textInputTraits" keyboardType="URL"/>
@@ -50,35 +55,100 @@
                         <action selector="checkAddress:" destination="-1" eventType="editingDidEnd" id="lC1-bf-LXi"/>
                     </connections>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Lecture Name" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="26" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="BXe-wN-F1f">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Lecture Name" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="26" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="BXe-wN-F1f">
                     <rect key="frame" x="20" y="146" width="494" height="60"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="26"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ejI-6t-oIB">
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ejI-6t-oIB">
                     <rect key="frame" x="465" y="12" width="20" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </activityIndicatorView>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bCl-KA-pWb" userLabel="Camera View">
-                    <rect key="frame" x="0.0" y="311" width="540" height="270"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bCl-KA-pWb" userLabel="Camera View">
+                    <rect key="frame" x="0.0" y="549" width="540" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tap to scan QRCode" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Laj-Qh-rRK">
-                            <rect key="frame" x="191" y="124" width="159" height="21"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Current iOS Doesn't Support QR Scanning" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UfU-Ih-RAf">
+                            <rect key="frame" x="118" y="5" width="304" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <gestureRecognizers/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zeh-q3-gHN" userLabel="QR Scan View">
+                    <rect key="frame" x="438" y="214" width="76" height="88"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sample-qr.png" translatesAutoresizingMaskIntoConstraints="NO" id="eX1-BA-qkZ">
+                            <rect key="frame" x="13" y="25" width="50" height="50"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ng-0C-yFT">
+                            <rect key="frame" x="2" y="0.0" width="73" height="81"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <state key="normal" title="Scan!">
+                                <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="startScan:" destination="-1" eventType="touchUpInside" id="grw-ih-FJu"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="eX1-BA-qkZ" firstAttribute="top" secondItem="Zeh-q3-gHN" secondAttribute="top" constant="25" id="6V4-GQ-DdC"/>
+                        <constraint firstItem="5Ng-0C-yFT" firstAttribute="top" secondItem="Zeh-q3-gHN" secondAttribute="top" id="9rq-nx-RXV"/>
+                        <constraint firstItem="5Ng-0C-yFT" firstAttribute="centerX" secondItem="eX1-BA-qkZ" secondAttribute="centerX" id="KXp-i4-wcb"/>
+                        <constraint firstItem="5Ng-0C-yFT" firstAttribute="centerX" secondItem="Zeh-q3-gHN" secondAttribute="centerX" id="XTH-NZ-GzI"/>
+                        <constraint firstAttribute="bottom" secondItem="5Ng-0C-yFT" secondAttribute="bottom" constant="7" id="YQ3-Z1-BQr"/>
+                        <constraint firstItem="5Ng-0C-yFT" firstAttribute="leading" secondItem="Zeh-q3-gHN" secondAttribute="leading" constant="2" id="eZD-Mr-8Ax"/>
+                        <constraint firstAttribute="bottom" secondItem="eX1-BA-qkZ" secondAttribute="bottom" constant="13" id="pMW-Cq-zK6"/>
+                        <constraint firstItem="eX1-BA-qkZ" firstAttribute="leading" secondItem="Zeh-q3-gHN" secondAttribute="leading" constant="13" id="wTh-ST-6rc"/>
+                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Zeh-q3-gHN" firstAttribute="trailing" secondItem="vNs-ie-IOp" secondAttribute="trailing" id="1Ry-Kk-Ykl"/>
+                <constraint firstItem="vNs-ie-IOp" firstAttribute="top" secondItem="2" secondAttribute="top" constant="71" id="1oj-aS-6hW"/>
+                <constraint firstItem="bCl-KA-pWb" firstAttribute="top" secondItem="2" secondAttribute="top" constant="549" id="5Nr-f8-jHA"/>
+                <constraint firstItem="vNs-ie-IOp" firstAttribute="leading" secondItem="BXe-wN-F1f" secondAttribute="leading" id="6n7-qS-PFW"/>
+                <constraint firstItem="hif-kF-7wZ" firstAttribute="centerY" secondItem="ejI-6t-oIB" secondAttribute="centerY" id="A1d-pg-zgw"/>
+                <constraint firstItem="hif-kF-7wZ" firstAttribute="trailing" secondItem="bCl-KA-pWb" secondAttribute="trailing" id="ATy-sr-xto"/>
+                <constraint firstAttribute="trailing" secondItem="ejI-6t-oIB" secondAttribute="trailing" constant="55" id="J15-Qg-S6v"/>
+                <constraint firstItem="vNs-ie-IOp" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="20" symbolic="YES" id="K0R-np-Yjy"/>
+                <constraint firstItem="Zeh-q3-gHN" firstAttribute="trailing" secondItem="BXe-wN-F1f" secondAttribute="trailing" id="KLP-0N-x3M"/>
+                <constraint firstItem="BXe-wN-F1f" firstAttribute="top" secondItem="vNs-ie-IOp" secondAttribute="bottom" constant="15" id="KYD-2N-4FZ"/>
+                <constraint firstItem="Zeh-q3-gHN" firstAttribute="top" secondItem="BXe-wN-F1f" secondAttribute="bottom" constant="8" symbolic="YES" id="MAR-uK-pqK"/>
+                <constraint firstItem="vNs-ie-IOp" firstAttribute="top" secondItem="hif-kF-7wZ" secondAttribute="bottom" constant="27" id="Ode-Yb-g93"/>
+                <constraint firstItem="Zeh-q3-gHN" firstAttribute="top" secondItem="2" secondAttribute="top" constant="214" id="PM3-6d-k5K"/>
+                <constraint firstItem="hif-kF-7wZ" firstAttribute="leading" secondItem="bCl-KA-pWb" secondAttribute="leading" id="S13-r1-PhF"/>
+                <constraint firstAttribute="bottom" secondItem="Zeh-q3-gHN" secondAttribute="bottom" constant="318" id="UZL-Ae-rZq"/>
+                <constraint firstItem="hif-kF-7wZ" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="VK3-JO-sWq"/>
+                <constraint firstItem="Zeh-q3-gHN" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="438" id="Z2F-yE-Ztu"/>
+                <constraint firstItem="hif-kF-7wZ" firstAttribute="trailing" secondItem="2" secondAttribute="trailing" id="bqt-Nv-LYo"/>
+                <constraint firstAttribute="bottom" secondItem="bCl-KA-pWb" secondAttribute="bottom" constant="39" id="iWn-WU-PWV"/>
+                <constraint firstAttribute="trailing" secondItem="Zeh-q3-gHN" secondAttribute="trailing" constant="26" id="ozI-Tm-zqH"/>
+            </constraints>
             <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
+        <view contentMode="scaleToFill" id="x1M-08-Uih">
+            <rect key="frame" x="0.0" y="0.0" width="768" height="1004"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+        </view>
     </objects>
+    <resources>
+        <image name="sample-qr.png" width="248" height="248"/>
+    </resources>
 </document>

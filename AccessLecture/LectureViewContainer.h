@@ -9,6 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "TopNav.h"
 
+static NSString *const LectureViewContainerSBID = @"lectureVC";
+
+typedef struct {
+    CGPoint root;
+    CGPoint end;
+} Vector;
+extern Vector VectorMake(CGPoint root, CGPoint end);
+extern void VectorApplyScale(CGFloat scale, Vector *vector);
+
 /**
  * The LectureViewChild protocol is required to be a valid subview controller of
  * the LectureViewContainer. If you do not implement theses methods your controller
@@ -19,10 +28,21 @@
 @protocol LectureViewChild <NSObject>
 @required
 
-/* Return the view you need to remain synced between multiple modes. */
-- (UIView *)willApplyTransformToView;
+/**
+ * The view that will have pan/zoom. This will be your content area. 
+ * NOTE bounds are the full size of the area. For example 2000 x 2000. The frame
+ * is the size of the view on the screen. So if we are zoomed out, the frame may
+ * only be 300 x 300.
+ */
+- (UIView *)contentView;
 
 @optional
+
+/**
+ * Updated your code to handle the different sized content area, DO NOT update your content size 
+ * Not implemented yet, doesn't get called.
+ */
+- (void)contentSizeChanging:(CGSize)size;
 
 /**
  * Will save state gets called during the save process. Prepare the view here.
@@ -30,12 +50,11 @@
 - (void)willSaveState;
 - (void)didSaveState;
 
-/* Will/Did LeaveActiveState is called when your mode is about to lose primary. Remove any toolbars here. */
+/** 
+ * Will/Did LeaveActiveState is called when your mode is about to lose primary. Remove any toolbars here. 
+ */
 - (void)willLeaveActiveState;
 - (void)didLeaveActiveState;
-
-/* Returns the controller's view. */
-- (UIView *)willReturnView;
 
 @end
 
@@ -47,6 +66,5 @@
 
 @property (weak, nonatomic) IBOutlet UIView *sideMenu;
 @property (weak, nonatomic) IBOutlet TopNav *navBar;
-@property (weak, nonatomic) IBOutlet UIView *container;
 
 @end

@@ -20,4 +20,6 @@
 @property UIPanGestureRecognizer *fingerDrag;
 @property NSMutableString *buttonString;
 
+- (void)tapToStamp:(UITapGestureRecognizer *)gesture;
+
 @end
