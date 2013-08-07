@@ -12,7 +12,8 @@
 
 @end
 
-@implementation NotesViewControllerTests{
+@implementation NotesViewControllerTests
+{
      NotesViewController *testNotesViewController;
 }
 

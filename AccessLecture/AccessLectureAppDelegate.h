@@ -4,7 +4,8 @@
 #import "RootViewController.h"
 #import "ALNetworkInterface.h"
 
-@interface AccessLectureAppDelegate : NSObject <UIApplicationDelegate> {
+@interface AccessLectureAppDelegate : NSObject <UIApplicationDelegate>
+{
     
     // The navigation controller that allows us to change views
     UINavigationController* navigationController;

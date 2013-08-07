@@ -17,7 +17,8 @@
 #import "UISegmentedControlExtension.h"
 #import "Note.h"
 static NSString* const NotesViewControllerXIB = @"NotesViewController";
-@interface NotesViewController : UIViewController<UITextViewDelegate,LectureViewChild>{
+@interface NotesViewController : UIViewController<UITextViewDelegate,LectureViewChild>
+{
     UIColor *textColor;
     UIColor *drawcolor;
     NSString *startTag;
