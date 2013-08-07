@@ -84,7 +84,6 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
 
 @end
 
-static dispatch_once_t createControllers;
 static NotesViewController *nvc;
 static DrawViewController *dcv;
 static StreamViewController *svc;
@@ -92,6 +91,7 @@ static VCBlank *blank;
 
 @implementation LectureViewContainer
 {
+    dispatch_once_t createControllers;
     // Menu
     NSArray *menuItems;
     BOOL menuOpen;
