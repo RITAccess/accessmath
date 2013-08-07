@@ -174,30 +174,30 @@ static VCBlank *blank;
 - (void)setUpMenuItems
 {
     // Save
-    UIImageView *save = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Save.png"]];
+    UIImageView *save = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"SaveButton.png"]];
     [save setTag:0];
     [save setUserInteractionEnabled:YES];
     [save addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(action:)]];
     
     // Notes
-    UIImageView *notes = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin.png"]];
+    UIImageView *notes = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NotesButton.png"]];
     [notes setTag:1];
     [notes setUserInteractionEnabled:YES];
     [notes addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(action:)]];
     
     // Draw
-    UIImageView *draw = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Notes.png"]];
+    UIImageView *draw = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"DrawButton.png"]];
     [draw setTag:2];
     [draw setUserInteractionEnabled:YES];
     [draw addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(action:)]];
     
     // Stream
-    UIImageView *stream = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Invert.png"]];
+    UIImageView *stream = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"StreamButton.png"]];
     [stream setTag:3];
     [stream setUserInteractionEnabled:YES];
     [stream addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(action:)]];
     
-    UIImageView *zoom = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Invert.png"]];
+    UIImageView *zoom = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ZoomButton.png"]];
     [zoom setUserInteractionEnabled:YES];
     [zoom addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fullZoomOut)]];
     
