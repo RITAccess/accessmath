@@ -13,7 +13,8 @@
 
 @end
 
-@implementation Lectures {
+@implementation Lectures
+{
     Lecture *testLecture;
     NSDate *startDate;
 }

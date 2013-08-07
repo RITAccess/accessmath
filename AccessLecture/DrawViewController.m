@@ -37,7 +37,7 @@
     [super viewDidLoad];
     
     // Adding the Drawing and Toolbar Views
-    _drawView = [[DrawView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width * 2, self.view.frame.size.height * 2)];
+    _drawView = [[DrawView alloc]initWithFrame:self.view.frame];
     [self.view addSubview:_drawView];
     [self.view addSubview:self.toolbarView];
     [self initColorSegmentedControl];
@@ -49,6 +49,9 @@
     } else {
         [self.view setFrame:CGRectMake(0, 0, 1024, 768)];
     }
+    
+    // Clear view
+    [self.view setBackgroundColor:[UIColor clearColor]];
 }
 
 - (void)viewDidUnload
@@ -143,9 +146,6 @@
         }
     }
     
-    [_drawView setFrame:CGRectMake(0, 0, CGRectGetWidth(_drawView.frame), CGRectGetHeight(_drawView.frame))];
-    [_drawView setTransform:CGAffineTransformIdentity]; // Resets the view to state before transformation.
-    
     [[_drawView shapes] removeAllObjects];
     [[_drawView paths] removeAllObjects];
     [_drawView setNeedsDisplay];
@@ -171,9 +171,9 @@
 
 - (IBAction)shapeButtonPress:(id)sender
 {
-    shapeButtonIndex >= SHAPE_MAX - 1 ? shapeButtonIndex = 0 : shapeButtonIndex++;
+    _shapeButtonIndex >= SHAPE_MAX - 1 ? _shapeButtonIndex = 0 : _shapeButtonIndex++;
     
-    [[_drawView buttonString] setString:[_buttonStrings objectAtIndex:shapeButtonIndex]];
+    [[_drawView buttonString] setString:[_buttonStrings objectAtIndex:_shapeButtonIndex]];
     [[_drawView tapStamp] setEnabled:YES];
     [[_drawView fingerDrag] setEnabled:NO];
     
@@ -184,44 +184,37 @@
 
 - (void)willMoveToParentViewController:(UIViewController *)parent
 {
-    NSLog(@"will have new parent %@", parent);
+
 }
 
 - (void)didMoveToParentViewController:(UIViewController *)parent
 {
-    NSLog(@"new parent %@", parent);
     [self.toolbarView setHidden:NO];
 }
 
 - (void)willSaveState
 {
-    NSLog(@"Will save state");
+
 }
 
 - (void)didSaveState
 {
-    NSLog(@"Did save state: %@", self.description);
+
 }
 
 - (void)willLeaveActiveState
 {
-    NSLog(@"Will leave active state");
+    
 }
 
 - (void)didLeaveActiveState
 {
-    NSLog(@"Did leave active state: %@", self.description);
     [self.toolbarView setHidden:YES];
 }
 
-- (UIView *)willApplyTransformToView
+- (UIView *)contentView
 {
     return _drawView;
-}
-
-- (UIView *)willReturnView
-{
-    return self.view;
 }
 
 @end

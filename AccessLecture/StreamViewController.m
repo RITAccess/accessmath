@@ -15,16 +15,9 @@
 
 @end
 
-@implementation StreamViewController {
-    ALNetworkInterface *_server;
-}
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+@implementation StreamViewController
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-    }
-    return self;
+    ALNetworkInterface *_server;
 }
 
 - (void)viewDidLoad
@@ -39,11 +32,16 @@
     // Do any additional setup after loading the view from its nib.
     [_loadProgress setProgress:0.0];
     [_loadProgress setHidden:YES];
+    
+    // Clear view
+    [self.view setBackgroundColor:[UIColor clearColor]];
+    [_canvas setBackgroundColor:[UIColor clearColor]];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    if (self.displayConnectView){
+    // Segueing directly from Connect Button on RootViewController.
+    if (_displayServerConnectView){
         [self connectToStream:nil];
     }
 }
@@ -53,7 +51,7 @@
 - (IBAction)connectToStream:(id)sender
 {
     if (!_connectedToStream) {
-        ConnectionViewController *cvc = [[ConnectionViewController alloc] initWithNibName:ConnectionViewControllerXIB bundle:nil];
+        ConnectionViewController *cvc = [[UIStoryboard storyboardWithName:ConnectionViewControllerStoryBoard bundle:nil] instantiateViewControllerWithIdentifier:ConnectionViewControllerSBID];
         [cvc setDelegate:self];
         [self presentViewController:cvc animated:YES completion:^{
             [_loadProgress setProgress:0.0];
@@ -68,7 +66,7 @@
 
 #pragma mark Connection View Delegate Methods
 
-- (void)didCompleteWithConnection:(ALNetworkInterface *)server
+- (void)didCompleteWithConnection:(ALNetworkInterface *)server toLecture:(NSString *)lectureName from:(NSString *)connectionAddress
 {
     [_joinLeaveStream setTitle:@"Disconnect"];
     _connectedToStream = YES;
@@ -78,7 +76,6 @@
 
 - (void)userDidCancel
 {
-    NSLog(@"User Canceled");
     [_loadProgress setHidden:YES];
 }
 
@@ -91,51 +88,35 @@
 
 - (void)didMoveToParentViewController:(UIViewController *)parent
 {
-    NSLog(@"Active!");
+    
 }
 
 - (void)willSaveState
 {
-    NSLog(@"Will save state");
+    
 }
 
 - (void)didSaveState
 {
-    NSLog(@"Did save state");
+    
 }
 
 - (void)willLeaveActiveState
 {
     [_bottomToolbar setHidden:YES];
-    NSLog(@"Will leave active state");
 }
 
 - (void)didLeaveActiveState
 {
-    NSLog(@"Did leave active state");
+
 }
 
-- (UIView *)willApplyTransformToView
+- (UIView *)contentView
 {
-    return self.canvas;
-}
-
-- (UIView *)willReturnView
-{
-    return self.view;
+    return _canvas;
 }
 
 #pragma mark Streaming
-
-- (void)didFinishDownloadingLecture:(Lecture *)lecture
-{
-    
-}
-
-- (void)didFinishRecievingUpdate:(NSArray *)data
-{
-    
-}
 
 - (void)didRecieveUpdate:(CGPoint)point type:(ALPointType)type
 {
@@ -160,28 +141,14 @@
 
 - (void)didFailToConnectTo:(NSString *)lecture
 {
-    UIAlertView *failed = [[UIAlertView alloc] initWithTitle:@"No Class Found" message:[NSString stringWithFormat:@"Failed to connect to %@.", lecture] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
     [self connectToStream:nil];
     [_loadProgress setHidden:YES];
-    [failed show];
+    NSLog(@"Failed to connect to %@", lecture);
 }
 
 - (void)didWantToClearScreen
 {
     [self.canvas clearScreen];
-}
-
-#pragma mark Orientation
-
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
-{
-    [UIView animateWithDuration:0.1 animations:^{
-        if (UIInterfaceOrientationIsPortrait(fromInterfaceOrientation)) {
-            [self.view setFrame:CGRectMake(0, 0, 1024, 768)];
-        } else {
-            [self.view setFrame:CGRectMake(0, 0, 768, 1024)];
-        }
-    }];
 }
 
 @end

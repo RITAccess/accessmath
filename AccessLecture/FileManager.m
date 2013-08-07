@@ -3,6 +3,7 @@
 //  AccessLecture
 //
 //  Created by Steven Brunwasser on 3/19/12.
+//  Modified by Pratik Rasam on 6/26/2013
 //  Copyright (c) 2012 Rochester Institute of Technology. All rights reserved.
 //
 //
@@ -11,6 +12,7 @@
 //
 
 #import "FileManager.h"
+#import "Lecture.h"
 
 @implementation FileManager
 
@@ -75,7 +77,7 @@
    
     return nil;
 }
-+ (void) clearAllDocuments{
++ (void)clearAllDocuments{
     NSString *path = [[NSMutableString alloc] init];
     NSArray *docs = [FileManager documentsIn:[FileManager localDocumentsDirectoryURL]];
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -92,7 +94,55 @@
             };
         }
     }
-    NSLog(@"Files succesfully deleted");
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notes"
+                                                    message:@"All lectures removed" delegate:self cancelButtonTitle: @"OK"
+                                          otherButtonTitles: nil];
+    [alert show];
+
+}
++ (BOOL)saveDocument:(AccessDocument *)document{
+    
+    AccessDocument *currentDocument;
+    Lecture *currentLecture = document.lecture;
+    NSURL * currentDirectory = [FileManager iCloudDirectoryURL];
+    if (currentDirectory == nil) currentDirectory = [FileManager localDocumentsDirectoryURL];
+     NSString *docsPath =[[currentDirectory absoluteString] stringByAppendingString:[NSString stringWithFormat:@"AccessMath/%@.lecture",currentLecture.name]];
+    NSURL *docURL = [NSURL URLWithString:docsPath];
+    currentDocument = [[AccessDocument alloc] initWithFileURL:docURL];
+    currentDocument.lecture = document.lecture;
+    currentDocument.notes = document.notes;
+    if([[NSFileManager defaultManager] fileExistsAtPath:[docURL path]])
+    {
+        [currentDocument saveToURL:docURL
+                  forSaveOperation:UIDocumentSaveForOverwriting
+                 completionHandler:^(BOOL success) {
+                     if (success){
+                         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notes"
+                                                                         message:@"Notes Overwritten" delegate:self cancelButtonTitle: @"OK"
+                                                               otherButtonTitles: nil];
+                         [alert show];
+                     } else {
+
+                         NSLog(@"Not saved for overwriting");
+                     }
+                 }];
+        
+    } else {
+        [currentDocument saveToURL:docURL
+                  forSaveOperation:UIDocumentSaveForCreating
+                 completionHandler:^(BOOL success) {
+
+                     if (success){
+                         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notes"
+                                                                         message:@"Note Created" delegate:self cancelButtonTitle: @"OK"
+                                                               otherButtonTitles: nil];
+                         [alert show];
+                     } else {
+                         NSLog(@"Not created");
+                     }
+                 }];
+    }
+    return true;
 }
 
 @end

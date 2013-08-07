@@ -61,7 +61,6 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    [self setBackgroundColor:[UIColor clearColor]]; // Ensuring background isn't white.
     [[UIColor blackColor] setStroke];
     for (UIBezierPath *path in update) {
         [path stroke];

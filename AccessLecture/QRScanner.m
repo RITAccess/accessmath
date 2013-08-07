@@ -25,7 +25,6 @@
 {
     self = [super init];
     if (self) {
-        // init
         _session_queue = dispatch_queue_create("edu.rit.session", DISPATCH_QUEUE_SERIAL);
         session = [[AVCaptureSession alloc] init];
     }
@@ -41,16 +40,25 @@
 {
     AVCaptureDevice *videoDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
 	AVCaptureDeviceInput *videoIn = [[AVCaptureDeviceInput alloc] initWithDevice:videoDevice error:nil];
-	if ([session canAddInput:videoIn])
+	if ([session canAddInput:videoIn]){
 		[session addInput:videoIn];
+    }
     
     _metaData = [[AVCaptureMetadataOutput alloc] init];
     dispatch_queue_t metadata_queue = dispatch_queue_create("edu.rit.qrscan", DISPATCH_QUEUE_SERIAL);
     [_metaData setMetadataObjectsDelegate:self queue:metadata_queue];
     
-    if ([session canAddOutput:_metaData])
+    if ([session canAddOutput:_metaData]){
         [session addOutput:_metaData];
+    }
     
+}
+
+- (void)tearDown
+{
+    dispatch_sync(_session_queue, ^{
+        [session stopRunning];
+    });
 }
 
 - (void)startCaptureWithCompletion:(void(^)(NSDictionary *))completion
@@ -59,12 +67,14 @@
     dispatch_sync(_session_queue, ^{
         [self setUpSession];
         [session startRunning];
-        if ([[_metaData availableMetadataObjectTypes] containsObject:AVMetadataObjectTypeQRCode]) {
+        
+        if ([[_metaData availableMetadataObjectTypes] containsObject:AVMetadataObjectTypeQRCode]) { // This is not optimal but the string const doesn't exist on 6.1
             _metaData.metadataObjectTypes = @[AVMetadataObjectTypeQRCode];
         } else {
-            // TODO tear down session
-            NSLog(@"Failed");
+            NSLog(@"QRScanning is not available");
+            [self tearDown];
         }
+        
     });
 }
 
@@ -76,11 +86,11 @@
             
             NSError *error;
             NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[code.stringValue dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:&error];
-            if (!error && [[data allKeys] containsObject:@"url"] && [[data allKeys] containsObject:@"lecture"]) {
+            if (!error && [[data allKeys] containsObject:@"url"] && [[data allKeys] containsObject:@"lecture"]){
                 NSLog(@"Connect to %@ in class %@ read from QRCode", data[@"url"], data[@"lecture"]);
                 [session removeOutput:_metaData];
                 _metaData = nil;
-                // TODO tear down session
+                [self tearDown];
                 didFinishWithInfo(data);
             }
         }

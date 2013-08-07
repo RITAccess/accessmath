@@ -4,4 +4,4 @@ before_script:
 - brew update
 - brew install xctool
 script: 
-- xctool -project AccessLecture.xcodeproj -scheme AccessLecture build test
+- xctool -project AccessLecture.xcodeproj -scheme AccessLecture -sdk iphonesimulator build test

@@ -20,7 +20,6 @@
 }
 
 -(IBAction)openAbout:(id)sender;
-- (IBAction)connectToServer:(id)sender;
 - (IBAction)openLecture:(id)sender;
 - (IBAction)openConnect:(id)sender;
 

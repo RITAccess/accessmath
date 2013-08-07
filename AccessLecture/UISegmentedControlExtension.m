@@ -23,12 +23,10 @@
     for (UIView *view in segment.subviews){
         [view setFrame:CGRectMake(0, 0, 0, 600)];
     }
-
-    SEL tint = @selector(setTintColor:);
     
     // If the segment exists and if it responds to the setTintColor message.
-    if (segment && ([segment respondsToSelector:tint])) {
-        [segment performSelector:tint withObject:color];
+    if (segment && ([segment respondsToSelector:@selector(setTintColor:)])) {
+        [segment performSelector:@selector(setTintColor:) withObject:color];
     }
 }
 

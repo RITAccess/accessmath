@@ -10,22 +10,91 @@
 #import "StreamViewController.h"
 #import "DrawViewController.h"
 #import "NotesViewController.h"
+#import "ZoomBounds.h"
 
-@interface LectureViewContainer ()
+// Default content size
+#define LC_WIDTH 1920
+#define LC_HEIGHT 1080
+#define SHOWLAYERS 0
+#define TAPZOOMFACTOR 1.5
+
+#pragma mark Vectors
+
+Vector VectorMake(CGPoint root, CGPoint end) {
+    Vector *v = malloc(sizeof(Vector));
+    v->root = root;
+    v->end = end;
+    return *v;
+}
+
+void VectorApplyScale(CGFloat scale, Vector *vector) {
+    CGPoint *root = &vector->root;
+    CGPoint *end = &vector->end;
+    float nxd = (end->x - root->x) * scale;
+    float nyd = (end->y - root->y) * scale;
+    end->x = root->x + nxd;
+    end->y = root->y + nyd;
+}
+
+#pragma mark Blank Canvas Class
+
+@interface VCBlank : UIViewController <LectureViewChild>
+@end
+
+@implementation VCBlank
+
++ (instancetype)new
+{
+    VCBlank *new = [[VCBlank alloc] init];
+    [new.view setBackgroundColor:[UIColor whiteColor]];
+    return new;
+}
+- (UIView *)contentView { return self.view; }
 
 @end
 
-@implementation LectureViewContainer {
-    // Controllers
-    NotesViewController *nvc;
-    DrawViewController *dcv;
-    StreamViewController *svc;
-    
-    NSArray *menuItems, *nvcPersistent, *dcvPersistent, *svcPersistent;
-    
-    BOOL isZoomed, menuOpen;  // Used for checking zoom double tap.
-    
-    CGFloat currentScale;
+#pragma mark NSArray Category
+
+@interface NSArray (EnumerateChildren)
+
+- (void)enumerateContentViewsWithBlock:(void (^)(UIView *content, NSUInteger idx, BOOL *stop))block;
+
+@end
+
+@implementation NSArray (EnumerateChildren)
+
+- (void)enumerateContentViewsWithBlock:(void (^)(UIView *content, NSUInteger, BOOL *))block
+{
+    [self enumerateObjectsUsingBlock:^(id<LectureViewChild> obj, NSUInteger idx, BOOL *stop) {
+        block([obj contentView], idx, stop);
+    }];
+}
+
+@end
+
+#pragma mark Lecture Container Class
+
+@interface LectureViewContainer ()
+
+// Zoom/pan handles
+@property (nonatomic) CGPoint center;
+@property (nonatomic) CGSize space;
+@property (nonatomic) CGAffineTransform zoomLevel;
+@property (nonatomic) BOOL finish;
+
+@end
+
+static NotesViewController *nvc;
+static DrawViewController *dcv;
+static StreamViewController *svc;
+static VCBlank *blank;
+
+@implementation LectureViewContainer
+{
+    dispatch_once_t createControllers;
+    // Menu
+    NSArray *menuItems;
+    BOOL menuOpen;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -42,16 +111,53 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self setUpGestures];
     
     [_sideMenu setBackgroundColor:[UIColor colorWithRed:0.97 green:0.97 blue:0.97 alpha:0.8]];
     [_navBar setBackgroundColor:[UIColor colorWithRed:0.97 green:0.97 blue:0.97 alpha:0.5]];
+    [self.view setBackgroundColor:[UIColor grayColor]];
+    [self.view setClipsToBounds:YES];
     
     // Set up viewControllers
-    nvc = [[NotesViewController alloc] initWithNibName:NotesViewControllerXIB bundle:nil];
-    dcv = [[DrawViewController alloc] initWithNibName:DrawViewControllerXIB bundle:nil];
-    svc = (StreamViewController *)[[UIStoryboard storyboardWithName:StreamViewControllerStoryboard bundle:nil] instantiateViewControllerWithIdentifier:StreamViewControllerID];
+    dispatch_once(&createControllers, ^{
+        nvc = [[NotesViewController alloc] initWithNibName:NotesViewControllerXIB bundle:nil];
+        dcv = [[DrawViewController alloc] initWithNibName:DrawViewControllerXIB bundle:nil];
+        svc = (StreamViewController *)[[UIStoryboard storyboardWithName:StreamViewControllerStoryboard bundle:nil] instantiateViewControllerWithIdentifier:StreamViewControllerID];
+        blank = [VCBlank new];
+    });
     
-    // Adding gestures
+    _space = CGSizeMake(LC_WIDTH, LC_HEIGHT);
+    
+    [self addController:nvc];
+    [self addController:dcv];
+    [self addController:svc];
+    [self addController:blank];
+    
+    _center = CGPointMake(CGRectGetMidY(self.view.frame), CGRectGetMidX(self.view.frame));
+    _zoomLevel = CGAffineTransformIdentity;
+    
+    // Close menus
+    menuOpen = NO;
+    [self setUpMenuItems];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self setContentSize:_space];
+    [self setUpStartingLocation];
+}
+
+- (void)setUpStartingLocation
+{
+    [self.childViewControllers enumerateContentViewsWithBlock:^(UIView *content, NSUInteger idx, BOOL *stop) {
+        CGRect frame = content.frame;
+        frame.origin = CGPointZero;
+        [content setFrame:frame];
+    }];
+}
+
+- (void)setUpGestures
+{
     UIPinchGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchZoom:)];
     [self.view addGestureRecognizer:pinch];
     
@@ -61,130 +167,164 @@
     
     UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapZoom:)];
     doubleTap.numberOfTapsRequired = 2;
+    doubleTap.numberOfTouchesRequired = 2;
     [self.view addGestureRecognizer:doubleTap];
-
-    [_container setBackgroundColor:[UIColor clearColor]];
-    
-    // Close menus
-    menuOpen = NO;
-    [self setUpMenuItems];
-}
-
-- (void)tapZoom:(UITapGestureRecognizer *)gesture
-{
-    [self.childViewControllers enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(id<LectureViewChild> obj, NSUInteger idx, BOOL *stop) {
-        UIView *view = [obj willApplyTransformToView];
-        isZoomed ? [view setTransform:CGAffineTransformIdentity] : [view setTransform:CGAffineTransformScale(view.transform, 1.5, 1.5)];
-        isZoomed = !isZoomed;
-    }];
-}
-
-/**
- * Manages the scale of each view in the array of child view controllers. Currently
- * trying to limit the rate at which the views are scaled.
- */
-- (void)pinchZoom:(UIPinchGestureRecognizer *)gesture
-{
-    // Limiting scale speed.
-    if (gesture.state == UIGestureRecognizerStateBegan){
-        currentScale = gesture.scale;
-    }
-    
-    [self.childViewControllers enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(id<LectureViewChild> obj, NSUInteger idx, BOOL *stop) {
-        if ([obj respondsToSelector:@selector(willApplyTransformToView)]) {
-            UIView *view = [obj willApplyTransformToView];
-            if (view.frame.origin.x <= 0 || view.frame.origin.y <= 0){
-                [view setTransform:CGAffineTransformScale(view.transform, currentScale, currentScale)];
-                isZoomed = true;
-            }
-            
-            // Constraining outwards zoom from initial frame.
-            if (view.frame.origin.x >= 0 || view.frame.origin.y >= 0){
-                NSLog(@"Resetting frame to origin...");
-                [view setFrame:CGRectMake(0, 0, view.frame.size.width, view.frame.size.height)];
-            }
-        }
-    }];
-}
-
-/**
- * Manages pan. Testing.
- */
-- (void)panHandle:(UIPanGestureRecognizer *)gesture
-{
-    [self.childViewControllers enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(id<LectureViewChild> obj, NSUInteger idx, BOOL *stop) {
-        if ([obj respondsToSelector:@selector(willApplyTransformToView)]) {
-            
-            UIView *view = [obj willApplyTransformToView];
-            CGPoint translation = [gesture translationInView:self.view];
-            
-            [gesture setTranslation:CGPointMake(0, 0) inView:view];
-            
-            if ([obj isMemberOfClass:[DrawViewController class]]){
-                // Clamp Left and Top Sides of View
-                if (view.frame.origin.x > 0){
-                    view.frame = CGRectMake(0, view.frame.origin.y, view.frame.size.width, view.frame.size.height);
-                }
-                
-                if (view.frame.origin.y > 0){
-                    view.frame = CGRectMake(view.frame.origin.x, 0, view.frame.size.width, view.frame.size.height);
-                }
-                
-                // Clamp Right and Bottom Sides of View
-                if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)){
-                    if (view.frame.origin.x < -500){
-                        view.frame = CGRectMake(-500, view.frame.origin.y, view.frame.size.width, view.frame.size.height);
-                    }
-                    
-                    if (view.frame.origin.y < -1020){
-                        view.frame = CGRectMake(view.frame.origin.x, -1020, view.frame.size.width, view.frame.size.height);
-                    }
-                } else if (UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)){
-                    if (view.frame.origin.x < -765){
-                        view.frame = CGRectMake(-765, view.frame.origin.y, view.frame.size.width, view.frame.size.height);
-                    }
-                    
-                    if (view.frame.origin.y < -1020){
-                        view.frame = CGRectMake(view.frame.origin.x, -1020, view.frame.size.width, view.frame.size.height);
-                    }
-                }
-            }
-            
-            [view setCenter:CGPointMake(view.center.x + translation.x, view.center.y + translation.y)];
-        }
-    }];
 }
 
 - (void)setUpMenuItems
 {
     // Save
-    UIImageView *save = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Save.png"]];
+    UIImageView *save = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"SaveButton.png"]];
     [save setTag:0];
     [save setUserInteractionEnabled:YES];
     [save addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(action:)]];
     
     // Notes
-    UIImageView *notes = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin.png"]];
+    UIImageView *notes = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NotesButton.png"]];
     [notes setTag:1];
     [notes setUserInteractionEnabled:YES];
     [notes addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(action:)]];
     
     // Draw
-    UIImageView *draw = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Notes.png"]];
+    UIImageView *draw = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"DrawButton.png"]];
     [draw setTag:2];
     [draw setUserInteractionEnabled:YES];
     [draw addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(action:)]];
     
     // Stream
-    UIImageView *stream = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Invert.png"]];
+    UIImageView *stream = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"StreamButton.png"]];
     [stream setTag:3];
     [stream setUserInteractionEnabled:YES];
     [stream addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(action:)]];
     
-    menuItems = @[save, notes, draw, stream];
+    UIImageView *zoom = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ZoomButton.png"]];
+    [zoom setUserInteractionEnabled:YES];
+    [zoom addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fullZoomOut)]];
+    
+    menuItems = @[save, notes, draw, stream, zoom];
 }
 
 #pragma mark Actions
+
+- (void)setContentSize:(CGSize)size
+{
+    [self.childViewControllers enumerateObjectsUsingBlock:^(id<LectureViewChild> obj, NSUInteger idx, BOOL *stop) {
+        UIView *content = [obj contentView];
+        [content setBounds:CGRectMake(0, 0, size.width, size.height)];
+        [content setCenter:_center];
+        if ([obj respondsToSelector:@selector(contentSizeChanging:)]) {
+            [obj contentSizeChanging:size];
+        }
+    }];
+}
+
+/**
+ * Apply the global transforms on the sub views
+ */
+- (void)applyTransforms
+{
+    // Handle bounds and stretching
+    
+    CGPoint calcCenter;
+    CGPoint centerLimit;
+    apply_bounds_with_bounce(_center, blank.view.frame.size, self.view.bounds.size, &calcCenter, &centerLimit);
+    
+    CGAffineTransform calcZoom;
+    CGAffineTransform zoomLimit;
+    
+    CGFloat zoomScaleMin = (1.0 - ((self.view.frame.size.width + 125.0) / self.space.width));
+    apply_zoom_limit_with_bounce(CGAffineTransformMakeScale(zoomScaleMin, zoomScaleMin), CGAffineTransformMakeScale(4.0, 4.0), _zoomLevel, &calcZoom, &zoomLimit);
+    
+    // Apply transforms
+    [self.childViewControllers enumerateContentViewsWithBlock:^(UIView *content, NSUInteger idx, BOOL *stop) {
+        content.transform = calcZoom;
+        content.center = calcCenter;
+    }];
+    if (_finish) {
+        _center = centerLimit;
+        _zoomLevel = zoomLimit;
+        _finish = NO;
+        [self.childViewControllers enumerateContentViewsWithBlock:^(UIView *content, NSUInteger idx, BOOL *stop) {
+            [UIView animateWithDuration:0.2 animations:^{
+                content.transform = _zoomLevel;
+                content.center = _center;
+            }];
+        }];
+    }
+}
+
+/**
+ * Zoom out to see full content
+ */
+- (void)fullZoomOut
+{
+    _center = CGPointMake(CGRectGetMidY(self.view.frame), CGRectGetMidX(self.view.frame));
+    CGFloat zoomScale = (1.0 - ((self.view.frame.size.width + 125.0) / self.space.width));
+    _zoomLevel = CGAffineTransformMakeScale(zoomScale, zoomScale);
+    
+    [self applyTransforms];
+    
+    // Dismiss menu
+    if (UIDeviceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
+        [self setMenuOpen:NO];
+    } else {
+        [self setExpandOpen:NO];
+    }
+}
+
+/**
+ * Handle tap to zoom in
+ */
+- (void)tapZoom:(UITapGestureRecognizer *)reg
+{
+    CGPoint tap = [reg locationInView:self.view];
+    Vector relation = VectorMake(tap, self.center);
+    VectorApplyScale(TAPZOOMFACTOR, &relation);
+    self.center = relation.end;
+    _zoomLevel = CGAffineTransformScale(_zoomLevel, TAPZOOMFACTOR, TAPZOOMFACTOR);
+    
+    _finish = (reg.state == UIGestureRecognizerStateEnded ||
+               reg.state == UIGestureRecognizerStateFailed ||
+               reg.state == UIGestureRecognizerStateCancelled );
+    [self applyTransforms];
+    
+}
+
+/**
+ * Pinch to zoom handle
+ */
+- (void)pinchZoom:(UIPinchGestureRecognizer *)gesture
+{
+    float scale = [gesture scale];
+    [gesture setScale:1.0];
+    
+    CGPoint touch = [gesture locationInView:self.view];
+    Vector relation = VectorMake(touch, self.center);
+    VectorApplyScale(scale, &relation);
+    self.center = relation.end;
+    _zoomLevel = CGAffineTransformScale(_zoomLevel, scale, scale);
+    
+    _finish = (gesture.state == UIGestureRecognizerStateEnded ||
+               gesture.state == UIGestureRecognizerStateFailed ||
+               gesture.state == UIGestureRecognizerStateCancelled );
+    [self applyTransforms];
+}
+
+/**
+ * Manages the pan gesture.
+ */
+- (void)panHandle:(UIPanGestureRecognizer *)gesture
+{
+    CGPoint translation = [gesture translationInView:self.view];
+    [gesture setTranslation:CGPointMake(0, 0) inView:self.view];
+    self.center = CGPointMake(self.center.x + translation.x, self.center.y + translation.y);
+
+    _finish = (gesture.state == UIGestureRecognizerStateEnded ||
+               gesture.state == UIGestureRecognizerStateFailed ||
+               gesture.state == UIGestureRecognizerStateCancelled );
+    
+    [self applyTransforms];
+}
 
 - (void)action:(UITapGestureRecognizer *)reg
 {    
@@ -231,17 +371,9 @@
             [child willLeaveActiveState];
         }
     }
+    
     [self addChildViewController:vc];
     [self.view addSubview:vc.view];
-    [vc.view setBackgroundColor:[UIColor clearColor]];
-    UIView *mainview = nil;
-    if ([vc respondsToSelector:@selector(willApplyTransformToView)]) {
-        mainview = [vc willReturnView];
-    }
-    if (mainview) {
-        [self.container addSubview:mainview];
-    }
-//    [self.view bringSubviewToFront:_container];
     [self.view bringSubviewToFront:_navBar];
     [self.view bringSubviewToFront:_sideMenu];
     for (UIViewController<LectureViewChild> *child in children) {
@@ -250,6 +382,25 @@
             [child didLeaveActiveState];
         }
     }
+    
+    if ([vc isKindOfClass:[VCBlank class]]) {
+        [self.view sendSubviewToBack:vc.contentView];
+        [vc.view removeConstraints:vc.view.constraints];
+    }
+    
+#if SHOWLAYERS
+    // Testing code
+    if ([vc isKindOfClass:[DrawViewController class]]) {
+        [vc.contentView setBackgroundColor:[UIColor colorWithRed:0.0 green:1.0 blue:0.0 alpha:0.5]];
+    }
+    if ([vc isKindOfClass:[StreamViewController class]]) {
+        [vc.contentView setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:1.0 alpha:0.5]];
+    }
+    if ([vc isKindOfClass:[NotesViewController class]]) {
+        [vc.contentView setBackgroundColor:[UIColor colorWithRed:1.0 green:0.0 blue:0.0 alpha:0.5]];
+    }
+#endif
+    
     children = nil;
     [vc didMoveToParentViewController:self];
 }
@@ -370,7 +521,7 @@
     [self setExpandOpen:NO];
 }
 
-- (BOOL)shouldAutomaticallyForwardAppearanceMethods{ return YES; }
+- (BOOL)shouldAutomaticallyForwardAppearanceMethods { return YES; }
 
 - (BOOL)shouldAutomaticallyForwardRotationMethods { return YES; }
 
@@ -380,9 +531,16 @@
             child.view.frame = self.view.bounds;
         }];
     }
+    [self setContentSize:_space];
 }
 
 - (void)viewDidUnload {
+    
+    svc = nil;
+    dcv = nil;
+    nvc = nil;
+    blank = nil;
+    
     [self setSideMenu:nil];
     [self setNavBar:nil];
     [super viewDidUnload];

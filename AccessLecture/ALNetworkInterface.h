@@ -20,21 +20,28 @@ enum ALPointType : NSUInteger {
 /* Lecture Steaming Protocol */
 @protocol LectureStreaming <NSObject>
 
+@optional
+
 - (void)didRecieveUpdate:(CGPoint)point type:(ALPointType)type;
-- (void)didFinishRecievingUpdate:(NSArray *)data;
 - (void)didFinishDownloadingLecture:(Lecture *)lecture;
 - (void)didFinishRecievingBulkUpdate:(NSArray *)data;
 - (void)didFailToConnectTo:(NSString *)lecture;
 
 - (void)didWantToClearScreen;
 
-@optional
-
 - (void)currentStreamUpdatePercentage:(float)percent;
 
 @end
 
 @interface ALNetworkInterface : NSObject <SocketIODelegate>
+
+/**
+ * Gets the current lecture name that the server is connected to, returns nil if
+ * not connected
+ *
+ * @return lecture name
+ */
+- (NSString *)getCurrentLectureName;
 
 /* Delegate */
 @property (nonatomic, strong) id<LectureStreaming> delegate;
