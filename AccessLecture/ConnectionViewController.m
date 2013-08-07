@@ -51,15 +51,6 @@
     if (!lectureFavorites) lectureFavorites = [NSMutableArray new];
     if (!serverFavorites) serverFavorites = [NSMutableArray new];
     
-    // Adding Gestures.
-    UISwipeGestureRecognizer *swipeToDelete = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleCell:)];
-    [swipeToDelete setDirection:UISwipeGestureRecognizerDirectionRight];
-    [_tableView addGestureRecognizer:swipeToDelete];
-    
-    UITapGestureRecognizer *tapToAdd = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(addFavoriteCell)];
-    [tapToAdd setNumberOfTapsRequired:2];
-    [self.view addGestureRecognizer:tapToAdd];
-    
     isScanning = NO;  // Flag for QR scanning. Hides on load.
 }
 
