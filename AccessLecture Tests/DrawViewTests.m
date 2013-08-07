@@ -13,7 +13,8 @@
 
 @end
 
-@implementation DrawViewTests {
+@implementation DrawViewTests
+{
     DrawView *testDrawView;
 }
 

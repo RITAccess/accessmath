@@ -2,7 +2,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ColorViewController : UIViewController {
+@interface ColorViewController : UIViewController
+{
     
     // Toolbar sliders
     IBOutlet UISlider* redToolSlider;

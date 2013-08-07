@@ -13,7 +13,8 @@
 
 @end
 
-@implementation DrawViewControllerTests {
+@implementation DrawViewControllerTests
+{
     DrawViewController *testDrawViewController;
 }
 

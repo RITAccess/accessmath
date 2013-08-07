@@ -9,8 +9,6 @@
 #import <UIKit/UIKit.h>
 
 
-@interface InlineViewVController : UIViewController {
-    
-}
+@interface InlineViewVController : UIViewController
 
 @end
