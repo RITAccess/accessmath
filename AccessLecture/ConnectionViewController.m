@@ -11,7 +11,8 @@
 #import "ALNetworkInterface.h"
 #import <QuartzCore/CATransform3D.h>
 
-@implementation ConnectionViewController {
+@implementation ConnectionViewController
+{
     ALNetworkInterface *server;
     QRScanner *scanner;
     AVCaptureVideoPreviewLayer *preview;

@@ -15,7 +15,8 @@
 
 @end
 
-@implementation StreamViewController {
+@implementation StreamViewController
+{
     ALNetworkInterface *_server;
 }
 
@@ -75,7 +76,6 @@
 
 - (void)userDidCancel
 {
-    NSLog(@"User Canceled");
     [_loadProgress setHidden:YES];
 }
 
