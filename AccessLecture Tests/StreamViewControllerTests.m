@@ -16,6 +16,7 @@
 - (void)didFinishRecievingBulkUpdate:(NSArray *)data;
 - (void)currentStreamUpdatePercentage:(float)percent;
 - (void)willMoveToParentViewController:(UIViewController *)parent;
+- (void)willLeaveActiveState;
 
 @end
 
@@ -82,7 +83,7 @@
     STAssertTrue(streamViewController.loadProgress.progress == 50.0 / 100.0, @"Progress should equal 50 / 100.");
 }
 
-- (void)testHideBottomToolbarOnWillMoveToParent
+- (void)testShowBottomToolbarOnWillMoveToParent
 {
     STAssertNotNil(streamViewController, @"View controller should not be nil.");
     STAssertNotNil(streamViewController.bottomToolbar, @"Toolbar should not be nil.");
@@ -90,6 +91,17 @@
     
     if (streamViewController.bottomToolbar.hidden){
         STFail(@"Toolbar should not be hidden.");
+    }
+}
+
+- (void)testHideBottomToolbarOnWillLeaveActiveState
+{
+    STAssertNotNil(streamViewController, @"View controller should not be nil.");
+    STAssertNotNil(streamViewController.bottomToolbar, @"Toolbar should not be nil.");
+    [streamViewController willLeaveActiveState];
+    
+    if (!streamViewController.bottomToolbar.hidden){
+        STFail(@"Toolbar should be hidden.");
     }
 }
 
