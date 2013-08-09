@@ -19,6 +19,7 @@
 		2C09C76217B29699007DE863 /* ZoomButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C09C75817B29699007DE863 /* ZoomButton.png */; };
 		2C0F886B1760D8EC0062BD16 /* DrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F886A1760D8EC0062BD16 /* DrawView.m */; };
 		2C3BFE6517A2BF7B00404B9C /* ZoomBounds.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C3BFE6317A2BF7B00404B9C /* ZoomBounds.c */; };
+		2C5AD2C217B5430000BFB795 /* StreamViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5AD2C117B5430000BFB795 /* StreamViewControllerTests.m */; };
 		2C7C981A17999B5C00F8ECE4 /* sample-qr.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C7C981917999B5C00F8ECE4 /* sample-qr.png */; };
 		2CBF301C177B7AB10087C17C /* DrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBF301A177B7AB10087C17C /* DrawViewController.m */; };
 		2CBF301D177B7AB10087C17C /* DrawViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CBF301B177B7AB10087C17C /* DrawViewController.xib */; };
@@ -134,6 +135,7 @@
 		2C0F886A1760D8EC0062BD16 /* DrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawView.m; sourceTree = "<group>"; };
 		2C3BFE6317A2BF7B00404B9C /* ZoomBounds.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ZoomBounds.c; sourceTree = "<group>"; };
 		2C3BFE6417A2BF7B00404B9C /* ZoomBounds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoomBounds.h; sourceTree = "<group>"; };
+		2C5AD2C117B5430000BFB795 /* StreamViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamViewControllerTests.m; sourceTree = "<group>"; };
 		2C7C981917999B5C00F8ECE4 /* sample-qr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sample-qr.png"; sourceTree = "<group>"; };
 		2CBF3019177B7AB10087C17C /* DrawViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawViewController.h; sourceTree = "<group>"; };
 		2CBF301A177B7AB10087C17C /* DrawViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawViewController.m; sourceTree = "<group>"; };
@@ -727,6 +729,7 @@
 				3FB653D817B1836D00AE8FB5 /* NotesViewControllerTests.m */,
 				2CCA979717B14DD700669275 /* DrawViewControllerTests.m */,
 				4CE742C81768BDE60026DE71 /* Supporting Files */,
+				2C5AD2C117B5430000BFB795 /* StreamViewControllerTests.m */,
 			);
 			path = "AccessLecture Tests";
 			sourceTree = "<group>";
@@ -924,6 +927,7 @@
 				2CCA61AE17B13AB9002DA6A3 /* DrawViewTests.m in Sources */,
 				4C51C79D1768F5BE0045DF42 /* Lectures.m in Sources */,
 				3FB653D917B1836D00AE8FB5 /* NotesViewControllerTests.m in Sources */,
+				2C5AD2C217B5430000BFB795 /* StreamViewControllerTests.m in Sources */,
 				4C5219EE17B1485A00601A4D /* LectureContainer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
