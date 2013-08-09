@@ -12,6 +12,7 @@
 @interface StreamViewController (TestMethods)
 
 - (void)userDidCancel;
+- (void)didFailToConnectTo:(NSString *)lecture;
 
 @end
 
@@ -42,7 +43,18 @@
     [streamViewController userDidCancel];
     
     if (!streamViewController.loadProgress.hidden){
-        STFail(@"Progress should be hidden.");
+        STFail(@"ProgressView should be hidden.");
+    }
+}
+
+- (void)testHideProgressOnFail
+{
+    STAssertNotNil(streamViewController, @"View controller should not be nil.");
+    STAssertNotNil(streamViewController.loadProgress, @"ProgressView should not be nil.");
+    [streamViewController didFailToConnectTo:nil];
+    
+    if (!streamViewController.loadProgress.hidden){
+        STFail(@"ProgressView should be hidden.");
     }
 }
 
