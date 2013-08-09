@@ -9,8 +9,9 @@
 #import <SenTestingKit/SenTestingKit.h>
 #import "StreamViewController.h"
 
-@interface StreamViewController (TestMethods)
+@interface StreamViewController ()
 
+- (void)viewDidLoad;
 - (void)userDidCancel;
 - (void)didFailToConnectTo:(NSString *)lecture;
 - (void)didFinishRecievingBulkUpdate:(NSArray *)data;
@@ -128,5 +129,16 @@
     STAssertTrue([streamViewController.joinLeaveStream.title isEqualToString:@"Join Stream"], @"Title should be set to 'Join Stream'");
 }
 
+- (void)testViewDidLoadHideProgress
+{
+    STAssertNotNil(streamViewController, @"View controller should not be nil.");
+    STAssertNotNil(streamViewController.loadProgress, @"ProgressView should not be nil.");
+    streamViewController.loadProgress.hidden = NO;
+    [streamViewController viewDidLoad];
+    
+    if (!streamViewController.loadProgress.hidden){
+        STFail(@"Progress should be hidden.");
+    }
+}
 
 @end
