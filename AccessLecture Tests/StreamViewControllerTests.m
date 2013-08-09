@@ -15,6 +15,7 @@
 - (void)didFailToConnectTo:(NSString *)lecture;
 - (void)didFinishRecievingBulkUpdate:(NSArray *)data;
 - (void)currentStreamUpdatePercentage:(float)percent;
+- (void)willMoveToParentViewController:(UIViewController *)parent;
 
 @end
 
@@ -31,6 +32,7 @@
     [super setUp];
     streamViewController = [StreamViewController new];
     streamViewController.loadProgress = [UIProgressView new];
+    streamViewController.bottomToolbar = [UIToolbar new];
 }
 
 - (void)tearDown
@@ -79,5 +81,17 @@
     
     STAssertTrue(streamViewController.loadProgress.progress == 50.0 / 100.0, @"Progress should equal 50 / 100.");
 }
+
+- (void)testHideBottomToolbarOnWillMoveToParent
+{
+    STAssertNotNil(streamViewController, @"View controller should not be nil.");
+    STAssertNotNil(streamViewController.bottomToolbar, @"Toolbar should not be nil.");
+    [streamViewController willMoveToParentViewController:nil];
+    
+    if (streamViewController.bottomToolbar.hidden){
+        STFail(@"Toolbar should not be hidden.");
+    }
+}
+
 
 @end
