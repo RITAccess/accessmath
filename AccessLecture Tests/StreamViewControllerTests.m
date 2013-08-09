@@ -17,6 +17,7 @@
 - (void)currentStreamUpdatePercentage:(float)percent;
 - (void)willMoveToParentViewController:(UIViewController *)parent;
 - (void)willLeaveActiveState;
+- (void)connectToStream:(id)sender;
 
 @end
 
@@ -34,6 +35,7 @@
     streamViewController = [StreamViewController new];
     streamViewController.loadProgress = [UIProgressView new];
     streamViewController.bottomToolbar = [UIToolbar new];
+    streamViewController.joinLeaveStream = [UIBarButtonItem new];
 }
 
 - (void)tearDown
@@ -103,6 +105,27 @@
     if (!streamViewController.bottomToolbar.hidden){
         STFail(@"Toolbar should be hidden.");
     }
+}
+
+- (void)testConnectToStreamBoolCheck
+{
+    STAssertNotNil(streamViewController, @"View controller should not be nil.");
+    streamViewController.connectedToStream = YES;
+    [streamViewController connectToStream:nil];
+    
+    if (streamViewController.connectedToStream){
+        STFail(@"BOOL should equal NO.");
+    }
+}
+
+- (void)testConnectToStreamTitleSet
+{
+    STAssertNotNil(streamViewController, @"View controller should not be nil.");
+    STAssertNotNil(streamViewController.joinLeaveStream, @"BarButtonItem should not be nil.");
+    streamViewController.connectedToStream = YES;
+    [streamViewController connectToStream:nil];
+    
+    STAssertTrue([streamViewController.joinLeaveStream.title isEqualToString:@"Join Stream"], @"Title should be set to 'Join Stream'");
 }
 
 

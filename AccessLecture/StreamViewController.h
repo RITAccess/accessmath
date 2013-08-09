@@ -22,9 +22,10 @@ static NSString* const StreamViewControllerID = @"streamvc";
 @property (strong, nonatomic) IBOutlet StreamDrawing *canvas;
 @property (nonatomic) IBOutlet UIToolbar *bottomToolbar;
 @property (nonatomic) IBOutlet UIProgressView *loadProgress;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *joinLeaveStream;
+@property (nonatomic) IBOutlet UIBarButtonItem *joinLeaveStream;
 @property (weak, nonatomic) IBOutlet UILabel *lectureNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *serverAddressLabel;
-@property BOOL displayServerConnectView;  // YES displays ServerConnect view on viewDidAppear.
+@property BOOL displayServerConnectView; // YES displays ServerConnect view on viewDidAppear.
+@property BOOL connectedToStream;
 
 @end
