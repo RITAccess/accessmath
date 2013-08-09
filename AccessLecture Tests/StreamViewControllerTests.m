@@ -13,6 +13,7 @@
 
 - (void)userDidCancel;
 - (void)didFailToConnectTo:(NSString *)lecture;
+- (void)didFinishRecievingBulkUpdate:(NSArray *)data;
 
 @end
 
@@ -52,6 +53,17 @@
     STAssertNotNil(streamViewController, @"View controller should not be nil.");
     STAssertNotNil(streamViewController.loadProgress, @"ProgressView should not be nil.");
     [streamViewController didFailToConnectTo:nil];
+    
+    if (!streamViewController.loadProgress.hidden){
+        STFail(@"ProgressView should be hidden.");
+    }
+}
+
+- (void)testHideProgessOnBulkUpdateFinish
+{
+    STAssertNotNil(streamViewController, @"View controller should not be nil.");
+    STAssertNotNil(streamViewController.loadProgress, @"ProgressView should not be nil.");
+    [streamViewController didFinishRecievingBulkUpdate:nil];
     
     if (!streamViewController.loadProgress.hidden){
         STFail(@"ProgressView should be hidden.");
