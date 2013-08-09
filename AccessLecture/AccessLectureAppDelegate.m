@@ -12,15 +12,6 @@
  */
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-//    UINavigationController *rootNavigationController = (UINavigationController *)self.window.rootViewController;
-//    RootViewController *rootViewController = (RootViewController *)[rootNavigationController topViewController];
-    
-    //    // Initalize the root view controller (our home screen)
-//    rootViewController = (UINavigationController* )self.window.rootViewController;
-    
-    // Initialize the navigation cobtroller with the root view controller 
-//    navigationController = [navigationController initWithRootViewController: rootViewController];
-    
     // Set the application defaults
     defaults = [NSUserDefaults standardUserDefaults];
     [defaults setFloat:0.0f forKey:@"toolbarAlpha"];
