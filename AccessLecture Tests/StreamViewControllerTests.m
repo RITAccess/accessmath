@@ -14,6 +14,7 @@
 - (void)userDidCancel;
 - (void)didFailToConnectTo:(NSString *)lecture;
 - (void)didFinishRecievingBulkUpdate:(NSArray *)data;
+- (void)currentStreamUpdatePercentage:(float)percent;
 
 @end
 
@@ -68,6 +69,15 @@
     if (!streamViewController.loadProgress.hidden){
         STFail(@"ProgressView should be hidden.");
     }
+}
+
+- (void)testStreamUpdatePercent
+{
+    STAssertNotNil(streamViewController, @"View controller should not be nil.");
+    STAssertNotNil(streamViewController.loadProgress, @"ProgressView should not be nil.");
+    [streamViewController currentStreamUpdatePercentage:50.0];
+    
+    STAssertTrue(streamViewController.loadProgress.progress == 50.0 / 100.0, @"Progress should equal 50 / 100.");
 }
 
 @end
