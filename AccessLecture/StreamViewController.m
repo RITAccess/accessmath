@@ -9,12 +9,6 @@
 #import "StreamViewController.h"
 #import "ConnectionViewController.h"
 
-@interface StreamViewController ()
-
-@property BOOL connectedToStream;
-
-@end
-
 @implementation StreamViewController
 {
     ALNetworkInterface *_server;
