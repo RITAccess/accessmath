@@ -12,6 +12,7 @@
 
 #import <Foundation/Foundation.h>
 #import "SocketIOPacket.h"
+#import "CommonLecture.h"
 
 @interface Lecture : NSObject
 

@@ -13,9 +13,11 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "CommonLecture.h"
+
 @class Position;
 
-@interface Note : NSObject
+@interface Note : UIView <NSCoding>
 
 // the psotion of the note
 @property (strong, nonatomic) Position * position;

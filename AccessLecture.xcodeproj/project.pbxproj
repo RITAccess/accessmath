@@ -101,6 +101,7 @@
 		4CBF5D871768DAD200746377 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11D217625F150066A4FA /* libicucore.dylib */; };
 		4CBF5D881768DAD500746377 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11D017625F0D0066A4FA /* CFNetwork.framework */; };
 		4CBF5D891768DAD700746377 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11CE17625F060066A4FA /* Security.framework */; };
+		4CCBC8DD17E222FF00CB303E /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F99F1FF154364270065CBB9 /* Note.m */; };
 		4CD0A5EF177DC98600864228 /* ConnectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD0A5ED177DC98600864228 /* ConnectionViewController.m */; };
 		4CD0A5F8177E1D6800864228 /* StreamDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD0A5F7177E1D6800864228 /* StreamDrawing.m */; };
 		4CDB053817B5567300D8EB85 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CDB053717B5567300D8EB85 /* CoreData.framework */; };
@@ -111,6 +112,9 @@
 		4CE742C61768BDE60026DE71 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FED960B1370863E00D8D1B8 /* UIKit.framework */; };
 		4CEA1A03177CAAED00A1DE05 /* LectureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEA1A00177CAAED00A1DE05 /* LectureCell.m */; };
 		4CEA1A04177CAAED00A1DE05 /* OpenLectureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEA1A02177CAAED00A1DE05 /* OpenLectureViewController.m */; };
+		4CFC573017DF800700393A1E /* NoteTakingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC572F17DF800700393A1E /* NoteTakingViewController.m */; };
+		4CFC573317DF801900393A1E /* NoteReadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC573217DF801900393A1E /* NoteReadingViewController.m */; };
+		4CFC573617DF807F00393A1E /* ImageNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC573517DF807F00393A1E /* ImageNote.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -260,6 +264,7 @@
 		4CADF4F1178DEC19005978C0 /* UISegmentedControlExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISegmentedControlExtension.m; sourceTree = "<group>"; };
 		4CB8329E1768C0AC008F0099 /* AccessLecture Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AccessLecture Tests-Info.plist"; sourceTree = "<group>"; };
 		4CB8329F1768C0AC008F0099 /* AccessLecture Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AccessLecture Tests-Prefix.pch"; sourceTree = "<group>"; };
+		4CCBC8DE17E2236B00CB303E /* CommonLecture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonLecture.h; sourceTree = "<group>"; };
 		4CD0A5EC177DC98600864228 /* ConnectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionViewController.h; sourceTree = "<group>"; };
 		4CD0A5ED177DC98600864228 /* ConnectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionViewController.m; sourceTree = "<group>"; };
 		4CD0A5F6177E1D6800864228 /* StreamDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamDrawing.h; sourceTree = "<group>"; };
@@ -273,6 +278,12 @@
 		4CEA1A00177CAAED00A1DE05 /* LectureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LectureCell.m; sourceTree = "<group>"; };
 		4CEA1A01177CAAED00A1DE05 /* OpenLectureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenLectureViewController.h; sourceTree = "<group>"; };
 		4CEA1A02177CAAED00A1DE05 /* OpenLectureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenLectureViewController.m; sourceTree = "<group>"; };
+		4CFC572E17DF800700393A1E /* NoteTakingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteTakingViewController.h; sourceTree = "<group>"; };
+		4CFC572F17DF800700393A1E /* NoteTakingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteTakingViewController.m; sourceTree = "<group>"; };
+		4CFC573117DF801900393A1E /* NoteReadingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteReadingViewController.h; sourceTree = "<group>"; };
+		4CFC573217DF801900393A1E /* NoteReadingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteReadingViewController.m; sourceTree = "<group>"; };
+		4CFC573417DF807F00393A1E /* ImageNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageNote.h; sourceTree = "<group>"; };
+		4CFC573517DF807F00393A1E /* ImageNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageNote.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -457,6 +468,7 @@
 		3F99F1EE15435FA80065CBB9 /* UIDocument */ = {
 			isa = PBXGroup;
 			children = (
+				4CCBC8DE17E2236B00CB303E /* CommonLecture.h */,
 				3F99F1FC154364270065CBB9 /* AccessDocument.h */,
 				3F99F1FD154364270065CBB9 /* AccessDocument.m */,
 				3F99F1FE154364270065CBB9 /* Note.h */,
@@ -465,6 +477,8 @@
 				3F99F20115436E090065CBB9 /* Lecture.m */,
 				3F99F207154375270065CBB9 /* Position.h */,
 				3F99F208154375270065CBB9 /* Position.m */,
+				4CFC573417DF807F00393A1E /* ImageNote.h */,
+				4CFC573517DF807F00393A1E /* ImageNote.m */,
 			);
 			name = UIDocument;
 			sourceTree = "<group>";
@@ -490,7 +504,6 @@
 		3FCD5D1115438265005F2A60 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				4C96FA81176289B4002C0D74 /* Connect View */,
 				3FED963213708E5100D8D1B8 /* Lecture View */,
 				3F0DBDCC13BD170C00E3FEE8 /* About View */,
 			);
@@ -681,6 +694,10 @@
 		4C8ABE7C177CA341007C934C /* NotesViewController */ = {
 			isa = PBXGroup;
 			children = (
+				4CFC572E17DF800700393A1E /* NoteTakingViewController.h */,
+				4CFC572F17DF800700393A1E /* NoteTakingViewController.m */,
+				4CFC573117DF801900393A1E /* NoteReadingViewController.h */,
+				4CFC573217DF801900393A1E /* NoteReadingViewController.m */,
 				3F0F3B62178DBB6D00163C2A /* categories */,
 				3F0F3B67178DBB8700163C2A /* FTCoreTextStyle.h */,
 				3F0F3B68178DBB8700163C2A /* FTCoreTextStyle.m */,
@@ -691,13 +708,6 @@
 				4C8ABE7F177CA356007C934C /* NotesViewController.xib */,
 			);
 			name = NotesViewController;
-			sourceTree = "<group>";
-		};
-		4C96FA81176289B4002C0D74 /* Connect View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "Connect View";
 			sourceTree = "<group>";
 		};
 		4C9AB8FB177C6884004A4F65 /* Views */ = {
@@ -899,6 +909,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CFC573317DF801900393A1E /* NoteReadingViewController.m in Sources */,
 				2CBF301C177B7AB10087C17C /* DrawViewController.m in Sources */,
 				2CF6BA901784919300A695CC /* AMBezierPath.m in Sources */,
 				3FCD5D0B15437D0A005F2A60 /* AccessDocument.m in Sources */,
@@ -915,6 +926,7 @@
 				3F99F20215436E090065CBB9 /* Lecture.m in Sources */,
 				4C5C50CD177B7B7C0095801A /* LectureViewContainer.m in Sources */,
 				3F99F209154375270065CBB9 /* Position.m in Sources */,
+				4CCBC8DD17E222FF00CB303E /* Note.m in Sources */,
 				3FCD5D1715438472005F2A60 /* AccessLectureRuntime.m in Sources */,
 				4C62BECD175651DB00CAF4CF /* FileManager.m in Sources */,
 				4C4B8BFA178EF57200C2F94B /* QRScanner.m in Sources */,
@@ -923,6 +935,8 @@
 				3F0F3B6F178DBC1800163C2A /* FTCoreTextStyle.m in Sources */,
 				3F6D11C517625EA20066A4FA /* SocketIO.m in Sources */,
 				4CD0A5EF177DC98600864228 /* ConnectionViewController.m in Sources */,
+				4CFC573617DF807F00393A1E /* ImageNote.m in Sources */,
+				4CFC573017DF800700393A1E /* NoteTakingViewController.m in Sources */,
 				4CDB057D17B557C300D8EB85 /* AccessLecture.xcdatamodeld in Sources */,
 				3F6D11C617625EA20066A4FA /* SocketIOJSONSerialization.m in Sources */,
 				3F6D11C717625EA20066A4FA /* SocketIOPacket.m in Sources */,

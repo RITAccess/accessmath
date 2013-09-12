@@ -10,6 +10,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CommonLecture.h"
 
 @interface Position : NSObject
 

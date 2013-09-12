@@ -14,6 +14,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CommonLecture.h"
 
 @class Note;
 @class Lecture;
