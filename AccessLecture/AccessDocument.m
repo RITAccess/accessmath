@@ -30,7 +30,6 @@ static NSString * FILE_TYPE = @"lecture";
 */
 - (BOOL)loadFromContents:(id)contents ofType:(NSString *)typeName error:(NSError *__autoreleasing *)outError {
     
-       
     if ([contents length]>0) {
         NSData * archivedData = (NSData *)contents;
         NSKeyedUnarchiver * unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:archivedData];

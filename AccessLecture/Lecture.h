@@ -14,7 +14,7 @@
 #import "SocketIOPacket.h"
 #import "CommonLecture.h"
 
-@interface Lecture : NSObject
+@interface Lecture : NSObject <NSCoding>
 
 // the name of the lecture/class
 @property (strong, nonatomic) NSString * name;

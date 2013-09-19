@@ -9,17 +9,17 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
-#import "Lecture.h"
+#import "AccessDocument.h"
+#import "Note.h"
+#import "ImageNote.h"
+#import "Position.h"
+#import "FileManager.h"
 
 @interface Lectures : SenTestCase
 
 @end
 
 @implementation Lectures
-{
-    Lecture *testLecture;
-    NSDate *startDate;
-}
 
 - (void)setUp
 {
@@ -31,6 +31,17 @@
     [super tearDown];
 }
 
+- (void)testCreatingUIDocument
+{
 
+    NSString *file = [NSString stringWithFormat:@"%@/testDocument.access", [FileManager localDocumentsDirectoryURL]];
+    NSURL *fileURL = [NSURL fileURLWithPath:file];
+    AccessDocument *testDocument = [[AccessDocument alloc] initWithFileURL:fileURL];
+    
+    [FileManager saveDocument:testDocument];
+    
+    STAssertTrue([[NSFileManager defaultManager] fileExistsAtPath:file], @"File does not exist");
+    
+}
 
 @end
