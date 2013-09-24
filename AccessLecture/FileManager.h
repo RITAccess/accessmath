@@ -49,5 +49,9 @@
  */
 + (BOOL)saveDocument:(AccessDocument *)document;
 
+/**
+ * Creates and returns a UIDocument instance in the users documents directory
+ */
++ (AccessDocument *)createDocumentWithName:(NSString *)name;
 
 @end

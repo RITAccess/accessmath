@@ -107,6 +107,7 @@
 		4CDB053817B5567300D8EB85 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CDB053717B5567300D8EB85 /* CoreData.framework */; };
 		4CDB057D17B557C300D8EB85 /* AccessLecture.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4CDB057B17B557C300D8EB85 /* AccessLecture.xcdatamodeld */; };
 		4CDB058017B5589A00D8EB85 /* Favorites.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CDB057F17B5589A00D8EB85 /* Favorites.m */; };
+		4CDDF69717EB690900FE34E7 /* AMLecture.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CDDF69617EB690900FE34E7 /* AMLecture.m */; };
 		4CE742C41768BDE60026DE71 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F9BA9C21758FE1C00BEFB55 /* SenTestingKit.framework */; };
 		4CE742C51768BDE60026DE71 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FED960D1370863E00D8D1B8 /* Foundation.framework */; };
 		4CE742C61768BDE60026DE71 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FED960B1370863E00D8D1B8 /* UIKit.framework */; };
@@ -273,6 +274,8 @@
 		4CDB057C17B557C300D8EB85 /* AccessLecture.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AccessLecture.xcdatamodel; sourceTree = "<group>"; };
 		4CDB057E17B5589A00D8EB85 /* Favorites.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Favorites.h; sourceTree = "<group>"; };
 		4CDB057F17B5589A00D8EB85 /* Favorites.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Favorites.m; sourceTree = "<group>"; };
+		4CDDF69517EB690900FE34E7 /* AMLecture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMLecture.h; sourceTree = "<group>"; };
+		4CDDF69617EB690900FE34E7 /* AMLecture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMLecture.m; sourceTree = "<group>"; };
 		4CE742C31768BDE60026DE71 /* AccessLecture Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "AccessLecture Tests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CEA19FF177CAAED00A1DE05 /* LectureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LectureCell.h; sourceTree = "<group>"; };
 		4CEA1A00177CAAED00A1DE05 /* LectureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LectureCell.m; sourceTree = "<group>"; };
@@ -459,6 +462,7 @@
 		3F99F1ED15435F9D0065CBB9 /* Document Model */ = {
 			isa = PBXGroup;
 			children = (
+				4CDDF69417EB68F100FE34E7 /* Lectures */,
 				3F99F1EF15435FB40065CBB9 /* FileManager */,
 				3F99F1EE15435FA80065CBB9 /* UIDocument */,
 			);
@@ -749,6 +753,15 @@
 			name = CoreData;
 			sourceTree = "<group>";
 		};
+		4CDDF69417EB68F100FE34E7 /* Lectures */ = {
+			isa = PBXGroup;
+			children = (
+				4CDDF69517EB690900FE34E7 /* AMLecture.h */,
+				4CDDF69617EB690900FE34E7 /* AMLecture.m */,
+			);
+			name = Lectures;
+			sourceTree = "<group>";
+		};
 		4CE742C71768BDE60026DE71 /* AccessLecture Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -945,6 +958,7 @@
 				3F6D11C917625EA20066A4FA /* SocketIOTransportXHR.m in Sources */,
 				3F6D11CA17625EA20066A4FA /* base64.c in Sources */,
 				3F6D11CB17625EA20066A4FA /* NSData+SRB64Additions.m in Sources */,
+				4CDDF69717EB690900FE34E7 /* AMLecture.m in Sources */,
 				4C9AB8FE177C6895004A4F65 /* TopNav.m in Sources */,
 				4CEA1A04177CAAED00A1DE05 /* OpenLectureViewController.m in Sources */,
 				4C8ABE78177C87BD007C934C /* StreamViewController.m in Sources */,

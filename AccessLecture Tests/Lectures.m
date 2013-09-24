@@ -9,8 +9,7 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
-#import "AccessDocument.h"
-#import "Note.h"
+#import "AMLecture.h"
 #import "ImageNote.h"
 #import "Position.h"
 #import "FileManager.h"
@@ -36,11 +35,18 @@
 
     NSString *file = [NSString stringWithFormat:@"%@/testDocument.access", [FileManager localDocumentsDirectoryURL]];
     NSURL *fileURL = [NSURL fileURLWithPath:file];
-    AccessDocument *testDocument = [[AccessDocument alloc] initWithFileURL:fileURL];
     
-    [FileManager saveDocument:testDocument];
+    AMLecture *testDoc = [[AMLecture alloc] initWithFileURL:fileURL];
     
-    STAssertTrue([[NSFileManager defaultManager] fileExistsAtPath:file], @"File does not exist");
+    [testDoc openWithCompletionHandler:^(BOOL success) {
+        NSLog(@"Loaded");
+        [testDoc saveToURL:testDoc.fileURL forSaveOperation:UIDocumentSaveForOverwriting completionHandler:^(BOOL success) {
+            NSLog(@"Saved");
+            [testDoc closeWithCompletionHandler:^(BOOL success) {
+                NSLog(@"Closed");
+            }];
+        }];
+    }];
     
 }
 
