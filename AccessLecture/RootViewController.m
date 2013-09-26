@@ -11,10 +11,18 @@
 #import "InlineViewVController.h"
 #import "StreamViewController.h"
 
+#import "AMLecture.h"
+#import "FileManager.h"
+
 @implementation RootViewController
 
 - (void)viewDidLoad
 {
+    
+    AMLecture *newLecture = [FileManager createDocumentWithName:@"testLecture"];
+    
+    
+    
     [super viewDidLoad];
 }
 

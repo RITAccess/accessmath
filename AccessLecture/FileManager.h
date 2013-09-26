@@ -13,6 +13,7 @@
 
 #import <Foundation/Foundation.h>
 #import "AccessDocument.h"
+#import "AMLecture.h"
 @interface FileManager : NSObject
 
 /**
@@ -43,15 +44,10 @@
  * returns nil if no file was found
  */
 + (NSURL *)findFileIn:(NSArray *)files thatFits:(BOOL(^)(NSURL*))condition;
-/**
- * Save the AccessDocument containing information about the lecture and notes in the 
- * AccessMath directory. 
- */
-+ (BOOL)saveDocument:(AccessDocument *)document;
 
 /**
  * Creates and returns a UIDocument instance in the users documents directory
  */
-+ (AccessDocument *)createDocumentWithName:(NSString *)name;
++ (AMLecture *)createDocumentWithName:(NSString *)name;
 
 @end

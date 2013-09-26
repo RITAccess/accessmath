@@ -101,56 +101,23 @@
     [alert show];
 
 }
-+ (BOOL)saveDocument:(AccessDocument *)document{
 
-    [document saveToURL:document.fileURL forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success) {
-        NSLog(@"Done");
++ (AMLecture *)createDocumentWithName:(NSString *)name
+{
+    
+    NSURL *filePath = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/AccessMath/%@.%@", [FileManager localDocumentsDirectoryURL], name, AMLectutueFileExtention]];
+    
+    AMLecture *newDoc = [[AMLecture alloc] initWithFileURL:filePath];
+
+    [newDoc saveToURL:newDoc.fileURL forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success) {
+        if (success) {
+            NSLog(@"Created document instance %@", newDoc);
+        } else {
+            NSLog(@"Failed");
+        }
     }];
-                   
-   return YES;
     
-    
-//    AccessDocument *currentDocument;
-//    Lecture *currentLecture = document.lecture;
-//    NSURL * currentDirectory = [FileManager iCloudDirectoryURL];
-//    if (currentDirectory == nil) currentDirectory = [FileManager localDocumentsDirectoryURL];
-//     NSString *docsPath =[[currentDirectory absoluteString] stringByAppendingString:[NSString stringWithFormat:@"AccessMath/%@.lecture",currentLecture.name]];
-//    NSURL *docURL = [NSURL URLWithString:docsPath];
-//    currentDocument = [[AccessDocument alloc] initWithFileURL:docURL];
-//    currentDocument.lecture = document.lecture;
-//    currentDocument.notes = document.notes;
-//    if([[NSFileManager defaultManager] fileExistsAtPath:[docURL path]])
-//    {
-//        [currentDocument saveToURL:docURL
-//                  forSaveOperation:UIDocumentSaveForOverwriting
-//                 completionHandler:^(BOOL success) {
-//                     if (success){
-//                         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notes"
-//                                                                         message:@"Notes Overwritten" delegate:self cancelButtonTitle: @"OK"
-//                                                               otherButtonTitles: nil];
-//                         [alert show];
-//                     } else {
-//
-//                         NSLog(@"Not saved for overwriting");
-//                     }
-//                 }];
-//        
-//    } else {
-//        [currentDocument saveToURL:docURL
-//                  forSaveOperation:UIDocumentSaveForCreating
-//                 completionHandler:^(BOOL success) {
-//
-//                     if (success){
-//                         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notes"
-//                                                                         message:@"Note Created" delegate:self cancelButtonTitle: @"OK"
-//                                                               otherButtonTitles: nil];
-//                         [alert show];
-//                     } else {
-//                         NSLog(@"Not created");
-//                     }
-//                 }];
-//    }
-//    return true;
+    return newDoc;
 }
 
 @end

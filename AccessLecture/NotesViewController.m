@@ -739,7 +739,6 @@ static NSString * DRAW_KEY = @"draw_key";
     }
     currentDocument.notes = notes;
     currentDocument.lecture = currentLecture;
-   [FileManager saveDocument:currentDocument];
 }
 
 - (void)didSaveState
