@@ -4,7 +4,7 @@
 //
 //  Created by Steven Brunwasser on 3/19/12.
 //  Modified by Pratik Rasam on 6/26/2013
-//  Refactored by Michael Timbroo on 9/20/12
+//  Refactored by Michael Timbrook on 9/20/12
 //  Copyright (c) 2012 Rochester Institute of Technology. All rights reserved.
 //
 //
@@ -17,16 +17,9 @@
 
 @implementation FileManager
 
-+ (NSURL *)localDocumentsDirectoryURL {
-    // only find the location once
-    static NSURL * localDocumentsDirectoryURL;
-    
-    if (localDocumentsDirectoryURL == nil) {
-        NSString * documentsDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-        localDocumentsDirectoryURL = [NSURL fileURLWithPath:documentsDirectoryPath];
-    }
-  
-    return localDocumentsDirectoryURL;
++ (NSString *)localDocumentsDirectoryPath {
+    NSString * documentsDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    return documentsDirectoryPath;
 }
 
 + (NSURL *)iCloudDirectoryURL {
@@ -105,9 +98,11 @@
 + (AMLecture *)createDocumentWithName:(NSString *)name
 {
     
-    NSURL *filePath = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/AccessMath/%@.%@", [FileManager localDocumentsDirectoryURL], name, AMLectutueFileExtention]];
+    NSString *docsDir = [[FileManager localDocumentsDirectoryPath] stringByAppendingPathComponent:@"AccessMath"];
     
-    AMLecture *newDoc = [[AMLecture alloc] initWithFileURL:filePath];
+    NSString *filePath = [[docsDir stringByAppendingPathComponent:name] stringByAppendingPathExtension:AMLectutueFileExtention];
+    
+    AMLecture *newDoc = [[AMLecture alloc] initWithFileURL:[NSURL fileURLWithPath:filePath]];
 
     [newDoc saveToURL:newDoc.fileURL forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success) {
         if (success) {

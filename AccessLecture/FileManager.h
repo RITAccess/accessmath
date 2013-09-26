@@ -20,7 +20,7 @@
  * Get the documents directory fo the current user
  * in iOS, this is the only place we are allowed to write files
  */
-+ (NSURL *)localDocumentsDirectoryURL;
++ (NSString *)localDocumentsDirectoryPath;
 
 //Get the AccessMath directory of the current user
 + (NSURL *)accessMathDirectoryURL;
