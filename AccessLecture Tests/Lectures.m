@@ -32,11 +32,16 @@
 
 - (void)testCreatingUIDocument
 {
-
-    AMLecture *newLec = [FileManager createDocumentWithName:@"testDoc"];
-    
-    
-    
+    NSString *path = [FileManager localDocumentsDirectoryPath];
+    char *cpath = malloc(sizeof(char) * 250);
+    sprintf(cpath, "%s/testDoc.lec", path.UTF8String);
+    unlink(cpath);
+    free(cpath);
+    AMLecture *newLec = [FileManager createDocumentWithName:@"testDoc" failure:^(NSError *error) {
+        NSLog(@"%@", error.description);
+    }];
+    sleep(1);
+    STAssertNotNil(newLec, @"Fail");
 }
 
 @end
