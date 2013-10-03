@@ -29,28 +29,11 @@ typedef enum {
  */
 + (NSString *)localDocumentsDirectoryPath;
 
-//Get the AccessMath directory of the current user
-+ (NSURL *)accessMathDirectoryURL;
-
-// delete all files in AccessMath directory
-//+ (void) clearAllDocuments;
-
 /**
-* Get the iCloud documents directory
-* return nil if none available
-*/
-+ (NSURL *)iCloudDirectoryURL;
-
-//Get a list of all the files in the specified directory
-
-+ (NSArray *)documentsIn:(NSURL *)URL;
-
-/**
- * Find a file in the given array of files that fits the given block condition.
- * the block should take an NSURL* argument and return a BOOL if the NSURL is correct.
- * returns nil if no file was found
+ * Opens a AMLecture with that name from the douments directory
  */
-+ (NSURL *)findFileIn:(NSArray *)files thatFits:(BOOL(^)(NSURL*))condition;
++ (AMLecture *)findDocumentWithName:(NSString *)name;
++ (AMLecture *)findDocumentWithName:(NSString *)name failure:(void (^)(NSError *error))error;
 
 /**
  * Creates and returns a UIDocument instance in the users documents directory

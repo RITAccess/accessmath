@@ -106,12 +106,12 @@ static NSString * DRAW_KEY = @"draw_key";
     [self.trashBin setHidden:YES];
      //Assign this value from stream view controller lecture name
     currentLecture.name = @"Lecture001";
-    NSURL * currentDirectory = [FileManager iCloudDirectoryURL];
+//    NSURL * currentDirectory = [FileManager iCloudDirectoryURL];
 //    if (currentDirectory == nil) currentDirectory = [FileManager localDocumentsDirectoryPath];
-    NSString *docsPath =[[currentDirectory absoluteString] stringByAppendingString:[NSString stringWithFormat:@"AccessMath/%@.lecture",currentLecture.name]];
-    NSURL *docURL = [NSURL URLWithString:docsPath];
-    [[AccessLectureRuntime defaultRuntime] openDocument:docURL];
-     currentDocument = [AccessLectureRuntime defaultRuntime].currentDocument;
+//    NSString *docsPath =[[currentDirectory absoluteString] stringByAppendingString:[NSString stringWithFormat:@"AccessMath/%@.lecture",currentLecture.name]];
+//    NSURL *docURL = [NSURL URLWithString:docsPath];
+//    [[AccessLectureRuntime defaultRuntime] openDocument:docURL];
+//     currentDocument = [AccessLectureRuntime defaultRuntime].currentDocument;
    }
 
 /**

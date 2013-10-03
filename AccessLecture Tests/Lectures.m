@@ -44,4 +44,14 @@
     STAssertNotNil(newLec, @"Fail");
 }
 
+- (void)testOpeningUIDocument
+{
+    
+    AMLecture *lecture = [FileManager findDocumentWithName:@"testDoc" failure:^(NSError *error) {
+        NSLog(@"%@", error.description);
+    }];
+    
+    STAssertNotNil(lecture, @"Fail");
+}
+
 @end

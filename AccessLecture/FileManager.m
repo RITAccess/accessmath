@@ -27,49 +27,24 @@
     return ubiquity;
 }
 
-+ (NSURL *)accessMathDirectoryURL{
-    NSFileManager *filemgr;
-    NSArray *dirPaths;
-    NSString *docsDir;
-    NSString *newDir;
-    filemgr =[NSFileManager defaultManager];
-    dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-                                                   NSUserDomainMask, YES);
-   
-    docsDir = [dirPaths objectAtIndex:0];
-    newDir = [docsDir stringByAppendingPathComponent:@"AccessMath"];
-    if ([filemgr createDirectoryAtPath:newDir withIntermediateDirectories:YES attributes:nil error: NULL] == NO)
-    {
-        // Failed to create directory
-        return nil;
-    }
-    else{
-        return [NSURL URLWithString:newDir];
-    }
- }
-+ (NSArray *)documentsIn:(NSURL *)URL {
-    NSError * error = nil;
-    NSURL * docs = URL;
-    if (docs == nil) {
-        NSLog(@"ERROR!");
-        return nil;
-    } else {
-        NSArray * documents = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:docs 
-                                                            includingPropertiesForKeys:nil 
-                                                                               options:NSDirectoryEnumerationSkipsPackageDescendants 
-                                                                                 error:&error];
-        return documents;
-    }
++ (AMLecture *)findDocumentWithName:(NSString *)name
+{
+    return [self findDocumentWithName:name failure:^(NSError *error) { }];
 }
 
-+ (NSURL *)findFileIn:(NSArray *)files thatFits:(BOOL (^)(NSURL *))condition {
-    for (NSURL * file in files) {
-        if (condition(file)) {
-            return file;
-        }
++ (AMLecture *)findDocumentWithName:(NSString *)name failure:(void (^)(NSError *))error
+{
+    NSString *docsDir = [FileManager localDocumentsDirectoryPath];
+    NSString *filePath = [[docsDir stringByAppendingPathComponent:name] stringByAppendingPathExtension:AMLectutueFileExtention];
+    
+    if([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        AMLecture *lecture = [[AMLecture alloc] initWithFileURL:[NSURL fileURLWithPath:filePath]];
+        return lecture;
+    } else {
+        NSError *err = [NSError errorWithDomain:NSOSStatusErrorDomain code:FileManagerErrorFileNotFound userInfo:@{ @"Message" : @"File not found" }];
+        error(err);
     }
-   
-    return nil;
+    return FALSE;
 }
 
 + (AMLecture *)createDocumentWithName:(NSString *)name
@@ -80,7 +55,6 @@
 + (AMLecture *)createDocumentWithName:(NSString *)name failure:(void (^)(NSError *error))error
 {
     NSString *docsDir = [FileManager localDocumentsDirectoryPath];
-    
     NSString *filePath = [[docsDir stringByAppendingPathComponent:name] stringByAppendingPathExtension:AMLectutueFileExtention];
     
     if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
