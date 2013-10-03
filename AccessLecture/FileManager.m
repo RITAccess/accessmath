@@ -71,48 +71,36 @@
    
     return nil;
 }
-+ (void)clearAllDocuments{
-    NSString *path = [[NSMutableString alloc] init];
-    NSArray *docs = [FileManager documentsIn:[FileManager localDocumentsDirectoryURL]];
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    for(NSURL *docURL in docs)
-    {
-        path = [docURL path];
-       
-        if ([fileManager fileExistsAtPath:path])
-        {
-            NSError *error;
-            if (![fileManager removeItemAtPath:path error:&error])
-            {
-                NSLog(@"Error removing file: %@", error);
-            };
-        }
-    }
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notes"
-                                                    message:@"All lectures removed" delegate:self cancelButtonTitle: @"OK"
-                                          otherButtonTitles: nil];
-    [alert show];
-
-}
 
 + (AMLecture *)createDocumentWithName:(NSString *)name
 {
-    
-    NSString *docsDir = [[FileManager localDocumentsDirectoryPath] stringByAppendingPathComponent:@"AccessMath"];
+    return [FileManager createDocumentWithName:name failure:^(NSError *error) { }];
+}
+
++ (AMLecture *)createDocumentWithName:(NSString *)name failure:(void (^)(NSError *error))error
+{
+    NSString *docsDir = [FileManager localDocumentsDirectoryPath];
     
     NSString *filePath = [[docsDir stringByAppendingPathComponent:name] stringByAppendingPathExtension:AMLectutueFileExtention];
     
-    AMLecture *newDoc = [[AMLecture alloc] initWithFileURL:[NSURL fileURLWithPath:filePath]];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        NSError *err = [NSError errorWithDomain:NSOSStatusErrorDomain code:FileManagerErrorFileExists userInfo:@{ @"Message" : @"File exists" }];
+        error(err);
+    } else {
+        
+        AMLecture *newDoc = [[AMLecture alloc] initWithFileURL:[NSURL fileURLWithPath:filePath]];
 
-    [newDoc saveToURL:newDoc.fileURL forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success) {
-        if (success) {
-            NSLog(@"Created document instance %@", newDoc);
-        } else {
-            NSLog(@"Failed");
-        }
-    }];
-    
-    return newDoc;
+        [newDoc saveToURL:newDoc.fileURL forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success) {
+            if (success) {
+                NSLog(@"Created document instance %@", newDoc);
+            } else {
+                NSError *err = [NSError errorWithDomain:NSOSStatusErrorDomain code:FileManagerErrorSaveError userInfo:@{ @"Message" : @"Failed to save document" }];
+                error(err);
+            }
+        }];
+        return newDoc;
+    }
+    return FALSE;
 }
 
 @end

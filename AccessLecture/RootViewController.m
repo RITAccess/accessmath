@@ -18,11 +18,6 @@
 
 - (void)viewDidLoad
 {
-    
-    AMLecture *newLecture = [FileManager createDocumentWithName:@"testLecture"];
-    
-    
-    
     [super viewDidLoad];
 }
 

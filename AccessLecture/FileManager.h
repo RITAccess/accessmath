@@ -14,6 +14,13 @@
 #import <Foundation/Foundation.h>
 #import "AccessDocument.h"
 #import "AMLecture.h"
+
+typedef enum {
+    FileManagerErrorFileNotFound    = -8901,
+    FileManagerErrorFileExists      = -8902,
+    FileManagerErrorSaveError       = -8903,
+} FileManagerError;
+
 @interface FileManager : NSObject
 
 /**
@@ -26,7 +33,7 @@
 + (NSURL *)accessMathDirectoryURL;
 
 // delete all files in AccessMath directory
-+ (void) clearAllDocuments;
+//+ (void) clearAllDocuments;
 
 /**
 * Get the iCloud documents directory
@@ -49,5 +56,6 @@
  * Creates and returns a UIDocument instance in the users documents directory
  */
 + (AMLecture *)createDocumentWithName:(NSString *)name;
++ (AMLecture *)createDocumentWithName:(NSString *)name failure:(void (^)(NSError *error))error;
 
 @end

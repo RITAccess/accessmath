@@ -17,7 +17,7 @@
 
 - (id)contentsForType:(NSString *)typeName error:(NSError *__autoreleasing *)outError
 {
-    return [NSData dataWithBytes:"randomjunk" length:10];
+    return [NSData dataWithBytes:"Hello" length:6];
 }
 
 @end
