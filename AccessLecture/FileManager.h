@@ -12,7 +12,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AccessDocument.h"
 #import "AMLecture.h"
 
 typedef enum {

@@ -66,8 +66,7 @@ static NSString * DRAW_KEY = @"draw_key";
 
 @end
 @implementation NotesViewController
-@synthesize currentLecture;
-@synthesize currentDocument;
+
 #define RED_TAG 111
 #define GREEN_TAG 112
 #define BLUE_TAG 113
@@ -105,7 +104,7 @@ static NSString * DRAW_KEY = @"draw_key";
     [self.toolbarView setHidden:YES];
     [self.trashBin setHidden:YES];
      //Assign this value from stream view controller lecture name
-    currentLecture.name = @"Lecture001";
+//    currentLecture.name = @"Lecture001";
 //    NSURL * currentDirectory = [FileManager iCloudDirectoryURL];
 //    if (currentDirectory == nil) currentDirectory = [FileManager localDocumentsDirectoryPath];
 //    NSString *docsPath =[[currentDirectory absoluteString] stringByAppendingString:[NSString stringWithFormat:@"AccessMath/%@.lecture",currentLecture.name]];
@@ -153,7 +152,7 @@ static NSString * DRAW_KEY = @"draw_key";
     [self.view addSubview:self.toolbarView];
     [self initColorSegmentedControl];
     [self.view addSubview:self.trashBin];
-    currentLecture = [[Lecture alloc] initWithName:@"Lecture001"];
+//    currentLecture = [[Lecture alloc] initWithName:@"Lecture001"];
     
 }
 
@@ -737,8 +736,8 @@ static NSString * DRAW_KEY = @"draw_key";
                 }
             }
     }
-    currentDocument.notes = notes;
-    currentDocument.lecture = currentLecture;
+//    currentDocument.notes = notes;
+//    currentDocument.lecture = currentLecture;
 }
 
 - (void)didSaveState

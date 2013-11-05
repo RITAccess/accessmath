@@ -19,10 +19,20 @@
 @end
 
 @implementation Lectures
+{
+    NSString *path;
+}
 
 - (void)setUp
 {
     [super setUp];
+    // Remove any files
+    path = [FileManager localDocumentsDirectoryPath];
+    char *cpath = malloc(sizeof(char) * 250);
+    sprintf(cpath, "%s/testDoc.lec", path.UTF8String);
+    unlink(cpath);
+    free(cpath);
+
 }
 
 - (void)tearDown
@@ -30,28 +40,44 @@
     [super tearDown];
 }
 
+- (AMLecture *)create
+{
+    AMLecture *newLec = [FileManager createDocumentWithName:@"testDoc"];
+    newLec.metadata.title = @"This is the test title.";
+    [newLec save];
+    return newLec;
+}
+
 - (void)testCreatingUIDocument
 {
-    NSString *path = [FileManager localDocumentsDirectoryPath];
-    char *cpath = malloc(sizeof(char) * 250);
-    sprintf(cpath, "%s/testDoc.lec", path.UTF8String);
-    unlink(cpath);
-    free(cpath);
-    AMLecture *newLec = [FileManager createDocumentWithName:@"testDoc" failure:^(NSError *error) {
-        NSLog(@"%@", error.description);
-    }];
-    sleep(1);
+    AMLecture *newLec = [self create];
     STAssertNotNil(newLec, @"Fail");
 }
 
 - (void)testOpeningUIDocument
 {
-    
-    AMLecture *lecture = [FileManager findDocumentWithName:@"testDoc" failure:^(NSError *error) {
-        NSLog(@"%@", error.description);
+    [self create];
+    sleep(1);
+    AMLecture *test = [FileManager findDocumentWithName:@"testDoc" failure:^(NSError *error) {
+        STFail(@"Did not open lecture. %@", error);
     }];
     
-    STAssertNotNil(lecture, @"Fail");
+    [test openWithCompletionHandler:^(BOOL success) {
+        STAssertEquals(test.metadata.title, @"This is the test title.", @"Wrong lecture opened.");
+    }];
+}
+
+- (void)testModifyingDocument
+{
+    [self create];
+    sleep(1);
+    AMLecture *test = [FileManager findDocumentWithName:@"testDoc" failure:^(NSError *error) {
+        STFail(@"Did not open lecture. %@", error);
+    }];
+    test.metadata.title = @"This is the changed file";
+    [test saveWithCompletetion:^(BOOL success) {
+        STAssertEquals(test.metadata.title, @"This is the changed file", @"Failed to save");
+    }];
 }
 
 @end

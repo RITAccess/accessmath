@@ -13,6 +13,7 @@
 //
 
 #import "FileManager.h"
+#import "AMLecture.h"
 #import "Lecture.h"
 
 @implementation FileManager

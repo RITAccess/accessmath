@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CommonLecture.h"
 #import "Note.h"
 
 @interface ImageNote : Note <NSCoding>

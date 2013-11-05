@@ -9,7 +9,6 @@
 //
 
 #import "AccessLectureRuntime.h"
-#import "AccessDocument.h"
 #import "FileManager.h"
 #import "Lecture.h"
 
