@@ -42,7 +42,7 @@
 #pragma mark - Buttons
 
 - (IBAction)openAbout:(id)sender
-{
+{    
     [self performSegueWithIdentifier:@"toAbout" sender:@""];
 }
 
