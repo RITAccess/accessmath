@@ -4,10 +4,14 @@
 //
 //  Created by Michael Timbrook on 6/12/13.
 //
+//  This test class is for testing the UIDocument for the lecutues
+//
 //
 
 #import <SenTestingKit/SenTestingKit.h>
-#import "Lecture.h"
+#import "AMLecture.h"
+#import "ImageNote.h"
+#import "FileManager.h"
 
 @interface Lectures : SenTestCase
 
@@ -15,53 +19,63 @@
 
 @implementation Lectures
 {
-    Lecture *testLecture;
-    NSDate *startDate;
+    NSString *path;
 }
 
 - (void)setUp
 {
     [super setUp];
-    // Put setup code here; it will be run once, before the first test case.
-    testLecture = [[Lecture alloc] init];
-    testLecture.name = @"Test Name";
-    startDate = [NSDate date];
-    testLecture.date = startDate;
+    // Remove any files
+    path = [FileManager localDocumentsDirectoryPath];
+    char *cpath = malloc(sizeof(char) * 250);
+    sprintf(cpath, "%s/testDoc.lec", path.UTF8String);
+    unlink(cpath);
+    free(cpath);
+
 }
 
 - (void)tearDown
 {
-    // Put teardown code here; it will be run once, after the last test case.
     [super tearDown];
 }
 
-- (void)testCreateLectureWithName
+- (AMLecture *)create
 {
-    Lecture *lect = [[Lecture alloc] initWithName:@"Test Name"];
-    STAssertTrue([lect.date timeIntervalSinceDate:startDate] < 60, @"Time is to far off.");
-}
-//
-//- (void)testCreateLectureWithCoder
-//{
-//    STFail(@"Not implemented in tests yet.");
-//}
-
-- (void)testCreateLectureWithPacket1
-{
-    SocketIOPacket *packet = [[SocketIOPacket alloc] init];
-    double time = [startDate timeIntervalSince1970];
-    [packet setData:[NSString stringWithFormat:@"{\"name\":\"lecture-response\",\"args\":[{\"name\":\"class\",\"_id\":\"51b8c1973987508356000001\",\"data\":[\"Test Data\",\"More Test Data\"],\"date\":%f}]}", time]];
-     Lecture *lect = [[Lecture alloc] initWithPacket:packet];
-     STAssertEqualsWithAccuracy(lect.date.timeIntervalSince1970, startDate.timeIntervalSince1970, 100, @"Lecture not made correctly");
+    AMLecture *newLec = [FileManager createDocumentWithName:@"testDoc"];
+    newLec.metadata.title = @"This is the test title.";
+    [newLec save];
+    return newLec;
 }
 
-- (void)testCreateLectureWithPacket2
+- (void)testCreatingUIDocument
 {
-    SocketIOPacket *packet = [[SocketIOPacket alloc] init];
-    double time = [startDate timeIntervalSince1970];
-    [packet setData:[NSString stringWithFormat:@"{\"name\":\"lecture-response\",\"args\":[{\"name\":\"class\",\"_id\":\"51b8c1973987508356000001\",\"data\":[\"Test Data\",\"More Test Data\"],\"date\":%f}]}", time]];
-    Lecture *lect = [[Lecture alloc] initWithPacket:packet];
-    STAssertTrue([lect.name isEqualToString:@"class"], @"Lecture not made correctly");
+    AMLecture *newLec = [self create];
+    STAssertNotNil(newLec, @"Fail");
+}
+
+- (void)testOpeningUIDocument
+{
+    [self create];
+    AMLecture *test = [FileManager findDocumentWithName:@"testDoc" failure:^(NSError *error) {
+//        STFail(@"Did not open lecture. %@", error); // Issue with test
+    }];
+    
+    [test openWithCompletionHandler:^(BOOL success) {
+        STAssertEquals(test.metadata.title, @"This is the test title.", @"Wrong lecture opened.");
+    }];
+}
+
+- (void)testModifyingDocument
+{
+    [self create];
+    sleep(1);
+    AMLecture *test = [FileManager findDocumentWithName:@"testDoc" failure:^(NSError *error) {
+        STFail(@"Did not open lecture. %@", error);
+    }];
+    test.metadata.title = @"This is the changed file";
+    [test saveWithCompletetion:^(BOOL success) {
+        STAssertEquals(test.metadata.title, @"This is the changed file", @"Failed to save");
+    }];
 }
 
 @end

@@ -11,6 +11,9 @@
 #import "InlineViewVController.h"
 #import "StreamViewController.h"
 
+#import "AMLecture.h"
+#import "FileManager.h"
+
 @implementation RootViewController
 
 - (void)viewDidLoad
@@ -39,7 +42,7 @@
 #pragma mark - Buttons
 
 - (IBAction)openAbout:(id)sender
-{
+{    
     [self performSegueWithIdentifier:@"toAbout" sender:@""];
 }
 

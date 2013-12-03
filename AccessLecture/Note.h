@@ -13,19 +13,16 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-@class Position;
 
-@interface Note : NSObject
+@interface Note : UIView <NSCoding>
 
-// the psotion of the note
-@property (strong, nonatomic) Position * position;
 // the image for the note (notes are drawn)
 @property (strong, nonatomic) UITextView * text;
 
 //
 //  default init
 //
-- (id)initWithText:(UITextView *)textView andPosition:(Position *)position;
+//- (id)initWithText:(UITextView *)textView andPosition:(Position *)position;
 
 //
 //  init note with a coder to decode a serialized version of the note

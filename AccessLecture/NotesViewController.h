@@ -11,7 +11,6 @@
 #import "LectureViewContainer.h"
 #import "DrawView.h"
 #import "Lecture.h"
-#import "AccessDocument.h"
 #import "FileManager.h"
 #import "AccessLectureRuntime.h"
 #import "UISegmentedControlExtension.h"
@@ -37,7 +36,7 @@ static NSString* const NotesViewControllerXIB = @"NotesViewController";
 @property (nonatomic) BOOL isCreatingNote;
 @property (nonatomic) BOOL isDrawing;
 @property (nonatomic)Lecture *currentLecture;
-@property (nonatomic)AccessDocument *currentDocument;
+//@property (nonatomic)AccessDocument *currentDocument;
 @property (weak, nonatomic) IBOutlet UIImageView *trashBin;
 @property (weak, nonatomic) IBOutlet UIView *toolbarView;
 

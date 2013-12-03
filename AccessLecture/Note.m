@@ -7,7 +7,6 @@
 //
 
 #import "Note.h"
-#import "Position.h"
 
 //
 //  static value keys for referencing the title and text properties from a serialized note
@@ -19,27 +18,26 @@ static NSString * TEXT_KEY = @"text_key";         // key to code for the image
 
 @implementation Note
 
-@synthesize position = _position;
 @synthesize text = _text;
 
-- (id)initWithText:(UITextView *)textView andPosition:(Position *)position {
-    if (self = [super init]) {
-        _position = position;
-        _text = textView;
-    }
-    return self;
-}
+//- (id)initWithText:(UITextView *)textView andPosition:(Position *)position {
+//    if (self = [super init]) {
+////        _position = position;
+//        _text = textView;
+//    }
+//    return self;
+//}
 
 - (id)initWithCoder:(NSCoder *)aCoder {
     if (self = [super init]) {
-        _position = [aCoder decodeObjectForKey:POSITION_KEY];
+//        _position = [aCoder decodeObjectForKey:POSITION_KEY];
         _text = [aCoder decodeObjectForKey:TEXT_KEY];
     }
     return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
-    [aCoder encodeObject:_position forKey:POSITION_KEY];
+//    [aCoder encodeObject:_position forKey:POSITION_KEY];
     [aCoder encodeObject:_text forKey:TEXT_KEY];
 }
 

@@ -37,6 +37,11 @@
                BlueprintName = "AccessLecture Tests"
                ReferencedContainer = "container:AccessLecture.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "NotesViewControllerTests/testOpen">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>

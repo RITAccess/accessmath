@@ -13,7 +13,7 @@
 #import <Foundation/Foundation.h>
 #import "SocketIOPacket.h"
 
-@interface Lecture : NSObject
+@interface Lecture : NSObject <NSCoding>
 
 // the name of the lecture/class
 @property (strong, nonatomic) NSString * name;

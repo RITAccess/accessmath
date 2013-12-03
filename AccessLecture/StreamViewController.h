@@ -20,11 +20,12 @@ static NSString* const StreamViewControllerID = @"streamvc";
 - (IBAction)connectToStream:(id)sender; // Or leave
 
 @property (strong, nonatomic) IBOutlet StreamDrawing *canvas;
-@property (weak, nonatomic) IBOutlet UIToolbar *bottomToolbar;
-@property (weak, nonatomic) IBOutlet UIProgressView *loadProgress;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *joinLeaveStream;
+@property (nonatomic) IBOutlet UIToolbar *bottomToolbar;
+@property (nonatomic) IBOutlet UIProgressView *loadProgress;
+@property (nonatomic) IBOutlet UIBarButtonItem *joinLeaveStream;
 @property (weak, nonatomic) IBOutlet UILabel *lectureNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *serverAddressLabel;
-@property BOOL displayServerConnectView;  // YES displays ServerConnect view on viewDidAppear.
+@property BOOL displayServerConnectView; // YES displays ServerConnect view on viewDidAppear.
+@property BOOL connectedToStream;
 
 @end

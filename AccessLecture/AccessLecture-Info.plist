@@ -12,17 +12,11 @@
 			<key>CFBundleTypeIconFiles</key>
 			<array/>
 			<key>CFBundleTypeName</key>
-			<string>Lecture</string>
+			<string>AMLecture</string>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>lec</string>
 			</array>
-			<key>Lecture</key>
-			<data>
-			</data>
-			<key>Notes</key>
-			<data>
-			</data>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
@@ -63,6 +57,17 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UTExportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array/>
+			<key>UTTypeDescription</key>
+			<string>AMLecture</string>
+			<key>UTTypeIdentifier</key>
+			<string>edu.rit.se.accessmath.lec</string>
+		</dict>
 	</array>
 </dict>
 </plist>
