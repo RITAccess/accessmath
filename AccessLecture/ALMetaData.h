@@ -11,5 +11,6 @@
 @interface ALMetaData : NSObject <NSCoding>
 
 @property NSString *title;
+@property NSDate *date;
 
 @end
