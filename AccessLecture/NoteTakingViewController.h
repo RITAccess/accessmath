@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LectureViewContainer.h"
 
-@interface NoteTakingViewController : UIViewController
+@interface NoteTakingViewController : UIViewController <LectureViewChild>
 
 @end

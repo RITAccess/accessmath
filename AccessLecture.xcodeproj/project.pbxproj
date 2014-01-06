@@ -405,13 +405,6 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
-		3F07C347187AF47F005BC7EC /* NotetakingController */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = NotetakingController;
-			sourceTree = "<group>";
-		};
 		3F0DBDCC13BD170C00E3FEE8 /* About View */ = {
 			isa = PBXGroup;
 			children = (
@@ -674,7 +667,6 @@
 		4C5C50C9177B7B300095801A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				3F07C347187AF47F005BC7EC /* NotetakingController */,
 				3FED963113708E4E00D8D1B8 /* RootViewController */,
 				2CBF3014177B700C0087C17C /* DrawViewController */,
 				4C8ABE7C177CA341007C934C /* NotesViewController */,
