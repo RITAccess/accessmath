@@ -46,6 +46,8 @@
 		2CF6BA961784920100A695CC /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF6BA951784920100A695CC /* star.png */; };
 		2CF6BA981784920D00A695CC /* undo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF6BA971784920D00A695CC /* undo.png */; };
 		2CFC32A0175E60FC00384AEC /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CFC329F175E60FC00384AEC /* MainStoryboard.storyboard */; };
+		3F07C34F187B2BA7005BC7EC /* TextNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F07C34E187B2BA7005BC7EC /* TextNoteViewController.m */; };
+		3F07C352187B3627005BC7EC /* TextNoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F07C351187B3627005BC7EC /* TextNoteView.m */; };
 		3F0DBDD613BD174900E3FEE8 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0DBDD413BD174900E3FEE8 /* AboutViewController.m */; };
 		3F0F3B6B178DBB9D00163C2A /* FTCoreTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0F3B6A178DBB8700163C2A /* FTCoreTextView.m */; };
 		3F0F3B6D178DBBB900163C2A /* UIColor+Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0F3B64178DBB6D00163C2A /* UIColor+Tools.m */; };
@@ -70,6 +72,7 @@
 		3F6D11D417625F260066A4FA /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11D217625F150066A4FA /* libicucore.dylib */; };
 		3F6D11D517625F270066A4FA /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11D017625F0D0066A4FA /* CFNetwork.framework */; };
 		3F6D11D617625F2D0066A4FA /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11CE17625F060066A4FA /* Security.framework */; };
+		3F8D9908187B4E010061DEA2 /* TextNoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F8D9906187B4E010061DEA2 /* TextNoteView.xib */; };
 		3F959F0713C7555500A6DA79 /* ClearNotes.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F959F0613C7555500A6DA79 /* ClearNotes.png */; };
 		3F99F20215436E090065CBB9 /* Lecture.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F99F20115436E090065CBB9 /* Lecture.m */; };
 		3FA6119717905EDF00A2B4C8 /* blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FA6119517905EDF00A2B4C8 /* blue.png */; };
@@ -127,7 +130,6 @@
 		4CEA1A03177CAAED00A1DE05 /* LectureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEA1A00177CAAED00A1DE05 /* LectureCell.m */; };
 		4CEA1A04177CAAED00A1DE05 /* OpenLectureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEA1A02177CAAED00A1DE05 /* OpenLectureViewController.m */; };
 		4CFC573017DF800700393A1E /* NoteTakingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC572F17DF800700393A1E /* NoteTakingViewController.m */; };
-		4CFC573317DF801900393A1E /* NoteReadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC573217DF801900393A1E /* NoteReadingViewController.m */; };
 		4CFC573617DF807F00393A1E /* ImageNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC573517DF807F00393A1E /* ImageNote.m */; };
 /* End PBXBuildFile section */
 
@@ -171,6 +173,10 @@
 		2CF6BA951784920100A695CC /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		2CF6BA971784920D00A695CC /* undo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = undo.png; sourceTree = "<group>"; };
 		2CFC329F175E60FC00384AEC /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
+		3F07C34D187B2BA7005BC7EC /* TextNoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextNoteViewController.h; sourceTree = "<group>"; };
+		3F07C34E187B2BA7005BC7EC /* TextNoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextNoteViewController.m; sourceTree = "<group>"; };
+		3F07C350187B3627005BC7EC /* TextNoteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextNoteView.h; sourceTree = "<group>"; };
+		3F07C351187B3627005BC7EC /* TextNoteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextNoteView.m; sourceTree = "<group>"; };
 		3F0DBDD313BD174900E3FEE8 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		3F0DBDD413BD174900E3FEE8 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		3F0F3B63178DBB6D00163C2A /* UIColor+Tools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+Tools.h"; sourceTree = "<group>"; };
@@ -212,6 +218,7 @@
 		3F6D11CE17625F060066A4FA /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		3F6D11D017625F0D0066A4FA /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		3F6D11D217625F150066A4FA /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		3F8D9906187B4E010061DEA2 /* TextNoteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextNoteView.xib; sourceTree = "<group>"; };
 		3F959F0613C7555500A6DA79 /* ClearNotes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ClearNotes.png; path = "Lecture View Images/ClearNotes.png"; sourceTree = "<group>"; };
 		3F99F1F91543641E0065CBB9 /* FileManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileManager.h; sourceTree = "<group>"; };
 		3F99F1FA1543641E0065CBB9 /* FileManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileManager.m; sourceTree = "<group>"; };
@@ -293,8 +300,6 @@
 		4CEA1A02177CAAED00A1DE05 /* OpenLectureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenLectureViewController.m; sourceTree = "<group>"; };
 		4CFC572E17DF800700393A1E /* NoteTakingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteTakingViewController.h; sourceTree = "<group>"; };
 		4CFC572F17DF800700393A1E /* NoteTakingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteTakingViewController.m; sourceTree = "<group>"; };
-		4CFC573117DF801900393A1E /* NoteReadingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteReadingViewController.h; sourceTree = "<group>"; };
-		4CFC573217DF801900393A1E /* NoteReadingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteReadingViewController.m; sourceTree = "<group>"; };
 		4CFC573417DF807F00393A1E /* ImageNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageNote.h; sourceTree = "<group>"; };
 		4CFC573517DF807F00393A1E /* ImageNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageNote.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -403,6 +408,18 @@
 				3FAE785313C786F800796813 /* accesslecture.png */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		3F07C355187B3648005BC7EC /* TextNote */ = {
+			isa = PBXGroup;
+			children = (
+				3F07C34D187B2BA7005BC7EC /* TextNoteViewController.h */,
+				3F07C34E187B2BA7005BC7EC /* TextNoteViewController.m */,
+				3F07C350187B3627005BC7EC /* TextNoteView.h */,
+				3F07C351187B3627005BC7EC /* TextNoteView.m */,
+				3F8D9906187B4E010061DEA2 /* TextNoteView.xib */,
+			);
+			name = TextNote;
 			sourceTree = "<group>";
 		};
 		3F0DBDCC13BD170C00E3FEE8 /* About View */ = {
@@ -703,10 +720,9 @@
 		4C8ABE7C177CA341007C934C /* NotesViewController */ = {
 			isa = PBXGroup;
 			children = (
+				3F07C355187B3648005BC7EC /* TextNote */,
 				4CFC572E17DF800700393A1E /* NoteTakingViewController.h */,
 				4CFC572F17DF800700393A1E /* NoteTakingViewController.m */,
-				4CFC573117DF801900393A1E /* NoteReadingViewController.h */,
-				4CFC573217DF801900393A1E /* NoteReadingViewController.m */,
 				3F0F3B62178DBB6D00163C2A /* categories */,
 				3F0F3B67178DBB8700163C2A /* FTCoreTextStyle.h */,
 				3F0F3B68178DBB8700163C2A /* FTCoreTextStyle.m */,
@@ -901,6 +917,7 @@
 				2C09C76117B29699007DE863 /* UndoButton.png in Resources */,
 				3F0F3B75178DF32E00163C2A /* TextNote.png in Resources */,
 				2C09C76017B29699007DE863 /* StreamButton.png in Resources */,
+				3F8D9908187B4E010061DEA2 /* TextNoteView.xib in Resources */,
 				2C09C75917B29699007DE863 /* CancelButton.png in Resources */,
 				3F5E3F21137C5CAC0022F3C9 /* Default-Portrait~ipad.png in Resources */,
 				3F959F0713C7555500A6DA79 /* ClearNotes.png in Resources */,
@@ -946,10 +963,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4CFC573317DF801900393A1E /* NoteReadingViewController.m in Sources */,
 				2CBF301C177B7AB10087C17C /* DrawViewController.m in Sources */,
 				2CF6BA901784919300A695CC /* AMBezierPath.m in Sources */,
 				4CD0A5F8177E1D6800864228 /* StreamDrawing.m in Sources */,
+				3F07C352187B3627005BC7EC /* TextNoteView.m in Sources */,
+				3F07C34F187B2BA7005BC7EC /* TextNoteViewController.m in Sources */,
 				3FED96191370863E00D8D1B8 /* main.m in Sources */,
 				3F0F3B6E178DBBBD00163C2A /* UIView+Layout.m in Sources */,
 				3F0F3B6D178DBBB900163C2A /* UIColor+Tools.m in Sources */,

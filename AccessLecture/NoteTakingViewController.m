@@ -7,6 +7,7 @@
 //
 
 #import "NoteTakingViewController.h"
+#import "TextNoteViewController.h"
 
 @interface NoteTakingViewController ()
 
@@ -60,7 +61,16 @@
 - (void)recognizeWithTranslation:(CGPoint)translation
 {
     if (translation.y >= 45 && translation.y < 120 && translation.x < 75 && translation.x > -75) {
-        NSLog(@"Add Note");
+        // Brake this out to presentVC methods
+        TextNoteViewController *tnvc = [[TextNoteViewController alloc] initWithPoint:_menuPoint];
+        [self.view addSubview:tnvc.view];
+        tnvc.view.transform = CGAffineTransformMakeScale(0.0, 0.0);
+        [UIView animateWithDuration:0.4 delay:0.0 usingSpringWithDamping:0.6 initialSpringVelocity:0.2 options:UIViewAnimationCurveEaseInOut animations:^{
+            tnvc.view.transform = CGAffineTransformIdentity;
+        } completion:^(BOOL finished) {
+            //
+        }];
+        
     }
 }
 
