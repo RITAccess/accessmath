@@ -15,13 +15,17 @@
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
-    _title = [aDecoder decodeObjectForKey:@"title"];
+    if (self = [super init]) {
+        _title = [aDecoder decodeObjectForKey:@"title"];
+        _dateCreated = [aDecoder decodeObjectForKey:@"dateCreated"];
+    }
     return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:_title forKey:@"title"];
+    [aCoder encodeObject:_dateCreated forKey:@"dateCreated"];
 }
 
 @end
