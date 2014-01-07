@@ -10,6 +10,7 @@
 
 @interface TextNoteView : UIView
 
-@property (weak, nonatomic) IBOutlet UITextView *textView;
+@property (weak, nonatomic) IBOutlet UITextView *text;
+- (IBAction)hideView;
 
 @end

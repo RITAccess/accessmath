@@ -63,6 +63,7 @@
     if (translation.y >= 45 && translation.y < 120 && translation.x < 75 && translation.x > -75) {
         // Brake this out to presentVC methods
         TextNoteViewController *tnvc = [[TextNoteViewController alloc] initWithPoint:_menuPoint];
+        [self addChildViewController:tnvc];
         [self.view addSubview:tnvc.view];
         tnvc.view.transform = CGAffineTransformMakeScale(0.0, 0.0);
         [UIView animateWithDuration:0.4 delay:0.0 usingSpringWithDamping:0.6 initialSpringVelocity:0.2 options:UIViewAnimationCurveEaseInOut animations:^{
@@ -109,6 +110,11 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (BOOL)shouldAutomaticallyForwardRotationMethods
+{
+    return YES;
 }
 
 #pragma mark <LectureViewChild>

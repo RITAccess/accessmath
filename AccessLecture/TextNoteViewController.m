@@ -19,6 +19,7 @@
     self = [super initWithNibName:@"TextNoteView" bundle:nil];
     if (self) {
         self.view.frame = CGRectMake(point.x - 200, point.y - 100, 400, 200);
+        
     }
     return self;
 }
@@ -33,6 +34,11 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    
 }
 
 @end
