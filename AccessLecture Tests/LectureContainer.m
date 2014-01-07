@@ -52,7 +52,7 @@
 - (void)testChildrenCount
 {
     // Number of child view controllers should be 4
-    STAssertTrue(_testLVC.childViewControllers.count == 4, @"Number of children is incorrect, %d returned", _testLVC.childViewControllers.count);
+    STAssertTrue(_testLVC.childViewControllers.count == 5, @"Number of children is incorrect, %d returned", _testLVC.childViewControllers.count);
 }
 
 - (void)testVectors

@@ -1,4 +1,4 @@
 language: objective-c
 
 script: 
-- xctool -project AccessLecture.xcodeproj -scheme AccessLecture -sdk iphonesimulator build test
+- xctool -project AccessLecture.xcodeproj -scheme AccessLecture test
