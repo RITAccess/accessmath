@@ -21,7 +21,10 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    // Drawing code
+    CGRect boarder = CGRectMake(5, 5, rect.size.width - 20, rect.size.height - 10);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    [[UIColor blackColor] setStroke];
+    CGContextStrokeRect(context, boarder);
 }
 
 @end

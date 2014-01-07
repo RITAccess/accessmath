@@ -19,7 +19,6 @@
     self = [super initWithNibName:@"TextNoteView" bundle:nil];
     if (self) {
         self.view.frame = CGRectMake(point.x - 200, point.y - 100, 400, 200);
-        self.view.backgroundColor = [UIColor grayColor];
     }
     return self;
 }
