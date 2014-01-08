@@ -10,6 +10,18 @@
 
 @implementation TextNoteView
 
+#pragma mark Creation
+
+- (void)awakeFromNib
+{
+    // May become issue when loading from disk
+    _title.delegate = self;
+    _text.delegate = self;
+    [_title becomeFirstResponder];
+}
+
+#pragma mark Actions
+
 - (IBAction)hideView
 {
     [_delegate textNoteView:self didHide:YES];
@@ -17,17 +29,24 @@
 
 - (IBAction)titleActions:(id)sender forEvent:(UIEvent *)event
 {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _title.delegate = self;
-    });
+
 }
 
 #pragma mark Delegate
 
+- (void)textViewDidChange:(UITextView *)textView
+{
+    if (textView == _text) {
+        if ([textView.text isEqualToString:@""]) {
+            _placeholder.hidden = NO;
+        } else {
+            _placeholder.hidden = YES;
+        }
+    }
+}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    NSLog(@"%@", _text);
     if (textField == _title) {
         [textField resignFirstResponder];
     }
@@ -48,17 +67,17 @@
     CGFloat loc[] = {0.0, 0.89, 1};
     CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, (__bridge CFArrayRef)gradientColors, loc);
     
-    UIBezierPath *rectanglePath = [UIBezierPath bezierPathWithRect:CGRectMake(14.5, 0.5, 385, 198.5)];
+    UIBezierPath *rectanglePath = [UIBezierPath bezierPathWithRect:CGRectMake(43.5, 0.5, 356, 198.5)];
     [[UIColor whiteColor] setFill];
     [rectanglePath fill];
-    [[UIColor blackColor] setStroke];
+    [[UIColor grayColor] setStroke];
     rectanglePath.lineWidth = 1.0;
     [rectanglePath stroke];
     
-    UIBezierPath *menu = [UIBezierPath bezierPathWithRect:CGRectMake(-0.5, -0.5, 14.5, 59)];
+    UIBezierPath *menu = [UIBezierPath bezierPathWithRect:CGRectMake(-0.5, -0.5, 43.5, 60)];
     CGContextSaveGState(context);
     [menu addClip];
-    CGContextDrawLinearGradient(context, gradient, CGPointMake(6.75, -0.5), CGPointMake(6.75, 58.5), 0);
+    CGContextDrawLinearGradient(context, gradient, CGPointMake(6.75, -0.5), CGPointMake(6.75, 60), 0);
     CGContextRestoreGState(context);
     
     CGGradientRelease(gradient);

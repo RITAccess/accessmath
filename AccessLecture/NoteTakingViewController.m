@@ -30,10 +30,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    
+	// Add menu activation gesture
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressGesture:)];
     [self.view addGestureRecognizer:longPress];
+    
+    // Get keyboard notifictions
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardDidShow:)
+                                                 name:UIKeyboardDidShowNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardDidHide:)
+                                                 name:UIKeyboardDidHideNotification
+                                               object:nil];
     
 }
 
@@ -115,6 +124,18 @@
 - (BOOL)shouldAutomaticallyForwardRotationMethods
 {
     return YES;
+}
+
+#pragma mark Keyboard resonder
+
+- (void)keyboardDidShow:(NSNotification *)notification
+{
+
+}
+
+- (void)keyboardDidHide:(NSNotification *)notification
+{
+
 }
 
 #pragma mark <LectureViewChild>

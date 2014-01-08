@@ -19,7 +19,7 @@
     self = [super initWithNibName:@"TextNoteView" bundle:nil];
     if (self) {
         self.view.frame = CGRectMake(point.x - 200, point.y - 100, 400, 200);
-        
+        [(TextNoteView *)self.view setDelegate:self];
     }
     return self;
 }
@@ -34,6 +34,13 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark Delegate
+
+- (void)textNoteView:(id)sender didHide:(BOOL)hide
+{
+    NSLog(@"Test");
 }
 
 @end

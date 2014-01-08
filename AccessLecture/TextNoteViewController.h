@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TextNoteViewDelegate.h"
+#import "TextNoteView.h"
 
-@interface TextNoteViewController : UIViewController
+@interface TextNoteViewController : UIViewController <TextNoteViewDelegate>
 
 - (instancetype)initWithPoint:(CGPoint)point;
 

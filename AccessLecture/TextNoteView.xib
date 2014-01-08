@@ -15,11 +15,48 @@
             <rect key="frame" x="0.0" y="0.0" width="400" height="200"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b4k-3v-WAx" userLabel="Hide View">
-                    <rect key="frame" x="-6" y="-7" width="24" height="57"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start typing note here..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rx2-l5-EB2" userLabel="Placeholder">
+                    <rect key="frame" x="51" y="37" width="331" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="24" id="3Ya-Td-4Se"/>
+                        <constraint firstAttribute="width" constant="331" id="oiS-F8-aZE"/>
+                        <constraint firstAttribute="height" constant="21" id="qRu-cu-kM5"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fR4-QG-F72">
+                    <rect key="frame" x="46" y="30" width="353" height="168"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="353" id="xx6-gk-hoO"/>
+                        <constraint firstAttribute="height" constant="168" id="yog-pB-29y"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="Title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ech-iv-xKo" userLabel="Title">
+                    <rect key="frame" x="52" y="1" width="348" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="348" id="I2a-Hk-A6o"/>
+                        <constraint firstAttribute="height" constant="30" id="mGE-ru-ROr"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
+                    <connections>
+                        <action selector="titleActions:forEvent:" destination="1" eventType="editingDidEnd" id="jLk-Ef-w6a"/>
+                        <action selector="titleActions:forEvent:" destination="1" eventType="editingDidBegin" id="wKw-NV-CLt"/>
+                    </connections>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b4k-3v-WAx" userLabel="Hide View">
+                    <rect key="frame" x="0.0" y="0.0" width="44" height="57"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="44" id="3Ya-Td-4Se"/>
                         <constraint firstAttribute="height" constant="57" id="sGo-3k-dID"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -30,46 +67,21 @@
                         <action selector="hideView" destination="1" eventType="touchUpInside" id="DNw-IB-MIT"/>
                     </connections>
                 </button>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fR4-QG-F72">
-                    <rect key="frame" x="15" y="31" width="384" height="168"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="384" id="xx6-gk-hoO"/>
-                        <constraint firstAttribute="height" constant="168" id="yog-pB-29y"/>
-                    </constraints>
-                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                </textView>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="Title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ech-iv-xKo" userLabel="Title">
-                    <rect key="frame" x="19" y="1" width="380" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="380" id="I2a-Hk-A6o"/>
-                        <constraint firstAttribute="height" constant="30" id="mGE-ru-ROr"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
-                    <connections>
-                        <action selector="titleActions:forEvent:" destination="1" eventType="editingDidEnd" id="jLk-Ef-w6a"/>
-                        <action selector="titleActions:forEvent:" destination="1" eventType="editingDidBegin" id="wKw-NV-CLt"/>
-                    </connections>
-                </textField>
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
             <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
             <constraints>
-                <constraint firstAttribute="centerX" secondItem="fR4-QG-F72" secondAttribute="centerX" constant="-7" id="6kg-YC-e9j"/>
-                <constraint firstAttribute="centerY" secondItem="b4k-3v-WAx" secondAttribute="centerY" constant="78.5" id="PKU-OK-09t"/>
+                <constraint firstAttribute="centerX" secondItem="fR4-QG-F72" secondAttribute="centerX" constant="-22" id="6kg-YC-e9j"/>
+                <constraint firstAttribute="centerY" secondItem="b4k-3v-WAx" secondAttribute="centerY" constant="71.5" id="PKU-OK-09t"/>
                 <constraint firstAttribute="centerY" secondItem="ech-iv-xKo" secondAttribute="centerY" constant="84" id="W6o-xE-jLS"/>
-                <constraint firstAttribute="centerX" secondItem="b4k-3v-WAx" secondAttribute="centerX" constant="194" id="i2r-Pc-oOl"/>
-                <constraint firstAttribute="centerY" secondItem="fR4-QG-F72" secondAttribute="centerY" constant="-15" id="kwh-7M-2gS"/>
-                <constraint firstAttribute="centerX" secondItem="ech-iv-xKo" secondAttribute="centerX" constant="-9" id="nqN-2S-Qyw"/>
+                <constraint firstAttribute="centerY" secondItem="rx2-l5-EB2" secondAttribute="centerY" constant="52.5" id="WSh-AY-v9u"/>
+                <constraint firstAttribute="centerX" secondItem="rx2-l5-EB2" secondAttribute="centerX" constant="-16.5" id="cMn-9c-AVM"/>
+                <constraint firstAttribute="centerX" secondItem="b4k-3v-WAx" secondAttribute="centerX" constant="178" id="i2r-Pc-oOl"/>
+                <constraint firstAttribute="centerY" secondItem="fR4-QG-F72" secondAttribute="centerY" constant="-14" id="kwh-7M-2gS"/>
+                <constraint firstAttribute="centerX" secondItem="ech-iv-xKo" secondAttribute="centerX" constant="-26" id="nqN-2S-Qyw"/>
             </constraints>
             <connections>
+                <outlet property="placeholder" destination="rx2-l5-EB2" id="jQm-si-3qI"/>
                 <outlet property="text" destination="fR4-QG-F72" id="rLV-rc-cBn"/>
                 <outlet property="title" destination="ech-iv-xKo" id="ioF-j5-nqB"/>
             </connections>
