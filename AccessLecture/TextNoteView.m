@@ -10,22 +10,31 @@
 
 @implementation TextNoteView
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-        
-        
-        
-    }
-    return self;
-}
-
 - (IBAction)hideView
 {
-    
+    [_delegate textNoteView:self didHide:YES];
 }
+
+- (IBAction)titleActions:(id)sender forEvent:(UIEvent *)event
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _title.delegate = self;
+    });
+}
+
+#pragma mark Delegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    NSLog(@"%@", _text);
+    if (textField == _title) {
+        [textField resignFirstResponder];
+    }
+    return YES;
+}
+
+#pragma mark Drawing
 
 - (void)drawRect:(CGRect)rect
 {
