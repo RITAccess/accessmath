@@ -32,6 +32,11 @@
 
 }
 
+- (IBAction)fullScreeen:(id)sender
+{
+    [_delegate textNoteView:self presentFullScreen:YES];
+}
+
 #pragma mark Delegate
 
 - (void)textViewDidChange:(UITextView *)textView

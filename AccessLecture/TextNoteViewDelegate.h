@@ -12,4 +12,6 @@
 
 - (void)textNoteView:(id)sender didHide:(BOOL)hide;
 
+- (void)textNoteView:(id)sender presentFullScreen:(BOOL)animated;
+
 @end

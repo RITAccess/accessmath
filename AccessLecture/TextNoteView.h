@@ -19,5 +19,6 @@
 
 - (IBAction)hideView;
 - (IBAction)titleActions:(id)sender forEvent:(UIEvent *)event;
+- (IBAction)fullScreeen:(id)sender;
 
 @end

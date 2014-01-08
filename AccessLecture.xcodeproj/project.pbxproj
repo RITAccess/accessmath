@@ -73,6 +73,8 @@
 		3F6D11D517625F270066A4FA /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11D017625F0D0066A4FA /* CFNetwork.framework */; };
 		3F6D11D617625F2D0066A4FA /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11CE17625F060066A4FA /* Security.framework */; };
 		3F8D9908187B4E010061DEA2 /* TextNoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F8D9906187B4E010061DEA2 /* TextNoteView.xib */; };
+		3F8D990E187DD9100061DEA2 /* FullScreenNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8D990C187DD9100061DEA2 /* FullScreenNoteViewController.m */; };
+		3F8D990F187DD9100061DEA2 /* FullScreenNoteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F8D990D187DD9100061DEA2 /* FullScreenNoteViewController.xib */; };
 		3F959F0713C7555500A6DA79 /* ClearNotes.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F959F0613C7555500A6DA79 /* ClearNotes.png */; };
 		3F99F20215436E090065CBB9 /* Lecture.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F99F20115436E090065CBB9 /* Lecture.m */; };
 		3FA6119717905EDF00A2B4C8 /* blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FA6119517905EDF00A2B4C8 /* blue.png */; };
@@ -222,6 +224,9 @@
 		3F6D11D217625F150066A4FA /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		3F8D9906187B4E010061DEA2 /* TextNoteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextNoteView.xib; sourceTree = "<group>"; };
 		3F8D9909187DA46C0061DEA2 /* TextNoteViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextNoteViewDelegate.h; sourceTree = "<group>"; };
+		3F8D990B187DD9100061DEA2 /* FullScreenNoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullScreenNoteViewController.h; sourceTree = "<group>"; };
+		3F8D990C187DD9100061DEA2 /* FullScreenNoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullScreenNoteViewController.m; sourceTree = "<group>"; };
+		3F8D990D187DD9100061DEA2 /* FullScreenNoteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FullScreenNoteViewController.xib; sourceTree = "<group>"; };
 		3F959F0613C7555500A6DA79 /* ClearNotes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ClearNotes.png; path = "Lecture View Images/ClearNotes.png"; sourceTree = "<group>"; };
 		3F99F1F91543641E0065CBB9 /* FileManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileManager.h; sourceTree = "<group>"; };
 		3F99F1FA1543641E0065CBB9 /* FileManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileManager.m; sourceTree = "<group>"; };
@@ -492,6 +497,16 @@
 			name = SocketIO;
 			sourceTree = "<group>";
 		};
+		3F8D990A187DD8EF0061DEA2 /* FullScreenNoteController */ = {
+			isa = PBXGroup;
+			children = (
+				3F8D990B187DD9100061DEA2 /* FullScreenNoteViewController.h */,
+				3F8D990C187DD9100061DEA2 /* FullScreenNoteViewController.m */,
+				3F8D990D187DD9100061DEA2 /* FullScreenNoteViewController.xib */,
+			);
+			name = FullScreenNoteController;
+			sourceTree = "<group>";
+		};
 		3F99F1ED15435F9D0065CBB9 /* Document Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -694,6 +709,7 @@
 			children = (
 				3FED963113708E4E00D8D1B8 /* RootViewController */,
 				2CBF3014177B700C0087C17C /* DrawViewController */,
+				3F8D990A187DD8EF0061DEA2 /* FullScreenNoteController */,
 				4C8ABE7C177CA341007C934C /* NotesViewController */,
 				4C8ABE7A177C886C007C934C /* StreamViewController */,
 				4C5C50CA177B7B3A0095801A /* LectureViewController */,
@@ -911,6 +927,7 @@
 				4C5C50C6177B59D90095801A /* pin.png in Resources */,
 				2C09C75C17B29699007DE863 /* Pin.png in Resources */,
 				3F0F3B74178DF32E00163C2A /* drawNote.png in Resources */,
+				3F8D990F187DD9100061DEA2 /* FullScreenNoteViewController.xib in Resources */,
 				2CF6BA911784919300A695CC /* arrow.png in Resources */,
 				3FED96551370909100D8D1B8 /* Save.png in Resources */,
 				3FED96561370909100D8D1B8 /* Selection.png in Resources */,
@@ -1007,6 +1024,7 @@
 				2CF6BA901784919300A695CC /* AMBezierPath.m in Sources */,
 				4CD0A5F8177E1D6800864228 /* StreamDrawing.m in Sources */,
 				3F07C352187B3627005BC7EC /* TextNoteView.m in Sources */,
+				3F8D990E187DD9100061DEA2 /* FullScreenNoteViewController.m in Sources */,
 				3F07C34F187B2BA7005BC7EC /* TextNoteViewController.m in Sources */,
 				3FED96191370863E00D8D1B8 /* main.m in Sources */,
 				3F0F3B6E178DBBBD00163C2A /* UIView+Layout.m in Sources */,

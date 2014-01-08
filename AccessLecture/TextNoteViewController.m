@@ -7,6 +7,7 @@
 //
 
 #import "TextNoteViewController.h"
+#import "FullScreenNoteViewController.h"
 
 @interface TextNoteViewController ()
 
@@ -18,7 +19,7 @@
 {
     self = [super initWithNibName:@"TextNoteView" bundle:nil];
     if (self) {
-        self.view.frame = CGRectMake(point.x - 200, point.y - 100, 400, 200);
+        self.view.frame = CGRectMake(point.x - 200, point.y - 100, self.view.frame.size.width, self.view.frame.size.height);
         [(TextNoteView *)self.view setDelegate:self];
     }
     return self;
@@ -40,7 +41,17 @@
 
 - (void)textNoteView:(id)sender didHide:(BOOL)hide
 {
-    NSLog(@"Test");
+
+}
+
+- (void)textNoteView:(id)sender presentFullScreen:(BOOL)animated
+{
+    FullScreenNoteViewController *fullScreen = [[FullScreenNoteViewController alloc] initWithNibName:FullScreenNoteVCNibName bundle:nil];
+    fullScreen.text.text = [(TextNoteView *)sender text].text;
+    fullScreen.title = [(TextNoteView *)sender title].text;
+    [[self parentViewController] presentViewController:fullScreen animated:YES completion:^{
+        //
+    }];
 }
 
 @end
