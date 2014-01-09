@@ -19,7 +19,7 @@
     AboutViewController *aboutViewController;
 }
 
--(IBAction)openAbout:(id)sender;
+- (IBAction)openAbout:(id)sender;
 - (IBAction)openLecture:(id)sender;
 - (IBAction)openConnect:(id)sender;
 

@@ -10,6 +10,7 @@
 #import "StreamViewController.h"
 #import "DrawViewController.h"
 #import "NotesViewController.h"
+#import "NoteTakingViewController.h"
 #import "ZoomBounds.h"
 
 // Default content size
@@ -87,6 +88,7 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
 static NotesViewController *nvc;
 static DrawViewController *dcv;
 static StreamViewController *svc;
+static NoteTakingViewController *ntvc;
 static VCBlank *blank;
 
 @implementation LectureViewContainer
@@ -123,6 +125,7 @@ static VCBlank *blank;
         nvc = [[NotesViewController alloc] initWithNibName:NotesViewControllerXIB bundle:nil];
         dcv = [[DrawViewController alloc] initWithNibName:DrawViewControllerXIB bundle:nil];
         svc = (StreamViewController *)[[UIStoryboard storyboardWithName:StreamViewControllerStoryboard bundle:nil] instantiateViewControllerWithIdentifier:StreamViewControllerID];
+        ntvc = [[NoteTakingViewController alloc] init];
         blank = [VCBlank new];
     });
     
@@ -131,6 +134,7 @@ static VCBlank *blank;
     [self addController:nvc];
     [self addController:dcv];
     [self addController:svc];
+    [self addController:ntvc];
     [self addController:blank];
     
     _center = CGPointMake(CGRectGetMidY(self.view.frame), CGRectGetMidX(self.view.frame));
@@ -197,11 +201,17 @@ static VCBlank *blank;
     [stream setUserInteractionEnabled:YES];
     [stream addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(action:)]];
     
+    // Note Taking
+    UIImageView *notetaking = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"StreamButton.png"]];
+    [notetaking setTag:4];
+    [notetaking setUserInteractionEnabled:YES];
+    [notetaking addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(action:)]];
+    
     UIImageView *zoom = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ZoomButton.png"]];
     [zoom setUserInteractionEnabled:YES];
     [zoom addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fullZoomOut)]];
     
-    menuItems = @[save, notes, draw, stream, zoom];
+    menuItems = @[save, notes, draw, stream, notetaking, zoom];
 }
 
 #pragma mark Actions
@@ -350,7 +360,12 @@ static VCBlank *blank;
             [self addController:svc];
             break;
         }
-            
+        case 4:
+        {
+            // Note Taking
+            [self addController:ntvc];
+            break;
+        }
         default:
             NSLog(@"∆");
             break;

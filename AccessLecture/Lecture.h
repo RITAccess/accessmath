@@ -13,7 +13,7 @@
 #import <Foundation/Foundation.h>
 #import "SocketIOPacket.h"
 
-@interface Lecture : NSObject
+@interface Lecture : NSObject <NSCoding>
 
 // the name of the lecture/class
 @property (strong, nonatomic) NSString * name;
@@ -21,6 +21,16 @@
 @property (strong, nonatomic) NSDate * date;
 // the image of the bard from the lecture
 @property (strong, nonatomic) NSData * image;
+
+// Access all the notes in the lecture, all objects conform to Note type
+@property (readonly, nonatomic, strong) NSArray *notes;
+
+/**
+ * Add a note the the lecture
+ * param notes - the set of notes to be added
+ * returns - BOOL for success status
+ */
+- (BOOL)addNotes:(NSSet *)notes;
 
 //
 // create a lecture

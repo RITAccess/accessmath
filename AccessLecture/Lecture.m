@@ -17,11 +17,16 @@ static NSString * NAME_KEY = @"NAME_KEY";       // key for the class name
 static NSString * DATE_KEY = @"DATE_KEY";       // key for the lecture time
 static NSString * IMAGE_KEY = @"IMAGE_KEY";     // key for the lecture image
 
+@interface Lecture ()
+
+// Override public readonly
+@property (readwrite, nonatomic, strong) NSArray *notes;
+
+@end
+
 @implementation Lecture
 
-@synthesize name = _name;
-@synthesize date = _date;
-@synthesize image = _image;
+#pragma mark Setup
 
 - (id)init {
     return [self initWithName:@"Generic Lecture"];
@@ -61,6 +66,15 @@ static NSString * IMAGE_KEY = @"IMAGE_KEY";     // key for the lecture image
     [aCoder encodeObject:_name forKey:NAME_KEY];
     [aCoder encodeObject:_date forKey:DATE_KEY];
     [aCoder encodeObject:_image forKey:IMAGE_KEY];
+}
+
+#pragma mark - Data Modification
+
+- (BOOL)addNotes:(NSSet *)objects
+{
+    
+    
+    return false;
 }
 
 /**

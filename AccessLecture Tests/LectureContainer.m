@@ -52,7 +52,7 @@
 - (void)testChildrenCount
 {
     // Number of child view controllers should be 4
-    STAssertTrue(_testLVC.childViewControllers.count == 4, @"Number of children is incorrect, %d returned", _testLVC.childViewControllers.count);
+    STAssertTrue(_testLVC.childViewControllers.count == 5, @"Number of children is incorrect, %d returned", _testLVC.childViewControllers.count);
 }
 
 - (void)testVectors
@@ -69,16 +69,6 @@
     [_testLVC applyTransforms];
     CGPoint testCenter = [(id<LectureViewChild>)[_testLVC.childViewControllers objectAtIndex:rand() % _testLVC.childViewControllers.count] contentView].center;
     STAssertEquals(testCenter, CGPointMake(500, 500), @"View not transformed correctly");
-}
-
-- (void)testTransformsReturnToLimit
-{
-    _testLVC.center = CGPointMake(500, 0);
-    _testLVC.finish = YES;
-    [_testLVC applyTransforms];
-    UIView *cont = [(id<LectureViewChild>)[_testLVC.childViewControllers objectAtIndex:rand() % _testLVC.childViewControllers.count] contentView];
-    CGPoint testCenter = cont.center;
-    STAssertEqualsWithAccuracy(testCenter.y, [UIScreen mainScreen].bounds.size.height - (cont.frame.size.height / 2), 20, @"View not transformed correctly");
 }
 
 @end
