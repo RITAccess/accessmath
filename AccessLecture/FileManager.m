@@ -18,6 +18,46 @@
 
 @implementation FileManager
 
+#pragma mark Public APIs
+
++ (instancetype)defaultManager
+{
+    static FileManager *defaultManger;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        defaultManger = [FileManager new];
+    });
+    return defaultManger;
+}
+
+- (void)currentDocumentWithCompletion:(void(^)(AMLecture *lecture))completion
+{
+    completion(nil);
+}
+
+- (AMLecture *)currentDocument
+{
+    return nil;
+}
+
+- (void)forceSave
+{
+    
+}
+
+- (void)finishedWithDocument
+{
+    
+}
+
+- (void)invalidateCurrentDocument
+{
+    
+}
+
+
+#pragma mark Document Internal
+
 + (NSString *)localDocumentsDirectoryPath {
     NSString * documentsDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     return documentsDirectoryPath;

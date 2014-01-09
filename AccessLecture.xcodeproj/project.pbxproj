@@ -511,8 +511,8 @@
 			isa = PBXGroup;
 			children = (
 				4CDDF69417EB68F100FE34E7 /* Lectures */,
-				3F99F1EF15435FB40065CBB9 /* FileManager */,
 				3F99F1EE15435FA80065CBB9 /* UIDocument */,
+				3F99F1EF15435FB40065CBB9 /* FileManager */,
 			);
 			name = "Document Model";
 			sourceTree = "<group>";
