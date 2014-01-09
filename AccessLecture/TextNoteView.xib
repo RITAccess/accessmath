@@ -68,12 +68,12 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J0f-NS-FPr">
-                    <rect key="frame" x="395" y="0.0" width="55" height="55"/>
+                    <rect key="frame" x="400" y="0.0" width="50" height="50"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.09888436153938629" green="0.44376273777173914" blue="0.18016170640443741" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="55" id="Ah1-A2-JlI"/>
-                        <constraint firstAttribute="height" constant="55" id="drG-8w-Bf0"/>
+                        <constraint firstAttribute="width" constant="50" id="Ah1-A2-JlI"/>
+                        <constraint firstAttribute="height" constant="50" id="drG-8w-Bf0"/>
                     </constraints>
                     <state key="normal" title="Full">
                         <color key="titleColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -95,8 +95,8 @@
                 <constraint firstAttribute="centerX" secondItem="b4k-3v-WAx" secondAttribute="centerX" constant="203" id="i2r-Pc-oOl"/>
                 <constraint firstAttribute="centerY" secondItem="fR4-QG-F72" secondAttribute="centerY" constant="-14" id="kwh-7M-2gS"/>
                 <constraint firstAttribute="centerX" secondItem="ech-iv-xKo" secondAttribute="centerX" constant="-1" id="nqN-2S-Qyw"/>
-                <constraint firstAttribute="centerX" secondItem="J0f-NS-FPr" secondAttribute="centerX" constant="-197.5" id="pIJ-En-tYb"/>
-                <constraint firstAttribute="centerY" secondItem="J0f-NS-FPr" secondAttribute="centerY" constant="72.5" id="xbz-IC-sVa"/>
+                <constraint firstAttribute="centerX" secondItem="J0f-NS-FPr" secondAttribute="centerX" constant="-200" id="pIJ-En-tYb"/>
+                <constraint firstAttribute="centerY" secondItem="J0f-NS-FPr" secondAttribute="centerY" constant="75" id="xbz-IC-sVa"/>
             </constraints>
             <connections>
                 <outlet property="placeholder" destination="rx2-l5-EB2" id="jQm-si-3qI"/>
