@@ -32,6 +32,7 @@
     self.dataSource = self;
     self.view.backgroundColor = [UIColor clearColor];
     
+    // TODO check for non existant files and add a new file creation
     NSArray *documents = [FileManager listContentsOfDirectory:[FileManager localDocumentsDirectoryPath]];
     
     NSMutableArray *notes = [NSMutableArray new];

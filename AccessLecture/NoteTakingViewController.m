@@ -50,7 +50,10 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     // Get document
-    [[FileManager defaultManager] currentDocumentWithCompletion:nil];
+    [[FileManager defaultManager] currentDocumentWithCompletion:^(AMLecture *lecture) {
+        NSLog(@"Loaded lecture: %@", lecture);
+        NSLog(@"Created on %@", lecture.metadata.dateCreated);
+    }];
 }
 
 - (void)longPressGesture:(UILongPressGestureRecognizer *)reg

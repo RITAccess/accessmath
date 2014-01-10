@@ -10,7 +10,6 @@
 
 @implementation ALMetaData
 
-
 #pragma mark NSCoding
 
 - (id)initWithCoder:(NSCoder *)aDecoder
