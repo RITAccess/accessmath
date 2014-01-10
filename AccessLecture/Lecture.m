@@ -23,14 +23,14 @@
 
 - (id)initWithCoder:(NSCoder *)aCoder {
     if (self = [super init]) {
-        _notes = [aCoder decodeObjectForKey:@"NotesArray"];
+//        _notes = [aCoder decodeObjectForKey:@"NotesArray"];
     }
     return self;
 }
 
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
-    [aCoder encodeObject:_notes forKey:@"NotesArray"];
+//    [aCoder encodeObject:_notes forKey:@"NotesArray"];
 }
 
 #pragma mark - Data Modification
@@ -40,7 +40,7 @@
     NSSet *valid = [objects objectsPassingTest:^BOOL(id obj, BOOL *stop) {
         return ([obj isKindOfClass:[Note class]] || [obj isKindOfClass:[ImageNote class]]);
     }];
-    _notes = [_notes arrayByAddingObjectsFromArray:[valid allObjects]];
+    _notes = [(_notes ?: @[]) arrayByAddingObjectsFromArray:[valid allObjects]];
     return TRUE;
 }
 

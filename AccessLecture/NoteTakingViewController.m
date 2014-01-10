@@ -17,6 +17,12 @@
 
 @end
 
+@interface NoteTakingViewController ()
+
+@property (strong) AMLecture *document;
+
+@end
+
 @implementation NoteTakingViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -53,6 +59,10 @@
     [[FileManager defaultManager] currentDocumentWithCompletion:^(AMLecture *lecture) {
         NSLog(@"Loaded lecture: %@", lecture);
         NSLog(@"Created on %@", lecture.metadata.dateCreated);
+        _document = lecture;
+        for (Note *note in _document.lecture.notes) {
+            [self loadNoteAndPresent:note];
+        }
     }];
 }
 
@@ -82,19 +92,30 @@
     // TODO add a modular system for adding menu items, look into UIDynamics for object colltion.
     if (translation.y >= 45 && translation.y < 120 && translation.x < 75 && translation.x > -75) {
         // Add note
-        [self createTextNoteAndPresent];
+        [self createTextNoteAndPresentAtPoint:_menuPoint];
     }
 }
 
-- (void)createTextNoteAndPresent
+- (void)loadNoteAndPresent:(Note *)note
 {
-    TextNoteViewController *tnvc = [[TextNoteViewController alloc] initWithPoint:_menuPoint];
+    TextNoteViewController *tnvc = [[TextNoteViewController alloc] initWithNote:note];
+    [self addChildViewController:tnvc];
+    [self.view addSubview:tnvc.view];
+    [_document save];
+}
+
+- (void)createTextNoteAndPresentAtPoint:(CGPoint)point
+{
+    TextNoteViewController *tnvc = [[TextNoteViewController alloc] initWithPoint:point];
+    [_document.lecture addNotes:[NSSet setWithObject:[(TextNoteView *)tnvc.view data]]];
     [self addChildViewController:tnvc];
     [self.view addSubview:tnvc.view];
     tnvc.view.transform = CGAffineTransformMakeScale(0.0, 0.0);
     [UIView animateWithDuration:0.4 delay:0.0 usingSpringWithDamping:0.6 initialSpringVelocity:0.2 options:UIViewAnimationCurveEaseInOut animations:^{
         tnvc.view.transform = CGAffineTransformIdentity;
-    } completion:nil];
+    } completion:^(BOOL finished) {
+            [_document save];
+    }];
 }
 
 - (void)presentOptionsAtPoint:(CGPoint)point

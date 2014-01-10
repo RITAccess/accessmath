@@ -14,10 +14,8 @@
 
 - (void)awakeFromNib
 {
-    // May become issue when loading from disk
     _title.delegate = self;
     _text.delegate = self;
-    [_title becomeFirstResponder];
 }
 
 #pragma mark Actions
@@ -29,7 +27,7 @@
 
 - (IBAction)titleActions:(id)sender forEvent:(UIEvent *)event
 {
-
+    self.data.title = _title.text;
 }
 
 - (IBAction)fullScreeen:(id)sender
@@ -48,6 +46,8 @@
             _placeholder.hidden = YES;
         }
     }
+    // Update note
+    self.data.content = _text.text;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField

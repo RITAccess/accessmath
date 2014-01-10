@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "TextNoteViewDelegate.h"
+#import "Note.h"
 
 @interface TextNoteView : UIView <UITextFieldDelegate, UITextViewDelegate>
 
 @property (strong, nonatomic) id<TextNoteViewDelegate> delegate;
+
+@property (strong, nonatomic) Note *data;
 
 @property (weak, nonatomic) IBOutlet UITextField *title;
 @property (weak, nonatomic) IBOutlet UITextView *text;

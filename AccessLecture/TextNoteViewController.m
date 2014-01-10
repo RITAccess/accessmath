@@ -19,8 +19,24 @@
 {
     self = [super initWithNibName:@"TextNoteView" bundle:nil];
     if (self) {
-        self.view.frame = CGRectMake(point.x - 200, point.y - 100, self.view.frame.size.width, self.view.frame.size.height);
-        [(TextNoteView *)self.view setDelegate:self];
+        TextNoteView *view = (TextNoteView *)self.view;
+        view.frame = CGRectMake(point.x - 200, point.y - 100, self.view.frame.size.width, self.view.frame.size.height);
+        view.data = [Note new];
+        view.data.location = self.view.frame.origin;
+    }
+    return self;
+}
+
+- (instancetype)initWithNote:(Note *)note
+{
+    self = [super initWithNibName:@"TextNoteView" bundle:nil];
+    if (self) {
+        TextNoteView *view = (TextNoteView *)self.view;
+        view.data = note;
+        view.frame = CGRectMake(note.location.x, note.location.y, self.view.frame.size.width, self.view.frame.size.height);
+        view.title.text = note.title;
+        view.text.text = note.content;
+        view.placeholder.hidden = ![view.text.text isEqualToString:@""];
     }
     return self;
 }
