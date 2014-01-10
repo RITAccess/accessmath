@@ -128,7 +128,7 @@
     
     // Lecture Response
     if ([packet.name isEqualToString:@"lecture-response"]) {
-        lectureRequest([[Lecture alloc] initWithPacket:packet], true);
+//        lectureRequest([[Lecture alloc] initWithPacket:packet], true);
     }
     // Failure Response on lecture request
     if ([packet.name isEqualToString:@"lecture-response-failed"]) {
