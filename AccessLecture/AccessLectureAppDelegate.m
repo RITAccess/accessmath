@@ -35,12 +35,6 @@
     // Set up the network socket connection
     _server = [[ALNetworkInterface alloc] initWithURL:_serverAddress];
     
-    // TESTS
-    AMLecture *lec = [FileManager createDocumentWithName:@"This is my Lecture"];
-    [lec openWithCompletionHandler:^(BOOL success) {
-        [lec closeWithCompletionHandler:nil];
-    }];
-    
     return YES;
 }
 

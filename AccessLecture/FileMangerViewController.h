@@ -11,5 +11,6 @@
 @interface FileMangerViewController : UIPageViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate>
 
 - (void)loadDocument:(NSString *)docName;
+- (void)createDocumentNamed:(NSString *)docName;
 
 @end

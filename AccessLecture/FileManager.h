@@ -40,8 +40,10 @@ typedef enum {
 - (void)currentDocumentWithCompletion:(void(^)(AMLecture *lecture))completion;
 
 /**
- * Synchronous call of currentDocumentWithCompletion
- * @return The current document
+ * Returns the open active instance of the lecture, if no lecture is open nil is
+ * returned. THIS CALL DOES NOT GUARANTEE A DOCUMENT. Use the sycronous call if
+ * possible.
+ * @return The current document or nil
  */
 - (AMLecture *)currentDocument;
 
@@ -56,32 +58,5 @@ typedef enum {
  * a document and the user wishes to open a new one.
  */
 - (void)finishedWithDocument;
-
-/**
- * Invalidate the open document. If document was opened from disk, it will revert
- * back to the state at which it was opened. If a new document was created, that
- * document will be deleted.
- */
-- (void)invalidateCurrentDocument;
-
-////////////////////////////// Old API - Remove ////////////////////////////////
-
-/**
- * Get the documents directory fo the current user
- * in iOS, this is the only place we are allowed to write files
- */
-+ (NSString *)localDocumentsDirectoryPath;
-
-/**
- * Opens a AMLecture with that name from the douments directory
- */
-+ (AMLecture *)findDocumentWithName:(NSString *)name;
-+ (AMLecture *)findDocumentWithName:(NSString *)name failure:(void (^)(NSError *error))error;
-
-/**
- * Creates and returns a UIDocument instance in the users documents directory
- */
-+ (AMLecture *)createDocumentWithName:(NSString *)name;
-+ (AMLecture *)createDocumentWithName:(NSString *)name failure:(void (^)(NSError *error))error;
 
 @end

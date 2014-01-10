@@ -56,9 +56,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     // Get document
-    [[FileManager defaultManager] currentDocumentWithCompletion:^(AMLecture *lecture) {
-        NSLog(@"Loaded lecture: %@", lecture);
-        NSLog(@"Created on %@", lecture.metadata.dateCreated);
+    [[FileManager defaultManager] currentDocumentWithCompletion:^(AMLecture *lecture) { 
         _document = lecture;
         for (Note *note in _document.lecture.notes) {
             [self loadNoteAndPresent:note];

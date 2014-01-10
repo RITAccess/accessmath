@@ -58,7 +58,7 @@
 
 - (AMLecture *)currentDocument
 {
-    return nil;
+    return _document;
 }
 
 - (void)forceSave
@@ -68,12 +68,9 @@
 
 - (void)finishedWithDocument
 {
-    
-}
-
-- (void)invalidateCurrentDocument
-{
-    
+    [_document closeWithCompletionHandler:^(BOOL success) {
+        _document = nil;
+    }];
 }
 
 #pragma mark Document Internal
@@ -102,7 +99,9 @@
  */
 - (void)promptUserToPickDocument
 {
-    FileMangerViewController *openDoc = [[FileMangerViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+    FileMangerViewController *openDoc = [[FileMangerViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
+                                                                            navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
+                                                                                          options:nil];
     UIWindow *mainWindow = [[UIApplication sharedApplication].windows firstObject];
     UIViewController *activeViewController = [mainWindow.rootViewController presentedViewController];
     [openDoc setModalPresentationStyle:UIModalPresentationFormSheet];

@@ -8,6 +8,7 @@
 
 #import "FileMangerViewController.h"
 #import "DocumentPicker.h"
+#import "DocumentCreator.h"
 #import "FileManager.h"
 
 @interface FileManager ()
@@ -24,7 +25,6 @@
     NSArray *controllers;
 }
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -40,7 +40,8 @@
         DocumentPicker *pick =[[DocumentPicker alloc] initWithDocumentName:[[docName componentsSeparatedByString:@"."] objectAtIndex:0]];
         [notes addObject:pick];
     }
-    controllers = notes;
+    [notes addObject:[DocumentCreator new]];
+     controllers = notes;
     [self setViewControllers:@[controllers.firstObject] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
 }
 
@@ -74,14 +75,18 @@
     }
 }
 
-#pragma mark LoadDocument call
+#pragma mark Document calls
 
 - (void)loadDocument:(NSString *)docName
 {
     [[FileManager defaultManager] openDocumentForEditing:docName];
-    [self dismissViewControllerAnimated:YES completion:^{
-        //
-    }];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)createDocumentNamed:(NSString *)docName
+{
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
