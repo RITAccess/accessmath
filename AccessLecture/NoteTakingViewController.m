@@ -8,6 +8,7 @@
 
 #import "NoteTakingViewController.h"
 #import "TextNoteViewController.h"
+#import "FileManager.h"
 
 @interface NoteTakingViewController ()
 
@@ -44,6 +45,12 @@
                                                  name:UIKeyboardDidHideNotification
                                                object:nil];
     
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    // Get document
+    [[FileManager defaultManager] currentDocumentWithCompletion:nil];
 }
 
 - (void)longPressGesture:(UILongPressGestureRecognizer *)reg

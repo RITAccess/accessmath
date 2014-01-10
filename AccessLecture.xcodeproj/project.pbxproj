@@ -75,6 +75,9 @@
 		3F8D9908187B4E010061DEA2 /* TextNoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F8D9906187B4E010061DEA2 /* TextNoteView.xib */; };
 		3F8D990E187DD9100061DEA2 /* FullScreenNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8D990C187DD9100061DEA2 /* FullScreenNoteViewController.m */; };
 		3F8D990F187DD9100061DEA2 /* FullScreenNoteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F8D990D187DD9100061DEA2 /* FullScreenNoteViewController.xib */; };
+		3F8D9915187F0D1A0061DEA2 /* FileMangerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8D9913187F0D1A0061DEA2 /* FileMangerViewController.m */; };
+		3F8D9925187F48CC0061DEA2 /* DocumentPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8D9923187F48CC0061DEA2 /* DocumentPicker.m */; };
+		3F8D9926187F48CC0061DEA2 /* DocumentPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F8D9924187F48CC0061DEA2 /* DocumentPicker.xib */; };
 		3F959F0713C7555500A6DA79 /* ClearNotes.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F959F0613C7555500A6DA79 /* ClearNotes.png */; };
 		3F99F20215436E090065CBB9 /* Lecture.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F99F20115436E090065CBB9 /* Lecture.m */; };
 		3FA6119717905EDF00A2B4C8 /* blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FA6119517905EDF00A2B4C8 /* blue.png */; };
@@ -227,6 +230,11 @@
 		3F8D990B187DD9100061DEA2 /* FullScreenNoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullScreenNoteViewController.h; sourceTree = "<group>"; };
 		3F8D990C187DD9100061DEA2 /* FullScreenNoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullScreenNoteViewController.m; sourceTree = "<group>"; };
 		3F8D990D187DD9100061DEA2 /* FullScreenNoteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FullScreenNoteViewController.xib; sourceTree = "<group>"; };
+		3F8D9912187F0D1A0061DEA2 /* FileMangerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileMangerViewController.h; sourceTree = "<group>"; };
+		3F8D9913187F0D1A0061DEA2 /* FileMangerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileMangerViewController.m; sourceTree = "<group>"; };
+		3F8D9922187F48CC0061DEA2 /* DocumentPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentPicker.h; sourceTree = "<group>"; };
+		3F8D9923187F48CC0061DEA2 /* DocumentPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentPicker.m; sourceTree = "<group>"; };
+		3F8D9924187F48CC0061DEA2 /* DocumentPicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DocumentPicker.xib; sourceTree = "<group>"; };
 		3F959F0613C7555500A6DA79 /* ClearNotes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ClearNotes.png; path = "Lecture View Images/ClearNotes.png"; sourceTree = "<group>"; };
 		3F99F1F91543641E0065CBB9 /* FileManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileManager.h; sourceTree = "<group>"; };
 		3F99F1FA1543641E0065CBB9 /* FileManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileManager.m; sourceTree = "<group>"; };
@@ -507,6 +515,26 @@
 			name = FullScreenNoteController;
 			sourceTree = "<group>";
 		};
+		3F8D9911187F0CFC0061DEA2 /* FileManagerUI */ = {
+			isa = PBXGroup;
+			children = (
+				3F8D9919187F21E60061DEA2 /* DocumentPicker */,
+				3F8D9912187F0D1A0061DEA2 /* FileMangerViewController.h */,
+				3F8D9913187F0D1A0061DEA2 /* FileMangerViewController.m */,
+			);
+			name = FileManagerUI;
+			sourceTree = "<group>";
+		};
+		3F8D9919187F21E60061DEA2 /* DocumentPicker */ = {
+			isa = PBXGroup;
+			children = (
+				3F8D9922187F48CC0061DEA2 /* DocumentPicker.h */,
+				3F8D9923187F48CC0061DEA2 /* DocumentPicker.m */,
+				3F8D9924187F48CC0061DEA2 /* DocumentPicker.xib */,
+			);
+			name = DocumentPicker;
+			sourceTree = "<group>";
+		};
 		3F99F1ED15435F9D0065CBB9 /* Document Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -707,6 +735,7 @@
 		4C5C50C9177B7B300095801A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3F8D9911187F0CFC0061DEA2 /* FileManagerUI */,
 				3FED963113708E4E00D8D1B8 /* RootViewController */,
 				2CBF3014177B700C0087C17C /* DrawViewController */,
 				3F8D990A187DD8EF0061DEA2 /* FullScreenNoteController */,
@@ -926,6 +955,7 @@
 				2C09C75E17B29699007DE863 /* ResizeButton.png in Resources */,
 				4C5C50C6177B59D90095801A /* pin.png in Resources */,
 				2C09C75C17B29699007DE863 /* Pin.png in Resources */,
+				3F8D9926187F48CC0061DEA2 /* DocumentPicker.xib in Resources */,
 				3F0F3B74178DF32E00163C2A /* drawNote.png in Resources */,
 				3F8D990F187DD9100061DEA2 /* FullScreenNoteViewController.xib in Resources */,
 				2CF6BA911784919300A695CC /* arrow.png in Resources */,
@@ -1057,6 +1087,7 @@
 				3F6D11C917625EA20066A4FA /* SocketIOTransportXHR.m in Sources */,
 				3F6D11CA17625EA20066A4FA /* base64.c in Sources */,
 				3F6D11CB17625EA20066A4FA /* NSData+SRB64Additions.m in Sources */,
+				3F8D9925187F48CC0061DEA2 /* DocumentPicker.m in Sources */,
 				4CDDF69717EB690900FE34E7 /* AMLecture.m in Sources */,
 				4C9AB8FE177C6895004A4F65 /* TopNav.m in Sources */,
 				4CEA1A04177CAAED00A1DE05 /* OpenLectureViewController.m in Sources */,
@@ -1064,6 +1095,7 @@
 				3F6D11CC17625EA20066A4FA /* SRWebSocket.m in Sources */,
 				4CADF4F2178DEC19005978C0 /* UISegmentedControlExtension.m in Sources */,
 				4CDB058017B5589A00D8EB85 /* Favorites.m in Sources */,
+				3F8D9915187F0D1A0061DEA2 /* FileMangerViewController.m in Sources */,
 				2C3BFE6517A2BF7B00404B9C /* ZoomBounds.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
