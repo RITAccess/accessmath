@@ -19,18 +19,17 @@
 
 @implementation Lecture
 
-#pragma mark Setup
+#pragma mark NSCoding
 
 - (id)initWithCoder:(NSCoder *)aCoder {
     if (self = [super init]) {
-//        _notes = [aCoder decodeObjectForKey:@"NotesArray"];
+        _notes = [aCoder decodeObjectForKey:@"NotesArray"];
     }
     return self;
 }
 
-
 - (void)encodeWithCoder:(NSCoder *)aCoder {
-//    [aCoder encodeObject:_notes forKey:@"NotesArray"];
+    [aCoder encodeObject:_notes forKey:@"NotesArray"];
 }
 
 #pragma mark - Data Modification

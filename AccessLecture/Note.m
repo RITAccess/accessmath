@@ -13,8 +13,8 @@
 - (id)initWithCoder:(NSCoder *)aCoder
 {
     if (self = [super init]) {
-        _title = [aCoder valueForKey:@"title-note"];
-        _content = [aCoder valueForKey:@"content"];
+        _title = [aCoder decodeObjectForKey:@"title-note"];
+        _content = [aCoder decodeObjectForKey:@"content"];
         _location = [aCoder decodeCGPointForKey:@"location"];
     }
     return self;
@@ -22,8 +22,8 @@
 
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
-    [aCoder encodeObject:_title forKey:@"title-note"];
-    [aCoder encodeObject:_content forKey:@"content"];
+    [aCoder encodeObject:(_title ?: @"Untitled") forKey:@"title-note"];
+    [aCoder encodeObject:(_content ?: @"") forKey:@"content"];
     [aCoder encodeCGPoint:_location forKey:@"location"];
 }
 
