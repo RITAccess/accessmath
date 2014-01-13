@@ -264,7 +264,7 @@ static NSString * DRAW_KEY = @"draw_key";
         longPressGestureRecognizer2.numberOfTouchesRequired = 1;
      
         [[viewer.view.subviews objectAtIndex:0] setText:viewer.styleText];
-        [[viewer.view.subviews objectAtIndex:0] addStyles:[self coreTextStyle]];
+//        [[viewer.view.subviews objectAtIndex:0] addStyles:[self coreTextStyle]];
         [[[viewer.view.subviews objectAtIndex:1] layer] setBorderWidth:3];
         [[[viewer.view.subviews objectAtIndex:1] layer] setCornerRadius:20];
         [[viewer.view.subviews objectAtIndex:1] setDelegate:self];
@@ -323,35 +323,6 @@ static NSString * DRAW_KEY = @"draw_key";
             longPressGestureRecognizer.numberOfTouchesRequired = 3;
             longPressGestureRecognizer2.numberOfTouchesRequired = 1;
             UIView *outerView = [[UIView alloc] initWithFrame:CGRectMake([gesture locationInView:_mainView].x, [gesture locationInView:_mainView].y, 350, 150)];
-            FTCoreTextView *text = [[FTCoreTextView alloc]initWithFrame:CGRectMake(outerView.frame.origin.x+10 , outerView.frame.origin.y+10 , 300, 120)];
-            [text setText:@"<CD> </CD>"];
-            [text addStyles:[self coreTextStyle]];
-            [text setUserInteractionEnabled:YES];
-            UITextView *textBubble = [[UITextView alloc]initWithFrame:CGRectMake([gesture locationInView:outerView].x, [gesture locationInView:outerView].y , 310, 120)];
-           // outerView.layer.borderWidth = 3;
-            [outerView addSubview:text];
-            [outerView addSubview:textBubble];
-            UIImageView * anImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin.png" ]];
-            [anImageView setCenter:textBubble.bounds.origin];
-            [anImageView setBounds:CGRectMake([gesture locationInView:self.view].x, [gesture locationInView:self.view].y, 50, 50)];
-            textBubble.textColor = [UIColor clearColor];
-            [textBubble setAutocorrectionType: UITextAutocorrectionTypeNo];
-            textBubble.text = @" ";
-            textBubble.delegate = self;
-            textBubble.layer.borderWidth = 3;
-            textBubble.layer.cornerRadius = 20;
-            textBubble.backgroundColor = [UIColor clearColor];
-            [textBubble setFont:[UIFont boldSystemFontOfSize:30]];
-            [outerView addGestureRecognizer:panToMoveNote];
-            [textBubble addGestureRecognizer:longPressGestureRecognizer];
-            [outerView addGestureRecognizer:longPressGestureRecognizer2];
-            [textBubble addSubview:anImageView];
-            [textBubble setScrollEnabled:YES];
-            [textBubble scrollRectToVisible:CGRectMake([gesture locationInView:self.view].x+20, [gesture locationInView:self.view].y+15, 300, 120) animated:NO];
-            [[[self.view subviews] objectAtIndex:1] addSubview:outerView];
-            [textBubble setClipsToBounds:NO];
-            [textBubble becomeFirstResponder];
-                 
         }
     }
 }
@@ -471,123 +442,15 @@ static NSString * DRAW_KEY = @"draw_key";
 } 
 # pragma mark - Display hidden note by long press using one finger on pin
 - (void)longPressToDisplayNote:(UILongPressGestureRecognizer *)gestureRecognizer
-{   
-    if((_isCreatingNote)&&([[[[gestureRecognizer view] subviews] objectAtIndex:1] isKindOfClass:[UITextView class]])&&(gestureRecognizer.view.frame.size.width<=55)){
-        UITextView *temp = [[[gestureRecognizer view] subviews] objectAtIndex:1];
-        FTCoreTextView *tempView = [[[gestureRecognizer view] subviews] objectAtIndex:0];
-        [[[[gestureRecognizer view] subviews] objectAtIndex:1] removeFromSuperview];
-        [[[[gestureRecognizer view] subviews] objectAtIndex:0] removeFromSuperview];
-        [temp setFrame:CGRectMake([gestureRecognizer locationInView:gestureRecognizer.view].x, [gestureRecognizer locationInView:gestureRecognizer.view].y, 310, 120)];
-        [tempView setFrame:CGRectMake([gestureRecognizer locationInView:gestureRecognizer.view].x, [gestureRecognizer locationInView:gestureRecognizer.view].y, 300, 120)];
-        CGRect frame = temp.frame;
-        frame.size.height = temp.contentSize.height;
-        temp.frame = frame;
-        tempView.frame = frame;
-        [gestureRecognizer.view addSubview:tempView];
-        [gestureRecognizer.view addSubview:temp];
-        [gestureRecognizer.view setFrame:CGRectMake(gestureRecognizer.view.frame.origin.x, gestureRecognizer.view.frame.origin.y, temp.frame.size.width, temp.frame.size.height)];
-        
-        
-    }
-    else if((_isDrawing)&&([[[[gestureRecognizer view] subviews] objectAtIndex:1] isKindOfClass:[DrawView class]])&&(gestureRecognizer.view.frame.size.width==50)){
-      
-      
-        [[gestureRecognizer.view.subviews objectAtIndex:0] setHidden:NO];
-        UIImageView *temp = [[[gestureRecognizer view] subviews] objectAtIndex:1];
-        [[[[gestureRecognizer view] subviews] objectAtIndex:1] removeFromSuperview];
-        [temp setFrame:CGRectMake(temp.frame.origin.x, temp.frame.origin.y, [[gestureRecognizer.view.subviews  objectAtIndex:0] center].x, [[gestureRecognizer.view.subviews  objectAtIndex:0] center].y)];
-        [gestureRecognizer.view addSubview:temp];
-         [gestureRecognizer.view setFrame:CGRectMake(gestureRecognizer.view.frame.origin.x, gestureRecognizer.view.frame.origin.y, [[gestureRecognizer.view.subviews  objectAtIndex:0] center].x+25, [[gestureRecognizer.view.subviews  objectAtIndex:0] center].y+25)];
-        for(UIGestureRecognizer *recognizer in gestureRecognizer.view.gestureRecognizers){
-            
-            if([recognizer isKindOfClass:[UIPanGestureRecognizer class]]){
-            [recognizer setEnabled:NO];
-            }
-        }
-      [[gestureRecognizer.view.gestureRecognizers objectAtIndex:2] setEnabled:YES];
-    }    
+{
 }
 
 # pragma mark - Render FTCoreTextView behind transparent textView
 - (void)textViewDidChange:(UITextView *)textView
 {
-     FTCoreTextView *temp =  [[textView.superview  subviews] objectAtIndex:0];
-     CGRect frame = textView.frame;
-    if(!isBackSpacePressed&&(textView.text.length==textView.selectedRange.location)&&(textView.selectedRange.location>0)){
-       
-    char tempchar = [textView.text characterAtIndex:[textView.text length]-1];
-    [[[textView.superview  subviews] objectAtIndex:0] setText:[NSString stringWithFormat:@"%@%@%c%@",temp.text,startTag,tempchar,endTag]];
-       FTCoreTextView *check =  [[textView.superview  subviews] objectAtIndex:0];
-        if((check.text.length)<(textView.text.length*10)){
-            [textView setText:[textView.text substringToIndex:textView.text.length-1]];
-        }
-        
-        frame.size.height = textView.contentSize.height;
-        frame.size.width = textView.contentSize.width;
-    frame.origin = textView.frame.origin;
-    textView.frame = frame;
-    [textView.superview setFrame:CGRectMake(textView.superview.frame.origin.x, textView.superview.frame.origin.y, textView.frame.size.width+20, textView.frame.size.height+20)];
-   [[[textView.superview  subviews] objectAtIndex:0] setFrame:CGRectMake(textView.frame.origin.x+10, textView.frame.origin.y+10, 300, textView.frame.size.height)];
-   [[[textView.superview  subviews] objectAtIndex:1] becomeFirstResponder];
-     }
-    
-    if((!isBackSpacePressed)&&(textView.text.length>textView.selectedRange.location)&&(textView.selectedRange.location>0)){
-        NSRange preRange = NSMakeRange(0, (textView.selectedRange.location-1)*10);
-        NSRange postRange = NSMakeRange((textView.selectedRange.location-1)*10, (textView.text.length-textView.selectedRange.location)*10);
-        NSString *preText = [temp.text substringWithRange:preRange];
-        NSString *postText = [temp.text substringWithRange:postRange];
-        char tempchar = [textView.text characterAtIndex:textView.selectedRange.location-1];
-        [[[textView.superview  subviews] objectAtIndex:0] setText:[NSString stringWithFormat:@"%@%@%c%@%@",preText,startTag,tempchar,endTag,postText]];
-        [[[textView.superview  subviews] objectAtIndex:0] setNeedsDisplay];
-        frame.size.height = textView.contentSize.height;
-        frame.size.width = textView.contentSize.width;
-        frame.origin = textView.frame.origin;
-        textView.frame = frame;
-        [textView.superview setFrame:CGRectMake(textView.superview.frame.origin.x, textView.superview.frame.origin.y, textView.frame.size.width+20, textView.frame.size.height+20)];
-        [[[textView.superview  subviews] objectAtIndex:0] setFrame:CGRectMake(textView.frame.origin.x+10, textView.frame.origin.y+10, 300, textView.frame.size.height)];
-        [[[textView.superview  subviews] objectAtIndex:1] becomeFirstResponder];
-    }
+
 }
 
-# pragma mark - Handle backspace press events
--(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
-{
-    FTCoreTextView *temp =  [[textView.superview  subviews] objectAtIndex:0];
-    
-    if((text.length<=0)&&(textView.selectedRange.location>0))
-    {
-       isBackSpacePressed = TRUE;
-        if(textView.selectedRange.location==textView.text.length){
-        NSRange selectedRange = NSMakeRange(0, (temp.text.length - startTag.length-endTag.length-1));
-        NSString *str = [temp.text substringWithRange:selectedRange];
- 
-        [[[textView.superview  subviews] objectAtIndex:0] setText:str];
-        [[[textView.superview  subviews] objectAtIndex:0] setNeedsDisplay];
-        [textView becomeFirstResponder];
-        return true;
-        }
-        else{
-           NSRange preRange = NSMakeRange(0, (textView.selectedRange.location-1)*10);
-           NSRange postRange = NSMakeRange((textView.selectedRange.location)*10, ((textView.text.length-textView.selectedRange.location)*10));
-            NSString *preText = [temp.text substringWithRange:preRange];
-            NSString *postText = [temp.text substringWithRange:postRange];
-            [[[textView.superview  subviews] objectAtIndex:0] setText:[preText stringByAppendingString:postText]];
-            [[[textView.superview  subviews] objectAtIndex:0] setNeedsDisplay];
-            [textView becomeFirstResponder];
-
-        }
-    }
-    else if((text.length<=0)&&(textView.selectedRange.location==0)){
-        [[[textView.superview  subviews] objectAtIndex:0] setText:@"<CD></CD>"];
-        [[[textView.superview  subviews] objectAtIndex:0] setNeedsDisplay];
-    }
-    else{
-       
-        isBackSpacePressed = FALSE;
-    }
-    return true;
-        
-}
 - (IBAction)createDrawNote:(id)sender {
  
     _isCreatingNote=NO;
@@ -667,41 +530,6 @@ static NSString * DRAW_KEY = @"draw_key";
  * Returns an array with text styles for FTCoreText object.
  */
 
-- (NSArray *)coreTextStyle{
-    NSMutableArray *result = [NSMutableArray array];
-    FTCoreTextStyle *boldStyle = [FTCoreTextStyle new];
-    boldStyle.name = @"FB";
-    boldStyle.font = [UIFont boldSystemFontOfSize:30];
-    [result addObject:boldStyle];
-    FTCoreTextStyle *blueColor = [FTCoreTextStyle new];
-    [blueColor setName:@"CB"];
-    blueColor.font = [UIFont boldSystemFontOfSize:30];
-    [blueColor setColor:[UIColor blueColor]];
-    [result addObject:blueColor];
-    FTCoreTextStyle *redColor = [FTCoreTextStyle new];
-    [redColor setName:@"CR"];
-     redColor.font = [UIFont boldSystemFontOfSize:30];
-    [redColor setColor:[UIColor redColor]];
-    [result addObject:redColor];
-    FTCoreTextStyle *yellowColor = [FTCoreTextStyle new];
-    [yellowColor setName:@"CY"];
-    [yellowColor setColor:[UIColor yellowColor]];
-    yellowColor.font = [UIFont boldSystemFontOfSize:30];
-   [result addObject:yellowColor];
-    FTCoreTextStyle *blackColor = [FTCoreTextStyle new];
-    [blackColor setName:@"CD"];//D-> Default color
-    [blackColor setColor:[UIColor blackColor]];
-    blackColor.font = [UIFont boldSystemFontOfSize:30];
-    [result addObject:blackColor];
-
-    FTCoreTextStyle *greenColor = [FTCoreTextStyle new];
-    [greenColor setName:@"CG"];//D-> Default color
-    [greenColor setColor:[UIColor greenColor]];
-    greenColor.font = [UIFont boldSystemFontOfSize:30];
-    [result addObject:greenColor];
-    return result;
-
-}
 #pragma mark Child View Controller Calls
 - (void)willMoveToParentViewController:(UIViewController *)parent
 {
@@ -718,26 +546,7 @@ static NSString * DRAW_KEY = @"draw_key";
 
 - (void)willSaveState
 {
-    NSMutableArray *notes = [[NSMutableArray alloc] init];
-    for(UIView *saver in [[[self.view subviews] objectAtIndex:1] subviews])
-    {
-        if(![saver isKindOfClass:[UIToolbar class]]&&![saver isKindOfClass:[UIImageView class]])
-                {
-                 if([[[saver subviews] objectAtIndex:1] isKindOfClass:[DrawView class]]){
-                    noteLoader *loader = [[noteLoader alloc] init:saver type:@"drawNote"];
-                [notes addObject:loader];
-                   
-                }
-                
-                else if([[[saver subviews] objectAtIndex:0] isKindOfClass:[FTCoreTextView class]])
-                {
-                    noteLoader *loader = [[noteLoader alloc] init:saver type:@"textNote"];
-                    [notes addObject:loader];
-                }
-            }
-    }
-//    currentDocument.notes = notes;
-//    currentDocument.lecture = currentLecture;
+
 }
 
 - (void)didSaveState

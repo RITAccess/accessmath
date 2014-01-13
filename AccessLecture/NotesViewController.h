@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FTCoreTextView.h"
 #import "LectureViewContainer.h"
 #import "DrawView.h"
 #import "Lecture.h"
