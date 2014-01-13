@@ -49,8 +49,6 @@
 		3F07C34F187B2BA7005BC7EC /* TextNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F07C34E187B2BA7005BC7EC /* TextNoteViewController.m */; };
 		3F07C352187B3627005BC7EC /* TextNoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F07C351187B3627005BC7EC /* TextNoteView.m */; };
 		3F0DBDD613BD174900E3FEE8 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0DBDD413BD174900E3FEE8 /* AboutViewController.m */; };
-		3F0F3B6D178DBBB900163C2A /* UIColor+Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0F3B64178DBB6D00163C2A /* UIColor+Tools.m */; };
-		3F0F3B6E178DBBBD00163C2A /* UIView+Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0F3B66178DBB6D00163C2A /* UIView+Layout.m */; };
 		3F0F3B71178DCB8B00163C2A /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F0F3B70178DCB8B00163C2A /* CoreText.framework */; };
 		3F0F3B74178DF32E00163C2A /* drawNote.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F0F3B72178DF32E00163C2A /* drawNote.png */; };
 		3F0F3B75178DF32E00163C2A /* TextNote.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F0F3B73178DF32E00163C2A /* TextNote.png */; };
@@ -185,10 +183,6 @@
 		3F07C351187B3627005BC7EC /* TextNoteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextNoteView.m; sourceTree = "<group>"; };
 		3F0DBDD313BD174900E3FEE8 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		3F0DBDD413BD174900E3FEE8 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
-		3F0F3B63178DBB6D00163C2A /* UIColor+Tools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+Tools.h"; sourceTree = "<group>"; };
-		3F0F3B64178DBB6D00163C2A /* UIColor+Tools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Tools.m"; sourceTree = "<group>"; };
-		3F0F3B65178DBB6D00163C2A /* UIView+Layout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+Layout.h"; sourceTree = "<group>"; };
-		3F0F3B66178DBB6D00163C2A /* UIView+Layout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+Layout.m"; sourceTree = "<group>"; };
 		3F0F3B70178DCB8B00163C2A /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		3F0F3B72178DF32E00163C2A /* drawNote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drawNote.png; sourceTree = "<group>"; };
 		3F0F3B73178DF32E00163C2A /* TextNote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TextNote.png; sourceTree = "<group>"; };
@@ -446,17 +440,6 @@
 				3F0DBDD413BD174900E3FEE8 /* AboutViewController.m */,
 			);
 			name = "About View";
-			sourceTree = "<group>";
-		};
-		3F0F3B62178DBB6D00163C2A /* categories */ = {
-			isa = PBXGroup;
-			children = (
-				3F0F3B63178DBB6D00163C2A /* UIColor+Tools.h */,
-				3F0F3B64178DBB6D00163C2A /* UIColor+Tools.m */,
-				3F0F3B65178DBB6D00163C2A /* UIView+Layout.h */,
-				3F0F3B66178DBB6D00163C2A /* UIView+Layout.m */,
-			);
-			path = categories;
 			sourceTree = "<group>";
 		};
 		3F6D11AD17625E500066A4FA /* Networking */ = {
@@ -796,7 +779,6 @@
 				3F07C355187B3648005BC7EC /* TextNote */,
 				4CFC572E17DF800700393A1E /* NoteTakingViewController.h */,
 				4CFC572F17DF800700393A1E /* NoteTakingViewController.m */,
-				3F0F3B62178DBB6D00163C2A /* categories */,
 			);
 			name = NotesViewController;
 			sourceTree = "<group>";
@@ -1070,8 +1052,6 @@
 				3F8D990E187DD9100061DEA2 /* FullScreenNoteViewController.m in Sources */,
 				3F07C34F187B2BA7005BC7EC /* TextNoteViewController.m in Sources */,
 				3FED96191370863E00D8D1B8 /* main.m in Sources */,
-				3F0F3B6E178DBBBD00163C2A /* UIView+Layout.m in Sources */,
-				3F0F3B6D178DBBB900163C2A /* UIColor+Tools.m in Sources */,
 				4CEA1A03177CAAED00A1DE05 /* LectureCell.m in Sources */,
 				3FED961C1370863E00D8D1B8 /* AccessLectureAppDelegate.m in Sources */,
 				3FED96221370863E00D8D1B8 /* RootViewController.m in Sources */,
