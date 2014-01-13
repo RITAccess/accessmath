@@ -8,6 +8,7 @@
 
 #import "NoteTakingViewController.h"
 #import "TextNoteViewController.h"
+#import "ImageNoteViewController.h"
 #import "FileManager.h"
 #import "MTFlowerMenu.h"
 #import "AddNote.h"
