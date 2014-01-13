@@ -13,6 +13,18 @@ static NSString *LectureKey = @"lecture";
 
 @implementation AMLecture
 
+- (id)initWithFileURL:(NSURL *)url
+{
+    self = [super initWithFileURL:url];
+    if (self) {
+        _metadata = [ALMetaData new];
+        _metadata.dateCreated = [NSDate date];
+        _metadata.title = @"Untitled";
+        _lecture = [Lecture new];
+    }
+    return self;
+}
+
 - (void)save
 {
     [self saveWithCompletetion:nil];
@@ -50,7 +62,7 @@ static NSString *LectureKey = @"lecture";
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<Document description for <%d> : Title: %@", [super hash], _metadata.title];
+    return [NSString stringWithFormat:@"AMLecture<%d> Title: '%@' number of notes %d", [super hash], _metadata.title, _lecture.notes.count];
 }
 
 @end
