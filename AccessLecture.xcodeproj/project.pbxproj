@@ -99,7 +99,6 @@
 		3FED96571370909100D8D1B8 /* Settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FED964B1370909100D8D1B8 /* Settings.png */; };
 		3FED965B1370909100D8D1B8 /* ZoomIn.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FED964F1370909100D8D1B8 /* ZoomIn.png */; };
 		3FED965C1370909100D8D1B8 /* ZoomOut.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FED96501370909100D8D1B8 /* ZoomOut.png */; };
-		3FF7FFD513D5E45300B89A5D /* AlertBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FF7FFD413D5E45300B89A5D /* AlertBG.png */; };
 		3FFCFB2213A25388003DAB63 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FFCFB2113A25388003DAB63 /* MessageUI.framework */; };
 		4C37CCB018295FC0006D3B1F /* ALMetaData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C37CCAF18295FC0006D3B1F /* ALMetaData.m */; };
 		4C4B8BFA178EF57200C2F94B /* QRScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B8BF9178EF57200C2F94B /* QRScanner.m */; };
@@ -266,7 +265,6 @@
 		3FED964B1370909100D8D1B8 /* Settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Settings.png; path = "Lecture View Images/Settings.png"; sourceTree = "<group>"; };
 		3FED964F1370909100D8D1B8 /* ZoomIn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ZoomIn.png; path = "Lecture View Images/ZoomIn.png"; sourceTree = "<group>"; };
 		3FED96501370909100D8D1B8 /* ZoomOut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ZoomOut.png; path = "Lecture View Images/ZoomOut.png"; sourceTree = "<group>"; };
-		3FF7FFD413D5E45300B89A5D /* AlertBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AlertBG.png; path = AccessLecture/core/AlertBG.png; sourceTree = "<group>"; };
 		3FFCFB2113A25388003DAB63 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		4C37CCAE18295FC0006D3B1F /* ALMetaData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALMetaData.h; sourceTree = "<group>"; };
 		4C37CCAF18295FC0006D3B1F /* ALMetaData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALMetaData.m; sourceTree = "<group>"; };
@@ -579,7 +577,6 @@
 		3FED95FC1370863E00D8D1B8 = {
 			isa = PBXGroup;
 			children = (
-				3FF7FFD413D5E45300B89A5D /* AlertBG.png */,
 				3FED96111370863E00D8D1B8 /* AccessLecture */,
 				3FED960A1370863E00D8D1B8 /* Frameworks */,
 				3FED96121370863E00D8D1B8 /* Supporting Files */,
@@ -951,7 +948,6 @@
 				2CF6BA921784919300A695CC /* circle.png in Resources */,
 				3FAE785413C786F800796813 /* accesslecture.png in Resources */,
 				2C09C75F17B29699007DE863 /* SaveButton.png in Resources */,
-				3FF7FFD513D5E45300B89A5D /* AlertBG.png in Resources */,
 				2CF6BA961784920100A695CC /* star.png in Resources */,
 				4C861C06178EE0B600CD499C /* StreamLayout.storyboard in Resources */,
 				3FADD94917983F7A00ADEF76 /* RecycleBin.png in Resources */,
