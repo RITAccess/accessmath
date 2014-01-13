@@ -76,7 +76,6 @@
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&err];
     
     NSArray *matches = [regex matchesInString:_docName.text options:0 range:range];
-    NSLog(@"%@", matches);
     
     if (matches.count == 0) {
         _titleValid.isGood = YES;
