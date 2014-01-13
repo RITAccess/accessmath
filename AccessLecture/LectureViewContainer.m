@@ -9,7 +9,7 @@
 #import "LectureViewContainer.h"
 #import "StreamViewController.h"
 #import "DrawViewController.h"
-#import "NotesViewController.h"
+//#import "NotesViewController.h"
 #import "NoteTakingViewController.h"
 #import "ZoomBounds.h"
 
@@ -85,7 +85,7 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
 
 @end
 
-static NotesViewController *nvc;
+//static NotesViewController *nvc;
 static DrawViewController *dcv;
 static StreamViewController *svc;
 static NoteTakingViewController *ntvc;
@@ -122,7 +122,7 @@ static VCBlank *blank;
     
     // Set up viewControllers
     dispatch_once(&createControllers, ^{
-        nvc = [[NotesViewController alloc] initWithNibName:NotesViewControllerXIB bundle:nil];
+//        nvc = [[NotesViewController alloc] initWithNibName:NotesViewControllerXIB bundle:nil];
         dcv = [[DrawViewController alloc] initWithNibName:DrawViewControllerXIB bundle:nil];
         svc = (StreamViewController *)[[UIStoryboard storyboardWithName:StreamViewControllerStoryboard bundle:nil] instantiateViewControllerWithIdentifier:StreamViewControllerID];
         ntvc = [[NoteTakingViewController alloc] init];
@@ -131,7 +131,7 @@ static VCBlank *blank;
     
     _space = CGSizeMake(LC_WIDTH, LC_HEIGHT);
     
-    [self addController:nvc];
+//    [self addController:nvc];
     [self addController:dcv];
     [self addController:svc];
     [self addController:ntvc];
@@ -345,7 +345,7 @@ static VCBlank *blank;
             break;
         case 1:
         {
-            [self addController:nvc];
+//            [self addController:nvc];
             break;
         }
         case 2:
@@ -553,7 +553,7 @@ static VCBlank *blank;
     
     svc = nil;
     dcv = nil;
-    nvc = nil;
+//    nvc = nil;
     blank = nil;
     
     [self setSideMenu:nil];
