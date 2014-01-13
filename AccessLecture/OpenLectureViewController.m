@@ -26,18 +26,18 @@
 }
 
 -(void) viewWillAppear:(BOOL)animated{
-    NSURL *currentDirectory = [FileManager accessMathDirectoryURL];
-    NSArray * docs = [FileManager documentsIn:currentDirectory];
-    directories = [[NSMutableArray alloc] initWithArray:docs];
+//    NSURL *currentDirectory = [FileManager accessMathDirectoryURL];
+//    NSArray * docs = [FileManager documentsIn:currentDirectory];
+//    directories = [[NSMutableArray alloc] initWithArray:docs];
 }
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
-    
-    NSURL *currentDirectory = [FileManager accessMathDirectoryURL];
-    NSArray * docs = [FileManager documentsIn:currentDirectory];
-    directories = [[NSMutableArray alloc] initWithArray:docs];
+//    
+//    NSURL *currentDirectory = [FileManager accessMathDirectoryURL];
+//    NSArray * docs = [FileManager documentsIn:currentDirectory];
+//    directories = [[NSMutableArray alloc] initWithArray:docs];
 }
 
 - (void)didReceiveMemoryWarning

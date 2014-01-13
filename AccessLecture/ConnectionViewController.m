@@ -42,7 +42,10 @@
     }
     
     // Checking for proper OS. Hiding functionality from user is OS doesn't support scan.
-    if (![[[UIDevice currentDevice]systemVersion] isEqualToString:@"7.0"]){
+    NSArray *versionBreakdown = [[[UIDevice currentDevice] systemVersion] componentsSeparatedByString:@"."];
+    NSExpression *e = [NSExpression expressionWithFormat:@"%@", versionBreakdown[0]];
+    NSNumber *versionRoot = [e expressionValueWithObject:nil context:nil];
+    if ([versionRoot integerValue] < 7){
         [_previewView setBackgroundColor:[UIColor redColor]];
         [_scanButton removeFromSuperview];
     }

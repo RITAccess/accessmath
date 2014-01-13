@@ -12,42 +12,51 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AccessDocument.h"
+#import "AMLecture.h"
+
+typedef enum {
+    FileManagerErrorFileNotFound    = -8901,
+    FileManagerErrorFileExists      = -8902,
+    FileManagerErrorSaveError       = -8903,
+} FileManagerError;
+
 @interface FileManager : NSObject
 
 /**
- * Get the documents directory fo the current user
- * in iOS, this is the only place we are allowed to write files
+ * Get this shared and default configured file manager for Access Lecture
+ * @return The filemanager
  */
-+ (NSURL *)localDocumentsDirectoryURL;
-
-//Get the AccessMath directory of the current user
-+ (NSURL *)accessMathDirectoryURL;
-
-// delete all files in AccessMath directory
-+ (void) clearAllDocuments;
++ (instancetype)defaultManager;
 
 /**
-* Get the iCloud documents directory
-* return nil if none available
-*/
-+ (NSURL *)iCloudDirectoryURL;
-
-//Get a list of all the files in the specified directory
-
-+ (NSArray *)documentsIn:(NSURL *)URL;
+ * Gives you the current document the user wants to be working on. Handles asking
+ * user for a document and holds onto it for the lifetime of the document. If a
+ * user has already opened a document, it will be returned again. Call finishedWithDocument
+ * when you feel the user no longer wants to have that document open.
+ * @param completion The completion block called on the main thread when the
+ * document is returned to you. This may return instantly if the document was 
+ * already opened.
+ */
+- (void)currentDocumentWithCompletion:(void(^)(AMLecture *lecture))completion;
 
 /**
- * Find a file in the given array of files that fits the given block condition.
- * the block should take an NSURL* argument and return a BOOL if the NSURL is correct.
- * returns nil if no file was found
+ * Returns the open active instance of the lecture, if no lecture is open nil is
+ * returned. THIS CALL DOES NOT GUARANTEE A DOCUMENT. Use the sycronous call if
+ * possible.
+ * @return The current document or nil
  */
-+ (NSURL *)findFileIn:(NSArray *)files thatFits:(BOOL(^)(NSURL*))condition;
-/**
- * Save the AccessDocument containing information about the lecture and notes in the 
- * AccessMath directory. 
- */
-+ (BOOL)saveDocument:(AccessDocument *)document;
+- (AMLecture *)currentDocument;
 
+/**
+ * Forces the save of any currently open documents. This call is not blocking.
+ * Documents save automaticly so this methods should rarely be called.
+ */
+- (void)forceSave;
+
+/**
+ * Closes the current document and removes is as active. Used when done editing
+ * a document and the user wishes to open a new one.
+ */
+- (void)finishedWithDocument;
 
 @end
