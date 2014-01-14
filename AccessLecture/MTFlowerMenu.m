@@ -98,6 +98,7 @@ CGAffineTransform CGAffineTransformOrientOnAngle(CGFloat angle){
 
 - (void)prepareMenuAtPoint:(CGPoint)point
 {
+    [self sendActionsForControlEvents:UIControlEventTouchDown];
     self.frame = CGRectMake(point.x, point.y, 0.0, 0.0);
     self.frame = CGRectInset(self.frame, -125, -125);
     [self setNeedsDisplayInRect:self.frame];

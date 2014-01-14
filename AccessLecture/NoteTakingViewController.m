@@ -52,6 +52,7 @@
     // Load Menu
     _menu = [[MTFlowerMenu alloc] initWithFrame:CGRectZero];
     [_menu addTarget:self action:@selector(menuSelected:) forControlEvents:UIControlEventTouchUpInside];
+    [_menu addTarget:self action:@selector(menuAppear:) forControlEvents:UIControlEventTouchDown];
     [self.view addSubview:_menu];
     
     // Add menu activation gesture
@@ -64,6 +65,11 @@
     if ([sender.selectedIdentifier isEqualToString:@"AddNote"]) {
         [self createTextNoteAndPresentAtPoint:sender.location];
     }
+}
+
+- (void)menuAppear:(MTFlowerMenu *)sender
+{
+    [self.view bringSubviewToFront:sender];
 }
 
 - (void)viewDidAppear:(BOOL)animated
