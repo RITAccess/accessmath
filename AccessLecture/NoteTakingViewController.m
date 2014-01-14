@@ -9,11 +9,13 @@
 #import "NoteTakingViewController.h"
 #import "TextNoteViewController.h"
 #import "FileManager.h"
+#import "MTFlowerMenu.h"
 
 @interface NoteTakingViewController ()
 
 @property UILabel *addNote;
 @property CGPoint menuPoint;
+@property (strong) MTFlowerMenu *menu;
 
 @end
 
@@ -37,9 +39,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Add menu activation gesture
-    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressGesture:)];
-    [self.view addGestureRecognizer:longPress];
     
     // Get keyboard notifictions
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -50,7 +49,13 @@
                                              selector:@selector(keyboardDidHide:)
                                                  name:UIKeyboardDidHideNotification
                                                object:nil];
+    // Load Menu
+    _menu = [[MTFlowerMenu alloc] initWithFrame:CGRectZero];
+    [self.view addSubview:_menu];
     
+    // Add menu activation gesture
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:_menu action:@selector(longPressGesture:)];
+    [self.view addGestureRecognizer:longPress];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -62,27 +67,6 @@
             [self loadNoteAndPresent:note];
         }
     }];
-}
-
-- (void)longPressGesture:(UILongPressGestureRecognizer *)reg
-{
-    switch (reg.state) {
-        case UIGestureRecognizerStateBegan:
-            _menuPoint = [reg locationInView:self.view];
-            [self presentOptionsAtPoint:[reg locationInView:self.view]];
-            break;
-
-        case UIGestureRecognizerStateFailed:
-        case UIGestureRecognizerStateEnded: {
-            CGPoint current = [reg locationInView:self.view];
-            CGPoint translation = CGPointMake(_menuPoint.x - current.x, _menuPoint.y - current.y);
-            [self recognizeWithTranslation:translation];
-            [self dismissOptions];
-        } break;
-            
-        default:
-            break;
-    }
 }
 
 - (void)recognizeWithTranslation:(CGPoint)translation

@@ -148,12 +148,6 @@ static VCBlank *blank;
 {
     [self setContentSize:_space];
     [self setUpStartingLocation];
-    
-    // Test flower menu
-    MTFlowerMenu *menu = [[MTFlowerMenu alloc] initWithFrame:CGRectMake(100, 100, 400, 400)];
-    [self.view addSubview:menu];
-    [menu showMenuAnimated:YES];
-    
 }
 
 - (void)setUpStartingLocation

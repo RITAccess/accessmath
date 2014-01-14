@@ -12,4 +12,6 @@
 
 - (void)showMenuAnimated:(BOOL)animated;
 
+- (void)longPressGesture:(UILongPressGestureRecognizer *)reg;
+
 @end

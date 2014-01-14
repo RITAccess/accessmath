@@ -10,4 +10,8 @@
 
 @interface AddNoteView : UIView
 
+@property BOOL isSelected;
+
+@property (strong) UIBezierPath *collisionPath;
+
 @end
