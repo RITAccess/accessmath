@@ -13,5 +13,6 @@
 - (void)longPressGesture:(UILongPressGestureRecognizer *)reg;
 
 @property NSString *selectedIdentifier;
+@property CGPoint location;
 
 @end

@@ -117,6 +117,7 @@ CGAffineTransform CGAffineTransformOrientOnAngle(CGFloat angle){
         if ([view isKindOfClass:[AddNoteView class]]) {
             if (view.isSelected) {
                 _selectedIdentifier = view.identifier;
+                _location = self.center;
                 [self sendActionsForControlEvents:UIControlEventTouchUpInside];
                 break;
             }

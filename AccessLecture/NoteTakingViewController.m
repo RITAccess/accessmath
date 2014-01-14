@@ -61,7 +61,9 @@
 
 - (void)menuSelected:(MTFlowerMenu *)sender
 {
-    NSLog(@"%@", sender.selectedIdentifier);
+    if ([sender.selectedIdentifier isEqualToString:@"AddNote"]) {
+        [self createTextNoteAndPresentAtPoint:sender.location];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
