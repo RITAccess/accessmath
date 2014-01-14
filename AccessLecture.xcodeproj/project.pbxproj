@@ -119,7 +119,7 @@
 		2C3BFE6317A2BF7B00404B9C /* ZoomBounds.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ZoomBounds.c; sourceTree = "<group>"; };
 		2C3BFE6417A2BF7B00404B9C /* ZoomBounds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoomBounds.h; sourceTree = "<group>"; };
 		2C5AD2C117B5430000BFB795 /* StreamViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamViewControllerTests.m; sourceTree = "<group>"; };
-		2CA93201188596D400199CC4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		2CA93201188596D400199CC4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Images.xcassets; sourceTree = "<group>"; };
 		2CBF3019177B7AB10087C17C /* DrawViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawViewController.h; sourceTree = "<group>"; };
 		2CBF301A177B7AB10087C17C /* DrawViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawViewController.m; sourceTree = "<group>"; };
 		2CBF301B177B7AB10087C17C /* DrawViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawViewController.xib; sourceTree = "<group>"; };
@@ -508,7 +508,6 @@
 		3FED95FC1370863E00D8D1B8 = {
 			isa = PBXGroup;
 			children = (
-				2CA93201188596D400199CC4 /* Images.xcassets */,
 				3FED96111370863E00D8D1B8 /* AccessLecture */,
 				3FED960A1370863E00D8D1B8 /* Frameworks */,
 				3FED96121370863E00D8D1B8 /* Supporting Files */,
@@ -563,6 +562,7 @@
 		3FED96121370863E00D8D1B8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2CA93201188596D400199CC4 /* Images.xcassets */,
 				3FED96131370863E00D8D1B8 /* AccessLecture-Info.plist */,
 				3FED96141370863E00D8D1B8 /* InfoPlist.strings */,
 				3FED96171370863E00D8D1B8 /* AccessLecture-Prefix.pch */,
