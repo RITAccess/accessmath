@@ -10,7 +10,7 @@
 
 @implementation TextNoteView
 
-#pragma mark Creation
+#pragma mark - Creation
 
 - (void)awakeFromNib
 {
@@ -18,7 +18,7 @@
     _text.delegate = self;
 }
 
-#pragma mark Actions
+#pragma mark - Actions
 
 - (IBAction)hideView
 {
@@ -35,7 +35,7 @@
     [_delegate textNoteView:self presentFullScreen:YES];
 }
 
-#pragma mark Delegate
+#pragma mark - Delegate
 
 - (void)textViewDidChange:(UITextView *)textView
 {
@@ -58,7 +58,7 @@
     return YES;
 }
 
-#pragma mark Drawing
+#pragma mark - Drawing
 
 - (void)drawRect:(CGRect)rect
 {

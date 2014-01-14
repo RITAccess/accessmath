@@ -12,9 +12,9 @@
 
 @interface TextNoteView : UIView <UITextFieldDelegate, UITextViewDelegate>
 
-@property (strong, nonatomic) id<TextNoteViewDelegate> delegate;
+@property (nonatomic) id<TextNoteViewDelegate> delegate;
 
-@property (strong, nonatomic) Note *data;
+@property (nonatomic) Note *data;
 
 @property (weak, nonatomic) IBOutlet UITextField *title;
 @property (weak, nonatomic) IBOutlet UITextView *text;
