@@ -12,6 +12,7 @@
 //#import "NotesViewController.h"
 #import "NoteTakingViewController.h"
 #import "ZoomBounds.h"
+#import "MTFlowerMenu.h"
 
 // Default content size
 #define LC_WIDTH 1920
@@ -140,12 +141,19 @@ static VCBlank *blank;
     // Close menus
     menuOpen = NO;
     [self setUpMenuItems];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [self setContentSize:_space];
     [self setUpStartingLocation];
+    
+    // Test flower menu
+    MTFlowerMenu *menu = [[MTFlowerMenu alloc] initWithFrame:CGRectMake(100, 100, 400, 400)];
+    [self.view addSubview:menu];
+    [menu showMenuAnimated:YES];
+    
 }
 
 - (void)setUpStartingLocation
