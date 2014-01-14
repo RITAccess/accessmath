@@ -51,4 +51,9 @@
     [symbolContent drawInRect: symbolRect withFont: [UIFont fontWithName: @"Helvetica" size: 36] lineBreakMode: NSLineBreakByWordWrapping alignment: NSTextAlignmentCenter];
 }
 
+- (NSString *)description
+{
+    return _identifier;
+}
+
 @end

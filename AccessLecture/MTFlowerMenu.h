@@ -10,8 +10,8 @@
 
 @interface MTFlowerMenu : UIControl
 
-- (void)showMenuAnimated:(BOOL)animated;
-
 - (void)longPressGesture:(UILongPressGestureRecognizer *)reg;
+
+@property NSString *selectedIdentifier;
 
 @end

@@ -47,20 +47,25 @@ CGAffineTransform CGAffineTransformOrientOnAngle(CGFloat angle){
         frame = CGRectInset(frame, -22.5, -37.5);
         frame;
     })];
+    addNote.identifier = @"AddNote";
     [self addSubview:addNote];
+    
     AddNoteView *addImage = [[AddNoteView alloc] initWithFrame:({
         CGRect frame = CGRectZero;
         frame.origin = CGRectCenterPoint(self.frame);
         frame = CGRectInset(frame, -22.5, -37.5);
         frame;
     })];
+    addImage.identifier = @"AddImage";
     [self addSubview:addImage];
+    
     AddNoteView *addTest = [[AddNoteView alloc] initWithFrame:({
         CGRect frame = CGRectZero;
         frame.origin = CGRectCenterPoint(self.frame);
         frame = CGRectInset(frame, -22.5, -37.5);
         frame;
     })];
+    addTest.identifier = @"AddTest";
     [self addSubview:addTest];
     
     // Animate them
@@ -77,10 +82,7 @@ CGAffineTransform CGAffineTransformOrientOnAngle(CGFloat angle){
         addImage.transform = CGAffineTransformOrientOnAngle(DEGREES_TO_RADIANS(-60));
         addTest.transform = CGAffineTransformOrientOnAngle(DEGREES_TO_RADIANS(-110));
         self.transform = CGAffineTransformIdentity;
-    } completion:^(BOOL finished) {
-
-    }];
-    
+    } completion:nil];
 }
 
 - (void)hideMenuAnimated:(BOOL)animated completed:(void(^)(BOOL finished))competion
@@ -109,6 +111,19 @@ CGAffineTransform CGAffineTransformOrientOnAngle(CGFloat angle){
     }
 }
 
+- (void)notifyObserversOfSelection
+{
+    for (AddNoteView *view in self.subviews) {
+        if ([view isKindOfClass:[AddNoteView class]]) {
+            if (view.isSelected) {
+                _selectedIdentifier = view.identifier;
+                [self sendActionsForControlEvents:UIControlEventTouchUpInside];
+                break;
+            }
+        }
+    }
+}
+
 - (void)handleTouch:(UIGestureRecognizer *)reg
 {
     for (AddNoteView *view in self.subviews) {
@@ -118,7 +133,6 @@ CGAffineTransform CGAffineTransformOrientOnAngle(CGFloat angle){
             [view setNeedsDisplay];
         }
     }
-    printf("\n");
 }
 
 - (void)longPressGesture:(UILongPressGestureRecognizer *)reg
@@ -130,6 +144,7 @@ CGAffineTransform CGAffineTransformOrientOnAngle(CGFloat angle){
             break;
         case UIGestureRecognizerStateFailed:
         case UIGestureRecognizerStateEnded: {
+            [self notifyObserversOfSelection];
             [self hideMenuAnimated:YES completed:^(BOOL finished) {
                 [self resetMenu];
             }];

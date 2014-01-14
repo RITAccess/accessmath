@@ -14,4 +14,6 @@
 
 @property (strong) UIBezierPath *collisionPath;
 
+@property (strong) NSString *identifier;
+
 @end

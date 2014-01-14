@@ -51,11 +51,17 @@
                                                object:nil];
     // Load Menu
     _menu = [[MTFlowerMenu alloc] initWithFrame:CGRectZero];
+    [_menu addTarget:self action:@selector(menuSelected:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_menu];
     
     // Add menu activation gesture
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:_menu action:@selector(longPressGesture:)];
     [self.view addGestureRecognizer:longPress];
+}
+
+- (void)menuSelected:(MTFlowerMenu *)sender
+{
+    NSLog(@"%@", sender.selectedIdentifier);
 }
 
 - (void)viewDidAppear:(BOOL)animated
