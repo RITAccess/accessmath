@@ -30,7 +30,7 @@
                                 <constraint firstAttribute="height" constant="47" id="tsY-Qn-RbE"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                            <state key="normal" backgroundImage="ClearNotes.png">
+                            <state key="normal" backgroundImage="CancelButton">
                                 <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -59,7 +59,7 @@
                                 <constraint firstAttribute="width" constant="57" id="6LS-ew-FVo"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                            <state key="normal" backgroundImage="undo.png">
+                            <state key="normal" backgroundImage="UndoButton">
                                 <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -77,7 +77,7 @@
                                 <constraint firstAttribute="width" constant="47" id="MqJ-wj-MDA"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                            <state key="normal" backgroundImage="star.png">
+                            <state key="normal" backgroundImage="star">
                                 <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -116,8 +116,8 @@
         </view>
     </objects>
     <resources>
-        <image name="ClearNotes.png" width="72" height="72"/>
-        <image name="star.png" width="1024" height="1024"/>
-        <image name="undo.png" width="1024" height="1024"/>
+        <image name="CancelButton" width="44" height="44"/>
+        <image name="UndoButton" width="47" height="47"/>
+        <image name="star" width="1024" height="1024"/>
     </resources>
 </document>
