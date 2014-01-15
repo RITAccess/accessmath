@@ -28,10 +28,9 @@
                     <rect key="frame" x="0.0" y="980" width="768" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <items>
-                        <barButtonItem title="Item" id="zqS-s4-hQU"/>
                         <barButtonItem style="plain" id="KKY-NC-4L1">
                             <stepper key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="20" minimumValue="10" maximumValue="100" stepValue="2" id="Dqe-Vn-R7y">
-                                <rect key="frame" x="60" y="8" width="94" height="29"/>
+                                <rect key="frame" x="16" y="8" width="94" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <action selector="changeFontSize:" destination="-1" eventType="valueChanged" id="0qa-7t-i6T"/>
