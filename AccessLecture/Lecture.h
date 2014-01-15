@@ -11,9 +11,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SocketIOPacket.h"
 
 @interface Lecture : NSObject <NSCoding>
+
+// Parent Document
+@property (weak) id parent;
 
 // Access all the notes in the lecture, all objects conform to Note type
 @property (readonly, nonatomic, strong) NSArray *notes;

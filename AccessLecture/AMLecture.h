@@ -8,9 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ALMetaData.h"
-#import "Note.h"
 #import "Lecture.h"
-#import "ImageNote.h"
 
 static NSString *const AMLectutueFileExtention = @"lec";
 

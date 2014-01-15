@@ -21,6 +21,7 @@ static NSString *LectureKey = @"lecture";
         _metadata.dateCreated = [NSDate date];
         _metadata.title = @"Untitled";
         _lecture = [Lecture new];
+        [_lecture setParent:self];
     }
     return self;
 }
@@ -42,6 +43,7 @@ static NSString *LectureKey = @"lecture";
     
     _metadata = [unarchiver decodeObjectForKey:MetaKey];
     _lecture = [unarchiver decodeObjectForKey:LectureKey];
+    [_lecture setParent:self];
     
     return YES;
 }
