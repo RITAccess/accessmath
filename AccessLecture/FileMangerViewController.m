@@ -14,9 +14,9 @@
 @interface FileManager ()
 
 - (void)openDocumentForEditing:(NSString *)docName;
-
 + (NSString *)localDocumentsDirectoryPath;
 + (NSArray *)listContentsOfDirectory:(NSString *)path;
++ (void)createDocumentWithName:(NSString *)name completion:(void (^)(NSError *error))completion;
 
 @end
 
@@ -85,8 +85,14 @@
 
 - (void)createDocumentNamed:(NSString *)docName
 {
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [FileManager createDocumentWithName:docName completion:^(NSError *error) {
+         if (error) {
+             NSLog(@"%@", error);
+         } else {
+             [[FileManager defaultManager] openDocumentForEditing:docName];
+             [self dismissViewControllerAnimated:YES completion:nil];
+         }
+     }];
 }
 
 @end
