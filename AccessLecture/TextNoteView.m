@@ -7,6 +7,7 @@
 //
 
 #import "TextNoteView.h"
+#import "FullScreenNoteViewController.h"
 
 @implementation TextNoteView
 
@@ -32,7 +33,20 @@
 
 - (IBAction)fullScreeen:(id)sender
 {
-    [_delegate textNoteView:self presentFullScreen:YES];
+    FullScreenNoteViewController *fsnvc= [FullScreenNoteViewController new];
+    fsnvc.modalPresentationStyle = UIModalPresentationPageSheet;
+    
+    // Get the current view controller
+    UIViewController *currentViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
+    while (currentViewController.presentedViewController) {
+        currentViewController = currentViewController.presentedViewController;
+    }
+    
+    [currentViewController presentViewController:fsnvc animated:YES completion:^(void){
+        fsnvc.text.text = _text.text;
+        fsnvc.titleLabel.title = _title.text;
+        fsnvc.noteView = self;
+    }];
 }
 
 #pragma mark - Delegate
