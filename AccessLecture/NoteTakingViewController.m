@@ -9,11 +9,15 @@
 #import "NoteTakingViewController.h"
 #import "TextNoteViewController.h"
 #import "FileManager.h"
+#import "MTFlowerMenu.h"
+#import "AddNote.h"
+#import "AddImage.h"
 
 @interface NoteTakingViewController ()
 
 @property UILabel *addNote;
 @property CGPoint menuPoint;
+@property (strong) MTFlowerMenu *menu;
 
 @end
 
@@ -37,9 +41,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Add menu activation gesture
-    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressGesture:)];
-    [self.view addGestureRecognizer:longPress];
     
     // Get keyboard notifictions
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -50,7 +51,36 @@
                                              selector:@selector(keyboardDidHide:)
                                                  name:UIKeyboardDidHideNotification
                                                object:nil];
+    // Load Menu
+    AddNote *addNote = [[AddNote alloc] init];
+    addNote.identifier = @"AddNote";
     
+    AddImage *addImage = [[AddImage alloc] init];
+    addImage.identifier = @"AddImage";
+    
+    _menu = [[MTFlowerMenu alloc] initWithFrame:CGRectZero];
+    [_menu addTarget:self action:@selector(menuSelected:) forControlEvents:UIControlEventTouchUpInside];
+    [_menu addTarget:self action:@selector(menuAppear:) forControlEvents:UIControlEventTouchDown];
+
+    [_menu addMenuItem:addNote];
+    [_menu addMenuItem:addImage];
+    
+    [self.view addSubview:_menu];
+
+}
+
+- (void)menuSelected:(MTFlowerMenu *)sender
+{
+    if ([sender.selectedIdentifier isEqualToString:@"AddNote"]) {
+        [self createTextNoteAndPresentAtPoint:sender.location];
+    } else if([sender.selectedIdentifier isEqualToString:@"AddImage"]) {
+        NSLog(@"Add Image");
+    }
+}
+
+- (void)menuAppear:(MTFlowerMenu *)sender
+{
+    [self.view bringSubviewToFront:sender];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -62,27 +92,6 @@
             [self loadNoteAndPresent:note];
         }
     }];
-}
-
-- (void)longPressGesture:(UILongPressGestureRecognizer *)reg
-{
-    switch (reg.state) {
-        case UIGestureRecognizerStateBegan:
-            _menuPoint = [reg locationInView:self.view];
-            [self presentOptionsAtPoint:[reg locationInView:self.view]];
-            break;
-
-        case UIGestureRecognizerStateFailed:
-        case UIGestureRecognizerStateEnded: {
-            CGPoint current = [reg locationInView:self.view];
-            CGPoint translation = CGPointMake(_menuPoint.x - current.x, _menuPoint.y - current.y);
-            [self recognizeWithTranslation:translation];
-            [self dismissOptions];
-        } break;
-            
-        default:
-            break;
-    }
 }
 
 - (void)recognizeWithTranslation:(CGPoint)translation
