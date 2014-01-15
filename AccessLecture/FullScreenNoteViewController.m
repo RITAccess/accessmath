@@ -39,4 +39,9 @@
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+- (IBAction)changeFontSize:(UIStepper *)sender
+{
+    [_text setFont:[UIFont systemFontOfSize:[sender value]]];
+}
 @end
