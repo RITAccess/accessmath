@@ -34,8 +34,9 @@
 
 - (IBAction)returnToLecture:(id)sender
 {
-    // Update note's text from the full screen editor.
+    // Update note's text and size from the full screen editor.
     _noteView.text.text = _text.text;
+    [_noteView.text setFont:[UIFont systemFontOfSize:_stepper.value]];
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }

@@ -16,6 +16,7 @@ static NSString *const FullScreenNoteVCNibName = @"FullScreenNoteViewController"
 @property (nonatomic) IBOutlet UITextView *text;
 @property (nonatomic) IBOutlet UINavigationItem *titleLabel;
 @property (nonatomic) TextNoteView *noteView;
+@property (strong, nonatomic) IBOutlet UIStepper *stepper;
 
 - (IBAction)returnToLecture:(id)sender;
 - (IBAction)changeFontSize:(id)sender;
