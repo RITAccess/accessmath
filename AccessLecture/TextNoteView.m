@@ -43,8 +43,16 @@
     }
     
     [currentViewController presentViewController:fsnvc animated:YES completion:^(void){
+        // Only assign title if it's been edited
+        if (![_title.text isEqualToString:@""]){
+            fsnvc.titleLabel.title = _title.text;
+        } else {
+            fsnvc.titleLabel.title = @"<Blank Title>";
+        }
+
         fsnvc.text.text = _text.text;
-        fsnvc.titleLabel.title = _title.text;
+        
+        // Refs the current note being edited
         fsnvc.noteView = self;
     }];
 }
