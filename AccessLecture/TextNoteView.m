@@ -49,11 +49,13 @@
         } else {
             fsnvc.titleLabel.title = @"<Blank Title>";
         }
-
+        
         fsnvc.text.text = _text.text;
         
         // Refs the current note being edited
         fsnvc.noteView = self;
+        
+        [_placeholder setText:@""];
     }];
 }
 
