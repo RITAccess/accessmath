@@ -6,13 +6,13 @@
 //
 //
 
-#import "AddNoteView.h"
+#import "MTMenuItem.h"
 
-@implementation AddNoteView
+@implementation MTMenuItem
 
 - (id)initWithFrame:(CGRect)frame
 {
-    self = [super initWithFrame:frame];
+    self = [super initWithFrame:CGRectMake(0, 0, 45, 75)];
     if (self) {
         // Initialization code
         _isSelected = NO;
@@ -32,7 +32,6 @@
     
     //// Abstracted Attributes
     NSString* symbolContent = @"+";
-    
     
     //// Oval Drawing
     _collisionPath = [UIBezierPath bezierPath];

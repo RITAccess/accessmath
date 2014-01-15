@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MTMenuItem.h"
 
 @interface MTFlowerMenu : UIControl
 
-- (void)longPressGesture:(UILongPressGestureRecognizer *)reg;
-
 @property NSString *selectedIdentifier;
 @property CGPoint location;
+
+- (void)addMenuItem:(MTMenuItem *)item;
 
 @end

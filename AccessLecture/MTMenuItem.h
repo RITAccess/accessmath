@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddNoteView : UIView
+@interface MTMenuItem : UIView
 
 @property BOOL isSelected;
 

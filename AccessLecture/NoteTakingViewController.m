@@ -10,6 +10,8 @@
 #import "TextNoteViewController.h"
 #import "FileManager.h"
 #import "MTFlowerMenu.h"
+#import "AddNote.h"
+#import "AddImage.h"
 
 @interface NoteTakingViewController ()
 
@@ -50,20 +52,29 @@
                                                  name:UIKeyboardDidHideNotification
                                                object:nil];
     // Load Menu
+    AddNote *addNote = [[AddNote alloc] init];
+    addNote.identifier = @"AddNote";
+    
+    AddImage *addImage = [[AddImage alloc] init];
+    addImage.identifier = @"AddImage";
+    
     _menu = [[MTFlowerMenu alloc] initWithFrame:CGRectZero];
     [_menu addTarget:self action:@selector(menuSelected:) forControlEvents:UIControlEventTouchUpInside];
     [_menu addTarget:self action:@selector(menuAppear:) forControlEvents:UIControlEventTouchDown];
-    [self.view addSubview:_menu];
+
+    [_menu addMenuItem:addNote];
+    [_menu addMenuItem:addImage];
     
-    // Add menu activation gesture
-    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:_menu action:@selector(longPressGesture:)];
-    [self.view addGestureRecognizer:longPress];
+    [self.view addSubview:_menu];
+
 }
 
 - (void)menuSelected:(MTFlowerMenu *)sender
 {
     if ([sender.selectedIdentifier isEqualToString:@"AddNote"]) {
         [self createTextNoteAndPresentAtPoint:sender.location];
+    } else if([sender.selectedIdentifier isEqualToString:@"AddImage"]) {
+        NSLog(@"Add Image");
     }
 }
 

@@ -10,7 +10,9 @@
 
 #import <objc/runtime.h>
 #import "MTFlowerMenu.h"
-#import "AddNoteView.h"
+#import "MTMenuItem.h"
+#import "AddNote.h"
+#import "AddImage.h"
 
 CGPoint CGRectCenterPoint(CGRect rect) {
     return CGPointMake(rect.size.width / 2.0,
@@ -28,63 +30,64 @@ CGAffineTransform CGAffineTransformOrientOnAngle(CGFloat angle){
 @end
 
 @implementation MTFlowerMenu
+{
+    CGFloat currentAngle;
+    NSArray *menuItems;
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        menuItems = @[];
         self.backgroundColor = [UIColor clearColor];
+        currentAngle = 10.0;
     }
     return self;
 }
 
+- (void)didMoveToSuperview
+{
+    // Add menu activation gesture
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressGesture:)];
+    [self.superview addGestureRecognizer:longPress];
+}
+
+- (void)addMenuItem:(MTMenuItem *)item
+{
+    objc_setAssociatedObject(item, "display_angle", [NSNumber numberWithFloat:currentAngle], OBJC_ASSOCIATION_RETAIN);
+    currentAngle -= 50;
+    menuItems = [menuItems arrayByAddingObject:item];
+}
+
 - (void)showMenuAnimated:(BOOL)animated
 {
-    // Create menu items
-    AddNoteView *addNote = [[AddNoteView alloc] initWithFrame:({
-        CGRect frame = CGRectZero;
-        frame.origin = CGRectCenterPoint(self.frame);
-        frame = CGRectInset(frame, -22.5, -37.5);
-        frame;
-    })];
-    addNote.identifier = @"AddNote";
-    [self addSubview:addNote];
-    
-    AddNoteView *addImage = [[AddNoteView alloc] initWithFrame:({
-        CGRect frame = CGRectZero;
-        frame.origin = CGRectCenterPoint(self.frame);
-        frame = CGRectInset(frame, -22.5, -37.5);
-        frame;
-    })];
-    addImage.identifier = @"AddImage";
-    [self addSubview:addImage];
-    
-    AddNoteView *addTest = [[AddNoteView alloc] initWithFrame:({
-        CGRect frame = CGRectZero;
-        frame.origin = CGRectCenterPoint(self.frame);
-        frame = CGRectInset(frame, -22.5, -37.5);
-        frame;
-    })];
-    addTest.identifier = @"AddTest";
-    [self addSubview:addTest];
-    
     // Animate them
     CGAffineTransform start = CGAffineTransformMakeScale(0.0, 0.0);
-    addNote.transform = start;
-    addImage.transform = start;
-    addTest.transform = start;
+    for (MTMenuItem *item in menuItems) {
+        item.transform = CGAffineTransformIdentity;
+        item.isSelected = NO;
+        [item setNeedsDisplay];
+        [item setFrame:({
+            CGRect frame = CGRectZero;
+            frame.origin = CGRectCenterPoint(self.frame);
+            frame = CGRectInset(frame, -22.5, -37.5);
+            frame;
+        })];
+        [self addSubview:item];
+        item.transform = start;
+    }
     
     // Animate self
     self.transform = CGAffineTransformMakeRotation(DEGREES_TO_RADIANS(180));
     
     [UIView animateWithDuration:1.0 delay:0.0 usingSpringWithDamping:0.4 initialSpringVelocity:0.3 options:UIViewAnimationCurveEaseOut animations:^{
-        addNote.transform = CGAffineTransformOrientOnAngle(DEGREES_TO_RADIANS(-10));
-        objc_setAssociatedObject(addNote, "display_angle", @(-10), OBJC_ASSOCIATION_RETAIN);
-        addImage.transform = CGAffineTransformOrientOnAngle(DEGREES_TO_RADIANS(-60));
-        objc_setAssociatedObject(addImage, "display_angle", @(-60), OBJC_ASSOCIATION_RETAIN);
-        addTest.transform = CGAffineTransformOrientOnAngle(DEGREES_TO_RADIANS(-110));
-        objc_setAssociatedObject(addTest, "display_angle", @(-110), OBJC_ASSOCIATION_RETAIN);
+        for (MTMenuItem *item in self.subviews) {
+            if ([item isKindOfClass:[MTMenuItem class]]) {
+                item.transform = CGAffineTransformOrientOnAngle(DEGREES_TO_RADIANS([objc_getAssociatedObject(item, "display_angle") floatValue]));
+            }
+        }
         self.transform = CGAffineTransformIdentity;
     } completion:nil];
 }
@@ -118,8 +121,8 @@ CGAffineTransform CGAffineTransformOrientOnAngle(CGFloat angle){
 
 - (void)notifyObserversOfSelection
 {
-    for (AddNoteView *view in self.subviews) {
-        if ([view isKindOfClass:[AddNoteView class]]) {
+    for (MTMenuItem *view in self.subviews) {
+        if ([view isKindOfClass:[MTMenuItem class]]) {
             if (view.isSelected) {
                 _selectedIdentifier = view.identifier;
                 _location = self.center;
@@ -135,12 +138,12 @@ CGAffineTransform CGAffineTransformOrientOnAngle(CGFloat angle){
     if (!CGAffineTransformIsIdentity(self.transform)) {
         return;
     }
-    for (AddNoteView *view in self.subviews) {
-        if ([view isKindOfClass:[AddNoteView class]]) {
+    for (MTMenuItem *view in self.subviews) {
+        if ([view isKindOfClass:[MTMenuItem class]]) {
             CGPoint touch = [reg locationInView:view];
             view.isSelected = [view.collisionPath containsPoint:touch];
             if (view.isSelected) {
-                CGAffineTransform bigTrans = CGAffineTransformScale(CGAffineTransformOrientOnAngle(DEGREES_TO_RADIANS([objc_getAssociatedObject(view, "display_angle") integerValue])), 1.5, 1.5);
+                CGAffineTransform bigTrans = CGAffineTransformScale(CGAffineTransformOrientOnAngle(DEGREES_TO_RADIANS([objc_getAssociatedObject(view, "display_angle") floatValue])), 1.5, 1.5);
                 bigTrans = CGAffineTransformTranslate(bigTrans, 0.0, -13.0);
                 if (CGAffineTransformEqualToTransform(bigTrans, view.transform)) {
                     continue;
@@ -150,7 +153,7 @@ CGAffineTransform CGAffineTransformOrientOnAngle(CGFloat angle){
                 } completion:nil];
             } else {
                 [UIView animateWithDuration:0.2 animations:^{
-                    view.transform = CGAffineTransformOrientOnAngle(DEGREES_TO_RADIANS([objc_getAssociatedObject(view, "display_angle") integerValue]));
+                    view.transform = CGAffineTransformOrientOnAngle(DEGREES_TO_RADIANS([objc_getAssociatedObject(view, "display_angle") floatValue]));
                 }];
             }
             [view setNeedsDisplay];
