@@ -16,8 +16,8 @@
 
 @property (nonatomic) Note *data;
 
-@property (weak, nonatomic) IBOutlet UITextField *title;
-@property (weak, nonatomic) IBOutlet UITextView *text;
+@property (nonatomic) IBOutlet UITextField *title;
+@property (nonatomic) IBOutlet UITextView *text;
 @property (weak, nonatomic) IBOutlet UILabel *placeholder;
 
 - (IBAction)hideView;

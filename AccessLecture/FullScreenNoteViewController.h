@@ -7,12 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TextNoteView.h"
 
 static NSString *const FullScreenNoteVCNibName = @"FullScreenNoteViewController";
 
 @interface FullScreenNoteViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UITextView *text;
+@property (nonatomic) IBOutlet UITextView *text;
+@property (nonatomic) IBOutlet UINavigationItem *titleLabel;
+@property (nonatomic) TextNoteView *noteView;
 
 - (IBAction)returnToLecture:(id)sender;
 

@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FullScreenNoteViewController">
             <connections>
                 <outlet property="text" destination="a7P-Kd-X8J" id="eeu-oZ-H2t"/>
+                <outlet property="titleLabel" destination="Wp7-Oy-lWI" id="iZE-h7-CDm"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
