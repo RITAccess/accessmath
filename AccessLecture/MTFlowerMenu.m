@@ -8,6 +8,7 @@
 
 #define DEGREES_TO_RADIANS(x) (M_PI * (x) / 180.0)
 
+#import <objc/runtime.h>
 #import "MTFlowerMenu.h"
 #import "AddNoteView.h"
 
@@ -79,8 +80,11 @@ CGAffineTransform CGAffineTransformOrientOnAngle(CGFloat angle){
     
     [UIView animateWithDuration:1.0 delay:0.0 usingSpringWithDamping:0.4 initialSpringVelocity:0.3 options:UIViewAnimationCurveEaseOut animations:^{
         addNote.transform = CGAffineTransformOrientOnAngle(DEGREES_TO_RADIANS(-10));
+        objc_setAssociatedObject(addNote, "display_angle", @(-10), OBJC_ASSOCIATION_RETAIN);
         addImage.transform = CGAffineTransformOrientOnAngle(DEGREES_TO_RADIANS(-60));
+        objc_setAssociatedObject(addImage, "display_angle", @(-60), OBJC_ASSOCIATION_RETAIN);
         addTest.transform = CGAffineTransformOrientOnAngle(DEGREES_TO_RADIANS(-110));
+        objc_setAssociatedObject(addTest, "display_angle", @(-110), OBJC_ASSOCIATION_RETAIN);
         self.transform = CGAffineTransformIdentity;
     } completion:nil];
 }
@@ -128,10 +132,27 @@ CGAffineTransform CGAffineTransformOrientOnAngle(CGFloat angle){
 
 - (void)handleTouch:(UIGestureRecognizer *)reg
 {
+    if (!CGAffineTransformIsIdentity(self.transform)) {
+        return;
+    }
     for (AddNoteView *view in self.subviews) {
         if ([view isKindOfClass:[AddNoteView class]]) {
             CGPoint touch = [reg locationInView:view];
             view.isSelected = [view.collisionPath containsPoint:touch];
+            if (view.isSelected) {
+                CGAffineTransform bigTrans = CGAffineTransformScale(CGAffineTransformOrientOnAngle(DEGREES_TO_RADIANS([objc_getAssociatedObject(view, "display_angle") integerValue])), 1.5, 1.5);
+                bigTrans = CGAffineTransformTranslate(bigTrans, 0.0, -13.0);
+                if (CGAffineTransformEqualToTransform(bigTrans, view.transform)) {
+                    continue;
+                }
+                [UIView animateWithDuration:0.2 delay:0.0 usingSpringWithDamping:0.6 initialSpringVelocity:0.7 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                    view.transform = bigTrans;
+                } completion:nil];
+            } else {
+                [UIView animateWithDuration:0.2 animations:^{
+                    view.transform = CGAffineTransformOrientOnAngle(DEGREES_TO_RADIANS([objc_getAssociatedObject(view, "display_angle") integerValue]));
+                }];
+            }
             [view setNeedsDisplay];
         }
     }

@@ -21,6 +21,8 @@
     return self;
 }
 
+#pragma mark Drawing
+
 - (void)drawRect:(CGRect)rect
 {
     //// Color Declarations
