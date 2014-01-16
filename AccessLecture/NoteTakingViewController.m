@@ -19,6 +19,7 @@
 @property CGPoint menuPoint;
 @property (strong) MTFlowerMenu *menu;
 @property (strong) AMLecture *document;
+@property UITapGestureRecognizer *tapGestureRecognizer;
 
 @end
 
@@ -163,12 +164,22 @@
 
 - (void)keyboardDidShow:(NSNotification *)notification
 {
+    _tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard:)];
+    [self.view addGestureRecognizer:_tapGestureRecognizer];
+}
 
+- (void)dismissKeyboard:(UITapGestureRecognizer *)sender
+{
+    for (UIView *noteTextView in self.view.subviews){
+        if ([noteTextView isKindOfClass:[TextNoteView class]]){
+            [noteTextView endEditing:YES];
+        }
+    }
 }
 
 - (void)keyboardDidHide:(NSNotification *)notification
 {
-
+    [self.view removeGestureRecognizer:_tapGestureRecognizer];
 }
 
 #pragma mark - <LectureViewChild>
