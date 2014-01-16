@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ImageNoteViewController : UIViewController <UIGestureRecognizerDelegate>
+@interface ImageNoteViewController : UIViewController
 
 - (id)initWithPoint:(CGPoint)point;
 
