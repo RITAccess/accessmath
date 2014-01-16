@@ -29,7 +29,7 @@
 
 - (void)willMoveToParentViewController:(UIViewController *)parent
 {
-    UIPanGestureRecognizer *scale = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(sizeView:)];
+    __strong UIPanGestureRecognizer *scale = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(sizeView:)];
     [scale setMinimumNumberOfTouches:@1];
     [scale setMaximumNumberOfTouches:@1];
     [scale setDelaysTouchesBegan:NO];
@@ -63,6 +63,11 @@
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
     return YES;
+}
+
+ - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldBeRequiredToFailByGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return NO;
 }
 
 @end
