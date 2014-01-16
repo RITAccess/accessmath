@@ -41,6 +41,9 @@
 		3F2DC9751885B29E008C29BF /* MTMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC9741885B29E008C29BF /* MTMenuItem.m */; };
 		3F2DC9791886ECB5008C29BF /* AddNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC9781886ECB5008C29BF /* AddNote.m */; };
 		3F2DC97C1886EDF1008C29BF /* AddImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC97B1886EDF1008C29BF /* AddImage.m */; };
+		3F2DC98218871FE4008C29BF /* ImageNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC98018871FE4008C29BF /* ImageNoteViewController.m */; };
+		3F2DC98318871FE4008C29BF /* ImageNoteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F2DC98118871FE4008C29BF /* ImageNoteViewController.xib */; };
+		3F2DC9871887225D008C29BF /* ImageNoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC9861887225D008C29BF /* ImageNoteView.m */; };
 		3F6D11C417625EA20066A4FA /* ALNetworkInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D11B017625EA20066A4FA /* ALNetworkInterface.m */; };
 		3F6D11C517625EA20066A4FA /* SocketIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D11B217625EA20066A4FA /* SocketIO.m */; };
 		3F6D11C617625EA20066A4FA /* SocketIOJSONSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D11B417625EA20066A4FA /* SocketIOJSONSerialization.m */; };
@@ -150,6 +153,11 @@
 		3F2DC9781886ECB5008C29BF /* AddNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNote.m; sourceTree = "<group>"; };
 		3F2DC97A1886EDF1008C29BF /* AddImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddImage.h; sourceTree = "<group>"; };
 		3F2DC97B1886EDF1008C29BF /* AddImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddImage.m; sourceTree = "<group>"; };
+		3F2DC97F18871FE4008C29BF /* ImageNoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageNoteViewController.h; sourceTree = "<group>"; };
+		3F2DC98018871FE4008C29BF /* ImageNoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageNoteViewController.m; sourceTree = "<group>"; };
+		3F2DC98118871FE4008C29BF /* ImageNoteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageNoteViewController.xib; sourceTree = "<group>"; };
+		3F2DC9851887225D008C29BF /* ImageNoteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageNoteView.h; sourceTree = "<group>"; };
+		3F2DC9861887225D008C29BF /* ImageNoteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageNoteView.m; sourceTree = "<group>"; };
 		3F6D11AF17625EA20066A4FA /* ALNetworkInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALNetworkInterface.h; sourceTree = "<group>"; };
 		3F6D11B017625EA20066A4FA /* ALNetworkInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALNetworkInterface.m; sourceTree = "<group>"; };
 		3F6D11B117625EA20066A4FA /* SocketIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIO.h; sourceTree = "<group>"; };
@@ -373,6 +381,18 @@
 				3F2DC97B1886EDF1008C29BF /* AddImage.m */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		3F2DC97E18871FCF008C29BF /* ImageNote */ = {
+			isa = PBXGroup;
+			children = (
+				3F2DC97F18871FE4008C29BF /* ImageNoteViewController.h */,
+				3F2DC98018871FE4008C29BF /* ImageNoteViewController.m */,
+				3F2DC9851887225D008C29BF /* ImageNoteView.h */,
+				3F2DC9861887225D008C29BF /* ImageNoteView.m */,
+				3F2DC98118871FE4008C29BF /* ImageNoteViewController.xib */,
+			);
+			name = ImageNote;
 			sourceTree = "<group>";
 		};
 		3F6D11AD17625E500066A4FA /* Networking */ = {
@@ -680,6 +700,7 @@
 		4C8ABE7C177CA341007C934C /* NotesViewController */ = {
 			isa = PBXGroup;
 			children = (
+				3F2DC97E18871FCF008C29BF /* ImageNote */,
 				3F07C355187B3648005BC7EC /* TextNote */,
 				4CFC572E17DF800700393A1E /* NoteTakingViewController.h */,
 				4CFC572F17DF800700393A1E /* NoteTakingViewController.m */,
@@ -843,6 +864,7 @@
 			files = (
 				2CBF301D177B7AB10087C17C /* DrawViewController.xib in Resources */,
 				3FED96161370863E00D8D1B8 /* InfoPlist.strings in Resources */,
+				3F2DC98318871FE4008C29BF /* ImageNoteViewController.xib in Resources */,
 				3F8D9926187F48CC0061DEA2 /* DocumentPicker.xib in Resources */,
 				3F8D990F187DD9100061DEA2 /* FullScreenNoteViewController.xib in Resources */,
 				4C5B55FB17720A15005B79CF /* server.crt in Resources */,
@@ -936,6 +958,7 @@
 				4C62BECD175651DB00CAF4CF /* FileManager.m in Sources */,
 				4C4B8BFA178EF57200C2F94B /* QRScanner.m in Sources */,
 				2C0F886B1760D8EC0062BD16 /* DrawView.m in Sources */,
+				3F2DC98218871FE4008C29BF /* ImageNoteViewController.m in Sources */,
 				3F6D11C417625EA20066A4FA /* ALNetworkInterface.m in Sources */,
 				4C37CCB018295FC0006D3B1F /* ALMetaData.m in Sources */,
 				3F6D11C517625EA20066A4FA /* SocketIO.m in Sources */,
@@ -952,6 +975,7 @@
 				3F8D9925187F48CC0061DEA2 /* DocumentPicker.m in Sources */,
 				4CDDF69717EB690900FE34E7 /* AMLecture.m in Sources */,
 				4C9AB8FE177C6895004A4F65 /* TopNav.m in Sources */,
+				3F2DC9871887225D008C29BF /* ImageNoteView.m in Sources */,
 				4CEA1A04177CAAED00A1DE05 /* OpenLectureViewController.m in Sources */,
 				4C8ABE78177C87BD007C934C /* StreamViewController.m in Sources */,
 				3F2DC9721885B295008C29BF /* MTFlowerMenu.m in Sources */,

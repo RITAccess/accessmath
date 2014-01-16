@@ -12,6 +12,7 @@
 #import "MTFlowerMenu.h"
 #import "AddNote.h"
 #import "AddImage.h"
+#import "ImageNoteViewController.h"
 
 @interface NoteTakingViewController ()
 
@@ -74,7 +75,7 @@
     if ([sender.selectedIdentifier isEqualToString:@"AddNote"]) {
         [self createTextNoteAndPresentAtPoint:sender.location];
     } else if([sender.selectedIdentifier isEqualToString:@"AddImage"]) {
-        NSLog(@"Add Image");
+        [self createImageNoteAndPresentAtPoint:sender.location];
     }
 }
 
@@ -123,6 +124,13 @@
     } completion:^(BOOL finished) {
             [_document save];
     }];
+}
+
+- (void)createImageNoteAndPresentAtPoint:(CGPoint)point
+{
+    ImageNoteViewController *invc = [[ImageNoteViewController alloc] initWithPoint:point];
+    [self addChildViewController:invc];
+    [self.view addSubview:invc.view];
 }
 
 - (void)presentOptionsAtPoint:(CGPoint)point
