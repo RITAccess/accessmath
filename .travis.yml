@@ -1,4 +1,11 @@
 language: objective-c
 
-script: 
-- xctool -project AccessLecture.xcodeproj -scheme AccessLecture test
+before_install:
+    - gem install cocoapods --no-rdoc --no-ri --no-document --quiet
+
+xcode_workspace: AccessLecture.xcworkspace
+
+xcode_scheme: AccessLecture
+
+xcode_sdk: iphonesimulator
+
