@@ -8,11 +8,11 @@
 
 #import "NoteTakingViewController.h"
 #import "ImageNoteViewController.h"
-#import "ImageNoteView.h"
 
-@interface ImageNoteViewController ()
-
-@end
+CGPoint CGRectCenterPointInSuperview(CGRect rect) {
+    return CGPointMake((rect.size.width / 2.0) + rect.origin.x,
+                       (rect.size.height / 2.0) + rect.origin.y);
+}
 
 @implementation ImageNoteViewController
 {
@@ -68,7 +68,8 @@
 {
     self.view.backgroundColor = [UIColor clearColor];
     ImageNoteView *view = (ImageNoteView *)self.view;
-    #pragma unused(view)
+    [view setResize:YES];
+    view.delegate = self;
 }
 
 - (void)viewDidLoad
@@ -82,11 +83,13 @@
     [self.view addGestureRecognizer:scale];
 }
 
-#pragma mark Actions
+#pragma mark View Delegate
 
-- (IBAction)doneButton:(id)sender
+- (void)imageView:(ImageNoteView *)imageView didFinishResizing:(BOOL)finish
 {
-    NSLog(@"Done Button");
+    NSLog(@"%@", imageView);
+    [imageView removeGestureRecognizer:scale];
+    [imageView setResize:NO];
 }
 
 #pragma mark Resizing
@@ -96,7 +99,8 @@
 /**
  * Handles the gesture recognizer put on to handle dragging from corners and
  * resizing. Once the resizing is complete the gesture will be removed and the
- * image will be captured.
+ * image will be captured. Corner is set to determin the resize corner. If all
+ * are set the view will move.
  */
 - (void)sizeView:(UIPanGestureRecognizer *)reg
 {
@@ -123,23 +127,27 @@
                     corner = CIBottonRight;
                 }
                 originalFrame = self.view.frame;
-            } else if (CGRectContainsPoint(view.moveArea, touch)) {
-                NSLog(@"Move");
+            } else if (CGRectContainsPoint(view.moveArea, [reg locationInView:view])) {
+                corner = (CITopLeft & CITopRight & CIBottomLeft & CIBottonRight);
+                originalFrame = self.view.frame;
             } else {
                 reg.enabled = NO;
                 reg.enabled = YES;
             }
         } break;
-        case UIGestureRecognizerStateChanged:
-            if (corner) {
-                [(ImageNoteView *)self.view resizingViewWithTranslation:[reg translationInView:self.view.superview] withCorner:corner ofFrame:originalFrame];
+        case UIGestureRecognizerStateChanged: {
+            ImageNoteView *view = (ImageNoteView *)self.view;
+            if ((corner == CITopLeft) || (corner == CITopRight) || (corner == CIBottomLeft) || (corner == CIBottonRight)) {
+                [view resizingViewWithTranslation:[reg translationInView:self.view.superview] withCorner:corner ofFrame:originalFrame];
+            } else if (corner == (CITopLeft & CITopRight & CIBottomLeft & CIBottonRight)) {
+                [view translateView:[reg translationInView:self.view.superview] fromPoint:CGRectCenterPointInSuperview(originalFrame)];
             }
-            break;
+        } break;
         case UIGestureRecognizerStateEnded:
+            [[(NoteTakingViewController *)self.parentViewController document] save];
         case UIGestureRecognizerStateCancelled:
         case UIGestureRecognizerStateFailed:
             corner = nil;
-            [[(NoteTakingViewController *)self.parentViewController document] save];
             break;
         default:
             break;

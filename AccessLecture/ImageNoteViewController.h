@@ -7,15 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ImageNoteView.h"
 
-typedef enum CornerIdenifier : NSUInteger {
-    CITopLeft = 1 << 0,
-    CITopRight = 1 << 1,
-    CIBottomLeft = 1 << 2,
-    CIBottonRight = 1 << 3
-} CornerIdenifier;
-
-@interface ImageNoteViewController : UIViewController <NSSecureCoding>
+@interface ImageNoteViewController : UIViewController <NSSecureCoding, ImageViewDelegate>
 
 @property (strong) NSString *noteTitle;
 @property (strong) NSString *noteContent;

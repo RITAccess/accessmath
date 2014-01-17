@@ -7,8 +7,12 @@
 //
 
 #import "ImageNoteView.h"
+#import "ImageNoteViewController.h"
 
 @implementation ImageNoteView
+{
+    BOOL _resize;
+}
 
 - (void)resizingViewWithTranslation:(CGPoint)translation withCorner:(CornerIdenifier)cornerID ofFrame:(CGRect)originalFrame
 {
@@ -48,28 +52,51 @@
     [self setNeedsDisplay];
 }
 
-- (CGRect)sizeForImage
+- (void)translateView:(CGPoint)translations fromPoint:(CGPoint)center
 {
-    CGRect frame = self.bounds;
-    CGRect minFrame = CGRectMake(56, 26, 194, 88);
-    if (CGRectGetHeight(frame) <= CGRectGetHeight(minFrame)) {
-        frame.size.height = minFrame.size.height;
-        [self setFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, minFrame.size.height)];
+    self.center = ({
+        CGPoint c = center;
+        c.x += translations.x;
+        c.y += translations.y;
+        c;
+    });
+    [self setNeedsDisplay];
+}
+
+- (IBAction)doneButton:(id)sender
+{
+    [_delegate imageView:self didFinishResizing:YES];
+}
+
+- (void)setResize:(BOOL)resize
+{
+    _resize = resize;
+    if (resize) {
+        [self addSubview:_doneButton];
+    } else {
+        [_doneButton removeFromSuperview];
     }
-    if (CGRectGetWidth(frame) <= CGRectGetWidth(minFrame)) {
-        frame.size.width = minFrame.size.width;
-        [self setFrame:CGRectMake(frame.origin.x, frame.origin.y, minFrame.size.width, frame.size.height)];
-    }
-    return frame;
+    [self setNeedsDisplay];
 }
 
 - (void)drawRect:(CGRect)rect
+{
+    if (_resize) {
+        [self drawRectForResize:rect];
+    } else {
+        UIBezierPath *image = [UIBezierPath bezierPathWithRect:_imageArea];
+        [[UIColor blackColor] setStroke];
+        [image stroke];
+    }
+}
+
+- (void)drawRectForResize:(CGRect)rect
 {
     //// Color Declarations
     UIColor* light = [UIColor colorWithRed: 0.667 green: 0.667 blue: 0.667 alpha: 1];
     
     //// Frames
-    CGRect frame = CGRectMake(25, 96, 313, 211);
+    CGRect frame = self.bounds;
     
     //// Subframes
     CGRect moveFrame = CGRectMake(CGRectGetMinX(frame) + floor((CGRectGetWidth(frame) - 55) * 0.50000 + 0.5), CGRectGetMinY(frame) + floor((CGRectGetHeight(frame) - 54) * 0.67516 + 0.5), 55, 54);
@@ -79,7 +106,8 @@
     _moveArea = moveFrame;
     
     //// Rectangle Drawing
-    UIBezierPath* rectanglePath = [UIBezierPath bezierPathWithRect: CGRectMake(CGRectGetMinX(frame) + 12, CGRectGetMinY(frame) + 12, CGRectGetWidth(frame) - 23.5, CGRectGetHeight(frame) - 23.5)];
+    _imageArea = CGRectMake(CGRectGetMinX(frame) + 12, CGRectGetMinY(frame) + 12, CGRectGetWidth(frame) - 23.5, CGRectGetHeight(frame) - 23.5);
+    UIBezierPath* rectanglePath = [UIBezierPath bezierPathWithRect:_imageArea];
     [light setStroke];
     rectanglePath.lineWidth = 0.5;
     CGFloat rectanglePattern[] = {2, 2, 2, 2};
