@@ -8,7 +8,8 @@
 
 #import "Lecture.h"
 #import "Note.h"
-#import "ImageNote.h"
+#import "ImageNoteViewController.h"
+#import "AMLecture.h"
 
 @interface Lecture ()
 
@@ -37,7 +38,7 @@
 - (BOOL)addNotes:(NSSet *)objects
 {
     NSSet *valid = [objects objectsPassingTest:^BOOL(id obj, BOOL *stop) {
-        return ([obj isKindOfClass:[Note class]] || [obj isKindOfClass:[ImageNote class]]);
+        return ([obj isKindOfClass:[Note class]] || [obj isKindOfClass:[ImageNoteViewController class]]);
     }];
     _notes = [(_notes ?: @[]) arrayByAddingObjectsFromArray:[valid allObjects]];
     return TRUE;

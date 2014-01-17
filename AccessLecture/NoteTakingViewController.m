@@ -19,6 +19,7 @@
 @property UILabel *addNote;
 @property CGPoint menuPoint;
 @property (strong) MTFlowerMenu *menu;
+
 @property (strong) AMLecture *document;
 @property UITapGestureRecognizer *tapGestureRecognizer;
 
@@ -64,17 +65,6 @@
     [self.view addSubview:_menu];
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    // Get document
-    [[FileManager defaultManager] currentDocumentWithCompletion:^(AMLecture *lecture) {
-        _document = lecture;
-        for (Note *note in _document.lecture.notes) {
-            [self loadNoteAndPresent:note];
-        }
-    }];
-}
-
 - (void)menuSelected:(MTFlowerMenu *)sender
 {
     if ([sender.selectedIdentifier isEqualToString:@"AddNote"]) {
@@ -89,12 +79,34 @@
     [self.view bringSubviewToFront:sender];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    // Get document
+    [[FileManager defaultManager] currentDocumentWithCompletion:^(AMLecture *lecture) { 
+        _document = lecture;
+        for (id note in _document.lecture.notes) {
+            if ([note isKindOfClass:[Note class]]) {
+                [self loadNoteAndPresent:note];
+            } else if ([note isKindOfClass:[ImageNoteViewController class]]) {
+                ImageNoteViewController *i = (ImageNoteViewController *)note;
+                [self loadImageNoteAndPresent:i];
+            }
+        }
+    }];
+}
+
 - (void)loadNoteAndPresent:(Note *)note
 {
     TextNoteViewController *tnvc = [[TextNoteViewController alloc] initWithNote:note];
     [self addChildViewController:tnvc];
     [self.view addSubview:tnvc.view];
     [_document save];
+}
+
+- (void)loadImageNoteAndPresent:(ImageNoteViewController *)invc
+{
+    [self addChildViewController:invc];
+    [self.view addSubview:invc.view];
 }
 
 - (void)createTextNoteAndPresentAtPoint:(CGPoint)point
@@ -114,8 +126,15 @@
 - (void)createImageNoteAndPresentAtPoint:(CGPoint)point
 {
     ImageNoteViewController *invc = [[ImageNoteViewController alloc] initWithPoint:point];
+    [_document.lecture addNotes:[NSSet setWithObject:invc]];
     [self addChildViewController:invc];
     [self.view addSubview:invc.view];
+    invc.view.transform = CGAffineTransformMakeScale(0.0, 0.0);
+    [UIView animateWithDuration:0.4 delay:0.0 usingSpringWithDamping:0.6 initialSpringVelocity:0.2 options:UIViewAnimationCurveEaseInOut animations:^{
+        invc.view.transform = CGAffineTransformIdentity;
+    } completion:^(BOOL finished) {
+        [_document save];
+    }];
 }
 
 - (void)presentOptionsAtPoint:(CGPoint)point

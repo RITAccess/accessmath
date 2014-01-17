@@ -105,7 +105,6 @@
 		4CEA1A03177CAAED00A1DE05 /* LectureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEA1A00177CAAED00A1DE05 /* LectureCell.m */; };
 		4CEA1A04177CAAED00A1DE05 /* OpenLectureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEA1A02177CAAED00A1DE05 /* OpenLectureViewController.m */; };
 		4CFC573017DF800700393A1E /* NoteTakingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC572F17DF800700393A1E /* NoteTakingViewController.m */; };
-		4CFC573617DF807F00393A1E /* ImageNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC573517DF807F00393A1E /* ImageNote.m */; };
 		A04C7511033F447FAA1EB6BA /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09983FD2441D47DAA38B408E /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -257,8 +256,6 @@
 		4CEA1A02177CAAED00A1DE05 /* OpenLectureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenLectureViewController.m; sourceTree = "<group>"; };
 		4CFC572E17DF800700393A1E /* NoteTakingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteTakingViewController.h; sourceTree = "<group>"; };
 		4CFC572F17DF800700393A1E /* NoteTakingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteTakingViewController.m; sourceTree = "<group>"; };
-		4CFC573417DF807F00393A1E /* ImageNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageNote.h; sourceTree = "<group>"; };
-		4CFC573517DF807F00393A1E /* ImageNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageNote.m; sourceTree = "<group>"; };
 		AC4FAAAE68144A8F8DC8769C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -508,8 +505,6 @@
 				3F99F1FF154364270065CBB9 /* Note.m */,
 				3F99F20015436E090065CBB9 /* Lecture.h */,
 				3F99F20115436E090065CBB9 /* Lecture.m */,
-				4CFC573417DF807F00393A1E /* ImageNote.h */,
-				4CFC573517DF807F00393A1E /* ImageNote.m */,
 			);
 			name = UIDocument;
 			sourceTree = "<group>";
@@ -963,7 +958,6 @@
 				4C37CCB018295FC0006D3B1F /* ALMetaData.m in Sources */,
 				3F6D11C517625EA20066A4FA /* SocketIO.m in Sources */,
 				4CD0A5EF177DC98600864228 /* ConnectionViewController.m in Sources */,
-				4CFC573617DF807F00393A1E /* ImageNote.m in Sources */,
 				4CFC573017DF800700393A1E /* NoteTakingViewController.m in Sources */,
 				4CDB057D17B557C300D8EB85 /* AccessLecture.xcdatamodeld in Sources */,
 				3F6D11C617625EA20066A4FA /* SocketIOJSONSerialization.m in Sources */,

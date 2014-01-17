@@ -14,9 +14,29 @@
         <view contentMode="scaleToFill" id="1" customClass="ImageNoteView">
             <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wNb-G1-TH8">
+                    <rect key="frame" x="66" y="54" width="68" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                    <state key="normal" title="Done">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="doneButton:" destination="-1" eventType="touchUpInside" id="LF7-RB-UbJ"/>
+                    </connections>
+                </button>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
+            <constraints>
+                <constraint firstAttribute="centerY" secondItem="wNb-G1-TH8" secondAttribute="centerY" constant="31" id="EeF-LM-Nnt"/>
+                <constraint firstAttribute="centerX" secondItem="wNb-G1-TH8" secondAttribute="centerX" id="SdW-5D-Pu0"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="doneButton" destination="wNb-G1-TH8" id="M60-dt-vOB"/>
+            </connections>
         </view>
     </objects>
 </document>

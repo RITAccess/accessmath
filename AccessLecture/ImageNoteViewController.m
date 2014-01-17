@@ -6,14 +6,9 @@
 //
 //
 
+#import "NoteTakingViewController.h"
 #import "ImageNoteViewController.h"
-
-typedef enum CornerIdenifier : NSUInteger {
-    CITopLeft = 1 << 0,
-    CITopRight = 1 << 1,
-    CIBottomLeft = 1 << 2,
-    CIBottonRight = 1 << 3
-} CornerIdenifier;
+#import "ImageNoteView.h"
 
 @interface ImageNoteViewController ()
 
@@ -21,6 +16,7 @@ typedef enum CornerIdenifier : NSUInteger {
 
 @implementation ImageNoteViewController
 {
+    UIPanGestureRecognizer *scale;
     CornerIdenifier corner;
     CGRect originalFrame;
 }
@@ -33,65 +29,81 @@ typedef enum CornerIdenifier : NSUInteger {
         CGRect frame = CGRectMake(0, 0, 200, 200);
         self.view.frame = frame;
         self.view.center = point;
-        self.view.backgroundColor = [UIColor clearColor];
+        [self layoutView];
     }
     return self;
 }
 
+#pragma mark Secure Coding
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [ImageNoteViewController new];
+    if (self) {
+        _noteTitle = [aDecoder decodeObjectOfClass:[NSString class] forKey:@"note-title"];
+        _noteContent = [aDecoder decodeObjectOfClass:[NSString class] forKey:@"note-content"];
+        self.view.frame = [aDecoder decodeCGRectForKey:@"note-frame"];
+        [self layoutView];
+        // Add title and content, need to encode refereance to image here to. see
+        // NSFileWrapper for this.
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:(_noteTitle ?: @"Untitled") forKey:@"note-title"];
+    [aCoder encodeObject:(_noteContent ?: @"") forKey:@"note-content"];
+    [aCoder encodeCGRect:self.view.frame forKey:@"note-frame"];
+}
+
++ (BOOL)supportsSecureCoding
+{
+    return YES;
+}
+
+#pragma mark Setup
+
+- (void)layoutView
+{
+    self.view.backgroundColor = [UIColor clearColor];
+    ImageNoteView *view = (ImageNoteView *)self.view;
+    #pragma unused(view)
+}
+
 - (void)viewDidLoad
 {
-    UIPanGestureRecognizer *scale = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(sizeView:)];
+    // Load the GR that will be used to resize the view. This should only be done
+    // when creating the note for the first time.
+    scale = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(sizeView:)];
     [scale setMinimumNumberOfTouches:1];
     [scale setMaximumNumberOfTouches:1];
     [scale setDelaysTouchesBegan:NO];
     [self.view addGestureRecognizer:scale];
 }
 
-- (void)resizingViewWithTranslation:(CGPoint)translation withCorner:(CornerIdenifier)cornerID
+#pragma mark Actions
+
+- (IBAction)doneButton:(id)sender
 {
-    if (cornerID == CIBottonRight) {
-        self.view.frame = ({
-            CGRect frame = originalFrame;
-            frame.size.height += translation.y;
-            frame.size.width += translation.x;
-            frame;
-        });
-    } else if (cornerID == CITopLeft) {
-        self.view.frame = ({
-            CGRect frame = originalFrame;
-            frame.size.height -= translation.y;
-            frame.size.width -= translation.x;
-            frame.origin.x += translation.x;
-            frame.origin.y += translation.y;
-            frame;
-        });
-    } else if (cornerID == CITopRight) {
-        self.view.frame = ({
-            CGRect frame = originalFrame;
-            frame.size.height -= translation.y;
-            frame.size.width += translation.x;
-            frame.origin.y += translation.y;
-            frame;
-        });
-    }else if (cornerID == CIBottomLeft) {
-        self.view.frame = ({
-            CGRect frame = originalFrame;
-            frame.size.height += translation.y;
-            frame.size.width -= translation.x;
-            frame.origin.x += translation.x;
-            frame;
-        });
-    }
-    [self.view setNeedsDisplay];
+    NSLog(@"Done Button");
 }
+
+#pragma mark Resizing
 
 #define EDGE_BUFFER 44
 
+/**
+ * Handles the gesture recognizer put on to handle dragging from corners and
+ * resizing. Once the resizing is complete the gesture will be removed and the
+ * image will be captured.
+ */
 - (void)sizeView:(UIPanGestureRecognizer *)reg
 {
     switch (reg.state) {
         case UIGestureRecognizerStateBegan: {
             CGPoint touch = [reg locationInView:self.view.superview];
+            ImageNoteView *view = (ImageNoteView *)self.view;
             // Check to see if start is within 15 points of the edge
             if (CGRectContainsPoint(self.view.frame, touch) &&
                 !CGRectContainsPoint(CGRectInset(self.view.frame, EDGE_BUFFER, EDGE_BUFFER), touch)) {
@@ -111,6 +123,8 @@ typedef enum CornerIdenifier : NSUInteger {
                     corner = CIBottonRight;
                 }
                 originalFrame = self.view.frame;
+            } else if (CGRectContainsPoint(view.moveArea, touch)) {
+                NSLog(@"Move");
             } else {
                 reg.enabled = NO;
                 reg.enabled = YES;
@@ -118,13 +132,14 @@ typedef enum CornerIdenifier : NSUInteger {
         } break;
         case UIGestureRecognizerStateChanged:
             if (corner) {
-                [self resizingViewWithTranslation:[reg translationInView:self.view.superview] withCorner:corner];
+                [(ImageNoteView *)self.view resizingViewWithTranslation:[reg translationInView:self.view.superview] withCorner:corner ofFrame:originalFrame];
             }
             break;
         case UIGestureRecognizerStateEnded:
         case UIGestureRecognizerStateCancelled:
         case UIGestureRecognizerStateFailed:
             corner = nil;
+            [[(NoteTakingViewController *)self.parentViewController document] save];
             break;
         default:
             break;
