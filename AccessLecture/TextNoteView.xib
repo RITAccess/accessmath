@@ -11,7 +11,7 @@
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view autoresizesSubviews="NO" multipleTouchEnabled="YES" contentMode="center" id="1" customClass="TextNoteView">
+        <view autoresizesSubviews="NO" multipleTouchEnabled="YES" alpha="0.79999999999999982" contentMode="center" id="1" customClass="TextNoteView">
             <rect key="frame" x="0.0" y="0.0" width="450" height="200"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -38,14 +38,14 @@
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="Title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ech-iv-xKo" userLabel="Title">
-                    <rect key="frame" x="52" y="1" width="348" height="30"/>
+                    <rect key="frame" x="52" y="1" width="289" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="348" id="I2a-Hk-A6o"/>
+                        <constraint firstAttribute="width" constant="289" id="I2a-Hk-A6o"/>
                         <constraint firstAttribute="height" constant="30" id="mGE-ru-ROr"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
                     <connections>
                         <action selector="titleActions:forEvent:" destination="1" eventType="editingDidEnd" id="jLk-Ef-w6a"/>
@@ -68,13 +68,14 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J0f-NS-FPr">
-                    <rect key="frame" x="400" y="0.0" width="50" height="50"/>
+                    <rect key="frame" x="349" y="0.0" width="50" height="31"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.09888436153938629" green="0.44376273777173914" blue="0.18016170640443741" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.0" green="0.50196081399917603" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="50" id="Ah1-A2-JlI"/>
-                        <constraint firstAttribute="height" constant="50" id="drG-8w-Bf0"/>
+                        <constraint firstAttribute="height" constant="31" id="drG-8w-Bf0"/>
                     </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                     <state key="normal" title="Full">
                         <color key="titleColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -84,7 +85,7 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.92549026010000002" green="0.92549026010000002" blue="0.92549026010000002" alpha="0.90000000000000002" colorSpace="deviceRGB"/>
             <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
             <constraints>
                 <constraint firstAttribute="centerX" secondItem="fR4-QG-F72" secondAttribute="centerX" constant="3" id="6kg-YC-e9j"/>
@@ -94,9 +95,9 @@
                 <constraint firstAttribute="centerX" secondItem="rx2-l5-EB2" secondAttribute="centerX" constant="8.5" id="cMn-9c-AVM"/>
                 <constraint firstAttribute="centerX" secondItem="b4k-3v-WAx" secondAttribute="centerX" constant="203" id="i2r-Pc-oOl"/>
                 <constraint firstAttribute="centerY" secondItem="fR4-QG-F72" secondAttribute="centerY" constant="-14" id="kwh-7M-2gS"/>
-                <constraint firstAttribute="centerX" secondItem="ech-iv-xKo" secondAttribute="centerX" constant="-1" id="nqN-2S-Qyw"/>
-                <constraint firstAttribute="centerX" secondItem="J0f-NS-FPr" secondAttribute="centerX" constant="-200" id="pIJ-En-tYb"/>
-                <constraint firstAttribute="centerY" secondItem="J0f-NS-FPr" secondAttribute="centerY" constant="75" id="xbz-IC-sVa"/>
+                <constraint firstAttribute="centerX" secondItem="ech-iv-xKo" secondAttribute="centerX" constant="28.5" id="nqN-2S-Qyw"/>
+                <constraint firstAttribute="centerX" secondItem="J0f-NS-FPr" secondAttribute="centerX" constant="-149" id="pIJ-En-tYb"/>
+                <constraint firstAttribute="centerY" secondItem="J0f-NS-FPr" secondAttribute="centerY" constant="84.5" id="xbz-IC-sVa"/>
             </constraints>
             <connections>
                 <outlet property="placeholder" destination="rx2-l5-EB2" id="jQm-si-3qI"/>
