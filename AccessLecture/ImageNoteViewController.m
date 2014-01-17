@@ -29,7 +29,7 @@ CGPoint CGRectCenterPointInSuperview(CGRect rect) {
         CGRect frame = CGRectMake(0, 0, 200, 200);
         self.view.frame = frame;
         self.view.center = point;
-        [self layoutView];
+        [self layoutViewFromDisk:NO];
     }
     return self;
 }
@@ -43,7 +43,8 @@ CGPoint CGRectCenterPointInSuperview(CGRect rect) {
         _noteTitle = [aDecoder decodeObjectOfClass:[NSString class] forKey:@"note-title"];
         _noteContent = [aDecoder decodeObjectOfClass:[NSString class] forKey:@"note-content"];
         self.view.frame = [aDecoder decodeCGRectForKey:@"note-frame"];
-        [self layoutView];
+        [self layoutViewFromDisk:YES];
+        
         // Add title and content, need to encode refereance to image here to. see
         // NSFileWrapper for this.
     }
@@ -64,11 +65,11 @@ CGPoint CGRectCenterPointInSuperview(CGRect rect) {
 
 #pragma mark Setup
 
-- (void)layoutView
+- (void)layoutViewFromDisk:(BOOL)loadedFromDisk
 {
     self.view.backgroundColor = [UIColor clearColor];
     ImageNoteView *view = (ImageNoteView *)self.view;
-    [view setResize:YES];
+    [self imageView:view didFinishResizing:loadedFromDisk];
     view.delegate = self;
 }
 
@@ -87,9 +88,12 @@ CGPoint CGRectCenterPointInSuperview(CGRect rect) {
 
 - (void)imageView:(ImageNoteView *)imageView didFinishResizing:(BOOL)finish
 {
-    NSLog(@"%@", imageView);
-    [imageView removeGestureRecognizer:scale];
-    [imageView setResize:NO];
+    if (finish) {
+        [imageView removeGestureRecognizer:scale];
+        [imageView setResize:NO];
+    } else {
+        [imageView setResize:YES];
+    }
 }
 
 #pragma mark Resizing

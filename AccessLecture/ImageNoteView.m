@@ -81,6 +81,10 @@
 
 - (void)drawRect:(CGRect)rect
 {
+    // Aways Run
+    CGRect frame = self.bounds;
+    _imageArea = CGRectMake(CGRectGetMinX(frame) + 12, CGRectGetMinY(frame) + 12, CGRectGetWidth(frame) - 23.5, CGRectGetHeight(frame) - 23.5);
+    _moveArea = CGRectMake(CGRectGetMinX(frame) + floor((CGRectGetWidth(frame) - 55) * 0.50000 + 0.5), CGRectGetMinY(frame) + floor((CGRectGetHeight(frame) - 54) * 0.67516 + 0.5), 55, 54);
     if (_resize) {
         [self drawRectForResize:rect];
     } else {
@@ -99,14 +103,10 @@
     CGRect frame = self.bounds;
     
     //// Subframes
-    CGRect moveFrame = CGRectMake(CGRectGetMinX(frame) + floor((CGRectGetWidth(frame) - 55) * 0.50000 + 0.5), CGRectGetMinY(frame) + floor((CGRectGetHeight(frame) - 54) * 0.67516 + 0.5), 55, 54);
+    CGRect moveFrame = _moveArea;
     CGRect group = CGRectMake(CGRectGetMinX(moveFrame) + floor((CGRectGetWidth(moveFrame) - 52) * 0.66667 + 0.5), CGRectGetMinY(moveFrame) + floor((CGRectGetHeight(moveFrame) - 52) * 0.50000 + 0.5), 52, 52);
     
-    // Set Public info
-    _moveArea = moveFrame;
-    
     //// Rectangle Drawing
-    _imageArea = CGRectMake(CGRectGetMinX(frame) + 12, CGRectGetMinY(frame) + 12, CGRectGetWidth(frame) - 23.5, CGRectGetHeight(frame) - 23.5);
     UIBezierPath* rectanglePath = [UIBezierPath bezierPathWithRect:_imageArea];
     [light setStroke];
     rectanglePath.lineWidth = 0.5;
