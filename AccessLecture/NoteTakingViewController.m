@@ -89,15 +89,6 @@
     [self.view bringSubviewToFront:sender];
 }
 
-- (void)recognizeWithTranslation:(CGPoint)translation
-{
-    // TODO add a modular system for adding menu items, look into UIDynamics for object colltion.
-    if (translation.y >= 45 && translation.y < 120 && translation.x < 75 && translation.x > -75) {
-        // Add note
-        [self createTextNoteAndPresentAtPoint:_menuPoint];
-    }
-}
-
 - (void)loadNoteAndPresent:(Note *)note
 {
     TextNoteViewController *tnvc = [[TextNoteViewController alloc] initWithNote:note];
