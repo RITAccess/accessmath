@@ -18,12 +18,8 @@
 @property UILabel *addNote;
 @property CGPoint menuPoint;
 @property (strong) MTFlowerMenu *menu;
-
-@end
-
-@interface NoteTakingViewController ()
-
 @property (strong) AMLecture *document;
+@property UITapGestureRecognizer *tapGestureRecognizer;
 
 @end
 
@@ -33,7 +29,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
@@ -66,7 +61,17 @@
     [_menu addMenuItem:addImage];
     
     [self.view addSubview:_menu];
+}
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    // Get document
+    [[FileManager defaultManager] currentDocumentWithCompletion:^(AMLecture *lecture) {
+        _document = lecture;
+        for (Note *note in _document.lecture.notes) {
+            [self loadNoteAndPresent:note];
+        }
+    }];
 }
 
 - (void)menuSelected:(MTFlowerMenu *)sender
@@ -81,17 +86,6 @@
 - (void)menuAppear:(MTFlowerMenu *)sender
 {
     [self.view bringSubviewToFront:sender];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    // Get document
-    [[FileManager defaultManager] currentDocumentWithCompletion:^(AMLecture *lecture) { 
-        _document = lecture;
-        for (Note *note in _document.lecture.notes) {
-            [self loadNoteAndPresent:note];
-        }
-    }];
 }
 
 - (void)recognizeWithTranslation:(CGPoint)translation
@@ -159,7 +153,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (BOOL)shouldAutomaticallyForwardRotationMethods
@@ -167,19 +160,29 @@
     return YES;
 }
 
-#pragma mark Keyboard resonder
+#pragma mark - Keyboard Responder
 
 - (void)keyboardDidShow:(NSNotification *)notification
 {
+    _tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard:)];
+    [self.view addGestureRecognizer:_tapGestureRecognizer];
+}
 
+- (void)dismissKeyboard:(UITapGestureRecognizer *)sender
+{
+    for (UIView *noteTextView in self.view.subviews){
+        if ([noteTextView isKindOfClass:[TextNoteView class]]){
+            [noteTextView endEditing:YES];
+        }
+    }
 }
 
 - (void)keyboardDidHide:(NSNotification *)notification
 {
-
+    [self.view removeGestureRecognizer:_tapGestureRecognizer];
 }
 
-#pragma mark <LectureViewChild>
+#pragma mark - <LectureViewChild>
 
 - (UIView *)contentView
 {

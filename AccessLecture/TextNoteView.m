@@ -7,10 +7,11 @@
 //
 
 #import "TextNoteView.h"
+#import "FullScreenNoteViewController.h"
 
 @implementation TextNoteView
 
-#pragma mark Creation
+#pragma mark - Creation
 
 - (void)awakeFromNib
 {
@@ -18,7 +19,7 @@
     _text.delegate = self;
 }
 
-#pragma mark Actions
+#pragma mark - Actions
 
 - (IBAction)hideView
 {
@@ -32,10 +33,33 @@
 
 - (IBAction)fullScreeen:(id)sender
 {
-    [_delegate textNoteView:self presentFullScreen:YES];
+    FullScreenNoteViewController *fsnvc= [FullScreenNoteViewController new];
+    fsnvc.modalPresentationStyle = UIModalPresentationPageSheet;
+    
+    // Get the current view controller
+    UIViewController *currentViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
+    while (currentViewController.presentedViewController) {
+        currentViewController = currentViewController.presentedViewController;
+    }
+    
+    [currentViewController presentViewController:fsnvc animated:YES completion:^(void){
+        // Only assign title if it's been edited
+        if (![_title.text isEqualToString:@""]){
+            fsnvc.titleLabel.title = _title.text;
+        } else {
+            fsnvc.titleLabel.title = @"<Blank Title>";
+        }
+        
+        fsnvc.text.text = _text.text;
+        
+        // Refs the current note being edited
+        fsnvc.noteView = self;
+        
+        [_placeholder setText:@""];
+    }];
 }
 
-#pragma mark Delegate
+#pragma mark - Delegate
 
 - (void)textViewDidChange:(UITextView *)textView
 {
@@ -58,35 +82,11 @@
     return YES;
 }
 
-#pragma mark Drawing
+#pragma mark - Drawing
 
 - (void)drawRect:(CGRect)rect
 {
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    NSArray *gradientColors = @[ (__bridge id)[UIColor colorWithRed:0.0 green:0.0 blue:0.2 alpha:1.0].CGColor,
-                                 (__bridge id)[UIColor colorWithRed:0.5 green:0.5 blue:0.6 alpha:1.0].CGColor,
-                                 (__bridge id)[UIColor whiteColor].CGColor
-                                ];
-    CGFloat loc[] = {0.0, 0.89, 1};
-    CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, (__bridge CFArrayRef)gradientColors, loc);
-    
-    UIBezierPath *rectanglePath = [UIBezierPath bezierPathWithRect:CGRectMake(43.5, 0.5, 356, 198.5)];
-    [[UIColor whiteColor] setFill];
-    [rectanglePath fill];
-    [[UIColor grayColor] setStroke];
-    rectanglePath.lineWidth = 1.0;
-    [rectanglePath stroke];
-    
-    UIBezierPath *menu = [UIBezierPath bezierPathWithRect:CGRectMake(-0.5, -0.5, 43.5, 60)];
-    CGContextSaveGState(context);
-    [menu addClip];
-    CGContextDrawLinearGradient(context, gradient, CGPointMake(6.75, -0.5), CGPointMake(6.75, 60), 0);
-    CGContextRestoreGState(context);
-    
-    CGGradientRelease(gradient);
-    CGColorSpaceRelease(colorSpace);
+    // TODO: Add more rectangle drawing customization if we so choose.
 }
 
 @end

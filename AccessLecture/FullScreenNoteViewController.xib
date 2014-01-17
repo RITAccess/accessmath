@@ -7,7 +7,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FullScreenNoteViewController">
             <connections>
+                <outlet property="stepper" destination="Dqe-Vn-R7y" id="8Tp-a0-Not"/>
                 <outlet property="text" destination="a7P-Kd-X8J" id="eeu-oZ-H2t"/>
+                <outlet property="titleLabel" destination="Wp7-Oy-lWI" id="iZE-h7-CDm"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
@@ -16,26 +18,33 @@
             <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="a7P-Kd-X8J">
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Retrieving note..." id="a7P-Kd-X8J">
                     <rect key="frame" x="0.0" y="44" width="768" height="936"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
                 <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="lqC-fO-cdr">
                     <rect key="frame" x="0.0" y="980" width="768" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <items>
-                        <barButtonItem title="Item" id="zqS-s4-hQU"/>
+                        <barButtonItem style="plain" id="KKY-NC-4L1">
+                            <stepper key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="20" minimumValue="10" maximumValue="100" stepValue="2" id="Dqe-Vn-R7y">
+                                <rect key="frame" x="16" y="8" width="94" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <connections>
+                                    <action selector="changeFontSize:" destination="-1" eventType="valueChanged" id="0qa-7t-i6T"/>
+                                </connections>
+                            </stepper>
+                        </barButtonItem>
                     </items>
                 </toolbar>
                 <navigationBar contentMode="scaleToFill" id="bFQ-I7-0iV">
                     <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <items>
-                        <navigationItem title="Title" id="Wp7-Oy-lWI">
+                        <navigationItem title="Retrieving title..." id="Wp7-Oy-lWI">
                             <barButtonItem key="leftBarButtonItem" title="Lecture" id="eq3-Bd-hfN">
                                 <connections>
                                     <action selector="returnToLecture:" destination="-1" id="bqy-1G-NqM"/>
