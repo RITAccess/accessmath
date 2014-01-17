@@ -9,7 +9,6 @@
 #import "Lecture.h"
 #import "Note.h"
 #import "ImageNote.h"
-#import "AMLecture.h"
 
 @interface Lecture ()
 
@@ -25,10 +24,6 @@
 - (id)initWithCoder:(NSCoder *)aCoder {
     if (self = [super init]) {
         _notes = [aCoder decodeObjectForKey:@"NotesArray"];
-        for (NSObject *obj in _notes) {
-            [obj addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:NULL];
-            [obj addObserver:self forKeyPath:@"content" options:NSKeyValueObservingOptionNew context:NULL];
-        }
     }
     return self;
 }
@@ -45,19 +40,7 @@
         return ([obj isKindOfClass:[Note class]] || [obj isKindOfClass:[ImageNote class]]);
     }];
     _notes = [(_notes ?: @[]) arrayByAddingObjectsFromArray:[valid allObjects]];
-    for (NSObject *obj in [valid allObjects]) {
-        [obj addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:NULL];
-        [obj addObserver:self forKeyPath:@"content" options:NSKeyValueObservingOptionNew context:NULL];
-    }
     return TRUE;
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    NSLog(@"%@ changed", keyPath);
-    [(AMLecture *)self.parent saveWithCompletetion:^(BOOL success) {
-        NSLog(@"Saved change %@", change);
-    }];
 }
 
 @end
