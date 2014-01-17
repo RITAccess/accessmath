@@ -88,9 +88,28 @@
     if (_resize) {
         [self drawRectForResize:rect];
     } else {
-        UIBezierPath *image = [UIBezierPath bezierPathWithRect:_imageArea];
-        [[UIColor blackColor] setStroke];
-        [image stroke];
+        //// Color Declarations
+        UIColor* tagColor = [UIColor colorWithRed: 0 green: 0.59 blue: 0.886 alpha: 1];
+        UIColor* color = [UIColor colorWithRed: 0.333 green: 0.333 blue: 0.333 alpha: 1];
+        
+        //// Bezier Drawing
+        UIBezierPath* bezierPath = [UIBezierPath bezierPath];
+        [bezierPath moveToPoint: CGPointMake(CGRectGetMaxX(frame) - 118.5, CGRectGetMinY(frame) + 11.5)];
+        [bezierPath addLineToPoint: CGPointMake(CGRectGetMaxX(frame) - 118.5, CGRectGetMinY(frame) + 40.44)];
+        [bezierPath addCurveToPoint: CGPointMake(CGRectGetMaxX(frame) - 79.5, CGRectGetMinY(frame) + 40.44) controlPoint1: CGPointMake(CGRectGetMaxX(frame) - 118.5, CGRectGetMinY(frame) + 40.44) controlPoint2: CGPointMake(CGRectGetMaxX(frame) - 97.16, CGRectGetMinY(frame) + 44.4)];
+        [bezierPath addCurveToPoint: CGPointMake(CGRectGetMaxX(frame) - 44.5, CGRectGetMinY(frame) + 40.44) controlPoint1: CGPointMake(CGRectGetMaxX(frame) - 61.84, CGRectGetMinY(frame) + 36.48) controlPoint2: CGPointMake(CGRectGetMaxX(frame) - 44.5, CGRectGetMinY(frame) + 40.44)];
+        [bezierPath addLineToPoint: CGPointMake(CGRectGetMaxX(frame) - 44.5, CGRectGetMinY(frame) + 11.5)];
+        [bezierPath addLineToPoint: CGPointMake(CGRectGetMaxX(frame) - 118.5, CGRectGetMinY(frame) + 11.5)];
+        [bezierPath closePath];
+        [tagColor setFill];
+        [bezierPath fill];
+        
+        
+        //// Rectangle Drawing
+        UIBezierPath* rectanglePath = [UIBezierPath bezierPathWithRect: CGRectMake(CGRectGetMinX(frame) + 11.5, CGRectGetMinY(frame) + 12, CGRectGetWidth(frame) - 23.5, CGRectGetHeight(frame) - 23.5)];
+        [color setStroke];
+        rectanglePath.lineWidth = 1;
+        [rectanglePath stroke];
     }
 }
 
