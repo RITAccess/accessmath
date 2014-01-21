@@ -8,6 +8,7 @@
 
 #import "TextNoteView.h"
 #import "FullScreenNoteViewController.h"
+#import "TextNoteViewController.h"
 
 @implementation TextNoteView
 
@@ -29,6 +30,11 @@
 - (IBAction)titleActions:(id)sender forEvent:(UIEvent *)event
 {
     self.data.title = _title.text;
+}
+- (IBAction)removeNote:(id)sender
+{
+    _delegate = [[TextNoteViewController alloc] init];
+    [_delegate textNoteView:self willClose:YES];
 }
 
 - (IBAction)fullScreeen:(id)sender

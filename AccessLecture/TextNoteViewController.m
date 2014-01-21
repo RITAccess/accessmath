@@ -53,6 +53,17 @@
 
 #pragma mark - Delegate
 
+- (void)textNoteView:(id)sender willClose:(BOOL)toClose
+{
+    [(TextNoteView *)sender removeFromSuperview];
+    [self textNoteView:sender didClose:YES];
+}
+
+- (void)textNoteView:(id)sender didClose:(BOOL)closed
+{
+    NSLog(@"Removed: %@ note.", [[(TextNoteView *)sender data] title]);
+}
+
 - (void)textNoteView:(id)sender didHide:(BOOL)hide
 {
 
