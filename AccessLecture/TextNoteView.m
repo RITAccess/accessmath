@@ -9,6 +9,7 @@
 #import "TextNoteView.h"
 #import "FullScreenNoteViewController.h"
 #import "TextNoteViewController.h"
+#import "NoteTakingViewController.h"
 
 @implementation TextNoteView
 
@@ -70,6 +71,11 @@
 
 - (void)panNote:(UIPanGestureRecognizer *)gesture
 {
+    // Dismiss keyboard
+    for (UIView *view in[[[UIApplication sharedApplication] keyWindow] subviews]){
+        [view endEditing:YES];
+    }
+    
     [self.superview bringSubviewToFront:self];
     
     if ((gesture.state == UIGestureRecognizerStateChanged) || (gesture.state == UIGestureRecognizerStateEnded)) {
