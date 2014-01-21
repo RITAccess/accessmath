@@ -69,6 +69,9 @@
 }
 
 - (void)panNote:(UIPanGestureRecognizer *)gesture {
+    
+    [self.superview bringSubviewToFront:self];
+    
     if ((gesture.state == UIGestureRecognizerStateChanged) || (gesture.state == UIGestureRecognizerStateEnded)) {
         CGPoint translation = [gesture translationInView:self.superview];
         gesture.view.center = CGPointMake(gesture.view.center.x + translation.x, gesture.view.center.y + translation.y);
