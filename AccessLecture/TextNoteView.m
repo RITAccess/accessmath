@@ -18,6 +18,9 @@
 {
     _title.delegate = self;
     _text.delegate = self;
+    UIPanGestureRecognizer *panGesture =[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panNote:)];
+    panGesture.minimumNumberOfTouches = 2;
+    [self addGestureRecognizer:panGesture];
 }
 
 #pragma mark - Actions
@@ -63,6 +66,14 @@
         
         [_placeholder setText:@""];
     }];
+}
+
+- (void)panNote:(UIPanGestureRecognizer *)gesture {
+    if ((gesture.state == UIGestureRecognizerStateChanged) || (gesture.state == UIGestureRecognizerStateEnded)) {
+        CGPoint translation = [gesture translationInView:self.superview];
+        gesture.view.center = CGPointMake(gesture.view.center.x + translation.x, gesture.view.center.y + translation.y);
+        [gesture setTranslation:CGPointZero inView:self.superview];
+    }
 }
 
 #pragma mark - Delegate
