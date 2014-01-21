@@ -68,8 +68,8 @@
     }];
 }
 
-- (void)panNote:(UIPanGestureRecognizer *)gesture {
-    
+- (void)panNote:(UIPanGestureRecognizer *)gesture
+{
     [self.superview bringSubviewToFront:self];
     
     if ((gesture.state == UIGestureRecognizerStateChanged) || (gesture.state == UIGestureRecognizerStateEnded)) {
