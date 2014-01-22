@@ -14,7 +14,6 @@
 @property NSMutableArray *paths, *shapes;
 @property float penSize;
 @property UIColor *penColor;
-@property bool shapeSelected;
 
 @property UITapGestureRecognizer *tapStamp;
 @property UIPanGestureRecognizer *fingerDrag;
