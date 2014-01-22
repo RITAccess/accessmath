@@ -8,10 +8,6 @@
 
 #import "DrawView.h"
 
-@interface DrawView ()
-
-@end
-
 @implementation DrawView
 
 - (id)initWithFrame:(CGRect)frame
@@ -44,8 +40,7 @@
 - (void)dragToDraw:(UIGestureRecognizer *)gesture
 {
     switch (gesture.state) {
-        case UIGestureRecognizerStateBegan:
-        {
+        case UIGestureRecognizerStateBegan: {
             [_paths addObject:[[AMBezierPath alloc] init]];
             [[_paths lastObject] moveToPoint:[gesture locationInView:self]];
             [[_paths lastObject] setLineWidth:self.penSize];
@@ -53,20 +48,19 @@
             break;
         }
             
-        case UIGestureRecognizerStateChanged:
-        {
+        case UIGestureRecognizerStateChanged: {
             [[_paths lastObject] addLineToPoint:[gesture locationInView:self]];
             break;
         }
             
-        case UIGestureRecognizerStateEnded:
-        {
+        case UIGestureRecognizerStateEnded: {
             [_shapes addObject:[_paths lastObject]]; // Adding finished path to Shapes array.
             break;
         }
             
-        default:
+        default: {
             break;
+        }
     }
     
     [self setNeedsDisplay];
@@ -90,13 +84,10 @@
  */
 - (void)drawRect:(CGRect)rect
 {
-    for (AMBezierPath *path in _paths)
-    {
+    for (AMBezierPath *path in _paths){
         [path.color setStroke];
         [path stroke];
     }
 }
 
-
 @end
-
