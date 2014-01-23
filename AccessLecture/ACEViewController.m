@@ -87,37 +87,9 @@
             _drawingView.lineColor = [colorDictionary objectForKey:numberForColorDictionary];
             _colorButton.title = [actionSheet buttonTitleAtIndex:buttonIndex];
         } else {
+            _drawingView.drawTool = buttonIndex; // ToolType is an enum, can assign the buttonIndex directly
             
             _toolButton.title = [actionSheet buttonTitleAtIndex:buttonIndex];
-            switch (buttonIndex) {
-                case 0:
-                    _drawingView.drawTool = PenTool;
-                    break;
-                    
-                case 1:
-                    _drawingView.drawTool = LineTool;
-                    break;
-                    
-                case 2:
-                    _drawingView.drawTool = RectangleStrokeTool;
-                    break;
-                    
-                case 3:
-                    _drawingView.drawTool = RectangleFillTool;
-                    break;
-                    
-                case 4:
-                    _drawingView.drawTool = EllipseStrokeTool;
-                    break;
-                    
-                case 5:
-                    _drawingView.drawTool = EllipseFillTool;
-                    break;
-                    
-                case 6:
-                    _drawingView.drawTool = EraserTool;
-                    break;
-            }
         
             // if eraser, disable color and alpha selection
             _colorButton.enabled = _alphaButton.enabled = buttonIndex != 6;
