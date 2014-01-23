@@ -25,16 +25,12 @@
 		21DA3D9418905B5000BFD96B /* ACEDrawingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 21DA3D8D18905B5000BFD96B /* ACEDrawingView.m */; };
 		21DA3D9518905B5000BFD96B /* ACEViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21DA3D8E18905B5000BFD96B /* ACEViewController.m */; };
 		21DA3D9618905B5000BFD96B /* ACEDrawingTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 21DA3D9118905B5000BFD96B /* ACEDrawingTools.m */; };
-		2C0F886B1760D8EC0062BD16 /* DrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F886A1760D8EC0062BD16 /* DrawView.m */; };
 		2C3BFE6517A2BF7B00404B9C /* ZoomBounds.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C3BFE6317A2BF7B00404B9C /* ZoomBounds.c */; };
 		2C5AD2C217B5430000BFB795 /* StreamViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5AD2C117B5430000BFB795 /* StreamViewControllerTests.m */; };
 		2CA93202188596D400199CC4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CA93201188596D400199CC4 /* Images.xcassets */; };
-		2CBF301C177B7AB10087C17C /* DrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBF301A177B7AB10087C17C /* DrawViewController.m */; };
-		2CBF301D177B7AB10087C17C /* DrawViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CBF301B177B7AB10087C17C /* DrawViewController.xib */; };
 		2CCA61AE17B13AB9002DA6A3 /* DrawViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CCA61AD17B13AB9002DA6A3 /* DrawViewTests.m */; };
 		2CCA979817B14DD700669275 /* DrawViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CCA979717B14DD700669275 /* DrawViewControllerTests.m */; };
 		2CF45FDD17971C0400E6C69E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF45FDC17971C0400E6C69E /* QuartzCore.framework */; };
-		2CF6BA901784919300A695CC /* AMBezierPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF6BA8D1784919300A695CC /* AMBezierPath.m */; };
 		2CFC32A0175E60FC00384AEC /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CFC329F175E60FC00384AEC /* MainStoryboard.storyboard */; };
 		3F07C34F187B2BA7005BC7EC /* TextNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F07C34E187B2BA7005BC7EC /* TextNoteViewController.m */; };
 		3F07C352187B3627005BC7EC /* TextNoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F07C351187B3627005BC7EC /* TextNoteView.m */; };
@@ -92,7 +88,6 @@
 		4C861C06178EE0B600CD499C /* StreamLayout.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C861C05178EE0B600CD499C /* StreamLayout.storyboard */; };
 		4C8ABE78177C87BD007C934C /* StreamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8ABE76177C87BD007C934C /* StreamViewController.m */; };
 		4C9AB8FE177C6895004A4F65 /* TopNav.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9AB8FD177C6895004A4F65 /* TopNav.m */; };
-		4CADF4F2178DEC19005978C0 /* UISegmentedControlExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CADF4F1178DEC19005978C0 /* UISegmentedControlExtension.m */; };
 		4CBF5D871768DAD200746377 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11D217625F150066A4FA /* libicucore.dylib */; };
 		4CBF5D881768DAD500746377 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11D017625F0D0066A4FA /* CFNetwork.framework */; };
 		4CBF5D891768DAD700746377 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11CE17625F060066A4FA /* Security.framework */; };
@@ -131,20 +126,13 @@
 		21DA3D9018905B5000BFD96B /* ACEDrawingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACEDrawingView.h; sourceTree = "<group>"; };
 		21DA3D9118905B5000BFD96B /* ACEDrawingTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACEDrawingTools.m; sourceTree = "<group>"; };
 		21DA3D9218905B5000BFD96B /* ACEDrawingTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACEDrawingTools.h; sourceTree = "<group>"; };
-		2C0F88691760D8EC0062BD16 /* DrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawView.h; sourceTree = "<group>"; };
-		2C0F886A1760D8EC0062BD16 /* DrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawView.m; sourceTree = "<group>"; };
 		2C3BFE6317A2BF7B00404B9C /* ZoomBounds.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ZoomBounds.c; sourceTree = "<group>"; };
 		2C3BFE6417A2BF7B00404B9C /* ZoomBounds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoomBounds.h; sourceTree = "<group>"; };
 		2C5AD2C117B5430000BFB795 /* StreamViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamViewControllerTests.m; sourceTree = "<group>"; };
 		2CA93201188596D400199CC4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Images.xcassets; sourceTree = "<group>"; };
-		2CBF3019177B7AB10087C17C /* DrawViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawViewController.h; sourceTree = "<group>"; };
-		2CBF301A177B7AB10087C17C /* DrawViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawViewController.m; sourceTree = "<group>"; };
-		2CBF301B177B7AB10087C17C /* DrawViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawViewController.xib; sourceTree = "<group>"; };
 		2CCA61AD17B13AB9002DA6A3 /* DrawViewTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawViewTests.m; sourceTree = "<group>"; };
 		2CCA979717B14DD700669275 /* DrawViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawViewControllerTests.m; sourceTree = "<group>"; };
 		2CF45FDC17971C0400E6C69E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		2CF6BA8C1784919300A695CC /* AMBezierPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMBezierPath.h; sourceTree = "<group>"; };
-		2CF6BA8D1784919300A695CC /* AMBezierPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMBezierPath.m; sourceTree = "<group>"; };
 		2CFC329F175E60FC00384AEC /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		3F07C34D187B2BA7005BC7EC /* TextNoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextNoteViewController.h; sourceTree = "<group>"; };
 		3F07C34E187B2BA7005BC7EC /* TextNoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextNoteViewController.m; sourceTree = "<group>"; };
@@ -246,8 +234,6 @@
 		4C8ABE76177C87BD007C934C /* StreamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamViewController.m; sourceTree = "<group>"; };
 		4C9AB8FC177C6895004A4F65 /* TopNav.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopNav.h; sourceTree = "<group>"; };
 		4C9AB8FD177C6895004A4F65 /* TopNav.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopNav.m; sourceTree = "<group>"; };
-		4CADF4F0178DEC19005978C0 /* UISegmentedControlExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISegmentedControlExtension.h; sourceTree = "<group>"; };
-		4CADF4F1178DEC19005978C0 /* UISegmentedControlExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISegmentedControlExtension.m; sourceTree = "<group>"; };
 		4CB8329E1768C0AC008F0099 /* AccessLecture Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AccessLecture Tests-Info.plist"; sourceTree = "<group>"; };
 		4CB8329F1768C0AC008F0099 /* AccessLecture Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AccessLecture Tests-Prefix.pch"; sourceTree = "<group>"; };
 		4CD0A5EC177DC98600864228 /* ConnectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionViewController.h; sourceTree = "<group>"; };
@@ -306,59 +292,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		21DA3D8B18905B2800BFD96B /* ACEDrawing */ = {
+		216508051891A08600EFA99B /* DrawingTools */ = {
 			isa = PBXGroup;
 			children = (
-				21DA3D8C18905B5000BFD96B /* ACEViewController.xib */,
-				21DA3D8D18905B5000BFD96B /* ACEDrawingView.m */,
-				21DA3D8E18905B5000BFD96B /* ACEViewController.m */,
-				21DA3D8F18905B5000BFD96B /* ACEViewController.h */,
-				21DA3D9018905B5000BFD96B /* ACEDrawingView.h */,
 				21DA3D9118905B5000BFD96B /* ACEDrawingTools.m */,
 				21DA3D9218905B5000BFD96B /* ACEDrawingTools.h */,
 			);
-			name = ACEDrawing;
+			name = DrawingTools;
 			sourceTree = "<group>";
 		};
-		2C544E29177C7E9A00BC1A32 /* DrawView */ = {
+		216508061891A09900EFA99B /* DrawingView */ = {
 			isa = PBXGroup;
 			children = (
-				2CF6BA93178491D100A695CC /* AMBezierPath */,
-				2C0F88691760D8EC0062BD16 /* DrawView.h */,
-				2C0F886A1760D8EC0062BD16 /* DrawView.m */,
+				21DA3D8D18905B5000BFD96B /* ACEDrawingView.m */,
+				21DA3D9018905B5000BFD96B /* ACEDrawingView.h */,
 			);
-			name = DrawView;
-			sourceTree = "<group>";
-		};
-		2C6F399A1768DA0300D700F7 /* Color Selection */ = {
-			isa = PBXGroup;
-			children = (
-				4CADF4F0178DEC19005978C0 /* UISegmentedControlExtension.h */,
-				4CADF4F1178DEC19005978C0 /* UISegmentedControlExtension.m */,
-			);
-			name = "Color Selection";
+			name = DrawingView;
 			sourceTree = "<group>";
 		};
 		2CBF3014177B700C0087C17C /* DrawViewController */ = {
 			isa = PBXGroup;
 			children = (
-				21DA3D8B18905B2800BFD96B /* ACEDrawing */,
-				2C544E29177C7E9A00BC1A32 /* DrawView */,
-				2CBF3019177B7AB10087C17C /* DrawViewController.h */,
-				2CBF301A177B7AB10087C17C /* DrawViewController.m */,
-				2CBF301B177B7AB10087C17C /* DrawViewController.xib */,
-				2C6F399A1768DA0300D700F7 /* Color Selection */,
+				216508061891A09900EFA99B /* DrawingView */,
+				216508051891A08600EFA99B /* DrawingTools */,
+				21DA3D8E18905B5000BFD96B /* ACEViewController.m */,
+				21DA3D8F18905B5000BFD96B /* ACEViewController.h */,
+				21DA3D8C18905B5000BFD96B /* ACEViewController.xib */,
 			);
 			name = DrawViewController;
-			sourceTree = "<group>";
-		};
-		2CF6BA93178491D100A695CC /* AMBezierPath */ = {
-			isa = PBXGroup;
-			children = (
-				2CF6BA8C1784919300A695CC /* AMBezierPath.h */,
-				2CF6BA8D1784919300A695CC /* AMBezierPath.m */,
-			);
-			name = AMBezierPath;
 			sourceTree = "<group>";
 		};
 		3F07C355187B3648005BC7EC /* TextNote */ = {
@@ -883,7 +844,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2CBF301D177B7AB10087C17C /* DrawViewController.xib in Resources */,
 				3FED96161370863E00D8D1B8 /* InfoPlist.strings in Resources */,
 				21DA3D9318905B5000BFD96B /* ACEViewController.xib in Resources */,
 				3F2DC98318871FE4008C29BF /* ImageNoteViewController.xib in Resources */,
@@ -958,8 +918,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2CBF301C177B7AB10087C17C /* DrawViewController.m in Sources */,
-				2CF6BA901784919300A695CC /* AMBezierPath.m in Sources */,
 				4CD0A5F8177E1D6800864228 /* StreamDrawing.m in Sources */,
 				21DA3D9418905B5000BFD96B /* ACEDrawingView.m in Sources */,
 				3F2DC9791886ECB5008C29BF /* AddNote.m in Sources */,
@@ -980,7 +938,6 @@
 				3FCD5D1715438472005F2A60 /* AccessLectureRuntime.m in Sources */,
 				4C62BECD175651DB00CAF4CF /* FileManager.m in Sources */,
 				4C4B8BFA178EF57200C2F94B /* QRScanner.m in Sources */,
-				2C0F886B1760D8EC0062BD16 /* DrawView.m in Sources */,
 				3F2DC98218871FE4008C29BF /* ImageNoteViewController.m in Sources */,
 				3F6D11C417625EA20066A4FA /* ALNetworkInterface.m in Sources */,
 				4C37CCB018295FC0006D3B1F /* ALMetaData.m in Sources */,
@@ -1005,7 +962,6 @@
 				3F2DC9721885B295008C29BF /* MTFlowerMenu.m in Sources */,
 				3F6D11CC17625EA20066A4FA /* SRWebSocket.m in Sources */,
 				3F8D992B188099F30061DEA2 /* DocumentCreator.m in Sources */,
-				4CADF4F2178DEC19005978C0 /* UISegmentedControlExtension.m in Sources */,
 				4CDB058017B5589A00D8EB85 /* Favorites.m in Sources */,
 				3F8D9915187F0D1A0061DEA2 /* FileMangerViewController.m in Sources */,
 				3F2DC97C1886EDF1008C29BF /* AddImage.m in Sources */,
