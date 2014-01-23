@@ -80,25 +80,12 @@
     if (actionSheet.cancelButtonIndex != buttonIndex) {
         if (actionSheet.tag == kActionSheetColor) {
             
-            _colorButton.title = [actionSheet buttonTitleAtIndex:buttonIndex];
-            switch (buttonIndex) {
-                case 0:
-                    _drawingView.lineColor = [UIColor blackColor];
-                    break;
-                    
-                case 1:
-                    _drawingView.lineColor = [UIColor redColor];
-                    break;
-                    
-                case 2:
-                    _drawingView.lineColor = [UIColor greenColor];
-                    break;
-                    
-                case 3:
-                    _drawingView.lineColor = [UIColor blueColor];
-                    break;
-            }
+            NSDictionary *colorDictionary = [[NSDictionary alloc] initWithObjects:@[[UIColor blackColor], [UIColor redColor], [UIColor greenColor], [UIColor blueColor], [UIColor yellowColor], [UIColor purpleColor]]
+                                                                          forKeys:@[@0, @1, @2, @3, @4, @5]];
+            NSNumber *numberForColorDictionary = [NSNumber numberWithInteger:buttonIndex];
             
+            _drawingView.lineColor = [colorDictionary objectForKey:numberForColorDictionary];
+            _colorButton.title = [actionSheet buttonTitleAtIndex:buttonIndex];
         } else {
             
             _toolButton.title = [actionSheet buttonTitleAtIndex:buttonIndex];
@@ -146,7 +133,7 @@
                                                              delegate:self
                                                     cancelButtonTitle:@"Cancel"
                                                destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"Black", @"Red", @"Green", @"Blue", nil];
+                                                    otherButtonTitles:@"Black", @"Red", @"Green", @"Blue", @"Yellow", @"Purple", nil];
     
     [actionSheet setTag:kActionSheetColor];
     [actionSheet showInView:self.view];
