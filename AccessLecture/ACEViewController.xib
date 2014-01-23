@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5037.3" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+    <dependencies>
+        <deployment defaultVersion="1536" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ACEViewController">
+            <connections>
+                <outlet property="drawingView" destination="W7a-Cd-lu1" id="LvX-fp-2df"/>
+                <outlet property="lineAlphaSlider" destination="H3n-3S-0LX" id="Mic-3e-4Sa"/>
+                <outlet property="lineWidthSlider" destination="vXn-Kr-XPA" id="T1P-oQ-6QM"/>
+                <outlet property="redoButton" destination="qS6-Sy-KEn" id="agu-5A-uUl"/>
+                <outlet property="toolbar" destination="aHb-Kp-jdc" id="L9A-YR-IFQ"/>
+                <outlet property="undoButton" destination="L9C-ba-RYb" id="IT5-AA-4Cu"/>
+                <outlet property="view" destination="BEN-wz-v9C" id="aZV-xD-JRL"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="BEN-wz-v9C">
+            <rect key="frame" x="0.0" y="0.0" width="1024" height="846"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" id="W7a-Cd-lu1" customClass="ACEDrawingView">
+                    <rect key="frame" x="0.0" y="0.0" width="1024" height="775"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                </view>
+                <slider hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.10000000149011612" maxValue="1" id="H3n-3S-0LX" userLabel="Alpha Slider">
+                    <rect key="frame" x="18" y="409" width="355" height="29"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                    <connections>
+                        <action selector="alphaChange:" destination="-1" eventType="valueChanged" id="vxg-YT-L8V"/>
+                    </connections>
+                </slider>
+                <slider hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="1" maxValue="20" id="vXn-Kr-XPA" userLabel="Width Slider">
+                    <rect key="frame" x="18" y="409" width="348" height="29"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                    <connections>
+                        <action selector="widthChange:" destination="-1" eventType="valueChanged" id="Ol3-0c-Yc9"/>
+                    </connections>
+                </slider>
+                <toolbar clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" id="aHb-Kp-jdc">
+                    <rect key="frame" x="0.0" y="784" width="1024" height="44"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                    <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                    <inset key="insetFor6xAndEarlier" minX="0.0" minY="10" maxX="0.0" maxY="-10"/>
+                    <items>
+                        <barButtonItem title="Black" id="hCT-EN-yW1">
+                            <connections>
+                                <action selector="colorChange:" destination="-1" id="39M-1V-LUJ"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem title="Pen" id="zbA-B4-UR4">
+                            <connections>
+                                <action selector="toolChange:" destination="-1" id="qW4-xq-lBV"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem title="Width" id="Ykx-iD-n6C">
+                            <connections>
+                                <action selector="toggleWidthSlider:" destination="-1" id="qgv-wz-Itv"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem title="Alpha" id="Tec-ZN-5VG">
+                            <connections>
+                                <action selector="toggleAlphaSlider:" destination="-1" id="9rb-wz-OM5"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="0q2-sk-nWc"/>
+                        <barButtonItem enabled="NO" title="Redo" id="qS6-Sy-KEn">
+                            <connections>
+                                <action selector="redo:" destination="-1" id="IJl-47-U6q"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem enabled="NO" title="Undo" id="L9C-ba-RYb">
+                            <connections>
+                                <action selector="undo:" destination="-1" id="ipN-Qp-bdY"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem title="Clear" id="gmK-ds-uiY">
+                            <connections>
+                                <action selector="clear:" destination="-1" id="R0D-2j-jTw"/>
+                            </connections>
+                        </barButtonItem>
+                    </items>
+                    <color key="barTintColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                </toolbar>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+            <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+</document>

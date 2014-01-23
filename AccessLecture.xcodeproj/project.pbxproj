@@ -21,6 +21,10 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		21DA3D9318905B5000BFD96B /* ACEViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21DA3D8C18905B5000BFD96B /* ACEViewController.xib */; };
+		21DA3D9418905B5000BFD96B /* ACEDrawingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 21DA3D8D18905B5000BFD96B /* ACEDrawingView.m */; };
+		21DA3D9518905B5000BFD96B /* ACEViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21DA3D8E18905B5000BFD96B /* ACEViewController.m */; };
+		21DA3D9618905B5000BFD96B /* ACEDrawingTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 21DA3D9118905B5000BFD96B /* ACEDrawingTools.m */; };
 		2C0F886B1760D8EC0062BD16 /* DrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F886A1760D8EC0062BD16 /* DrawView.m */; };
 		2C3BFE6517A2BF7B00404B9C /* ZoomBounds.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C3BFE6317A2BF7B00404B9C /* ZoomBounds.c */; };
 		2C5AD2C217B5430000BFB795 /* StreamViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5AD2C117B5430000BFB795 /* StreamViewControllerTests.m */; };
@@ -137,6 +141,13 @@
 
 /* Begin PBXFileReference section */
 		09983FD2441D47DAA38B408E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		21DA3D8C18905B5000BFD96B /* ACEViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ACEViewController.xib; sourceTree = "<group>"; };
+		21DA3D8D18905B5000BFD96B /* ACEDrawingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACEDrawingView.m; sourceTree = "<group>"; };
+		21DA3D8E18905B5000BFD96B /* ACEViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACEViewController.m; sourceTree = "<group>"; };
+		21DA3D8F18905B5000BFD96B /* ACEViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACEViewController.h; sourceTree = "<group>"; };
+		21DA3D9018905B5000BFD96B /* ACEDrawingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACEDrawingView.h; sourceTree = "<group>"; };
+		21DA3D9118905B5000BFD96B /* ACEDrawingTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACEDrawingTools.m; sourceTree = "<group>"; };
+		21DA3D9218905B5000BFD96B /* ACEDrawingTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACEDrawingTools.h; sourceTree = "<group>"; };
 		2C0F88691760D8EC0062BD16 /* DrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawView.h; sourceTree = "<group>"; };
 		2C0F886A1760D8EC0062BD16 /* DrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawView.m; sourceTree = "<group>"; };
 		2C3BFE6317A2BF7B00404B9C /* ZoomBounds.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ZoomBounds.c; sourceTree = "<group>"; };
@@ -333,6 +344,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		21DA3D8B18905B2800BFD96B /* ACEDrawing */ = {
+			isa = PBXGroup;
+			children = (
+				21DA3D8C18905B5000BFD96B /* ACEViewController.xib */,
+				21DA3D8D18905B5000BFD96B /* ACEDrawingView.m */,
+				21DA3D8E18905B5000BFD96B /* ACEViewController.m */,
+				21DA3D8F18905B5000BFD96B /* ACEViewController.h */,
+				21DA3D9018905B5000BFD96B /* ACEDrawingView.h */,
+				21DA3D9118905B5000BFD96B /* ACEDrawingTools.m */,
+				21DA3D9218905B5000BFD96B /* ACEDrawingTools.h */,
+			);
+			name = ACEDrawing;
+			sourceTree = "<group>";
+		};
 		2C544E29177C7E9A00BC1A32 /* DrawView */ = {
 			isa = PBXGroup;
 			children = (
@@ -355,6 +380,7 @@
 		2CBF3014177B700C0087C17C /* DrawViewController */ = {
 			isa = PBXGroup;
 			children = (
+				21DA3D8B18905B2800BFD96B /* ACEDrawing */,
 				2C544E29177C7E9A00BC1A32 /* DrawView */,
 				2CBF3019177B7AB10087C17C /* DrawViewController.h */,
 				2CBF301A177B7AB10087C17C /* DrawViewController.m */,
@@ -954,6 +980,7 @@
 			files = (
 				2CBF301D177B7AB10087C17C /* DrawViewController.xib in Resources */,
 				3FED96161370863E00D8D1B8 /* InfoPlist.strings in Resources */,
+				21DA3D9318905B5000BFD96B /* ACEViewController.xib in Resources */,
 				3F2DC98318871FE4008C29BF /* ImageNoteViewController.xib in Resources */,
 				3F8D9926187F48CC0061DEA2 /* DocumentPicker.xib in Resources */,
 				3F8D990F187DD9100061DEA2 /* FullScreenNoteViewController.xib in Resources */,
@@ -1039,6 +1066,7 @@
 				2CBF301C177B7AB10087C17C /* DrawViewController.m in Sources */,
 				2CF6BA901784919300A695CC /* AMBezierPath.m in Sources */,
 				4CD0A5F8177E1D6800864228 /* StreamDrawing.m in Sources */,
+				21DA3D9418905B5000BFD96B /* ACEDrawingView.m in Sources */,
 				3F2DC9791886ECB5008C29BF /* AddNote.m in Sources */,
 				3F07C352187B3627005BC7EC /* TextNoteView.m in Sources */,
 				3F8D99331880ACBE0061DEA2 /* NSString+TrimmingAdditions.m in Sources */,
@@ -1071,6 +1099,7 @@
 				3F6D11C817625EA20066A4FA /* SocketIOTransportWebsocket.m in Sources */,
 				3F6D11C917625EA20066A4FA /* SocketIOTransportXHR.m in Sources */,
 				3F6D11CA17625EA20066A4FA /* base64.c in Sources */,
+				21DA3D9618905B5000BFD96B /* ACEDrawingTools.m in Sources */,
 				3F6D11CB17625EA20066A4FA /* NSData+SRB64Additions.m in Sources */,
 				3F8D9925187F48CC0061DEA2 /* DocumentPicker.m in Sources */,
 				4CDDF69717EB690900FE34E7 /* AMLecture.m in Sources */,
@@ -1078,6 +1107,7 @@
 				3F2DC9871887225D008C29BF /* ImageNoteView.m in Sources */,
 				4CEA1A04177CAAED00A1DE05 /* OpenLectureViewController.m in Sources */,
 				4C8ABE78177C87BD007C934C /* StreamViewController.m in Sources */,
+				21DA3D9518905B5000BFD96B /* ACEViewController.m in Sources */,
 				3F2DC9721885B295008C29BF /* MTFlowerMenu.m in Sources */,
 				3F6D11CC17625EA20066A4FA /* SRWebSocket.m in Sources */,
 				3F8D992B188099F30061DEA2 /* DocumentCreator.m in Sources */,
