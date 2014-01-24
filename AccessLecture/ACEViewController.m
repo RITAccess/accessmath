@@ -165,8 +165,11 @@
     _drawingView.lineAlpha = sender.value;
 }
 
+#pragma mark - LectureChildDelegate Protocol Methods
+
 - (void)willMoveToParentViewController:(UIViewController *)parent
 {
+    
 }
 
 - (void)didMoveToParentViewController:(UIViewController *)parent
