@@ -22,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" id="W7a-Cd-lu1" customClass="ACEDrawingView">
-                    <rect key="frame" x="0.0" y="0.0" width="1024" height="775"/>
+                    <rect key="frame" x="0.0" y="0.0" width="1024" height="802"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
@@ -44,8 +44,7 @@
                     </connections>
                 </slider>
                 <toolbar clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" id="aHb-Kp-jdc">
-                    <rect key="frame" x="0.0" y="784" width="1024" height="44"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                    <rect key="frame" x="0.0" y="802" width="1024" height="44"/>
                     <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                     <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
                     <inset key="insetFor6xAndEarlier" minX="0.0" minY="10" maxX="0.0" maxY="-10"/>

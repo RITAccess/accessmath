@@ -24,15 +24,28 @@
 {
     [super viewDidLoad];
     
-    if (UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)) {
-        [_drawingView setFrame:CGRectMake(0, 0, 768, 1024)];
-    } else {
-        [_drawingView setFrame:CGRectMake(0, 0, 1024, 690)];
-    }
-    
     _drawingView.delegate = self;
     
     _lineWidthSlider.value = _drawingView.lineWidth;
+    
+    // Rotating toolbar, Y values are not what you'd expect
+    if (UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)) {
+        [_toolbar setFrame:CGRectMake(0, 1024 -  _toolbar.frame.size.height, 768, _toolbar.frame.size.height)];
+    } else {
+        [_toolbar setFrame:CGRectMake(0, 1024 + _toolbar.frame.size.height, 1024, _toolbar.frame.size.height)];
+    }
+}
+
+
+#pragma mark - Rotation
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation)){
+        [_toolbar setFrame:CGRectMake(0, 768 - _toolbar.frame.size.height, 768, _toolbar.frame.size.height)];
+    } else {
+        [_toolbar setFrame:CGRectMake(0, 1024 - _toolbar.frame.size.height, 1024, _toolbar.frame.size.height)];
+    }
 }
 
 #pragma mark - Undo/Redo and Clear Actions
