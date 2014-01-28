@@ -43,8 +43,12 @@
 {
     if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation)){
         [_toolbar setFrame:CGRectMake(0, 768 - _toolbar.frame.size.height, 768, _toolbar.frame.size.height)];
+        [_lineAlphaSlider setFrame:CGRectMake(100, 700 - _toolbar.frame.size.height, 800, _lineAlphaSlider.frame.size.height)];
+        [_lineWidthSlider setFrame:CGRectMake(100, 700 - _toolbar.frame.size.height, 800, _lineAlphaSlider.frame.size.height)];
     } else {
         [_toolbar setFrame:CGRectMake(0, 1024 - _toolbar.frame.size.height, 1024, _toolbar.frame.size.height)];
+        [_lineAlphaSlider setFrame:CGRectMake(100, 930 - _toolbar.frame.size.height, 550, _lineAlphaSlider.frame.size.height)];
+        [_lineWidthSlider setFrame:CGRectMake(100, 930 - _toolbar.frame.size.height, 550, _lineAlphaSlider.frame.size.height)];
     }
 }
 
