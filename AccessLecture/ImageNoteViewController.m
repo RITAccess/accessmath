@@ -82,6 +82,48 @@ CGPoint CGRectCenterPointInSuperview(CGRect rect) {
     [scale setMaximumNumberOfTouches:1];
     [scale setDelaysTouchesBegan:NO];
     [self.view addGestureRecognizer:scale];
+    [self makeRequest]; //Testing
+}
+
+#pragma mark Image Requests
+
+- (void)makeRequest
+{
+    NSURLRequest *request = [self requestWithImage:[UIImage imageNamed:@"Icon"]];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        NSLog(@"Done");
+    }];
+    
+}
+
+/**
+ * Creates a NSURLRequest for the image recognoition
+ */
+- (NSURLRequest *)requestWithImage:(UIImage *)image
+{
+    ////////////////////////////////////////////////////////////////////////////
+    //
+    //  Url Request Protocol
+    //  query items:
+    //      segmentList:
+    //          a list of xml items with type instanceID and image (base64)
+    //      segment
+    //          always false
+    //
+    //  This is is conformace to the site that is doing the image processing
+    //
+    ////////////////////////////////////////////////////////////////////////////
+    
+    NSURLComponents *url = [NSURLComponents componentsWithString:@"http://129.21.34.109/"];
+    url.port = @1504; // @7006; Port servies uses, not responding with anything
+    NSString *segment = [NSString stringWithFormat:@"<Segment type='image_blob' instanceID='%d' image='data:image/png;base64,%@'/>", 1, [UIImagePNGRepresentation(image) base64Encoding]];
+    NSString *segmentList = [NSString stringWithFormat:@"<SegmentList>%@</SegmentList>", segment];
+    NSString *query = [NSString stringWithFormat:@"segmentList=%@&segment=false", segmentList];
+    url.query = query;
+    NSURLRequest *request = [NSURLRequest requestWithURL:url.URL cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:10];
+    
+    return request;
 }
 
 #pragma mark View Delegate
