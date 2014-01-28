@@ -1,5 +1,7 @@
 // Copyright 2011 Access Lecture. All rights reserved.
 
+#import <IQKeyboardManager/IQKeyboardManager.h>
+
 #import "AccessLectureAppDelegate.h"
 #import "FileManager.h"
 
@@ -34,6 +36,9 @@
     
     // Set up the network socket connection
     _server = [[ALNetworkInterface alloc] initWithURL:_serverAddress];
+    
+    // Keyboard Manager
+    [[IQKeyboardManager sharedManager] setEnable:YES];
     
     return YES;
 }
