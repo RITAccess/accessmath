@@ -31,7 +31,7 @@
 
 - (IBAction)changeFontSize:(UIStepper *)sender
 {
-    [_text setFont:[UIFont systemFontOfSize:[sender value]]];
+    _text.font = [_text.font fontWithSize:[sender value]];
 }
 
 - (IBAction)changeFontStyle:(UISegmentedControl *)sender
