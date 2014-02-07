@@ -34,6 +34,23 @@
     [_text setFont:[UIFont systemFontOfSize:[sender value]]];
 }
 
+- (IBAction)changeFontStyle:(UISegmentedControl *)sender
+{
+    switch (sender.selectedSegmentIndex) {
+        case 0:
+            [_text setFont:[UIFont systemFontOfSize:_text.font.pointSize]];
+            break;
+        case 1:
+            [_text setFont:[UIFont boldSystemFontOfSize:_text.font.pointSize]];
+            break;
+        case 2:
+            [_text setFont:[UIFont italicSystemFontOfSize:_text.font.pointSize]];
+            break;
+        default:
+            break;
+    }
+}
+
 #pragma mark - Helpers
 
 - (void)didReceiveMemoryWarning

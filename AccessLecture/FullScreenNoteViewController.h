@@ -20,5 +20,6 @@ static NSString *const FullScreenNoteVCNibName = @"FullScreenNoteViewController"
 
 - (IBAction)returnToLecture:(id)sender;
 - (IBAction)changeFontSize:(id)sender;
+- (IBAction)changeFontStyle:(id)sender;
 
 @end
