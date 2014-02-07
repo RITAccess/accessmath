@@ -8,33 +8,21 @@
 
 #import "FullScreenNoteViewController.h"
 
-@interface FullScreenNoteViewController ()
-
-@end
-
 @implementation FullScreenNoteViewController
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
+#pragma mark - Interface Actions
 
+/**
+ * Dismiss controller, update note's text and font from 
+ * the full screen editor.
+ */
 - (IBAction)returnToLecture:(id)sender
 {
-    // Update note's text and size from the full screen editor.
     _noteView.text.text = _text.text;
     _noteView.text.font = _text.font;
     
@@ -44,5 +32,12 @@
 - (IBAction)changeFontSize:(UIStepper *)sender
 {
     [_text setFont:[UIFont systemFontOfSize:[sender value]]];
+}
+
+#pragma mark - Helpers
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
 }
 @end
