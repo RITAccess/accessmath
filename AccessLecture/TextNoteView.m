@@ -61,6 +61,7 @@
         }
         
         fsnvc.text.text = _text.text;
+        fsnvc.text.font = _text.font;
         
         // Refs the current note being edited
         fsnvc.noteView = self;
