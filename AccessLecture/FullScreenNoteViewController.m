@@ -36,7 +36,7 @@
 {
     // Update note's text and size from the full screen editor.
     _noteView.text.text = _text.text;
-    [_noteView.text setFont:[UIFont systemFontOfSize:_stepper.value]];
+    _noteView.text.font = _text.font;
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
