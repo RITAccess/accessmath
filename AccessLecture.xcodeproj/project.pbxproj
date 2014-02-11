@@ -68,6 +68,7 @@
 		3F8D99331880ACBE0061DEA2 /* NSString+TrimmingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8D99321880ACBE0061DEA2 /* NSString+TrimmingAdditions.m */; };
 		3F99F20215436E090065CBB9 /* Lecture.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F99F20115436E090065CBB9 /* Lecture.m */; };
 		3FCD5D1715438472005F2A60 /* AccessLectureRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FCD5D1615438472005F2A60 /* AccessLectureRuntime.m */; };
+		3FCE68A918A1836700FB10FE /* NSString+asciihexcodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FCE68A818A1836700FB10FE /* NSString+asciihexcodes.m */; };
 		3FE2C7BD1898380E006234D5 /* ImageRequestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FE2C7BC1898380E006234D5 /* ImageRequestTests.m */; };
 		3FE2C7BF189838CA006234D5 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FE2C7BE189838CA006234D5 /* XCTest.framework */; };
 		3FE2C7C718984086006234D5 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FE2C7BE189838CA006234D5 /* XCTest.framework */; };
@@ -75,6 +76,10 @@
 		3FE2C7C918984086006234D5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FED960B1370863E00D8D1B8 /* UIKit.framework */; };
 		3FE2C7CF18984086006234D5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3FE2C7CD18984086006234D5 /* InfoPlist.strings */; };
 		3FE2C7D118984086006234D5 /* AccessLecture_XCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FE2C7D018984086006234D5 /* AccessLecture_XCTests.m */; };
+		3FE2C81218A171C1006234D5 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FE2C7FD18A171C1006234D5 /* XMLReader.m */; };
+		3FE2C81418A173BE006234D5 /* sample.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FE2C81318A173BE006234D5 /* sample.png */; };
+		3FE2C81518A173BE006234D5 /* sample.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FE2C81318A173BE006234D5 /* sample.png */; };
+		3FE2C81618A173BE006234D5 /* sample.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FE2C81318A173BE006234D5 /* sample.png */; };
 		3FED960C1370863E00D8D1B8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FED960B1370863E00D8D1B8 /* UIKit.framework */; };
 		3FED960E1370863E00D8D1B8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FED960D1370863E00D8D1B8 /* Foundation.framework */; };
 		3FED96101370863E00D8D1B8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FED960F1370863E00D8D1B8 /* CoreGraphics.framework */; };
@@ -218,6 +223,8 @@
 		3F9BA9C21758FE1C00BEFB55 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		3FCD5D1515438472005F2A60 /* AccessLectureRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccessLectureRuntime.h; sourceTree = "<group>"; };
 		3FCD5D1615438472005F2A60 /* AccessLectureRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccessLectureRuntime.m; sourceTree = "<group>"; };
+		3FCE68A718A1836700FB10FE /* NSString+asciihexcodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+asciihexcodes.h"; sourceTree = "<group>"; };
+		3FCE68A818A1836700FB10FE /* NSString+asciihexcodes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+asciihexcodes.m"; sourceTree = "<group>"; };
 		3FE2C7BC1898380E006234D5 /* ImageRequestTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageRequestTests.m; sourceTree = "<group>"; };
 		3FE2C7BE189838CA006234D5 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		3FE2C7C618984086006234D5 /* AccessLecture XCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "AccessLecture XCTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -225,6 +232,9 @@
 		3FE2C7CE18984086006234D5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3FE2C7D018984086006234D5 /* AccessLecture_XCTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccessLecture_XCTests.m; sourceTree = "<group>"; };
 		3FE2C7D218984086006234D5 /* AccessLecture XCTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AccessLecture XCTests-Prefix.pch"; sourceTree = "<group>"; };
+		3FE2C7FC18A171C1006234D5 /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLReader.h; sourceTree = "<group>"; };
+		3FE2C7FD18A171C1006234D5 /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLReader.m; sourceTree = "<group>"; };
+		3FE2C81318A173BE006234D5 /* sample.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sample.png; sourceTree = "<group>"; };
 		3FED96071370863E00D8D1B8 /* AccessLecture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AccessLecture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FED960B1370863E00D8D1B8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3FED960D1370863E00D8D1B8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -510,8 +520,12 @@
 		3F8D99301880AC9F0061DEA2 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				3FE2C7FC18A171C1006234D5 /* XMLReader.h */,
+				3FE2C7FD18A171C1006234D5 /* XMLReader.m */,
 				3F8D99311880ACBE0061DEA2 /* NSString+TrimmingAdditions.h */,
 				3F8D99321880ACBE0061DEA2 /* NSString+TrimmingAdditions.m */,
+				3FCE68A718A1836700FB10FE /* NSString+asciihexcodes.h */,
+				3FCE68A818A1836700FB10FE /* NSString+asciihexcodes.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -663,6 +677,7 @@
 			isa = PBXGroup;
 			children = (
 				2CA93201188596D400199CC4 /* Images.xcassets */,
+				3FE2C81318A173BE006234D5 /* sample.png */,
 				3FED96131370863E00D8D1B8 /* AccessLecture-Info.plist */,
 				3FED96141370863E00D8D1B8 /* InfoPlist.strings */,
 				3FED96171370863E00D8D1B8 /* AccessLecture-Prefix.pch */,
@@ -929,6 +944,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3FE2C7CF18984086006234D5 /* InfoPlist.strings in Resources */,
+				3FE2C81618A173BE006234D5 /* sample.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -947,6 +963,7 @@
 				2CA93202188596D400199CC4 /* Images.xcassets in Resources */,
 				4C861C06178EE0B600CD499C /* StreamLayout.storyboard in Resources */,
 				2CFC32A0175E60FC00384AEC /* MainStoryboard.storyboard in Resources */,
+				3FE2C81418A173BE006234D5 /* sample.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -954,6 +971,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FE2C81518A173BE006234D5 /* sample.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1028,6 +1046,7 @@
 				3F07C34F187B2BA7005BC7EC /* TextNoteViewController.m in Sources */,
 				3FED96191370863E00D8D1B8 /* main.m in Sources */,
 				4CEA1A03177CAAED00A1DE05 /* LectureCell.m in Sources */,
+				3FCE68A918A1836700FB10FE /* NSString+asciihexcodes.m in Sources */,
 				3FED961C1370863E00D8D1B8 /* AccessLectureAppDelegate.m in Sources */,
 				3FED96221370863E00D8D1B8 /* RootViewController.m in Sources */,
 				3F2DB24113A65C2D00041736 /* ColorViewController.m in Sources */,
@@ -1063,6 +1082,7 @@
 				3F6D11CC17625EA20066A4FA /* SRWebSocket.m in Sources */,
 				3F8D992B188099F30061DEA2 /* DocumentCreator.m in Sources */,
 				4CADF4F2178DEC19005978C0 /* UISegmentedControlExtension.m in Sources */,
+				3FE2C81218A171C1006234D5 /* XMLReader.m in Sources */,
 				4CDB058017B5589A00D8EB85 /* Favorites.m in Sources */,
 				3F8D9915187F0D1A0061DEA2 /* FileMangerViewController.m in Sources */,
 				3F2DC97C1886EDF1008C29BF /* AddImage.m in Sources */,
@@ -1410,6 +1430,7 @@
 				3FE2C7D718984086006234D5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3FED96011370863E00D8D1B8 /* Build configuration list for PBXProject "AccessLecture" */ = {
 			isa = XCConfigurationList;

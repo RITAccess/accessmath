@@ -40,7 +40,7 @@
 
 - (void)testImageReqest
 {
-    UIImage *img = [UIImage imageNamed:@"Icon"];
+    UIImage *img = [UIImage imageNamed:@"sample"];
     NSURLRequest *request = [_controller requestWithImage:img];
     XCTAssertNotNil(request, @"Request not created");
 }
