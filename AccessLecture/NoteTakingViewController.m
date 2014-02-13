@@ -27,12 +27,9 @@
 
 @implementation NoteTakingViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
++ (instancetype)loadFromStoryboard
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-    }
-    return self;
+    return [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"NoteTakingViewController"];
 }
 
 - (void)viewDidLoad
@@ -79,20 +76,22 @@
     [self.view bringSubviewToFront:sender];
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)lectureContainer:(LectureViewContainer *)container switchedToDocument:(AMLecture *)document
 {
-    // Get document
-    [[FileManager defaultManager] currentDocumentWithCompletion:^(AMLecture *lecture) { 
-        _document = lecture;
-        for (id note in _document.lecture.notes) {
-            if ([note isKindOfClass:[Note class]]) {
-                [self loadNoteAndPresent:note];
-            } else if ([note isKindOfClass:[ImageNoteViewController class]]) {
-                ImageNoteViewController *i = (ImageNoteViewController *)note;
-                [self loadImageNoteAndPresent:i];
-            }
+    for (UIView *view in self.view.subviews) {
+        if ([view isKindOfClass:[MTFlowerMenu class]])
+            continue;
+        [view removeFromSuperview];
+    }
+    _document = document;
+    for (id note in _document.lecture.notes) {
+        if ([note isKindOfClass:[Note class]]) {
+            [self loadNoteAndPresent:note];
+        } else if ([note isKindOfClass:[ImageNoteViewController class]]) {
+            ImageNoteViewController *i = (ImageNoteViewController *)note;
+            [self loadImageNoteAndPresent:i];
         }
-    }];
+    }
 }
 
 - (void)loadNoteAndPresent:(Note *)note

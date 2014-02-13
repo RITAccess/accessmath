@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TopNav.h"
 
 static NSString *const LectureViewContainerSBID = @"lectureVC";
 
@@ -59,12 +58,5 @@ extern void VectorApplyScale(CGFloat scale, Vector *vector);
 @end
 
 @interface LectureViewContainer : UIViewController
-
-- (IBAction)menuButtonTapped:(id)sender;
-- (IBAction)backButtonTapped:(id)sender;
-- (void)addController:(UIViewController<LectureViewChild> *)vc;
-
-@property (weak, nonatomic) IBOutlet UIView *sideMenu;
-@property (weak, nonatomic) IBOutlet TopNav *navBar;
 
 @end

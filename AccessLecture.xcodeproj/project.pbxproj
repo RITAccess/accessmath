@@ -44,6 +44,7 @@
 		3F2DC98218871FE4008C29BF /* ImageNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC98018871FE4008C29BF /* ImageNoteViewController.m */; };
 		3F2DC98318871FE4008C29BF /* ImageNoteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F2DC98118871FE4008C29BF /* ImageNoteViewController.xib */; };
 		3F2DC9871887225D008C29BF /* ImageNoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC9861887225D008C29BF /* ImageNoteView.m */; };
+		3F59A9EA18AD193800AAC873 /* LectureNavbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F59A9E918AD193800AAC873 /* LectureNavbar.m */; };
 		3F6D11C417625EA20066A4FA /* ALNetworkInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D11B017625EA20066A4FA /* ALNetworkInterface.m */; };
 		3F6D11C517625EA20066A4FA /* SocketIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D11B217625EA20066A4FA /* SocketIO.m */; };
 		3F6D11C617625EA20066A4FA /* SocketIOJSONSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D11B417625EA20066A4FA /* SocketIOJSONSerialization.m */; };
@@ -66,6 +67,7 @@
 		3F8D992C188099F30061DEA2 /* DocumentCreator.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F8D992A188099F30061DEA2 /* DocumentCreator.xib */; };
 		3F8D992F1880A2540061DEA2 /* StatusMark.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8D992E1880A2540061DEA2 /* StatusMark.m */; };
 		3F8D99331880ACBE0061DEA2 /* NSString+TrimmingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8D99321880ACBE0061DEA2 /* NSString+TrimmingAdditions.m */; };
+		3F8FD2C418AD21860059EF9C /* AMOpenButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8FD2C318AD21860059EF9C /* AMOpenButton.m */; };
 		3F99F20215436E090065CBB9 /* Lecture.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F99F20115436E090065CBB9 /* Lecture.m */; };
 		3FB653D917B1836D00AE8FB5 /* NotesViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB653D817B1836D00AE8FB5 /* NotesViewControllerTests.m */; };
 		3FCD5D1715438472005F2A60 /* AccessLectureRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FCD5D1615438472005F2A60 /* AccessLectureRuntime.m */; };
@@ -87,7 +89,6 @@
 		4C62BECD175651DB00CAF4CF /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F99F1FA1543641E0065CBB9 /* FileManager.m */; };
 		4C861C06178EE0B600CD499C /* StreamLayout.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C861C05178EE0B600CD499C /* StreamLayout.storyboard */; };
 		4C8ABE78177C87BD007C934C /* StreamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8ABE76177C87BD007C934C /* StreamViewController.m */; };
-		4C9AB8FE177C6895004A4F65 /* TopNav.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9AB8FD177C6895004A4F65 /* TopNav.m */; };
 		4CBF5D871768DAD200746377 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11D217625F150066A4FA /* libicucore.dylib */; };
 		4CBF5D881768DAD500746377 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11D017625F0D0066A4FA /* CFNetwork.framework */; };
 		4CBF5D891768DAD700746377 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11CE17625F060066A4FA /* Security.framework */; };
@@ -156,6 +157,8 @@
 		3F2DC98118871FE4008C29BF /* ImageNoteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageNoteViewController.xib; sourceTree = "<group>"; };
 		3F2DC9851887225D008C29BF /* ImageNoteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageNoteView.h; sourceTree = "<group>"; };
 		3F2DC9861887225D008C29BF /* ImageNoteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageNoteView.m; sourceTree = "<group>"; };
+		3F59A9E818AD193800AAC873 /* LectureNavbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LectureNavbar.h; sourceTree = "<group>"; };
+		3F59A9E918AD193800AAC873 /* LectureNavbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LectureNavbar.m; sourceTree = "<group>"; };
 		3F6D11AF17625EA20066A4FA /* ALNetworkInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALNetworkInterface.h; sourceTree = "<group>"; };
 		3F6D11B017625EA20066A4FA /* ALNetworkInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALNetworkInterface.m; sourceTree = "<group>"; };
 		3F6D11B117625EA20066A4FA /* SocketIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIO.h; sourceTree = "<group>"; };
@@ -196,6 +199,8 @@
 		3F8D992E1880A2540061DEA2 /* StatusMark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusMark.m; sourceTree = "<group>"; };
 		3F8D99311880ACBE0061DEA2 /* NSString+TrimmingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TrimmingAdditions.h"; sourceTree = "<group>"; };
 		3F8D99321880ACBE0061DEA2 /* NSString+TrimmingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TrimmingAdditions.m"; sourceTree = "<group>"; };
+		3F8FD2C218AD21860059EF9C /* AMOpenButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMOpenButton.h; sourceTree = "<group>"; };
+		3F8FD2C318AD21860059EF9C /* AMOpenButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMOpenButton.m; sourceTree = "<group>"; };
 		3F99F1F91543641E0065CBB9 /* FileManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileManager.h; sourceTree = "<group>"; };
 		3F99F1FA1543641E0065CBB9 /* FileManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileManager.m; sourceTree = "<group>"; };
 		3F99F1FE154364270065CBB9 /* Note.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
@@ -232,8 +237,6 @@
 		4C861C05178EE0B600CD499C /* StreamLayout.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StreamLayout.storyboard; sourceTree = "<group>"; };
 		4C8ABE75177C87BD007C934C /* StreamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamViewController.h; sourceTree = "<group>"; };
 		4C8ABE76177C87BD007C934C /* StreamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamViewController.m; sourceTree = "<group>"; };
-		4C9AB8FC177C6895004A4F65 /* TopNav.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopNav.h; sourceTree = "<group>"; };
-		4C9AB8FD177C6895004A4F65 /* TopNav.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopNav.m; sourceTree = "<group>"; };
 		4CB8329E1768C0AC008F0099 /* AccessLecture Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AccessLecture Tests-Info.plist"; sourceTree = "<group>"; };
 		4CB8329F1768C0AC008F0099 /* AccessLecture Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AccessLecture Tests-Prefix.pch"; sourceTree = "<group>"; };
 		4CD0A5EC177DC98600864228 /* ConnectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionViewController.h; sourceTree = "<group>"; };
@@ -693,8 +696,10 @@
 		4C9AB8FB177C6884004A4F65 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				4C9AB8FC177C6895004A4F65 /* TopNav.h */,
-				4C9AB8FD177C6895004A4F65 /* TopNav.m */,
+				3F59A9E818AD193800AAC873 /* LectureNavbar.h */,
+				3F59A9E918AD193800AAC873 /* LectureNavbar.m */,
+				3F8FD2C218AD21860059EF9C /* AMOpenButton.h */,
+				3F8FD2C318AD21860059EF9C /* AMOpenButton.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -932,6 +937,7 @@
 				3F2DB24113A65C2D00041736 /* ColorViewController.m in Sources */,
 				3F0DBDD613BD174900E3FEE8 /* AboutViewController.m in Sources */,
 				3F99F20215436E090065CBB9 /* Lecture.m in Sources */,
+				3F59A9EA18AD193800AAC873 /* LectureNavbar.m in Sources */,
 				3F2DC9751885B29E008C29BF /* MTMenuItem.m in Sources */,
 				4C5C50CD177B7B7C0095801A /* LectureViewContainer.m in Sources */,
 				4CCBC8DD17E222FF00CB303E /* Note.m in Sources */,
@@ -954,7 +960,6 @@
 				3F6D11CB17625EA20066A4FA /* NSData+SRB64Additions.m in Sources */,
 				3F8D9925187F48CC0061DEA2 /* DocumentPicker.m in Sources */,
 				4CDDF69717EB690900FE34E7 /* AMLecture.m in Sources */,
-				4C9AB8FE177C6895004A4F65 /* TopNav.m in Sources */,
 				3F2DC9871887225D008C29BF /* ImageNoteView.m in Sources */,
 				4CEA1A04177CAAED00A1DE05 /* OpenLectureViewController.m in Sources */,
 				4C8ABE78177C87BD007C934C /* StreamViewController.m in Sources */,
@@ -967,6 +972,7 @@
 				3F2DC97C1886EDF1008C29BF /* AddImage.m in Sources */,
 				3F8D992F1880A2540061DEA2 /* StatusMark.m in Sources */,
 				2C3BFE6517A2BF7B00404B9C /* ZoomBounds.c in Sources */,
+				3F8FD2C418AD21860059EF9C /* AMOpenButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

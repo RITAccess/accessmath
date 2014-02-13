@@ -12,6 +12,10 @@
 
 @interface NoteTakingViewController : UIViewController <LectureViewChild>
 
++ (instancetype)loadFromStoryboard;
+
 @property (strong, readonly) AMLecture *document;
+
+- (void)lectureContainer:(LectureViewContainer *)container switchedToDocument:(AMLecture *)document;
 
 @end
