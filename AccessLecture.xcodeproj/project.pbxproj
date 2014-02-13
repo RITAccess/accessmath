@@ -37,10 +37,6 @@
 		3F0DBDD613BD174900E3FEE8 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0DBDD413BD174900E3FEE8 /* AboutViewController.m */; };
 		3F0F3B71178DCB8B00163C2A /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F0F3B70178DCB8B00163C2A /* CoreText.framework */; };
 		3F2DB24113A65C2D00041736 /* ColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DB23F13A65C2D00041736 /* ColorViewController.m */; };
-		3F2DC9721885B295008C29BF /* MTFlowerMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC9711885B295008C29BF /* MTFlowerMenu.m */; };
-		3F2DC9751885B29E008C29BF /* MTMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC9741885B29E008C29BF /* MTMenuItem.m */; };
-		3F2DC9791886ECB5008C29BF /* AddNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC9781886ECB5008C29BF /* AddNote.m */; };
-		3F2DC97C1886EDF1008C29BF /* AddImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC97B1886EDF1008C29BF /* AddImage.m */; };
 		3F2DC98218871FE4008C29BF /* ImageNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC98018871FE4008C29BF /* ImageNoteViewController.m */; };
 		3F2DC98318871FE4008C29BF /* ImageNoteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F2DC98118871FE4008C29BF /* ImageNoteViewController.xib */; };
 		3F2DC9871887225D008C29BF /* ImageNoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC9861887225D008C29BF /* ImageNoteView.m */; };
@@ -68,6 +64,9 @@
 		3F8D992F1880A2540061DEA2 /* StatusMark.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8D992E1880A2540061DEA2 /* StatusMark.m */; };
 		3F8D99331880ACBE0061DEA2 /* NSString+TrimmingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8D99321880ACBE0061DEA2 /* NSString+TrimmingAdditions.m */; };
 		3F8FD2C418AD21860059EF9C /* AMOpenButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8FD2C318AD21860059EF9C /* AMOpenButton.m */; };
+		3F8FD2CA18AD33350059EF9C /* AddImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8FD2C718AD33350059EF9C /* AddImage.m */; };
+		3F8FD2CB18AD33350059EF9C /* AddNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8FD2C918AD33350059EF9C /* AddNote.m */; };
+		3F8FD2CF18AD34EB0059EF9C /* DrawMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8FD2CE18AD34EB0059EF9C /* DrawMode.m */; };
 		3F99F20215436E090065CBB9 /* Lecture.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F99F20115436E090065CBB9 /* Lecture.m */; };
 		3FB653D917B1836D00AE8FB5 /* NotesViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB653D817B1836D00AE8FB5 /* NotesViewControllerTests.m */; };
 		3FCD5D1715438472005F2A60 /* AccessLectureRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FCD5D1615438472005F2A60 /* AccessLectureRuntime.m */; };
@@ -144,14 +143,6 @@
 		3F0F3B70178DCB8B00163C2A /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		3F2DB23E13A65C2D00041736 /* ColorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorViewController.h; sourceTree = "<group>"; };
 		3F2DB23F13A65C2D00041736 /* ColorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorViewController.m; sourceTree = "<group>"; };
-		3F2DC9701885B295008C29BF /* MTFlowerMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTFlowerMenu.h; sourceTree = "<group>"; };
-		3F2DC9711885B295008C29BF /* MTFlowerMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTFlowerMenu.m; sourceTree = "<group>"; };
-		3F2DC9731885B29E008C29BF /* MTMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMenuItem.h; sourceTree = "<group>"; };
-		3F2DC9741885B29E008C29BF /* MTMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTMenuItem.m; sourceTree = "<group>"; };
-		3F2DC9771886ECB5008C29BF /* AddNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddNote.h; sourceTree = "<group>"; };
-		3F2DC9781886ECB5008C29BF /* AddNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNote.m; sourceTree = "<group>"; };
-		3F2DC97A1886EDF1008C29BF /* AddImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddImage.h; sourceTree = "<group>"; };
-		3F2DC97B1886EDF1008C29BF /* AddImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddImage.m; sourceTree = "<group>"; };
 		3F2DC97F18871FE4008C29BF /* ImageNoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageNoteViewController.h; sourceTree = "<group>"; };
 		3F2DC98018871FE4008C29BF /* ImageNoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageNoteViewController.m; sourceTree = "<group>"; };
 		3F2DC98118871FE4008C29BF /* ImageNoteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageNoteViewController.xib; sourceTree = "<group>"; };
@@ -201,6 +192,12 @@
 		3F8D99321880ACBE0061DEA2 /* NSString+TrimmingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TrimmingAdditions.m"; sourceTree = "<group>"; };
 		3F8FD2C218AD21860059EF9C /* AMOpenButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMOpenButton.h; sourceTree = "<group>"; };
 		3F8FD2C318AD21860059EF9C /* AMOpenButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMOpenButton.m; sourceTree = "<group>"; };
+		3F8FD2C618AD33350059EF9C /* AddImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddImage.h; sourceTree = "<group>"; };
+		3F8FD2C718AD33350059EF9C /* AddImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddImage.m; sourceTree = "<group>"; };
+		3F8FD2C818AD33350059EF9C /* AddNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddNote.h; sourceTree = "<group>"; };
+		3F8FD2C918AD33350059EF9C /* AddNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNote.m; sourceTree = "<group>"; };
+		3F8FD2CD18AD34EB0059EF9C /* DrawMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawMode.h; sourceTree = "<group>"; };
+		3F8FD2CE18AD34EB0059EF9C /* DrawMode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawMode.m; sourceTree = "<group>"; };
 		3F99F1F91543641E0065CBB9 /* FileManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileManager.h; sourceTree = "<group>"; };
 		3F99F1FA1543641E0065CBB9 /* FileManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileManager.m; sourceTree = "<group>"; };
 		3F99F1FE154364270065CBB9 /* Note.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
@@ -347,29 +344,6 @@
 			name = "About View";
 			sourceTree = "<group>";
 		};
-		3F2DC96F1885B26C008C29BF /* MenuControl */ = {
-			isa = PBXGroup;
-			children = (
-				3F2DC9761886EC86008C29BF /* Views */,
-				3F2DC9731885B29E008C29BF /* MTMenuItem.h */,
-				3F2DC9741885B29E008C29BF /* MTMenuItem.m */,
-				3F2DC9701885B295008C29BF /* MTFlowerMenu.h */,
-				3F2DC9711885B295008C29BF /* MTFlowerMenu.m */,
-			);
-			name = MenuControl;
-			sourceTree = "<group>";
-		};
-		3F2DC9761886EC86008C29BF /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				3F2DC9771886ECB5008C29BF /* AddNote.h */,
-				3F2DC9781886ECB5008C29BF /* AddNote.m */,
-				3F2DC97A1886EDF1008C29BF /* AddImage.h */,
-				3F2DC97B1886EDF1008C29BF /* AddImage.m */,
-			);
-			name = Views;
-			sourceTree = "<group>";
-		};
 		3F2DC97E18871FCF008C29BF /* ImageNote */ = {
 			isa = PBXGroup;
 			children = (
@@ -476,6 +450,26 @@
 				3F8D99321880ACBE0061DEA2 /* NSString+TrimmingAdditions.m */,
 			);
 			name = Helpers;
+			sourceTree = "<group>";
+		};
+		3F8FD2C518AD33230059EF9C /* LeafViews */ = {
+			isa = PBXGroup;
+			children = (
+				3F8FD2C618AD33350059EF9C /* AddImage.h */,
+				3F8FD2C718AD33350059EF9C /* AddImage.m */,
+				3F8FD2C818AD33350059EF9C /* AddNote.h */,
+				3F8FD2C918AD33350059EF9C /* AddNote.m */,
+			);
+			name = LeafViews;
+			sourceTree = "<group>";
+		};
+		3F8FD2CC18AD33EF0059EF9C /* LeafViews */ = {
+			isa = PBXGroup;
+			children = (
+				3F8FD2CD18AD34EB0059EF9C /* DrawMode.h */,
+				3F8FD2CE18AD34EB0059EF9C /* DrawMode.m */,
+			);
+			name = LeafViews;
 			sourceTree = "<group>";
 		};
 		3F99F1ED15435F9D0065CBB9 /* Document Model */ = {
@@ -646,7 +640,6 @@
 		4C5C50C9177B7B300095801A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				3F2DC96F1885B26C008C29BF /* MenuControl */,
 				3F8D9911187F0CFC0061DEA2 /* FileManagerUI */,
 				3FED963113708E4E00D8D1B8 /* RootViewController */,
 				2CBF3014177B700C0087C17C /* DrawViewController */,
@@ -661,6 +654,7 @@
 		4C5C50CA177B7B3A0095801A /* LectureViewController */ = {
 			isa = PBXGroup;
 			children = (
+				3F8FD2CC18AD33EF0059EF9C /* LeafViews */,
 				4C9AB8FB177C6884004A4F65 /* Views */,
 				2C3BFE6417A2BF7B00404B9C /* ZoomBounds.h */,
 				2C3BFE6317A2BF7B00404B9C /* ZoomBounds.c */,
@@ -685,6 +679,7 @@
 		4C8ABE7C177CA341007C934C /* NotesViewController */ = {
 			isa = PBXGroup;
 			children = (
+				3F8FD2C518AD33230059EF9C /* LeafViews */,
 				3F2DC97E18871FCF008C29BF /* ImageNote */,
 				3F07C355187B3648005BC7EC /* TextNote */,
 				4CFC572E17DF800700393A1E /* NoteTakingViewController.h */,
@@ -925,8 +920,8 @@
 			files = (
 				4CD0A5F8177E1D6800864228 /* StreamDrawing.m in Sources */,
 				21DA3D9418905B5000BFD96B /* ACEDrawingView.m in Sources */,
-				3F2DC9791886ECB5008C29BF /* AddNote.m in Sources */,
 				3F07C352187B3627005BC7EC /* TextNoteView.m in Sources */,
+				3F8FD2CB18AD33350059EF9C /* AddNote.m in Sources */,
 				3F8D99331880ACBE0061DEA2 /* NSString+TrimmingAdditions.m in Sources */,
 				3F8D990E187DD9100061DEA2 /* FullScreenNoteViewController.m in Sources */,
 				3F07C34F187B2BA7005BC7EC /* TextNoteViewController.m in Sources */,
@@ -935,10 +930,10 @@
 				3FED961C1370863E00D8D1B8 /* AccessLectureAppDelegate.m in Sources */,
 				3FED96221370863E00D8D1B8 /* RootViewController.m in Sources */,
 				3F2DB24113A65C2D00041736 /* ColorViewController.m in Sources */,
+				3F8FD2CF18AD34EB0059EF9C /* DrawMode.m in Sources */,
 				3F0DBDD613BD174900E3FEE8 /* AboutViewController.m in Sources */,
 				3F99F20215436E090065CBB9 /* Lecture.m in Sources */,
 				3F59A9EA18AD193800AAC873 /* LectureNavbar.m in Sources */,
-				3F2DC9751885B29E008C29BF /* MTMenuItem.m in Sources */,
 				4C5C50CD177B7B7C0095801A /* LectureViewContainer.m in Sources */,
 				4CCBC8DD17E222FF00CB303E /* Note.m in Sources */,
 				3FCD5D1715438472005F2A60 /* AccessLectureRuntime.m in Sources */,
@@ -947,6 +942,7 @@
 				3F2DC98218871FE4008C29BF /* ImageNoteViewController.m in Sources */,
 				3F6D11C417625EA20066A4FA /* ALNetworkInterface.m in Sources */,
 				4C37CCB018295FC0006D3B1F /* ALMetaData.m in Sources */,
+				3F8FD2CA18AD33350059EF9C /* AddImage.m in Sources */,
 				3F6D11C517625EA20066A4FA /* SocketIO.m in Sources */,
 				4CD0A5EF177DC98600864228 /* ConnectionViewController.m in Sources */,
 				4CFC573017DF800700393A1E /* NoteTakingViewController.m in Sources */,
@@ -964,12 +960,10 @@
 				4CEA1A04177CAAED00A1DE05 /* OpenLectureViewController.m in Sources */,
 				4C8ABE78177C87BD007C934C /* StreamViewController.m in Sources */,
 				21DA3D9518905B5000BFD96B /* ACEViewController.m in Sources */,
-				3F2DC9721885B295008C29BF /* MTFlowerMenu.m in Sources */,
 				3F6D11CC17625EA20066A4FA /* SRWebSocket.m in Sources */,
 				3F8D992B188099F30061DEA2 /* DocumentCreator.m in Sources */,
 				4CDB058017B5589A00D8EB85 /* Favorites.m in Sources */,
 				3F8D9915187F0D1A0061DEA2 /* FileMangerViewController.m in Sources */,
-				3F2DC97C1886EDF1008C29BF /* AddImage.m in Sources */,
 				3F8D992F1880A2540061DEA2 /* StatusMark.m in Sources */,
 				2C3BFE6517A2BF7B00404B9C /* ZoomBounds.c in Sources */,
 				3F8FD2C418AD21860059EF9C /* AMOpenButton.m in Sources */,

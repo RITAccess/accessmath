@@ -6,10 +6,10 @@
 //
 //
 
+
 #import "NoteTakingViewController.h"
 #import "TextNoteViewController.h"
 #import "FileManager.h"
-#import "MTFlowerMenu.h"
 #import "AddNote.h"
 #import "AddImage.h"
 #import "ImageNoteViewController.h"
@@ -18,7 +18,7 @@
 
 @property UILabel *addNote;
 @property CGPoint menuPoint;
-@property (strong) MTFlowerMenu *menu;
+@property (strong) MTRadialMenu *menu;
 
 @property (strong) AMLecture *document;
 @property UITapGestureRecognizer *tapGestureRecognizer;
@@ -45,6 +45,14 @@
                                              selector:@selector(keyboardDidHide:)
                                                  name:UIKeyboardDidHideNotification
                                                object:nil];
+}
+
+- (NSArray *)menuItemsForRadialMenu:(MTRadialMenu *)menu
+{
+    // Add listeners
+    [menu addTarget:self action:@selector(menuSelected:) forControlEvents:UIControlEventTouchUpInside];
+    [menu addTarget:self action:@selector(menuAppear:) forControlEvents:UIControlEventTouchDown];
+    
     // Load Menu
     AddNote *addNote = [[AddNote alloc] init];
     addNote.identifier = @"AddNote";
@@ -52,17 +60,10 @@
     AddImage *addImage = [[AddImage alloc] init];
     addImage.identifier = @"AddImage";
     
-    _menu = [[MTFlowerMenu alloc] initWithFrame:CGRectZero];
-    [_menu addTarget:self action:@selector(menuSelected:) forControlEvents:UIControlEventTouchUpInside];
-    [_menu addTarget:self action:@selector(menuAppear:) forControlEvents:UIControlEventTouchDown];
-
-    [_menu addMenuItem:addNote];
-    [_menu addMenuItem:addImage];
-    
-    [self.view addSubview:_menu];
+    return @[addNote, addImage];
 }
 
-- (void)menuSelected:(MTFlowerMenu *)sender
+- (void)menuSelected:(MTRadialMenu *)sender
 {
     if ([sender.selectedIdentifier isEqualToString:@"AddNote"]) {
         [self createTextNoteAndPresentAtPoint:sender.location];
@@ -71,7 +72,7 @@
     }
 }
 
-- (void)menuAppear:(MTFlowerMenu *)sender
+- (void)menuAppear:(MTRadialMenu *)sender
 {
     [self.view bringSubviewToFront:sender];
 }
@@ -79,7 +80,7 @@
 - (void)lectureContainer:(LectureViewContainer *)container switchedToDocument:(AMLecture *)document
 {
     for (UIView *view in self.view.subviews) {
-        if ([view isKindOfClass:[MTFlowerMenu class]])
+        if ([view isKindOfClass:[MTRadialMenu class]])
             continue;
         [view removeFromSuperview];
     }
