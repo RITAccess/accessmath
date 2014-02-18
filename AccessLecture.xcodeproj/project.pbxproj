@@ -67,6 +67,8 @@
 		3F8FD2CA18AD33350059EF9C /* AddImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8FD2C718AD33350059EF9C /* AddImage.m */; };
 		3F8FD2CB18AD33350059EF9C /* AddNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8FD2C918AD33350059EF9C /* AddNote.m */; };
 		3F8FD2CF18AD34EB0059EF9C /* DrawMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8FD2CE18AD34EB0059EF9C /* DrawMode.m */; };
+		3F8FD2E318B3F7BF0059EF9C /* Deferred.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8FD2DF18B3F7BF0059EF9C /* Deferred.m */; };
+		3F8FD2E418B3F7BF0059EF9C /* Promise.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8FD2E218B3F7BF0059EF9C /* Promise.m */; };
 		3F99F20215436E090065CBB9 /* Lecture.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F99F20115436E090065CBB9 /* Lecture.m */; };
 		3FB653D917B1836D00AE8FB5 /* NotesViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB653D817B1836D00AE8FB5 /* NotesViewControllerTests.m */; };
 		3FCD5D1715438472005F2A60 /* AccessLectureRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FCD5D1615438472005F2A60 /* AccessLectureRuntime.m */; };
@@ -198,6 +200,10 @@
 		3F8FD2C918AD33350059EF9C /* AddNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNote.m; sourceTree = "<group>"; };
 		3F8FD2CD18AD34EB0059EF9C /* DrawMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawMode.h; sourceTree = "<group>"; };
 		3F8FD2CE18AD34EB0059EF9C /* DrawMode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawMode.m; sourceTree = "<group>"; };
+		3F8FD2DE18B3F7BF0059EF9C /* Deferred.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Deferred.h; sourceTree = "<group>"; };
+		3F8FD2DF18B3F7BF0059EF9C /* Deferred.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Deferred.m; sourceTree = "<group>"; };
+		3F8FD2E118B3F7BF0059EF9C /* Promise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Promise.h; sourceTree = "<group>"; };
+		3F8FD2E218B3F7BF0059EF9C /* Promise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Promise.m; sourceTree = "<group>"; };
 		3F99F1F91543641E0065CBB9 /* FileManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileManager.h; sourceTree = "<group>"; };
 		3F99F1FA1543641E0065CBB9 /* FileManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileManager.m; sourceTree = "<group>"; };
 		3F99F1FE154364270065CBB9 /* Note.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
@@ -472,6 +478,18 @@
 			name = LeafViews;
 			sourceTree = "<group>";
 		};
+		3F8FD2DD18B3F7BF0059EF9C /* objc-promise */ = {
+			isa = PBXGroup;
+			children = (
+				3F8FD2DE18B3F7BF0059EF9C /* Deferred.h */,
+				3F8FD2DF18B3F7BF0059EF9C /* Deferred.m */,
+				3F8FD2E118B3F7BF0059EF9C /* Promise.h */,
+				3F8FD2E218B3F7BF0059EF9C /* Promise.m */,
+			);
+			name = "objc-promise";
+			path = "objc-promise/objc-promise";
+			sourceTree = "<group>";
+		};
 		3F99F1ED15435F9D0065CBB9 /* Document Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -563,6 +581,7 @@
 		3FED960A1370863E00D8D1B8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3F8FD2DD18B3F7BF0059EF9C /* objc-promise */,
 				4CDB053717B5567300D8EB85 /* CoreData.framework */,
 				2CF45FDC17971C0400E6C69E /* QuartzCore.framework */,
 				4C4B8BFB178EF8D900C2F94B /* AVFoundation.framework */,
@@ -936,6 +955,7 @@
 				3F59A9EA18AD193800AAC873 /* LectureNavbar.m in Sources */,
 				4C5C50CD177B7B7C0095801A /* LectureViewContainer.m in Sources */,
 				4CCBC8DD17E222FF00CB303E /* Note.m in Sources */,
+				3F8FD2E418B3F7BF0059EF9C /* Promise.m in Sources */,
 				3FCD5D1715438472005F2A60 /* AccessLectureRuntime.m in Sources */,
 				4C62BECD175651DB00CAF4CF /* FileManager.m in Sources */,
 				4C4B8BFA178EF57200C2F94B /* QRScanner.m in Sources */,
@@ -950,6 +970,7 @@
 				3F6D11C617625EA20066A4FA /* SocketIOJSONSerialization.m in Sources */,
 				3F6D11C717625EA20066A4FA /* SocketIOPacket.m in Sources */,
 				3F6D11C817625EA20066A4FA /* SocketIOTransportWebsocket.m in Sources */,
+				3F8FD2E318B3F7BF0059EF9C /* Deferred.m in Sources */,
 				3F6D11C917625EA20066A4FA /* SocketIOTransportXHR.m in Sources */,
 				3F6D11CA17625EA20066A4FA /* base64.c in Sources */,
 				21DA3D9618905B5000BFD96B /* ACEDrawingTools.m in Sources */,

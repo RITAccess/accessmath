@@ -14,6 +14,8 @@
 #import <Foundation/Foundation.h>
 #import "AMLecture.h"
 
+#import "Promise.h"
+
 typedef enum {
     FileManagerErrorFileNotFound    = -8901,
     FileManagerErrorFileExists      = -8902,
@@ -58,5 +60,10 @@ typedef enum {
  * a document and the user wishes to open a new one.
  */
 - (void)finishedWithDocument;
+
+/**
+ * TESTING Returns a promise objects to get a lecture
+ */
+- (Promise *)currentDocumentPromise;
 
 @end

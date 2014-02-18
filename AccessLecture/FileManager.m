@@ -20,6 +20,8 @@
 #import "Lecture.h"
 #import "FileMangerViewController.h"
 
+#import "Deferred.h"
+
 @interface FileManager ()
 
 @property (strong, nonatomic) AMLecture *document;
@@ -71,6 +73,15 @@
     [_document closeWithCompletionHandler:^(BOOL success) {
         _document = nil;
     }];
+}
+
+- (Promise *)currentDocumentPromise
+{
+    Deferred *lecturePromise = [Deferred deferred];
+    [self currentDocumentWithCompletion:^(AMLecture *lecture) {
+        [lecturePromise resolve:lecture];
+    }];
+    return [lecturePromise promise];
 }
 
 #pragma mark Document Internal
