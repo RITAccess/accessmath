@@ -6,6 +6,8 @@
 //
 //
 
+#define USING_TEST_SERVER 1
+
 #import "NoteTakingViewController.h"
 #import "ImageNoteViewController.h"
 #import "NSString+asciihexcodes.h"
@@ -166,7 +168,12 @@ CGPoint CGRectCenterPointInSuperview(CGRect rect) {
                 return;
             }
             for (id symbol in [responseValues valueForKeyPath:@"AllResults.RecognitionResults"]) {
+#if USING_TEST_SERVER
+                [textResponse appendString:[[symbol valueForKeyPath:@"Result.symbol"] stringValue]];
+                NSLog(@"%@", [symbol valueForKeyPath:@"Result.symbol"]);
+#else
                 [textResponse appendString:[NSString stringWithASCIIHexCode:[symbol valueForKeyPath:@"Result.symbol"]]];
+#endif
             }
         } else {
             NSLog(@"Connection Error: %@", connectionError);
@@ -198,6 +205,12 @@ CGPoint CGRectCenterPointInSuperview(CGRect rect) {
     
     NSURLComponents *url = [NSURLComponents componentsWithString:@"http://129.21.34.109/"];
     url.port = @7006;
+    
+#if USING_TEST_SERVER
+    url.host = @"claira.student.rit.edu";
+    url.port = @8080;
+#endif
+    
     NSString *segFormat =  @"<Segment "
                                 @"type='image_blob' "
                                 @"instanceID='%d' "
