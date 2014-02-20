@@ -23,6 +23,8 @@
 
 @interface LectureViewContainer ()
 
+@property (weak) AMLecture *document;
+
 @property (weak, nonatomic) IBOutlet LectureNavbar *navigationbar;
 @property (strong, nonatomic) MTRadialMenu *actionMenu;
 
@@ -43,7 +45,7 @@
     [super viewDidLoad];
     // Add button outlets
     [_navigationbar.openButton addTarget:self action:@selector(openLectureAction:) forControlEvents:UIControlEventTouchUpInside];
-    
+    [_navigationbar.drawingToggle addTarget:self action:@selector(toggledDrawMode:) forControlEvents:UIControlEventValueChanged];
     
     // Add Controllers
     static dispatch_once_t onceToken;
@@ -71,21 +73,33 @@
         }
     }
     
-    // Add mode switching
-    DrawMode *switchMode = [[DrawMode alloc] init];
-    switchMode.identifier = @"switch";
-    [_actionMenu addMenuItem:switchMode];
-
+//    // Add mode switching
+//    DrawMode *switchMode = [[DrawMode alloc] init];
+//    switchMode.identifier = @"switch";
+//    [_actionMenu addMenuItem:switchMode];
     
     [self.view addSubview:_actionMenu];
 }
-
-#pragma mark Actions
 
 - (void)moveControlTo:(UIViewController<LectureViewChild> *)vc
 {
     [self.view addSubview:[vc contentView]];
     _active = vc;
+    [self.view bringSubviewToFront:_navigationbar];
+}
+
+
+#pragma mark Actions
+
+// TODO - Switch to stack based with a push and pop controller type maybe?
+// TODO - disable if off
+- (void)toggledDrawMode:(UISwitch *)sender
+{
+    if (sender.on) {
+        [self moveControlTo:_dvc];
+    } else {
+        [self moveControlTo:_ntvc];
+    }
 }
 
 - (void)openLectureAction:(id)sender

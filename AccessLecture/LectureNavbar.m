@@ -34,6 +34,12 @@
         [self addSubview:open];
         open;
     });
+    _drawingToggle = ({
+        UISwitch *s = [UISwitch new];
+        s.frame = CGRectMake(115, 40, 0, 0);
+        [self addSubview:s];
+        s;
+    });
 }
 
 @end
