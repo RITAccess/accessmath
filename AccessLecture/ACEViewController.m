@@ -28,6 +28,9 @@
     
     _lineWidthSlider.value = _drawingView.lineWidth;
     
+    // Draw on clear canvas
+    [self.view setBackgroundColor:[UIColor clearColor]];
+    
     // Rotating toolbar, Y values are not what you'd expect
     if (UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)) {
         [_toolbar setFrame:CGRectMake(0, 1024 -  _toolbar.frame.size.height, 768, _toolbar.frame.size.height)];
@@ -203,7 +206,7 @@
 
 - (UIView *)contentView
 {
-    return _drawingView;
+    return self.view;
 }
 
 @end

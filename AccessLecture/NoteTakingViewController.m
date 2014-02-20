@@ -47,6 +47,8 @@
                                                object:nil];
 }
 
+#pragma Menu Datasource
+
 - (NSArray *)menuItemsForRadialMenu:(MTRadialMenu *)menu
 {
     // Add listeners

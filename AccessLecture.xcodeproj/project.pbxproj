@@ -301,8 +301,8 @@
 		216508051891A08600EFA99B /* DrawingTools */ = {
 			isa = PBXGroup;
 			children = (
-				21DA3D9118905B5000BFD96B /* ACEDrawingTools.m */,
 				21DA3D9218905B5000BFD96B /* ACEDrawingTools.h */,
+				21DA3D9118905B5000BFD96B /* ACEDrawingTools.m */,
 			);
 			name = DrawingTools;
 			sourceTree = "<group>";
@@ -310,8 +310,8 @@
 		216508061891A09900EFA99B /* DrawingView */ = {
 			isa = PBXGroup;
 			children = (
-				21DA3D8D18905B5000BFD96B /* ACEDrawingView.m */,
 				21DA3D9018905B5000BFD96B /* ACEDrawingView.h */,
+				21DA3D8D18905B5000BFD96B /* ACEDrawingView.m */,
 			);
 			name = DrawingView;
 			sourceTree = "<group>";
@@ -321,8 +321,8 @@
 			children = (
 				216508061891A09900EFA99B /* DrawingView */,
 				216508051891A08600EFA99B /* DrawingTools */,
-				21DA3D8E18905B5000BFD96B /* ACEViewController.m */,
 				21DA3D8F18905B5000BFD96B /* ACEViewController.h */,
+				21DA3D8E18905B5000BFD96B /* ACEViewController.m */,
 				21DA3D8C18905B5000BFD96B /* ACEViewController.xib */,
 			);
 			name = DrawViewController;

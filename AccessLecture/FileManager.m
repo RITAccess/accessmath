@@ -68,11 +68,14 @@
     [_document save];
 }
 
-- (void)finishedWithDocument
+- (Promise *)finishedWithDocument
 {
+    Deferred *closed = [Deferred deferred];
     [_document closeWithCompletionHandler:^(BOOL success) {
         _document = nil;
+        [closed resolve:nil];
     }];
+    return closed;
 }
 
 - (Promise *)currentDocumentPromise

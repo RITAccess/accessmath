@@ -26,9 +26,11 @@
 @property (weak, nonatomic) IBOutlet LectureNavbar *navigationbar;
 @property (strong, nonatomic) MTRadialMenu *actionMenu;
 
-@property(strong) ACEViewController *dvc;
-@property(strong) StreamViewController *svc;
-@property(strong) NoteTakingViewController *ntvc;
+@property (strong) ACEViewController *dvc;
+@property (strong) StreamViewController *svc;
+@property (strong) NoteTakingViewController *ntvc;
+
+@property (weak) UIViewController<LectureViewChild> *active;
 
 @end
 
@@ -70,20 +72,28 @@
     }
     
     // Add mode switching
-    DrawMode *draw = [[DrawMode alloc] init];
-    draw.identifier = @"switchToDraw";
-    [_actionMenu addMenuItem:draw];
+    DrawMode *switchMode = [[DrawMode alloc] init];
+    switchMode.identifier = @"switch";
+    [_actionMenu addMenuItem:switchMode];
+
     
     [self.view addSubview:_actionMenu];
 }
 
 #pragma mark Actions
 
+- (void)moveControlTo:(UIViewController<LectureViewChild> *)vc
+{
+    [self.view addSubview:[vc contentView]];
+    _active = vc;
+}
+
 - (void)openLectureAction:(id)sender
 {
     [_ntvc lectureContainer:self switchedToDocument:nil];
     [FileManager.defaultManager forceSave];
-    [FileManager.defaultManager finishedWithDocument];
+    Promise *closed = [FileManager.defaultManager finishedWithDocument];
+    [closed wait:10]; // Should block till closed doc
     Promise *lecture = [FileManager.defaultManager currentDocumentPromise];
     [lecture when:^(AMLecture *lecture) {
         [_ntvc lectureContainer:self switchedToDocument:lecture];
@@ -92,8 +102,12 @@
 
 - (void)actionFromMenu:(MTRadialMenu *)menu
 {
-    if ([menu.selectedIdentifier isEqualToString:@"switchToDraw"]) {
-        [self.view addSubview:_dvc.view];
+    if ([menu.selectedIdentifier isEqualToString:@"switch"]) {
+        if (_active == _dvc) {
+            [self moveControlTo:_ntvc];
+        } else {
+            [self moveControlTo:_dvc];
+        }
     }
 }
 
