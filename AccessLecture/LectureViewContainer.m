@@ -58,6 +58,7 @@
     [self addChildViewController:_ntvc];
     
     _ntvc.view.backgroundColor = [UIColor clearColor];
+    _ntvc.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     [self.view addSubview:_ntvc.view];
     [self.view bringSubviewToFront:_navigationbar];
     
@@ -98,7 +99,7 @@
     if (sender.on) {
         [self moveControlTo:_dvc];
     } else {
-        [self moveControlTo:_ntvc];
+        [self.view sendSubviewToBack:_dvc.view];
     }
 }
 
