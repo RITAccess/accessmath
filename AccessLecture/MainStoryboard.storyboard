@@ -134,7 +134,7 @@
         <!--Note Taking View Controller-->
         <scene sceneID="Vmb-EE-aK3">
             <objects>
-                <viewController id="dBd-tA-Bkg" customClass="NoteTakingViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NoteTakingViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dBd-tA-Bkg" customClass="NoteTakingViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="A1K-Q5-jl6"/>
                         <viewControllerLayoutGuide type="bottom" id="sUp-DS-tuc"/>
@@ -162,87 +162,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gfg-9I-Na3" userLabel="SideBar">
-                                <rect key="frame" x="1024" y="80" width="150" height="759"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.96577785329999999" green="0.96577785329999999" blue="0.96577785329999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="JRq-Pz-Evw"/>
-                                </constraints>
-                            </view>
-                            <view opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ff3-bh-HnE" userLabel="NavBar" customClass="TopNav">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="80"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OVo-Z4-U9s">
-                                        <rect key="frame" x="914" y="0.0" width="110" height="80"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="110" id="aDe-oM-jbf"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" size="button"/>
-                                        <state key="normal" title="Menu">
-                                            <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="menuButtonTapped:" destination="8Co-Mi-Y02" eventType="touchUpInside" id="mZ7-3K-xY8"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="llf-BG-XW9">
-                                        <rect key="frame" x="0.0" y="0.0" width="110" height="80"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="110" id="7H2-Qd-Sft"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" size="button"/>
-                                        <state key="normal" title="Back">
-                                            <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="backButtonTapped:" destination="8Co-Mi-Y02" eventType="touchUpInside" id="clP-BF-caO"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="0.96577785326086962" green="0.96577785326086962" blue="0.96577785326086962" alpha="1" colorSpace="calibratedRGB"/>
-                                <accessibility key="accessibilityConfiguration" label="Navigation Bar">
-                                    <bool key="isElement" value="YES"/>
-                                </accessibility>
-                                <constraints>
-                                    <constraint firstItem="OVo-Z4-U9s" firstAttribute="trailing" secondItem="ff3-bh-HnE" secondAttribute="trailing" id="4HM-Zg-3fu"/>
-                                    <constraint firstAttribute="height" constant="80" id="9mJ-j5-jbd"/>
-                                    <constraint firstAttribute="height" constant="80" id="Ihu-hU-xcy"/>
-                                    <constraint firstItem="llf-BG-XW9" firstAttribute="leading" secondItem="ff3-bh-HnE" secondAttribute="leading" id="X0o-Rm-AdU"/>
-                                    <constraint firstItem="llf-BG-XW9" firstAttribute="bottom" secondItem="OVo-Z4-U9s" secondAttribute="bottom" id="dLG-1R-xQe"/>
-                                    <constraint firstItem="OVo-Z4-U9s" firstAttribute="top" secondItem="ff3-bh-HnE" secondAttribute="top" id="kzs-tg-swt"/>
-                                    <constraint firstItem="OVo-Z4-U9s" firstAttribute="bottom" secondItem="ff3-bh-HnE" secondAttribute="bottom" id="osy-GA-X7n"/>
-                                    <constraint firstItem="llf-BG-XW9" firstAttribute="top" secondItem="OVo-Z4-U9s" secondAttribute="top" id="xcO-DP-hSG"/>
-                                </constraints>
-                            </view>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pn1-a1-T0f" customClass="LectureNavbar">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ff3-bh-HnE" firstAttribute="top" secondItem="w3Y-Ju-qTJ" secondAttribute="top" id="FPn-8j-ghn"/>
-                            <constraint firstItem="Gfg-9I-Na3" firstAttribute="top" secondItem="w3Y-Ju-qTJ" secondAttribute="top" constant="80" id="GtE-j7-2Zs"/>
-                            <constraint firstItem="Gfg-9I-Na3" firstAttribute="leading" secondItem="w3Y-Ju-qTJ" secondAttribute="leading" constant="1024" id="RXP-Ec-lzU"/>
-                            <constraint firstAttribute="bottom" secondItem="Gfg-9I-Na3" secondAttribute="bottom" constant="-71" id="RZd-sw-faB"/>
-                            <constraint firstItem="ff3-bh-HnE" firstAttribute="trailing" secondItem="w3Y-Ju-qTJ" secondAttribute="trailing" id="emB-hK-AWz"/>
-                            <constraint firstItem="ff3-bh-HnE" firstAttribute="leading" secondItem="w3Y-Ju-qTJ" secondAttribute="leading" id="fpX-A0-gtb"/>
+                            <constraint firstItem="Pn1-a1-T0f" firstAttribute="top" secondItem="w3Y-Ju-qTJ" secondAttribute="top" id="kr8-GQ-Uqc"/>
+                            <constraint firstAttribute="trailing" secondItem="Pn1-a1-T0f" secondAttribute="trailing" id="tKP-tp-VP2"/>
+                            <constraint firstItem="Pn1-a1-T0f" firstAttribute="leading" secondItem="w3Y-Ju-qTJ" secondAttribute="leading" id="ytP-BX-Lxb"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackOpaque"/>
                     <connections>
-                        <outlet property="navBar" destination="ff3-bh-HnE" id="80P-fl-uT4"/>
-                        <outlet property="sideMenu" destination="Gfg-9I-Na3" id="O4N-4R-UhG"/>
+                        <outlet property="navigationbar" destination="Pn1-a1-T0f" id="b6c-Le-n2r"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vru-bT-4f7" userLabel="First Responder" sceneMemberID="firstResponder"/>

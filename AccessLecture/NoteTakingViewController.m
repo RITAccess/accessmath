@@ -6,10 +6,10 @@
 //
 //
 
+
 #import "NoteTakingViewController.h"
 #import "TextNoteViewController.h"
 #import "FileManager.h"
-#import "MTFlowerMenu.h"
 #import "AddNote.h"
 #import "AddImage.h"
 #import "ImageNoteViewController.h"
@@ -18,7 +18,7 @@
 
 @property UILabel *addNote;
 @property CGPoint menuPoint;
-@property (strong) MTFlowerMenu *menu;
+@property (strong) MTRadialMenu *menu;
 
 @property (strong) AMLecture *document;
 @property UITapGestureRecognizer *tapGestureRecognizer;
@@ -27,12 +27,9 @@
 
 @implementation NoteTakingViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
++ (instancetype)loadFromStoryboard
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-    }
-    return self;
+    return [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"NoteTakingViewController"];
 }
 
 - (void)viewDidLoad
@@ -48,6 +45,16 @@
                                              selector:@selector(keyboardDidHide:)
                                                  name:UIKeyboardDidHideNotification
                                                object:nil];
+}
+
+#pragma Menu Datasource
+
+- (NSArray *)menuItemsForRadialMenu:(MTRadialMenu *)menu
+{
+    // Add listeners
+    [menu addTarget:self action:@selector(menuSelected:) forControlEvents:UIControlEventTouchUpInside];
+    [menu addTarget:self action:@selector(menuAppear:) forControlEvents:UIControlEventTouchDown];
+    
     // Load Menu
     AddNote *addNote = [[AddNote alloc] init];
     addNote.identifier = @"AddNote";
@@ -55,17 +62,10 @@
     AddImage *addImage = [[AddImage alloc] init];
     addImage.identifier = @"AddImage";
     
-    _menu = [[MTFlowerMenu alloc] initWithFrame:CGRectZero];
-    [_menu addTarget:self action:@selector(menuSelected:) forControlEvents:UIControlEventTouchUpInside];
-    [_menu addTarget:self action:@selector(menuAppear:) forControlEvents:UIControlEventTouchDown];
-
-    [_menu addMenuItem:addNote];
-    [_menu addMenuItem:addImage];
-    
-    [self.view addSubview:_menu];
+    return @[addNote, addImage];
 }
 
-- (void)menuSelected:(MTFlowerMenu *)sender
+- (void)menuSelected:(MTRadialMenu *)sender
 {
     if ([sender.selectedIdentifier isEqualToString:@"AddNote"]) {
         [self createTextNoteAndPresentAtPoint:sender.location];
@@ -74,25 +74,27 @@
     }
 }
 
-- (void)menuAppear:(MTFlowerMenu *)sender
+- (void)menuAppear:(MTRadialMenu *)sender
 {
     [self.view bringSubviewToFront:sender];
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)lectureContainer:(LectureViewContainer *)container switchedToDocument:(AMLecture *)document
 {
-    // Get document
-    [[FileManager defaultManager] currentDocumentWithCompletion:^(AMLecture *lecture) { 
-        _document = lecture;
-        for (id note in _document.lecture.notes) {
-            if ([note isKindOfClass:[Note class]]) {
-                [self loadNoteAndPresent:note];
-            } else if ([note isKindOfClass:[ImageNoteViewController class]]) {
-                ImageNoteViewController *i = (ImageNoteViewController *)note;
-                [self loadImageNoteAndPresent:i];
-            }
+    for (UIView *view in self.view.subviews) {
+        if ([view isKindOfClass:[MTRadialMenu class]])
+            continue;
+        [view removeFromSuperview];
+    }
+    _document = document;
+    for (id note in _document.lecture.notes) {
+        if ([note isKindOfClass:[Note class]]) {
+            [self loadNoteAndPresent:note];
+        } else if ([note isKindOfClass:[ImageNoteViewController class]]) {
+            ImageNoteViewController *i = (ImageNoteViewController *)note;
+            [self loadImageNoteAndPresent:i];
         }
-    }];
+    }
 }
 
 - (void)loadNoteAndPresent:(Note *)note

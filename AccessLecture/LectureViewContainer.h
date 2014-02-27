@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TopNav.h"
+#import <MTRadialMenu/MTRadialMenu.h>
 
 static NSString *const LectureViewContainerSBID = @"lectureVC";
 
@@ -39,6 +39,12 @@ extern void VectorApplyScale(CGFloat scale, Vector *vector);
 @optional
 
 /**
+ * Add the radial menu items you'd like to have accessible for your controller
+ * Return the array of items
+ */
+- (NSArray *)menuItemsForRadialMenu:(MTRadialMenu *)menu;
+
+/**
  * Updated your code to handle the different sized content area, DO NOT update your content size 
  * Not implemented yet, doesn't get called.
  */
@@ -59,12 +65,5 @@ extern void VectorApplyScale(CGFloat scale, Vector *vector);
 @end
 
 @interface LectureViewContainer : UIViewController
-
-- (IBAction)menuButtonTapped:(id)sender;
-- (IBAction)backButtonTapped:(id)sender;
-- (void)addController:(UIViewController<LectureViewChild> *)vc;
-
-@property (weak, nonatomic) IBOutlet UIView *sideMenu;
-@property (weak, nonatomic) IBOutlet TopNav *navBar;
 
 @end

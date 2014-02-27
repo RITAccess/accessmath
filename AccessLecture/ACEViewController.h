@@ -37,4 +37,7 @@
 - (IBAction)toggleAlphaSlider:(id)sender;
 - (IBAction)alphaChange:(UISlider *)sender;
 
+// updates
+- (void)hideToolbar:(BOOL)hide;
+
 @end

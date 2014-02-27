@@ -1,0 +1,3 @@
+[submodule "objc-promise"]
+	path = objc-promise
+	url = https://github.com/mproberts/objc-promise
