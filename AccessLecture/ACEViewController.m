@@ -23,14 +23,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     _drawingView.delegate = self;
-    
+
     _lineWidthSlider.value = _drawingView.lineWidth;
-    
+
     // Draw on clear canvas
     [self.view setBackgroundColor:[UIColor clearColor]];
-    
+
     // Rotating toolbar, Y values are not what you'd expect
     if (UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)) {
         [_toolbar setFrame:CGRectMake(0, 1024 -  _toolbar.frame.size.height, 768, _toolbar.frame.size.height)];
@@ -99,18 +99,18 @@
 {
     if (actionSheet.cancelButtonIndex != buttonIndex) {
         if (actionSheet.tag == kActionSheetColor) {
-            
+
             NSDictionary *colorDictionary = [[NSDictionary alloc] initWithObjects:@[[UIColor blackColor], [UIColor redColor], [UIColor greenColor], [UIColor blueColor], [UIColor yellowColor], [UIColor purpleColor]]
                                                                           forKeys:@[@0, @1, @2, @3, @4, @5]];
             NSNumber *numberForColorDictionary = [NSNumber numberWithInteger:buttonIndex];
-            
+
             _drawingView.lineColor = [colorDictionary objectForKey:numberForColorDictionary];
             _colorButton.title = [actionSheet buttonTitleAtIndex:buttonIndex];
         } else {
             _drawingView.drawTool = buttonIndex; // ToolType is an enum, can assign the buttonIndex directly
-            
+
             _toolButton.title = [actionSheet buttonTitleAtIndex:buttonIndex];
-        
+
             // if eraser, disable color and alpha selection
             _colorButton.enabled = _alphaButton.enabled = buttonIndex != 6;
         }
@@ -126,7 +126,7 @@
                                                     cancelButtonTitle:@"Cancel"
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:@"Black", @"Red", @"Green", @"Blue", @"Yellow", @"Purple", nil];
-    
+
     [actionSheet setTag:kActionSheetColor];
     [actionSheet showInView:self.view];
 }
@@ -142,7 +142,7 @@
                                   @"Ellipse (Stroke)", @"Ellipse (Fill)",
                                   @"Eraser",
                                   nil];
-    
+
     [actionSheet setTag:kActionSheetTool];
     [actionSheet showInView:self.view];
 }
@@ -176,7 +176,7 @@
 
 - (void)willMoveToParentViewController:(UIViewController *)parent
 {
-    
+
 }
 
 - (void)didMoveToParentViewController:(UIViewController *)parent
@@ -186,12 +186,12 @@
 
 - (void)willSaveState
 {
-    
+
 }
 
 - (void)didSaveState
 {
-    
+
 }
 
 - (void)willLeaveActiveState
@@ -201,7 +201,7 @@
 
 - (void)didLeaveActiveState
 {
-    
+
 }
 
 - (UIView *)contentView
@@ -211,7 +211,7 @@
 
 - (void)hideToolbar:(BOOL)hide
 {
-    
+
 }
 
 @end

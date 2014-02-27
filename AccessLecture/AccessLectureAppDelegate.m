@@ -17,7 +17,13 @@
  Customization after application launches
  */
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
+    // Unit Testing
+    #ifdef DEBUG
+    NSDictionary *environment = [NSProcessInfo processInfo].environment;
+    NSString *injectBundlePath = environment[@"XCInjectBundle"];
+    if ([injectBundlePath.pathExtension isEqualToString:@"xctest"]) return YES;
+    #endif    
+    
     // Set the application defaults
     defaults = [NSUserDefaults standardUserDefaults];
     [defaults setFloat:0.0f forKey:@"toolbarAlpha"];

@@ -6,13 +6,23 @@
 //
 //
 
+#define USING_TEST_SERVER 1
+
 #import "NoteTakingViewController.h"
 #import "ImageNoteViewController.h"
+#import "NSString+asciihexcodes.h"
+#import "XMLReader.h"
 
 CGPoint CGRectCenterPointInSuperview(CGRect rect) {
     return CGPointMake((rect.size.width / 2.0) + rect.origin.x,
                        (rect.size.height / 2.0) + rect.origin.y);
 }
+
+@interface ImageNoteViewController ()
+
+@property (strong) UIButton *caputureButton;
+
+@end
 
 @implementation ImageNoteViewController
 {
@@ -84,12 +94,143 @@ CGPoint CGRectCenterPointInSuperview(CGRect rect) {
     [self.view addGestureRecognizer:scale];
 }
 
+#pragma mark View Actions
+
+- (void)addCaptureButton
+{
+     _caputureButton = ({
+         UIButton *b = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+         [b setTitle:@"Capture" forState:UIControlStateNormal];
+         b.frame = CGRectMake(50, 50, 100, 50);
+         [self.view addSubview:b];
+         [self.view bringSubviewToFront:b];
+         // Contraints
+         NSDictionary *views = NSDictionaryOfVariableBindings(b);
+         NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[b]-|" options:0 metrics:nil views:views];
+         constraints = [constraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[b]-|" options:0 metrics:nil views:views]];
+         [self.view addConstraints:constraints];
+         // Outlets
+         [b addTarget:self action:@selector(captureNoteAreaAction:) forControlEvents:UIControlEventTouchUpInside];
+         b;
+    });
+    
+}
+
+- (void)captureNoteAreaAction:(id)sender
+{
+    UIImage *screenShot = [self captureNoteArea];
+    NSURLRequest *request = [self requestWithImage:screenShot];
+    [self sendSyncCallToServerWithRequest:request];
+}
+
+#pragma mark Image Capture
+
+- (UIImage *)captureNoteArea
+{
+    UIWindow *mainWindow = [UIApplication sharedApplication].windows.firstObject;
+    UIGraphicsBeginImageContext(mainWindow.bounds.size);
+    [mainWindow.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *shot = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+
+    CGRect crop = CGRectZero;
+    CGRect image = [(ImageNoteView*)self.view imageArea];
+    crop.origin = self.view.frame.origin;
+    crop.origin.x += image.origin.x;
+    crop.origin.y += image.origin.y;
+    crop.size = image.size;
+    
+    CGImageRef imgref = CGImageCreateWithImageInRect(shot.CGImage, crop);
+    shot = [UIImage imageWithCGImage:imgref];
+    CGImageRelease(imgref);
+    
+    return shot;
+}
+
+#pragma mark Image Requests
+
+- (void)sendSyncCallToServerWithRequest:(NSURLRequest *)request
+{
+    static NSOperationQueue *imageLoad;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        imageLoad = [NSOperationQueue new];
+    });
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:imageLoad completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        // Do processing
+        NSMutableString *textResponse = [NSMutableString new];
+        if (response) {
+            NSError *error;
+            NSDictionary *responseValues = [XMLReader dictionaryForXMLData:data error:&error];
+            if (error) {
+                NSLog(@"XML Error: %@", error);
+                return;
+            }
+            for (id symbol in [responseValues valueForKeyPath:@"AllResults.RecognitionResults"]) {
+#if USING_TEST_SERVER
+                [textResponse appendString:[[symbol valueForKeyPath:@"Result.symbol"] stringValue]];
+                NSLog(@"%@", [symbol valueForKeyPath:@"Result.symbol"]);
+#else
+                [textResponse appendString:[NSString stringWithASCIIHexCode:[symbol valueForKeyPath:@"Result.symbol"]]];
+#endif
+            }
+        } else {
+            NSLog(@"Connection Error: %@", connectionError);
+        }
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            // Send UI updates;
+            NSLog(@"Text response from server: %@", textResponse);
+        });
+    }];
+}
+
+/**
+ * Creates a NSURLRequest for the image recognition
+ */
+- (NSURLRequest *)requestWithImage:(UIImage *)image
+{
+    ////////////////////////////////////////////////////////////////////////////
+    //
+    //  Url Request Protocol
+    //  query items:
+    //      segmentList:
+    //          a list of xml items with type instanceID and image (base64)
+    //      segment
+    //          always false
+    //
+    //  This is is conformace to the site that is doing the image processing
+    //
+    ////////////////////////////////////////////////////////////////////////////
+    
+    NSURLComponents *url = [NSURLComponents componentsWithString:@"http://129.21.34.109/"];
+    url.port = @7006;
+    
+#if USING_TEST_SERVER
+    url.host = @"claira.student.rit.edu";
+    url.port = @8080;
+#endif
+    
+    NSString *segFormat =  @"<Segment "
+                                @"type='image_blob' "
+                                @"instanceID='%d' "
+                                @"image='data:image/png;base64,%@'/>";
+    NSString *segment = [NSString stringWithFormat:segFormat, 1, [UIImagePNGRepresentation(image) base64Encoding]];
+    NSString *segmentList = [NSString stringWithFormat:@"<SegmentList>%@</SegmentList>", segment];
+    NSString *query = [NSString stringWithFormat:@"segmentList=%@&segment=false", segmentList];
+    url.query = query;
+    NSURLRequest *request = [NSURLRequest requestWithURL:url.URL cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:10];
+    
+    return request;
+}
+
 #pragma mark View Delegate
 
 - (void)imageView:(ImageNoteView *)imageView didFinishResizing:(BOOL)finish
 {
     if (finish) {
         [imageView removeGestureRecognizer:scale];
+        [self addCaptureButton];
         [imageView setResize:NO];
     } else {
         [imageView setResize:YES];
