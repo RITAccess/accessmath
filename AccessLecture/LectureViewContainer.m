@@ -62,6 +62,13 @@
     [self.view addSubview:_ntvc.view];
     [self.view bringSubviewToFront:_navigationbar];
     
+    // Test Coloring for debug
+    _ntvc.view.backgroundColor = [UIColor colorWithRed:1.0 green:0.0 blue:0.0 alpha:0.4];
+    _dvc.view.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:1.0 alpha:0.4];
+    
+    
+    _dvc.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    
     _actionMenu = [MTRadialMenu new];
     _actionMenu.startingAngle = DEGREES_TO_RADIANS(-100);
     
@@ -73,11 +80,6 @@
             [_actionMenu addMenuItem:leaf];
         }
     }
-    
-//    // Add mode switching
-//    DrawMode *switchMode = [[DrawMode alloc] init];
-//    switchMode.identifier = @"switch";
-//    [_actionMenu addMenuItem:switchMode];
     
     [self.view addSubview:_actionMenu];
 }
@@ -96,6 +98,7 @@
 // TODO - disable if off
 - (void)toggledDrawMode:(UISwitch *)sender
 {
+    [_dvc hideToolbar:!sender.on];
     if (sender.on) {
         [self moveControlTo:_dvc];
     } else {

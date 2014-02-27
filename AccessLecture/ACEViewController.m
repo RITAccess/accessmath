@@ -209,4 +209,9 @@
     return self.view;
 }
 
+- (void)hideToolbar:(BOOL)hide
+{
+    
+}
+
 @end
