@@ -40,6 +40,8 @@
 		3F2DC98218871FE4008C29BF /* ImageNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC98018871FE4008C29BF /* ImageNoteViewController.m */; };
 		3F2DC98318871FE4008C29BF /* ImageNoteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F2DC98118871FE4008C29BF /* ImageNoteViewController.xib */; };
 		3F2DC9871887225D008C29BF /* ImageNoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC9861887225D008C29BF /* ImageNoteView.m */; };
+		3F408C0A18BF94F600F6B113 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F408C0918BF94F600F6B113 /* XMLReader.m */; };
+		3F408C0D18BF94FD00F6B113 /* NSString+asciihexcodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F408C0C18BF94FD00F6B113 /* NSString+asciihexcodes.m */; };
 		3F59A9EA18AD193800AAC873 /* LectureNavbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F59A9E918AD193800AAC873 /* LectureNavbar.m */; };
 		3F6D11C417625EA20066A4FA /* ALNetworkInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D11B017625EA20066A4FA /* ALNetworkInterface.m */; };
 		3F6D11C517625EA20066A4FA /* SocketIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D11B217625EA20066A4FA /* SocketIO.m */; };
@@ -150,7 +152,11 @@
 		3F2DC98118871FE4008C29BF /* ImageNoteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageNoteViewController.xib; sourceTree = "<group>"; };
 		3F2DC9851887225D008C29BF /* ImageNoteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageNoteView.h; sourceTree = "<group>"; };
 		3F2DC9861887225D008C29BF /* ImageNoteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageNoteView.m; sourceTree = "<group>"; };
-		3F59A9E818AD193800AAC873 /* LectureNavbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LectureNavbar.h; sourceTree = "<group>"; };
+		3F408C0518BF94BA00F6B113 /* LectureNavbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LectureNavbar.h; sourceTree = "<group>"; };
+		3F408C0818BF94F600F6B113 /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLReader.h; sourceTree = "<group>"; };
+		3F408C0918BF94F600F6B113 /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLReader.m; sourceTree = "<group>"; };
+		3F408C0B18BF94FD00F6B113 /* NSString+asciihexcodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+asciihexcodes.h"; sourceTree = "<group>"; };
+		3F408C0C18BF94FD00F6B113 /* NSString+asciihexcodes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+asciihexcodes.m"; sourceTree = "<group>"; };
 		3F59A9E918AD193800AAC873 /* LectureNavbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LectureNavbar.m; sourceTree = "<group>"; };
 		3F6D11AF17625EA20066A4FA /* ALNetworkInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALNetworkInterface.h; sourceTree = "<group>"; };
 		3F6D11B017625EA20066A4FA /* ALNetworkInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALNetworkInterface.m; sourceTree = "<group>"; };
@@ -452,6 +458,10 @@
 		3F8D99301880AC9F0061DEA2 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				3F408C0B18BF94FD00F6B113 /* NSString+asciihexcodes.h */,
+				3F408C0C18BF94FD00F6B113 /* NSString+asciihexcodes.m */,
+				3F408C0818BF94F600F6B113 /* XMLReader.h */,
+				3F408C0918BF94F600F6B113 /* XMLReader.m */,
 				3F8D99311880ACBE0061DEA2 /* NSString+TrimmingAdditions.h */,
 				3F8D99321880ACBE0061DEA2 /* NSString+TrimmingAdditions.m */,
 			);
@@ -710,7 +720,7 @@
 		4C9AB8FB177C6884004A4F65 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				3F59A9E818AD193800AAC873 /* LectureNavbar.h */,
+				3F408C0518BF94BA00F6B113 /* LectureNavbar.h */,
 				3F59A9E918AD193800AAC873 /* LectureNavbar.m */,
 				3F8FD2C218AD21860059EF9C /* AMOpenButton.h */,
 				3F8FD2C318AD21860059EF9C /* AMOpenButton.m */,
@@ -939,6 +949,7 @@
 			files = (
 				4CD0A5F8177E1D6800864228 /* StreamDrawing.m in Sources */,
 				21DA3D9418905B5000BFD96B /* ACEDrawingView.m in Sources */,
+				3F408C0D18BF94FD00F6B113 /* NSString+asciihexcodes.m in Sources */,
 				3F07C352187B3627005BC7EC /* TextNoteView.m in Sources */,
 				3F8FD2CB18AD33350059EF9C /* AddNote.m in Sources */,
 				3F8D99331880ACBE0061DEA2 /* NSString+TrimmingAdditions.m in Sources */,
@@ -971,6 +982,7 @@
 				3F6D11C717625EA20066A4FA /* SocketIOPacket.m in Sources */,
 				3F6D11C817625EA20066A4FA /* SocketIOTransportWebsocket.m in Sources */,
 				3F8FD2E318B3F7BF0059EF9C /* Deferred.m in Sources */,
+				3F408C0A18BF94F600F6B113 /* XMLReader.m in Sources */,
 				3F6D11C917625EA20066A4FA /* SocketIOTransportXHR.m in Sources */,
 				3F6D11CA17625EA20066A4FA /* base64.c in Sources */,
 				21DA3D9618905B5000BFD96B /* ACEDrawingTools.m in Sources */,
