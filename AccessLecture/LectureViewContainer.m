@@ -62,11 +62,6 @@
     [self.view addSubview:_ntvc.view];
     [self.view bringSubviewToFront:_navigationbar];
     
-    // Test Coloring for debug
-    _ntvc.view.backgroundColor = [UIColor colorWithRed:1.0 green:0.0 blue:0.0 alpha:0.4];
-    _dvc.view.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:1.0 alpha:0.4];
-    
-    
     _dvc.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     
     _actionMenu = [MTRadialMenu new];
