@@ -6,10 +6,12 @@
 //
 //
 
+#define DEGREES_TO_RADIANS(x) (M_PI * (x) / 180.0)
 
 #import "NoteTakingViewController.h"
 #import "TextNoteViewController.h"
 #import "FileManager.h"
+#import <MTRadialMenu/MTRadialMenu.h>
 #import "AddNote.h"
 #import "AddImage.h"
 #import "ImageNoteViewController.h"
@@ -18,7 +20,7 @@
 
 @property UILabel *addNote;
 @property CGPoint menuPoint;
-@property (strong) MTRadialMenu *menu;
+@property (strong) MTRadialMenu *actionMenu;
 
 @property (strong) AMLecture *document;
 @property UITapGestureRecognizer *tapGestureRecognizer;
@@ -35,7 +37,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     // Get keyboard notifictions
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardDidShow:)
@@ -45,24 +47,24 @@
                                              selector:@selector(keyboardDidHide:)
                                                  name:UIKeyboardDidHideNotification
                                                object:nil];
-}
 
-#pragma Menu Datasource
+    // Set up menu
+    _actionMenu = [MTRadialMenu new];
+    _actionMenu.startingAngle = DEGREES_TO_RADIANS(-100);
 
-- (NSArray *)menuItemsForRadialMenu:(MTRadialMenu *)menu
-{
-    // Add listeners
-    [menu addTarget:self action:@selector(menuSelected:) forControlEvents:UIControlEventTouchUpInside];
-    [menu addTarget:self action:@selector(menuAppear:) forControlEvents:UIControlEventTouchDown];
-    
+    [_actionMenu addTarget:self action:@selector(menuSelected:) forControlEvents:UIControlEventTouchUpInside];
+
     // Load Menu
     AddNote *addNote = [[AddNote alloc] init];
     addNote.identifier = @"AddNote";
-    
+
     AddImage *addImage = [[AddImage alloc] init];
     addImage.identifier = @"AddImage";
-    
-    return @[addNote, addImage];
+
+    [_actionMenu addMenuItem:addNote];
+    [_actionMenu addMenuItem:addImage];
+
+    [self.view addSubview:_actionMenu];
 }
 
 - (void)menuSelected:(MTRadialMenu *)sender

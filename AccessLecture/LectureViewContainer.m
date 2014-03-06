@@ -17,8 +17,6 @@
 
 #import "Promise.h"
 
-#define DEGREES_TO_RADIANS(x) (M_PI * (x) / 180.0)
-
 #pragma mark Lecture Container Class
 
 @interface LectureViewContainer ()
@@ -63,20 +61,6 @@
     [self.view bringSubviewToFront:_navigationbar];
     
     _dvc.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    
-    _actionMenu = [MTRadialMenu new];
-    _actionMenu.startingAngle = DEGREES_TO_RADIANS(-100);
-    
-    [_actionMenu addTarget:self action:@selector(actionFromMenu:) forControlEvents:UIControlEventTouchUpInside];
-    
-    if ([_ntvc respondsToSelector:@selector(menuItemsForRadialMenu:)]) {
-        NSArray *items = [_ntvc menuItemsForRadialMenu:_actionMenu];
-        for (MTMenuItem *leaf in items) {
-            [_actionMenu addMenuItem:leaf];
-        }
-    }
-    
-    [self.view addSubview:_actionMenu];
 }
 
 - (void)moveControlTo:(UIViewController<LectureViewChild> *)vc
