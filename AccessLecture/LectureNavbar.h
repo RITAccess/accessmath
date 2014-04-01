@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MKToggleButton/MKToggleButton.h>
 
 @interface LectureNavbar : UINavigationBar
 
 @property (strong) UIButton *openButton;
-@property (strong) UISwitch *drawingToggle;
+@property (strong) MKToggleButton *drawingToggle;
 
 @end

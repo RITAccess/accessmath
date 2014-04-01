@@ -25,7 +25,6 @@
 		21DA3D9418905B5000BFD96B /* ACEDrawingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 21DA3D8D18905B5000BFD96B /* ACEDrawingView.m */; };
 		21DA3D9518905B5000BFD96B /* ACEViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21DA3D8E18905B5000BFD96B /* ACEViewController.m */; };
 		21DA3D9618905B5000BFD96B /* ACEDrawingTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 21DA3D9118905B5000BFD96B /* ACEDrawingTools.m */; };
-		2C3BFE6517A2BF7B00404B9C /* ZoomBounds.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C3BFE6317A2BF7B00404B9C /* ZoomBounds.c */; };
 		2C5AD2C217B5430000BFB795 /* StreamViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5AD2C117B5430000BFB795 /* StreamViewControllerTests.m */; };
 		2CA93202188596D400199CC4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CA93201188596D400199CC4 /* Images.xcassets */; };
 		2CCA61AE17B13AB9002DA6A3 /* DrawViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CCA61AD17B13AB9002DA6A3 /* DrawViewTests.m */; };
@@ -42,6 +41,7 @@
 		3F2DC9871887225D008C29BF /* ImageNoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC9861887225D008C29BF /* ImageNoteView.m */; };
 		3F408C0A18BF94F600F6B113 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F408C0918BF94F600F6B113 /* XMLReader.m */; };
 		3F408C0D18BF94FD00F6B113 /* NSString+asciihexcodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F408C0C18BF94FD00F6B113 /* NSString+asciihexcodes.m */; };
+		3F4DE76118EB492900BB9970 /* ABDrawToggleSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4DE76018EB492900BB9970 /* ABDrawToggleSwitch.m */; };
 		3F59A9EA18AD193800AAC873 /* LectureNavbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F59A9E918AD193800AAC873 /* LectureNavbar.m */; };
 		3F6D11C417625EA20066A4FA /* ALNetworkInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D11B017625EA20066A4FA /* ALNetworkInterface.m */; };
 		3F6D11C517625EA20066A4FA /* SocketIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D11B217625EA20066A4FA /* SocketIO.m */; };
@@ -130,8 +130,6 @@
 		21DA3D9018905B5000BFD96B /* ACEDrawingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACEDrawingView.h; sourceTree = "<group>"; };
 		21DA3D9118905B5000BFD96B /* ACEDrawingTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACEDrawingTools.m; sourceTree = "<group>"; };
 		21DA3D9218905B5000BFD96B /* ACEDrawingTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACEDrawingTools.h; sourceTree = "<group>"; };
-		2C3BFE6317A2BF7B00404B9C /* ZoomBounds.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ZoomBounds.c; sourceTree = "<group>"; };
-		2C3BFE6417A2BF7B00404B9C /* ZoomBounds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoomBounds.h; sourceTree = "<group>"; };
 		2C5AD2C117B5430000BFB795 /* StreamViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamViewControllerTests.m; sourceTree = "<group>"; };
 		2CA93201188596D400199CC4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Images.xcassets; sourceTree = "<group>"; };
 		2CCA61AD17B13AB9002DA6A3 /* DrawViewTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawViewTests.m; sourceTree = "<group>"; };
@@ -157,6 +155,8 @@
 		3F408C0918BF94F600F6B113 /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLReader.m; sourceTree = "<group>"; };
 		3F408C0B18BF94FD00F6B113 /* NSString+asciihexcodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+asciihexcodes.h"; sourceTree = "<group>"; };
 		3F408C0C18BF94FD00F6B113 /* NSString+asciihexcodes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+asciihexcodes.m"; sourceTree = "<group>"; };
+		3F4DE75F18EB492900BB9970 /* ABDrawToggleSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABDrawToggleSwitch.h; sourceTree = "<group>"; };
+		3F4DE76018EB492900BB9970 /* ABDrawToggleSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABDrawToggleSwitch.m; sourceTree = "<group>"; };
 		3F59A9E918AD193800AAC873 /* LectureNavbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LectureNavbar.m; sourceTree = "<group>"; };
 		3F6D11AF17625EA20066A4FA /* ALNetworkInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALNetworkInterface.h; sourceTree = "<group>"; };
 		3F6D11B017625EA20066A4FA /* ALNetworkInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALNetworkInterface.m; sourceTree = "<group>"; };
@@ -366,6 +366,22 @@
 				3F2DC98118871FE4008C29BF /* ImageNoteViewController.xib */,
 			);
 			name = ImageNote;
+			sourceTree = "<group>";
+		};
+		3F4DE75D18DB424F00BB9970 /* NoteListingController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = NoteListingController;
+			sourceTree = "<group>";
+		};
+		3F4DE75E18EB48D200BB9970 /* Navbar */ = {
+			isa = PBXGroup;
+			children = (
+				3F408C0518BF94BA00F6B113 /* LectureNavbar.h */,
+				3F59A9E918AD193800AAC873 /* LectureNavbar.m */,
+			);
+			name = Navbar;
 			sourceTree = "<group>";
 		};
 		3F6D11AD17625E500066A4FA /* Networking */ = {
@@ -669,6 +685,7 @@
 		4C5C50C9177B7B300095801A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3F4DE75D18DB424F00BB9970 /* NoteListingController */,
 				3F8D9911187F0CFC0061DEA2 /* FileManagerUI */,
 				3FED963113708E4E00D8D1B8 /* RootViewController */,
 				2CBF3014177B700C0087C17C /* DrawViewController */,
@@ -683,10 +700,9 @@
 		4C5C50CA177B7B3A0095801A /* LectureViewController */ = {
 			isa = PBXGroup;
 			children = (
+				3F4DE75E18EB48D200BB9970 /* Navbar */,
 				3F8FD2CC18AD33EF0059EF9C /* LeafViews */,
-				4C9AB8FB177C6884004A4F65 /* Views */,
-				2C3BFE6417A2BF7B00404B9C /* ZoomBounds.h */,
-				2C3BFE6317A2BF7B00404B9C /* ZoomBounds.c */,
+				4C9AB8FB177C6884004A4F65 /* Views Icons */,
 				4C5C50CB177B7B7C0095801A /* LectureViewContainer.h */,
 				4C5C50CC177B7B7C0095801A /* LectureViewContainer.m */,
 			);
@@ -717,15 +733,15 @@
 			name = NotesViewController;
 			sourceTree = "<group>";
 		};
-		4C9AB8FB177C6884004A4F65 /* Views */ = {
+		4C9AB8FB177C6884004A4F65 /* Views Icons */ = {
 			isa = PBXGroup;
 			children = (
-				3F408C0518BF94BA00F6B113 /* LectureNavbar.h */,
-				3F59A9E918AD193800AAC873 /* LectureNavbar.m */,
 				3F8FD2C218AD21860059EF9C /* AMOpenButton.h */,
 				3F8FD2C318AD21860059EF9C /* AMOpenButton.m */,
+				3F4DE75F18EB492900BB9970 /* ABDrawToggleSwitch.h */,
+				3F4DE76018EB492900BB9970 /* ABDrawToggleSwitch.m */,
 			);
-			name = Views;
+			name = "Views Icons";
 			sourceTree = "<group>";
 		};
 		4CD0A5EB177DC96E00864228 /* Connect */ = {
@@ -986,6 +1002,7 @@
 				3F6D11C917625EA20066A4FA /* SocketIOTransportXHR.m in Sources */,
 				3F6D11CA17625EA20066A4FA /* base64.c in Sources */,
 				21DA3D9618905B5000BFD96B /* ACEDrawingTools.m in Sources */,
+				3F4DE76118EB492900BB9970 /* ABDrawToggleSwitch.m in Sources */,
 				3F6D11CB17625EA20066A4FA /* NSData+SRB64Additions.m in Sources */,
 				3F8D9925187F48CC0061DEA2 /* DocumentPicker.m in Sources */,
 				4CDDF69717EB690900FE34E7 /* AMLecture.m in Sources */,
@@ -998,7 +1015,6 @@
 				4CDB058017B5589A00D8EB85 /* Favorites.m in Sources */,
 				3F8D9915187F0D1A0061DEA2 /* FileMangerViewController.m in Sources */,
 				3F8D992F1880A2540061DEA2 /* StatusMark.m in Sources */,
-				2C3BFE6517A2BF7B00404B9C /* ZoomBounds.c in Sources */,
 				3F8FD2C418AD21860059EF9C /* AMOpenButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

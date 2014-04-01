@@ -19,6 +19,8 @@
     AboutViewController *aboutViewController;
 }
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
 - (IBAction)openAbout:(id)sender;
 - (IBAction)openLecture:(id)sender;
 - (IBAction)openConnect:(id)sender;

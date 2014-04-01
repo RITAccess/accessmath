@@ -10,7 +10,6 @@
 #import "LectureViewContainer.h"
 #import "StreamViewController.h"
 #import "NoteTakingViewController.h"
-#import "ZoomBounds.h"
 #import "LectureNavbar.h"
 #import "FileManager.h"
 #import "DrawMode.h"
@@ -75,10 +74,10 @@
 
 // TODO - Switch to stack based with a push and pop controller type maybe?
 // TODO - disable if off
-- (void)toggledDrawMode:(UISwitch *)sender
+- (void)toggledDrawMode:(MKToggleButton *)sender
 {
-    [_dvc hideToolbar:!sender.on];
-    if (sender.on) {
+    [_dvc hideToolbar:!sender.selected];
+    if (sender.selected) {
         [self moveControlTo:_dvc];
     } else {
         [self.view sendSubviewToBack:_dvc.view];
