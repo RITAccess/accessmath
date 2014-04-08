@@ -1,0 +1,28 @@
+{
+  "images" : [
+    {
+      "resizing" : {
+        "mode" : "3-part-horizontal",
+        "center" : {
+          "mode" : "stretch",
+          "width" : 944
+        },
+        "capInsets" : {
+          "right" : 361,
+          "left" : 66
+        }
+      },
+      "idiom" : "universal",
+      "filename" : "Screen Shot 2014-04-03 at 10.07.19 AM.png",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}
