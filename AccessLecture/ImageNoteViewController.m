@@ -6,7 +6,9 @@
 //
 //
 
-#define USING_TEST_SERVER 1
+#define USING_TEST_SERVER 0
+
+#import <NoticeView/WBErrorNoticeView.h>
 
 #import "NoteTakingViewController.h"
 #import "ImageNoteViewController.h"
@@ -160,13 +162,10 @@ CGPoint CGRectCenterPointInSuperview(CGRect rect) {
     [NSURLConnection sendAsynchronousRequest:request queue:imageLoad completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         // Do processing
         NSMutableString *textResponse = [NSMutableString new];
+        NSError *error;
         if (response) {
-            NSError *error;
             NSDictionary *responseValues = [XMLReader dictionaryForXMLData:data error:&error];
-            if (error) {
-                NSLog(@"XML Error: %@", error);
-                return;
-            }
+            if (error) goto finish;
             for (id symbol in [responseValues valueForKeyPath:@"AllResults.RecognitionResults"]) {
 #if USING_TEST_SERVER
                 [textResponse appendString:[[symbol valueForKeyPath:@"Result.symbol"] stringValue]];
@@ -178,9 +177,18 @@ CGPoint CGRectCenterPointInSuperview(CGRect rect) {
         } else {
             NSLog(@"Connection Error: %@", connectionError);
         }
+finish:
         dispatch_sync(dispatch_get_main_queue(), ^{
             // Send UI updates;
-            NSLog(@"Text response from server: %@", textResponse);
+            if (connectionError) {
+                WBErrorNoticeView *error = [WBErrorNoticeView errorNoticeInView:self.view.superview.superview
+                                                                          title:connectionError.localizedDescription
+                                                                        message:@"This sounds like an error on our end and not yours. We're sorry about that."];
+                error.delay = error.message.length / 8.0;
+                [error show];
+            } else {
+
+            }
         });
     }];
 }

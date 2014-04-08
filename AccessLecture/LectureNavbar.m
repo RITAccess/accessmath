@@ -30,7 +30,7 @@
         frame;
     });
     // Set color
-    self.backgroundColor = [UIColor paleGreenColor];
+    self.backgroundColor = [UIColor darkGrayColor];
 }
 
 - (void)updateConstraints
@@ -63,7 +63,7 @@
         MKToggleButton *s = [[MKToggleButton alloc] initWithFrame:CGRectMake(115, 20, 75, 75)];
         [s setTitle:@"Draw" forState:UIControlStateNormal];
         [s setTitle:@"Draw" forState:UIControlStateSelected];
-        s.showsBorder = YES;
+        [s setShowsBorder:YES];
         [self addSubview:s];
         s;
     });
