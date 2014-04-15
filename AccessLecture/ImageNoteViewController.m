@@ -103,7 +103,6 @@ CGPoint CGRectCenterPointInSuperview(CGRect rect) {
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     [center addObserverForName:INVScreenShotNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
         BOOL active = [note.object boolValue];
-        NSLog(@"%@", active ? @"Yes" : @"No");
         self.view.hidden = active;
     }];
 
@@ -141,7 +140,9 @@ CGPoint CGRectCenterPointInSuperview(CGRect rect) {
 #pragma mark Image Capture
 
 /**
- *  Capture the screen area on the superview this note is drawn on
+ *  Capture the screen area on the superview this note is drawn on, notifies via
+ *  notification center that a screenshot is being taken. 
+ *  See INVScreenShotNotification
  *
  *  @return captured area of the note
  */
