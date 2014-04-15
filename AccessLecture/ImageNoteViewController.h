@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "ImageNoteView.h"
 
+extern NSString *const INVScreenShotNotification;
+
 @interface ImageNoteViewController : UIViewController <NSSecureCoding, ImageViewDelegate>
 
 /**

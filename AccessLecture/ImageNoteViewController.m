@@ -17,6 +17,8 @@
 #import "NSString+asciihexcodes.h"
 #import "XMLReader.h"
 
+NSString *const INVScreenShotNotification = @"INVScreenShotNotification";
+
 CGPoint CGRectCenterPointInSuperview(CGRect rect) {
     return CGPointMake((rect.size.width / 2.0) + rect.origin.x,
                        (rect.size.height / 2.0) + rect.origin.y);
@@ -96,6 +98,15 @@ CGPoint CGRectCenterPointInSuperview(CGRect rect) {
     [scale setMaximumNumberOfTouches:1];
     [scale setDelaysTouchesBegan:NO];
     [self.view addGestureRecognizer:scale];
+
+    // Register for screenshot notifications to remove extra UI elements
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center addObserverForName:INVScreenShotNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+        BOOL active = [note.object boolValue];
+        NSLog(@"%@", active ? @"Yes" : @"No");
+        self.view.hidden = active;
+    }];
+
 }
 
 #pragma mark View Actions
@@ -136,6 +147,11 @@ CGPoint CGRectCenterPointInSuperview(CGRect rect) {
  */
 - (UIImage *)captureNoteArea
 {
+    // Notify to remove unessisary UI elements
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center postNotificationName:INVScreenShotNotification object:@YES];
+
+    // Capture Screen Area
     UIWindow *mainWindow = [UIApplication sharedApplication].windows.firstObject;
     UIGraphicsBeginImageContext(mainWindow.bounds.size);
     [mainWindow.layer renderInContext:UIGraphicsGetCurrentContext()];
@@ -171,12 +187,20 @@ CGPoint CGRectCenterPointInSuperview(CGRect rect) {
     CGImageRef imgref = CGImageCreateWithImageInRect(shot.CGImage, crop);
     shot = [UIImage imageWithCGImage:imgref];
     CGImageRelease(imgref);
-    
+
+    // Screenshot done
+    [center postNotificationName:INVScreenShotNotification object:@NO];
+
     return shot;
 }
 
 #pragma mark Image Requests
 
+/**
+ *  Send a network request to process an image
+ *
+ *  @param request Image request
+ */
 - (void)sendSyncCallToServerWithRequest:(NSURLRequest *)request
 {
     static NSOperationQueue *imageLoad;
@@ -201,7 +225,7 @@ CGPoint CGRectCenterPointInSuperview(CGRect rect) {
 #endif
             }
         } else {
-            NSLog(@"Connection Error: %@", connectionError);
+            NSLog(@"Connection Error: %@", connectionError.localizedDescription);
         }
 finish:
         dispatch_sync(dispatch_get_main_queue(), ^{
