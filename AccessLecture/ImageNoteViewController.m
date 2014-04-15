@@ -10,6 +10,8 @@
 
 #import <NoticeView/WBErrorNoticeView.h>
 
+#import "UIImage+Rotate.h"
+
 #import "NoteTakingViewController.h"
 #import "ImageNoteViewController.h"
 #import "NSString+asciihexcodes.h"
@@ -127,6 +129,11 @@ CGPoint CGRectCenterPointInSuperview(CGRect rect) {
 
 #pragma mark Image Capture
 
+/**
+ *  Capture the screen area on the superview this note is drawn on
+ *
+ *  @return captured area of the note
+ */
 - (UIImage *)captureNoteArea
 {
     UIWindow *mainWindow = [UIApplication sharedApplication].windows.firstObject;
@@ -134,6 +141,25 @@ CGPoint CGRectCenterPointInSuperview(CGRect rect) {
     [mainWindow.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *shot = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
+
+    CGFloat rotate;
+    switch (self.interfaceOrientation) {
+        case UIInterfaceOrientationPortrait:
+            rotate = 0.0;
+            break;
+        case UIInterfaceOrientationPortraitUpsideDown:
+            rotate = 180.0;
+            break;
+        case UIInterfaceOrientationLandscapeLeft:
+            rotate = 90.0;
+            break;
+        case UIInterfaceOrientationLandscapeRight:
+            rotate = 270.0;
+            break;
+        default:
+            break;
+    }
+    shot = [shot imageRotatedByDegrees:rotate];
 
     CGRect crop = CGRectZero;
     CGRect image = [(ImageNoteView*)self.view imageArea];
@@ -194,7 +220,12 @@ finish:
 }
 
 /**
- * Creates a NSURLRequest for the image recognition
+ *  Creates a NSURLRequest that contains the image to send to the seach service
+ *  encoded in the way the server defines it.
+ *
+ *  @param image Image to encode
+ *
+ *  @return Request with the encoded image datas
  */
 - (NSURLRequest *)requestWithImage:(UIImage *)image
 {
@@ -305,12 +336,6 @@ finish:
         default:
             break;
     }
-}
-
-- (void)didReceiveMemoryWarning 
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

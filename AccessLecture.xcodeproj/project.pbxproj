@@ -55,6 +55,11 @@
 		3F6D11D417625F260066A4FA /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11D217625F150066A4FA /* libicucore.dylib */; };
 		3F6D11D517625F270066A4FA /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11D017625F0D0066A4FA /* CFNetwork.framework */; };
 		3F6D11D617625F2D0066A4FA /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11CE17625F060066A4FA /* Security.framework */; };
+		3F8B515318FD90580053BFE8 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8B514A18FD90580053BFE8 /* UIImage+Alpha.m */; };
+		3F8B515418FD90580053BFE8 /* UIImage+FixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8B514C18FD90580053BFE8 /* UIImage+FixOrientation.m */; };
+		3F8B515518FD90580053BFE8 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8B514E18FD90580053BFE8 /* UIImage+Resize.m */; };
+		3F8B515618FD90580053BFE8 /* UIImage+Rotate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8B515018FD90580053BFE8 /* UIImage+Rotate.m */; };
+		3F8B515718FD90580053BFE8 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8B515218FD90580053BFE8 /* UIImage+RoundedCorner.m */; };
 		3F8D9908187B4E010061DEA2 /* TextNoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F8D9906187B4E010061DEA2 /* TextNoteView.xib */; };
 		3F8D990E187DD9100061DEA2 /* FullScreenNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8D990C187DD9100061DEA2 /* FullScreenNoteViewController.m */; };
 		3F8D990F187DD9100061DEA2 /* FullScreenNoteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F8D990D187DD9100061DEA2 /* FullScreenNoteViewController.xib */; };
@@ -181,6 +186,16 @@
 		3F6D11CE17625F060066A4FA /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		3F6D11D017625F0D0066A4FA /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		3F6D11D217625F150066A4FA /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		3F8B514918FD90580053BFE8 /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
+		3F8B514A18FD90580053BFE8 /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
+		3F8B514B18FD90580053BFE8 /* UIImage+FixOrientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+FixOrientation.h"; sourceTree = "<group>"; };
+		3F8B514C18FD90580053BFE8 /* UIImage+FixOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+FixOrientation.m"; sourceTree = "<group>"; };
+		3F8B514D18FD90580053BFE8 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
+		3F8B514E18FD90580053BFE8 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
+		3F8B514F18FD90580053BFE8 /* UIImage+Rotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Rotate.h"; sourceTree = "<group>"; };
+		3F8B515018FD90580053BFE8 /* UIImage+Rotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Rotate.m"; sourceTree = "<group>"; };
+		3F8B515118FD90580053BFE8 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
+		3F8B515218FD90580053BFE8 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
 		3F8D9906187B4E010061DEA2 /* TextNoteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextNoteView.xib; sourceTree = "<group>"; };
 		3F8D9909187DA46C0061DEA2 /* TextNoteViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextNoteViewDelegate.h; sourceTree = "<group>"; };
 		3F8D990B187DD9100061DEA2 /* FullScreenNoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullScreenNoteViewController.h; sourceTree = "<group>"; };
@@ -474,6 +489,16 @@
 		3F8D99301880AC9F0061DEA2 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				3F8B514918FD90580053BFE8 /* UIImage+Alpha.h */,
+				3F8B514A18FD90580053BFE8 /* UIImage+Alpha.m */,
+				3F8B514B18FD90580053BFE8 /* UIImage+FixOrientation.h */,
+				3F8B514C18FD90580053BFE8 /* UIImage+FixOrientation.m */,
+				3F8B514D18FD90580053BFE8 /* UIImage+Resize.h */,
+				3F8B514E18FD90580053BFE8 /* UIImage+Resize.m */,
+				3F8B514F18FD90580053BFE8 /* UIImage+Rotate.h */,
+				3F8B515018FD90580053BFE8 /* UIImage+Rotate.m */,
+				3F8B515118FD90580053BFE8 /* UIImage+RoundedCorner.h */,
+				3F8B515218FD90580053BFE8 /* UIImage+RoundedCorner.m */,
 				3F408C0B18BF94FD00F6B113 /* NSString+asciihexcodes.h */,
 				3F408C0C18BF94FD00F6B113 /* NSString+asciihexcodes.m */,
 				3F408C0818BF94F600F6B113 /* XMLReader.h */,
@@ -965,6 +990,7 @@
 			files = (
 				4CD0A5F8177E1D6800864228 /* StreamDrawing.m in Sources */,
 				21DA3D9418905B5000BFD96B /* ACEDrawingView.m in Sources */,
+				3F8B515318FD90580053BFE8 /* UIImage+Alpha.m in Sources */,
 				3F408C0D18BF94FD00F6B113 /* NSString+asciihexcodes.m in Sources */,
 				3F07C352187B3627005BC7EC /* TextNoteView.m in Sources */,
 				3F8FD2CB18AD33350059EF9C /* AddNote.m in Sources */,
@@ -991,10 +1017,12 @@
 				4C37CCB018295FC0006D3B1F /* ALMetaData.m in Sources */,
 				3F8FD2CA18AD33350059EF9C /* AddImage.m in Sources */,
 				3F6D11C517625EA20066A4FA /* SocketIO.m in Sources */,
+				3F8B515618FD90580053BFE8 /* UIImage+Rotate.m in Sources */,
 				4CD0A5EF177DC98600864228 /* ConnectionViewController.m in Sources */,
 				4CFC573017DF800700393A1E /* NoteTakingViewController.m in Sources */,
 				4CDB057D17B557C300D8EB85 /* AccessLecture.xcdatamodeld in Sources */,
 				3F6D11C617625EA20066A4FA /* SocketIOJSONSerialization.m in Sources */,
+				3F8B515418FD90580053BFE8 /* UIImage+FixOrientation.m in Sources */,
 				3F6D11C717625EA20066A4FA /* SocketIOPacket.m in Sources */,
 				3F6D11C817625EA20066A4FA /* SocketIOTransportWebsocket.m in Sources */,
 				3F8FD2E318B3F7BF0059EF9C /* Deferred.m in Sources */,
@@ -1002,6 +1030,7 @@
 				3F6D11C917625EA20066A4FA /* SocketIOTransportXHR.m in Sources */,
 				3F6D11CA17625EA20066A4FA /* base64.c in Sources */,
 				21DA3D9618905B5000BFD96B /* ACEDrawingTools.m in Sources */,
+				3F8B515518FD90580053BFE8 /* UIImage+Resize.m in Sources */,
 				3F4DE76118EB492900BB9970 /* ABDrawToggleSwitch.m in Sources */,
 				3F6D11CB17625EA20066A4FA /* NSData+SRB64Additions.m in Sources */,
 				3F8D9925187F48CC0061DEA2 /* DocumentPicker.m in Sources */,
@@ -1013,6 +1042,7 @@
 				3F6D11CC17625EA20066A4FA /* SRWebSocket.m in Sources */,
 				3F8D992B188099F30061DEA2 /* DocumentCreator.m in Sources */,
 				4CDB058017B5589A00D8EB85 /* Favorites.m in Sources */,
+				3F8B515718FD90580053BFE8 /* UIImage+RoundedCorner.m in Sources */,
 				3F8D9915187F0D1A0061DEA2 /* FileMangerViewController.m in Sources */,
 				3F8D992F1880A2540061DEA2 /* StatusMark.m in Sources */,
 				3F8FD2C418AD21860059EF9C /* AMOpenButton.m in Sources */,
