@@ -4,6 +4,7 @@
 //
 //  Created by Steven Brunwasser on 3/19/12.
 //  Modified by Pratik Rasam on 6/26/2013
+//  Refactored by Michael Timbrook on 9/20/12
 //  Copyright (c) 2012 Rochester Institute of Technology. All rights reserved.
 //
 //
@@ -11,21 +12,123 @@
 //  and the opening of the document.
 //
 
+#import <stdlib.h>
+#import <dirent.h>
+
 #import "FileManager.h"
+#import "AMLecture.h"
 #import "Lecture.h"
+#import "FileMangerViewController.h"
+
+@interface FileManager ()
+
+@property (strong, nonatomic) AMLecture *document;
+
+@end
 
 @implementation FileManager
+{
+    // Completion handler
+    void (^lectureLoaded)(AMLecture *);
+}
 
-+ (NSURL *)localDocumentsDirectoryURL {
-    // only find the location once
-    static NSURL * localDocumentsDirectoryURL;
-    
-    if (localDocumentsDirectoryURL == nil) {
-        NSString * documentsDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-        localDocumentsDirectoryURL = [NSURL fileURLWithPath:documentsDirectoryPath];
+#pragma mark Public APIs
+
++ (instancetype)defaultManager
+{
+    static FileManager *defaultManger;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        defaultManger = [FileManager new];
+    });
+    return defaultManger;
+}
+
+- (void)currentDocumentWithCompletion:(void(^)(AMLecture *lecture))completion
+{
+    lectureLoaded = completion ?: ^(AMLecture *lec){ NSLog(@"%@", lec); };
+    if (_document == nil) {
+        // Document wasn't loaded
+        [self promptUserToPickDocument];
+    } else {
+        // Otherwise return the open document
+        lectureLoaded(_document);
     }
-  
-    return localDocumentsDirectoryURL;
+}
+
+- (AMLecture *)currentDocument
+{
+    return _document;
+}
+
+- (void)forceSave
+{
+    [_document save];
+}
+
+- (void)finishedWithDocument
+{
+    [_document closeWithCompletionHandler:^(BOOL success) {
+        _document = nil;
+    }];
+}
+
+#pragma mark Document Internal
+
+/**
+ * Called by FileMangerViewController when document is choosen
+ */
+- (void)openDocumentForEditing:(NSString *)docName
+{
+    _document = [FileManager findDocumentWithName:docName];
+    if (_document == nil) {
+        NSLog(@"Failed to find document %@", docName);
+    } else {
+        [_document openWithCompletionHandler:^(BOOL success) {
+            if (success) {
+                lectureLoaded(_document);
+            } else {
+                NSLog(@"Something when wrong opening the docuement");
+            }
+        }];
+    }
+}
+
+/**
+ * Presents the document picker controllers onto of the current active controller
+ */
+- (void)promptUserToPickDocument
+{
+    FileMangerViewController *openDoc = [[FileMangerViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
+                                                                            navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
+                                                                                          options:nil];
+    UIWindow *mainWindow = [[UIApplication sharedApplication].windows firstObject];
+    UIViewController *activeViewController = [mainWindow.rootViewController presentedViewController];
+    [openDoc setModalPresentationStyle:UIModalPresentationFormSheet];
+    [openDoc setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+    [activeViewController presentViewController:openDoc animated:YES completion:nil];
+}
+
+#pragma mark Class Helper Methods
+   
++ (NSArray *)listContentsOfDirectory:(NSString *)path
+{
+    NSError *err;
+    NSArray *names = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:&err];
+    if (err) {
+        NSLog(@"There was an error reading directory '%@', %@", path, err);
+        return nil;
+    }
+    NSPredicate *dotLecture = [NSPredicate predicateWithBlock:^BOOL(NSString *evaluatedObject, NSDictionary *bindings) {
+        NSArray *sub = [evaluatedObject componentsSeparatedByString:@"."];
+        return [sub[1] isEqualToString:AMLectutueFileExtention];
+    }];
+    return [names filteredArrayUsingPredicate:dotLecture];
+}
+
++ (NSString *)localDocumentsDirectoryPath {
+    NSString * documentsDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    return documentsDirectoryPath;
 }
 
 + (NSURL *)iCloudDirectoryURL {
@@ -33,116 +136,56 @@
     return ubiquity;
 }
 
-+ (NSURL *)accessMathDirectoryURL{
-    NSFileManager *filemgr;
-    NSArray *dirPaths;
-    NSString *docsDir;
-    NSString *newDir;
-    filemgr =[NSFileManager defaultManager];
-    dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-                                                   NSUserDomainMask, YES);
-   
-    docsDir = [dirPaths objectAtIndex:0];
-    newDir = [docsDir stringByAppendingPathComponent:@"AccessMath"];
-    if ([filemgr createDirectoryAtPath:newDir withIntermediateDirectories:YES attributes:nil error: NULL] == NO)
-    {
-        // Failed to create directory
-        return nil;
-    }
-    else{
-        return [NSURL URLWithString:newDir];
-    }
- }
-+ (NSArray *)documentsIn:(NSURL *)URL {
-    NSError * error = nil;
-    NSURL * docs = URL;
-    if (docs == nil) {
-        NSLog(@"ERROR!");
-        return nil;
-    } else {
-        NSArray * documents = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:docs 
-                                                            includingPropertiesForKeys:nil 
-                                                                               options:NSDirectoryEnumerationSkipsPackageDescendants 
-                                                                                 error:&error];
-        return documents;
-    }
++ (AMLecture *)findDocumentWithName:(NSString *)name
+{
+    return [self findDocumentWithName:name failure:nil];
 }
 
-+ (NSURL *)findFileIn:(NSArray *)files thatFits:(BOOL (^)(NSURL *))condition {
-    for (NSURL * file in files) {
-        if (condition(file)) {
-            return file;
-        }
-    }
-   
-    return nil;
-}
-+ (void)clearAllDocuments{
-    NSString *path = [[NSMutableString alloc] init];
-    NSArray *docs = [FileManager documentsIn:[FileManager localDocumentsDirectoryURL]];
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    for(NSURL *docURL in docs)
-    {
-        path = [docURL path];
-       
-        if ([fileManager fileExistsAtPath:path])
-        {
-            NSError *error;
-            if (![fileManager removeItemAtPath:path error:&error])
-            {
-                NSLog(@"Error removing file: %@", error);
-            };
-        }
-    }
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notes"
-                                                    message:@"All lectures removed" delegate:self cancelButtonTitle: @"OK"
-                                          otherButtonTitles: nil];
-    [alert show];
-
-}
-+ (BOOL)saveDocument:(AccessDocument *)document{
++ (AMLecture *)findDocumentWithName:(NSString *)name failure:(void (^)(NSError *))error
+{
+    error = error ?: ^(NSError *error) { };
+    NSString *docsDir = [FileManager localDocumentsDirectoryPath];
+    NSString *filePath = [[docsDir stringByAppendingPathComponent:name] stringByAppendingPathExtension:AMLectutueFileExtention];
     
-    AccessDocument *currentDocument;
-    Lecture *currentLecture = document.lecture;
-    NSURL * currentDirectory = [FileManager iCloudDirectoryURL];
-    if (currentDirectory == nil) currentDirectory = [FileManager localDocumentsDirectoryURL];
-     NSString *docsPath =[[currentDirectory absoluteString] stringByAppendingString:[NSString stringWithFormat:@"AccessMath/%@.lecture",currentLecture.name]];
-    NSURL *docURL = [NSURL URLWithString:docsPath];
-    currentDocument = [[AccessDocument alloc] initWithFileURL:docURL];
-    currentDocument.lecture = document.lecture;
-    currentDocument.notes = document.notes;
-    if([[NSFileManager defaultManager] fileExistsAtPath:[docURL path]])
-    {
-        [currentDocument saveToURL:docURL
-                  forSaveOperation:UIDocumentSaveForOverwriting
-                 completionHandler:^(BOOL success) {
-                     if (success){
-                         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notes"
-                                                                         message:@"Notes Overwritten" delegate:self cancelButtonTitle: @"OK"
-                                                               otherButtonTitles: nil];
-                         [alert show];
-                     } else {
-
-                         NSLog(@"Not saved for overwriting");
-                     }
-                 }];
-        
+    if([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        AMLecture *lecture = [[AMLecture alloc] initWithFileURL:[NSURL fileURLWithPath:filePath]];
+        return lecture;
     } else {
-        [currentDocument saveToURL:docURL
-                  forSaveOperation:UIDocumentSaveForCreating
-                 completionHandler:^(BOOL success) {
-
-                     if (success){
-                         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notes"
-                                                                         message:@"Note Created" delegate:self cancelButtonTitle: @"OK"
-                                                               otherButtonTitles: nil];
-                         [alert show];
-                     } else {
-                         NSLog(@"Not created");
-                     }
-                 }];
+        NSError *err = [NSError errorWithDomain:NSOSStatusErrorDomain code:FileManagerErrorFileNotFound userInfo:@{ @"Message" : @"File not found" }];
+        error(err);
     }
-    return true;
+    return FALSE;
+}
+
++ (AMLecture *)createDocumentWithName:(NSString *)name
+{
+    return [FileManager createDocumentWithName:name failure:nil];
+}
+
++ (AMLecture *)createDocumentWithName:(NSString *)name failure:(void (^)(NSError *error))error
+{
+    error = error ?: ^(NSError *error) { }; // Allows nil
+    NSString *docsDir = [FileManager localDocumentsDirectoryPath];
+    NSString *filePath = [[docsDir stringByAppendingPathComponent:name] stringByAppendingPathExtension:AMLectutueFileExtention];
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        NSError *err = [NSError errorWithDomain:NSOSStatusErrorDomain code:FileManagerErrorFileExists userInfo:@{ @"Message" : @"File exists" }];
+        error(err);
+    } else {
+        
+        AMLecture *newDoc = [[AMLecture alloc] initWithFileURL:[NSURL fileURLWithPath:filePath]];
+
+        [newDoc saveToURL:newDoc.fileURL forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success) {
+            if (success) {
+                NSLog(@"Created document instance %@", newDoc);
+            } else {
+                NSError *err = [NSError errorWithDomain:NSOSStatusErrorDomain code:FileManagerErrorSaveError userInfo:@{ @"Message" : @"Failed to save document" }];
+                error(err);
+            }
+        }];
+        return newDoc;
+    }
+    return FALSE;
 }
 
 @end

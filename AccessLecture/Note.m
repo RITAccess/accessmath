@@ -7,40 +7,24 @@
 //
 
 #import "Note.h"
-#import "Position.h"
-
-//
-//  static value keys for referencing the title and text properties from a serialized note
-//
-//  the key allows the serialized note to be stored in parts with key-value pairs
-//
-static NSString * POSITION_KEY = @"position_key";   // key to code for the position
-static NSString * TEXT_KEY = @"text_key";         // key to code for the image
 
 @implementation Note
 
-@synthesize position = _position;
-@synthesize text = _text;
-
-- (id)initWithText:(UITextView *)textView andPosition:(Position *)position {
+- (id)initWithCoder:(NSCoder *)aCoder
+{
     if (self = [super init]) {
-        _position = position;
-        _text = textView;
+        _title = [aCoder decodeObjectForKey:@"title-note"];
+        _content = [aCoder decodeObjectForKey:@"content"];
+        _location = [aCoder decodeCGPointForKey:@"location"];
     }
     return self;
 }
 
-- (id)initWithCoder:(NSCoder *)aCoder {
-    if (self = [super init]) {
-        _position = [aCoder decodeObjectForKey:POSITION_KEY];
-        _text = [aCoder decodeObjectForKey:TEXT_KEY];
-    }
-    return self;
-}
-
-- (void)encodeWithCoder:(NSCoder *)aCoder {
-    [aCoder encodeObject:_position forKey:POSITION_KEY];
-    [aCoder encodeObject:_text forKey:TEXT_KEY];
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:(_title ?: @"Untitled") forKey:@"title-note"];
+    [aCoder encodeObject:(_content ?: @"") forKey:@"content"];
+    [aCoder encodeCGPoint:_location forKey:@"location"];
 }
 
 @end

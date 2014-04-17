@@ -9,7 +9,6 @@
 //
 
 #import "AccessLectureRuntime.h"
-#import "AccessDocument.h"
 #import "FileManager.h"
 #import "Lecture.h"
 
@@ -45,36 +44,36 @@ static NSString * DEFAULT_FILENAME = @"Lecture001";
  */
 - (void)openDocument:(NSURL *) withURL
 {
-    NSURL *currentDirectory = [FileManager iCloudDirectoryURL];
-    if (currentDirectory == nil) {
-        currentDirectory = [FileManager accessMathDirectoryURL];
-    }
-    
-    NSArray *docs = [FileManager documentsIn:currentDirectory];
-    NSURL *document = [FileManager findFileIn:docs thatFits:^(NSURL* url){
-        if (url != nil) {
-            return YES;
-        }
-        return NO;
-    }];
-    
-    if (document == nil) {
-        NSString *filename = [DEFAULT_FILENAME stringByAppendingPathExtension:[AccessDocument fileType]];
-        document = [currentDirectory URLByAppendingPathComponent:filename];
-    }
-    
-    _currentDocument = [[AccessDocument alloc] initWithFileURL:withURL];
-    dispatch_barrier_async(dispatch_get_main_queue(), ^{
-        [_currentDocument openWithCompletionHandler:^(BOOL success){
-            if(success) {
-                [AccessLectureRuntime defaultRuntime].currentDocument = _currentDocument;
-            } else {
-                [_currentDocument saveToURL:withURL forSaveOperation: UIDocumentSaveForCreating completionHandler:^(BOOL success) {
-                    success ? NSLog(@"Created!") : NSLog(@"Not created.");
-                }];
-            }
-        }];
-    });
+//    NSURL *currentDirectory = [FileManager iCloudDirectoryURL];
+//    if (currentDirectory == nil) {
+//        currentDirectory = [FileManager accessMathDirectoryURL];
+//    }
+//    
+//    NSArray *docs = [FileManager documentsIn:currentDirectory];
+//    NSURL *document = [FileManager findFileIn:docs thatFits:^(NSURL* url){
+//        if (url != nil) {
+//            return YES;
+//        }
+//        return NO;
+//    }];
+//    
+//    if (document == nil) {
+//        NSString *filename = [DEFAULT_FILENAME stringByAppendingPathExtension:[AccessDocument fileType]];
+//        document = [currentDirectory URLByAppendingPathComponent:filename];
+//    }
+//    
+//    _currentDocument = [[AccessDocument alloc] initWithFileURL:withURL];
+//    dispatch_barrier_async(dispatch_get_main_queue(), ^{
+//        [_currentDocument openWithCompletionHandler:^(BOOL success){
+//            if(success) {
+//                [AccessLectureRuntime defaultRuntime].currentDocument = _currentDocument;
+//            } else {
+//                [_currentDocument saveToURL:withURL forSaveOperation: UIDocumentSaveForCreating completionHandler:^(BOOL success) {
+//                    success ? NSLog(@"Created!") : NSLog(@"Not created.");
+//                }];
+//            }
+//        }];
+//    });
 }
 
 @end

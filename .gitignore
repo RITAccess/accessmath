@@ -8,3 +8,4 @@ xcuserdata
 !xcschemes
 *.moved-aside
 *.xccheckout
+Pods/*

@@ -11,6 +11,9 @@
 #import "InlineViewVController.h"
 #import "StreamViewController.h"
 
+#import "AMLecture.h"
+#import "FileManager.h"
+
 @implementation RootViewController
 
 - (void)viewDidLoad
@@ -39,7 +42,7 @@
 #pragma mark - Buttons
 
 - (IBAction)openAbout:(id)sender
-{
+{    
     [self performSegueWithIdentifier:@"toAbout" sender:@""];
 }
 
@@ -58,11 +61,13 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([sender isEqualToString:@"connect"]){
-        LectureViewContainer *lectureViewContainer = [segue destinationViewController];
-        StreamViewController *svc = (StreamViewController *)[[UIStoryboard storyboardWithName:StreamViewControllerStoryboard bundle:nil] instantiateViewControllerWithIdentifier:StreamViewControllerID];
-        [lectureViewContainer addController:svc];
-        [svc setDisplayServerConnectView:YES];   // Segue directly into the ServerConnectView.
+    if ([sender respondsToSelector:@selector(isEqualToString:)]) {
+        if ([sender isEqualToString:@"connect"]){
+            LectureViewContainer *lectureViewContainer = [segue destinationViewController];
+            StreamViewController *svc = (StreamViewController *)[[UIStoryboard storyboardWithName:StreamViewControllerStoryboard bundle:nil] instantiateViewControllerWithIdentifier:StreamViewControllerID];
+            [lectureViewContainer addController:svc];
+            [svc setDisplayServerConnectView:YES];   // Segue directly into the ServerConnectView.
+        }
     }
 }
 

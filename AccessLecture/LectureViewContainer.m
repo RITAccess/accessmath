@@ -9,8 +9,10 @@
 #import "LectureViewContainer.h"
 #import "StreamViewController.h"
 #import "DrawViewController.h"
-#import "NotesViewController.h"
+//#import "NotesViewController.h"
+#import "NoteTakingViewController.h"
 #import "ZoomBounds.h"
+#import "MTFlowerMenu.h"
 
 // Default content size
 #define LC_WIDTH 1920
@@ -84,9 +86,9 @@ void VectorApplyScale(CGFloat scale, Vector *vector) {
 
 @end
 
-static NotesViewController *nvc;
 static DrawViewController *dcv;
 static StreamViewController *svc;
+static NoteTakingViewController *ntvc;
 static VCBlank *blank;
 
 @implementation LectureViewContainer
@@ -120,17 +122,17 @@ static VCBlank *blank;
     
     // Set up viewControllers
     dispatch_once(&createControllers, ^{
-        nvc = [[NotesViewController alloc] initWithNibName:NotesViewControllerXIB bundle:nil];
         dcv = [[DrawViewController alloc] initWithNibName:DrawViewControllerXIB bundle:nil];
         svc = (StreamViewController *)[[UIStoryboard storyboardWithName:StreamViewControllerStoryboard bundle:nil] instantiateViewControllerWithIdentifier:StreamViewControllerID];
+        ntvc = [[NoteTakingViewController alloc] init];
         blank = [VCBlank new];
     });
     
     _space = CGSizeMake(LC_WIDTH, LC_HEIGHT);
     
-    [self addController:nvc];
     [self addController:dcv];
     [self addController:svc];
+    [self addController:ntvc];
     [self addController:blank];
     
     _center = CGPointMake(CGRectGetMidY(self.view.frame), CGRectGetMidX(self.view.frame));
@@ -139,6 +141,7 @@ static VCBlank *blank;
     // Close menus
     menuOpen = NO;
     [self setUpMenuItems];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -179,29 +182,29 @@ static VCBlank *blank;
     [save setUserInteractionEnabled:YES];
     [save addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(action:)]];
     
-    // Notes
-    UIImageView *notes = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NotesButton.png"]];
-    [notes setTag:1];
-    [notes setUserInteractionEnabled:YES];
-    [notes addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(action:)]];
-    
     // Draw
     UIImageView *draw = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"DrawButton.png"]];
-    [draw setTag:2];
+    [draw setTag:1];
     [draw setUserInteractionEnabled:YES];
     [draw addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(action:)]];
     
     // Stream
     UIImageView *stream = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"StreamButton.png"]];
-    [stream setTag:3];
+    [stream setTag:2];
     [stream setUserInteractionEnabled:YES];
     [stream addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(action:)]];
+    
+    // Note Taking
+    UIImageView *notetaking = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NotesButton.png"]];
+    [notetaking setTag:3];
+    [notetaking setUserInteractionEnabled:YES];
+    [notetaking addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(action:)]];
     
     UIImageView *zoom = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ZoomButton.png"]];
     [zoom setUserInteractionEnabled:YES];
     [zoom addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fullZoomOut)]];
     
-    menuItems = @[save, notes, draw, stream, zoom];
+    menuItems = @[save, draw, stream, notetaking, zoom];
 }
 
 #pragma mark Actions
@@ -335,22 +338,22 @@ static VCBlank *blank;
             break;
         case 1:
         {
-            [self addController:nvc];
-            break;
-        }
-        case 2:
-        {
             // Draw
             [self addController:dcv];
             break;
         }
-        case 3:
+        case 2:
         {
             // Stream
             [self addController:svc];
             break;
         }
-            
+        case 3:
+        {
+            // Note Taking
+            [self addController:ntvc];
+            break;
+        }
         default:
             NSLog(@"∆");
             break;
@@ -538,7 +541,7 @@ static VCBlank *blank;
     
     svc = nil;
     dcv = nil;
-    nvc = nil;
+//    nvc = nil;
     blank = nil;
     
     [self setSideMenu:nil];

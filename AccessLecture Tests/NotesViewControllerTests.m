@@ -34,12 +34,6 @@
     [super tearDown];
 }
 
-
--(void)testOpen{
-    [testNotesViewController viewDidAppear:YES];
-    STAssertEqualObjects(@"Lecture001", testNotesViewController.currentLecture.name, @"Document not loaded successfully");
-}
-
 -(void)testDrawNoteMode{
     [testNotesViewController createDrawNote:self];
      STAssertTrue(testNotesViewController.isDrawing==YES, @"Drawing Mode not enabled");
