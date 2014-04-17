@@ -66,4 +66,8 @@ typedef enum {
  */
 - (Promise *)currentDocumentPromise;
 
++ (NSArray *)listContentsOfDirectory:(NSString *)path;
++ (NSString *)localDocumentsDirectoryPath;
++ (NSURL *)iCloudDirectoryURL;
+
 @end

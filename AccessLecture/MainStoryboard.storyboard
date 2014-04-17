@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="SP6-Rd-Xf7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="SP6-Rd-Xf7">
     <dependencies>
         <deployment version="1536" defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -92,6 +92,16 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mK8-Hh-vyj">
+                                <rect key="frame" x="813" y="664" width="48" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Search">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="openSearch:" destination="SP6-Rd-Xf7" eventType="touchUpInside" id="bgl-B2-SWI"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.64578846325688155" green="0.82352230209280508" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -159,7 +169,7 @@
             </objects>
             <point key="canvasLocation" x="3223" y="1714"/>
         </scene>
-        <!--Table View Controller - Root View Controller-->
+        <!--Table View Controller - Notes-->
         <scene sceneID="ehz-KE-GKS">
             <objects>
                 <tableViewController clearsSelectionOnViewWillAppear="NO" id="fti-pk-ha4" sceneMemberID="viewController">
@@ -168,12 +178,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Kee-EY-uoh">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="basicCell" textLabel="zm9-UT-wYa" style="IBUITableViewCellStyleDefault" id="Kee-EY-uoh">
                                 <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Kee-EY-uoh" id="lV1-Dh-rfd">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zm9-UT-wYa">
+                                            <rect key="frame" x="15" y="0.0" width="290" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -182,7 +201,7 @@
                             <outlet property="delegate" destination="fti-pk-ha4" id="Pte-6m-tF6"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="KKf-zV-BCE"/>
+                    <navigationItem key="navigationItem" title="Notes" id="KKf-zV-BCE"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RDv-jh-2gQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -203,10 +222,10 @@
             </objects>
             <point key="canvasLocation" x="3223" y="778"/>
         </scene>
-        <!--Split View Controller-->
+        <!--Search View Controller-->
         <scene sceneID="eZC-DX-wAO">
             <objects>
-                <splitViewController id="eiR-Cn-ote" sceneMemberID="viewController">
+                <splitViewController storyboardIdentifier="SearchViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="eiR-Cn-ote" customClass="SearchViewController" sceneMemberID="viewController">
                     <toolbarItems/>
                     <connections>
                         <segue destination="eiv-bs-E5a" kind="relationship" relationship="masterViewController" id="naS-Lr-xPf"/>

@@ -52,6 +52,16 @@
     [self performSegueWithIdentifier:@"toLectureController" sender:@""];
 }
 
+- (IBAction)openSearch:(id)sender
+{
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    UIViewController *search = [sb instantiateViewControllerWithIdentifier:@"SearchViewController"];
+
+    UIWindow *window = UIApplication.sharedApplication.delegate.window;
+    window.rootViewController = search;
+    [window makeKeyWindow];
+}
+
 /**
  * Takes user directly to the lecture connect view.
  */

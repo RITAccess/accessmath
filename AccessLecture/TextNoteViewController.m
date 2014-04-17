@@ -8,6 +8,7 @@
 
 #import "TextNoteViewController.h"
 #import "FullScreenNoteViewController.h"
+#import "ImageNoteViewController.h"
 
 @interface TextNoteViewController ()
 
@@ -44,6 +45,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [NSNotificationCenter.defaultCenter addObserverForName:INVScreenShotNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+        self.view.hidden = [note.object boolValue];
+    }];
 }
 
 - (void)didReceiveMemoryWarning
