@@ -65,10 +65,10 @@
 {
     static NSString *CellIdentifier = @"Cell";
     LectureCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    cell.label.text=[[[directories objectAtIndex:[indexPath row]] path] lastPathComponent];
-    // Configure the cell...
-    [cell.image setImage:[UIImage imageNamed:@"biology.png"]];
-    [cell.label setFont:[UIFont systemFontOfSize:38]];
+//    cell.label.text=[[[directories objectAtIndex:[indexPath row]] path] lastPathComponent];
+//    // Configure the cell...
+//    [cell.image setImage:[UIImage imageNamed:@"biology.png"]];
+//    [cell.label setFont:[UIFont systemFontOfSize:38]];
     return cell;
 }
 
