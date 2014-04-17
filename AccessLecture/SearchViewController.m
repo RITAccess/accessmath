@@ -6,8 +6,10 @@
 //
 //
 
-#import "SearchViewController.h"
+@import ObjectiveC;
 
+#import "SearchViewController.h"
+#import "LectureListViewController.h"
 #import "Promise.h"
 #import "AMLecture.h"
 #import "FileManager.h"
@@ -39,11 +41,36 @@
     [sidePanelController.tableView reloadData];
     sidePanelController.title = @"Browse Lectures";
     mainController.view.backgroundColor = [UIColor colorWithRed:0.009 green:0.085 blue:0.047 alpha:0.600];
-
-    recents = @[@"April 2", @"April 5", @"April 6"];
-    lectures = [@[@"Jan 1", @"Jan 14", @"Feb 18", @"March 19", @"March 20", @"March 24", @"March 30"] arrayByAddingObjectsFromArray:recents];
-
+    [self interseptSegue];
     [self loadLectures];
+}
+
+#pragma mark Method replacement
+
+/**
+ *  Gets the prepareForSegue:sender: from the TableViewController that is the side
+ *  controller.
+ */
+- (void)interseptSegue
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        Method localCall = class_getInstanceMethod([self class], @selector(am_prepareForSegue:sender:));
+        class_replaceMethod([sidePanelController class], @selector(prepareForSegue:sender:), method_getImplementation(localCall), method_getTypeEncoding(localCall));
+    });
+}
+
+/**
+ *  Notifies the view controller that a segue is about to be performed.
+ *
+ *  @param segue  invoked seguew
+ *  @param sender invoker
+ */
+- (void)am_prepareForSegue:(UIStoryboardSegue *)segue sender:(UITableViewCell *)sender
+{
+    NSLog(@"%@", self.parentViewController.parentViewController);
+    LectureListViewController *vc = segue.destinationViewController;
+    vc.lectureName = sender.textLabel.text;
 }
 
 /**

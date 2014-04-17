@@ -10,4 +10,6 @@
 
 @interface LectureListViewController : UITableViewController
 
+@property (strong, nonatomic) NSString *lectureName;
+
 @end

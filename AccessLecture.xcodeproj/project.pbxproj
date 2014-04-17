@@ -61,6 +61,7 @@
 		3F8B515618FD90580053BFE8 /* UIImage+Rotate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8B515018FD90580053BFE8 /* UIImage+Rotate.m */; };
 		3F8B515718FD90580053BFE8 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8B515218FD90580053BFE8 /* UIImage+RoundedCorner.m */; };
 		3F8B515E18FD9C340053BFE8 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8B515D18FD9C340053BFE8 /* SearchViewController.m */; };
+		3F8B51621900277E0053BFE8 /* LectureListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8B51611900277E0053BFE8 /* LectureListViewController.m */; };
 		3F8D9908187B4E010061DEA2 /* TextNoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F8D9906187B4E010061DEA2 /* TextNoteView.xib */; };
 		3F8D990E187DD9100061DEA2 /* FullScreenNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8D990C187DD9100061DEA2 /* FullScreenNoteViewController.m */; };
 		3F8D990F187DD9100061DEA2 /* FullScreenNoteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F8D990D187DD9100061DEA2 /* FullScreenNoteViewController.xib */; };
@@ -199,6 +200,8 @@
 		3F8B515218FD90580053BFE8 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
 		3F8B515C18FD9C340053BFE8 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		3F8B515D18FD9C340053BFE8 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		3F8B51601900277E0053BFE8 /* LectureListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LectureListViewController.h; sourceTree = "<group>"; };
+		3F8B51611900277E0053BFE8 /* LectureListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LectureListViewController.m; sourceTree = "<group>"; };
 		3F8D9906187B4E010061DEA2 /* TextNoteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextNoteView.xib; sourceTree = "<group>"; };
 		3F8D9909187DA46C0061DEA2 /* TextNoteViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextNoteViewDelegate.h; sourceTree = "<group>"; };
 		3F8D990B187DD9100061DEA2 /* FullScreenNoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullScreenNoteViewController.h; sourceTree = "<group>"; };
@@ -449,10 +452,20 @@
 		3F8B515818FD9BD60053BFE8 /* SearchViewController */ = {
 			isa = PBXGroup;
 			children = (
+				3F8B515F1900275D0053BFE8 /* LectureListController */,
 				3F8B515C18FD9C340053BFE8 /* SearchViewController.h */,
 				3F8B515D18FD9C340053BFE8 /* SearchViewController.m */,
 			);
 			name = SearchViewController;
+			sourceTree = "<group>";
+		};
+		3F8B515F1900275D0053BFE8 /* LectureListController */ = {
+			isa = PBXGroup;
+			children = (
+				3F8B51601900277E0053BFE8 /* LectureListViewController.h */,
+				3F8B51611900277E0053BFE8 /* LectureListViewController.m */,
+			);
+			name = LectureListController;
 			sourceTree = "<group>";
 		};
 		3F8D990A187DD8EF0061DEA2 /* FullScreenNoteController */ = {
@@ -1014,6 +1027,7 @@
 				3FED96191370863E00D8D1B8 /* main.m in Sources */,
 				4CEA1A03177CAAED00A1DE05 /* LectureCell.m in Sources */,
 				3FED961C1370863E00D8D1B8 /* AccessLectureAppDelegate.m in Sources */,
+				3F8B51621900277E0053BFE8 /* LectureListViewController.m in Sources */,
 				3FED96221370863E00D8D1B8 /* RootViewController.m in Sources */,
 				3F2DB24113A65C2D00041736 /* ColorViewController.m in Sources */,
 				3F8FD2CF18AD34EB0059EF9C /* DrawMode.m in Sources */,
@@ -1143,6 +1157,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
 				CODE_SIGN_IDENTITY = "";
@@ -1172,6 +1187,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
 				CODE_SIGN_IDENTITY = "";
