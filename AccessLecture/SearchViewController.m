@@ -43,10 +43,6 @@
     [sidePanelController.tableView reloadData];
     sidePanelController.title = @"Browse Lectures";
 
-    self.view.backgroundColor = [UIColor colorWithRed:0.110 green:0.346 blue:0.180 alpha:1.000];
-
-    [self interseptSegue];
-    [self loadLectures];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -61,7 +57,7 @@
  *  Gets the prepareForSegue:sender: from the TableViewController that is the side
  *  controller.
  */
-- (void)interseptSegue
+- (void)interceptSegue
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
