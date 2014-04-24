@@ -14,6 +14,8 @@
 #import "AMLecture.h"
 #import "FileManager.h"
 
+#define TRANSFORM_OFFSCREEN 2000
+
 @interface SearchViewController () <UITableViewDataSource>
 
 @property (strong, nonatomic) Promise *document;
@@ -40,9 +42,17 @@
     sidePanelController.tableView.dataSource = self;
     [sidePanelController.tableView reloadData];
     sidePanelController.title = @"Browse Lectures";
-    mainController.view.backgroundColor = [UIColor colorWithRed:0.009 green:0.085 blue:0.047 alpha:0.600];
+
+    self.view.backgroundColor = [UIColor colorWithRed:0.110 green:0.346 blue:0.180 alpha:1.000];
+
     [self interseptSegue];
     [self loadLectures];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    mainController.view.transform = CGAffineTransformMakeScale(0.6, 0.6);
+//    mainController.view.backgroundColor = [UIColor grayColor];
 }
 
 #pragma mark Method replacement
@@ -68,9 +78,20 @@
  */
 - (void)am_prepareForSegue:(UIStoryboardSegue *)segue sender:(UITableViewCell *)sender
 {
-    NSLog(@"%@", self.parentViewController.parentViewController);
+    SearchViewController *controller = (SearchViewController *)self.parentViewController.parentViewController;
+    [controller tableViewCell:sender becameActivePanel:YES];
     LectureListViewController *vc = segue.destinationViewController;
     vc.lectureName = sender.textLabel.text;
+
+}
+
+- (void)tableViewCell:(UITableViewCell *)cell becameActivePanel:(BOOL)active
+{
+    UIView *mainView = mainController.view;
+    mainView.backgroundColor = [UIColor whiteColor];
+    [UIView animateWithDuration:0.2 delay:1.0 options:UIViewAnimationCurveEaseInOut animations:^{
+        mainView.transform = CGAffineTransformIdentity;
+    } completion:nil];
 }
 
 /**

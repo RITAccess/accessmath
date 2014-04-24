@@ -10,4 +10,6 @@
 
 @interface SearchViewController : UISplitViewController
 
+- (void)tableViewCell:(UITableViewCell *)cell becameActivePanel:(BOOL)active;
+
 @end
