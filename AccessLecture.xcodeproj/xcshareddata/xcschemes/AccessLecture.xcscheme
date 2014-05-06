@@ -38,6 +38,16 @@
                ReferencedContainer = "container:AccessLecture.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "4CE742C21768BDE60026DE71"
+               BuildableName = "AccessLecture Tests.octest"
+               BlueprintName = "AccessLecture Tests"
+               ReferencedContainer = "container:AccessLecture.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
