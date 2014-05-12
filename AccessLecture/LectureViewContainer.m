@@ -100,8 +100,8 @@
     Promise *closed = [FileManager.defaultManager finishedWithDocument];
     [closed wait:10]; // Should block till closed doc
     Promise *lecture = [FileManager.defaultManager currentDocumentPromise];
-    [lecture when:^(AMLecture *lecture) {
-        [_ntvc lectureContainer:self switchedToDocument:lecture];
+    [lecture when:^(AMLecture *newlecture) {
+        [_ntvc lectureContainer:self switchedToDocument:newlecture];
     }];
 }
 
