@@ -49,7 +49,7 @@
 
 - (IBAction)openLecture:(id)sender
 {
-    [self performSegueWithIdentifier:@"toLectureController" sender:@""];
+    [self performSegueWithIdentifier:@"toLectureController" sender:@"lecture"];
 }
 
 /**

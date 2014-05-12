@@ -34,6 +34,10 @@
 @end
 
 @implementation LectureViewContainer
+{
+    @private
+    dispatch_once_t onceToken;
+}
 
 #pragma mark Load and Setup
 
@@ -43,9 +47,9 @@
     // Add button outlets
     [_navigationbar.openButton addTarget:self action:@selector(openLectureAction:) forControlEvents:UIControlEventTouchUpInside];
     [_navigationbar.drawingToggle addTarget:self action:@selector(toggledDrawMode:) forControlEvents:UIControlEventValueChanged];
-    
+    [_navigationbar.backButton addTarget:self action:@selector(backNavigation) forControlEvents:UIControlEventTouchUpInside];
+
     // Add Controllers
-    static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _dvc = [[ACEViewController alloc] initWithNibName:@"ACEViewController" bundle:nil];
         _ntvc = [NoteTakingViewController loadFromStoryboard];
@@ -71,6 +75,11 @@
 
 
 #pragma mark Actions
+
+- (void)backNavigation
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 // TODO - Switch to stack based with a push and pop controller type maybe?
 // TODO - disable if off
