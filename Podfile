@@ -8,6 +8,7 @@ pod 'Colours'
 pod 'MTRadialMenu'
 pod 'MKToggleButton'
 pod 'NoticeView'
+pod 'ACEDrawingView'
 
 end
 
