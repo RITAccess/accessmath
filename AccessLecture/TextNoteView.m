@@ -33,16 +33,20 @@
 
 - (IBAction)titleActions:(id)sender forEvent:(UIEvent *)event
 {
+    #pragma unused(sender)
+    #pragma unused(event)
     self.data.title = _title.text;
 }
 - (IBAction)removeNote:(id)sender
 {
+    #pragma unused(sender)
     _delegate = [[TextNoteViewController alloc] init];
     [_delegate textNoteView:self willClose:YES];
 }
 
 - (IBAction)fullScreeen:(id)sender
 {
+    #pragma unused(sender)
     FullScreenNoteViewController *fsnvc= [FullScreenNoteViewController new];
     fsnvc.modalPresentationStyle = UIModalPresentationPageSheet;
     

@@ -23,6 +23,7 @@
  */
 - (IBAction)returnToLecture:(id)sender
 {
+    #pragma unused(sender)
     _noteView.text.text = _text.text;
     _noteView.text.font = _text.font;
     

@@ -59,19 +59,12 @@
     [super didReceiveMemoryWarning];
 }
 
-
-/**
- When the view unloads
- */
-- (void)viewDidUnload {
-    [super viewDidUnload];
-}
-
 /**
  View is unrotateable for now
  */
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-	return NO;
+- (BOOL)shouldAutorotate
+{
+    return NO;
 }
 
 /**
