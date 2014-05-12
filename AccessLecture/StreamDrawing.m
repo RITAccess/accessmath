@@ -61,6 +61,7 @@
 
 - (void)drawRect:(CGRect)rect
 {
+    #pragma unused(rect)
     [[UIColor blackColor] setStroke];
     for (UIBezierPath *path in update) {
         [path stroke];
