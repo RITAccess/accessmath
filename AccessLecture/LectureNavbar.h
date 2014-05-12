@@ -11,6 +11,7 @@
 
 @interface LectureNavbar : UINavigationBar
 
+@property (strong) UIButton *backButton;
 @property (strong) UIButton *openButton;
 @property (strong) MKToggleButton *drawingToggle;
 
