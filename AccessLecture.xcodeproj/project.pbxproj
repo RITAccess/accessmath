@@ -41,7 +41,6 @@
 		3F408C0D18BF94FD00F6B113 /* NSString+asciihexcodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F408C0C18BF94FD00F6B113 /* NSString+asciihexcodes.m */; };
 		3F4DE76118EB492900BB9970 /* ABDrawToggleSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4DE76018EB492900BB9970 /* ABDrawToggleSwitch.m */; };
 		3F59A9EA18AD193800AAC873 /* LectureNavbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F59A9E918AD193800AAC873 /* LectureNavbar.m */; };
-		3F62DEDB1919808200BDD4EE /* AccessLecture Tests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3F62DED91919808200BDD4EE /* AccessLecture Tests-Info.plist */; };
 		3F62DEDE1921020800BDD4EE /* libPods-AccessLecture.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F62DEDD1921020800BDD4EE /* libPods-AccessLecture.a */; };
 		3F6D11C417625EA20066A4FA /* ALNetworkInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D11B017625EA20066A4FA /* ALNetworkInterface.m */; };
 		3F6D11C517625EA20066A4FA /* SocketIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D11B217625EA20066A4FA /* SocketIO.m */; };
@@ -849,7 +848,8 @@
 		3FED95FE1370863E00D8D1B8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastTestingUpgradeCheck = 0510;
+				LastUpgradeCheck = 0510;
 				TargetAttributes = {
 					3FED96061370863E00D8D1B8 = {
 						DevelopmentTeam = 4ZD4B3UWF7;
@@ -901,7 +901,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F62DEDB1919808200BDD4EE /* AccessLecture Tests-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
