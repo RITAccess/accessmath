@@ -22,6 +22,7 @@
 
 - (void)drawRect:(CGRect)rect
 {
+    #pragma unused(rect)
     //// Color Declarations
     UIColor* fillColorNormal = [UIColor colorWithRed: 0 green: 0.657 blue: 0.219 alpha: 1];
     UIColor* fillColorSelected = [UIColor colorWithRed: 0 green: 0.429 blue: 0.143 alpha: 1];

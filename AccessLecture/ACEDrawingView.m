@@ -75,6 +75,7 @@
  */
 - (void)drawRect:(CGRect)rect
 {
+    #pragma unused(rect)
     [self.image drawInRect:self.bounds];
     [self.currentTool draw];
 }
