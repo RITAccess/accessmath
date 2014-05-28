@@ -87,10 +87,10 @@
 {
     [_dvc hideToolbar:!sender.selected];
     if (sender.selected) {
-        [_dvc displayToolbarWithAnimation:NO];
+        [_dvc displayToolbarWithAnimation:YES];
         [self moveControlTo:_dvc];
     } else {
-        [_dvc dismissToolbarWithAnimation:NO];
+        [_dvc dismissToolbarWithAnimation:YES];
         [self.view sendSubviewToBack:_dvc.view];
     }
 }

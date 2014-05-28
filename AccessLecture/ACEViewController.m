@@ -76,7 +76,17 @@
  */
 - (void)displayToolbarWithAnimation:(BOOL)isAnimating
 {
-    [_toolbar setHidden:NO];
+    _toolbar.hidden = NO;
+    if (isAnimating){
+        [UIView animateWithDuration:.3
+                              delay: 0
+                            options: UIViewAnimationCurveEaseIn
+                         animations:^{
+                             _toolbar.alpha = 1;
+                         }
+                         completion:nil
+         ];
+    }
 }
 
 /**
@@ -86,7 +96,20 @@
  */
 - (void)dismissToolbarWithAnimation:(BOOL)isAnimating
 {
-    [_toolbar setHidden:YES];
+    if (isAnimating){
+        [UIView animateWithDuration:.3
+                              delay: 0
+                            options: UIViewAnimationCurveEaseOut
+                         animations:^{
+                             _toolbar.alpha = 0;
+                         }
+                         completion:^(BOOL finished){
+                             _toolbar.hidden = YES;
+                         }
+         ];
+    } else {
+        _toolbar.hidden = YES;
+    }
 }
 
 #pragma mark - Undo/Redo and Clear Actions
