@@ -44,12 +44,15 @@
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
+    CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
+    CGFloat screenHeight = [[UIScreen mainScreen] bounds].size.height;
+    
     if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation)){
-        [_toolbar setFrame:CGRectMake(0, 768 - _toolbar.frame.size.height, 768, _toolbar.frame.size.height)];
+        [_toolbar setFrame:CGRectMake(0, screenHeight - _toolbar.frame.size.height, 768, _toolbar.frame.size.height)];
         [_lineAlphaSlider setFrame:CGRectMake(100, 700 - _toolbar.frame.size.height, 800, _lineAlphaSlider.frame.size.height)];
         [_lineWidthSlider setFrame:CGRectMake(100, 700 - _toolbar.frame.size.height, 800, _lineAlphaSlider.frame.size.height)];
     } else {
-        [_toolbar setFrame:CGRectMake(0, 1024 - _toolbar.frame.size.height, 1024, _toolbar.frame.size.height)];
+        [_toolbar setFrame:CGRectMake(0, screenWidth - _toolbar.frame.size.height, 1024, _toolbar.frame.size.height)];
         [_lineAlphaSlider setFrame:CGRectMake(100, 930 - _toolbar.frame.size.height, 550, _lineAlphaSlider.frame.size.height)];
         [_lineWidthSlider setFrame:CGRectMake(100, 930 - _toolbar.frame.size.height, 550, _lineAlphaSlider.frame.size.height)];
     }
