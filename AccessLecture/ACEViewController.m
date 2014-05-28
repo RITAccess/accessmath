@@ -61,13 +61,13 @@ static const CGFloat SliderPaddingFromSides = 100;
  */
 - (void)positionToolbar:(UIInterfaceOrientation)toInterfaceOrientation withAnimation:(BOOL)isAnimating
 {
-    CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width; // 768 on Mini
-    CGFloat screenHeight = [[UIScreen mainScreen] bounds].size.height; // 1024 on Mini
+    CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width; // 1024 on Mini
+    CGFloat screenHeight = [[UIScreen mainScreen] bounds].size.height; // 768 on Mini
     
     if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation)){
         [_toolbar setFrame:CGRectMake(0,
                                       screenHeight - _toolbar.frame.size.height,
-                                      768,
+                                      screenWidth,
                                       _toolbar.frame.size.height)];
         
         [_lineAlphaSlider setFrame:CGRectMake(SliderPaddingFromSides,
@@ -82,7 +82,7 @@ static const CGFloat SliderPaddingFromSides = 100;
     } else {
         [_toolbar setFrame:CGRectMake(0,
                                       screenWidth - _toolbar.frame.size.height,
-                                      1024,
+                                      screenHeight,
                                       _toolbar.frame.size.height)];
         
         [_lineAlphaSlider setFrame:CGRectMake(SliderPaddingFromSides,
