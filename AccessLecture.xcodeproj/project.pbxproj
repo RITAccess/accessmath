@@ -22,9 +22,7 @@
 
 /* Begin PBXBuildFile section */
 		21DA3D9318905B5000BFD96B /* ACEViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21DA3D8C18905B5000BFD96B /* ACEViewController.xib */; };
-		21DA3D9418905B5000BFD96B /* ACEDrawingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 21DA3D8D18905B5000BFD96B /* ACEDrawingView.m */; };
 		21DA3D9518905B5000BFD96B /* ACEViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21DA3D8E18905B5000BFD96B /* ACEViewController.m */; };
-		21DA3D9618905B5000BFD96B /* ACEDrawingTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 21DA3D9118905B5000BFD96B /* ACEDrawingTools.m */; };
 		2C5AD2C217B5430000BFB795 /* StreamViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5AD2C117B5430000BFB795 /* StreamViewControllerTests.m */; };
 		2CA93202188596D400199CC4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CA93201188596D400199CC4 /* Images.xcassets */; };
 		2CF45FDD17971C0400E6C69E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF45FDC17971C0400E6C69E /* QuartzCore.framework */; };
@@ -121,12 +119,8 @@
 /* Begin PBXFileReference section */
 		09983FD2441D47DAA38B408E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		21DA3D8C18905B5000BFD96B /* ACEViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ACEViewController.xib; sourceTree = "<group>"; };
-		21DA3D8D18905B5000BFD96B /* ACEDrawingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACEDrawingView.m; sourceTree = "<group>"; };
 		21DA3D8E18905B5000BFD96B /* ACEViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACEViewController.m; sourceTree = "<group>"; };
 		21DA3D8F18905B5000BFD96B /* ACEViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACEViewController.h; sourceTree = "<group>"; };
-		21DA3D9018905B5000BFD96B /* ACEDrawingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACEDrawingView.h; sourceTree = "<group>"; };
-		21DA3D9118905B5000BFD96B /* ACEDrawingTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACEDrawingTools.m; sourceTree = "<group>"; };
-		21DA3D9218905B5000BFD96B /* ACEDrawingTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACEDrawingTools.h; sourceTree = "<group>"; };
 		2C5AD2C117B5430000BFB795 /* StreamViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamViewControllerTests.m; sourceTree = "<group>"; };
 		2CA93201188596D400199CC4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Images.xcassets; sourceTree = "<group>"; };
 		2CF45FDC17971C0400E6C69E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -300,29 +294,9 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		216508051891A08600EFA99B /* DrawingTools */ = {
-			isa = PBXGroup;
-			children = (
-				21DA3D9218905B5000BFD96B /* ACEDrawingTools.h */,
-				21DA3D9118905B5000BFD96B /* ACEDrawingTools.m */,
-			);
-			name = DrawingTools;
-			sourceTree = "<group>";
-		};
-		216508061891A09900EFA99B /* DrawingView */ = {
-			isa = PBXGroup;
-			children = (
-				21DA3D9018905B5000BFD96B /* ACEDrawingView.h */,
-				21DA3D8D18905B5000BFD96B /* ACEDrawingView.m */,
-			);
-			name = DrawingView;
-			sourceTree = "<group>";
-		};
 		2CBF3014177B700C0087C17C /* DrawViewController */ = {
 			isa = PBXGroup;
 			children = (
-				216508061891A09900EFA99B /* DrawingView */,
-				216508051891A08600EFA99B /* DrawingTools */,
 				21DA3D8F18905B5000BFD96B /* ACEViewController.h */,
 				21DA3D8E18905B5000BFD96B /* ACEViewController.m */,
 				21DA3D8C18905B5000BFD96B /* ACEViewController.xib */,
@@ -959,7 +933,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CD0A5F8177E1D6800864228 /* StreamDrawing.m in Sources */,
-				21DA3D9418905B5000BFD96B /* ACEDrawingView.m in Sources */,
 				3F408C0D18BF94FD00F6B113 /* NSString+asciihexcodes.m in Sources */,
 				3F07C352187B3627005BC7EC /* TextNoteView.m in Sources */,
 				3F8FD2CB18AD33350059EF9C /* AddNote.m in Sources */,
@@ -996,7 +969,6 @@
 				3F408C0A18BF94F600F6B113 /* XMLReader.m in Sources */,
 				3F6D11C917625EA20066A4FA /* SocketIOTransportXHR.m in Sources */,
 				3F6D11CA17625EA20066A4FA /* base64.c in Sources */,
-				21DA3D9618905B5000BFD96B /* ACEDrawingTools.m in Sources */,
 				3F4DE76118EB492900BB9970 /* ABDrawToggleSwitch.m in Sources */,
 				3F6D11CB17625EA20066A4FA /* NSData+SRB64Additions.m in Sources */,
 				3F8D9925187F48CC0061DEA2 /* DocumentPicker.m in Sources */,
@@ -1091,7 +1063,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_EXPLICIT_OWNERSHIP_TYPE = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
+				CLANG_WARN_OBJC_RECEIVER_WEAK = NO;
+				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = NO;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
@@ -1099,7 +1077,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AccessLecture/AccessLecture-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = NO;
 				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_PARAMETER = NO;
 				INFOPLIST_FILE = "AccessLecture/AccessLecture-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -1135,14 +1117,24 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_EXPLICIT_OWNERSHIP_TYPE = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
+				CLANG_WARN_OBJC_RECEIVER_WEAK = NO;
+				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = NO;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AccessLecture/AccessLecture-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = NO;
 				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_PARAMETER = NO;
 				INFOPLIST_FILE = "AccessLecture/AccessLecture-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
