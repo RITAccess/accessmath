@@ -24,6 +24,9 @@
 @property (nonatomic, unsafe_unretained) IBOutlet UIBarButtonItem *alphaButton;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 
+- (void)dismissToolbarWithAnimation:(BOOL)isAnimating;
+- (void)displayToolbarWithAnimation:(BOOL)isAnimating;
+
 // actions
 - (IBAction)undo:(id)sender;
 - (IBAction)redo:(id)sender;

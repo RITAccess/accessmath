@@ -30,19 +30,31 @@
 
     // Draw on clear canvas
     [self.view setBackgroundColor:[UIColor clearColor]];
+    
+    // Ensure toolbar is properly oriented
+    [self positionToolbar:self.interfaceOrientation withAnimation:NO];
+}
 
-    // Rotating toolbar, Y values are not what you'd expect
-    if (UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)) {
-        [_toolbar setFrame:CGRectMake(0, 1024 -  _toolbar.frame.size.height, 768, _toolbar.frame.size.height)];
-    } else {
-        [_toolbar setFrame:CGRectMake(0, 1024 + _toolbar.frame.size.height, 1024, _toolbar.frame.size.height)];
-    }
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self positionToolbar:self.interfaceOrientation withAnimation:NO];
 }
 
 
 #pragma mark - Rotation
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [self positionToolbar:toInterfaceOrientation withAnimation:NO];
+}
+
+/**
+ *  Grabs the screen width and height and positions the toolbar and sliders from it.
+ *
+ *  @param toInterfaceOrientation - the current orientation of the device
+ *  @param isAnimating            - whether or not the positioning should be animated
+ */
+- (void)positionToolbar:(UIInterfaceOrientation)toInterfaceOrientation withAnimation:(BOOL)isAnimating
 {
     CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
     CGFloat screenHeight = [[UIScreen mainScreen] bounds].size.height;
@@ -56,6 +68,25 @@
         [_lineAlphaSlider setFrame:CGRectMake(100, 930 - _toolbar.frame.size.height, 550, _lineAlphaSlider.frame.size.height)];
         [_lineWidthSlider setFrame:CGRectMake(100, 930 - _toolbar.frame.size.height, 550, _lineAlphaSlider.frame.size.height)];
     }
+}
+/**
+ *  Show the toolbar, with or without animation.
+ *
+ *  @param isAnimating - whether to animate or not
+ */
+- (void)displayToolbarWithAnimation:(BOOL)isAnimating
+{
+    [_toolbar setHidden:NO];
+}
+
+/**
+ *  Hide the toolbar, with or without animation.
+ *
+ *  @param isAnimating - whether to animate or not
+ */
+- (void)dismissToolbarWithAnimation:(BOOL)isAnimating
+{
+    [_toolbar setHidden:YES];
 }
 
 #pragma mark - Undo/Redo and Clear Actions
