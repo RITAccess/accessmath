@@ -33,7 +33,7 @@ static const CGFloat SliderPaddingFromSides = 100;
     _lineWidthSlider.value = _drawingView.lineWidth;
 
     // Draw on clear canvas
-    [self.view setBackgroundColor:[UIColor clearColor]];
+    self.view.backgroundColor = [UIColor clearColor];
     self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, [UIScreen mainScreen].bounds.size.height);
     
     // Ensure toolbar is properly oriented
@@ -61,39 +61,39 @@ static const CGFloat SliderPaddingFromSides = 100;
  */
 - (void)positionToolbar:(UIInterfaceOrientation)toInterfaceOrientation withAnimation:(BOOL)isAnimating
 {
-    CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width; // 1024 on Mini
-    CGFloat screenHeight = [[UIScreen mainScreen] bounds].size.height; // 768 on Mini
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width; // 1024 on Mini
+    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height; // 768 on Mini
     
     if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation)){
-        [_toolbar setFrame:CGRectMake(0,
+        _toolbar.frame = CGRectMake(0,
                                       screenHeight - _toolbar.frame.size.height,
                                       screenWidth,
-                                      _toolbar.frame.size.height)];
+                                      _toolbar.frame.size.height);
         
-        [_lineAlphaSlider setFrame:CGRectMake(SliderPaddingFromSides,
+        _lineAlphaSlider.frame = CGRectMake(SliderPaddingFromSides,
                                               screenWidth - (_toolbar.frame.size.height + _lineAlphaSlider.frame.size.height - SliderPaddingFromNavbarInPortrait),
                                               screenWidth - (SliderPaddingFromSides * 2),
-                                              _lineAlphaSlider.frame.size.height)];
+                                              _lineAlphaSlider.frame.size.height);
         
-        [_lineWidthSlider setFrame:CGRectMake(SliderPaddingFromSides,
+        _lineWidthSlider.frame = CGRectMake(SliderPaddingFromSides,
                                               screenWidth - (_toolbar.frame.size.height + _lineAlphaSlider.frame.size.height - SliderPaddingFromNavbarInPortrait),
                                               screenWidth - (SliderPaddingFromSides * 2),
-                                              _lineAlphaSlider.frame.size.height)];
+                                              _lineAlphaSlider.frame.size.height);
     } else {
-        [_toolbar setFrame:CGRectMake(0,
+        _toolbar.frame = CGRectMake(0,
                                       screenWidth - _toolbar.frame.size.height,
                                       screenHeight,
-                                      _toolbar.frame.size.height)];
+                                      _toolbar.frame.size.height);
         
-        [_lineAlphaSlider setFrame:CGRectMake(SliderPaddingFromSides,
+        _lineAlphaSlider.frame = CGRectMake(SliderPaddingFromSides,
                                               screenHeight - (_toolbar.frame.size.height + _lineAlphaSlider.frame.size.height + SliderPaddingFromNavbarInLandscape),
                                               screenHeight - (SliderPaddingFromSides * 2),
-                                              _lineAlphaSlider.frame.size.height)];
+                                              _lineAlphaSlider.frame.size.height);
         
-        [_lineWidthSlider setFrame:CGRectMake(SliderPaddingFromSides,
+        _lineWidthSlider.frame = CGRectMake(SliderPaddingFromSides,
                                               screenHeight - (_toolbar.frame.size.height + _lineAlphaSlider.frame.size.height + SliderPaddingFromNavbarInLandscape),
                                               screenHeight - (SliderPaddingFromSides * 2),
-                                              _lineAlphaSlider.frame.size.height)];
+                                              _lineAlphaSlider.frame.size.height);
     }
 }
 /**
