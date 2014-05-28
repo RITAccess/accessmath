@@ -13,6 +13,10 @@
 #define kActionSheetColor       100
 #define kActionSheetTool        101
 
+static const CGFloat SliderPaddingFromNavbarInLandscape = 300;
+static const CGFloat SliderPaddingFromNavbarInPortrait = 200;
+static const CGFloat SliderPaddingFromSides = 100;
+
 @interface ACEViewController ()<UIActionSheetDelegate, ACEDrawingViewDelegate>
 
 @end
@@ -57,17 +61,39 @@
  */
 - (void)positionToolbar:(UIInterfaceOrientation)toInterfaceOrientation withAnimation:(BOOL)isAnimating
 {
-    CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
-    CGFloat screenHeight = [[UIScreen mainScreen] bounds].size.height;
+    CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width; // 768 on Mini
+    CGFloat screenHeight = [[UIScreen mainScreen] bounds].size.height; // 1024 on Mini
     
     if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation)){
-        [_toolbar setFrame:CGRectMake(0, screenHeight - _toolbar.frame.size.height, 768, _toolbar.frame.size.height)];
-        [_lineAlphaSlider setFrame:CGRectMake(100, 700 - _toolbar.frame.size.height, 800, _lineAlphaSlider.frame.size.height)];
-        [_lineWidthSlider setFrame:CGRectMake(100, 700 - _toolbar.frame.size.height, 800, _lineAlphaSlider.frame.size.height)];
+        [_toolbar setFrame:CGRectMake(0,
+                                      screenHeight - _toolbar.frame.size.height,
+                                      768,
+                                      _toolbar.frame.size.height)];
+        
+        [_lineAlphaSlider setFrame:CGRectMake(SliderPaddingFromSides,
+                                              screenWidth - (_toolbar.frame.size.height + _lineAlphaSlider.frame.size.height - SliderPaddingFromNavbarInPortrait),
+                                              screenWidth - (SliderPaddingFromSides * 2),
+                                              _lineAlphaSlider.frame.size.height)];
+        
+        [_lineWidthSlider setFrame:CGRectMake(SliderPaddingFromSides,
+                                              screenWidth - (_toolbar.frame.size.height + _lineAlphaSlider.frame.size.height - SliderPaddingFromNavbarInPortrait),
+                                              screenWidth - (SliderPaddingFromSides * 2),
+                                              _lineAlphaSlider.frame.size.height)];
     } else {
-        [_toolbar setFrame:CGRectMake(0, screenWidth - _toolbar.frame.size.height, 1024, _toolbar.frame.size.height)];
-        [_lineAlphaSlider setFrame:CGRectMake(100, 930 - _toolbar.frame.size.height, 550, _lineAlphaSlider.frame.size.height)];
-        [_lineWidthSlider setFrame:CGRectMake(100, 930 - _toolbar.frame.size.height, 550, _lineAlphaSlider.frame.size.height)];
+        [_toolbar setFrame:CGRectMake(0,
+                                      screenWidth - _toolbar.frame.size.height,
+                                      1024,
+                                      _toolbar.frame.size.height)];
+        
+        [_lineAlphaSlider setFrame:CGRectMake(SliderPaddingFromSides,
+                                              screenHeight - (_toolbar.frame.size.height + _lineAlphaSlider.frame.size.height + SliderPaddingFromNavbarInLandscape),
+                                              screenHeight - (SliderPaddingFromSides * 2),
+                                              _lineAlphaSlider.frame.size.height)];
+        
+        [_lineWidthSlider setFrame:CGRectMake(SliderPaddingFromSides,
+                                              screenHeight - (_toolbar.frame.size.height + _lineAlphaSlider.frame.size.height + SliderPaddingFromNavbarInLandscape),
+                                              screenHeight - (SliderPaddingFromSides * 2),
+                                              _lineAlphaSlider.frame.size.height)];
     }
 }
 /**
