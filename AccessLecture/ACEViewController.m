@@ -30,6 +30,7 @@
 
     // Draw on clear canvas
     [self.view setBackgroundColor:[UIColor clearColor]];
+    self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, [UIScreen mainScreen].bounds.size.height);
     
     // Ensure toolbar is properly oriented
     [self positionToolbar:self.interfaceOrientation withAnimation:NO];
