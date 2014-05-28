@@ -83,6 +83,8 @@
                             options: UIViewAnimationCurveEaseIn
                          animations:^{
                              _toolbar.alpha = 1;
+                             _lineWidthSlider.alpha = 1;
+                             _lineAlphaSlider.alpha = 1;
                          }
                          completion:nil
          ];
@@ -102,9 +104,13 @@
                             options: UIViewAnimationCurveEaseOut
                          animations:^{
                              _toolbar.alpha = 0;
+                             _lineAlphaSlider.alpha = 0;
+                             _lineWidthSlider.alpha = 0;
                          }
                          completion:^(BOOL finished){
                              _toolbar.hidden = YES;
+                             _lineWidthSlider.hidden = YES;
+                             _lineAlphaSlider.hidden = YES;
                          }
          ];
     } else {
