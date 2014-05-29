@@ -11,7 +11,7 @@
 
 @class ACEDrawingView;
 
-@interface ACEViewController : UIViewController<LectureViewChild>
+@interface DrawViewController : UIViewController<LectureViewChild>
 
 @property (nonatomic, unsafe_unretained) IBOutlet ACEDrawingView *drawingView;
 @property (nonatomic, unsafe_unretained) IBOutlet UISlider *lineWidthSlider;

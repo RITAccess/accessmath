@@ -6,7 +6,7 @@
 //
 //
 
-#import "ACEViewController.h"
+#import "DrawViewController.h"
 #import "LectureViewContainer.h"
 #import "StreamViewController.h"
 #import "NoteTakingViewController.h"
@@ -25,7 +25,7 @@
 @property (weak, nonatomic) IBOutlet LectureNavbar *navigationbar;
 @property (strong, nonatomic) MTRadialMenu *actionMenu;
 
-@property (strong) ACEViewController *dvc;
+@property (strong) DrawViewController *dvc;
 @property (strong) StreamViewController *svc;
 @property (strong) NoteTakingViewController *ntvc;
 
@@ -51,7 +51,7 @@
 
     // Add Controllers
     dispatch_once(&onceToken, ^{
-        _dvc = [[ACEViewController alloc] initWithNibName:@"ACEViewController" bundle:nil];
+        _dvc = [[DrawViewController alloc] initWithNibName:@"ACEViewController" bundle:nil];
         _ntvc = [NoteTakingViewController loadFromStoryboard];
     });
     

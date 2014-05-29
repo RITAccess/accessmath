@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ACEViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DrawViewController">
             <connections>
                 <outlet property="colorButton" destination="hCT-EN-yW1" id="mRX-Il-67C"/>
                 <outlet property="drawingView" destination="W7a-Cd-lu1" id="LvX-fp-2df"/>

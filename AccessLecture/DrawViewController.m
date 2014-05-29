@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Stefano Acerbetti. All rights reserved.
 //
 
-#import "ACEViewController.h"
+#import "DrawViewController.h"
 #import "ACEDrawingView.h"
 #import <QuartzCore/QuartzCore.h>
 
@@ -17,11 +17,11 @@ static const CGFloat SliderPaddingFromNavbarInLandscape = 300;
 static const CGFloat SliderPaddingFromNavbarInPortrait = 200;
 static const CGFloat SliderPaddingFromSides = 100;
 
-@interface ACEViewController ()<UIActionSheetDelegate, ACEDrawingViewDelegate>
+@interface DrawViewController ()<UIActionSheetDelegate, ACEDrawingViewDelegate>
 
 @end
 
-@implementation ACEViewController
+@implementation DrawViewController
 
 
 - (void)viewDidLoad
