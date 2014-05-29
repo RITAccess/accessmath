@@ -43,4 +43,13 @@
     XCTAssertTrue(drawViewController.toolbar.hidden = YES, @"Should be hidden.");
 }
 
+/**
+ *  Ensure DrawView toolbar is displayed.
+ */
+- (void)testDrawViewToolbarDisplay
+{
+    [drawViewController displayToolbarWithAnimation:NO];
+    XCTAssertTrue(drawViewController.toolbar.hidden = NO, @"Toolbar should be displayed.");
+}
+
 @end
