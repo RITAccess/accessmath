@@ -14,4 +14,6 @@ end
 
 target "AccessLecture Tests" do
 
+pod 'MTRadialMenu'
+
 end
