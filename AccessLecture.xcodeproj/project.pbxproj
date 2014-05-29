@@ -314,13 +314,13 @@
 			name = TextNote;
 			sourceTree = "<group>";
 		};
-		3F0DBDCC13BD170C00E3FEE8 /* About View */ = {
+		3F0DBDCC13BD170C00E3FEE8 /* AboutViewController */ = {
 			isa = PBXGroup;
 			children = (
 				3F0DBDD313BD174900E3FEE8 /* AboutViewController.h */,
 				3F0DBDD413BD174900E3FEE8 /* AboutViewController.m */,
 			);
-			name = "About View";
+			name = AboutViewController;
 			sourceTree = "<group>";
 		};
 		3F2DC97E18871FCF008C29BF /* ImageNote */ = {
@@ -333,13 +333,6 @@
 				3F2DC98118871FE4008C29BF /* ImageNoteViewController.xib */,
 			);
 			name = ImageNote;
-			sourceTree = "<group>";
-		};
-		3F4DE75D18DB424F00BB9970 /* NoteListingController */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = NoteListingController;
 			sourceTree = "<group>";
 		};
 		3F4DE75E18EB48D200BB9970 /* Navbar */ = {
@@ -414,7 +407,7 @@
 			name = FullScreenNoteController;
 			sourceTree = "<group>";
 		};
-		3F8D9911187F0CFC0061DEA2 /* FileManagerUI */ = {
+		3F8D9911187F0CFC0061DEA2 /* FileManagerViewController */ = {
 			isa = PBXGroup;
 			children = (
 				3F8D9927188099D80061DEA2 /* DocumentCreator */,
@@ -422,7 +415,7 @@
 				3F8D9912187F0D1A0061DEA2 /* FileMangerViewController.h */,
 				3F8D9913187F0D1A0061DEA2 /* FileMangerViewController.m */,
 			);
-			name = FileManagerUI;
+			name = FileManagerViewController;
 			sourceTree = "<group>";
 		};
 		3F8D9919187F21E60061DEA2 /* DocumentPicker */ = {
@@ -522,23 +515,6 @@
 			name = FileManager;
 			sourceTree = "<group>";
 		};
-		3FCD5D1115438265005F2A60 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				3FED963213708E5100D8D1B8 /* Lecture View */,
-				3F0DBDCC13BD170C00E3FEE8 /* About View */,
-			);
-			name = View;
-			sourceTree = "<group>";
-		};
-		3FCD5D131543829A005F2A60 /* Application Architecture */ = {
-			isa = PBXGroup;
-			children = (
-				3FED963013708E0000D8D1B8 /* App Delegate */,
-			);
-			name = "Application Architecture";
-			sourceTree = "<group>";
-		};
 		3FCD5D14154382F5005F2A60 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -598,12 +574,11 @@
 		3FED96111370863E00D8D1B8 /* AccessLecture */ = {
 			isa = PBXGroup;
 			children = (
+				3FED963013708E0000D8D1B8 /* App Delegate */,
 				3F8D99301880AC9F0061DEA2 /* Helpers */,
 				4C5C50C9177B7B300095801A /* Controllers */,
 				3F6D11AD17625E500066A4FA /* Networking */,
 				3FCD5D14154382F5005F2A60 /* Model */,
-				3FCD5D131543829A005F2A60 /* Application Architecture */,
-				3FCD5D1115438265005F2A60 /* View */,
 			);
 			path = AccessLecture;
 			sourceTree = "<group>";
@@ -654,12 +629,8 @@
 		4C5C50C9177B7B300095801A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				3F4DE75D18DB424F00BB9970 /* NoteListingController */,
-				3F8D9911187F0CFC0061DEA2 /* FileManagerUI */,
+				3F0DBDCC13BD170C00E3FEE8 /* AboutViewController */,
 				3FED963113708E4E00D8D1B8 /* RootViewController */,
-				2CBF3014177B700C0087C17C /* DrawViewController */,
-				3F8D990A187DD8EF0061DEA2 /* FullScreenNoteController */,
-				4C8ABE7C177CA341007C934C /* NotesViewController */,
 				4C8ABE7A177C886C007C934C /* StreamViewController */,
 				4C5C50CA177B7B3A0095801A /* LectureViewController */,
 			);
@@ -669,6 +640,10 @@
 		4C5C50CA177B7B3A0095801A /* LectureViewController */ = {
 			isa = PBXGroup;
 			children = (
+				3F8D9911187F0CFC0061DEA2 /* FileManagerViewController */,
+				4C8ABE7C177CA341007C934C /* NotesViewController */,
+				2CBF3014177B700C0087C17C /* DrawViewController */,
+				3FED963213708E5100D8D1B8 /* Lecture View */,
 				3F4DE75E18EB48D200BB9970 /* Navbar */,
 				3F8FD2CC18AD33EF0059EF9C /* LeafViews */,
 				4C9AB8FB177C6884004A4F65 /* Views Icons */,
@@ -693,6 +668,7 @@
 		4C8ABE7C177CA341007C934C /* NotesViewController */ = {
 			isa = PBXGroup;
 			children = (
+				3F8D990A187DD8EF0061DEA2 /* FullScreenNoteController */,
 				3F8FD2C518AD33230059EF9C /* LeafViews */,
 				3F2DC97E18871FCF008C29BF /* ImageNote */,
 				3F07C355187B3648005BC7EC /* TextNote */,
