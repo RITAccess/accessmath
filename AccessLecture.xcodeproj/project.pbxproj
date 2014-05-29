@@ -31,7 +31,6 @@
 		3F07C352187B3627005BC7EC /* TextNoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F07C351187B3627005BC7EC /* TextNoteView.m */; };
 		3F0DBDD613BD174900E3FEE8 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0DBDD413BD174900E3FEE8 /* AboutViewController.m */; };
 		3F0F3B71178DCB8B00163C2A /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F0F3B70178DCB8B00163C2A /* CoreText.framework */; };
-		3F2DB24113A65C2D00041736 /* ColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DB23F13A65C2D00041736 /* ColorViewController.m */; };
 		3F2DC98218871FE4008C29BF /* ImageNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC98018871FE4008C29BF /* ImageNoteViewController.m */; };
 		3F2DC98318871FE4008C29BF /* ImageNoteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F2DC98118871FE4008C29BF /* ImageNoteViewController.xib */; };
 		3F2DC9871887225D008C29BF /* ImageNoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC9861887225D008C29BF /* ImageNoteView.m */; };
@@ -132,8 +131,6 @@
 		3F0DBDD313BD174900E3FEE8 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		3F0DBDD413BD174900E3FEE8 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		3F0F3B70178DCB8B00163C2A /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
-		3F2DB23E13A65C2D00041736 /* ColorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorViewController.h; sourceTree = "<group>"; };
-		3F2DB23F13A65C2D00041736 /* ColorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorViewController.m; sourceTree = "<group>"; };
 		3F2DC97F18871FE4008C29BF /* ImageNoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageNoteViewController.h; sourceTree = "<group>"; };
 		3F2DC98018871FE4008C29BF /* ImageNoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageNoteViewController.m; sourceTree = "<group>"; };
 		3F2DC98118871FE4008C29BF /* ImageNoteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageNoteViewController.xib; sourceTree = "<group>"; };
@@ -525,15 +522,6 @@
 			name = FileManager;
 			sourceTree = "<group>";
 		};
-		3FAD0BF813A7B7AE00218B1F /* ColorViewController */ = {
-			isa = PBXGroup;
-			children = (
-				3F2DB23F13A65C2D00041736 /* ColorViewController.m */,
-				3F2DB23E13A65C2D00041736 /* ColorViewController.h */,
-			);
-			name = ColorViewController;
-			sourceTree = "<group>";
-		};
 		3FCD5D1115438265005F2A60 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -659,7 +647,6 @@
 				4CEA1A00177CAAED00A1DE05 /* LectureCell.m */,
 				4CEA1A01177CAAED00A1DE05 /* OpenLectureViewController.h */,
 				4CEA1A02177CAAED00A1DE05 /* OpenLectureViewController.m */,
-				3FAD0BF813A7B7AE00218B1F /* ColorViewController */,
 			);
 			name = "Lecture View";
 			sourceTree = "<group>";
@@ -943,7 +930,6 @@
 				4CEA1A03177CAAED00A1DE05 /* LectureCell.m in Sources */,
 				3FED961C1370863E00D8D1B8 /* AccessLectureAppDelegate.m in Sources */,
 				3FED96221370863E00D8D1B8 /* RootViewController.m in Sources */,
-				3F2DB24113A65C2D00041736 /* ColorViewController.m in Sources */,
 				3F8FD2CF18AD34EB0059EF9C /* DrawMode.m in Sources */,
 				3F0DBDD613BD174900E3FEE8 /* AboutViewController.m in Sources */,
 				3F99F20215436E090065CBB9 /* Lecture.m in Sources */,
