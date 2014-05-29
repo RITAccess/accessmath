@@ -85,7 +85,6 @@
 		4C5B55FB17720A15005B79CF /* server.crt in Resources */ = {isa = PBXBuildFile; fileRef = 4C5B55FA17720A15005B79CF /* server.crt */; };
 		4C5C50CD177B7B7C0095801A /* LectureViewContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5C50CC177B7B7C0095801A /* LectureViewContainer.m */; };
 		4C62BECD175651DB00CAF4CF /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F99F1FA1543641E0065CBB9 /* FileManager.m */; };
-		4C861C06178EE0B600CD499C /* StreamLayout.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C861C05178EE0B600CD499C /* StreamLayout.storyboard */; };
 		4C8ABE78177C87BD007C934C /* StreamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8ABE76177C87BD007C934C /* StreamViewController.m */; };
 		4CBF5D871768DAD200746377 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11D217625F150066A4FA /* libicucore.dylib */; };
 		4CBF5D881768DAD500746377 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11D017625F0D0066A4FA /* CFNetwork.framework */; };
@@ -230,7 +229,6 @@
 		4C5B55FA17720A15005B79CF /* server.crt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = server.crt; sourceTree = "<group>"; };
 		4C5C50CB177B7B7C0095801A /* LectureViewContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LectureViewContainer.h; sourceTree = "<group>"; };
 		4C5C50CC177B7B7C0095801A /* LectureViewContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LectureViewContainer.m; sourceTree = "<group>"; };
-		4C861C05178EE0B600CD499C /* StreamLayout.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StreamLayout.storyboard; sourceTree = "<group>"; };
 		4C8ABE75177C87BD007C934C /* StreamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamViewController.h; sourceTree = "<group>"; };
 		4C8ABE76177C87BD007C934C /* StreamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamViewController.m; sourceTree = "<group>"; };
 		4CD0A5EC177DC98600864228 /* ConnectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionViewController.h; sourceTree = "<group>"; };
@@ -660,7 +658,6 @@
 				4CD0A5EB177DC96E00864228 /* Connect */,
 				4C8ABE75177C87BD007C934C /* StreamViewController.h */,
 				4C8ABE76177C87BD007C934C /* StreamViewController.m */,
-				4C861C05178EE0B600CD499C /* StreamLayout.storyboard */,
 			);
 			name = StreamViewController;
 			sourceTree = "<group>";
@@ -829,7 +826,6 @@
 				3F8D992C188099F30061DEA2 /* DocumentCreator.xib in Resources */,
 				3F8D9908187B4E010061DEA2 /* TextNoteView.xib in Resources */,
 				2CA93202188596D400199CC4 /* Images.xcassets in Resources */,
-				4C861C06178EE0B600CD499C /* StreamLayout.storyboard in Resources */,
 				2CFC32A0175E60FC00384AEC /* MainStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

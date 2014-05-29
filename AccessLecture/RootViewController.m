@@ -52,17 +52,7 @@
  */
 - (IBAction)openConnect:(id)sender
 {
-    [self performSegueWithIdentifier:@"toLectureController" sender:@"connect"];
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([sender respondsToSelector:@selector(isEqualToString:)]) {
-        if ([sender isEqualToString:@"connect"]){
-            StreamViewController *svc = (StreamViewController *)[[UIStoryboard storyboardWithName:StreamViewControllerStoryboard bundle:nil] instantiateViewControllerWithIdentifier:StreamViewControllerID];
-            [svc setDisplayServerConnectView:YES];   // Segue directly into the ServerConnectView.
-        }
-    }
+    [self performSegueWithIdentifier:@"toStreamController" sender:@"rootView"];
 }
 
 @end
