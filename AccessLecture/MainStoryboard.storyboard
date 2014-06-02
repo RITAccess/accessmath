@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="SP6-Rd-Xf7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="SP6-Rd-Xf7">
     <dependencies>
         <deployment version="1536" defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -92,10 +92,15 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mK8-Hh-vyj">
-                                <rect key="frame" x="813" y="664" width="48" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mK8-Hh-vyj">
+                                <rect key="frame" x="793" y="657" width="86" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="86" id="vxy-TK-beI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <state key="normal" title="Search">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -105,6 +110,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.64578846325688155" green="0.82352230209280508" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="mK8-Hh-vyj" firstAttribute="top" secondItem="w9Z-RI-LPo" secondAttribute="bottom" constant="47" id="3KU-pb-0s8"/>
                             <constraint firstItem="w9Z-RI-LPo" firstAttribute="top" secondItem="sbZ-Bw-DiI" secondAttribute="top" id="6Ht-zi-A6J"/>
                             <constraint firstAttribute="trailing" secondItem="w9Z-RI-LPo" secondAttribute="trailing" constant="95" id="JZB-tF-hFc"/>
                             <constraint firstItem="8Df-hy-0tS" firstAttribute="leading" secondItem="PYl-bd-Q14" secondAttribute="leading" constant="115" id="NQf-Hi-Xqp"/>
@@ -113,6 +119,8 @@
                             <constraint firstAttribute="bottom" secondItem="7kQ-H5-RJO" secondAttribute="bottom" constant="42" id="aEh-hi-kCA"/>
                             <constraint firstItem="7kQ-H5-RJO" firstAttribute="top" secondItem="sbZ-Bw-DiI" secondAttribute="bottom" constant="8" symbolic="YES" id="aIq-8o-saP"/>
                             <constraint firstItem="sbZ-Bw-DiI" firstAttribute="centerX" secondItem="L3X-r2-cvd" secondAttribute="centerX" id="d1z-5t-95U"/>
+                            <constraint firstItem="mK8-Hh-vyj" firstAttribute="centerY" secondItem="7kQ-H5-RJO" secondAttribute="centerY" id="hY8-Tv-Hai"/>
+                            <constraint firstItem="mK8-Hh-vyj" firstAttribute="centerX" secondItem="w9Z-RI-LPo" secondAttribute="centerX" id="ioK-51-0Xg"/>
                             <constraint firstItem="w9Z-RI-LPo" firstAttribute="bottom" secondItem="sbZ-Bw-DiI" secondAttribute="bottom" id="j3K-6P-lgb"/>
                             <constraint firstItem="7kQ-H5-RJO" firstAttribute="centerX" secondItem="PYl-bd-Q14" secondAttribute="centerX" id="rOb-EM-p6l"/>
                             <constraint firstItem="sbZ-Bw-DiI" firstAttribute="trailing" secondItem="7kQ-H5-RJO" secondAttribute="trailing" id="sea-3d-fPh"/>
