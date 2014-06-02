@@ -21,19 +21,18 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		21DA3D9318905B5000BFD96B /* ACEViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21DA3D8C18905B5000BFD96B /* ACEViewController.xib */; };
-		21DA3D9418905B5000BFD96B /* ACEDrawingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 21DA3D8D18905B5000BFD96B /* ACEDrawingView.m */; };
-		21DA3D9518905B5000BFD96B /* ACEViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21DA3D8E18905B5000BFD96B /* ACEViewController.m */; };
-		21DA3D9618905B5000BFD96B /* ACEDrawingTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 21DA3D9118905B5000BFD96B /* ACEDrawingTools.m */; };
+		213733791937B18F00E2AD81 /* DrawViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 213733781937B18F00E2AD81 /* DrawViewTests.m */; };
+		21DA3D9318905B5000BFD96B /* DrawViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21DA3D8C18905B5000BFD96B /* DrawViewController.xib */; };
+		21DA3D9518905B5000BFD96B /* DrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21DA3D8E18905B5000BFD96B /* DrawViewController.m */; };
 		2C5AD2C217B5430000BFB795 /* StreamViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5AD2C117B5430000BFB795 /* StreamViewControllerTests.m */; };
 		2CA93202188596D400199CC4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CA93201188596D400199CC4 /* Images.xcassets */; };
 		2CF45FDD17971C0400E6C69E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF45FDC17971C0400E6C69E /* QuartzCore.framework */; };
 		2CFC32A0175E60FC00384AEC /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CFC329F175E60FC00384AEC /* MainStoryboard.storyboard */; };
+		32C23AE47DD846CB8427DBC1 /* libPods-AccessLecture Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FAD181C458E4CEEB87F6ECE /* libPods-AccessLecture Tests.a */; };
 		3F07C34F187B2BA7005BC7EC /* TextNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F07C34E187B2BA7005BC7EC /* TextNoteViewController.m */; };
 		3F07C352187B3627005BC7EC /* TextNoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F07C351187B3627005BC7EC /* TextNoteView.m */; };
 		3F0DBDD613BD174900E3FEE8 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0DBDD413BD174900E3FEE8 /* AboutViewController.m */; };
 		3F0F3B71178DCB8B00163C2A /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F0F3B70178DCB8B00163C2A /* CoreText.framework */; };
-		3F2DB24113A65C2D00041736 /* ColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DB23F13A65C2D00041736 /* ColorViewController.m */; };
 		3F2DC98218871FE4008C29BF /* ImageNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC98018871FE4008C29BF /* ImageNoteViewController.m */; };
 		3F2DC98318871FE4008C29BF /* ImageNoteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F2DC98118871FE4008C29BF /* ImageNoteViewController.xib */; };
 		3F2DC9871887225D008C29BF /* ImageNoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC9861887225D008C29BF /* ImageNoteView.m */; };
@@ -83,11 +82,9 @@
 		4C37CCB018295FC0006D3B1F /* ALMetaData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C37CCAF18295FC0006D3B1F /* ALMetaData.m */; };
 		4C4B8BFA178EF57200C2F94B /* QRScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B8BF9178EF57200C2F94B /* QRScanner.m */; };
 		4C4B8BFC178EF8D900C2F94B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C4B8BFB178EF8D900C2F94B /* AVFoundation.framework */; };
-		4C5219EE17B1485A00601A4D /* LectureContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5219ED17B1485A00601A4D /* LectureContainer.m */; };
 		4C5B55FB17720A15005B79CF /* server.crt in Resources */ = {isa = PBXBuildFile; fileRef = 4C5B55FA17720A15005B79CF /* server.crt */; };
 		4C5C50CD177B7B7C0095801A /* LectureViewContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5C50CC177B7B7C0095801A /* LectureViewContainer.m */; };
 		4C62BECD175651DB00CAF4CF /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F99F1FA1543641E0065CBB9 /* FileManager.m */; };
-		4C861C06178EE0B600CD499C /* StreamLayout.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C861C05178EE0B600CD499C /* StreamLayout.storyboard */; };
 		4C8ABE78177C87BD007C934C /* StreamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8ABE76177C87BD007C934C /* StreamViewController.m */; };
 		4CBF5D871768DAD200746377 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11D217625F150066A4FA /* libicucore.dylib */; };
 		4CBF5D881768DAD500746377 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11D017625F0D0066A4FA /* CFNetwork.framework */; };
@@ -119,13 +116,11 @@
 
 /* Begin PBXFileReference section */
 		09983FD2441D47DAA38B408E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		21DA3D8C18905B5000BFD96B /* ACEViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ACEViewController.xib; sourceTree = "<group>"; };
-		21DA3D8D18905B5000BFD96B /* ACEDrawingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACEDrawingView.m; sourceTree = "<group>"; };
-		21DA3D8E18905B5000BFD96B /* ACEViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACEViewController.m; sourceTree = "<group>"; };
-		21DA3D8F18905B5000BFD96B /* ACEViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACEViewController.h; sourceTree = "<group>"; };
-		21DA3D9018905B5000BFD96B /* ACEDrawingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACEDrawingView.h; sourceTree = "<group>"; };
-		21DA3D9118905B5000BFD96B /* ACEDrawingTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACEDrawingTools.m; sourceTree = "<group>"; };
-		21DA3D9218905B5000BFD96B /* ACEDrawingTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACEDrawingTools.h; sourceTree = "<group>"; };
+		0FAD181C458E4CEEB87F6ECE /* libPods-AccessLecture Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AccessLecture Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		213733781937B18F00E2AD81 /* DrawViewTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawViewTests.m; sourceTree = "<group>"; };
+		21DA3D8C18905B5000BFD96B /* DrawViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawViewController.xib; sourceTree = "<group>"; };
+		21DA3D8E18905B5000BFD96B /* DrawViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawViewController.m; sourceTree = "<group>"; };
+		21DA3D8F18905B5000BFD96B /* DrawViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawViewController.h; sourceTree = "<group>"; };
 		2C5AD2C117B5430000BFB795 /* StreamViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamViewControllerTests.m; sourceTree = "<group>"; };
 		2CA93201188596D400199CC4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Images.xcassets; sourceTree = "<group>"; };
 		2CF45FDC17971C0400E6C69E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -137,8 +132,6 @@
 		3F0DBDD313BD174900E3FEE8 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		3F0DBDD413BD174900E3FEE8 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		3F0F3B70178DCB8B00163C2A /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
-		3F2DB23E13A65C2D00041736 /* ColorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorViewController.h; sourceTree = "<group>"; };
-		3F2DB23F13A65C2D00041736 /* ColorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorViewController.m; sourceTree = "<group>"; };
 		3F2DC97F18871FE4008C29BF /* ImageNoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageNoteViewController.h; sourceTree = "<group>"; };
 		3F2DC98018871FE4008C29BF /* ImageNoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageNoteViewController.m; sourceTree = "<group>"; };
 		3F2DC98118871FE4008C29BF /* ImageNoteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageNoteViewController.xib; sourceTree = "<group>"; };
@@ -234,11 +227,9 @@
 		4C4B8BF8178EF57200C2F94B /* QRScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRScanner.h; sourceTree = "<group>"; };
 		4C4B8BF9178EF57200C2F94B /* QRScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRScanner.m; sourceTree = "<group>"; };
 		4C4B8BFB178EF8D900C2F94B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		4C5219ED17B1485A00601A4D /* LectureContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LectureContainer.m; sourceTree = "<group>"; };
 		4C5B55FA17720A15005B79CF /* server.crt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = server.crt; sourceTree = "<group>"; };
 		4C5C50CB177B7B7C0095801A /* LectureViewContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LectureViewContainer.h; sourceTree = "<group>"; };
 		4C5C50CC177B7B7C0095801A /* LectureViewContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LectureViewContainer.m; sourceTree = "<group>"; };
-		4C861C05178EE0B600CD499C /* StreamLayout.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StreamLayout.storyboard; sourceTree = "<group>"; };
 		4C8ABE75177C87BD007C934C /* StreamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamViewController.h; sourceTree = "<group>"; };
 		4C8ABE76177C87BD007C934C /* StreamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamViewController.m; sourceTree = "<group>"; };
 		4CD0A5EC177DC98600864228 /* ConnectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionViewController.h; sourceTree = "<group>"; };
@@ -258,6 +249,7 @@
 		4CEA1A02177CAAED00A1DE05 /* OpenLectureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenLectureViewController.m; sourceTree = "<group>"; };
 		4CFC572E17DF800700393A1E /* NoteTakingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteTakingViewController.h; sourceTree = "<group>"; };
 		4CFC572F17DF800700393A1E /* NoteTakingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteTakingViewController.m; sourceTree = "<group>"; };
+		53B36A0B717A4E4DBE587E9F /* Pods-AccessLecture Tests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AccessLecture Tests.xcconfig"; path = "Pods/Pods-AccessLecture Tests.xcconfig"; sourceTree = "<group>"; };
 		811D1A8A44124F03B447E42A /* Pods-AccessLecture.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AccessLecture.xcconfig"; path = "Pods/Pods-AccessLecture.xcconfig"; sourceTree = "<group>"; };
 		8BC023B512F24FD184B9F806 /* libPods-AccessLecture.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AccessLecture.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC4FAAAE68144A8F8DC8769C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
@@ -293,38 +285,19 @@
 				4CBF5D891768DAD700746377 /* Security.framework in Frameworks */,
 				4CBF5D871768DAD200746377 /* libicucore.dylib in Frameworks */,
 				4CE742C51768BDE60026DE71 /* Foundation.framework in Frameworks */,
+				32C23AE47DD846CB8427DBC1 /* libPods-AccessLecture Tests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		216508051891A08600EFA99B /* DrawingTools */ = {
-			isa = PBXGroup;
-			children = (
-				21DA3D9218905B5000BFD96B /* ACEDrawingTools.h */,
-				21DA3D9118905B5000BFD96B /* ACEDrawingTools.m */,
-			);
-			name = DrawingTools;
-			sourceTree = "<group>";
-		};
-		216508061891A09900EFA99B /* DrawingView */ = {
-			isa = PBXGroup;
-			children = (
-				21DA3D9018905B5000BFD96B /* ACEDrawingView.h */,
-				21DA3D8D18905B5000BFD96B /* ACEDrawingView.m */,
-			);
-			name = DrawingView;
-			sourceTree = "<group>";
-		};
 		2CBF3014177B700C0087C17C /* DrawViewController */ = {
 			isa = PBXGroup;
 			children = (
-				216508061891A09900EFA99B /* DrawingView */,
-				216508051891A08600EFA99B /* DrawingTools */,
-				21DA3D8F18905B5000BFD96B /* ACEViewController.h */,
-				21DA3D8E18905B5000BFD96B /* ACEViewController.m */,
-				21DA3D8C18905B5000BFD96B /* ACEViewController.xib */,
+				21DA3D8F18905B5000BFD96B /* DrawViewController.h */,
+				21DA3D8E18905B5000BFD96B /* DrawViewController.m */,
+				21DA3D8C18905B5000BFD96B /* DrawViewController.xib */,
 			);
 			name = DrawViewController;
 			sourceTree = "<group>";
@@ -342,13 +315,13 @@
 			name = TextNote;
 			sourceTree = "<group>";
 		};
-		3F0DBDCC13BD170C00E3FEE8 /* About View */ = {
+		3F0DBDCC13BD170C00E3FEE8 /* AboutViewController */ = {
 			isa = PBXGroup;
 			children = (
 				3F0DBDD313BD174900E3FEE8 /* AboutViewController.h */,
 				3F0DBDD413BD174900E3FEE8 /* AboutViewController.m */,
 			);
-			name = "About View";
+			name = AboutViewController;
 			sourceTree = "<group>";
 		};
 		3F2DC97E18871FCF008C29BF /* ImageNote */ = {
@@ -361,13 +334,6 @@
 				3F2DC98118871FE4008C29BF /* ImageNoteViewController.xib */,
 			);
 			name = ImageNote;
-			sourceTree = "<group>";
-		};
-		3F4DE75D18DB424F00BB9970 /* NoteListingController */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = NoteListingController;
 			sourceTree = "<group>";
 		};
 		3F4DE75E18EB48D200BB9970 /* Navbar */ = {
@@ -442,7 +408,7 @@
 			name = FullScreenNoteController;
 			sourceTree = "<group>";
 		};
-		3F8D9911187F0CFC0061DEA2 /* FileManagerUI */ = {
+		3F8D9911187F0CFC0061DEA2 /* FileManagerViewController */ = {
 			isa = PBXGroup;
 			children = (
 				3F8D9927188099D80061DEA2 /* DocumentCreator */,
@@ -450,7 +416,7 @@
 				3F8D9912187F0D1A0061DEA2 /* FileMangerViewController.h */,
 				3F8D9913187F0D1A0061DEA2 /* FileMangerViewController.m */,
 			);
-			name = FileManagerUI;
+			name = FileManagerViewController;
 			sourceTree = "<group>";
 		};
 		3F8D9919187F21E60061DEA2 /* DocumentPicker */ = {
@@ -550,32 +516,6 @@
 			name = FileManager;
 			sourceTree = "<group>";
 		};
-		3FAD0BF813A7B7AE00218B1F /* ColorViewController */ = {
-			isa = PBXGroup;
-			children = (
-				3F2DB23F13A65C2D00041736 /* ColorViewController.m */,
-				3F2DB23E13A65C2D00041736 /* ColorViewController.h */,
-			);
-			name = ColorViewController;
-			sourceTree = "<group>";
-		};
-		3FCD5D1115438265005F2A60 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				3FED963213708E5100D8D1B8 /* Lecture View */,
-				3F0DBDCC13BD170C00E3FEE8 /* About View */,
-			);
-			name = View;
-			sourceTree = "<group>";
-		};
-		3FCD5D131543829A005F2A60 /* Application Architecture */ = {
-			isa = PBXGroup;
-			children = (
-				3FED963013708E0000D8D1B8 /* App Delegate */,
-			);
-			name = "Application Architecture";
-			sourceTree = "<group>";
-		};
 		3FCD5D14154382F5005F2A60 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -597,6 +537,7 @@
 				4CE742C71768BDE60026DE71 /* AccessLecture Tests */,
 				AC4FAAAE68144A8F8DC8769C /* Pods.xcconfig */,
 				811D1A8A44124F03B447E42A /* Pods-AccessLecture.xcconfig */,
+				53B36A0B717A4E4DBE587E9F /* Pods-AccessLecture Tests.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -628,6 +569,7 @@
 				3F9BA9C21758FE1C00BEFB55 /* SenTestingKit.framework */,
 				09983FD2441D47DAA38B408E /* libPods.a */,
 				8BC023B512F24FD184B9F806 /* libPods-AccessLecture.a */,
+				0FAD181C458E4CEEB87F6ECE /* libPods-AccessLecture Tests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -635,12 +577,11 @@
 		3FED96111370863E00D8D1B8 /* AccessLecture */ = {
 			isa = PBXGroup;
 			children = (
+				3FED963013708E0000D8D1B8 /* App Delegate */,
 				3F8D99301880AC9F0061DEA2 /* Helpers */,
 				4C5C50C9177B7B300095801A /* Controllers */,
 				3F6D11AD17625E500066A4FA /* Networking */,
 				3FCD5D14154382F5005F2A60 /* Model */,
-				3FCD5D131543829A005F2A60 /* Application Architecture */,
-				3FCD5D1115438265005F2A60 /* View */,
 			);
 			path = AccessLecture;
 			sourceTree = "<group>";
@@ -684,7 +625,6 @@
 				4CEA1A00177CAAED00A1DE05 /* LectureCell.m */,
 				4CEA1A01177CAAED00A1DE05 /* OpenLectureViewController.h */,
 				4CEA1A02177CAAED00A1DE05 /* OpenLectureViewController.m */,
-				3FAD0BF813A7B7AE00218B1F /* ColorViewController */,
 			);
 			name = "Lecture View";
 			sourceTree = "<group>";
@@ -692,12 +632,8 @@
 		4C5C50C9177B7B300095801A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				3F4DE75D18DB424F00BB9970 /* NoteListingController */,
-				3F8D9911187F0CFC0061DEA2 /* FileManagerUI */,
+				3F0DBDCC13BD170C00E3FEE8 /* AboutViewController */,
 				3FED963113708E4E00D8D1B8 /* RootViewController */,
-				2CBF3014177B700C0087C17C /* DrawViewController */,
-				3F8D990A187DD8EF0061DEA2 /* FullScreenNoteController */,
-				4C8ABE7C177CA341007C934C /* NotesViewController */,
 				4C8ABE7A177C886C007C934C /* StreamViewController */,
 				4C5C50CA177B7B3A0095801A /* LectureViewController */,
 			);
@@ -707,6 +643,10 @@
 		4C5C50CA177B7B3A0095801A /* LectureViewController */ = {
 			isa = PBXGroup;
 			children = (
+				3F8D9911187F0CFC0061DEA2 /* FileManagerViewController */,
+				4C8ABE7C177CA341007C934C /* NotesViewController */,
+				2CBF3014177B700C0087C17C /* DrawViewController */,
+				3FED963213708E5100D8D1B8 /* Lecture View */,
 				3F4DE75E18EB48D200BB9970 /* Navbar */,
 				3F8FD2CC18AD33EF0059EF9C /* LeafViews */,
 				4C9AB8FB177C6884004A4F65 /* Views Icons */,
@@ -723,7 +663,6 @@
 				4CD0A5EB177DC96E00864228 /* Connect */,
 				4C8ABE75177C87BD007C934C /* StreamViewController.h */,
 				4C8ABE76177C87BD007C934C /* StreamViewController.m */,
-				4C861C05178EE0B600CD499C /* StreamLayout.storyboard */,
 			);
 			name = StreamViewController;
 			sourceTree = "<group>";
@@ -731,6 +670,7 @@
 		4C8ABE7C177CA341007C934C /* NotesViewController */ = {
 			isa = PBXGroup;
 			children = (
+				3F8D990A187DD8EF0061DEA2 /* FullScreenNoteController */,
 				3F8FD2C518AD33230059EF9C /* LeafViews */,
 				3F2DC97E18871FCF008C29BF /* ImageNote */,
 				3F07C355187B3648005BC7EC /* TextNote */,
@@ -796,8 +736,8 @@
 			isa = PBXGroup;
 			children = (
 				3F62DEDC1919808500BDD4EE /* Suporting Files */,
-				4C5219ED17B1485A00601A4D /* LectureContainer.m */,
 				2C5AD2C117B5430000BFB795 /* StreamViewControllerTests.m */,
+				213733781937B18F00E2AD81 /* DrawViewTests.m */,
 			);
 			path = "AccessLecture Tests";
 			sourceTree = "<group>";
@@ -828,9 +768,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4CE742D21768BDE60026DE71 /* Build configuration list for PBXNativeTarget "AccessLecture Tests" */;
 			buildPhases = (
+				5D7CE565F90449668FE5BE49 /* Check Pods Manifest.lock */,
 				4CE742BF1768BDE60026DE71 /* Sources */,
 				4CE742C01768BDE60026DE71 /* Frameworks */,
 				4CE742C11768BDE60026DE71 /* Resources */,
+				0E2B979D8C4A48469A125E87 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -884,7 +826,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3FED96161370863E00D8D1B8 /* InfoPlist.strings in Resources */,
-				21DA3D9318905B5000BFD96B /* ACEViewController.xib in Resources */,
+				21DA3D9318905B5000BFD96B /* DrawViewController.xib in Resources */,
 				3F2DC98318871FE4008C29BF /* ImageNoteViewController.xib in Resources */,
 				3F8D9926187F48CC0061DEA2 /* DocumentPicker.xib in Resources */,
 				3F8D990F187DD9100061DEA2 /* FullScreenNoteViewController.xib in Resources */,
@@ -892,7 +834,6 @@
 				3F8D992C188099F30061DEA2 /* DocumentCreator.xib in Resources */,
 				3F8D9908187B4E010061DEA2 /* TextNoteView.xib in Resources */,
 				2CA93202188596D400199CC4 /* Images.xcassets in Resources */,
-				4C861C06178EE0B600CD499C /* StreamLayout.storyboard in Resources */,
 				2CFC32A0175E60FC00384AEC /* MainStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -907,6 +848,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0E2B979D8C4A48469A125E87 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-AccessLecture Tests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		4CBD8E6518206ADC005E5997 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -919,6 +875,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "source ~/.bash_profile\n\nhash oclint &> /dev/null\nif [ $? -eq 1 ]; then\necho >&2 \"oclint not found, analyzing stopped\"\nexit 1\nfi\n\ncd ${TARGET_TEMP_DIR}\n\nif [ ! -f compile_commands.json ]; then\necho \"[*] compile_commands.json not found, possibly clean was performed\"\necho \"[*] starting xcodebuild to rebuild the project..\"\n# clean previous output\nif [ -f xcodebuild.log ]; then\nrm xcodebuild.log\nfi\n\ncd ${SRCROOT}\n\nxcodebuild clean\n\n#build xcodebuild.log\nxcodebuild | tee ${TARGET_TEMP_DIR}/xcodebuild.log\n#xcodebuild <options>| tee ${TARGET_TEMP_DIR}/xcodebuild.log\n\necho \"[*] transforming xcodebuild.log into compile_commands.json...\"\ncd ${TARGET_TEMP_DIR}\n#transform it into compile_commands.json\noclint-xcodebuild\n\necho \"[*] copy compile_commands.json to the project root...\"\ncp ${TARGET_TEMP_DIR}/compile_commands.json ${SRCROOT}/compile_commands.json\n\nfi\n\necho \"[*] starting analyzing\"\ncd ${TARGET_TEMP_DIR}\noclint-json-compilation-database | sed 's/\\(.*\\.\\m\\{1,2\\}:[0-9]*:[0-9]*:\\)/\\1 warning:/'";
+		};
+		5D7CE565F90449668FE5BE49 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
 		};
 		6BBD5438D4314FD2921B91D1 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -958,7 +929,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CD0A5F8177E1D6800864228 /* StreamDrawing.m in Sources */,
-				21DA3D9418905B5000BFD96B /* ACEDrawingView.m in Sources */,
 				3F408C0D18BF94FD00F6B113 /* NSString+asciihexcodes.m in Sources */,
 				3F07C352187B3627005BC7EC /* TextNoteView.m in Sources */,
 				3F8FD2CB18AD33350059EF9C /* AddNote.m in Sources */,
@@ -969,7 +939,6 @@
 				4CEA1A03177CAAED00A1DE05 /* LectureCell.m in Sources */,
 				3FED961C1370863E00D8D1B8 /* AccessLectureAppDelegate.m in Sources */,
 				3FED96221370863E00D8D1B8 /* RootViewController.m in Sources */,
-				3F2DB24113A65C2D00041736 /* ColorViewController.m in Sources */,
 				3F8FD2CF18AD34EB0059EF9C /* DrawMode.m in Sources */,
 				3F0DBDD613BD174900E3FEE8 /* AboutViewController.m in Sources */,
 				3F99F20215436E090065CBB9 /* Lecture.m in Sources */,
@@ -995,7 +964,6 @@
 				3F408C0A18BF94F600F6B113 /* XMLReader.m in Sources */,
 				3F6D11C917625EA20066A4FA /* SocketIOTransportXHR.m in Sources */,
 				3F6D11CA17625EA20066A4FA /* base64.c in Sources */,
-				21DA3D9618905B5000BFD96B /* ACEDrawingTools.m in Sources */,
 				3F4DE76118EB492900BB9970 /* ABDrawToggleSwitch.m in Sources */,
 				3F6D11CB17625EA20066A4FA /* NSData+SRB64Additions.m in Sources */,
 				3F8D9925187F48CC0061DEA2 /* DocumentPicker.m in Sources */,
@@ -1003,7 +971,7 @@
 				3F2DC9871887225D008C29BF /* ImageNoteView.m in Sources */,
 				4CEA1A04177CAAED00A1DE05 /* OpenLectureViewController.m in Sources */,
 				4C8ABE78177C87BD007C934C /* StreamViewController.m in Sources */,
-				21DA3D9518905B5000BFD96B /* ACEViewController.m in Sources */,
+				21DA3D9518905B5000BFD96B /* DrawViewController.m in Sources */,
 				3F6D11CC17625EA20066A4FA /* SRWebSocket.m in Sources */,
 				3F8D992B188099F30061DEA2 /* DocumentCreator.m in Sources */,
 				4CDB058017B5589A00D8EB85 /* Favorites.m in Sources */,
@@ -1017,8 +985,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				213733791937B18F00E2AD81 /* DrawViewTests.m in Sources */,
 				2C5AD2C217B5430000BFB795 /* StreamViewControllerTests.m in Sources */,
-				4C5219EE17B1485A00601A4D /* LectureContainer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1128,8 +1096,8 @@
 					UIKit,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "EC51EB3A-91E0-4B0D-8398-E553BBD0EE94";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EC51EB3A-91E0-4B0D-8398-E553BBD0EE94";
+				PROVISIONING_PROFILE = "B7D7016C-D428-40C6-A7E2-D8107126BB0C";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B7D7016C-D428-40C6-A7E2-D8107126BB0C";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
@@ -1181,8 +1149,8 @@
 					UIKit,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "EC51EB3A-91E0-4B0D-8398-E553BBD0EE94";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EC51EB3A-91E0-4B0D-8398-E553BBD0EE94";
+				PROVISIONING_PROFILE = "B7D7016C-D428-40C6-A7E2-D8107126BB0C";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B7D7016C-D428-40C6-A7E2-D8107126BB0C";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
@@ -1205,6 +1173,7 @@
 		};
 		4CE742D31768BDE60026DE71 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 53B36A0B717A4E4DBE587E9F /* Pods-AccessLecture Tests.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/AccessLecture.app/AccessLecture";
@@ -1220,7 +1189,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -1234,13 +1203,13 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "AccessLecture Tests/AccessLecture Tests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "EC51EB3A-91E0-4B0D-8398-E553BBD0EE94";
@@ -1251,6 +1220,7 @@
 		};
 		4CE742D41768BDE60026DE71 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 53B36A0B717A4E4DBE587E9F /* Pods-AccessLecture Tests.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/AccessLecture.app/AccessLecture";
@@ -1266,7 +1236,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1276,13 +1246,13 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AccessLecture Tests/AccessLecture Tests-Prefix.pch";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "AccessLecture Tests/AccessLecture Tests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "EC51EB3A-91E0-4B0D-8398-E553BBD0EE94";
 				TEST_HOST = "$(BUNDLE_LOADER)";

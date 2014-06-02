@@ -6,18 +6,22 @@
 //  Copyright (c) 2013 Stefano Acerbetti. All rights reserved.
 //
 
-#import "ACEViewController.h"
+#import "DrawViewController.h"
 #import "ACEDrawingView.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define kActionSheetColor       100
 #define kActionSheetTool        101
 
-@interface ACEViewController ()<UIActionSheetDelegate, ACEDrawingViewDelegate>
+static const CGFloat SliderPaddingFromNavbarInLandscape = 300;
+static const CGFloat SliderPaddingFromNavbarInPortrait = 200;
+static const CGFloat SliderPaddingFromSides = 100;
+
+@interface DrawViewController ()<UIActionSheetDelegate, ACEDrawingViewDelegate>
 
 @end
 
-@implementation ACEViewController
+@implementation DrawViewController
 
 
 - (void)viewDidLoad
@@ -29,14 +33,16 @@
     _lineWidthSlider.value = _drawingView.lineWidth;
 
     // Draw on clear canvas
-    [self.view setBackgroundColor:[UIColor clearColor]];
+    self.view.backgroundColor = [UIColor clearColor];
+    self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, [UIScreen mainScreen].bounds.size.height);
+    
+    // Ensure toolbar is properly oriented
+    [self positionToolbar:self.interfaceOrientation withAnimation:NO];
+}
 
-    // Rotating toolbar, Y values are not what you'd expect
-    if (UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)) {
-        [_toolbar setFrame:CGRectMake(0, 1024 -  _toolbar.frame.size.height, 768, _toolbar.frame.size.height)];
-    } else {
-        [_toolbar setFrame:CGRectMake(0, 1024 + _toolbar.frame.size.height, 1024, _toolbar.frame.size.height)];
-    }
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self positionToolbar:self.interfaceOrientation withAnimation:NO];
 }
 
 
@@ -44,14 +50,98 @@
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
+    [self positionToolbar:toInterfaceOrientation withAnimation:NO];
+}
+
+/**
+ *  Grabs the screen width and height and positions the toolbar and sliders from it.
+ *
+ *  @param toInterfaceOrientation - the current orientation of the device
+ *  @param isAnimating            - whether or not the positioning should be animated
+ */
+- (void)positionToolbar:(UIInterfaceOrientation)toInterfaceOrientation withAnimation:(BOOL)isAnimating
+{
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width; // 1024 on Mini
+    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height; // 768 on Mini
+    
     if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation)){
-        [_toolbar setFrame:CGRectMake(0, 768 - _toolbar.frame.size.height, 768, _toolbar.frame.size.height)];
-        [_lineAlphaSlider setFrame:CGRectMake(100, 700 - _toolbar.frame.size.height, 800, _lineAlphaSlider.frame.size.height)];
-        [_lineWidthSlider setFrame:CGRectMake(100, 700 - _toolbar.frame.size.height, 800, _lineAlphaSlider.frame.size.height)];
+        _toolbar.frame = CGRectMake(0,
+                                      screenHeight - _toolbar.frame.size.height,
+                                      screenWidth,
+                                      _toolbar.frame.size.height);
+        
+        _lineAlphaSlider.frame = CGRectMake(SliderPaddingFromSides,
+                                              screenWidth - (_toolbar.frame.size.height + _lineAlphaSlider.frame.size.height - SliderPaddingFromNavbarInPortrait),
+                                              screenWidth - (SliderPaddingFromSides * 2),
+                                              _lineAlphaSlider.frame.size.height);
+        
+        _lineWidthSlider.frame = CGRectMake(SliderPaddingFromSides,
+                                              screenWidth - (_toolbar.frame.size.height + _lineAlphaSlider.frame.size.height - SliderPaddingFromNavbarInPortrait),
+                                              screenWidth - (SliderPaddingFromSides * 2),
+                                              _lineAlphaSlider.frame.size.height);
     } else {
-        [_toolbar setFrame:CGRectMake(0, 1024 - _toolbar.frame.size.height, 1024, _toolbar.frame.size.height)];
-        [_lineAlphaSlider setFrame:CGRectMake(100, 930 - _toolbar.frame.size.height, 550, _lineAlphaSlider.frame.size.height)];
-        [_lineWidthSlider setFrame:CGRectMake(100, 930 - _toolbar.frame.size.height, 550, _lineAlphaSlider.frame.size.height)];
+        _toolbar.frame = CGRectMake(0,
+                                      screenWidth - _toolbar.frame.size.height,
+                                      screenHeight,
+                                      _toolbar.frame.size.height);
+        
+        _lineAlphaSlider.frame = CGRectMake(SliderPaddingFromSides,
+                                              screenHeight - (_toolbar.frame.size.height + _lineAlphaSlider.frame.size.height + SliderPaddingFromNavbarInLandscape),
+                                              screenHeight - (SliderPaddingFromSides * 2),
+                                              _lineAlphaSlider.frame.size.height);
+        
+        _lineWidthSlider.frame = CGRectMake(SliderPaddingFromSides,
+                                              screenHeight - (_toolbar.frame.size.height + _lineAlphaSlider.frame.size.height + SliderPaddingFromNavbarInLandscape),
+                                              screenHeight - (SliderPaddingFromSides * 2),
+                                              _lineAlphaSlider.frame.size.height);
+    }
+}
+/**
+ *  Show the toolbar, with or without animation.
+ *
+ *  @param isAnimating - whether to animate or not
+ */
+- (void)displayToolbarWithAnimation:(BOOL)isAnimating
+{
+    _toolbar.hidden = NO;
+    if (isAnimating){
+        [UIView animateWithDuration:.3
+                              delay: 0
+                            options: UIViewAnimationCurveEaseIn
+                         animations:^{
+                             _toolbar.alpha = 1;
+                             _lineWidthSlider.alpha = 1;
+                             _lineAlphaSlider.alpha = 1;
+                         }
+                         completion:nil
+         ];
+    }
+}
+
+/**
+ *  Hide the toolbar, with or without animation.
+ *
+ *  @param isAnimating - whether to animate or not
+ */
+- (void)dismissToolbarWithAnimation:(BOOL)isAnimating
+{
+    if (isAnimating){
+        [UIView animateWithDuration:.3
+                              delay: 0
+                            options: UIViewAnimationCurveEaseOut
+                         animations:^{
+                             _toolbar.alpha = 0;
+                             _lineAlphaSlider.alpha = 0;
+                             _lineWidthSlider.alpha = 0;
+                         }
+                         completion:^(BOOL finished){
+                             _toolbar.hidden = YES;
+                             _lineWidthSlider.hidden = YES;
+                             _lineAlphaSlider.hidden = YES;
+                         }
+         ];
+    } else {
+        _toolbar.hidden = YES;
     }
 }
 

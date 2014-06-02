@@ -8,9 +8,12 @@ pod 'Colours'
 pod 'MTRadialMenu'
 pod 'MKToggleButton'
 pod 'NoticeView'
+pod 'ACEDrawingView'
 
 end
 
 target "AccessLecture Tests" do
+
+pod 'MTRadialMenu'
 
 end
