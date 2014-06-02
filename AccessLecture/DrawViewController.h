@@ -11,7 +11,7 @@
 
 @class ACEDrawingView;
 
-@interface ACEViewController : UIViewController<LectureViewChild>
+@interface DrawViewController : UIViewController<LectureViewChild>
 
 @property (nonatomic, unsafe_unretained) IBOutlet ACEDrawingView *drawingView;
 @property (nonatomic, unsafe_unretained) IBOutlet UISlider *lineWidthSlider;
@@ -23,6 +23,9 @@
 @property (nonatomic, unsafe_unretained) IBOutlet UIBarButtonItem *toolButton;
 @property (nonatomic, unsafe_unretained) IBOutlet UIBarButtonItem *alphaButton;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
+
+- (void)dismissToolbarWithAnimation:(BOOL)isAnimating;
+- (void)displayToolbarWithAnimation:(BOOL)isAnimating;
 
 // actions
 - (IBAction)undo:(id)sender;

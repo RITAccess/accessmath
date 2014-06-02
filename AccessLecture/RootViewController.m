@@ -22,11 +22,6 @@
     [super viewDidLoad];
 }
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -35,9 +30,9 @@
 /**
  * Do we want the application to be rotateable? Return YES or NO.
  */
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (BOOL)shouldAutorotate
 {
-    return UIInterfaceOrientationIsPortrait(interfaceOrientation);
+    return YES;
 }
 
 #pragma mark - Buttons
@@ -49,7 +44,7 @@
 
 - (IBAction)openLecture:(id)sender
 {
-    [self performSegueWithIdentifier:@"toLectureController" sender:@""];
+    [self performSegueWithIdentifier:@"toLectureController" sender:@"lecture"];
 }
 
 - (IBAction)openSearch:(id)sender
@@ -67,17 +62,7 @@
  */
 - (IBAction)openConnect:(id)sender
 {
-    [self performSegueWithIdentifier:@"toLectureController" sender:@"connect"];
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([sender respondsToSelector:@selector(isEqualToString:)]) {
-        if ([sender isEqualToString:@"connect"]){
-            StreamViewController *svc = (StreamViewController *)[[UIStoryboard storyboardWithName:StreamViewControllerStoryboard bundle:nil] instantiateViewControllerWithIdentifier:StreamViewControllerID];
-            [svc setDisplayServerConnectView:YES];   // Segue directly into the ServerConnectView.
-        }
-    }
+    [self performSegueWithIdentifier:@"toStreamController" sender:@"rootView"];
 }
 
 @end

@@ -49,18 +49,23 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
+    // Back button
+    _backButton = ({
+        UIButton *b = [[UIButton alloc] initWithFrame:CGRectMake(20, 20, 75, 75)];
+        [b setTitle:@"Home" forState:UIControlStateNormal];
+        [self addSubview:b];
+        b;
+    });
     // Set up open button
     _openButton = ({
-        NSLog(@"Open Button Creation");
         AMOpenButton *open = [AMOpenButton buttonWithType:UIButtonTypeCustom];
-        open.frame = CGRectMake(20, 20, 75, 75);
+        open.frame = CGRectMake(115, 20, 75, 75);
         [self addSubview:open];
         open;
     });
     // Set up Drawing toggle
     _drawingToggle = ({
-        NSLog(@"Drawing Toggle Creation");
-        MKToggleButton *s = [[MKToggleButton alloc] initWithFrame:CGRectMake(115, 20, 75, 75)];
+        MKToggleButton *s = [[MKToggleButton alloc] initWithFrame:CGRectMake(210, 20, 75, 75)];
         [s setTitle:@"Draw" forState:UIControlStateNormal];
         [s setTitle:@"Draw" forState:UIControlStateSelected];
         [s setShowsBorder:YES];

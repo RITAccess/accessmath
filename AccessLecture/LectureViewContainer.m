@@ -6,7 +6,7 @@
 //
 //
 
-#import "ACEViewController.h"
+#import "DrawViewController.h"
 #import "LectureViewContainer.h"
 #import "StreamViewController.h"
 #import "NoteTakingViewController.h"
@@ -25,7 +25,7 @@
 @property (weak, nonatomic) IBOutlet LectureNavbar *navigationbar;
 @property (strong, nonatomic) MTRadialMenu *actionMenu;
 
-@property (strong) ACEViewController *dvc;
+@property (strong) DrawViewController *dvc;
 @property (strong) StreamViewController *svc;
 @property (strong) NoteTakingViewController *ntvc;
 
@@ -34,6 +34,10 @@
 @end
 
 @implementation LectureViewContainer
+{
+    @private
+    dispatch_once_t onceToken;
+}
 
 #pragma mark Load and Setup
 
@@ -43,11 +47,11 @@
     // Add button outlets
     [_navigationbar.openButton addTarget:self action:@selector(openLectureAction:) forControlEvents:UIControlEventTouchUpInside];
     [_navigationbar.drawingToggle addTarget:self action:@selector(toggledDrawMode:) forControlEvents:UIControlEventValueChanged];
-    
+    [_navigationbar.backButton addTarget:self action:@selector(backNavigation) forControlEvents:UIControlEventTouchUpInside];
+
     // Add Controllers
-    static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _dvc = [[ACEViewController alloc] initWithNibName:@"ACEViewController" bundle:nil];
+        _dvc = [[DrawViewController alloc] initWithNibName:@"ACEViewController" bundle:nil];
         _ntvc = [NoteTakingViewController loadFromStoryboard];
     });
     
@@ -72,14 +76,21 @@
 
 #pragma mark Actions
 
+- (void)backNavigation
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 // TODO - Switch to stack based with a push and pop controller type maybe?
 // TODO - disable if off
 - (void)toggledDrawMode:(MKToggleButton *)sender
 {
     [_dvc hideToolbar:!sender.selected];
     if (sender.selected) {
+        [_dvc displayToolbarWithAnimation:YES];
         [self moveControlTo:_dvc];
     } else {
+        [_dvc dismissToolbarWithAnimation:YES];
         [self.view sendSubviewToBack:_dvc.view];
     }
 }
@@ -91,8 +102,8 @@
     Promise *closed = [FileManager.defaultManager finishedWithDocument];
     [closed wait:10]; // Should block till closed doc
     Promise *lecture = [FileManager.defaultManager currentDocumentPromise];
-    [lecture when:^(AMLecture *lecture) {
-        [_ntvc lectureContainer:self switchedToDocument:lecture];
+    [lecture when:^(AMLecture *newlecture) {
+        [_ntvc lectureContainer:self switchedToDocument:newlecture];
     }];
 }
 

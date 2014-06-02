@@ -2,38 +2,54 @@
 //  DrawViewTests.m
 //  AccessLecture
 //
-//  Created by Piper Chester on 8/6/13.
+//  Created by Piper on 5/29/14.
 //
 //
 
-#import <SenTestingKit/SenTestingKit.h>
-#import "DrawView.h"
+#import <XCTest/XCTest.h>
+#import "DrawViewController.h"
 
-@interface DrawViewTests : SenTestCase
+@interface DrawViewTests : XCTestCase
 
 @end
 
-@implementation DrawViewTests
-{
-    DrawView *testDrawView;
+@implementation DrawViewTests {
+    DrawViewController *drawViewController;
 }
 
+/**
+ *  Called before each test.
+ */
 - (void)setUp
 {
     [super setUp];
-    testDrawView = [DrawView new];
-    testDrawView.shapes = [NSMutableArray new];
+    drawViewController = [DrawViewController new];
 }
 
+/**
+ *  Put teardown code here. This method is called after the invocation of each test method in the class.
+ */
 - (void)tearDown
 {
     [super tearDown];
 }
 
-- (void)testAddStampToShapeArray
+/**
+ *  Ensure that the DrawView toolbar is dismissed properly.
+ */
+- (void)testDrawViewToolbarHide
 {
-    [testDrawView tapToStamp:[UITapGestureRecognizer new]];
-    STAssertEquals((int)testDrawView.shapes.count, 1, @"Shape not being inserted into the array.");
+    [drawViewController dismissToolbarWithAnimation:NO];
+    XCTAssertTrue(drawViewController.toolbar.hidden = YES, @"Should be hidden.");
+}
+
+/**
+ *  Ensure DrawView toolbar is displayed.
+ */
+- (void)testDrawViewToolbarDisplay
+{
+    [drawViewController displayToolbarWithAnimation:NO];
+    XCTAssertTrue(drawViewController.toolbar.hidden = NO, @"Toolbar should be displayed.");
 }
 
 @end

@@ -232,11 +232,11 @@ finish:
         dispatch_sync(dispatch_get_main_queue(), ^{
             // Send UI updates;
             if (connectionError) {
-                WBErrorNoticeView *error = [WBErrorNoticeView errorNoticeInView:self.view.superview.superview
+                WBErrorNoticeView *errorView = [WBErrorNoticeView errorNoticeInView:self.view.superview.superview
                                                                           title:connectionError.localizedDescription
                                                                         message:@"This sounds like an error on our end and not yours. We're sorry about that."];
-                error.delay = error.message.length / 8.0;
-                [error show];
+                errorView.delay = errorView.message.length / 8.0;
+                [errorView show];
             } else {
 
             }

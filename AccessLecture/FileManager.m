@@ -157,7 +157,7 @@
 
 + (AMLecture *)findDocumentWithName:(NSString *)name failure:(void (^)(NSError *))error
 {
-    error = error ?: ^(NSError *error) { };
+    error = error ?: ^(NSError *e) { };
     NSString *docsDir = [FileManager localDocumentsDirectoryPath];
     NSString *filePath = [[docsDir stringByAppendingPathComponent:name] stringByAppendingPathExtension:AMLectutueFileExtention];
     
