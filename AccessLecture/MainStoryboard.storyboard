@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.17" systemVersion="13D65" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="SP6-Rd-Xf7">
     <dependencies>
-        <deployment version="1536" defaultVersion="1536" identifier="iOS"/>
+        <deployment version="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.11"/>
     </dependencies>
     <scenes>
@@ -173,7 +173,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EJJ-Vf-ljb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2811" y="2982"/>
+            <point key="canvasLocation" x="3277" y="681"/>
         </scene>
         <!--Table View Controller - Notes-->
         <scene sceneID="ehz-KE-GKS">
@@ -220,7 +220,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RDv-jh-2gQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="747" y="1234"/>
+            <point key="canvasLocation" x="795" y="702"/>
         </scene>
         <!--Lecture List View Controller-->
         <scene sceneID="ZOU-t0-HPS">
@@ -264,7 +264,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kbB-bP-z52" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2811" y="2046"/>
+            <point key="canvasLocation" x="2162" y="249"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="eZC-DX-wAO">
@@ -278,7 +278,7 @@
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rv3-y5-MRl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1285" y="2305"/>
+            <point key="canvasLocation" x="2305" y="381"/>
         </scene>
         <!--Lecture View Container-->
         <scene sceneID="Dq3-eJ-EFo">
@@ -555,7 +555,7 @@ IAoKA
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="T10-To-18B">
                                 <rect key="frame" x="465" y="12" width="20" height="20"/>
                             </activityIndicatorView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R2z-BX-9rP" userLabel="Camera View">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R2z-BX-9rP" userLabel="Camera View">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                             </view>

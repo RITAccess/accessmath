@@ -72,6 +72,13 @@
         [self addSubview:s];
         s;
     });
+    // Set up open button
+    _searchButton = ({
+        UIButton *searchButton = [[UIButton alloc] initWithFrame:CGRectMake(305, 20, 75, 75)];
+        [searchButton setTitle:@"Search" forState:UIControlStateNormal];
+        [self addSubview:searchButton];
+        searchButton;
+    });
 }
 
 @end

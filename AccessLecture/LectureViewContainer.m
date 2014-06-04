@@ -48,6 +48,7 @@
     [_navigationbar.openButton addTarget:self action:@selector(openLectureAction:) forControlEvents:UIControlEventTouchUpInside];
     [_navigationbar.drawingToggle addTarget:self action:@selector(toggledDrawMode:) forControlEvents:UIControlEventValueChanged];
     [_navigationbar.backButton addTarget:self action:@selector(backNavigation) forControlEvents:UIControlEventTouchUpInside];
+    [_navigationbar.searchButton addTarget:self action:@selector(openSearchAction) forControlEvents:UIControlEventTouchUpInside];
 
     // Add Controllers
     dispatch_once(&onceToken, ^{
@@ -79,6 +80,16 @@
 - (void)backNavigation
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)openSearchAction
+{
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    UIViewController *search = [sb instantiateViewControllerWithIdentifier:@"SearchViewController"];
+    
+    UIWindow *window = UIApplication.sharedApplication.delegate.window;
+    window.rootViewController = search;
+    [window makeKeyWindow];
 }
 
 // TODO - Switch to stack based with a push and pop controller type maybe?
