@@ -52,7 +52,7 @@
 
     // Add Controllers
     dispatch_once(&onceToken, ^{
-        _dvc = [[DrawViewController alloc] initWithNibName:@"ACEViewController" bundle:nil];
+        _dvc = [[DrawViewController alloc] initWithNibName:@"DrawViewController" bundle:nil];
         _ntvc = [NoteTakingViewController loadFromStoryboard];
     });
     
