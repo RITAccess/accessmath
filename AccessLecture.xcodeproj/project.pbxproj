@@ -120,6 +120,7 @@
 /* Begin PBXFileReference section */
 		09983FD2441D47DAA38B408E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FAD181C458E4CEEB87F6ECE /* libPods-AccessLecture Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AccessLecture Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		10BDE2E5B090C64338F60EA3 /* Pods-AccessLecture.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AccessLecture.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AccessLecture/Pods-AccessLecture.debug.xcconfig"; sourceTree = "<group>"; };
 		213733781937B18F00E2AD81 /* DrawViewTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawViewTests.m; sourceTree = "<group>"; };
 		21DA3D8C18905B5000BFD96B /* DrawViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawViewController.xib; sourceTree = "<group>"; };
 		21DA3D8E18905B5000BFD96B /* DrawViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawViewController.m; sourceTree = "<group>"; };
@@ -266,10 +267,10 @@
 		4CEA1A02177CAAED00A1DE05 /* OpenLectureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenLectureViewController.m; sourceTree = "<group>"; };
 		4CFC572E17DF800700393A1E /* NoteTakingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteTakingViewController.h; sourceTree = "<group>"; };
 		4CFC572F17DF800700393A1E /* NoteTakingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteTakingViewController.m; sourceTree = "<group>"; };
-		53B36A0B717A4E4DBE587E9F /* Pods-AccessLecture Tests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AccessLecture Tests.xcconfig"; path = "Pods/Pods-AccessLecture Tests.xcconfig"; sourceTree = "<group>"; };
-		811D1A8A44124F03B447E42A /* Pods-AccessLecture.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AccessLecture.xcconfig"; path = "Pods/Pods-AccessLecture.xcconfig"; sourceTree = "<group>"; };
 		8BC023B512F24FD184B9F806 /* libPods-AccessLecture.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AccessLecture.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		AC4FAAAE68144A8F8DC8769C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		9EB895DA5C2A9D423EC1C01C /* Pods-AccessLecture.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AccessLecture.release.xcconfig"; path = "Pods/Target Support Files/Pods-AccessLecture/Pods-AccessLecture.release.xcconfig"; sourceTree = "<group>"; };
+		A7108E144D7ABDACF00E2CBA /* Pods-AccessLecture Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AccessLecture Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AccessLecture Tests/Pods-AccessLecture Tests.release.xcconfig"; sourceTree = "<group>"; };
+		E42E409B29FC0EF386FD2A96 /* Pods-AccessLecture Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AccessLecture Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AccessLecture Tests/Pods-AccessLecture Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -581,9 +582,7 @@
 				3FED96121370863E00D8D1B8 /* Supporting Files */,
 				3FED96081370863E00D8D1B8 /* Products */,
 				4CE742C71768BDE60026DE71 /* AccessLecture Tests */,
-				AC4FAAAE68144A8F8DC8769C /* Pods.xcconfig */,
-				811D1A8A44124F03B447E42A /* Pods-AccessLecture.xcconfig */,
-				53B36A0B717A4E4DBE587E9F /* Pods-AccessLecture Tests.xcconfig */,
+				5FDD27956F3D415D1450C0BB /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -789,6 +788,17 @@
 			path = "AccessLecture Tests";
 			sourceTree = "<group>";
 		};
+		5FDD27956F3D415D1450C0BB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				10BDE2E5B090C64338F60EA3 /* Pods-AccessLecture.debug.xcconfig */,
+				9EB895DA5C2A9D423EC1C01C /* Pods-AccessLecture.release.xcconfig */,
+				E42E409B29FC0EF386FD2A96 /* Pods-AccessLecture Tests.debug.xcconfig */,
+				A7108E144D7ABDACF00E2CBA /* Pods-AccessLecture Tests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -829,7 +839,7 @@
 			name = "AccessLecture Tests";
 			productName = "AccessLecture Tests";
 			productReference = 4CE742C31768BDE60026DE71 /* AccessLecture Tests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.ocunit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -907,7 +917,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-AccessLecture Tests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AccessLecture Tests/Pods-AccessLecture Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		4CBD8E6518206ADC005E5997 /* ShellScript */ = {
@@ -950,7 +960,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-AccessLecture-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AccessLecture/Pods-AccessLecture-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C689DAC0904340B8B718833A /* Check Pods Manifest.lock */ = {
@@ -1102,7 +1112,7 @@
 		};
 		3FED96291370863E00D8D1B8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 811D1A8A44124F03B447E42A /* Pods-AccessLecture.xcconfig */;
+			baseConfigurationReference = 10BDE2E5B090C64338F60EA3 /* Pods-AccessLecture.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1135,17 +1145,6 @@
 					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-framework",
-					CoreGraphics,
-					"-framework",
-					Foundation,
-					"-framework",
-					QuartzCore,
-					"-framework",
-					UIKit,
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "B7D7016C-D428-40C6-A7E2-D8107126BB0C";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B7D7016C-D428-40C6-A7E2-D8107126BB0C";
@@ -1157,7 +1156,7 @@
 		};
 		3FED962A1370863E00D8D1B8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 811D1A8A44124F03B447E42A /* Pods-AccessLecture.xcconfig */;
+			baseConfigurationReference = 9EB895DA5C2A9D423EC1C01C /* Pods-AccessLecture.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1189,17 +1188,6 @@
 					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-framework",
-					CoreGraphics,
-					"-framework",
-					Foundation,
-					"-framework",
-					QuartzCore,
-					"-framework",
-					UIKit,
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "B7D7016C-D428-40C6-A7E2-D8107126BB0C";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B7D7016C-D428-40C6-A7E2-D8107126BB0C";
@@ -1225,7 +1213,7 @@
 		};
 		4CE742D31768BDE60026DE71 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 53B36A0B717A4E4DBE587E9F /* Pods-AccessLecture Tests.xcconfig */;
+			baseConfigurationReference = E42E409B29FC0EF386FD2A96 /* Pods-AccessLecture Tests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/AccessLecture.app/AccessLecture";
@@ -1272,7 +1260,7 @@
 		};
 		4CE742D41768BDE60026DE71 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 53B36A0B717A4E4DBE587E9F /* Pods-AccessLecture Tests.xcconfig */;
+			baseConfigurationReference = A7108E144D7ABDACF00E2CBA /* Pods-AccessLecture Tests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/AccessLecture.app/AccessLecture";
