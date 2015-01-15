@@ -73,6 +73,35 @@
 
 }
 
+- (void)textNoteView:(id)sender didMinimize:(BOOL)minimize
+{
+    TextNoteView* note = (TextNoteView *)sender;
+    [UIView animateWithDuration:.25
+                     animations:^{
+                         note.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.08, 0.15);
+                     }
+                     completion:^(BOOL completed){
+                         [note setBackgroundColor:[UIColor purpleColor]];
+                     }
+     ];
+}
+
+- (void)textNoteView:(id)sender didMaximize:(BOOL)maximize
+{
+    TextNoteView* note = (TextNoteView *)sender;
+    [UIView animateWithDuration:.25
+                     animations:^{
+                         note.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1, 1);
+                     }
+                     completion:^(BOOL completed){
+                         [note setBackgroundColor:[UIColor colorWithRed:236.0f/255.0f
+                                                                  green:236.0f/255.0f
+                                                                   blue:236.0f/255.0f
+                                                                  alpha:0.9f]];
+                     }
+     ];
+}
+
 - (void)textNoteView:(id)sender presentFullScreen:(BOOL)animated
 {
     FullScreenNoteViewController *fullScreen = [[FullScreenNoteViewController alloc] initWithNibName:FullScreenNoteVCNibName bundle:nil];

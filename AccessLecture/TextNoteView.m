@@ -19,6 +19,7 @@
 {
     _title.delegate = self;
     _text.delegate = self;
+    _delegate = [TextNoteViewController new];
     UIPanGestureRecognizer *panGesture =[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panNote:)];
     panGesture.minimumNumberOfTouches = 2;
     [self addGestureRecognizer:panGesture];
@@ -40,7 +41,6 @@
 - (IBAction)removeNote:(id)sender
 {
     #pragma unused(sender)
-    _delegate = [[TextNoteViewController alloc] init];
     [_delegate textNoteView:self willClose:YES];
 }
 
@@ -103,6 +103,54 @@
     }
     // Update note
     self.data.content = _text.text;
+}
+
+- (IBAction)minimize:(id)sender forEvent:(UIEvent *)event
+{
+    UIButton* button = (UIButton *)sender;
+    [_delegate textNoteView:self didMinimize:YES];
+    [button setBackgroundColor:[UIColor greenColor]];
+    [button setTitle:@"+" forState:UIControlStateNormal];
+    [self changeUserInteraction:NO];
+}
+
+- (void)maximize:(UITapGestureRecognizer *)gesture
+{
+    [_delegate textNoteView:self didMaximize:YES];
+    [_minimzeButton setBackgroundColor:[UIColor yellowColor]];
+    [_minimzeButton setTitle:@"-" forState:UIControlStateNormal];
+    [self changeUserInteraction:YES];
+}
+
+- (void)changeUserInteraction:(BOOL)isEnabled
+{
+    [_closeButton setUserInteractionEnabled:isEnabled];
+    [_fullButton setUserInteractionEnabled:isEnabled];
+    [_text setUserInteractionEnabled:isEnabled];
+    [_title setUserInteractionEnabled:isEnabled];
+
+    if (isEnabled == NO) {  // Switch to 1-finger pan, add tap to scale
+        for (UIPanGestureRecognizer *recognizer in self.gestureRecognizers) {
+            [self removeGestureRecognizer:recognizer];
+        }
+
+        UITapGestureRecognizer *tapGesture =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(maximize:)];
+        UIPanGestureRecognizer *panGesture =[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panNote:)];
+        panGesture.minimumNumberOfTouches = 1;
+        [self addGestureRecognizer:panGesture];
+        [self addGestureRecognizer:tapGesture];
+    } else {
+        for (UIPanGestureRecognizer *recognizer in self.gestureRecognizers) {
+            [self removeGestureRecognizer:recognizer];
+        }
+        for (UITapGestureRecognizer *tapGesture in self.gestureRecognizers) {
+            [self removeGestureRecognizer:tapGesture];
+        }
+
+        UIPanGestureRecognizer *panGesture =[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panNote:)];
+        panGesture.minimumNumberOfTouches = 2;
+        [self addGestureRecognizer:panGesture];
+    }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField

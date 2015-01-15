@@ -14,5 +14,7 @@
 - (void)textNoteView:(id)sender presentFullScreen:(BOOL)animated;
 - (void)textNoteView:(id)sender willClose:(BOOL)toClose;
 - (void)textNoteView:(id)sender didClose:(BOOL)closed;
+- (void)textNoteView:(id)sender didMinimize:(BOOL)minimized;
+- (void)textNoteView:(id)sender didMaximize:(BOOL)maximized;
 
 @end
