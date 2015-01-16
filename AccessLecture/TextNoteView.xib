@@ -16,17 +16,17 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start typing note here..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rx2-l5-EB2" userLabel="Placeholder">
-                    <rect key="frame" x="52" y="46" width="331" height="21"/>
+                    <rect key="frame" x="26" y="46" width="331" height="21"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="331" id="oiS-F8-aZE"/>
                         <constraint firstAttribute="height" constant="21" id="qRu-cu-kM5"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fR4-QG-F72">
-                    <rect key="frame" x="52" y="37" width="353" height="161"/>
+                    <rect key="frame" x="21" y="37" width="353" height="161"/>
                     <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="353" id="xx6-gk-hoO"/>
@@ -36,7 +36,7 @@
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="Title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ech-iv-xKo" userLabel="Title">
-                    <rect key="frame" x="52" y="6" width="289" height="30"/>
+                    <rect key="frame" x="25" y="6" width="289" height="30"/>
                     <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="289" id="I2a-Hk-A6o"/>
@@ -98,12 +98,12 @@
             <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
             <constraints>
                 <constraint firstAttribute="centerX" secondItem="1Du-u3-pbU" secondAttribute="centerX" constant="-195" id="1vI-RL-juF"/>
-                <constraint firstAttribute="centerX" secondItem="fR4-QG-F72" secondAttribute="centerX" constant="-3.5" id="6kg-YC-e9j"/>
+                <constraint firstAttribute="centerX" secondItem="fR4-QG-F72" secondAttribute="centerX" constant="27.5" id="6kg-YC-e9j"/>
                 <constraint firstAttribute="centerY" secondItem="ech-iv-xKo" secondAttribute="centerY" constant="79" id="W6o-xE-jLS"/>
                 <constraint firstAttribute="centerY" secondItem="rx2-l5-EB2" secondAttribute="centerY" constant="43.5" id="WSh-AY-v9u"/>
-                <constraint firstAttribute="centerX" secondItem="rx2-l5-EB2" secondAttribute="centerX" constant="7.5" id="cMn-9c-AVM"/>
+                <constraint firstAttribute="centerX" secondItem="rx2-l5-EB2" secondAttribute="centerX" constant="33.5" id="cMn-9c-AVM"/>
                 <constraint firstAttribute="centerY" secondItem="fR4-QG-F72" secondAttribute="centerY" constant="-17.5" id="kwh-7M-2gS"/>
-                <constraint firstAttribute="centerX" secondItem="ech-iv-xKo" secondAttribute="centerX" constant="28.5" id="nqN-2S-Qyw"/>
+                <constraint firstAttribute="centerX" secondItem="ech-iv-xKo" secondAttribute="centerX" constant="55.5" id="nqN-2S-Qyw"/>
                 <constraint firstAttribute="centerX" secondItem="J0f-NS-FPr" secondAttribute="centerX" constant="-74.5" id="pIJ-En-tYb"/>
                 <constraint firstAttribute="centerY" secondItem="1Du-u3-pbU" secondAttribute="centerY" constant="81" id="s8m-Cy-WfL"/>
                 <constraint firstAttribute="centerY" secondItem="J0f-NS-FPr" secondAttribute="centerY" constant="81" id="xbz-IC-sVa"/>
