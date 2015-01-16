@@ -81,6 +81,8 @@
                          note.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.08, 0.15);
                      }
                      completion:^(BOOL completed){
+                         note.layer.cornerRadius = 225;
+                         note.layer.masksToBounds = YES;
                          [note setBackgroundColor:[UIColor purpleColor]];
                      }
      ];
@@ -92,6 +94,8 @@
     [UIView animateWithDuration:.25
                      animations:^{
                          note.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1, 1);
+                         note.layer.cornerRadius = 0;
+                         note.layer.masksToBounds = NO;
                      }
                      completion:^(BOOL completed){
                          [note setBackgroundColor:[UIColor colorWithRed:236.0f/255.0f
