@@ -20,9 +20,11 @@
     _title.delegate = self;
     _text.delegate = self;
     _delegate = [TextNoteViewController new];
-    UIPanGestureRecognizer *panGesture =[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panNote:)];
-    panGesture.minimumNumberOfTouches = 2;
+    
+    UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panNote:)];
+    [panGesture setMinimumNumberOfTouches:2];
     [self addGestureRecognizer:panGesture];
+    [self.layer setBorderWidth:1];
 }
 
 #pragma mark - Actions
