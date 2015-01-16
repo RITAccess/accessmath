@@ -21,8 +21,8 @@
                         <constraint firstAttribute="width" constant="331" id="oiS-F8-aZE"/>
                         <constraint firstAttribute="height" constant="21" id="qRu-cu-kM5"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fR4-QG-F72">
@@ -32,7 +32,7 @@
                         <constraint firstAttribute="width" constant="353" id="xx6-gk-hoO"/>
                         <constraint firstAttribute="height" constant="168" id="yog-pB-29y"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="Title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ech-iv-xKo" userLabel="Title">
@@ -42,7 +42,7 @@
                         <constraint firstAttribute="width" constant="289" id="I2a-Hk-A6o"/>
                         <constraint firstAttribute="height" constant="30" id="mGE-ru-ROr"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
                     <connections>
                         <action selector="titleActions:forEvent:" destination="1" eventType="editingDidEnd" id="jLk-Ef-w6a"/>
@@ -114,6 +114,7 @@
                 <outlet property="text" destination="fR4-QG-F72" id="rLV-rc-cBn"/>
                 <outlet property="title" destination="ech-iv-xKo" id="ioF-j5-nqB"/>
             </connections>
+            <point key="canvasLocation" x="444" y="217"/>
         </view>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
