@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.17" systemVersion="13D65" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="SP6-Rd-Xf7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="SP6-Rd-Xf7">
     <dependencies>
         <deployment version="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.11"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
         <!--Root View Controller-->
@@ -123,7 +123,6 @@
                             <constraint firstItem="sbZ-Bw-DiI" firstAttribute="trailing" secondItem="7kQ-H5-RJO" secondAttribute="trailing" id="sea-3d-fPh"/>
                             <constraint firstItem="8Df-hy-0tS" firstAttribute="baseline" secondItem="sbZ-Bw-DiI" secondAttribute="baseline" id="tBO-O6-G78"/>
                         </constraints>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -175,16 +174,16 @@
             </objects>
             <point key="canvasLocation" x="3277" y="681"/>
         </scene>
-        <!--Table View Controller - Notes-->
+        <!--Notes-->
         <scene sceneID="ehz-KE-GKS">
             <objects>
                 <tableViewController clearsSelectionOnViewWillAppear="NO" id="fti-pk-ha4" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Hkk-HB-8Ky">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="308" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchCells" id="Kee-EY-uoh">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchCells" id="Kee-EY-uoh">
                                 <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Kee-EY-uoh" id="lV1-Dh-rfd">
@@ -227,11 +226,11 @@
             <objects>
                 <tableViewController storyboardIdentifier="LectureListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="QWt-GY-sRl" customClass="LectureListViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="5B4-hi-6oX">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="308" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="jQl-PD-xjY">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="jQl-PD-xjY">
                                 <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jQl-PD-xjY" id="Qsl-t8-1ge">
@@ -302,7 +301,6 @@
                             <constraint firstAttribute="trailing" secondItem="Pn1-a1-T0f" secondAttribute="trailing" id="tKP-tp-VP2"/>
                             <constraint firstItem="Pn1-a1-T0f" firstAttribute="leading" secondItem="w3Y-Ju-qTJ" secondAttribute="leading" id="ytP-BX-Lxb"/>
                         </constraints>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackOpaque"/>
@@ -330,7 +328,9 @@
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="44"/>
                                 <items>
                                     <navigationItem title="About" id="Qlj-M1-5fr">
-                                        <barButtonItem key="leftBarButtonItem" image="Back.png" width="50" id="5CH-bS-zRB">
+                                        <barButtonItem key="leftBarButtonItem" image="Back" width="38" id="5CH-bS-zRB">
+                                            <inset key="imageInsets" minX="0.0" minY="6" maxX="18" maxY="0.0"/>
+                                            <color key="tintColor" red="0.2862934278" green="1" blue="0.37172340440000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <action selector="returnToHome:" destination="JQs-Rh-thK" id="muk-m0-XzK"/>
                                             </connections>
@@ -436,7 +436,6 @@ IAoKA
                             <constraint firstItem="TbZ-Vx-9oZ" firstAttribute="top" secondItem="Awu-V3-w53" secondAttribute="top" id="nHe-R8-P1G"/>
                             <constraint firstAttribute="trailing" secondItem="j9g-tP-9tn" secondAttribute="trailing" constant="20" symbolic="YES" id="sML-nA-n0e"/>
                         </constraints>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                 </viewController>
@@ -489,7 +488,6 @@ IAoKA
                             <constraint firstItem="fvA-4Q-JRb" firstAttribute="bottom" secondItem="L7y-jZ-ciS" secondAttribute="bottom" id="o0X-Y5-N1B"/>
                             <constraint firstAttribute="centerY" secondItem="oRL-66-NtT" secondAttribute="centerY" id="phF-7E-MD2"/>
                         </constraints>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" id="CC4-vH-Tft"/>
                     <keyCommands/>
@@ -584,7 +582,7 @@ IAoKA
                                     <constraint firstAttribute="height" constant="327" id="XN6-BU-BHe"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HeaderCell" rowHeight="56" id="1Qc-SU-xis">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HeaderCell" rowHeight="56" id="1Qc-SU-xis">
                                         <rect key="frame" x="0.0" y="22" width="494" height="56"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Qc-SU-xis" id="i2K-ge-jej">
@@ -592,7 +590,7 @@ IAoKA
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LectureCell" id="u9t-iS-m4V">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LectureCell" id="u9t-iS-m4V">
                                         <rect key="frame" x="0.0" y="78" width="494" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="u9t-iS-m4V" id="gwK-E7-zex">
@@ -600,7 +598,7 @@ IAoKA
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ServerCell" id="tk3-e4-PCQ">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ServerCell" id="tk3-e4-PCQ">
                                         <rect key="frame" x="0.0" y="122" width="494" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tk3-e4-PCQ" id="bQt-Bh-bjj">
@@ -660,7 +658,7 @@ IAoKA
         </scene>
     </scenes>
     <resources>
-        <image name="Back.png" width="95" height="95"/>
+        <image name="Back" width="76" height="76"/>
         <image name="sample-qr.png" width="95" height="95"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
