@@ -111,16 +111,12 @@
 {
     UIButton* button = (UIButton *)sender;
     [_delegate textNoteView:self didMinimize:YES];
-    [button setBackgroundColor:[UIColor greenColor]];
-    [button setTitle:@"+" forState:UIControlStateNormal];
     [self changeUserInteraction:NO];
 }
 
 - (void)maximize:(UITapGestureRecognizer *)gesture
-{
+{  
     [_delegate textNoteView:self didMaximize:YES];
-    [_minimzeButton setBackgroundColor:[UIColor yellowColor]];
-    [_minimzeButton setTitle:@"-" forState:UIControlStateNormal];
     [self changeUserInteraction:YES];
 }
 

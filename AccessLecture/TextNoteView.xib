@@ -50,14 +50,13 @@
                     </connections>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Du-u3-pbU">
-                    <rect key="frame" x="390" y="0.0" width="60" height="38"/>
-                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <rect key="frame" x="412" y="1" width="36" height="36"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="60" id="Xcy-lZ-pWQ"/>
-                        <constraint firstAttribute="height" constant="38" id="cxA-dx-OYG"/>
+                        <constraint firstAttribute="width" constant="36" id="Xcy-lZ-pWQ"/>
+                        <constraint firstAttribute="height" constant="36" id="cxA-dx-OYG"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                    <state key="normal" title="X">
+                    <state key="normal" backgroundImage="CancelButton">
                         <color key="titleColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -66,10 +65,9 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nNs-G9-I5G">
-                    <rect key="frame" x="330" y="0.0" width="60" height="38"/>
-                    <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <rect key="frame" x="339" y="2" width="36" height="36"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                    <state key="normal" title="-">
+                    <state key="normal" backgroundImage="Pin">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -77,15 +75,13 @@
                         <action selector="minimize:forEvent:" destination="1" eventType="touchUpInside" id="T0Y-ec-0Rl"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J0f-NS-FPr">
-                    <rect key="frame" x="269" y="0.0" width="61" height="38"/>
-                    <color key="backgroundColor" red="0.0" green="0.50196081399917603" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J0f-NS-FPr">
+                    <rect key="frame" x="373" y="1" width="36" height="36"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="61" id="Ah1-A2-JlI"/>
-                        <constraint firstAttribute="height" constant="38" id="drG-8w-Bf0"/>
+                        <constraint firstAttribute="width" constant="36" id="Ah1-A2-JlI"/>
+                        <constraint firstAttribute="height" constant="36" id="drG-8w-Bf0"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                    <state key="normal" title="Full">
+                    <state key="normal" backgroundImage="ResizeButton">
                         <color key="titleColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -97,14 +93,14 @@
             <color key="backgroundColor" red="0.92549026010000002" green="0.92549026010000002" blue="0.92549026010000002" alpha="0.90000000000000002" colorSpace="deviceRGB"/>
             <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
             <constraints>
-                <constraint firstAttribute="centerX" secondItem="1Du-u3-pbU" secondAttribute="centerX" constant="-195" id="1vI-RL-juF"/>
+                <constraint firstAttribute="centerX" secondItem="1Du-u3-pbU" secondAttribute="centerX" constant="-205" id="1vI-RL-juF"/>
                 <constraint firstAttribute="centerX" secondItem="fR4-QG-F72" secondAttribute="centerX" constant="27.5" id="6kg-YC-e9j"/>
                 <constraint firstAttribute="centerY" secondItem="ech-iv-xKo" secondAttribute="centerY" constant="79" id="W6o-xE-jLS"/>
                 <constraint firstAttribute="centerY" secondItem="rx2-l5-EB2" secondAttribute="centerY" constant="43.5" id="WSh-AY-v9u"/>
                 <constraint firstAttribute="centerX" secondItem="rx2-l5-EB2" secondAttribute="centerX" constant="33.5" id="cMn-9c-AVM"/>
                 <constraint firstAttribute="centerY" secondItem="fR4-QG-F72" secondAttribute="centerY" constant="-17.5" id="kwh-7M-2gS"/>
                 <constraint firstAttribute="centerX" secondItem="ech-iv-xKo" secondAttribute="centerX" constant="55.5" id="nqN-2S-Qyw"/>
-                <constraint firstAttribute="centerX" secondItem="J0f-NS-FPr" secondAttribute="centerX" constant="-74.5" id="pIJ-En-tYb"/>
+                <constraint firstAttribute="centerX" secondItem="J0f-NS-FPr" secondAttribute="centerX" constant="-166" id="pIJ-En-tYb"/>
                 <constraint firstAttribute="centerY" secondItem="1Du-u3-pbU" secondAttribute="centerY" constant="81" id="s8m-Cy-WfL"/>
                 <constraint firstAttribute="centerY" secondItem="J0f-NS-FPr" secondAttribute="centerY" constant="81" id="xbz-IC-sVa"/>
             </constraints>
@@ -118,9 +114,14 @@
                 <outlet property="text" destination="fR4-QG-F72" id="rLV-rc-cBn"/>
                 <outlet property="title" destination="ech-iv-xKo" id="ioF-j5-nqB"/>
             </connections>
-            <point key="canvasLocation" x="734" y="752"/>
+            <point key="canvasLocation" x="785" y="748"/>
         </view>
     </objects>
+    <resources>
+        <image name="CancelButton" width="44" height="44"/>
+        <image name="Pin" width="44" height="44"/>
+        <image name="ResizeButton" width="44" height="44"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
