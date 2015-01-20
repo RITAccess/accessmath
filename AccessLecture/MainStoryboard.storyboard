@@ -17,63 +17,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7kQ-H5-RJO">
-                                <rect key="frame" x="419" y="618" width="186" height="108"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="108" id="sX7-Fr-atb"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="35"/>
-                                <state key="normal" title="About">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="openAbout:" destination="SP6-Rd-Xf7" eventType="touchUpInside" id="IGc-cg-Olr"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sbZ-Bw-DiI">
-                                <rect key="frame" x="419" y="520" width="186" height="90"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="90" id="MWm-Zd-R1g"/>
-                                    <constraint firstAttribute="width" constant="186" id="miS-MO-asm"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="35"/>
-                                <state key="normal" title="Lecture">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="openLecture:" destination="SP6-Rd-Xf7" eventType="touchUpInside" id="dT6-7N-D7S"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w9Z-RI-LPo">
-                                <rect key="frame" x="689" y="520" width="240" height="90"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="Vcb-Gy-jGh"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="35"/>
-                                <state key="normal" title="Open Lecture">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Df-hy-0tS">
-                                <rect key="frame" x="115" y="520" width="186" height="90"/>
+                                <rect key="frame" x="114" y="509" width="137" height="128"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="90" id="Vph-UG-I8l"/>
-                                    <constraint firstAttribute="width" constant="186" id="e99-nz-bMI"/>
+                                    <constraint firstAttribute="height" constant="128" id="Vph-UG-I8l"/>
+                                    <constraint firstAttribute="width" constant="137" id="e99-nz-bMI"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="35"/>
-                                <state key="normal" title="Connect">
+                                <state key="normal" backgroundImage="StreamButton">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -90,38 +41,53 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mK8-Hh-vyj">
-                                <rect key="frame" x="761" y="657" width="118" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sbZ-Bw-DiI">
+                                <rect key="frame" x="439" y="521" width="130" height="104"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="118" id="vxy-TK-beI"/>
+                                    <constraint firstAttribute="height" constant="104" id="MWm-Zd-R1g"/>
+                                    <constraint firstAttribute="width" constant="130" id="miS-MO-asm"/>
+                                </constraints>
+                                <state key="normal" image="NotesButton">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="openLecture:" destination="SP6-Rd-Xf7" eventType="touchUpInside" id="dT6-7N-D7S"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7kQ-H5-RJO">
+                                <rect key="frame" x="696" y="489" width="211" height="167"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="167" id="sX7-Fr-atb"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="35"/>
-                                <state key="normal" title="Search">
+                                <state key="normal" backgroundImage="About">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
-                                    <action selector="openSearch:" destination="SP6-Rd-Xf7" eventType="touchUpInside" id="bgl-B2-SWI"/>
+                                    <action selector="openAbout:" destination="SP6-Rd-Xf7" eventType="touchUpInside" id="IGc-cg-Olr"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.64578846325688155" green="0.82352230209280508" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="mK8-Hh-vyj" firstAttribute="top" secondItem="w9Z-RI-LPo" secondAttribute="bottom" constant="47" id="3KU-pb-0s8"/>
-                            <constraint firstItem="w9Z-RI-LPo" firstAttribute="top" secondItem="sbZ-Bw-DiI" secondAttribute="top" id="6Ht-zi-A6J"/>
-                            <constraint firstAttribute="trailing" secondItem="w9Z-RI-LPo" secondAttribute="trailing" constant="95" id="JZB-tF-hFc"/>
-                            <constraint firstItem="8Df-hy-0tS" firstAttribute="leading" secondItem="PYl-bd-Q14" secondAttribute="leading" constant="115" id="NQf-Hi-Xqp"/>
-                            <constraint firstItem="7kQ-H5-RJO" firstAttribute="leading" secondItem="sbZ-Bw-DiI" secondAttribute="leading" id="UD4-Tf-n44"/>
+                            <constraint firstItem="8Df-hy-0tS" firstAttribute="leading" secondItem="PYl-bd-Q14" secondAttribute="leading" constant="114" id="NQf-Hi-Xqp"/>
+                            <constraint firstItem="7kQ-H5-RJO" firstAttribute="leading" secondItem="sbZ-Bw-DiI" secondAttribute="leading" constant="257" id="UD4-Tf-n44"/>
                             <constraint firstItem="L3X-r2-cvd" firstAttribute="top" secondItem="fte-Wl-e8f" secondAttribute="bottom" constant="202" id="WlN-tO-l4X"/>
-                            <constraint firstAttribute="bottom" secondItem="7kQ-H5-RJO" secondAttribute="bottom" constant="42" id="aEh-hi-kCA"/>
-                            <constraint firstItem="7kQ-H5-RJO" firstAttribute="top" secondItem="sbZ-Bw-DiI" secondAttribute="bottom" constant="8" symbolic="YES" id="aIq-8o-saP"/>
-                            <constraint firstItem="sbZ-Bw-DiI" firstAttribute="centerX" secondItem="L3X-r2-cvd" secondAttribute="centerX" id="d1z-5t-95U"/>
-                            <constraint firstItem="mK8-Hh-vyj" firstAttribute="centerY" secondItem="7kQ-H5-RJO" secondAttribute="centerY" id="hY8-Tv-Hai"/>
-                            <constraint firstItem="mK8-Hh-vyj" firstAttribute="centerX" secondItem="w9Z-RI-LPo" secondAttribute="centerX" constant="11" id="ioK-51-0Xg"/>
-                            <constraint firstItem="w9Z-RI-LPo" firstAttribute="bottom" secondItem="sbZ-Bw-DiI" secondAttribute="bottom" id="j3K-6P-lgb"/>
-                            <constraint firstItem="7kQ-H5-RJO" firstAttribute="centerX" secondItem="PYl-bd-Q14" secondAttribute="centerX" id="rOb-EM-p6l"/>
-                            <constraint firstItem="sbZ-Bw-DiI" firstAttribute="trailing" secondItem="7kQ-H5-RJO" secondAttribute="trailing" id="sea-3d-fPh"/>
-                            <constraint firstItem="8Df-hy-0tS" firstAttribute="baseline" secondItem="sbZ-Bw-DiI" secondAttribute="baseline" id="tBO-O6-G78"/>
+                            <constraint firstAttribute="bottom" secondItem="7kQ-H5-RJO" secondAttribute="bottom" constant="112" id="aEh-hi-kCA"/>
+                            <constraint firstItem="7kQ-H5-RJO" firstAttribute="top" secondItem="sbZ-Bw-DiI" secondAttribute="bottom" constant="-136" id="aIq-8o-saP"/>
+                            <constraint firstItem="sbZ-Bw-DiI" firstAttribute="centerX" secondItem="L3X-r2-cvd" secondAttribute="centerX" constant="-8" id="d1z-5t-95U"/>
+                            <constraint firstItem="EVg-bz-iDW" firstAttribute="top" secondItem="8Df-hy-0tS" secondAttribute="bottom" constant="131" id="oNy-aA-h0q"/>
+                            <constraint firstItem="7kQ-H5-RJO" firstAttribute="centerX" secondItem="PYl-bd-Q14" secondAttribute="centerX" constant="289.5" id="rOb-EM-p6l"/>
+                            <constraint firstItem="sbZ-Bw-DiI" firstAttribute="trailing" secondItem="7kQ-H5-RJO" secondAttribute="trailing" constant="-338" id="sea-3d-fPh"/>
+                            <constraint firstItem="8Df-hy-0tS" firstAttribute="baseline" secondItem="sbZ-Bw-DiI" secondAttribute="baseline" constant="-125" id="tBO-O6-G78"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
@@ -662,7 +628,10 @@ IAoKA
         </scene>
     </scenes>
     <resources>
+        <image name="About" width="180" height="180"/>
         <image name="Back" width="56" height="56"/>
+        <image name="NotesButton" width="1024" height="1024"/>
+        <image name="StreamButton" width="1024" height="1024"/>
         <image name="sample-qr.png" width="95" height="95"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
