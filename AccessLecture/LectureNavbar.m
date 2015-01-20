@@ -53,6 +53,9 @@
     _backButton = ({
         UIButton *b = [[UIButton alloc] initWithFrame:CGRectMake(20, 20, 75, 75)];
         [b setBackgroundImage:[UIImage imageNamed:@"Back"] forState:UIControlStateNormal];
+        
+        // TODO: add border to buttons
+        
         [self addSubview:b];
         b;
     });
@@ -60,6 +63,9 @@
     _openButton = ({
         AMOpenButton *open = [AMOpenButton buttonWithType:UIButtonTypeCustom];
         open.frame = CGRectMake(115, 20, 75, 75);
+        
+        // TODO: add border to buttons
+        
         [self addSubview:open];
         open;
     });
@@ -67,15 +73,17 @@
     _drawingToggle = ({
         MKToggleButton *s = [[MKToggleButton alloc] initWithFrame:CGRectMake(210, 20, 75, 75)];
         [s setBackgroundImage:[UIImage imageNamed:@"DrawButton"] forState:UIControlStateNormal];
-//        [s setShowsBorder:YES];
+        [s setShowsBorder:YES];
         [self addSubview:s];
         s;
     });
     // Set up open button
     _searchButton = ({
         UIButton *searchButton = [[UIButton alloc] initWithFrame:CGRectMake(305, 20, 75, 75)];
-//        [searchButton setTitle:@"Search" forState:UIControl
         [searchButton setBackgroundImage:[UIImage imageNamed:@"ZoomButton"] forState:UIControlStateNormal];
+        
+        // TODO: add border to buttons
+        
         [self addSubview:searchButton];
         searchButton;
     });
