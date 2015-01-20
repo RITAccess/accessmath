@@ -52,7 +52,7 @@
     // Back button
     _backButton = ({
         UIButton *b = [[UIButton alloc] initWithFrame:CGRectMake(20, 20, 75, 75)];
-        [b setTitle:@"Home" forState:UIControlStateNormal];
+        [b setBackgroundImage:[UIImage imageNamed:@"Back"] forState:UIControlStateNormal];
         [self addSubview:b];
         b;
     });
@@ -66,16 +66,16 @@
     // Set up Drawing toggle
     _drawingToggle = ({
         MKToggleButton *s = [[MKToggleButton alloc] initWithFrame:CGRectMake(210, 20, 75, 75)];
-        [s setTitle:@"Draw" forState:UIControlStateNormal];
-        [s setTitle:@"Draw" forState:UIControlStateSelected];
-        [s setShowsBorder:YES];
+        [s setBackgroundImage:[UIImage imageNamed:@"DrawButton"] forState:UIControlStateNormal];
+//        [s setShowsBorder:YES];
         [self addSubview:s];
         s;
     });
     // Set up open button
     _searchButton = ({
         UIButton *searchButton = [[UIButton alloc] initWithFrame:CGRectMake(305, 20, 75, 75)];
-        [searchButton setTitle:@"Search" forState:UIControlStateNormal];
+//        [searchButton setTitle:@"Search" forState:UIControl
+        [searchButton setBackgroundImage:[UIImage imageNamed:@"ZoomButton"] forState:UIControlStateNormal];
         [self addSubview:searchButton];
         searchButton;
     });

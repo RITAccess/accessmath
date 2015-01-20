@@ -59,7 +59,9 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <items>
                         <navigationItem title="Retrieving title..." id="Wp7-Oy-lWI">
-                            <barButtonItem key="leftBarButtonItem" image="IQButtonBarArrowLeft.png" id="eq3-Bd-hfN">
+                            <barButtonItem key="leftBarButtonItem" image="Back" id="eq3-Bd-hfN">
+                                <inset key="imageInsets" minX="0.0" minY="6" maxX="18" maxY="0.0"/>
+                                <color key="tintColor" red="0.2862934278" green="1" blue="0.37172340440000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="returnToLecture:" destination="-1" id="bqy-1G-NqM"/>
                                 </connections>
@@ -73,7 +75,7 @@
         </view>
     </objects>
     <resources>
-        <image name="IQButtonBarArrowLeft.png" width="11" height="21"/>
+        <image name="Back" width="56" height="56"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

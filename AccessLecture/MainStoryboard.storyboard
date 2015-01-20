@@ -53,11 +53,11 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w9Z-RI-LPo">
-                                <rect key="frame" x="743" y="520" width="186" height="90"/>
+                                <rect key="frame" x="689" y="520" width="240" height="90"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="186" id="Vcb-Gy-jGh"/>
+                                    <constraint firstAttribute="width" constant="240" id="Vcb-Gy-jGh"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="35"/>
                                 <state key="normal" title="Open Lecture">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -91,11 +91,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mK8-Hh-vyj">
-                                <rect key="frame" x="793" y="657" width="86" height="30"/>
+                                <rect key="frame" x="761" y="657" width="118" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="86" id="vxy-TK-beI"/>
+                                    <constraint firstAttribute="width" constant="118" id="vxy-TK-beI"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="35"/>
                                 <state key="normal" title="Search">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -117,7 +117,7 @@
                             <constraint firstItem="7kQ-H5-RJO" firstAttribute="top" secondItem="sbZ-Bw-DiI" secondAttribute="bottom" constant="8" symbolic="YES" id="aIq-8o-saP"/>
                             <constraint firstItem="sbZ-Bw-DiI" firstAttribute="centerX" secondItem="L3X-r2-cvd" secondAttribute="centerX" id="d1z-5t-95U"/>
                             <constraint firstItem="mK8-Hh-vyj" firstAttribute="centerY" secondItem="7kQ-H5-RJO" secondAttribute="centerY" id="hY8-Tv-Hai"/>
-                            <constraint firstItem="mK8-Hh-vyj" firstAttribute="centerX" secondItem="w9Z-RI-LPo" secondAttribute="centerX" id="ioK-51-0Xg"/>
+                            <constraint firstItem="mK8-Hh-vyj" firstAttribute="centerX" secondItem="w9Z-RI-LPo" secondAttribute="centerX" constant="11" id="ioK-51-0Xg"/>
                             <constraint firstItem="w9Z-RI-LPo" firstAttribute="bottom" secondItem="sbZ-Bw-DiI" secondAttribute="bottom" id="j3K-6P-lgb"/>
                             <constraint firstItem="7kQ-H5-RJO" firstAttribute="centerX" secondItem="PYl-bd-Q14" secondAttribute="centerX" id="rOb-EM-p6l"/>
                             <constraint firstItem="sbZ-Bw-DiI" firstAttribute="trailing" secondItem="7kQ-H5-RJO" secondAttribute="trailing" id="sea-3d-fPh"/>
@@ -519,7 +519,9 @@ IAoKA
                                 <rect key="frame" x="0.0" y="0.0" width="540" height="44"/>
                                 <items>
                                     <navigationItem title="Connect To Server" id="8Hb-fO-Hod">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="CUZ-iO-Foe">
+                                        <barButtonItem key="leftBarButtonItem" image="Back" id="CUZ-iO-Foe">
+                                            <inset key="imageInsets" minX="0.0" minY="6" maxX="18" maxY="0.0"/>
+                                            <color key="tintColor" red="0.2862934278" green="1" blue="0.37172340440000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <action selector="userDidCancel:" destination="XPQ-l0-C7S" id="v1A-Hm-wzP"/>
                                             </connections>
@@ -658,7 +660,7 @@ IAoKA
         </scene>
     </scenes>
     <resources>
-        <image name="Back" width="76" height="76"/>
+        <image name="Back" width="56" height="56"/>
         <image name="sample-qr.png" width="95" height="95"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
