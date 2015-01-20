@@ -210,7 +210,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Notes" id="KKf-zV-BCE">
-                        <barButtonItem key="leftBarButtonItem" title="Home" id="D5T-ev-rHM">
+                        <barButtonItem key="leftBarButtonItem" image="Back" id="D5T-ev-rHM">
+                            <inset key="imageInsets" minX="0.0" minY="6" maxX="17" maxY="0.0"/>
+                            <color key="tintColor" red="0.2862934278" green="1" blue="0.37172340440000001" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="SP6-Rd-Xf7" kind="modal" id="Baw-1m-H4w"/>
                             </connections>
