@@ -25,6 +25,17 @@
     [panGesture setMinimumNumberOfTouches:2];
     [self addGestureRecognizer:panGesture];
     [self.layer setBorderWidth:1];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(preferredContentSizeChanged:)
+                                                 name:UIContentSizeCategoryDidChangeNotification
+                                               object:nil];
+}
+
+- (void)preferredContentSizeChanged:(NSNotification*)notification
+{
+    _title.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
+    _text.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
 }
 
 #pragma mark - Actions
