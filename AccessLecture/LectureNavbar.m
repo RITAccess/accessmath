@@ -72,15 +72,14 @@
     // Set up Drawing toggle
     _drawingToggle = ({
         MKToggleButton *s = [[MKToggleButton alloc] initWithFrame:CGRectMake(210, 20, 75, 75)];
-        [s setBackgroundImage:[UIImage imageNamed:@"DrawButton"] forState:UIControlStateNormal];
-        [s setShowsBorder:YES];
+        [s setBackgroundImage:[UIImage imageNamed:@"Notes"] forState:UIControlStateNormal];
         [self addSubview:s];
         s;
     });
     // Set up open button
     _searchButton = ({
         UIButton *searchButton = [[UIButton alloc] initWithFrame:CGRectMake(305, 20, 75, 75)];
-        [searchButton setBackgroundImage:[UIImage imageNamed:@"ZoomButton"] forState:UIControlStateNormal];
+        [searchButton setBackgroundImage:[UIImage imageNamed:@"Search"] forState:UIControlStateNormal];
         
         // TODO: add border to buttons
         
