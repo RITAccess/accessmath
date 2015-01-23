@@ -83,6 +83,10 @@
 		3FED96221370863E00D8D1B8 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FED96211370863E00D8D1B8 /* RootViewController.m */; };
 		3FFCFB2213A25388003DAB63 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FFCFB2113A25388003DAB63 /* MessageUI.framework */; };
 		4C37CCB018295FC0006D3B1F /* ALMetaData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C37CCAF18295FC0006D3B1F /* ALMetaData.m */; };
+		4C3BE5E71A7296F10017854C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C3BE5E61A7296F10017854C /* Main.storyboard */; };
+		4C3BE5EA1A72973C0017854C /* RootMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BE5E91A72973C0017854C /* RootMenuController.m */; };
+		4C3BE5ED1A729B760017854C /* MenuIconCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BE5EC1A729B760017854C /* MenuIconCell.m */; };
+		4C3BE5F01A729F0F0017854C /* MenuData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BE5EF1A729F0F0017854C /* MenuData.m */; };
 		4C4B8BFA178EF57200C2F94B /* QRScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B8BF9178EF57200C2F94B /* QRScanner.m */; };
 		4C4B8BFC178EF8D900C2F94B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C4B8BFB178EF8D900C2F94B /* AVFoundation.framework */; };
 		4C5B55FB17720A15005B79CF /* server.crt in Resources */ = {isa = PBXBuildFile; fileRef = 4C5B55FA17720A15005B79CF /* server.crt */; };
@@ -242,6 +246,13 @@
 		3FFCFB2113A25388003DAB63 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		4C37CCAE18295FC0006D3B1F /* ALMetaData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALMetaData.h; sourceTree = "<group>"; };
 		4C37CCAF18295FC0006D3B1F /* ALMetaData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALMetaData.m; sourceTree = "<group>"; };
+		4C3BE5E61A7296F10017854C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		4C3BE5E81A72973C0017854C /* RootMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootMenuController.h; sourceTree = "<group>"; };
+		4C3BE5E91A72973C0017854C /* RootMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootMenuController.m; sourceTree = "<group>"; };
+		4C3BE5EB1A729B760017854C /* MenuIconCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuIconCell.h; sourceTree = "<group>"; };
+		4C3BE5EC1A729B760017854C /* MenuIconCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuIconCell.m; sourceTree = "<group>"; };
+		4C3BE5EE1A729F0F0017854C /* MenuData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuData.h; sourceTree = "<group>"; };
+		4C3BE5EF1A729F0F0017854C /* MenuData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuData.m; sourceTree = "<group>"; };
 		4C4B8BF8178EF57200C2F94B /* QRScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRScanner.h; sourceTree = "<group>"; };
 		4C4B8BF9178EF57200C2F94B /* QRScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRScanner.m; sourceTree = "<group>"; };
 		4C4B8BFB178EF8D900C2F94B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -640,6 +651,7 @@
 				3FED96171370863E00D8D1B8 /* AccessLecture-Prefix.pch */,
 				3FED96181370863E00D8D1B8 /* main.m */,
 				2CFC329F175E60FC00384AEC /* MainStoryboard.storyboard */,
+				4C3BE5E61A7296F10017854C /* Main.storyboard */,
 			);
 			name = "Supporting Files";
 			path = AccessLecture;
@@ -659,6 +671,12 @@
 			children = (
 				3FED96201370863E00D8D1B8 /* RootViewController.h */,
 				3FED96211370863E00D8D1B8 /* RootViewController.m */,
+				4C3BE5E81A72973C0017854C /* RootMenuController.h */,
+				4C3BE5E91A72973C0017854C /* RootMenuController.m */,
+				4C3BE5EB1A729B760017854C /* MenuIconCell.h */,
+				4C3BE5EC1A729B760017854C /* MenuIconCell.m */,
+				4C3BE5EE1A729F0F0017854C /* MenuData.h */,
+				4C3BE5EF1A729F0F0017854C /* MenuData.m */,
 			);
 			name = RootViewController;
 			sourceTree = "<group>";
@@ -887,6 +905,7 @@
 				3F2DC98318871FE4008C29BF /* ImageNoteViewController.xib in Resources */,
 				3F8D9926187F48CC0061DEA2 /* DocumentPicker.xib in Resources */,
 				3F8D990F187DD9100061DEA2 /* FullScreenNoteViewController.xib in Resources */,
+				4C3BE5E71A7296F10017854C /* Main.storyboard in Resources */,
 				4C5B55FB17720A15005B79CF /* server.crt in Resources */,
 				3F8D992C188099F30061DEA2 /* DocumentCreator.xib in Resources */,
 				3F8D9908187B4E010061DEA2 /* TextNoteView.xib in Resources */,
@@ -987,6 +1006,7 @@
 			files = (
 				4CD0A5F8177E1D6800864228 /* StreamDrawing.m in Sources */,
 				3F408C0D18BF94FD00F6B113 /* NSString+asciihexcodes.m in Sources */,
+				4C3BE5EA1A72973C0017854C /* RootMenuController.m in Sources */,
 				3F07C352187B3627005BC7EC /* TextNoteView.m in Sources */,
 				3F8FD2CB18AD33350059EF9C /* AddNote.m in Sources */,
 				3F8D99331880ACBE0061DEA2 /* NSString+TrimmingAdditions.m in Sources */,
@@ -996,6 +1016,7 @@
 				4CEA1A03177CAAED00A1DE05 /* LectureCell.m in Sources */,
 				3FED961C1370863E00D8D1B8 /* AccessLectureAppDelegate.m in Sources */,
 				3FED96221370863E00D8D1B8 /* RootViewController.m in Sources */,
+				4C3BE5F01A729F0F0017854C /* MenuData.m in Sources */,
 				3F8FD2CF18AD34EB0059EF9C /* DrawMode.m in Sources */,
 				3F0DBDD613BD174900E3FEE8 /* AboutViewController.m in Sources */,
 				3F99F20215436E090065CBB9 /* Lecture.m in Sources */,
@@ -1004,6 +1025,7 @@
 				4CCBC8DD17E222FF00CB303E /* Note.m in Sources */,
 				3F8FD2E418B3F7BF0059EF9C /* Promise.m in Sources */,
 				3FCD5D1715438472005F2A60 /* AccessLectureRuntime.m in Sources */,
+				4C3BE5ED1A729B760017854C /* MenuIconCell.m in Sources */,
 				4C62BECD175651DB00CAF4CF /* FileManager.m in Sources */,
 				4C4B8BFA178EF57200C2F94B /* QRScanner.m in Sources */,
 				3F2DC98218871FE4008C29BF /* ImageNoteViewController.m in Sources */,
@@ -1126,8 +1148,8 @@
 				CLANG_WARN_OBJC_RECEIVER_WEAK = NO;
 				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = NO;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1146,8 +1168,8 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "B7D7016C-D428-40C6-A7E2-D8107126BB0C";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B7D7016C-D428-40C6-A7E2-D8107126BB0C";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
@@ -1170,8 +1192,8 @@
 				CLANG_WARN_OBJC_RECEIVER_WEAK = NO;
 				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = NO;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AccessLecture/AccessLecture-Prefix.pch";
@@ -1189,8 +1211,8 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "B7D7016C-D428-40C6-A7E2-D8107126BB0C";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B7D7016C-D428-40C6-A7E2-D8107126BB0C";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
