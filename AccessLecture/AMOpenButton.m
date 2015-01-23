@@ -26,14 +26,14 @@
     UIColor* strokeColor = [UIColor colorWithRed: 0 green: 0 blue: 0 alpha: 1];
     UIColor* fillColor2 = [UIColor colorWithRed: 1 green: 1 blue: 0.8 alpha: 1];
     UIColor* color = [UIColor colorWithRed: 0 green: 0 blue: 0 alpha: 0];
-    UIColor* fillColor4 = [UIColor colorWithRed: 0.571 green: 1 blue: 0.571 alpha: 1];
+    UIColor* fillColor4 = [UIColor colorWithRed: 0 green: .25 blue: 1 alpha: 1];
     
     //// Rounded Rectangle Drawing
     UIBezierPath* roundedRectanglePath = [UIBezierPath bezierPathWithRoundedRect: CGRectMake(0.5, 5.5, 71, 69) cornerRadius: 4];
     [fillColor setFill];
     [roundedRectanglePath fill];
     [strokeColor setStroke];
-    roundedRectanglePath.lineWidth = 1;
+    roundedRectanglePath.lineWidth = 2;
     [roundedRectanglePath stroke];
     
     
@@ -42,7 +42,7 @@
     [fillColor2 setFill];
     [rectanglePath fill];
     [color setStroke];
-    rectanglePath.lineWidth = 1;
+    rectanglePath.lineWidth = 2;
     [rectanglePath stroke];
     
     
@@ -51,7 +51,7 @@
     [fillColor2 setFill];
     [rectangle2Path fill];
     [color setStroke];
-    rectangle2Path.lineWidth = 1;
+    rectangle2Path.lineWidth = 2;
     [rectangle2Path stroke];
     
     
@@ -60,7 +60,7 @@
     [fillColor2 setFill];
     [rectangle3Path fill];
     [color setStroke];
-    rectangle3Path.lineWidth = 1;
+    rectangle3Path.lineWidth = 2;
     [rectangle3Path stroke];
     
     
@@ -69,7 +69,7 @@
     [fillColor2 setFill];
     [rectangle4Path fill];
     [color setStroke];
-    rectangle4Path.lineWidth = 1;
+    rectangle4Path.lineWidth = 2;
     [rectangle4Path stroke];
     
     
@@ -87,7 +87,7 @@
     [fillColor4 setFill];
     [bezierPath fill];
     [strokeColor setStroke];
-    bezierPath.lineWidth = 1;
+    bezierPath.lineWidth = 2;
     [bezierPath stroke];
 }
 
