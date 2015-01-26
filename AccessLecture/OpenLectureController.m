@@ -38,6 +38,7 @@ static NSString * const reuseIdentifier = @"lecture";
     
     UIButton *new = ({
         UIButton *b = [NewLectureButton buttonWithType:UIButtonTypeRoundedRect];
+        [b addTarget:self action:@selector(new) forControlEvents:UIControlEventTouchUpInside];
         b.accessibilityValue = @"new lecture";
         b;
     });
@@ -48,21 +49,7 @@ static NSString * const reuseIdentifier = @"lecture";
         b;
     });
     
-    UIButton *brush = ({
-        UIButton *b = [BrushButton buttonWithType:UIButtonTypeRoundedRect];
-        b.accessibilityValue = @"drawing";
-        b.accessibilityHint = @"currently not drawing";
-        b;
-    });
-    
-    UIButton *save = ({
-        UIButton *b = [SaveButton buttonWithType:UIButtonTypeRoundedRect];
-        b.accessibilityValue = @"save";
-        b.accessibilityHint = @"no changes to save";
-        b;
-    });
-    
-    _navigationItems = @[back, new, save, search, brush];
+    _navigationItems = @[back, new, search];
     
     [_navigationItems enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         [self.navigationController.navigationBar addSubview:obj];
@@ -98,9 +85,16 @@ static NSString * const reuseIdentifier = @"lecture";
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark Navigation
+
 - (void)back
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)new
+{
+    [self performSegueWithIdentifier:@"newLecture" sender:_navigationItems[1]];
 }
 
 #pragma mark <UICollectionViewDataSource>
@@ -122,35 +116,5 @@ static NSString * const reuseIdentifier = @"lecture";
     return cell;
 }
 
-#pragma mark <UICollectionViewDelegate>
-
-/*
-// Uncomment this method to specify if the specified item should be highlighted during tracking
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-	return YES;
-}
-*/
-
-/*
-// Uncomment this method to specify if the specified item should be selected
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-*/
-
-/*
-// Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return NO;
-}
-
-- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	return NO;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	
-}
-*/
 
 @end

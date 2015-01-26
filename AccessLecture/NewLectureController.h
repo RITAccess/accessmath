@@ -10,4 +10,6 @@
 
 @interface NewLectureController : UIViewController
 
+- (IBAction)goBack;
+
 @end

@@ -7,31 +7,69 @@
 //
 
 #import "NewLectureController.h"
+#import "NavBackButton.h"
+#import "PureLayout.h"
+#import "CheckButton.h"
 
 @interface NewLectureController ()
 
 @end
 
 @implementation NewLectureController
+{
+    NSArray *_navigationItems;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    UIButton *back = ({
+        UIButton *b = [NavBackButton buttonWithType:UIButtonTypeRoundedRect];
+        [b addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
+        b.accessibilityValue = @"back";
+        b;
+    });
+    
+    UIButton *done = ({
+        UIButton *b = [CheckButton buttonWithType:UIButtonTypeRoundedRect];
+        [b addTarget:self action:@selector(done) forControlEvents:UIControlEventTouchUpInside];
+        b.accessibilityValue = @"done";
+        b;
+    });
+
+    _navigationItems = @[back, done];
+    
+    [_navigationItems enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [self.navigationController.navigationBar addSubview:obj];
+    }];
+    
+    [self.navigationController.navigationBar setNeedsUpdateConstraints];
+    
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)updateViewConstraints
+{
+    [_navigationItems enumerateObjectsUsingBlock:^(UIView *view, NSUInteger idx, BOOL *stop) {
+        [view autoSetDimensionsToSize:CGSizeMake(120, 100)];
+        [view autoAlignAxis:ALAxisLastBaseline toSameAxisOfView:view.superview];
+        [view autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:0 relation:NSLayoutRelationEqual];
+    }];
+    
+    [_navigationItems.firstObject autoPinEdgeToSuperviewEdge:ALEdgeLeft];
+    [_navigationItems.lastObject autoPinEdgeToSuperviewEdge:ALEdgeRight];
+    
+    [super updateViewConstraints];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)goBack
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
-*/
+
+- (void)done
+{
+    NSLog(@"DEBUG: creating new lecture");
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 @end
