@@ -24,6 +24,7 @@
 + (void)drawSearchButtonWithFrame: (CGRect)frame;
 + (void)drawBrushButtonWithFrame: (CGRect)frame brushColor: (UIColor*)brushColor;
 + (void)drawSaveButtonWithFrame: (CGRect)frame;
++ (void)drawCheckButtonWithFrame: (CGRect)frame;
 
 // Generated Images
 + (UIImage*)imageOfBackButtonWithFrame: (CGRect)frame;

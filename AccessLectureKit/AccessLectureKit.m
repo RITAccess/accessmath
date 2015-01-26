@@ -497,6 +497,51 @@ static UIColor* _brushDefault = nil;
     }
 }
 
++ (void)drawCheckButtonWithFrame: (CGRect)frame
+{
+    //// Color Declarations
+    UIColor* color0 = [UIColor colorWithRed: 0 green: 0 blue: 0 alpha: 1];
+
+
+    //// Subframes
+    CGRect group = CGRectMake(CGRectGetMinX(frame) + 18.26, CGRectGetMinY(frame) + 8, CGRectGetWidth(frame) - 28.26, CGRectGetHeight(frame) - 16);
+
+
+    //// Left
+    {
+        //// Group
+        {
+            //// Oval 2 Drawing
+            UIBezierPath* oval2Path = [UIBezierPath bezierPathWithOvalInRect: CGRectMake(CGRectGetMinX(group) + floor(CGRectGetWidth(group) * 0.00000 + 0.5), CGRectGetMinY(group) + floor(CGRectGetHeight(group) * 0.00000 + 0.5), floor(CGRectGetWidth(group) * 0.90471 + 0.5) - floor(CGRectGetWidth(group) * 0.00000 + 0.5), floor(CGRectGetHeight(group) * 1.00000 + 0.5) - floor(CGRectGetHeight(group) * 0.00000 + 0.5))];
+            [color0 setStroke];
+            oval2Path.lineWidth = 6;
+            [oval2Path stroke];
+
+
+            //// Bezier 2 Drawing
+            UIBezierPath* bezier2Path = UIBezierPath.bezierPath;
+            [bezier2Path moveToPoint: CGPointMake(CGRectGetMinX(group) + 0.91435 * CGRectGetWidth(group), CGRectGetMinY(group) + 0.00000 * CGRectGetHeight(group))];
+            [bezier2Path addLineToPoint: CGPointMake(CGRectGetMinX(group) + 0.87417 * CGRectGetWidth(group), CGRectGetMinY(group) + 0.04988 * CGRectGetHeight(group))];
+            [bezier2Path addLineToPoint: CGPointMake(CGRectGetMinX(group) + 0.39725 * CGRectGetWidth(group), CGRectGetMinY(group) + 0.63834 * CGRectGetHeight(group))];
+            [bezier2Path addLineToPoint: CGPointMake(CGRectGetMinX(group) + 0.21952 * CGRectGetWidth(group), CGRectGetMinY(group) + 0.43614 * CGRectGetHeight(group))];
+            [bezier2Path addLineToPoint: CGPointMake(CGRectGetMinX(group) + 0.17750 * CGRectGetWidth(group), CGRectGetMinY(group) + 0.38839 * CGRectGetHeight(group))];
+            [bezier2Path addLineToPoint: CGPointMake(CGRectGetMinX(group) + 0.09529 * CGRectGetWidth(group), CGRectGetMinY(group) + 0.48602 * CGRectGetHeight(group))];
+            [bezier2Path addLineToPoint: CGPointMake(CGRectGetMinX(group) + 0.13731 * CGRectGetWidth(group), CGRectGetMinY(group) + 0.53377 * CGRectGetHeight(group))];
+            [bezier2Path addLineToPoint: CGPointMake(CGRectGetMinX(group) + 0.35775 * CGRectGetWidth(group), CGRectGetMinY(group) + 0.78478 * CGRectGetHeight(group))];
+            [bezier2Path addLineToPoint: CGPointMake(CGRectGetMinX(group) + 0.40046 * CGRectGetWidth(group), CGRectGetMinY(group) + 0.83333 * CGRectGetHeight(group))];
+            [bezier2Path addLineToPoint: CGPointMake(CGRectGetMinX(group) + 0.44156 * CGRectGetWidth(group), CGRectGetMinY(group) + 0.78265 * CGRectGetHeight(group))];
+            [bezier2Path addLineToPoint: CGPointMake(CGRectGetMinX(group) + 0.95959 * CGRectGetWidth(group), CGRectGetMinY(group) + 0.14325 * CGRectGetHeight(group))];
+            [bezier2Path addLineToPoint: CGPointMake(CGRectGetMinX(group) + 1.00000 * CGRectGetWidth(group), CGRectGetMinY(group) + 0.09363 * CGRectGetHeight(group))];
+            [bezier2Path addLineToPoint: CGPointMake(CGRectGetMinX(group) + 0.91435 * CGRectGetWidth(group), CGRectGetMinY(group) + 0.00000 * CGRectGetHeight(group))];
+            [bezier2Path closePath];
+            bezier2Path.miterLimit = 4;
+
+            [UIColor.greenColor setFill];
+            [bezier2Path fill];
+        }
+    }
+}
+
 #pragma mark Generated Images
 
 + (UIImage*)imageOfBackButtonWithFrame: (CGRect)frame
