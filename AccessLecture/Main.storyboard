@@ -87,6 +87,7 @@
                             </collectionViewCell>
                         </cells>
                         <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="header" id="iXA-Eg-rr5">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="accesslecture" translatesAutoresizingMaskIntoConstraints="NO" id="4fK-VA-e2c">
@@ -128,10 +129,69 @@
                         </connections>
                     </collectionView>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <segue destination="d96-Uo-nnX" kind="presentation" identifier="open" id="5uf-HQ-p7c"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fTF-1V-g9W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="562.5" y="486.75"/>
+            <point key="canvasLocation" x="85.5" y="612.75"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="NLE-sI-zhX">
+            <objects>
+                <navigationController id="d96-Uo-nnX" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3Jz-iS-vzI">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="iNN-ik-5ic">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="h9S-1H-C9h" kind="relationship" relationship="rootViewController" id="KXg-Uk-IBy"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t2Z-br-1wB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="812.25" y="612.75"/>
+        </scene>
+        <!--Open Lecture Controller-->
+        <scene sceneID="FuS-Md-ciF">
+            <objects>
+                <collectionViewController id="h9S-1H-C9h" customClass="OpenLectureController" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="cRZ-Mo-CMz">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.36078431372549019" green="0.46274509803921571" blue="0.56470588235294117" alpha="1" colorSpace="calibratedRGB"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="15" id="Ugd-DC-zwu">
+                            <size key="itemSize" width="180" height="250"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="20" minY="20" maxX="20" maxY="20"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="lecture" id="1St-XA-bd2">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="180" height="250"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="h9S-1H-C9h" id="dCt-60-bEO"/>
+                            <outlet property="delegate" destination="h9S-1H-C9h" id="tzO-jN-D1d"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" id="c6B-z3-XtN"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="co1-Dr-1hT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1528.5" y="612"/>
         </scene>
     </scenes>
     <resources>

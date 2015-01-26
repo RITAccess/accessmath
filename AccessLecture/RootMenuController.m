@@ -27,7 +27,7 @@ static NSString * const reuseIdentifier = @"menu";
     _menuIcons = @[
     ({
         MenuData *m = [MenuData new];
-        m.title = @"New Note";
+        m.title = @"Open";
         m.imageName = @"NotesButton";
         m.target = self;
         m.action = @selector(openLecture:);
@@ -115,7 +115,7 @@ static NSString * const reuseIdentifier = @"menu";
 
 - (void)openLecture:(id)sender
 {
-    
+    [self performSegueWithIdentifier:@"open" sender:self];
 }
 
 - (void)openSearch:(id)sender

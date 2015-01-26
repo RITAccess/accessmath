@@ -89,6 +89,13 @@
 		4C3BE5F01A729F0F0017854C /* MenuData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BE5EF1A729F0F0017854C /* MenuData.m */; };
 		4C4B8BFA178EF57200C2F94B /* QRScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B8BF9178EF57200C2F94B /* QRScanner.m */; };
 		4C4B8BFC178EF8D900C2F94B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C4B8BFB178EF8D900C2F94B /* AVFoundation.framework */; };
+		4C4FA6F01A72C52E00161ABE /* UINavigationBar+hight.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4FA6EF1A72C52E00161ABE /* UINavigationBar+hight.m */; };
+		4C4FA6F31A72CC8100161ABE /* OpenLectureController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4FA6F21A72CC8100161ABE /* OpenLectureController.m */; };
+		4C4FA6FB1A76C14400161ABE /* AccessLectureKit.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4C4FA6FA1A76C14400161ABE /* AccessLectureKit.h */; };
+		4C4FA6FD1A76C14400161ABE /* AccessLectureKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4FA6FC1A76C14400161ABE /* AccessLectureKit.m */; };
+		4C4FA7031A76C14400161ABE /* libAccessLectureKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C4FA6F81A76C14400161ABE /* libAccessLectureKit.a */; };
+		4C4FA7161A76C27000161ABE /* NavBackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4FA7151A76C27000161ABE /* NavBackButton.m */; };
+		4C4FA7171A76C2FE00161ABE /* libAccessLectureKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C4FA6F81A76C14400161ABE /* libAccessLectureKit.a */; };
 		4C5B55FB17720A15005B79CF /* server.crt in Resources */ = {isa = PBXBuildFile; fileRef = 4C5B55FA17720A15005B79CF /* server.crt */; };
 		4C5C50CD177B7B7C0095801A /* LectureViewContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5C50CC177B7B7C0095801A /* LectureViewContainer.m */; };
 		4C62BECD175651DB00CAF4CF /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F99F1FA1543641E0065CBB9 /* FileManager.m */; };
@@ -108,10 +115,21 @@
 		4CE742C61768BDE60026DE71 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FED960B1370863E00D8D1B8 /* UIKit.framework */; };
 		4CEA1A03177CAAED00A1DE05 /* LectureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEA1A00177CAAED00A1DE05 /* LectureCell.m */; };
 		4CEA1A04177CAAED00A1DE05 /* OpenLectureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEA1A02177CAAED00A1DE05 /* OpenLectureViewController.m */; };
+		4CFC4BE11A76CFDF001E2E27 /* NewLectureButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC4BE01A76CFDF001E2E27 /* NewLectureButton.m */; };
+		4CFC4BE41A76D28D001E2E27 /* SearchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC4BE31A76D28D001E2E27 /* SearchButton.m */; };
+		4CFC4BE71A76D62B001E2E27 /* BrushButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC4BE61A76D62B001E2E27 /* BrushButton.m */; };
+		4CFC4BEA1A76D859001E2E27 /* SaveButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC4BE91A76D859001E2E27 /* SaveButton.m */; };
 		4CFC573017DF800700393A1E /* NoteTakingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC572F17DF800700393A1E /* NoteTakingViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		4C4FA7041A76C14400161ABE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3FED95FE1370863E00D8D1B8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4C4FA6F71A76C14300161ABE;
+			remoteInfo = AccessLectureKit;
+		};
 		4CBF5D8A1768DB4E00746377 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3FED95FE1370863E00D8D1B8 /* Project object */;
@@ -120,6 +138,19 @@
 			remoteInfo = AccessLecture;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4C4FA6F61A76C14300161ABE /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				4C4FA6FB1A76C14400161ABE /* AccessLectureKit.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		09983FD2441D47DAA38B408E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -256,6 +287,17 @@
 		4C4B8BF8178EF57200C2F94B /* QRScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRScanner.h; sourceTree = "<group>"; };
 		4C4B8BF9178EF57200C2F94B /* QRScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRScanner.m; sourceTree = "<group>"; };
 		4C4B8BFB178EF8D900C2F94B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		4C4FA6EE1A72C52E00161ABE /* UINavigationBar+hight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+hight.h"; sourceTree = "<group>"; };
+		4C4FA6EF1A72C52E00161ABE /* UINavigationBar+hight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+hight.m"; sourceTree = "<group>"; };
+		4C4FA6F11A72CC8100161ABE /* OpenLectureController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenLectureController.h; sourceTree = "<group>"; };
+		4C4FA6F21A72CC8100161ABE /* OpenLectureController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenLectureController.m; sourceTree = "<group>"; };
+		4C4FA6F81A76C14400161ABE /* libAccessLectureKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAccessLectureKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C4FA6FA1A76C14400161ABE /* AccessLectureKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccessLectureKit.h; sourceTree = "<group>"; };
+		4C4FA6FC1A76C14400161ABE /* AccessLectureKit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccessLectureKit.m; sourceTree = "<group>"; };
+		4C4FA7021A76C14400161ABE /* AccessLectureKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AccessLectureKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C4FA7081A76C14400161ABE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4C4FA7141A76C27000161ABE /* NavBackButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavBackButton.h; sourceTree = "<group>"; };
+		4C4FA7151A76C27000161ABE /* NavBackButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavBackButton.m; sourceTree = "<group>"; };
 		4C5B55FA17720A15005B79CF /* server.crt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = server.crt; sourceTree = "<group>"; };
 		4C5C50CB177B7B7C0095801A /* LectureViewContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LectureViewContainer.h; sourceTree = "<group>"; };
 		4C5C50CC177B7B7C0095801A /* LectureViewContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LectureViewContainer.m; sourceTree = "<group>"; };
@@ -276,6 +318,14 @@
 		4CEA1A00177CAAED00A1DE05 /* LectureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LectureCell.m; sourceTree = "<group>"; };
 		4CEA1A01177CAAED00A1DE05 /* OpenLectureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenLectureViewController.h; sourceTree = "<group>"; };
 		4CEA1A02177CAAED00A1DE05 /* OpenLectureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenLectureViewController.m; sourceTree = "<group>"; };
+		4CFC4BDF1A76CFDF001E2E27 /* NewLectureButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewLectureButton.h; sourceTree = "<group>"; };
+		4CFC4BE01A76CFDF001E2E27 /* NewLectureButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewLectureButton.m; sourceTree = "<group>"; };
+		4CFC4BE21A76D28D001E2E27 /* SearchButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchButton.h; sourceTree = "<group>"; };
+		4CFC4BE31A76D28D001E2E27 /* SearchButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchButton.m; sourceTree = "<group>"; };
+		4CFC4BE51A76D62B001E2E27 /* BrushButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrushButton.h; sourceTree = "<group>"; };
+		4CFC4BE61A76D62B001E2E27 /* BrushButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrushButton.m; sourceTree = "<group>"; };
+		4CFC4BE81A76D859001E2E27 /* SaveButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveButton.h; sourceTree = "<group>"; };
+		4CFC4BE91A76D859001E2E27 /* SaveButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveButton.m; sourceTree = "<group>"; };
 		4CFC572E17DF800700393A1E /* NoteTakingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteTakingViewController.h; sourceTree = "<group>"; };
 		4CFC572F17DF800700393A1E /* NoteTakingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteTakingViewController.m; sourceTree = "<group>"; };
 		8BC023B512F24FD184B9F806 /* libPods-AccessLecture.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AccessLecture.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -289,6 +339,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C4FA7171A76C2FE00161ABE /* libAccessLectureKit.a in Frameworks */,
 				3F62DEDE1921020800BDD4EE /* libPods-AccessLecture.a in Frameworks */,
 				4CDB053817B5567300D8EB85 /* CoreData.framework in Frameworks */,
 				2CF45FDD17971C0400E6C69E /* QuartzCore.framework in Frameworks */,
@@ -301,6 +352,21 @@
 				3F6D11D517625F270066A4FA /* CFNetwork.framework in Frameworks */,
 				3FED96101370863E00D8D1B8 /* CoreGraphics.framework in Frameworks */,
 				3FFCFB2213A25388003DAB63 /* MessageUI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4C4FA6F51A76C14300161ABE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4C4FA6FF1A76C14400161ABE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C4FA7031A76C14400161ABE /* libAccessLectureKit.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -508,6 +574,8 @@
 				3F408C0918BF94F600F6B113 /* XMLReader.m */,
 				3F8D99311880ACBE0061DEA2 /* NSString+TrimmingAdditions.h */,
 				3F8D99321880ACBE0061DEA2 /* NSString+TrimmingAdditions.m */,
+				4C4FA6EE1A72C52E00161ABE /* UINavigationBar+hight.h */,
+				4C4FA6EF1A72C52E00161ABE /* UINavigationBar+hight.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -589,6 +657,8 @@
 			isa = PBXGroup;
 			children = (
 				3FED96111370863E00D8D1B8 /* AccessLecture */,
+				4C4FA6F91A76C14400161ABE /* AccessLectureKit */,
+				4C4FA7061A76C14400161ABE /* AccessLectureKitTests */,
 				3FED960A1370863E00D8D1B8 /* Frameworks */,
 				3FED96121370863E00D8D1B8 /* Supporting Files */,
 				3FED96081370863E00D8D1B8 /* Products */,
@@ -602,6 +672,8 @@
 			children = (
 				3FED96071370863E00D8D1B8 /* AccessLecture.app */,
 				4CE742C31768BDE60026DE71 /* AccessLecture Tests.octest */,
+				4C4FA6F81A76C14400161ABE /* libAccessLectureKit.a */,
+				4C4FA7021A76C14400161ABE /* AccessLectureKitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -692,9 +764,54 @@
 			name = "Lecture View";
 			sourceTree = "<group>";
 		};
+		4C3BE5F11A72A8300017854C /* OpenViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4C4FA6F11A72CC8100161ABE /* OpenLectureController.h */,
+				4C4FA6F21A72CC8100161ABE /* OpenLectureController.m */,
+			);
+			name = OpenViewController;
+			sourceTree = "<group>";
+		};
+		4C4FA6F91A76C14400161ABE /* AccessLectureKit */ = {
+			isa = PBXGroup;
+			children = (
+				4C4FA6FA1A76C14400161ABE /* AccessLectureKit.h */,
+				4C4FA6FC1A76C14400161ABE /* AccessLectureKit.m */,
+				4C4FA7141A76C27000161ABE /* NavBackButton.h */,
+				4C4FA7151A76C27000161ABE /* NavBackButton.m */,
+				4CFC4BDF1A76CFDF001E2E27 /* NewLectureButton.h */,
+				4CFC4BE01A76CFDF001E2E27 /* NewLectureButton.m */,
+				4CFC4BE21A76D28D001E2E27 /* SearchButton.h */,
+				4CFC4BE31A76D28D001E2E27 /* SearchButton.m */,
+				4CFC4BE51A76D62B001E2E27 /* BrushButton.h */,
+				4CFC4BE61A76D62B001E2E27 /* BrushButton.m */,
+				4CFC4BE81A76D859001E2E27 /* SaveButton.h */,
+				4CFC4BE91A76D859001E2E27 /* SaveButton.m */,
+			);
+			path = AccessLectureKit;
+			sourceTree = "<group>";
+		};
+		4C4FA7061A76C14400161ABE /* AccessLectureKitTests */ = {
+			isa = PBXGroup;
+			children = (
+				4C4FA7071A76C14400161ABE /* Supporting Files */,
+			);
+			path = AccessLectureKitTests;
+			sourceTree = "<group>";
+		};
+		4C4FA7071A76C14400161ABE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4C4FA7081A76C14400161ABE /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		4C5C50C9177B7B300095801A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4C3BE5F11A72A8300017854C /* OpenViewController */,
 				2CF21688193CDA170014F947 /* SearchViewController */,
 				3F0DBDCC13BD170C00E3FEE8 /* AboutViewController */,
 				3FED963113708E4E00D8D1B8 /* RootViewController */,
@@ -839,6 +956,41 @@
 			productReference = 3FED96071370863E00D8D1B8 /* AccessLecture.app */;
 			productType = "com.apple.product-type.application";
 		};
+		4C4FA6F71A76C14300161ABE /* AccessLectureKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4C4FA70D1A76C14400161ABE /* Build configuration list for PBXNativeTarget "AccessLectureKit" */;
+			buildPhases = (
+				4C4FA6F41A76C14300161ABE /* Sources */,
+				4C4FA6F51A76C14300161ABE /* Frameworks */,
+				4C4FA6F61A76C14300161ABE /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AccessLectureKit;
+			productName = AccessLectureKit;
+			productReference = 4C4FA6F81A76C14400161ABE /* libAccessLectureKit.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		4C4FA7011A76C14400161ABE /* AccessLectureKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4C4FA70E1A76C14400161ABE /* Build configuration list for PBXNativeTarget "AccessLectureKitTests" */;
+			buildPhases = (
+				4C4FA6FE1A76C14400161ABE /* Sources */,
+				4C4FA6FF1A76C14400161ABE /* Frameworks */,
+				4C4FA7001A76C14400161ABE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4C4FA7051A76C14400161ABE /* PBXTargetDependency */,
+			);
+			name = AccessLectureKitTests;
+			productName = AccessLectureKitTests;
+			productReference = 4C4FA7021A76C14400161ABE /* AccessLectureKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		4CE742C21768BDE60026DE71 /* AccessLecture Tests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4CE742D21768BDE60026DE71 /* Build configuration list for PBXNativeTarget "AccessLecture Tests" */;
@@ -871,6 +1023,12 @@
 					3FED96061370863E00D8D1B8 = {
 						DevelopmentTeam = 4ZD4B3UWF7;
 					};
+					4C4FA6F71A76C14300161ABE = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					4C4FA7011A76C14400161ABE = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
 					4CE742C21768BDE60026DE71 = {
 						TestTargetID = 3FED96061370863E00D8D1B8;
 					};
@@ -891,6 +1049,8 @@
 				3FED96061370863E00D8D1B8 /* AccessLecture */,
 				4CE742C21768BDE60026DE71 /* AccessLecture Tests */,
 				4CBD8E61182069CC005E5997 /* OCLint */,
+				4C4FA6F71A76C14300161ABE /* AccessLectureKit */,
+				4C4FA7011A76C14400161ABE /* AccessLectureKitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -911,6 +1071,13 @@
 				3F8D9908187B4E010061DEA2 /* TextNoteView.xib in Resources */,
 				2CA93202188596D400199CC4 /* Images.xcassets in Resources */,
 				2CFC32A0175E60FC00384AEC /* MainStoryboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4C4FA7001A76C14400161ABE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1024,6 +1191,7 @@
 				4C5C50CD177B7B7C0095801A /* LectureViewContainer.m in Sources */,
 				4CCBC8DD17E222FF00CB303E /* Note.m in Sources */,
 				3F8FD2E418B3F7BF0059EF9C /* Promise.m in Sources */,
+				4C4FA6F01A72C52E00161ABE /* UINavigationBar+hight.m in Sources */,
 				3FCD5D1715438472005F2A60 /* AccessLectureRuntime.m in Sources */,
 				4C3BE5ED1A729B760017854C /* MenuIconCell.m in Sources */,
 				4C62BECD175651DB00CAF4CF /* FileManager.m in Sources */,
@@ -1053,6 +1221,7 @@
 				4CEA1A04177CAAED00A1DE05 /* OpenLectureViewController.m in Sources */,
 				4C8ABE78177C87BD007C934C /* StreamViewController.m in Sources */,
 				21DA3D9518905B5000BFD96B /* DrawViewController.m in Sources */,
+				4C4FA6F31A72CC8100161ABE /* OpenLectureController.m in Sources */,
 				3F6D11CC17625EA20066A4FA /* SRWebSocket.m in Sources */,
 				3F8D992B188099F30061DEA2 /* DocumentCreator.m in Sources */,
 				4CDB058017B5589A00D8EB85 /* Favorites.m in Sources */,
@@ -1060,6 +1229,26 @@
 				3F8D9915187F0D1A0061DEA2 /* FileMangerViewController.m in Sources */,
 				3F8D992F1880A2540061DEA2 /* StatusMark.m in Sources */,
 				3F8FD2C418AD21860059EF9C /* AMOpenButton.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4C4FA6F41A76C14300161ABE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4CFC4BE71A76D62B001E2E27 /* BrushButton.m in Sources */,
+				4C4FA7161A76C27000161ABE /* NavBackButton.m in Sources */,
+				4CFC4BEA1A76D859001E2E27 /* SaveButton.m in Sources */,
+				4CFC4BE11A76CFDF001E2E27 /* NewLectureButton.m in Sources */,
+				4C4FA6FD1A76C14400161ABE /* AccessLectureKit.m in Sources */,
+				4CFC4BE41A76D28D001E2E27 /* SearchButton.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4C4FA6FE1A76C14400161ABE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1075,6 +1264,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		4C4FA7051A76C14400161ABE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4C4FA6F71A76C14300161ABE /* AccessLectureKit */;
+			targetProxy = 4C4FA7041A76C14400161ABE /* PBXContainerItemProxy */;
+		};
 		4CBF5D8B1768DB4E00746377 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3FED96061370863E00D8D1B8 /* AccessLecture */;
@@ -1219,6 +1413,156 @@
 			};
 			name = Release;
 		};
+		4C4FA7091A76C14400161ABE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		4C4FA70A1A76C14400161ABE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4C4FA70B1A76C14400161ABE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = AccessLectureKitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		4C4FA70C1A76C14400161ABE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = AccessLectureKitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		4CBD8E62182069CC005E5997 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1340,6 +1684,24 @@
 			buildConfigurations = (
 				3FED96291370863E00D8D1B8 /* Debug */,
 				3FED962A1370863E00D8D1B8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4C4FA70D1A76C14400161ABE /* Build configuration list for PBXNativeTarget "AccessLectureKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C4FA7091A76C14400161ABE /* Debug */,
+				4C4FA70A1A76C14400161ABE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4C4FA70E1A76C14400161ABE /* Build configuration list for PBXNativeTarget "AccessLectureKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C4FA70B1A76C14400161ABE /* Debug */,
+				4C4FA70C1A76C14400161ABE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
