@@ -20,6 +20,20 @@
                ReferencedContainer = "container:AccessLecture.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "4C4FA6F71A76C14300161ABE"
+               BuildableName = "libAccessLectureKit.a"
+               BlueprintName = "AccessLectureKit"
+               ReferencedContainer = "container:AccessLecture.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
