@@ -183,7 +183,7 @@ static UIColor* _brushDefault = nil;
 
 
     //// Subframes
-    CGRect your_Icon = CGRectMake(CGRectGetMinX(frame) + 15, CGRectGetMinY(frame) + 9.43, CGRectGetWidth(frame) - 30.9, CGRectGetHeight(frame) - 19);
+    CGRect your_Icon = CGRectMake(CGRectGetMinX(frame) + 19, CGRectGetMinY(frame) + 9.43, CGRectGetWidth(frame) - 37.9, CGRectGetHeight(frame) - 19);
 
 
     //// Captions
@@ -197,13 +197,13 @@ static UIColor* _brushDefault = nil;
         UIBezierPath* bezier2Path = UIBezierPath.bezierPath;
         [bezier2Path moveToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 0.00000 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 1.00000 * CGRectGetHeight(your_Icon))];
         [bezier2Path addLineToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 1.00000 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 1.00000 * CGRectGetHeight(your_Icon))];
-        [bezier2Path addLineToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 1.00000 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 0.10000 * CGRectGetHeight(your_Icon))];
-        [bezier2Path addLineToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 0.54546 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 0.10000 * CGRectGetHeight(your_Icon))];
-        [bezier2Path addLineToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 0.54546 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 0.18765 * CGRectGetHeight(your_Icon))];
-        [bezier2Path addLineToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 0.92030 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 0.18765 * CGRectGetHeight(your_Icon))];
-        [bezier2Path addLineToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 0.92030 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 0.91233 * CGRectGetHeight(your_Icon))];
-        [bezier2Path addLineToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 0.07970 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 0.91233 * CGRectGetHeight(your_Icon))];
-        [bezier2Path addLineToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 0.07970 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 0.60001 * CGRectGetHeight(your_Icon))];
+        [bezier2Path addLineToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 1.00000 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 0.00123 * CGRectGetHeight(your_Icon))];
+        [bezier2Path addLineToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 0.59197 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 0.00123 * CGRectGetHeight(your_Icon))];
+        [bezier2Path addLineToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 0.59197 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 0.08889 * CGRectGetHeight(your_Icon))];
+        [bezier2Path addLineToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 0.91351 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 0.08889 * CGRectGetHeight(your_Icon))];
+        [bezier2Path addLineToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 0.91351 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 0.91233 * CGRectGetHeight(your_Icon))];
+        [bezier2Path addLineToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 0.08649 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 0.91233 * CGRectGetHeight(your_Icon))];
+        [bezier2Path addLineToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 0.08649 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 0.60001 * CGRectGetHeight(your_Icon))];
         [bezier2Path addLineToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 0.00000 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 0.60001 * CGRectGetHeight(your_Icon))];
         [bezier2Path addLineToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 0.00000 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 1.00000 * CGRectGetHeight(your_Icon))];
         [bezier2Path closePath];
@@ -215,19 +215,19 @@ static UIColor* _brushDefault = nil;
 
         //// Bezier 4 Drawing
         UIBezierPath* bezier4Path = UIBezierPath.bezierPath;
-        [bezier4Path moveToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 0.78563 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 0.35590 * CGRectGetHeight(your_Icon))];
-        [bezier4Path addLineToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 0.46014 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 0.35590 * CGRectGetHeight(your_Icon))];
-        [bezier4Path addLineToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 0.46014 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 0.00000 * CGRectGetHeight(your_Icon))];
-        [bezier4Path addLineToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 0.32547 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 0.00000 * CGRectGetHeight(your_Icon))];
-        [bezier4Path addLineToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 0.32547 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 0.35590 * CGRectGetHeight(your_Icon))];
+        [bezier4Path moveToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 0.85261 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 0.35590 * CGRectGetHeight(your_Icon))];
+        [bezier4Path addLineToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 0.49937 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 0.35590 * CGRectGetHeight(your_Icon))];
+        [bezier4Path addLineToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 0.49937 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 0.00000 * CGRectGetHeight(your_Icon))];
+        [bezier4Path addLineToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 0.35322 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 0.00000 * CGRectGetHeight(your_Icon))];
+        [bezier4Path addLineToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 0.35322 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 0.35590 * CGRectGetHeight(your_Icon))];
         [bezier4Path addLineToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 0.00002 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 0.35590 * CGRectGetHeight(your_Icon))];
         [bezier4Path addLineToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 0.00002 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 0.50297 * CGRectGetHeight(your_Icon))];
-        [bezier4Path addLineToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 0.32547 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 0.50297 * CGRectGetHeight(your_Icon))];
-        [bezier4Path addLineToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 0.32547 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 0.85889 * CGRectGetHeight(your_Icon))];
-        [bezier4Path addLineToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 0.46014 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 0.85889 * CGRectGetHeight(your_Icon))];
-        [bezier4Path addLineToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 0.46014 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 0.50297 * CGRectGetHeight(your_Icon))];
-        [bezier4Path addLineToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 0.78563 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 0.50297 * CGRectGetHeight(your_Icon))];
-        [bezier4Path addLineToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 0.78563 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 0.35590 * CGRectGetHeight(your_Icon))];
+        [bezier4Path addLineToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 0.35322 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 0.50297 * CGRectGetHeight(your_Icon))];
+        [bezier4Path addLineToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 0.35322 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 0.85889 * CGRectGetHeight(your_Icon))];
+        [bezier4Path addLineToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 0.49937 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 0.85889 * CGRectGetHeight(your_Icon))];
+        [bezier4Path addLineToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 0.49937 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 0.50297 * CGRectGetHeight(your_Icon))];
+        [bezier4Path addLineToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 0.85261 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 0.50297 * CGRectGetHeight(your_Icon))];
+        [bezier4Path addLineToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 0.85261 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 0.35590 * CGRectGetHeight(your_Icon))];
         [bezier4Path closePath];
         bezier4Path.miterLimit = 4;
 
