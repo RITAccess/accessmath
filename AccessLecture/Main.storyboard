@@ -188,10 +188,115 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="c6B-z3-XtN"/>
+                    <connections>
+                        <segue destination="uHf-Yh-apF" kind="showDetail" identifier="search" id="RdO-3k-w2m"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="co1-Dr-1hT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1528.5" y="612"/>
+        </scene>
+        <!--Lecture Title and Timestamp-->
+        <scene sceneID="e8e-N1-Cuo">
+            <objects>
+                <tableViewController clearsSelectionOnViewWillAppear="NO" id="cCX-fZ-zB4" customClass="LectureListViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Hfg-91-CBT">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchCells" id="dDO-t7-f6y">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dDO-t7-f6y" id="Ogz-x8-0CZ">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="SLY-Jc-LUa" kind="show" id="Ukt-2N-uBh"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="cCX-fZ-zB4" id="SVX-di-GBx"/>
+                            <outlet property="delegate" destination="cCX-fZ-zB4" id="vOE-c6-8gz"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Lecture Title and Timestamp" id="dSR-7f-Mm9"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tug-dL-jYS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3808" y="330"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="shc-WD-OvX">
+            <objects>
+                <navigationController id="0Iz-hm-O7U" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="YPt-Ax-EvJ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="cCX-fZ-zB4" kind="relationship" relationship="rootViewController" id="kYc-B9-Ydi"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LOk-cm-96Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3101" y="331"/>
+        </scene>
+        <!--Search View Controller-->
+        <scene sceneID="9o1-SO-unf">
+            <objects>
+                <viewController storyboardIdentifier="SearchViewController" id="Qsn-00-Ig4" customClass="SearchViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jlX-9w-f7h"/>
+                        <viewControllerLayoutGuide type="bottom" id="z2s-Pc-PSj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zeQ-fQ-2Fv">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rrk-9F-JWQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3103" y="992"/>
+        </scene>
+        <!--Split View Controller-->
+        <scene sceneID="wdB-UV-dfs">
+            <objects>
+                <splitViewController id="uHf-Yh-apF" sceneMemberID="viewController">
+                    <connections>
+                        <segue destination="0Iz-hm-O7U" kind="relationship" relationship="masterViewController" id="rB9-nX-MMj"/>
+                        <segue destination="Qsn-00-Ig4" kind="relationship" relationship="detailViewController" id="ltT-kO-2Zd"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gDH-xv-spo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2242" y="613"/>
+        </scene>
+        <!--Lecture List View Controller-->
+        <scene sceneID="kXf-dD-eZc">
+            <objects>
+                <tableViewController storyboardIdentifier="LectureListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="SLY-Jc-LUa" customClass="LectureListViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="62G-gv-682">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="cY2-9E-VOD">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cY2-9E-VOD" id="Jrg-CX-tFL">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="53G-BX-1WK"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xjd-du-Snu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4488" y="330"/>
         </scene>
     </scenes>
     <resources>
