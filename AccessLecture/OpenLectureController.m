@@ -44,6 +44,7 @@ static NSString * const reuseIdentifier = @"lecture";
     
     UIButton *search = ({
         UIButton *b = [SearchButton buttonWithType:UIButtonTypeRoundedRect];
+        [b addTarget:self action:@selector(openSearch:) forControlEvents:UIControlEventTouchUpInside];
         b.accessibilityValue = @"search";
         b;
     });
@@ -101,6 +102,11 @@ static NSString * const reuseIdentifier = @"lecture";
 - (void)back
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)openSearch:(id)sender
+{
+    [self performSegueWithIdentifier:@"search" sender:self];
 }
 
 #pragma mark <UICollectionViewDataSource>
