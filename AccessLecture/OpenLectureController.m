@@ -14,6 +14,9 @@
 #import "SearchButton.h"
 #import "BrushButton.h"
 #import "SaveButton.h"
+#import "NewLectureController.h"
+#import "FileManager.h"
+#import "LoadingLectureCVC.h"
 
 @interface OpenLectureController ()
 
@@ -22,13 +25,31 @@
 @implementation OpenLectureController
 {
     NSArray *_navigationItems;
+    NSInteger _lectureCount;
+    NSArray *_documentTitles;
 }
 
 static NSString * const reuseIdentifier = @"lecture";
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
+    [self setUpNavigation];
+    
+    [self loadDocumentPreviews];
+    
+}
+
+- (void)loadDocumentPreviews
+{
+    _documentTitles = [FileManager listContentsOfDirectory:[FileManager localDocumentsDirectoryPath]];
+    _lectureCount = _documentTitles.count;
+}
+
+- (void)setUpNavigation
+{
+    // Navigation
     UIButton *back = ({
         UIButton *b = [NavBackButton buttonWithType:UIButtonTypeRoundedRect];
         [b addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
@@ -56,7 +77,6 @@ static NSString * const reuseIdentifier = @"lecture";
     }];
     
     [self.navigationController.navigationBar setNeedsUpdateConstraints];
-    
 }
 
 - (void)updateViewConstraints
@@ -83,6 +103,22 @@ static NSString * const reuseIdentifier = @"lecture";
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    NSLog(@"DEBUG: Memory Pressure");
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"newLecture"]) {
+        ((NewLectureController *)segue.destinationViewController).delegate = self;
+    }
+    if ([segue.identifier isEqualToString:@"showPreview"]) {
+        NSLog(@"DEBUG: %@", sender);
+    }
+}
+
+- (void)newLectureViewController:(NewLectureController *)controller didCreateNewLecture:(AMLecture *)lecture
+{
+    // Go straight to lecture
 }
 
 #pragma mark Navigation
@@ -97,24 +133,137 @@ static NSString * const reuseIdentifier = @"lecture";
     [self performSegueWithIdentifier:@"newLecture" sender:_navigationItems[1]];
 }
 
+#pragma mark <UIViewControllerContextTransitioning>
+
+// The view in which the animated transition should take place.
+- (UIView *)containerView
+{
+    return self.view;
+}
+
+// Most of the time this is YES. For custom transitions that use the new UIModalPresentationCustom
+// presentation type we will invoke the animateTransition: even though the transition should not be
+// animated. This allows the custom transition to add or remove subviews to the container view.
+- (BOOL)isAnimated
+{
+    return YES;
+}
+
+// This indicates whether the transition is currently interactive.
+-(BOOL)isInteractive
+{
+    return NO;
+}
+
+- (BOOL)transitionWasCancelled
+{
+    return NO;
+}
+
+- (UIModalPresentationStyle)presentationStyle
+{
+    return UIModalPresentationCustom;
+}
+
+// It only makes sense to call these from an interaction controller that
+// conforms to the UIViewControllerInteractiveTransitioning protocol and was
+// vended to the system by a container view controller's delegate or, in the case
+// of a present or dismiss, the transitioningDelegate.
+- (void)updateInteractiveTransition:(CGFloat)percentComplete
+{
+    
+}
+
+- (void)finishInteractiveTransition
+{
+    
+}
+
+- (void)cancelInteractiveTransition
+{
+    
+}
+
+// This must be called whenever a transition completes (or is cancelled.)
+// Typically this is called by the object conforming to the
+// UIViewControllerAnimatedTransitioning protocol that was vended by the transitioning
+// delegate.  For purely interactive transitions it should be called by the
+// interaction controller. This method effectively updates internal view
+// controller state at the end of the transition.
+- (void)completeTransition:(BOOL)didComplete
+{
+    
+}
+
+
+// Currently only two keys are defined by the
+// system - UITransitionContextToViewControllerKey, and
+// UITransitionContextFromViewControllerKey.
+// Animators should not directly manipulate a view controller's views and should
+// use viewForKey: to get views instead.
+- (UIViewController *)viewControllerForKey:(NSString *)key;
+{
+    return self;
+}
+
+// Currently only two keys are defined by the system -
+// UITransitionContextFromViewKey, and UITransitionContextToViewKey
+// viewForKey: may return nil which would indicate that the animator should not
+// manipulate the associated view controller's view.
+- (UIView *)viewForKey:(NSString *)key
+{
+    return self.view;
+}
+
+- (CGAffineTransform)targetTransform
+{
+    return CGAffineTransformIdentity;
+}
+
+// The frame's are set to CGRectZero when they are not known or
+// otherwise undefined.  For example the finalFrame of the
+// fromViewController will be CGRectZero if and only if the fromView will be
+// removed from the window at the end of the transition. On the other
+// hand, if the finalFrame is not CGRectZero then it must be respected
+// at the end of the transition.
+- (CGRect)initialFrameForViewController:(UIViewController *)vc
+{
+    return CGRectZero;
+}
+
+- (CGRect)finalFrameForViewController:(UIViewController *)vc
+{
+    return CGRectZero;
+}
+
+
 #pragma mark <UICollectionViewDataSource>
 
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
     return 1;
 }
 
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 25;
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    id lecture = [FileManager findDocumentWithName:_documentTitles[indexPath.row]];
+    [self performSegueWithIdentifier:@"showPreview" sender:lecture];
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return _lectureCount;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    LoadingLectureCVC *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
-    // Configure the cell
+    NSString *name = _documentTitles[indexPath.row];
+    cell.title.text = name;
+    [cell loadLecturePreview:name];
     
     return cell;
 }
-
 
 @end

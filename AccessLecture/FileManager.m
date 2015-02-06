@@ -159,7 +159,7 @@
 {
     error = error ?: ^(NSError *e) { };
     NSString *docsDir = [FileManager localDocumentsDirectoryPath];
-    NSString *filePath = [[docsDir stringByAppendingPathComponent:name] stringByAppendingPathExtension:AMLectutueFileExtention];
+    NSString *filePath = [docsDir stringByAppendingPathComponent:name];
     
     if([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
         AMLecture *lecture = [[AMLecture alloc] initWithFileURL:[NSURL fileURLWithPath:filePath]];
@@ -171,26 +171,51 @@
     return FALSE;
 }
 
-+ (void)createDocumentWithName:(NSString *)name completion:(void (^)(NSError *error))completion
++ (void)createDocumentWithName:(NSString *) name success:(void (^)(AMLecture *current)) success failure:(void (^)(NSError *error)) failure
 {
-    completion = completion ?: ^(NSError *error) { }; // Allows nil
+    assert(success);
+    assert(failure);
+    
+    NSString *docsDir = [FileManager localDocumentsDirectoryPath];
+    NSString *filePath = [[docsDir stringByAppendingPathComponent:name] stringByAppendingPathExtension:AMLectutueFileExtention];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        NSError *err = [NSError errorWithDomain:NSOSStatusErrorDomain code:FileManagerErrorFileExists userInfo:@{ @"Message" : @"File exists" }];
+        failure(err);
+    } else {
+        __block AMLecture *newDoc = [[AMLecture alloc] initWithFileURL:[NSURL fileURLWithPath:filePath]];
+        [newDoc saveToURL:newDoc.fileURL forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL status) {
+            if (status) {
+                NSLog(@"Created document instance %@", newDoc);
+                success(newDoc);
+            } else {
+                NSError *err = [NSError errorWithDomain:NSOSStatusErrorDomain code:FileManagerErrorSaveError userInfo:@{ @"Message" : @"Failed to save document" }];
+                newDoc = nil;
+                failure(err);
+            }
+        }];
+    }
+
+}
+
++ (void)createDocumentWithName:(NSString *)name completion:(void (^)(NSError *error, AMLecture *current))completion
+{
+    completion = completion ?: ^(NSError *error, AMLecture *current) { }; // Allows nil
     NSString *docsDir = [FileManager localDocumentsDirectoryPath];
     NSString *filePath = [[docsDir stringByAppendingPathComponent:name] stringByAppendingPathExtension:AMLectutueFileExtention];
     
     if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
         NSError *err = [NSError errorWithDomain:NSOSStatusErrorDomain code:FileManagerErrorFileExists userInfo:@{ @"Message" : @"File exists" }];
-        completion(err);
+        completion(err, nil);
     } else {
         __block AMLecture *newDoc = [[AMLecture alloc] initWithFileURL:[NSURL fileURLWithPath:filePath]];
         [newDoc saveToURL:newDoc.fileURL forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success) {
             if (success) {
                 NSLog(@"Created document instance %@", newDoc);
-                newDoc = nil;
-                completion(nil);
+                completion(nil, newDoc);
             } else {
                 NSError *err = [NSError errorWithDomain:NSOSStatusErrorDomain code:FileManagerErrorSaveError userInfo:@{ @"Message" : @"Failed to save document" }];
                 newDoc = nil;
-                completion(err);
+                completion(err, newDoc);
             }
         }];
     }

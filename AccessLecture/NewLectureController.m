@@ -10,6 +10,9 @@
 #import "NavBackButton.h"
 #import "PureLayout.h"
 #import "CheckButton.h"
+#import "FileManager.h"
+#import "UIAlertController+Blocks.h"
+#import <AsyncDisplayKit/AsyncDisplayKit.h>
 
 @interface NewLectureController ()
 
@@ -68,8 +71,31 @@
 
 - (void)done
 {
-    NSLog(@"DEBUG: creating new lecture");
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.lectureName setEnabled:NO];
+    
+    NSLog(@"DEBUG: creating new lecture: %@", self.lectureName.text);
+    
+    [FileManager createDocumentWithName:self.lectureName.text success:^(AMLecture *current) {
+        [self dismissViewControllerAnimated:YES completion:^{
+            if ([self.delegate respondsToSelector:@selector(newLectureViewController:didCreateNewLecture:)]) {
+                [self.delegate newLectureViewController:self didCreateNewLecture:current];
+            }
+        }];
+    } failure:^(NSError *error) {
+        NSString *errorMsg = @"An unknown error occurred";
+        if (error.code == FileManagerErrorFileExists) {
+            errorMsg = @"File already excists";
+        }
+        [UIAlertController showAlertInViewController:self
+                                           withTitle:@"Failed to create Lecture"
+                                             message:errorMsg
+                                   cancelButtonTitle:@"Ok"
+                              destructiveButtonTitle:nil
+                                   otherButtonTitles:nil
+                                            tapBlock:^(UIAlertController *controller, UIAlertAction *action, NSInteger buttonIndex) {
+                                                [self.lectureName setEnabled:YES];
+                                            }];
+    }];
 }
 
 @end

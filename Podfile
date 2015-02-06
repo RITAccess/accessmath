@@ -10,6 +10,10 @@ pod 'MKToggleButton'
 pod 'NoticeView'
 pod 'ACEDrawingView'
 pod 'PureLayout'
+pod 'UIAlertController+Blocks'
+pod 'TMCache'
+pod 'AsyncDisplayKit'
+pod 'SpinKit'
 
 end
 

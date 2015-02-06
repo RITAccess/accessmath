@@ -16,7 +16,7 @@
 - (void)openDocumentForEditing:(NSString *)docName;
 + (NSString *)localDocumentsDirectoryPath;
 + (NSArray *)listContentsOfDirectory:(NSString *)path;
-+ (void)createDocumentWithName:(NSString *)name completion:(void (^)(NSError *error))completion;
++ (void)createDocumentWithName:(NSString *)name completion:(void (^)(NSError *error, AMLecture *current))completion;
 
 @end
 
@@ -85,7 +85,7 @@
 
 - (void)createDocumentNamed:(NSString *)docName
 {
-    [FileManager createDocumentWithName:docName completion:^(NSError *error) {
+    [FileManager createDocumentWithName:docName completion:^(NSError *error, AMLecture *current) {
          if (error) {
              NSLog(@"%@", error);
          } else {
