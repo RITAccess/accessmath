@@ -101,7 +101,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rA3-sa-Cr6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-696" y="166"/>
+            <point key="canvasLocation" x="-336" y="249"/>
         </scene>
         <!--Note Taking View Controller-->
         <scene sceneID="Vmb-EE-aK3">
@@ -187,7 +187,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RDv-jh-2gQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="795" y="702"/>
+            <point key="canvasLocation" x="-336" y="-775"/>
         </scene>
         <!--Lecture List View Controller-->
         <scene sceneID="ZOU-t0-HPS">
@@ -278,7 +278,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vru-bT-4f7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1278" y="-597"/>
+            <point key="canvasLocation" x="802" y="259"/>
         </scene>
         <!--About View Controller-->
         <scene sceneID="nkT-Z3-fpK">
@@ -409,7 +409,7 @@ IAoKA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yrs-bA-QSr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1278" y="330"/>
+            <point key="canvasLocation" x="-336" y="1134"/>
         </scene>
         <!--Stream View Controller-->
         <scene sceneID="eF5-gd-19S">
@@ -628,7 +628,7 @@ IAoKA
         </scene>
     </scenes>
     <resources>
-        <image name="About" width="180" height="180"/>
+        <image name="About" width="1024" height="1017"/>
         <image name="Back" width="56" height="56"/>
         <image name="NotesButton" width="1024" height="1024"/>
         <image name="StreamButton" width="1024" height="1024"/>
