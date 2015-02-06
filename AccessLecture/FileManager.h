@@ -66,8 +66,18 @@ typedef enum {
  */
 - (Promise *)currentDocumentPromise;
 
++ (AMLecture *)findDocumentWithName:(NSString *)name;
++ (AMLecture *)findDocumentWithName:(NSString *)name failure:(void (^)(NSError *))error;
+
 + (NSArray *)listContentsOfDirectory:(NSString *)path;
 + (NSString *)localDocumentsDirectoryPath;
 + (NSURL *)iCloudDirectoryURL;
+
++ (void)createDocumentWithName:(NSString *) name success:(void (^)(AMLecture *current)) success failure:(void (^)(NSError *error)) failure;
++ (void)createDocumentWithName:(NSString *)name completion:(void (^)(NSError *error, AMLecture *current))completion;
+
+/**
+ *  TODO: - getPreviewOfDocumentAtLocation:
+ */
 
 @end
