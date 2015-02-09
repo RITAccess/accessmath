@@ -27,6 +27,9 @@
     NSArray *_navigationItems;
     NSInteger _lectureCount;
     NSArray *_documentTitles;
+    
+    // Selected Lecture
+    AMLecture *_selectedLecture;
 }
 
 static NSString * const reuseIdentifier = @"lecture";
@@ -247,8 +250,29 @@ static NSString * const reuseIdentifier = @"lecture";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    id lecture = [FileManager findDocumentWithName:_documentTitles[indexPath.row]];
-    [self performSegueWithIdentifier:@"showPreview" sender:lecture];
+    _selectedLecture = [FileManager findDocumentWithName:_documentTitles[indexPath.row]];
+}
+
+- (void)cellDidTap:(UITapGestureRecognizer *)reg
+{
+    /**
+     * Did select isn't garenteed to get called before cellDidTap, and even if it does
+     * it's not garenteed that the lecture will have been loaded fully. Remember, the
+     * root of all evil is shared mutable state. :/
+     */
+    #warning Potential Race condition when selecting lecture
+    assert(_selectedLecture);
+    NSLog(@"DEBUG: %@", _selectedLecture);
+    switch (reg.numberOfTapsRequired) {
+        case 1:
+            NSLog(@"DEBUG: Single Tap");
+            [self performSegueWithIdentifier:@"showPreview" sender:_selectedLecture];
+            break;
+        case 2:
+            NSLog(@"DEBUG: Double Tap");
+        default:
+            break;
+    }
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -263,6 +287,15 @@ static NSString * const reuseIdentifier = @"lecture";
     NSString *name = _documentTitles[indexPath.row];
     cell.title.text = name;
     [cell loadLecturePreview:name];
+    
+    UITapGestureRecognizer *singletap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cellDidTap:)];
+    [singletap setNumberOfTapsRequired:1];
+    UITapGestureRecognizer *doubletap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cellDidTap:)];
+    [doubletap setNumberOfTapsRequired:2];
+    [singletap requireGestureRecognizerToFail:doubletap];
+    
+    [cell addGestureRecognizer:singletap];
+    [cell addGestureRecognizer:doubletap];
     
     return cell;
 }
