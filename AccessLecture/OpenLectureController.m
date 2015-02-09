@@ -115,6 +115,7 @@ static NSString * const reuseIdentifier = @"lecture";
         ((NewLectureController *)segue.destinationViewController).delegate = self;
     }
     if ([segue.identifier isEqualToString:@"showPreview"]) {
+        
         NSLog(@"DEBUG: %@", sender);
     }
 }
