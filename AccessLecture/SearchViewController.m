@@ -28,6 +28,7 @@
     UIViewController *mainController;
     NSArray *recents;
     NSArray *lectures;
+    NSArray *notes;
 }
 
 - (void)viewDidLoad
@@ -42,12 +43,6 @@
     [sidePanelController.tableView reloadData];
 
     [self loadLectures];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    // TODO: necessary?
-    mainController.view.transform = CGAffineTransformMakeScale(0.6, 0.6);
 }
 
 #pragma mark Method replacement
@@ -83,7 +78,7 @@
 - (void)tableViewCell:(UITableViewCell *)cell becameActivePanel:(BOOL)active
 {
     UIView *mainView = mainController.view;
-    mainView.backgroundColor = [UIColor whiteColor];
+    mainView.backgroundColor = [UIColor blueColor];
     [UIView animateWithDuration:0.2 delay:1.0 options:UIViewAnimationCurveEaseInOut animations:^{
         mainView.transform = CGAffineTransformIdentity;
     } completion:nil];
@@ -103,6 +98,8 @@
     }
     recents = lec;
     lectures = lec;
+    
+    notes = [[NSArray alloc]initWithObjects:@"Note1", @"Note2", @"Note3", nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -112,33 +109,20 @@
 
 #pragma mark - Side Panel TableView DataSouce
 
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return notes.count;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"basicCell" forIndexPath:indexPath];
-    if (indexPath.section == 0) {
-        cell.textLabel.text = recents[indexPath.row];
-    } else if (indexPath.section == 1) {
-        cell.textLabel.text = lectures[indexPath.row];
-    }
+    static NSString* searchViewControllerIdentifier = @"noteCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:searchViewControllerIdentifier forIndexPath:indexPath];
+    if (!cell) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:searchViewControllerIdentifier];
+    cell.textLabel.text = [notes objectAtIndex:indexPath.row];
     return cell;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    return section == 0 ? @"All Notes" : @"";
-}
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    if (section == 0) {
-        return recents.count;
-    }
-    return lectures.count;
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 2;
-}
 
 @end
