@@ -9,7 +9,6 @@
 @import ObjectiveC;
 
 #import "SearchViewController.h"
-#import "LectureListViewController.h"
 #import "Promise.h"
 #import "AMLecture.h"
 #import "FileManager.h"
@@ -41,14 +40,14 @@
 
     sidePanelController.tableView.dataSource = self;
     [sidePanelController.tableView reloadData];
-    sidePanelController.title = @"Browse Lectures";
 
+    [self loadLectures];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    // TODO: necessary?
     mainController.view.transform = CGAffineTransformMakeScale(0.6, 0.6);
-//    mainController.view.backgroundColor = [UIColor grayColor];
 }
 
 #pragma mark Method replacement
@@ -76,8 +75,8 @@
 {
     SearchViewController *controller = (SearchViewController *)self.parentViewController.parentViewController;
     [controller tableViewCell:sender becameActivePanel:YES];
-    LectureListViewController *vc = segue.destinationViewController;
-    vc.lectureName = sender.textLabel.text;
+//    LectureListViewController *vc = segue.destinationViewController;
+//    vc.lectureName = sender.textLabel.text;
 
 }
 
@@ -109,7 +108,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Side Panel TableView DataSouce
@@ -127,12 +125,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if (section == 0) {
-        return @"Recent";
-    } else if (section == 1) {
-        return @"All Document";
-    }
-    return @"";
+    return section == 0 ? @"All Notes" : @"";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

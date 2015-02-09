@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NoteListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface NoteListViewController : UITableViewController
 
 @end

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Rr7-bG-jB9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="uHf-Yh-apF">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -231,7 +231,23 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1942" y="-59"/>
+            <point key="canvasLocation" x="2085" y="-59.25"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="mFd-8S-u3S">
+            <objects>
+                <navigationController id="ZZa-dy-pkl" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="E0z-XO-Y1f">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="cCX-fZ-zB4" kind="relationship" relationship="rootViewController" id="ZWV-nS-jsk"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T4O-K4-3M4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3529.5" y="248.25"/>
         </scene>
         <!--Open Lecture Controller-->
         <scene sceneID="FuS-Md-ciF">
@@ -311,33 +327,6 @@
             </objects>
             <point key="canvasLocation" x="1528" y="1356"/>
         </scene>
-        <!--Root View Controller-->
-        <scene sceneID="deX-L4-u4S">
-            <objects>
-                <tableViewController clearsSelectionOnViewWillAppear="NO" id="CN0-sf-94q" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="wzg-Yu-IHA">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="eEX-do-Am4">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eEX-do-Am4" id="Y0R-hB-WzF">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="CN0-sf-94q" id="Wot-9y-7LS"/>
-                            <outlet property="delegate" destination="CN0-sf-94q" id="09L-e4-XRw"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="BaY-ef-Pwr"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="AOp-G9-aYh" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3170" y="949"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="05p-cW-hE3">
             <objects>
@@ -359,7 +348,7 @@
         <!--Lecture Title and Timestamp-->
         <scene sceneID="e8e-N1-Cuo">
             <objects>
-                <tableViewController clearsSelectionOnViewWillAppear="NO" id="cCX-fZ-zB4" customClass="LectureListViewController" sceneMemberID="viewController">
+                <tableViewController clearsSelectionOnViewWillAppear="NO" id="cCX-fZ-zB4" customClass="NoteListViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Hfg-91-CBT">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -384,7 +373,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tug-dL-jYS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2568.75" y="359.25"/>
+            <point key="canvasLocation" x="4218" y="248.25"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="9o1-SO-unf">
@@ -402,7 +391,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rrk-9F-JWQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2643.75" y="994.5"/>
+            <point key="canvasLocation" x="3529.5" y="878.25"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="wdB-UV-dfs">
@@ -410,12 +399,12 @@
                 <splitViewController storyboardIdentifier="SearchViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uHf-Yh-apF" customClass="SearchViewController" sceneMemberID="viewController">
                     <connections>
                         <segue destination="Qsn-00-Ig4" kind="relationship" relationship="detailViewController" id="ltT-kO-2Zd"/>
-                        <segue destination="cCX-fZ-zB4" kind="relationship" relationship="masterViewController" id="fq0-AS-h6t"/>
+                        <segue destination="ZZa-dy-pkl" kind="relationship" relationship="masterViewController" id="Fkg-Lu-mc5"/>
                     </connections>
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gDH-xv-spo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2111.25" y="612"/>
+            <point key="canvasLocation" x="2794.5" y="513"/>
         </scene>
         <!--Note Detail-->
         <scene sceneID="kXf-dD-eZc">
@@ -440,7 +429,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xjd-du-Snu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2905.5" y="359.25"/>
+            <point key="canvasLocation" x="4893" y="248.25"/>
         </scene>
     </scenes>
     <resources>

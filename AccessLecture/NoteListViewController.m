@@ -29,7 +29,7 @@
 {
     static NSString* noteListViewControllerIdentifier = @"noteCell";
     UITableViewCell*  cell = [tableView dequeueReusableCellWithIdentifier:noteListViewControllerIdentifier];
-    
+
     if (!cell) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:noteListViewControllerIdentifier];
     cell.textLabel.text = [notes objectAtIndex:indexPath.row];
     return cell;
