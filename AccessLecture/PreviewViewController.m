@@ -68,9 +68,9 @@
     [_navigationItems enumerateObjectsUsingBlock:^(UIView *view, NSUInteger idx, BOOL *stop) {
         if (idx != 1) {
             [view autoSetDimensionsToSize:CGSizeMake(120, 100)];
+            [view autoAlignAxis:ALAxisLastBaseline toSameAxisOfView:view.superview];
+            [view autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:0 relation:NSLayoutRelationEqual];
         }
-        [view autoAlignAxis:ALAxisLastBaseline toSameAxisOfView:view.superview];
-        [view autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:0 relation:NSLayoutRelationEqual];
     }];
     
     [_navigationItems[0] autoPinEdgeToSuperviewEdge:ALEdgeLeft];
@@ -94,13 +94,29 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 10;
+    return 1;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    id cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"blankCell" forIndexPath:indexPath];
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"blankCell" forIndexPath:indexPath];
+    
+    UILabel *title = ({
+        UILabel *l = [[UILabel alloc] initForAutoLayout];
+        l.textAlignment = NSTextAlignmentCenter;
+        l.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
+        l.font = [UIFont systemFontOfSize:24];
+        l.text = _selectedLecture.metadata.dateCreated.description ?: @"No Creation date found";
+        l;
+    });
+    
+    [cell addSubview:title];
+    
+    [title autoPinEdgeToSuperviewEdge:ALEdgeLeft];
+    [title autoPinEdgeToSuperviewEdge:ALEdgeBottom];
 
+    [cell setNeedsUpdateConstraints];
+    
     return cell;
 }
 
