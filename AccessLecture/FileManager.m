@@ -137,7 +137,14 @@
         NSArray *sub = [evaluatedObject componentsSeparatedByString:@"."];
         return [sub[1] isEqualToString:AMLectutueFileExtention];
     }];
-    return [names filteredArrayUsingPredicate:dotLecture];
+    return [[names filteredArrayUsingPredicate:dotLecture] sortedArrayWithOptions:NSSortStable usingComparator:^NSComparisonResult(NSString *file1, NSString *file2) {
+        NSError *error;
+        NSDate *fileDate1;
+        NSDate *fileDate2;
+        [[NSURL URLWithString:file1] getResourceValue:&fileDate1 forKey:NSURLContentModificationDateKey error:&error];
+        [[NSURL URLWithString:file2] getResourceValue:&fileDate2 forKey:NSURLContentModificationDateKey error:&error];
+        return [fileDate2 compare:fileDate1];
+    }];
 }
 
 + (NSString *)localDocumentsDirectoryPath {
