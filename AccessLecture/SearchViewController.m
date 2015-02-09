@@ -91,15 +91,24 @@
 {
     NSString *path = [FileManager localDocumentsDirectoryPath];
     NSArray *contents = [FileManager listContentsOfDirectory:path];
+    NSString *lectureName;
     NSMutableArray *lec = [NSMutableArray new];
     for (NSString *file in contents) {
+        lectureName = file;
         NSString *title = [file componentsSeparatedByString:@"."][0];
         [lec addObject:title];
     }
     recents = lec;
     lectures = lec;
     
-    notes = [[NSArray alloc]initWithObjects:@"Note1", @"Note2", @"Note3", nil];
+    // Update side panel controller with lecture title
+    sidePanelController.title = [lectures objectAtIndex:0];
+    
+    // TODO: get lecture timestamp too
+    
+    // Get notes
+    AMLecture* currentLecture = [FileManager findDocumentWithName:lectureName];
+    notes = [[NSArray alloc]initWithArray:[currentLecture getNotes]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -119,7 +128,7 @@
     static NSString* searchViewControllerIdentifier = @"noteCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:searchViewControllerIdentifier forIndexPath:indexPath];
     if (!cell) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:searchViewControllerIdentifier];
-    cell.textLabel.text = [notes objectAtIndex:indexPath.row];
+    cell.textLabel.text = [lectures objectAtIndex:0];
     return cell;
 }
 

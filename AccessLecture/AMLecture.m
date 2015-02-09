@@ -67,4 +67,9 @@ static NSString *LectureKey = @"lecture";
     return [NSString stringWithFormat:@"AMLecture<%d> Title: '%@' number of notes %d", [super hash], _metadata.title, _lecture.notes.count];
 }
 
+- (NSArray *)getNotes
+{
+    return _lecture.notes;
+}
+
 @end
