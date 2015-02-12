@@ -109,6 +109,8 @@
 		4CD0A5EF177DC98600864228 /* ConnectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD0A5ED177DC98600864228 /* ConnectionViewController.m */; };
 		4CD0A5F8177E1D6800864228 /* StreamDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD0A5F7177E1D6800864228 /* StreamDrawing.m */; };
 		4CD7CE271A85630E00A9717F /* PreviewAnimationCordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD7CE261A85630E00A9717F /* PreviewAnimationCordinator.m */; };
+		4CD7CE2A1A8568CB00A9717F /* PreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD7CE291A8568CB00A9717F /* PreviewViewController.m */; };
+		4CD7CE2E1A85694F00A9717F /* Preview.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD7CE2D1A85694F00A9717F /* Preview.m */; };
 		4CDB053817B5567300D8EB85 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CDB053717B5567300D8EB85 /* CoreData.framework */; };
 		4CDB057D17B557C300D8EB85 /* AccessLecture.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4CDB057B17B557C300D8EB85 /* AccessLecture.xcdatamodeld */; };
 		4CDB058017B5589A00D8EB85 /* Favorites.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CDB057F17B5589A00D8EB85 /* Favorites.m */; };
@@ -315,6 +317,10 @@
 		4CD0A5F7177E1D6800864228 /* StreamDrawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamDrawing.m; sourceTree = "<group>"; };
 		4CD7CE251A85630E00A9717F /* PreviewAnimationCordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviewAnimationCordinator.h; sourceTree = "<group>"; };
 		4CD7CE261A85630E00A9717F /* PreviewAnimationCordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviewAnimationCordinator.m; sourceTree = "<group>"; };
+		4CD7CE281A8568CB00A9717F /* PreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviewViewController.h; sourceTree = "<group>"; };
+		4CD7CE291A8568CB00A9717F /* PreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviewViewController.m; sourceTree = "<group>"; };
+		4CD7CE2C1A85694F00A9717F /* Preview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Preview.h; sourceTree = "<group>"; };
+		4CD7CE2D1A85694F00A9717F /* Preview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Preview.m; sourceTree = "<group>"; };
 		4CDB053717B5567300D8EB85 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		4CDB057C17B557C300D8EB85 /* AccessLecture.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AccessLecture.xcdatamodel; sourceTree = "<group>"; };
 		4CDB057E17B5589A00D8EB85 /* Favorites.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Favorites.h; sourceTree = "<group>"; };
@@ -772,12 +778,15 @@
 		4C3BE5F11A72A8300017854C /* OpenViewController */ = {
 			isa = PBXGroup;
 			children = (
+				4CD7CE2B1A85693D00A9717F /* Views */,
 				4C4FA6F11A72CC8100161ABE /* OpenLectureController.h */,
 				4C4FA6F21A72CC8100161ABE /* OpenLectureController.m */,
 				4CFC4BEB1A76E72C001E2E27 /* NewLectureController.h */,
 				4CFC4BEC1A76E72C001E2E27 /* NewLectureController.m */,
 				4C46E6371A7FE23200087229 /* LoadingLectureCVC.h */,
 				4C46E6381A7FE23200087229 /* LoadingLectureCVC.m */,
+				4CD7CE281A8568CB00A9717F /* PreviewViewController.h */,
+				4CD7CE291A8568CB00A9717F /* PreviewViewController.m */,
 			);
 			name = OpenViewController;
 			sourceTree = "<group>";
@@ -912,6 +921,15 @@
 				4CD7CE261A85630E00A9717F /* PreviewAnimationCordinator.m */,
 			);
 			name = "Preview Animation";
+			sourceTree = "<group>";
+		};
+		4CD7CE2B1A85693D00A9717F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4CD7CE2C1A85694F00A9717F /* Preview.h */,
+				4CD7CE2D1A85694F00A9717F /* Preview.m */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		4CDB057A17B557AF00D8EB85 /* CoreData */ = {
@@ -1196,6 +1214,7 @@
 				4CD0A5F8177E1D6800864228 /* StreamDrawing.m in Sources */,
 				3F408C0D18BF94FD00F6B113 /* NSString+asciihexcodes.m in Sources */,
 				4C3BE5EA1A72973C0017854C /* RootMenuController.m in Sources */,
+				4CD7CE2E1A85694F00A9717F /* Preview.m in Sources */,
 				3F07C352187B3627005BC7EC /* TextNoteView.m in Sources */,
 				3F8FD2CB18AD33350059EF9C /* AddNote.m in Sources */,
 				3F8D99331880ACBE0061DEA2 /* NSString+TrimmingAdditions.m in Sources */,
@@ -1215,6 +1234,7 @@
 				4CCBC8DD17E222FF00CB303E /* Note.m in Sources */,
 				3F8FD2E418B3F7BF0059EF9C /* Promise.m in Sources */,
 				4C4FA6F01A72C52E00161ABE /* UINavigationBar+hight.m in Sources */,
+				4CD7CE2A1A8568CB00A9717F /* PreviewViewController.m in Sources */,
 				3FCD5D1715438472005F2A60 /* AccessLectureRuntime.m in Sources */,
 				4C3BE5ED1A729B760017854C /* MenuIconCell.m in Sources */,
 				4C62BECD175651DB00CAF4CF /* FileManager.m in Sources */,
