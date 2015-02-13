@@ -101,6 +101,7 @@
 		4C5C50CD177B7B7C0095801A /* LectureViewContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5C50CC177B7B7C0095801A /* LectureViewContainer.m */; };
 		4C62BECD175651DB00CAF4CF /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F99F1FA1543641E0065CBB9 /* FileManager.m */; };
 		4C8ABE78177C87BD007C934C /* StreamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8ABE76177C87BD007C934C /* StreamViewController.m */; };
+		4CBD62B51A89516500B6AC9E /* ContinueButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBD62B41A89516500B6AC9E /* ContinueButton.m */; };
 		4CBF5D871768DAD200746377 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11D217625F150066A4FA /* libicucore.dylib */; };
 		4CBF5D881768DAD500746377 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11D017625F0D0066A4FA /* CFNetwork.framework */; };
 		4CBF5D891768DAD700746377 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11CE17625F060066A4FA /* Security.framework */; };
@@ -109,7 +110,6 @@
 		4CD0A5F8177E1D6800864228 /* StreamDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD0A5F7177E1D6800864228 /* StreamDrawing.m */; };
 		4CD7CE271A85630E00A9717F /* PreviewAnimationCordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD7CE261A85630E00A9717F /* PreviewAnimationCordinator.m */; };
 		4CD7CE2A1A8568CB00A9717F /* PreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD7CE291A8568CB00A9717F /* PreviewViewController.m */; };
-		4CD7CE2E1A85694F00A9717F /* Preview.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD7CE2D1A85694F00A9717F /* Preview.m */; };
 		4CDB053817B5567300D8EB85 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CDB053717B5567300D8EB85 /* CoreData.framework */; };
 		4CDB057D17B557C300D8EB85 /* AccessLecture.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4CDB057B17B557C300D8EB85 /* AccessLecture.xcdatamodeld */; };
 		4CDB058017B5589A00D8EB85 /* Favorites.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CDB057F17B5589A00D8EB85 /* Favorites.m */; };
@@ -312,6 +312,8 @@
 		4C5C50CC177B7B7C0095801A /* LectureViewContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LectureViewContainer.m; sourceTree = "<group>"; };
 		4C8ABE75177C87BD007C934C /* StreamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamViewController.h; sourceTree = "<group>"; };
 		4C8ABE76177C87BD007C934C /* StreamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamViewController.m; sourceTree = "<group>"; };
+		4CBD62B31A89516500B6AC9E /* ContinueButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContinueButton.h; sourceTree = "<group>"; };
+		4CBD62B41A89516500B6AC9E /* ContinueButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContinueButton.m; sourceTree = "<group>"; };
 		4CD0A5EC177DC98600864228 /* ConnectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionViewController.h; sourceTree = "<group>"; };
 		4CD0A5ED177DC98600864228 /* ConnectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionViewController.m; sourceTree = "<group>"; };
 		4CD0A5F6177E1D6800864228 /* StreamDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamDrawing.h; sourceTree = "<group>"; };
@@ -320,8 +322,6 @@
 		4CD7CE261A85630E00A9717F /* PreviewAnimationCordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviewAnimationCordinator.m; sourceTree = "<group>"; };
 		4CD7CE281A8568CB00A9717F /* PreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviewViewController.h; sourceTree = "<group>"; };
 		4CD7CE291A8568CB00A9717F /* PreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviewViewController.m; sourceTree = "<group>"; };
-		4CD7CE2C1A85694F00A9717F /* Preview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Preview.h; sourceTree = "<group>"; };
-		4CD7CE2D1A85694F00A9717F /* Preview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Preview.m; sourceTree = "<group>"; };
 		4CDB053717B5567300D8EB85 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		4CDB057C17B557C300D8EB85 /* AccessLecture.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AccessLecture.xcdatamodel; sourceTree = "<group>"; };
 		4CDB057E17B5589A00D8EB85 /* Favorites.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Favorites.h; sourceTree = "<group>"; };
@@ -821,6 +821,8 @@
 				4CFC4BEF1A76E961001E2E27 /* CheckButton.m */,
 				4CFC4BF11A795500001E2E27 /* ALTextField.h */,
 				4CFC4BF21A795500001E2E27 /* ALTextField.m */,
+				4CBD62B31A89516500B6AC9E /* ContinueButton.h */,
+				4CBD62B41A89516500B6AC9E /* ContinueButton.m */,
 			);
 			path = AccessLectureKit;
 			sourceTree = "<group>";
@@ -937,8 +939,6 @@
 		4CD7CE2B1A85693D00A9717F /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				4CD7CE2C1A85694F00A9717F /* Preview.h */,
-				4CD7CE2D1A85694F00A9717F /* Preview.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1225,7 +1225,6 @@
 				4CD0A5F8177E1D6800864228 /* StreamDrawing.m in Sources */,
 				3F408C0D18BF94FD00F6B113 /* NSString+asciihexcodes.m in Sources */,
 				4C3BE5EA1A72973C0017854C /* RootMenuController.m in Sources */,
-				4CD7CE2E1A85694F00A9717F /* Preview.m in Sources */,
 				3F07C352187B3627005BC7EC /* TextNoteView.m in Sources */,
 				3F8FD2CB18AD33350059EF9C /* AddNote.m in Sources */,
 				3F8D99331880ACBE0061DEA2 /* NSString+TrimmingAdditions.m in Sources */,
@@ -1299,6 +1298,7 @@
 				4CFC4BE11A76CFDF001E2E27 /* NewLectureButton.m in Sources */,
 				4C4FA6FD1A76C14400161ABE /* AccessLectureKit.m in Sources */,
 				4CFC4BF31A795500001E2E27 /* ALTextField.m in Sources */,
+				4CBD62B51A89516500B6AC9E /* ContinueButton.m in Sources */,
 				4CFC4BE41A76D28D001E2E27 /* SearchButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
