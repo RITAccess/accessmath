@@ -15,7 +15,6 @@
 @interface DocumentCreator ()
 
 @property (weak, nonatomic) IBOutlet RPFloatingPlaceholderTextField *docName;
-
 @property (strong, nonatomic) StatusMark *titleValid;
 @property (weak, nonatomic) IBOutlet UILabel *titleSubtext;
 
@@ -42,6 +41,7 @@
 {
     [super didReceiveMemoryWarning];
 }
+
 #pragma mark Animations
 
 - (void)validTitleAnimation
@@ -67,9 +67,7 @@
     NSRange range = NSMakeRange(0, _docName.text.length);
     NSString *pattern = @"[.!@#$%^&*=+~{}\\|/<>`]";
     NSError *err;
-    
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&err];
-    
     NSArray *matches = [regex matchesInString:_docName.text options:0 range:range];
     
     if (matches.count == 0) {
