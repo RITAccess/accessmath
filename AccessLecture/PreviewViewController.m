@@ -48,7 +48,7 @@
     
     UIButton *cont = ({
         UIButton *b = [ContinueButton buttonWithType:UIButtonTypeRoundedRect];
-//        [b addTarget:self action:@selector(new) forControlEvents:UIControlEventTouchUpInside];
+        [b addTarget:self action:@selector(goToNewLecture) forControlEvents:UIControlEventTouchUpInside];
         b.accessibilityValue = @"continue";
         b;
     });
@@ -59,6 +59,11 @@
     }];
     
     [self.navigationController.navigationBar setNeedsUpdateConstraints];
+}
+
+- (void)goToNewLecture
+{
+    // TODO: dismiss preview and push new lecture view controller onto stack
 }
 
 - (void)updateViewConstraints
