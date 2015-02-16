@@ -15,7 +15,6 @@
 @interface DocumentCreator ()
 
 @property (weak, nonatomic) IBOutlet RPFloatingPlaceholderTextField *docName;
-
 @property (strong, nonatomic) StatusMark *titleValid;
 @property (weak, nonatomic) IBOutlet UILabel *titleSubtext;
 
@@ -26,16 +25,12 @@
 - (id)init
 {
     self = [super initWithNibName:@"DocumentCreator" bundle:nil];
-    if (self) {
-        //
-    }
     return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
     _titleValid = [[StatusMark alloc] initWithPoint:CGPointMake(72, 125)];
     _titleValid.hidden = YES;
     _titleSubtext.hidden = YES;
@@ -45,8 +40,8 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
+
 #pragma mark Animations
 
 - (void)validTitleAnimation
@@ -72,9 +67,7 @@
     NSRange range = NSMakeRange(0, _docName.text.length);
     NSString *pattern = @"[.!@#$%^&*=+~{}\\|/<>`]";
     NSError *err;
-    
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&err];
-    
     NSArray *matches = [regex matchesInString:_docName.text options:0 range:range];
     
     if (matches.count == 0) {

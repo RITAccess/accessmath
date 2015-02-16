@@ -9,7 +9,6 @@
 @import ObjectiveC;
 
 #import "SearchViewController.h"
-#import "LectureListViewController.h"
 #import "Promise.h"
 #import "AMLecture.h"
 #import "FileManager.h"
@@ -29,6 +28,7 @@
     UIViewController *mainController;
     NSArray *recents;
     NSArray *lectures;
+    NSArray *notes;
 }
 
 - (void)viewDidLoad
@@ -41,14 +41,8 @@
 
     sidePanelController.tableView.dataSource = self;
     [sidePanelController.tableView reloadData];
-    sidePanelController.title = @"Browse Lectures";
 
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    mainController.view.transform = CGAffineTransformMakeScale(0.6, 0.6);
-//    mainController.view.backgroundColor = [UIColor grayColor];
+    [self loadLectures];
 }
 
 #pragma mark Method replacement
@@ -76,15 +70,15 @@
 {
     SearchViewController *controller = (SearchViewController *)self.parentViewController.parentViewController;
     [controller tableViewCell:sender becameActivePanel:YES];
-    LectureListViewController *vc = segue.destinationViewController;
-    vc.lectureName = sender.textLabel.text;
+//    LectureListViewController *vc = segue.destinationViewController;
+//    vc.lectureName = sender.textLabel.text;
 
 }
 
 - (void)tableViewCell:(UITableViewCell *)cell becameActivePanel:(BOOL)active
 {
     UIView *mainView = mainController.view;
-    mainView.backgroundColor = [UIColor whiteColor];
+    mainView.backgroundColor = [UIColor blueColor];
     [UIView animateWithDuration:0.2 delay:1.0 options:UIViewAnimationCurveEaseInOut animations:^{
         mainView.transform = CGAffineTransformIdentity;
     } completion:nil];
@@ -97,55 +91,47 @@
 {
     NSString *path = [FileManager localDocumentsDirectoryPath];
     NSArray *contents = [FileManager listContentsOfDirectory:path];
+    NSString *lectureName;
     NSMutableArray *lec = [NSMutableArray new];
     for (NSString *file in contents) {
+        lectureName = file;
         NSString *title = [file componentsSeparatedByString:@"."][0];
         [lec addObject:title];
     }
     recents = lec;
     lectures = lec;
+    
+    // Update side panel controller with lecture title
+    sidePanelController.title = [lectures objectAtIndex:0];
+    
+    // TODO: get lecture timestamp too
+    
+    // Get notes
+    AMLecture* currentLecture = [FileManager findDocumentWithName:lectureName];
+    notes = [[NSArray alloc]initWithArray:[currentLecture getNotes]];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Side Panel TableView DataSouce
 
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return notes.count;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"basicCell" forIndexPath:indexPath];
-    if (indexPath.section == 0) {
-        cell.textLabel.text = recents[indexPath.row];
-    } else if (indexPath.section == 1) {
-        cell.textLabel.text = lectures[indexPath.row];
-    }
+    static NSString* searchViewControllerIdentifier = @"noteCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:searchViewControllerIdentifier forIndexPath:indexPath];
+    if (!cell) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:searchViewControllerIdentifier];
+    cell.textLabel.text = [lectures objectAtIndex:0];
     return cell;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    if (section == 0) {
-        return @"Recent";
-    } else if (section == 1) {
-        return @"All Document";
-    }
-    return @"";
-}
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    if (section == 0) {
-        return recents.count;
-    }
-    return lectures.count;
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 2;
-}
 
 @end

@@ -23,4 +23,6 @@ static NSString *const AMLectutueFileExtention = @"lec";
 - (void)save;
 - (void)saveWithCompletetion:(void(^)(BOOL success))completion;
 
+- (NSArray*)getNotes;
+
 @end

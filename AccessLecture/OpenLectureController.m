@@ -266,7 +266,6 @@ static NSString * const reuseIdentifier = @"lecture";
     NSLog(@"DEBUG: %@", _selectedLecture);
     switch (reg.numberOfTapsRequired) {
         case 1:
-            NSLog(@"DEBUG: Single Tap");
             [self performSegueWithIdentifier:@"showPreview" sender:_selectedLecture];
             break;
         case 2:

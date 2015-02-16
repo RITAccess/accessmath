@@ -51,12 +51,10 @@ static NSString *LectureKey = @"lecture";
 - (id)contentsForType:(NSString *)typeName error:(NSError *__autoreleasing *)outError
 {
     NSMutableData *archivedData = [[NSMutableData alloc] init];
-    
     NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:archivedData];
     
     [archiver encodeObject:_metadata forKey:MetaKey];
     [archiver encodeObject:_lecture forKey:LectureKey];
-    
     [archiver finishEncoding];
     
     return (NSData *)archivedData;
@@ -65,6 +63,11 @@ static NSString *LectureKey = @"lecture";
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"AMLecture<%d> Title: '%@' number of notes %d", [super hash], _metadata.title, _lecture.notes.count];
+}
+
+- (NSArray *)getNotes
+{
+    return _lecture.notes;
 }
 
 @end
