@@ -26,16 +26,12 @@
 - (id)init
 {
     self = [super initWithNibName:@"DocumentCreator" bundle:nil];
-    if (self) {
-        //
-    }
     return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
     _titleValid = [[StatusMark alloc] initWithPoint:CGPointMake(72, 125)];
     _titleValid.hidden = YES;
     _titleSubtext.hidden = YES;
@@ -45,7 +41,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 #pragma mark Animations
 
