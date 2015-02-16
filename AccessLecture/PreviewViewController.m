@@ -23,7 +23,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     self.view.backgroundColor = [AccessLectureKit accessBlue];
     [self setUpNavigation];
 }
@@ -55,7 +54,6 @@
     });
     
     _navigationItems = @[back, title, cont];
-    
     [_navigationItems enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         [self.navigationController.navigationBar addSubview:obj];
     }];
@@ -80,9 +78,9 @@
     [super updateViewConstraints];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark <UICollectionViewDataSource, UIBarPositioningDelegate>
@@ -111,12 +109,10 @@
     });
     
     [cell addSubview:title];
-    
     [title autoPinEdgeToSuperviewEdge:ALEdgeLeft];
     [title autoPinEdgeToSuperviewEdge:ALEdgeBottom];
-
     [cell setNeedsUpdateConstraints];
-    
+
     return cell;
 }
 
