@@ -190,6 +190,8 @@
         failure(err);
     } else {
         __block AMLecture *newDoc = [[AMLecture alloc] initWithFileURL:[NSURL fileURLWithPath:filePath]];
+        newDoc.metadata.title = name;
+        newDoc.metadata.dateCreated = [NSDate new];
         [newDoc saveToURL:newDoc.fileURL forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL status) {
             if (status) {
                 NSLog(@"Created document instance %@", newDoc);
