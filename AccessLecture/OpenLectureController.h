@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "NewLectureController.h"
+#import "PreviewViewController.h"
 
-@interface OpenLectureController : UICollectionViewController <NewLetureVCDelegate, UIViewControllerContextTransitioning>
+@interface OpenLectureController : UICollectionViewController <NewLetureVCDelegate, UIViewControllerContextTransitioning, CreateAndPresentLecture>
 
 @end

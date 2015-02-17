@@ -38,10 +38,23 @@ static NSString * const reuseIdentifier = @"lecture";
 {
     [super viewDidLoad];
     
+    [self setUpDelegate];
+    
     [self setUpNavigation];
     
     [self loadDocumentPreviews];
-    
+}
+
+- (void)setUpDelegate
+{
+    PreviewViewController *pvc = [PreviewViewController new];
+    pvc.delegate = self;
+    [pvc dismissPreviewAndGoToLecture];  // TODO: does this need to be called?
+}
+
+- (void)goToNewLecture:(AMLecture *)lecture
+{
+    [self performSegueWithIdentifier:@"toLecture" sender:lecture];
 }
 
 - (void)loadDocumentPreviews
@@ -113,6 +126,9 @@ static NSString * const reuseIdentifier = @"lecture";
 {
     if ([segue.identifier isEqualToString:@"newLecture"]) {
         ((NewLectureController *)segue.destinationViewController).delegate = self;
+    }
+    if ([segue.identifier isEqualToString:@"toLecture"]) {
+//        ((LectureController *)segue.destinationViewController).delegate = self;
     }
     if ([segue.identifier isEqualToString:@"showPreview"]) {
         
@@ -270,6 +286,7 @@ static NSString * const reuseIdentifier = @"lecture";
             break;
         case 2:
             NSLog(@"DEBUG: Double Tap");
+            [self performSegueWithIdentifier:@"toLecture" sender:_selectedLecture];
         default:
             break;
     }

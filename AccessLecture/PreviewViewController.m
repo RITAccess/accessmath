@@ -11,10 +11,7 @@
 #import "PureLayout.h"
 #import "NavBackButton.h"
 #import "ContinueButton.h"
-
-@interface PreviewViewController ()
-
-@end
+#import "OpenLectureController.h"
 
 @implementation PreviewViewController
 {
@@ -25,6 +22,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [AccessLectureKit accessBlue];
     [self setUpNavigation];
+    _delegate = [OpenLectureController new];
 }
 
 - (void)setUpNavigation
@@ -48,7 +46,7 @@
     
     UIButton *cont = ({
         UIButton *b = [ContinueButton buttonWithType:UIButtonTypeRoundedRect];
-        [b addTarget:self action:@selector(goToNewLecture) forControlEvents:UIControlEventTouchUpInside];
+        [b addTarget:self action:@selector(dismissPreviewAndGoToLecture) forControlEvents:UIControlEventTouchUpInside];
         b.accessibilityValue = @"continue";
         b;
     });
@@ -61,9 +59,11 @@
     [self.navigationController.navigationBar setNeedsUpdateConstraints];
 }
 
-- (void)goToNewLecture
+- (void)dismissPreviewAndGoToLecture
 {
-    // TODO: dismiss preview and push new lecture view controller onto stack
+    [self dismissViewControllerAnimated:NO completion:^(void){
+        [_delegate goToNewLecture:_selectedLecture];
+    }];
 }
 
 - (void)updateViewConstraints
