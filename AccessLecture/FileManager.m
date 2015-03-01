@@ -52,9 +52,6 @@
     if (_document == nil) {
         // Document wasn't loaded
         [self promptUserToPickDocument];
-    } else {
-        // Otherwise return the open document
-        lectureLoaded(_document);
     }
 }
 
@@ -92,7 +89,7 @@
 /**
  * Called by FileMangerViewController when document is choosen
  */
-- (void)openDocumentForEditing:(NSString *)docName
+- (void)openDocumentForEditing:(NSString *)docName completion:(void(^)(AMLecture *lecture))completion  
 {
     _document = [FileManager findDocumentWithName:docName];
     if (_document == nil) {
@@ -100,7 +97,7 @@
     } else {
         [_document openWithCompletionHandler:^(BOOL success) {
             if (success) {
-                lectureLoaded(_document);
+                completion(_document);
             } else {
                 NSLog(@"Something when wrong opening the docuement");
             }
@@ -181,6 +178,7 @@
 + (void)createDocumentWithName:(NSString *) name success:(void (^)(AMLecture *current)) success failure:(void (^)(NSError *error)) failure
 {
     assert(success);
+    
     assert(failure);
     
     NSString *docsDir = [FileManager localDocumentsDirectoryPath];

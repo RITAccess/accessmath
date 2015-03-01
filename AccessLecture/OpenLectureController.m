@@ -251,7 +251,9 @@ static NSString * const reuseIdentifier = @"lecture";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    _selectedLecture = [FileManager findDocumentWithName:_documentTitles[indexPath.row]];
+    [[FileManager defaultManager] openDocumentForEditing:_documentTitles[indexPath.row] completion:^(AMLecture *lecture) {
+        _selectedLecture = lecture;
+    }];
 }
 
 - (void)cellDidTap:(UITapGestureRecognizer *)reg

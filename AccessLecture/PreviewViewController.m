@@ -25,6 +25,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [AccessLectureKit accessBlue];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
     [self setUpNavigation];
 }
 
