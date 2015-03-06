@@ -283,21 +283,8 @@ static NSString * const reuseIdentifier = @"lecture";
 
 - (void)cellDidTap:(UITapGestureRecognizer *)reg
 {
-    /**
-     * Did select isn't garenteed to get called before cellDidTap, and even if it does
-     * it's not garenteed that the lecture will have been loaded fully. Remember, the
-     * root of all evil is shared mutable state. :/
-     */
-    assert(_selectedLecture);
     [_selectedLecture when:^(AMLecture *lecture) {
-        switch (reg.numberOfTapsRequired) {
-            case 1:
-                [self performSegueWithIdentifier:@"showPreview" sender:lecture];
-                break;
-            case 2:
-            default:
-                break;
-        }
+        [self performSegueWithIdentifier:@"showPreview" sender:lecture];
     }];
 }
 
