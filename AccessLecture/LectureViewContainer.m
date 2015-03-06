@@ -16,6 +16,14 @@
 
 #import "Promise.h"
 
+#import "ALView+PureLayout.h"
+#import "NSArray+PureLayout.h"
+#import "NavBackButton.h"
+#import "SaveButton.h"
+#import "SearchButton.h"
+#import "BrushButton.h"
+#import "AMLecture.h"
+
 #pragma mark Lecture Container Class
 
 @interface LectureViewContainer ()
@@ -37,6 +45,8 @@
 {
     @private
     dispatch_once_t onceToken;
+    NSArray *_navigationItems;
+    AMLecture* _selectedLecture;
 }
 
 #pragma mark Load and Setup
@@ -65,6 +75,8 @@
     [self.view bringSubviewToFront:_navigationbar];
     
     _dvc.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    
+    [self setUpNavigation];
 }
 
 - (void)moveControlTo:(UIViewController<LectureViewChild> *)vc
@@ -75,9 +87,70 @@
 }
 
 
+// TODO: reusable would be nice
+- (void)setUpNavigation
+{
+    UIButton *back = ({
+        UIButton *b = [NavBackButton buttonWithType:UIButtonTypeRoundedRect];
+        [b addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+        b.accessibilityValue = @"back";
+        b;
+    });
+    
+    UIButton *save = ({
+        UIButton *b = [SaveButton buttonWithType:UIButtonTypeRoundedRect];
+        [b addTarget:self action:@selector(new) forControlEvents:UIControlEventTouchUpInside];
+        b.accessibilityValue = @"save lecture";
+        b;
+    });
+    
+    UIButton *search = ({
+        UIButton *b = [SearchButton buttonWithType:UIButtonTypeRoundedRect];
+        [b addTarget:self action:@selector(presentSearch) forControlEvents:UIControlEventTouchUpInside];
+        b.accessibilityValue = @"search";
+        b;
+    });
+    
+    
+    UIButton *brush = ({
+        UIButton *b = [BrushButton buttonWithType:UIButtonTypeRoundedRect];
+        b.accessibilityValue = @"draw";
+        b;
+    });
+    
+    _navigationItems = @[back, save, search, brush];
+    
+    [_navigationItems enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [self.navigationController.navigationBar addSubview:obj];
+    }];
+    
+    [self.navigationController.navigationBar setNeedsUpdateConstraints];
+}
+
+- (void)updateViewConstraints
+{
+    [_navigationItems enumerateObjectsUsingBlock:^(UIView *view, NSUInteger idx, BOOL *stop) {
+        [view autoSetDimensionsToSize:CGSizeMake(120, 100)];
+        [view autoAlignAxis:ALAxisLastBaseline toSameAxisOfView:view.superview];
+        [view autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:0 relation:NSLayoutRelationEqual];
+    }];
+    
+    [_navigationItems.firstObject autoPinEdgeToSuperviewEdge:ALEdgeLeft];
+    UIView *previous = nil;
+    for (UIView *view in _navigationItems) {
+        if (previous) {
+            [view autoPinEdge:ALEdgeLeft toEdge:ALEdgeRight ofView:previous];
+        }
+        previous = view;
+    }
+    
+    [super updateViewConstraints];
+}
+
+
 #pragma mark Actions
 
-- (void)backNavigation
+- (void)back
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -90,6 +163,12 @@
     UIWindow *window = UIApplication.sharedApplication.delegate.window;
     window.rootViewController = search;
     [window makeKeyWindow];
+}
+
+- (void)presentSearch
+{
+    // TODO: fix navbar on split + nav controller for search
+    [self performSegueWithIdentifier:@"toSearch" sender:_selectedLecture];
 }
 
 // TODO - Switch to stack based with a push and pop controller type maybe?

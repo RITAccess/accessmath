@@ -12,6 +12,9 @@
 #import "Promise.h"
 #import "AMLecture.h"
 #import "FileManager.h"
+#import "ALView+PureLayout.h"
+#import "NSArray+PureLayout.h"
+#import "NavBackButton.h"
 
 #define TRANSFORM_OFFSCREEN 2000
 
@@ -29,6 +32,7 @@
     NSArray *recents;
     NSArray *lectures;
     NSArray *notes;
+    NSArray *_navigationItems;
 }
 
 - (void)viewDidLoad
@@ -43,6 +47,46 @@
     [sidePanelController.tableView reloadData];
 
     [self loadLectures];
+
+    // TODO: integrate navbar w/ splitview + navigation controller
+    [self setUpNavigation];
+}
+
+- (void)setUpNavigation
+{
+    UIButton *back = ({
+        UIButton *b = [NavBackButton buttonWithType:UIButtonTypeRoundedRect];
+        [b addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+        b.accessibilityValue = @"back";
+        b;
+    });
+    
+    _navigationItems = @[back];
+    
+    [_navigationItems enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [self.splitViewController.navigationController.navigationBar addSubview:obj];
+    }];
+        [self.splitViewController.navigationController.navigationBar setNeedsUpdateConstraints];
+}
+
+- (void)updateViewConstraints
+{
+    [_navigationItems enumerateObjectsUsingBlock:^(UIView *view, NSUInteger idx, BOOL *stop) {
+        [view autoSetDimensionsToSize:CGSizeMake(120, 100)];
+        [view autoAlignAxis:ALAxisLastBaseline toSameAxisOfView:view.superview];
+        [view autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:0 relation:NSLayoutRelationEqual];
+    }];
+    
+    [_navigationItems.firstObject autoPinEdgeToSuperviewEdge:ALEdgeLeft];
+    UIView *previous = nil;
+    for (UIView *view in _navigationItems) {
+        if (previous) {
+            [view autoPinEdge:ALEdgeLeft toEdge:ALEdgeRight ofView:previous];
+        }
+        previous = view;
+    }
+    
+    [super updateViewConstraints];
 }
 
 #pragma mark Method replacement
