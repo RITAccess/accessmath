@@ -22,6 +22,9 @@
 #import "Promise.h"
 #import "Deferred.h"
 
+#import "LectureViewContainer.h"
+
+
 @interface OpenLectureController ()
 
 @end
@@ -132,7 +135,9 @@ static NSString * const reuseIdentifier = @"lecture";
         ((NewLectureController *)segue.destinationViewController).delegate = self;
     }
     if ([segue.identifier isEqualToString:@"toLecture"]) {
-//        ((LectureController *)segue.destinationViewController).delegate = self;
+        UINavigationController *nav = [segue destinationViewController];
+        LectureViewContainer *lvc = (LectureViewContainer *)nav.topViewController;
+        lvc.selectedLecture = sender;
     }
     if ([segue.identifier isEqualToString:@"showPreview"]) {
         ((PreviewViewController *)((UINavigationController *)segue.destinationViewController).childViewControllers.firstObject).selectedLecture = (AMLecture *)sender;

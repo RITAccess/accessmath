@@ -24,6 +24,8 @@
 #import "BrushButton.h"
 #import "AMLecture.h"
 
+#import "SearchViewController.h"
+
 #pragma mark Lecture Container Class
 
 @interface LectureViewContainer ()
@@ -46,7 +48,6 @@
     @private
     dispatch_once_t onceToken;
     NSArray *_navigationItems;
-    AMLecture* _selectedLecture;
 }
 
 #pragma mark Load and Setup
@@ -77,6 +78,13 @@
     _dvc.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     
     [self setUpNavigation];
+    
+    NSLog(@"Lecture view container lecture: %@", _selectedLecture);
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [_ntvc lectureContainer:self switchedToDocument:_selectedLecture];
 }
 
 - (void)moveControlTo:(UIViewController<LectureViewChild> *)vc
@@ -99,7 +107,7 @@
     
     UIButton *save = ({
         UIButton *b = [SaveButton buttonWithType:UIButtonTypeRoundedRect];
-        [b addTarget:self action:@selector(new) forControlEvents:UIControlEventTouchUpInside];
+        [b addTarget:self action:@selector(saveLecture) forControlEvents:UIControlEventTouchUpInside];
         b.accessibilityValue = @"save lecture";
         b;
     });
@@ -150,8 +158,16 @@
 
 #pragma mark Actions
 
+- (void)saveLecture
+{
+    [_selectedLecture saveWithCompletetion:^(BOOL success) {
+        
+    }];
+}
+
 - (void)back
 {
+    [self saveLecture];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -167,8 +183,14 @@
 
 - (void)presentSearch
 {
-    // TODO: fix navbar on split + nav controller for search
     [self performSegueWithIdentifier:@"toSearch" sender:_selectedLecture];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"toSearch"]) {
+        ((SearchViewController *)[segue destinationViewController]).selectedLecture = sender;
+    }
 }
 
 // TODO - Switch to stack based with a push and pop controller type maybe?
@@ -187,14 +209,14 @@
 
 - (void)openLectureAction:(id)sender
 {
-    [_ntvc lectureContainer:self switchedToDocument:nil];
-    [FileManager.defaultManager forceSave];
-    Promise *closed = [FileManager.defaultManager finishedWithDocument];
-    [closed wait:10]; // Should block till closed doc
-    Promise *lecture = [FileManager.defaultManager currentDocumentPromise];
-    [lecture when:^(AMLecture *newlecture) {
-        [_ntvc lectureContainer:self switchedToDocument:newlecture];
-    }];
+//    [_ntvc lectureContainer:self switchedToDocument:nil];
+//    [FileManager.defaultManager forceSave];
+//    Promise *closed = [FileManager.defaultManager finishedWithDocument];
+//    [closed wait:10]; // Should block till closed doc
+//    Promise *lecture = [FileManager.defaultManager currentDocumentPromise];
+//    [lecture when:^(AMLecture *newlecture) {
+//        [_ntvc lectureContainer:self switchedToDocument:newlecture];
+//    }];
 }
 
 - (void)actionFromMenu:(MTRadialMenu *)menu

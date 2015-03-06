@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <MTRadialMenu/MTRadialMenu.h>
+#import "AMLecture.h"
 
 static NSString *const LectureViewContainerSBID = @"lectureVC";
 
@@ -65,5 +66,7 @@ extern void VectorApplyScale(CGFloat scale, Vector *vector);
 @end
 
 @interface LectureViewContainer : UIViewController
+
+@property AMLecture* selectedLecture;
 
 @end
