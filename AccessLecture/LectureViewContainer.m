@@ -135,7 +135,7 @@
 - (void)saveLecture
 {
     [_selectedLecture saveWithCompletetion:^(BOOL success) {
-        
+        NSAssert(success, @"Lecture did not save.");
     }];
 }
 
