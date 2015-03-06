@@ -10,10 +10,8 @@
 #import "LectureViewContainer.h"
 #import "StreamViewController.h"
 #import "NoteTakingViewController.h"
-#import "LectureNavbar.h"
-#import "FileManager.h"
-#import "DrawMode.h"
-
+#import "SearchViewController.h"
+#import "AMLecture.h"
 #import "Promise.h"
 
 #import "ALView+PureLayout.h"
@@ -22,23 +20,16 @@
 #import "SaveButton.h"
 #import "SearchButton.h"
 #import "BrushButton.h"
-#import "AMLecture.h"
 
-#import "SearchViewController.h"
-
-#pragma mark Lecture Container Class
+#pragma mark - Lecture Container Class
 
 @interface LectureViewContainer ()
 
 @property (weak) AMLecture *document;
-
-@property (weak, nonatomic) IBOutlet LectureNavbar *navigationbar;
 @property (strong, nonatomic) MTRadialMenu *actionMenu;
-
 @property (strong) DrawViewController *dvc;
 @property (strong) StreamViewController *svc;
 @property (strong) NoteTakingViewController *ntvc;
-
 @property (weak) UIViewController<LectureViewChild> *active;
 
 @end
@@ -50,52 +41,37 @@
     NSArray *_navigationItems;
 }
 
-#pragma mark Load and Setup
+#pragma mark - Load and Setup
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Add button outlets
-    [_navigationbar.openButton addTarget:self action:@selector(openLectureAction:) forControlEvents:UIControlEventTouchUpInside];
-    [_navigationbar.drawingToggle addTarget:self action:@selector(toggledDrawMode:) forControlEvents:UIControlEventValueChanged];
-    [_navigationbar.backButton addTarget:self action:@selector(backNavigation) forControlEvents:UIControlEventTouchUpInside];
-    [_navigationbar.searchButton addTarget:self action:@selector(openSearchAction) forControlEvents:UIControlEventTouchUpInside];
 
     // Add Controllers
     dispatch_once(&onceToken, ^{
         _dvc = [[DrawViewController alloc] initWithNibName:@"DrawViewController" bundle:nil];
         _ntvc = [NoteTakingViewController loadFromStoryboard];
     });
-    
     [self addChildViewController:_dvc];
     [self addChildViewController:_ntvc];
-    
+    [self.view addSubview:_ntvc.view];
+
     _ntvc.view.backgroundColor = [UIColor clearColor];
     _ntvc.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    [self.view addSubview:_ntvc.view];
-    [self.view bringSubviewToFront:_navigationbar];
-    
     _dvc.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     
     [self setUpNavigation];
-    
-    NSLog(@"Lecture view container lecture: %@", _selectedLecture);
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    // Refresh the view with the currently selected lecture
     [_ntvc lectureContainer:self switchedToDocument:_selectedLecture];
 }
 
-- (void)moveControlTo:(UIViewController<LectureViewChild> *)vc
-{
-    [self.view addSubview:[vc contentView]];
-    _active = vc;
-    [self.view bringSubviewToFront:_navigationbar];
-}
-
-
 // TODO: reusable would be nice
+#pragma mark - Navbar Setup
+
 - (void)setUpNavigation
 {
     UIButton *back = ({
@@ -119,7 +95,6 @@
         b;
     });
     
-    
     UIButton *brush = ({
         UIButton *b = [BrushButton buttonWithType:UIButtonTypeRoundedRect];
         b.accessibilityValue = @"draw";
@@ -127,7 +102,6 @@
     });
     
     _navigationItems = @[back, save, search, brush];
-    
     [_navigationItems enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         [self.navigationController.navigationBar addSubview:obj];
     }];
@@ -156,7 +130,7 @@
 }
 
 
-#pragma mark Actions
+#pragma mark - Navbar Actions
 
 - (void)saveLecture
 {
@@ -169,16 +143,6 @@
 {
     [self saveLecture];
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)openSearchAction
-{
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-    UIViewController *search = [sb instantiateViewControllerWithIdentifier:@"SearchViewController"];
-    
-    UIWindow *window = UIApplication.sharedApplication.delegate.window;
-    window.rootViewController = search;
-    [window makeKeyWindow];
 }
 
 - (void)presentSearch
@@ -195,29 +159,17 @@
 
 // TODO - Switch to stack based with a push and pop controller type maybe?
 // TODO - disable if off
-- (void)toggledDrawMode:(MKToggleButton *)sender
-{
-    [_dvc hideToolbar:!sender.selected];
-    if (sender.selected) {
-        [_dvc displayToolbarWithAnimation:YES];
-        [self moveControlTo:_dvc];
-    } else {
-        [_dvc dismissToolbarWithAnimation:YES];
-        [self.view sendSubviewToBack:_dvc.view];
-    }
-}
-
-- (void)openLectureAction:(id)sender
-{
-//    [_ntvc lectureContainer:self switchedToDocument:nil];
-//    [FileManager.defaultManager forceSave];
-//    Promise *closed = [FileManager.defaultManager finishedWithDocument];
-//    [closed wait:10]; // Should block till closed doc
-//    Promise *lecture = [FileManager.defaultManager currentDocumentPromise];
-//    [lecture when:^(AMLecture *newlecture) {
-//        [_ntvc lectureContainer:self switchedToDocument:newlecture];
-//    }];
-}
+//- (void)toggledDrawMode:(MKToggleButton *)sender
+//{
+//    [_dvc hideToolbar:!sender.selected];
+//    if (sender.selected) {
+//        [_dvc displayToolbarWithAnimation:YES];
+//        [self moveControlTo:_dvc];
+//    } else {
+//        [_dvc dismissToolbarWithAnimation:YES];
+//        [self.view sendSubviewToBack:_dvc.view];
+//    }
+//}
 
 - (void)actionFromMenu:(MTRadialMenu *)menu
 {
@@ -228,6 +180,12 @@
             [self moveControlTo:_dvc];
         }
     }
+}
+
+- (void)moveControlTo:(UIViewController<LectureViewChild> *)vc
+{
+    [self.view addSubview:[vc contentView]];
+    _active = vc;
 }
 
 @end
