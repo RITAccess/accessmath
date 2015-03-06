@@ -22,6 +22,9 @@
 #import "Promise.h"
 #import "Deferred.h"
 
+#import "LectureViewContainer.h"
+
+
 @interface OpenLectureController ()
 
 @end
@@ -42,10 +45,23 @@ static NSString * const reuseIdentifier = @"lecture";
 {
     [super viewDidLoad];
     
+    [self setUpDelegate];
+    
     [self setUpNavigation];
     
     [self loadDocumentPreviews];
-    
+}
+
+- (void)setUpDelegate
+{
+    PreviewViewController *pvc = [PreviewViewController new];
+    pvc.delegate = self;
+    [pvc dismissPreviewAndGoToLecture];  // TODO: does this need to be called?
+}
+
+- (void)goToNewLecture:(AMLecture *)lecture
+{
+    [self performSegueWithIdentifier:@"toLecture" sender:lecture];
 }
 
 - (void)loadDocumentPreviews
@@ -116,6 +132,11 @@ static NSString * const reuseIdentifier = @"lecture";
 {
     if ([segue.identifier isEqualToString:@"newLecture"]) {
         ((NewLectureController *)segue.destinationViewController).delegate = self;
+    }
+    if ([segue.identifier isEqualToString:@"toLecture"]) {
+        UINavigationController *nav = [segue destinationViewController];
+        LectureViewContainer *lvc = (LectureViewContainer *)nav.topViewController;
+        lvc.selectedLecture = sender;
     }
     if ([segue.identifier isEqualToString:@"showPreview"]) {
         ((PreviewViewController *)((UINavigationController *)segue.destinationViewController).childViewControllers.firstObject).selectedLecture = (AMLecture *)sender;

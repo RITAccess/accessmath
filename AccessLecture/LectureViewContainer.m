@@ -16,6 +16,16 @@
 
 #import "Promise.h"
 
+#import "ALView+PureLayout.h"
+#import "NSArray+PureLayout.h"
+#import "NavBackButton.h"
+#import "SaveButton.h"
+#import "SearchButton.h"
+#import "BrushButton.h"
+#import "AMLecture.h"
+
+#import "SearchViewController.h"
+
 #pragma mark Lecture Container Class
 
 @interface LectureViewContainer ()
@@ -37,6 +47,7 @@
 {
     @private
     dispatch_once_t onceToken;
+    NSArray *_navigationItems;
 }
 
 #pragma mark Load and Setup
@@ -65,6 +76,15 @@
     [self.view bringSubviewToFront:_navigationbar];
     
     _dvc.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    
+    [self setUpNavigation];
+    
+    NSLog(@"Lecture view container lecture: %@", _selectedLecture);
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [_ntvc lectureContainer:self switchedToDocument:_selectedLecture];
 }
 
 - (void)moveControlTo:(UIViewController<LectureViewChild> *)vc
@@ -75,10 +95,79 @@
 }
 
 
+// TODO: reusable would be nice
+- (void)setUpNavigation
+{
+    UIButton *back = ({
+        UIButton *b = [NavBackButton buttonWithType:UIButtonTypeRoundedRect];
+        [b addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+        b.accessibilityValue = @"back";
+        b;
+    });
+    
+    UIButton *save = ({
+        UIButton *b = [SaveButton buttonWithType:UIButtonTypeRoundedRect];
+        [b addTarget:self action:@selector(saveLecture) forControlEvents:UIControlEventTouchUpInside];
+        b.accessibilityValue = @"save lecture";
+        b;
+    });
+    
+    UIButton *search = ({
+        UIButton *b = [SearchButton buttonWithType:UIButtonTypeRoundedRect];
+        [b addTarget:self action:@selector(presentSearch) forControlEvents:UIControlEventTouchUpInside];
+        b.accessibilityValue = @"search";
+        b;
+    });
+    
+    
+    UIButton *brush = ({
+        UIButton *b = [BrushButton buttonWithType:UIButtonTypeRoundedRect];
+        b.accessibilityValue = @"draw";
+        b;
+    });
+    
+    _navigationItems = @[back, save, search, brush];
+    
+    [_navigationItems enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [self.navigationController.navigationBar addSubview:obj];
+    }];
+    
+    [self.navigationController.navigationBar setNeedsUpdateConstraints];
+}
+
+- (void)updateViewConstraints
+{
+    [_navigationItems enumerateObjectsUsingBlock:^(UIView *view, NSUInteger idx, BOOL *stop) {
+        [view autoSetDimensionsToSize:CGSizeMake(120, 100)];
+        [view autoAlignAxis:ALAxisLastBaseline toSameAxisOfView:view.superview];
+        [view autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:0 relation:NSLayoutRelationEqual];
+    }];
+    
+    [_navigationItems.firstObject autoPinEdgeToSuperviewEdge:ALEdgeLeft];
+    UIView *previous = nil;
+    for (UIView *view in _navigationItems) {
+        if (previous) {
+            [view autoPinEdge:ALEdgeLeft toEdge:ALEdgeRight ofView:previous];
+        }
+        previous = view;
+    }
+    
+    [super updateViewConstraints];
+}
+
+
 #pragma mark Actions
 
-- (void)backNavigation
+- (void)saveLecture
 {
+    [_selectedLecture saveWithCompletetion:^(BOOL success) {
+        
+    }];
+}
+
+- (void)back
+{
+    [self saveLecture];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -90,6 +179,18 @@
     UIWindow *window = UIApplication.sharedApplication.delegate.window;
     window.rootViewController = search;
     [window makeKeyWindow];
+}
+
+- (void)presentSearch
+{
+    [self performSegueWithIdentifier:@"toSearch" sender:_selectedLecture];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"toSearch"]) {
+        ((SearchViewController *)[segue destinationViewController]).selectedLecture = sender;
+    }
 }
 
 // TODO - Switch to stack based with a push and pop controller type maybe?
@@ -108,14 +209,14 @@
 
 - (void)openLectureAction:(id)sender
 {
-    [_ntvc lectureContainer:self switchedToDocument:nil];
-    [FileManager.defaultManager forceSave];
-    Promise *closed = [FileManager.defaultManager finishedWithDocument];
-    [closed wait:10]; // Should block till closed doc
-    Promise *lecture = [FileManager.defaultManager currentDocumentPromise];
-    [lecture when:^(AMLecture *newlecture) {
-        [_ntvc lectureContainer:self switchedToDocument:newlecture];
-    }];
+//    [_ntvc lectureContainer:self switchedToDocument:nil];
+//    [FileManager.defaultManager forceSave];
+//    Promise *closed = [FileManager.defaultManager finishedWithDocument];
+//    [closed wait:10]; // Should block till closed doc
+//    Promise *lecture = [FileManager.defaultManager currentDocumentPromise];
+//    [lecture when:^(AMLecture *newlecture) {
+//        [_ntvc lectureContainer:self switchedToDocument:newlecture];
+//    }];
 }
 
 - (void)actionFromMenu:(MTRadialMenu *)menu
