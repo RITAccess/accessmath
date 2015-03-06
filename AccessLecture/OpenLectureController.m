@@ -18,6 +18,9 @@
 #import "FileManager.h"
 #import "LoadingLectureCVC.h"
 #import "PreviewViewController.h"
+#import "AMLecture.h"
+#import "Promise.h"
+#import "Deferred.h"
 
 @interface OpenLectureController ()
 
@@ -30,7 +33,7 @@
     NSArray *_documentTitles;
     
     // Selected Lecture
-    AMLecture *_selectedLecture;
+    Promise *_selectedLecture;
 }
 
 static NSString * const reuseIdentifier = @"lecture";
@@ -251,9 +254,11 @@ static NSString * const reuseIdentifier = @"lecture";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    Deferred *promise = [Deferred deferred];
     [[FileManager defaultManager] openDocumentForEditing:_documentTitles[indexPath.row] completion:^(AMLecture *lecture) {
-        _selectedLecture = lecture;
+        [promise resolve:lecture];
     }];
+    _selectedLecture = [promise promise];
 }
 
 - (void)cellDidTap:(UITapGestureRecognizer *)reg
@@ -263,18 +268,19 @@ static NSString * const reuseIdentifier = @"lecture";
      * it's not garenteed that the lecture will have been loaded fully. Remember, the
      * root of all evil is shared mutable state. :/
      */
-    #warning Potential Race condition when selecting lecture
     assert(_selectedLecture);
-    NSLog(@"DEBUG: %@", _selectedLecture);
-    switch (reg.numberOfTapsRequired) {
-        case 1:
-            [self performSegueWithIdentifier:@"showPreview" sender:_selectedLecture];
-            break;
-        case 2:
-            NSLog(@"DEBUG: Double Tap");
-        default:
-            break;
-    }
+    [_selectedLecture when:^(AMLecture *lecture) {
+        NSLog(@"DEBUG: %@", lecture);
+        switch (reg.numberOfTapsRequired) {
+            case 1:
+                [self performSegueWithIdentifier:@"showPreview" sender:lecture];
+                break;
+            case 2:
+                NSLog(@"DEBUG: Double Tap");
+            default:
+                break;
+        }
+    }];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
