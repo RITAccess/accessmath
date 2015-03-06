@@ -11,6 +11,6 @@
 
 @interface PreviewViewController : UIViewController <UICollectionViewDataSource, UIBarPositioningDelegate>
 
-@property (nonatomic) AMLecture *selectedLecture;
+@property (strong) AMLecture *selectedLecture;
 
 @end

@@ -136,10 +136,21 @@
     }];
     return [[names filteredArrayUsingPredicate:dotLecture] sortedArrayWithOptions:NSSortStable usingComparator:^NSComparisonResult(NSString *file1, NSString *file2) {
         NSError *error;
-        NSDate *fileDate1;
-        NSDate *fileDate2;
-        [[NSURL URLWithString:file1] getResourceValue:&fileDate1 forKey:NSURLContentModificationDateKey error:&error];
-        [[NSURL URLWithString:file2] getResourceValue:&fileDate2 forKey:NSURLContentModificationDateKey error:&error];
+       
+        NSString *f1 = [[self localDocumentsDirectoryPath] stringByAppendingPathComponent:file1];
+        NSString *f2 = [[self localDocumentsDirectoryPath] stringByAppendingPathComponent:file2];
+        
+        NSDictionary* p1 = [[NSFileManager defaultManager]
+                                    attributesOfItemAtPath:f1
+                                    error:&error];
+        
+        NSDictionary* p2 = [[NSFileManager defaultManager]
+                                    attributesOfItemAtPath:f2
+                                    error:&error];
+        
+        NSDate *fileDate1 = [p1 objectForKey:NSFileModificationDate];
+        NSDate *fileDate2 = [p2 objectForKey:NSFileModificationDate];
+        
         return [fileDate2 compare:fileDate1];
     }];
 }

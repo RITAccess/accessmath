@@ -17,6 +17,7 @@
 #import "NewLectureController.h"
 #import "FileManager.h"
 #import "LoadingLectureCVC.h"
+#import "PreviewViewController.h"
 
 @interface OpenLectureController ()
 
@@ -115,8 +116,7 @@ static NSString * const reuseIdentifier = @"lecture";
         ((NewLectureController *)segue.destinationViewController).delegate = self;
     }
     if ([segue.identifier isEqualToString:@"showPreview"]) {
-        
-        NSLog(@"DEBUG: %@", sender);
+        ((PreviewViewController *)((UINavigationController *)segue.destinationViewController).childViewControllers.firstObject).selectedLecture = (AMLecture *)sender;
     }
 }
 
