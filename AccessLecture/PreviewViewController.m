@@ -29,7 +29,6 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    NSLog(@"DEBUG: %@", _selectedLecture);
     [self setUpNavigation];
 }
 

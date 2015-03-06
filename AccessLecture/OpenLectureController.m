@@ -110,7 +110,6 @@ static NSString * const reuseIdentifier = @"lecture";
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-    NSLog(@"DEBUG: Memory Pressure");
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -270,13 +269,11 @@ static NSString * const reuseIdentifier = @"lecture";
      */
     assert(_selectedLecture);
     [_selectedLecture when:^(AMLecture *lecture) {
-        NSLog(@"DEBUG: %@", lecture);
         switch (reg.numberOfTapsRequired) {
             case 1:
                 [self performSegueWithIdentifier:@"showPreview" sender:lecture];
                 break;
             case 2:
-                NSLog(@"DEBUG: Double Tap");
             default:
                 break;
         }

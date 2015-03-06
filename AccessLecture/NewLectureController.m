@@ -73,8 +73,6 @@
 {
     [self.lectureName setEnabled:NO];
     
-    NSLog(@"DEBUG: creating new lecture: %@", self.lectureName.text);
-    
     [FileManager createDocumentWithName:self.lectureName.text success:^(AMLecture *current) {
         [self dismissViewControllerAnimated:YES completion:^{
             if ([self.delegate respondsToSelector:@selector(newLectureViewController:didCreateNewLecture:)]) {

@@ -48,7 +48,6 @@
 - (void)prepareForReuse
 {
     // TODO Check for cached values
-    NSLog(@"DEBUG: %@", self);
 }
 
 @end
