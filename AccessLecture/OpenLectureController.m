@@ -17,6 +17,7 @@
 #import "NewLectureController.h"
 #import "FileManager.h"
 #import "LoadingLectureCVC.h"
+#import "PreviewViewController.h"
 
 @interface OpenLectureController ()
 
@@ -131,8 +132,7 @@ static NSString * const reuseIdentifier = @"lecture";
 //        ((LectureController *)segue.destinationViewController).delegate = self;
     }
     if ([segue.identifier isEqualToString:@"showPreview"]) {
-        
-        NSLog(@"DEBUG: %@", sender);
+        ((PreviewViewController *)((UINavigationController *)segue.destinationViewController).childViewControllers.firstObject).selectedLecture = (AMLecture *)sender;
     }
 }
 
@@ -267,7 +267,9 @@ static NSString * const reuseIdentifier = @"lecture";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    _selectedLecture = [FileManager findDocumentWithName:_documentTitles[indexPath.row]];
+    [[FileManager defaultManager] openDocumentForEditing:_documentTitles[indexPath.row] completion:^(AMLecture *lecture) {
+        _selectedLecture = lecture;
+    }];
 }
 
 - (void)cellDidTap:(UITapGestureRecognizer *)reg

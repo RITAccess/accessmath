@@ -23,6 +23,6 @@
 
 - (void)dismissPreviewAndGoToLecture;
 
-@property (nonatomic) AMLecture *selectedLecture;
+@property (strong) AMLecture *selectedLecture;
 
 @end

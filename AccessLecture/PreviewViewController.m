@@ -21,6 +21,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [AccessLectureKit accessBlue];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    NSLog(@"DEBUG: %@", _selectedLecture);
     [self setUpNavigation];
     _delegate = [OpenLectureController new];
 }

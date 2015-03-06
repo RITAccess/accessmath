@@ -65,7 +65,7 @@ typedef enum {
  * TESTING Returns a promise objects to get a lecture
  */
 - (Promise *)currentDocumentPromise;
-
+- (void)openDocumentForEditing:(NSString *)docName completion:(void(^)(AMLecture *lecture))completion;
 + (AMLecture *)findDocumentWithName:(NSString *)name;
 + (AMLecture *)findDocumentWithName:(NSString *)name failure:(void (^)(NSError *))error;
 
