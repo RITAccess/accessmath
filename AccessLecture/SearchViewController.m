@@ -15,6 +15,7 @@
 #import "ALView+PureLayout.h"
 #import "NSArray+PureLayout.h"
 #import "NavBackButton.h"
+#import "Note.h"
 
 #define TRANSFORM_OFFSCREEN 2000
 
@@ -151,8 +152,7 @@
     // TODO: get lecture timestamp too
     
     // Get notes
-    AMLecture* currentLecture = [FileManager findDocumentWithName:lectureName];
-    notes = [[NSArray alloc]initWithArray:[currentLecture getNotes]];
+    notes = [[NSArray alloc]initWithArray:_selectedLecture.lecture.notes];
 }
 
 - (void)didReceiveMemoryWarning
@@ -172,7 +172,8 @@
     static NSString* searchViewControllerIdentifier = @"noteCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:searchViewControllerIdentifier forIndexPath:indexPath];
     if (!cell) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:searchViewControllerIdentifier];
-    cell.textLabel.text = [lectures objectAtIndex:0];
+    // Set the title
+    cell.textLabel.text = ((Note*)[notes objectAtIndex:indexPath.row]).title;
     return cell;
 }
 
