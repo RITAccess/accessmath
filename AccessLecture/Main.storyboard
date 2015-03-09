@@ -303,7 +303,7 @@
                     <connections>
                         <segue destination="Gr5-cn-gyl" kind="presentation" identifier="newLecture" modalPresentationStyle="pageSheet" id="Ief-KQ-zfK"/>
                         <segue destination="KFo-yB-Ffi" kind="presentation" identifier="showPreview" id="c1b-v2-Ipc"/>
-                        <segue destination="rhQ-zz-q1R" kind="showDetail" identifier="toLecture" id="TFO-Sm-CoB"/>
+                        <segue destination="rhQ-zz-q1R" kind="presentation" identifier="toLecture" id="TFO-Sm-CoB"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="co1-Dr-1hT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -347,8 +347,7 @@
                                         <exclude reference="z4W-zu-b9L"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                    <rect key="frame" x="16" y="130" width="321" height="670"/>
+                                <variation key="heightClass=regular-widthClass=regular">
                                     <mask key="subviews">
                                         <include reference="eBe-Vm-ZiN"/>
                                     </mask>
@@ -373,6 +372,7 @@
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="blankCell" id="y1I-3u-ffa">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>

@@ -26,7 +26,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [self setUpNavigation];
-    _delegate = [OpenLectureController new];
 }
 
 - (void)setUpNavigation
@@ -65,7 +64,7 @@
 
 - (void)dismissPreviewAndGoToLecture
 {
-    [self dismissViewControllerAnimated:NO completion:^(void){
+    [self.navigationController dismissViewControllerAnimated:YES completion:^{
         [_delegate goToNewLecture:_selectedLecture];
     }];
 }
