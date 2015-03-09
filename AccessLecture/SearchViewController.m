@@ -10,29 +10,19 @@
 
 #import "SearchViewController.h"
 #import "Promise.h"
-#import "AMLecture.h"
 #import "FileManager.h"
 #import "ALView+PureLayout.h"
 #import "NSArray+PureLayout.h"
 #import "NavBackButton.h"
 #import "Note.h"
 
-#define TRANSFORM_OFFSCREEN 2000
-
-@interface SearchViewController () <UITableViewDataSource>
-
-@property (strong, nonatomic) Promise *document;
-
-@end
-
 @implementation SearchViewController
 {
     @private
-    UITableViewController *sidePanelController;
-    UIViewController *mainController;
-    NSArray *recents;
-    NSArray *lectures;
-    NSArray *notes;
+    UITableViewController *_sidePanelController;
+    UIViewController *_mainController;
+    NSArray *_lectures;
+    NSArray *_notes;
     NSArray *_navigationItems;
 }
 
@@ -41,17 +31,18 @@
     [super viewDidLoad];
     // Get references
     UINavigationController *sideNav = self.childViewControllers[0];
-    sidePanelController = sideNav.childViewControllers[0];
-    mainController = self.childViewControllers[1];
+    _sidePanelController = sideNav.childViewControllers[0];
+    _mainController = self.childViewControllers[1];
 
-    sidePanelController.tableView.dataSource = self;
-    [sidePanelController.tableView reloadData];
+    _sidePanelController.tableView.dataSource = self;
+    [_sidePanelController.tableView reloadData];
 
     [self loadLectures];
-
-    // TODO: integrate navbar w/ splitview + navigation controller
+    
     [self setUpNavigation];
 }
+
+# pragma mark - Navbar
 
 - (void)setUpNavigation
 {
@@ -90,48 +81,7 @@
     [super updateViewConstraints];
 }
 
-#pragma mark Method replacement
-
-/**
- *  Gets the prepareForSegue:sender: from the TableViewController that is the side
- *  controller.
- */
-- (void)interceptSegue
-{
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        Method localCall = class_getInstanceMethod([self class], @selector(am_prepareForSegue:sender:));
-        class_replaceMethod([sidePanelController class], @selector(prepareForSegue:sender:), method_getImplementation(localCall), method_getTypeEncoding(localCall));
-    });
-}
-
-/**
- *  Notifies the view controller that a segue is about to be performed.
- *
- *  @param segue  invoked seguew
- *  @param sender invoker
- */
-- (void)am_prepareForSegue:(UIStoryboardSegue *)segue sender:(UITableViewCell *)sender
-{
-    SearchViewController *controller = (SearchViewController *)self.parentViewController.parentViewController;
-    [controller tableViewCell:sender becameActivePanel:YES];
-//    LectureListViewController *vc = segue.destinationViewController;
-//    vc.lectureName = sender.textLabel.text;
-
-}
-
-- (void)tableViewCell:(UITableViewCell *)cell becameActivePanel:(BOOL)active
-{
-    UIView *mainView = mainController.view;
-    mainView.backgroundColor = [UIColor blueColor];
-    [UIView animateWithDuration:0.2 delay:1.0 options:UIViewAnimationCurveEaseInOut animations:^{
-        mainView.transform = CGAffineTransformIdentity;
-    } completion:nil];
-}
-
-/**
- *  Loads the lectres into recents and lectures
- */
+// TODO: clean up -- shouldn't have to pass lecture directly from LVC
 - (void)loadLectures
 {
     NSString *path = [FileManager localDocumentsDirectoryPath];
@@ -143,28 +93,25 @@
         NSString *title = [file componentsSeparatedByString:@"."][0];
         [lec addObject:title];
     }
-    recents = lec;
-    lectures = lec;
+    _lectures = lec;
     
     // Update side panel controller with lecture title
-    sidePanelController.title = [lectures objectAtIndex:0];
+    _sidePanelController.title = [_lectures objectAtIndex:0];
     
     // TODO: get lecture timestamp too
-    
-    // Get notes
-    notes = [[NSArray alloc]initWithArray:_selectedLecture.lecture.notes];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
+    _notes = [[NSArray alloc]initWithArray:_selectedLecture.lecture.notes];
 }
 
 #pragma mark - Side Panel TableView DataSouce
 
+- (void)tableViewCell:(UITableViewCell *)cell becameActivePanel:(BOOL)active
+{
+    // TODO: anything
+}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return notes.count;
+    return _notes.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -173,10 +120,15 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:searchViewControllerIdentifier forIndexPath:indexPath];
     if (!cell) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:searchViewControllerIdentifier];
     // Set the title
-    cell.textLabel.text = ((Note*)[notes objectAtIndex:indexPath.row]).title;
+    cell.textLabel.text = ((Note*)[_notes objectAtIndex:indexPath.row]).title;
     return cell;
 }
 
+#pragma mark - Memory
 
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+}
 
 @end

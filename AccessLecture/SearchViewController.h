@@ -6,10 +6,9 @@
 //
 //
 
-#import <UIKit/UIKit.h>
 #import "AMLecture.h"
 
-@interface SearchViewController : UISplitViewController
+@interface SearchViewController : UISplitViewController <UITableViewDataSource>
 
 - (void)tableViewCell:(UITableViewCell *)cell becameActivePanel:(BOOL)active;
 
