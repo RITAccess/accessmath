@@ -59,9 +59,6 @@
 		3F8D9908187B4E010061DEA2 /* TextNoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F8D9906187B4E010061DEA2 /* TextNoteView.xib */; };
 		3F8D990E187DD9100061DEA2 /* FullScreenNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8D990C187DD9100061DEA2 /* FullScreenNoteViewController.m */; };
 		3F8D990F187DD9100061DEA2 /* FullScreenNoteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F8D990D187DD9100061DEA2 /* FullScreenNoteViewController.xib */; };
-		3F8D9915187F0D1A0061DEA2 /* FileMangerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8D9913187F0D1A0061DEA2 /* FileMangerViewController.m */; };
-		3F8D9925187F48CC0061DEA2 /* DocumentPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8D9923187F48CC0061DEA2 /* DocumentPicker.m */; };
-		3F8D9926187F48CC0061DEA2 /* DocumentPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F8D9924187F48CC0061DEA2 /* DocumentPicker.xib */; };
 		3F8D992B188099F30061DEA2 /* DocumentCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8D9929188099F30061DEA2 /* DocumentCreator.m */; };
 		3F8D992C188099F30061DEA2 /* DocumentCreator.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F8D992A188099F30061DEA2 /* DocumentCreator.xib */; };
 		3F8D992F1880A2540061DEA2 /* StatusMark.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8D992E1880A2540061DEA2 /* StatusMark.m */; };
@@ -228,11 +225,6 @@
 		3F8D990B187DD9100061DEA2 /* FullScreenNoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullScreenNoteViewController.h; sourceTree = "<group>"; };
 		3F8D990C187DD9100061DEA2 /* FullScreenNoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullScreenNoteViewController.m; sourceTree = "<group>"; };
 		3F8D990D187DD9100061DEA2 /* FullScreenNoteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FullScreenNoteViewController.xib; sourceTree = "<group>"; };
-		3F8D9912187F0D1A0061DEA2 /* FileMangerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileMangerViewController.h; sourceTree = "<group>"; };
-		3F8D9913187F0D1A0061DEA2 /* FileMangerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileMangerViewController.m; sourceTree = "<group>"; };
-		3F8D9922187F48CC0061DEA2 /* DocumentPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentPicker.h; sourceTree = "<group>"; };
-		3F8D9923187F48CC0061DEA2 /* DocumentPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentPicker.m; sourceTree = "<group>"; };
-		3F8D9924187F48CC0061DEA2 /* DocumentPicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DocumentPicker.xib; sourceTree = "<group>"; };
 		3F8D9928188099F20061DEA2 /* DocumentCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentCreator.h; sourceTree = "<group>"; };
 		3F8D9929188099F30061DEA2 /* DocumentCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentCreator.m; sourceTree = "<group>"; };
 		3F8D992A188099F30061DEA2 /* DocumentCreator.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DocumentCreator.xib; sourceTree = "<group>"; };
@@ -512,21 +504,8 @@
 			isa = PBXGroup;
 			children = (
 				3F8D9927188099D80061DEA2 /* DocumentCreator */,
-				3F8D9919187F21E60061DEA2 /* DocumentPicker */,
-				3F8D9912187F0D1A0061DEA2 /* FileMangerViewController.h */,
-				3F8D9913187F0D1A0061DEA2 /* FileMangerViewController.m */,
 			);
 			name = FileManagerViewController;
-			sourceTree = "<group>";
-		};
-		3F8D9919187F21E60061DEA2 /* DocumentPicker */ = {
-			isa = PBXGroup;
-			children = (
-				3F8D9922187F48CC0061DEA2 /* DocumentPicker.h */,
-				3F8D9923187F48CC0061DEA2 /* DocumentPicker.m */,
-				3F8D9924187F48CC0061DEA2 /* DocumentPicker.xib */,
-			);
-			name = DocumentPicker;
 			sourceTree = "<group>";
 		};
 		3F8D9927188099D80061DEA2 /* DocumentCreator */ = {
@@ -1062,7 +1041,6 @@
 				3FED96161370863E00D8D1B8 /* InfoPlist.strings in Resources */,
 				21DA3D9318905B5000BFD96B /* DrawViewController.xib in Resources */,
 				3F2DC98318871FE4008C29BF /* ImageNoteViewController.xib in Resources */,
-				3F8D9926187F48CC0061DEA2 /* DocumentPicker.xib in Resources */,
 				3F8D990F187DD9100061DEA2 /* FullScreenNoteViewController.xib in Resources */,
 				4C3BE5E71A7296F10017854C /* Main.storyboard in Resources */,
 				4C5B55FB17720A15005B79CF /* server.crt in Resources */,
@@ -1213,7 +1191,6 @@
 				3F6D11CA17625EA20066A4FA /* base64.c in Sources */,
 				3F4DE76118EB492900BB9970 /* ABDrawToggleSwitch.m in Sources */,
 				3F6D11CB17625EA20066A4FA /* NSData+SRB64Additions.m in Sources */,
-				3F8D9925187F48CC0061DEA2 /* DocumentPicker.m in Sources */,
 				4CDDF69717EB690900FE34E7 /* AMLecture.m in Sources */,
 				3F2DC9871887225D008C29BF /* ImageNoteView.m in Sources */,
 				4C8ABE78177C87BD007C934C /* StreamViewController.m in Sources */,
@@ -1224,7 +1201,6 @@
 				4C46E6391A7FE23200087229 /* LoadingLectureCVC.m in Sources */,
 				4CDB058017B5589A00D8EB85 /* Favorites.m in Sources */,
 				3F8B515718FD90580053BFE8 /* UIImage+RoundedCorner.m in Sources */,
-				3F8D9915187F0D1A0061DEA2 /* FileMangerViewController.m in Sources */,
 				3F8D992F1880A2540061DEA2 /* StatusMark.m in Sources */,
 				3F8FD2C418AD21860059EF9C /* AMOpenButton.m in Sources */,
 				4CFC4BED1A76E72C001E2E27 /* NewLectureController.m in Sources */,

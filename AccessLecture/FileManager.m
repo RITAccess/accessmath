@@ -18,7 +18,6 @@
 #import "FileManager.h"
 #import "AMLecture.h"
 #import "Lecture.h"
-#import "FileMangerViewController.h"
 
 #import "Deferred.h"
 
@@ -110,7 +109,7 @@
  */
 - (void)promptUserToPickDocument
 {
-    FileMangerViewController *openDoc = [[FileMangerViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
+    UIPageViewController *openDoc = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
                                                                             navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
                                                                                           options:nil];
     UIWindow *mainWindow = [[UIApplication sharedApplication].windows firstObject];

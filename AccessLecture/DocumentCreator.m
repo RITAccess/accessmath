@@ -9,7 +9,7 @@
 #import <RPFloatingPlaceholderTextField.h>
 #import "DocumentCreator.h"
 #import "StatusMark.h"
-#import "FileMangerViewController.h"
+#import "FileManager.h"
 #import "NSString+TrimmingAdditions.h"
 
 @interface DocumentCreator ()
@@ -83,7 +83,13 @@
 - (IBAction)createLecture:(id)sender
 {
     // Check all valid then create
-    [(FileMangerViewController *)self.parentViewController createDocumentNamed:_docName.text];
+    [FileManager createDocumentWithName:_docName.text completion:^(NSError *error, AMLecture *current) {
+        if (error) {
+            NSLog(@"%@", error);
+        } else {
+            NSLog(@"Document %@ was created successfully.", current);
+        }
+    }];
 }
 
 @end
