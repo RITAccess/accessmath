@@ -108,7 +108,6 @@
 		4CCBC8DD17E222FF00CB303E /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F99F1FF154364270065CBB9 /* Note.m */; };
 		4CD0A5EF177DC98600864228 /* ConnectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD0A5ED177DC98600864228 /* ConnectionViewController.m */; };
 		4CD0A5F8177E1D6800864228 /* StreamDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD0A5F7177E1D6800864228 /* StreamDrawing.m */; };
-		4CD7CE271A85630E00A9717F /* PreviewAnimationCordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD7CE261A85630E00A9717F /* PreviewAnimationCordinator.m */; };
 		4CD7CE2A1A8568CB00A9717F /* PreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD7CE291A8568CB00A9717F /* PreviewViewController.m */; };
 		4CDB053817B5567300D8EB85 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CDB053717B5567300D8EB85 /* CoreData.framework */; };
 		4CDB057D17B557C300D8EB85 /* AccessLecture.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4CDB057B17B557C300D8EB85 /* AccessLecture.xcdatamodeld */; };
@@ -313,8 +312,6 @@
 		4CD0A5ED177DC98600864228 /* ConnectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionViewController.m; sourceTree = "<group>"; };
 		4CD0A5F6177E1D6800864228 /* StreamDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamDrawing.h; sourceTree = "<group>"; };
 		4CD0A5F7177E1D6800864228 /* StreamDrawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamDrawing.m; sourceTree = "<group>"; };
-		4CD7CE251A85630E00A9717F /* PreviewAnimationCordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviewAnimationCordinator.h; sourceTree = "<group>"; };
-		4CD7CE261A85630E00A9717F /* PreviewAnimationCordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviewAnimationCordinator.m; sourceTree = "<group>"; };
 		4CD7CE281A8568CB00A9717F /* PreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviewViewController.h; sourceTree = "<group>"; };
 		4CD7CE291A8568CB00A9717F /* PreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviewViewController.m; sourceTree = "<group>"; };
 		4CDB053717B5567300D8EB85 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -707,7 +704,6 @@
 		3FED96111370863E00D8D1B8 /* AccessLecture */ = {
 			isa = PBXGroup;
 			children = (
-				4CD7CE241A8562E700A9717F /* Preview Animation */,
 				3FED963013708E0000D8D1B8 /* App Delegate */,
 				3F8D99301880AC9F0061DEA2 /* Helpers */,
 				4C5C50C9177B7B300095801A /* Controllers */,
@@ -904,15 +900,6 @@
 				4CD0A5F7177E1D6800864228 /* StreamDrawing.m */,
 			);
 			name = DrawingView;
-			sourceTree = "<group>";
-		};
-		4CD7CE241A8562E700A9717F /* Preview Animation */ = {
-			isa = PBXGroup;
-			children = (
-				4CD7CE251A85630E00A9717F /* PreviewAnimationCordinator.h */,
-				4CD7CE261A85630E00A9717F /* PreviewAnimationCordinator.m */,
-			);
-			name = "Preview Animation";
 			sourceTree = "<group>";
 		};
 		4CD7CE2B1A85693D00A9717F /* Views */ = {
@@ -1232,7 +1219,6 @@
 				4C37CCB018295FC0006D3B1F /* ALMetaData.m in Sources */,
 				3F8FD2CA18AD33350059EF9C /* AddImage.m in Sources */,
 				3F6D11C517625EA20066A4FA /* SocketIO.m in Sources */,
-				4CD7CE271A85630E00A9717F /* PreviewAnimationCordinator.m in Sources */,
 				3F8B515618FD90580053BFE8 /* UIImage+Rotate.m in Sources */,
 				4CD0A5EF177DC98600864228 /* ConnectionViewController.m in Sources */,
 				4CFC573017DF800700393A1E /* NoteTakingViewController.m in Sources */,
