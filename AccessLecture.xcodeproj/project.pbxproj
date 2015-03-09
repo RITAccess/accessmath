@@ -40,7 +40,6 @@
 		3F408C0A18BF94F600F6B113 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F408C0918BF94F600F6B113 /* XMLReader.m */; };
 		3F408C0D18BF94FD00F6B113 /* NSString+asciihexcodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F408C0C18BF94FD00F6B113 /* NSString+asciihexcodes.m */; };
 		3F4DE76118EB492900BB9970 /* ABDrawToggleSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4DE76018EB492900BB9970 /* ABDrawToggleSwitch.m */; };
-		3F59A9EA18AD193800AAC873 /* LectureNavbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F59A9E918AD193800AAC873 /* LectureNavbar.m */; };
 		3F62DEDE1921020800BDD4EE /* libPods-AccessLecture.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F62DEDD1921020800BDD4EE /* libPods-AccessLecture.a */; };
 		3F6D11C417625EA20066A4FA /* ALNetworkInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D11B017625EA20066A4FA /* ALNetworkInterface.m */; };
 		3F6D11C517625EA20066A4FA /* SocketIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D11B217625EA20066A4FA /* SocketIO.m */; };
@@ -182,14 +181,12 @@
 		3F2DC98118871FE4008C29BF /* ImageNoteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageNoteViewController.xib; sourceTree = "<group>"; };
 		3F2DC9851887225D008C29BF /* ImageNoteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageNoteView.h; sourceTree = "<group>"; };
 		3F2DC9861887225D008C29BF /* ImageNoteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageNoteView.m; sourceTree = "<group>"; };
-		3F408C0518BF94BA00F6B113 /* LectureNavbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LectureNavbar.h; sourceTree = "<group>"; };
 		3F408C0818BF94F600F6B113 /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLReader.h; sourceTree = "<group>"; };
 		3F408C0918BF94F600F6B113 /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLReader.m; sourceTree = "<group>"; };
 		3F408C0B18BF94FD00F6B113 /* NSString+asciihexcodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+asciihexcodes.h"; sourceTree = "<group>"; };
 		3F408C0C18BF94FD00F6B113 /* NSString+asciihexcodes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+asciihexcodes.m"; sourceTree = "<group>"; };
 		3F4DE75F18EB492900BB9970 /* ABDrawToggleSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABDrawToggleSwitch.h; sourceTree = "<group>"; };
 		3F4DE76018EB492900BB9970 /* ABDrawToggleSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABDrawToggleSwitch.m; sourceTree = "<group>"; };
-		3F59A9E918AD193800AAC873 /* LectureNavbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LectureNavbar.m; sourceTree = "<group>"; };
 		3F62DED91919808200BDD4EE /* AccessLecture Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AccessLecture Tests-Info.plist"; sourceTree = "<group>"; };
 		3F62DEDA1919808200BDD4EE /* AccessLecture Tests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AccessLecture Tests-Prefix.pch"; sourceTree = "<group>"; };
 		3F62DEDD1921020800BDD4EE /* libPods-AccessLecture.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AccessLecture.a"; path = "Pods/build/Debug-iphoneos/libPods-AccessLecture.a"; sourceTree = "<group>"; };
@@ -446,15 +443,6 @@
 				3F2DC98118871FE4008C29BF /* ImageNoteViewController.xib */,
 			);
 			name = ImageNote;
-			sourceTree = "<group>";
-		};
-		3F4DE75E18EB48D200BB9970 /* Navbar */ = {
-			isa = PBXGroup;
-			children = (
-				3F408C0518BF94BA00F6B113 /* LectureNavbar.h */,
-				3F59A9E918AD193800AAC873 /* LectureNavbar.m */,
-			);
-			name = Navbar;
 			sourceTree = "<group>";
 		};
 		3F62DEDC1919808500BDD4EE /* Suporting Files */ = {
@@ -833,7 +821,6 @@
 				4C8ABE7C177CA341007C934C /* NotesViewController */,
 				2CBF3014177B700C0087C17C /* DrawViewController */,
 				3FED963213708E5100D8D1B8 /* Lecture View */,
-				3F4DE75E18EB48D200BB9970 /* Navbar */,
 				3F8FD2CC18AD33EF0059EF9C /* LeafViews */,
 				4C9AB8FB177C6884004A4F65 /* Views Icons */,
 				4C5C50CB177B7B7C0095801A /* LectureViewContainer.h */,
@@ -1199,7 +1186,6 @@
 				3F8FD2CF18AD34EB0059EF9C /* DrawMode.m in Sources */,
 				3F0DBDD613BD174900E3FEE8 /* AboutViewController.m in Sources */,
 				3F99F20215436E090065CBB9 /* Lecture.m in Sources */,
-				3F59A9EA18AD193800AAC873 /* LectureNavbar.m in Sources */,
 				4C5C50CD177B7B7C0095801A /* LectureViewContainer.m in Sources */,
 				4CCBC8DD17E222FF00CB303E /* Note.m in Sources */,
 				3F8FD2E418B3F7BF0059EF9C /* Promise.m in Sources */,
