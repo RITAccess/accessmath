@@ -36,7 +36,7 @@
     NSArray *_documentTitles;
     
     // Selected Lecture
-    Promise *_selectedLecture;
+    __strong Promise *_selectedLecture;
 }
 
 static NSString * const reuseIdentifier = @"lecture";
@@ -45,18 +45,14 @@ static NSString * const reuseIdentifier = @"lecture";
 {
     [super viewDidLoad];
     
-    [self setUpDelegate];
-    
     [self setUpNavigation];
     
     [self loadDocumentPreviews];
 }
 
-- (void)setUpDelegate
+- (void)viewDidDisappear:(BOOL)animated
 {
-    PreviewViewController *pvc = [PreviewViewController new];
-    pvc.delegate = self;
-    [pvc dismissPreviewAndGoToLecture];  // TODO: does this need to be called?
+    _selectedLecture = nil;
 }
 
 - (void)goToNewLecture:(AMLecture *)lecture
@@ -139,13 +135,17 @@ static NSString * const reuseIdentifier = @"lecture";
         lvc.selectedLecture = sender;
     }
     if ([segue.identifier isEqualToString:@"showPreview"]) {
-        ((PreviewViewController *)((UINavigationController *)segue.destinationViewController).childViewControllers.firstObject).selectedLecture = (AMLecture *)sender;
+        PreviewViewController *pvc = ((PreviewViewController *)((UINavigationController *)segue.destinationViewController).childViewControllers.firstObject);
+        pvc.selectedLecture = (AMLecture *)sender;
+        pvc.delegate = self;
     }
 }
 
 - (void)newLectureViewController:(NewLectureController *)controller didCreateNewLecture:(AMLecture *)lecture
 {
     // Go straight to lecture
+    // Not called bug...
+    NSLog(@"DEBUG: created %@", lecture);
 }
 
 #pragma mark Navigation
@@ -160,110 +160,6 @@ static NSString * const reuseIdentifier = @"lecture";
 {
     [self performSegueWithIdentifier:@"newLecture" sender:_navigationItems[1]];
 }
-
-#pragma mark <UIViewControllerContextTransitioning>
-
-// The view in which the animated transition should take place.
-- (UIView *)containerView
-{
-    return self.view;
-}
-
-// Most of the time this is YES. For custom transitions that use the new UIModalPresentationCustom
-// presentation type we will invoke the animateTransition: even though the transition should not be
-// animated. This allows the custom transition to add or remove subviews to the container view.
-- (BOOL)isAnimated
-{
-    return YES;
-}
-
-// This indicates whether the transition is currently interactive.
--(BOOL)isInteractive
-{
-    return NO;
-}
-
-- (BOOL)transitionWasCancelled
-{
-    return NO;
-}
-
-- (UIModalPresentationStyle)presentationStyle
-{
-    return UIModalPresentationCustom;
-}
-
-// It only makes sense to call these from an interaction controller that
-// conforms to the UIViewControllerInteractiveTransitioning protocol and was
-// vended to the system by a container view controller's delegate or, in the case
-// of a present or dismiss, the transitioningDelegate.
-- (void)updateInteractiveTransition:(CGFloat)percentComplete
-{
-    
-}
-
-- (void)finishInteractiveTransition
-{
-    
-}
-
-- (void)cancelInteractiveTransition
-{
-    
-}
-
-// This must be called whenever a transition completes (or is cancelled.)
-// Typically this is called by the object conforming to the
-// UIViewControllerAnimatedTransitioning protocol that was vended by the transitioning
-// delegate.  For purely interactive transitions it should be called by the
-// interaction controller. This method effectively updates internal view
-// controller state at the end of the transition.
-- (void)completeTransition:(BOOL)didComplete
-{
-    
-}
-
-
-// Currently only two keys are defined by the
-// system - UITransitionContextToViewControllerKey, and
-// UITransitionContextFromViewControllerKey.
-// Animators should not directly manipulate a view controller's views and should
-// use viewForKey: to get views instead.
-- (UIViewController *)viewControllerForKey:(NSString *)key;
-{
-    return self;
-}
-
-// Currently only two keys are defined by the system -
-// UITransitionContextFromViewKey, and UITransitionContextToViewKey
-// viewForKey: may return nil which would indicate that the animator should not
-// manipulate the associated view controller's view.
-- (UIView *)viewForKey:(NSString *)key
-{
-    return self.view;
-}
-
-- (CGAffineTransform)targetTransform
-{
-    return CGAffineTransformIdentity;
-}
-
-// The frame's are set to CGRectZero when they are not known or
-// otherwise undefined.  For example the finalFrame of the
-// fromViewController will be CGRectZero if and only if the fromView will be
-// removed from the window at the end of the transition. On the other
-// hand, if the finalFrame is not CGRectZero then it must be respected
-// at the end of the transition.
-- (CGRect)initialFrameForViewController:(UIViewController *)vc
-{
-    return CGRectZero;
-}
-
-- (CGRect)finalFrameForViewController:(UIViewController *)vc
-{
-    return CGRectZero;
-}
-
 
 #pragma mark <UICollectionViewDataSource>
 
@@ -283,8 +179,16 @@ static NSString * const reuseIdentifier = @"lecture";
 
 - (void)cellDidTap:(UITapGestureRecognizer *)reg
 {
+    assert(_selectedLecture);
     [_selectedLecture when:^(AMLecture *lecture) {
-        [self performSegueWithIdentifier:@"showPreview" sender:lecture];
+        switch (reg.numberOfTapsRequired) {
+            default:
+            case 1:
+                [self performSegueWithIdentifier:@"showPreview" sender:lecture];
+                break;
+            case 2:
+                [self performSegueWithIdentifier:@"toLecture" sender:lecture];
+        }
     }];
 }
 
