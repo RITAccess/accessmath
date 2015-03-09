@@ -372,7 +372,6 @@
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="blankCell" id="y1I-3u-ffa">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="400" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
@@ -479,9 +478,6 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dDO-t7-f6y" id="Ogz-x8-0CZ">
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="SLY-Jc-LUa" kind="show" id="Ukt-2N-uBh"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -542,31 +538,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gDH-xv-spo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3427" y="1269"/>
-        </scene>
-        <!--Note Preview-->
-        <scene sceneID="kXf-dD-eZc">
-            <objects>
-                <tableViewController storyboardIdentifier="LectureListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="SLY-Jc-LUa" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="62G-gv-682">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="basicCell" id="cY2-9E-VOD">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cY2-9E-VOD" id="Jrg-CX-tFL">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Note Preview" id="53G-BX-1WK"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Xjd-du-Snu" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5413" y="1276"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Qmu-WW-thy">
