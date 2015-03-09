@@ -80,7 +80,6 @@
 		3FED96161370863E00D8D1B8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3FED96141370863E00D8D1B8 /* InfoPlist.strings */; };
 		3FED96191370863E00D8D1B8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FED96181370863E00D8D1B8 /* main.m */; };
 		3FED961C1370863E00D8D1B8 /* AccessLectureAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FED961B1370863E00D8D1B8 /* AccessLectureAppDelegate.m */; };
-		3FED96221370863E00D8D1B8 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FED96211370863E00D8D1B8 /* RootViewController.m */; };
 		3FFCFB2213A25388003DAB63 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FFCFB2113A25388003DAB63 /* MessageUI.framework */; };
 		4C37CCB018295FC0006D3B1F /* ALMetaData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C37CCAF18295FC0006D3B1F /* ALMetaData.m */; };
 		4C3BE5E71A7296F10017854C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C3BE5E61A7296F10017854C /* Main.storyboard */; };
@@ -273,8 +272,6 @@
 		3FED96181370863E00D8D1B8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3FED961A1370863E00D8D1B8 /* AccessLectureAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccessLectureAppDelegate.h; sourceTree = "<group>"; };
 		3FED961B1370863E00D8D1B8 /* AccessLectureAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccessLectureAppDelegate.m; sourceTree = "<group>"; };
-		3FED96201370863E00D8D1B8 /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
-		3FED96211370863E00D8D1B8 /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		3FFCFB2113A25388003DAB63 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		4C37CCAE18295FC0006D3B1F /* ALMetaData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALMetaData.h; sourceTree = "<group>"; };
 		4C37CCAF18295FC0006D3B1F /* ALMetaData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALMetaData.m; sourceTree = "<group>"; };
@@ -740,8 +737,6 @@
 		3FED963113708E4E00D8D1B8 /* RootViewController */ = {
 			isa = PBXGroup;
 			children = (
-				3FED96201370863E00D8D1B8 /* RootViewController.h */,
-				3FED96211370863E00D8D1B8 /* RootViewController.m */,
 				4C3BE5E81A72973C0017854C /* RootMenuController.h */,
 				4C3BE5E91A72973C0017854C /* RootMenuController.m */,
 				4C3BE5EB1A729B760017854C /* MenuIconCell.h */,
@@ -1199,7 +1194,6 @@
 				3FED96191370863E00D8D1B8 /* main.m in Sources */,
 				4CEA1A03177CAAED00A1DE05 /* LectureCell.m in Sources */,
 				3FED961C1370863E00D8D1B8 /* AccessLectureAppDelegate.m in Sources */,
-				3FED96221370863E00D8D1B8 /* RootViewController.m in Sources */,
 				4C3BE5F01A729F0F0017854C /* MenuData.m in Sources */,
 				2C882F2E1A8572E500D8E214 /* SearchViewController.m in Sources */,
 				3F8FD2CF18AD34EB0059EF9C /* DrawMode.m in Sources */,

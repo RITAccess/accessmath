@@ -7,7 +7,7 @@
 
 @implementation AccessLectureAppDelegate
 
-@synthesize window, rootViewController, navigationController, defaults;
+@synthesize window, navigationController, defaults;
 
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
