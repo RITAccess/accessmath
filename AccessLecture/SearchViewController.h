@@ -8,7 +8,7 @@
 
 #import "AMLecture.h"
 
-@interface SearchViewController : UISplitViewController <UITableViewDataSource>
+@interface SearchViewController : UISplitViewController <UITableViewDataSource, UITableViewDelegate>
 
 - (void)tableViewCell:(UITableViewCell *)cell becameActivePanel:(BOOL)active;
 

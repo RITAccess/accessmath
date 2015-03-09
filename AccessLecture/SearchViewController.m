@@ -15,6 +15,7 @@
 #import "NSArray+PureLayout.h"
 #import "NavBackButton.h"
 #import "Note.h"
+#import "AccessLectureKit.h"
 
 @implementation SearchViewController
 {
@@ -33,7 +34,7 @@
     UINavigationController *sideNav = self.childViewControllers[0];
     _sidePanelController = sideNav.childViewControllers[0];
     _mainController = self.childViewControllers[1];
-
+    _sidePanelController.tableView.delegate = self;
     _sidePanelController.tableView.dataSource = self;
     [_sidePanelController.tableView reloadData];
 
@@ -112,6 +113,15 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return _notes.count;
+}
+
+- (void)tableView:(UITableView*)tableView willDisplayCell:(UITableViewCell*)cell forRowAtIndexPath: (NSIndexPath*)indexPath
+{
+    if (indexPath.row % 2 == 0) {
+        cell.backgroundColor = [UIColor whiteColor];
+    } else {
+        cell.backgroundColor = [AccessLectureKit accessBlue];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
