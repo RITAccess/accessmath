@@ -40,9 +40,6 @@
     [defaults setValue:@"biology.png" forKey:@"testImage"];
     [defaults synchronize];
     
-    // Set up the network socket connection
-    _server = [[ALNetworkInterface alloc] initWithURL:_serverAddress];
-    
     // Keyboard Manager
     [[IQKeyboardManager sharedManager] setEnable:YES];
     
@@ -53,8 +50,7 @@
  * Did fall from main view
  */
 - (void)applicationWillResignActive:(UIApplication *)application {
-    NSLog(@"Lost active");
-    NSLog(@"Was connected to server? %@", _server.wasConnected ? @"Yes": @"No");
+    
 }
 
 /**
