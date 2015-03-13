@@ -1,0 +1,126 @@
+digraph G {
+	node [shape=box];
+	"LineDrawView" -> "AccessLectureRuntime";
+	"AccessLectureAppDelegate" -> "FileManager";
+	"LoadingLectureCVC" -> "PureLayout";
+	"LoadingLectureCVC" -> "AccessLectureKit";
+	"SearchViewController" -> "Note";
+	"SearchViewController" -> "NavBackButton";
+	"SearchViewController" -> "AccessLectureKit";
+	"SearchViewController" -> "Promise";
+	"SearchViewController" -> "AMLecture";
+	"SearchViewController" -> "FileManager";
+	"Note" -> {};
+	"LectureCell" -> {};
+	"TextNoteViewController" -> "FullScreenNoteViewController";
+	"TextNoteViewController" -> "TextNoteViewDelegate";
+	"TextNoteViewController" -> "ImageNoteViewController";
+	"Lecture" -> "Note";
+	"Lecture" -> "ImageNoteViewController";
+	"DrawMode" -> "MTMenuItem";
+	"LectureViewController" -> "AccessLectureRuntime";
+	"LectureViewController" -> "LineDrawView";
+	"LectureViewController" -> "UILargeAlertView";
+	"LectureViewController" -> "DrawView";
+	"LectureViewController" -> "AccessDocument";
+	"LectureViewController" -> "FileManager";
+	"LectureViewController" -> "Lecture";
+	"LectureViewController" -> "SettingsViewController";
+	"RootMenuController" -> "MenuData";
+	"RootMenuController" -> "MenuIconCell";
+	"MenuIconCell" -> {};
+	"NoteTakingViewController" -> "FileManager";
+	"NoteTakingViewController" -> "AddImage";
+	"NoteTakingViewController" -> "AddNote";
+	"NoteTakingViewController" -> "TextNoteViewController";
+	"NoteTakingViewController" -> "AMLecture";
+	"TextNoteView" -> "Note";
+	"TextNoteView" -> "TextNoteViewDelegate";
+	"TextNoteView" -> "NoteTakingViewController";
+	"DrawViewController" -> "ACEDrawingView";
+	"AddImage" -> "MTMenuItem";
+	"AboutViewController" -> {};
+	"Favorites" -> {};
+	"main" -> "AccessLectureAppDelegate";
+	"ABDrawToggleSwitch" -> {};
+	"AMOpenButton" -> {};
+	"TextNoteViewDelegate" -> {};
+	"OpenLectureController" -> "LoadingLectureCVC";
+	"OpenLectureController" -> "NewLectureButton";
+	"OpenLectureController" -> "Deferred";
+	"OpenLectureController" -> "BrushButton";
+	"OpenLectureController" -> "AMLecture";
+	"OpenLectureController" -> "SearchButton";
+	"OpenLectureController" -> "NewLectureController";
+	"OpenLectureController" -> "FileManager";
+	"OpenLectureController" -> "LectureViewContainer";
+	"OpenLectureController" -> "NavBackButton";
+	"OpenLectureController" -> "Promise";
+	"OpenLectureController" -> "SaveButton";
+	"AddNote" -> "MTMenuItem";
+	"ALMetaData" -> {};
+	"InlineNotesViewController" -> {};
+	"PreviewViewController" -> "NavBackButton";
+	"PreviewViewController" -> "AccessLectureKit";
+	"PreviewViewController" -> "ContinueButton";
+	"PreviewViewController" -> "AMLecture";
+	"PreviewViewController" -> "PureLayout";
+	"ImageNoteViewController" -> "XMLReader";
+	"NewLectureController" -> "NavBackButton";
+	"NewLectureController" -> "AMLecture";
+	"NewLectureController" -> "PureLayout";
+	"NewLectureController" -> "FileManager";
+	"NewLectureController" -> "CheckButton";
+	"FileManager" -> "Deferred";
+	"FileManager" -> "Promise";
+	"FileManager" -> "Lecture";
+	"FileManager" -> "AMLecture";
+	"MenuData" -> {};
+	"LectureViewContainer" -> "SaveButton";
+	"LectureViewContainer" -> "SearchButton";
+	"LectureViewContainer" -> "SearchViewController";
+	"LectureViewContainer" -> "StreamViewController";
+	"LectureViewContainer" -> "NavBackButton";
+	"LectureViewContainer" -> "Promise";
+	"LectureViewContainer" -> "BrushButton";
+	"LectureViewContainer" -> "AMLecture";
+	"XMLReader" -> {};
+	"AMLecture" -> "ALMetaData";
+	"InlineViewVController" -> {};
+	
+	"AccessLecture-Prefix" [color=red];
+	
+	edge [color=blue, dir=both];
+	"NoteTakingViewController" -> "LectureViewContainer";
+	"TextNoteView" -> "FullScreenNoteViewController";
+	"ImageNoteView" -> "ImageNoteViewController";
+	"NoteTakingViewController" -> "ImageNoteViewController";
+	"Lecture" -> "AMLecture";
+	"DrawViewController" -> "LectureViewContainer";
+	"TextNoteViewController" -> "TextNoteView";
+	"OpenLectureController" -> "PreviewViewController";
+	"AccessLectureRuntime" [color=gray, style=dashed, fontcolor=gray]
+	"DrawView" [color=gray, style=dashed, fontcolor=gray]
+	"SaveButton" [color=gray, style=dashed, fontcolor=gray]
+	"AccessLectureKit" [color=gray, style=dashed, fontcolor=gray]
+	"StreamViewController" [color=gray, style=dashed, fontcolor=gray]
+	"ACEDrawingView" [color=gray, style=dashed, fontcolor=gray]
+	"AccessDocument" [color=gray, style=dashed, fontcolor=gray]
+	"CheckButton" [color=gray, style=dashed, fontcolor=gray]
+	"NewLectureButton" [color=gray, style=dashed, fontcolor=gray]
+	"Deferred" [color=gray, style=dashed, fontcolor=gray]
+	"NavBackButton" [color=gray, style=dashed, fontcolor=gray]
+	"Promise" [color=gray, style=dashed, fontcolor=gray]
+	"MTMenuItem" [color=gray, style=dashed, fontcolor=gray]
+	"BrushButton" [color=gray, style=dashed, fontcolor=gray]
+	"ContinueButton" [color=gray, style=dashed, fontcolor=gray]
+	"SearchButton" [color=gray, style=dashed, fontcolor=gray]
+	"PureLayout" [color=gray, style=dashed, fontcolor=gray]
+	"UILargeAlertView" [color=gray, style=dashed, fontcolor=gray]
+	"SettingsViewController" [color=gray, style=dashed, fontcolor=gray]
+	
+	edge [color=black];
+	node [shape=plaintext];
+	"Categories" [label="NSString+TrimmingAdditions\nUIView+MLScreenshot\nUIImage+Screenshot\nUIImage+Alpha\nUIImage+FixOrientation\nUIImage+Resize\nUIImage+Rotate\nUINavigationBar+hight\nNSString+asciihexcodes\nUIImage+RoundedCorner"];
+}
+

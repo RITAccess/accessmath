@@ -50,9 +50,6 @@
 		3F8D9908187B4E010061DEA2 /* TextNoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F8D9906187B4E010061DEA2 /* TextNoteView.xib */; };
 		3F8D990E187DD9100061DEA2 /* FullScreenNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8D990C187DD9100061DEA2 /* FullScreenNoteViewController.m */; };
 		3F8D990F187DD9100061DEA2 /* FullScreenNoteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F8D990D187DD9100061DEA2 /* FullScreenNoteViewController.xib */; };
-		3F8D992B188099F30061DEA2 /* DocumentCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8D9929188099F30061DEA2 /* DocumentCreator.m */; };
-		3F8D992C188099F30061DEA2 /* DocumentCreator.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F8D992A188099F30061DEA2 /* DocumentCreator.xib */; };
-		3F8D992F1880A2540061DEA2 /* StatusMark.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8D992E1880A2540061DEA2 /* StatusMark.m */; };
 		3F8D99331880ACBE0061DEA2 /* NSString+TrimmingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8D99321880ACBE0061DEA2 /* NSString+TrimmingAdditions.m */; };
 		3F8FD2C418AD21860059EF9C /* AMOpenButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8FD2C318AD21860059EF9C /* AMOpenButton.m */; };
 		3F8FD2CA18AD33350059EF9C /* AddImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8FD2C718AD33350059EF9C /* AddImage.m */; };
@@ -191,11 +188,6 @@
 		3F8D990B187DD9100061DEA2 /* FullScreenNoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullScreenNoteViewController.h; sourceTree = "<group>"; };
 		3F8D990C187DD9100061DEA2 /* FullScreenNoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullScreenNoteViewController.m; sourceTree = "<group>"; };
 		3F8D990D187DD9100061DEA2 /* FullScreenNoteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FullScreenNoteViewController.xib; sourceTree = "<group>"; };
-		3F8D9928188099F20061DEA2 /* DocumentCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentCreator.h; sourceTree = "<group>"; };
-		3F8D9929188099F30061DEA2 /* DocumentCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentCreator.m; sourceTree = "<group>"; };
-		3F8D992A188099F30061DEA2 /* DocumentCreator.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DocumentCreator.xib; sourceTree = "<group>"; };
-		3F8D992D1880A2540061DEA2 /* StatusMark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusMark.h; sourceTree = "<group>"; };
-		3F8D992E1880A2540061DEA2 /* StatusMark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusMark.m; sourceTree = "<group>"; };
 		3F8D99311880ACBE0061DEA2 /* NSString+TrimmingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TrimmingAdditions.h"; sourceTree = "<group>"; };
 		3F8D99321880ACBE0061DEA2 /* NSString+TrimmingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TrimmingAdditions.m"; sourceTree = "<group>"; };
 		3F8FD2C218AD21860059EF9C /* AMOpenButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMOpenButton.h; sourceTree = "<group>"; };
@@ -411,26 +403,6 @@
 				3F8D990D187DD9100061DEA2 /* FullScreenNoteViewController.xib */,
 			);
 			name = FullScreenNoteController;
-			sourceTree = "<group>";
-		};
-		3F8D9911187F0CFC0061DEA2 /* FileManagerViewController */ = {
-			isa = PBXGroup;
-			children = (
-				3F8D9927188099D80061DEA2 /* DocumentCreator */,
-			);
-			name = FileManagerViewController;
-			sourceTree = "<group>";
-		};
-		3F8D9927188099D80061DEA2 /* DocumentCreator */ = {
-			isa = PBXGroup;
-			children = (
-				3F8D9928188099F20061DEA2 /* DocumentCreator.h */,
-				3F8D9929188099F30061DEA2 /* DocumentCreator.m */,
-				3F8D992D1880A2540061DEA2 /* StatusMark.h */,
-				3F8D992E1880A2540061DEA2 /* StatusMark.m */,
-				3F8D992A188099F30061DEA2 /* DocumentCreator.xib */,
-			);
-			name = DocumentCreator;
 			sourceTree = "<group>";
 		};
 		3F8D99301880AC9F0061DEA2 /* Helpers */ = {
@@ -706,7 +678,6 @@
 		4C5C50CA177B7B3A0095801A /* LectureViewController */ = {
 			isa = PBXGroup;
 			children = (
-				3F8D9911187F0CFC0061DEA2 /* FileManagerViewController */,
 				4C8ABE7C177CA341007C934C /* NotesViewController */,
 				2CBF3014177B700C0087C17C /* DrawViewController */,
 				3FED963213708E5100D8D1B8 /* Lecture View */,
@@ -915,7 +886,6 @@
 				3F2DC98318871FE4008C29BF /* ImageNoteViewController.xib in Resources */,
 				3F8D990F187DD9100061DEA2 /* FullScreenNoteViewController.xib in Resources */,
 				4C3BE5E71A7296F10017854C /* Main.storyboard in Resources */,
-				3F8D992C188099F30061DEA2 /* DocumentCreator.xib in Resources */,
 				3F8D9908187B4E010061DEA2 /* TextNoteView.xib in Resources */,
 				2CA93202188596D400199CC4 /* Images.xcassets in Resources */,
 				2CFC32A0175E60FC00384AEC /* MainStoryboard.storyboard in Resources */,
@@ -1055,11 +1025,9 @@
 				3F2DC9871887225D008C29BF /* ImageNoteView.m in Sources */,
 				21DA3D9518905B5000BFD96B /* DrawViewController.m in Sources */,
 				4C4FA6F31A72CC8100161ABE /* OpenLectureController.m in Sources */,
-				3F8D992B188099F30061DEA2 /* DocumentCreator.m in Sources */,
 				4C46E6391A7FE23200087229 /* LoadingLectureCVC.m in Sources */,
 				4CDB058017B5589A00D8EB85 /* Favorites.m in Sources */,
 				3F8B515718FD90580053BFE8 /* UIImage+RoundedCorner.m in Sources */,
-				3F8D992F1880A2540061DEA2 /* StatusMark.m in Sources */,
 				3F8FD2C418AD21860059EF9C /* AMOpenButton.m in Sources */,
 				4CFC4BED1A76E72C001E2E27 /* NewLectureController.m in Sources */,
 			);

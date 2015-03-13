@@ -171,7 +171,7 @@ static NSString * const reuseIdentifier = @"lecture";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     Deferred *promise = [Deferred deferred];
-    [[FileManager defaultManager] openDocumentForEditing:_documentTitles[indexPath.row] completion:^(AMLecture *lecture) {
+    [FileManager findDocumentWithName:_documentTitles[indexPath.row] completion:^(AMLecture *lecture) {
         [promise resolve:lecture];
     }];
     _selectedLecture = [promise promise];
