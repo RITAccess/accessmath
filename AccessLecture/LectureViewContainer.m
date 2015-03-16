@@ -8,7 +8,6 @@
 
 #import "DrawViewController.h"
 #import "LectureViewContainer.h"
-#import "StreamViewController.h"
 #import "NoteTakingViewController.h"
 #import "SearchViewController.h"
 #import "AMLecture.h"
@@ -28,7 +27,6 @@
 @property (weak) AMLecture *document;
 @property (strong, nonatomic) MTRadialMenu *actionMenu;
 @property (strong) DrawViewController *dvc;
-@property (strong) StreamViewController *svc;
 @property (strong) NoteTakingViewController *ntvc;
 @property (weak) UIViewController<LectureViewChild> *active;
 
