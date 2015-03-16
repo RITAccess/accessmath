@@ -6,8 +6,6 @@
 //
 //
 
-@import ObjectiveC;
-
 #import "SearchViewController.h"
 #import "Promise.h"
 #import "FileManager.h"
