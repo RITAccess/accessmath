@@ -2,7 +2,6 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
-#import "ALNetworkInterface.h"
 
 @interface AccessLectureAppDelegate : NSObject <UIApplicationDelegate>
 {
@@ -21,10 +20,6 @@
 @property (nonatomic) IBOutlet UIWindow* window;
 @property (nonatomic) NSUserDefaults* defaults;
 @property (nonatomic, strong) UINavigationController* navigationController;
-
-// Network Interface
-@property (nonatomic, strong) ALNetworkInterface *server;
-@property (nonatomic, strong) NSString *serverAddress;
 
 // Core Data
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;

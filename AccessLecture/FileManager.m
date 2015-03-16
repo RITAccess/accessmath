@@ -33,90 +33,13 @@
     void (^lectureLoaded)(AMLecture *);
 }
 
-#pragma mark Public APIs
 
-+ (instancetype)defaultManager
++ (void)findDocumentWithName:(NSString *)name completion:(void(^)(AMLecture *lecture))completion
 {
-    static FileManager *defaultManger;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        defaultManger = [FileManager new];
-    });
-    return defaultManger;
-}
-
-- (void)currentDocumentWithCompletion:(void(^)(AMLecture *lecture))completion
-{
-    lectureLoaded = completion ?: ^(AMLecture *lec){ NSLog(@"%@", lec); };
-    if (_document == nil) {
-        // Document wasn't loaded
-        [self promptUserToPickDocument];
-    }
-}
-
-- (AMLecture *)currentDocument
-{
-    return _document;
-}
-
-- (void)forceSave
-{
-    [_document save];
-}
-
-- (Promise *)finishedWithDocument
-{
-    Deferred *closed = [Deferred deferred];
-    [_document closeWithCompletionHandler:^(BOOL success) {
-        _document = nil;
-        [closed resolve:nil];
+    AMLecture *lec = [self findDocumentWithName:name failure:nil];
+    [lec openWithCompletionHandler:^(BOOL success) {
+        completion(lec);
     }];
-    return closed;
-}
-
-- (Promise *)currentDocumentPromise
-{
-    Deferred *lecturePromise = [Deferred deferred];
-    [self currentDocumentWithCompletion:^(AMLecture *lecture) {
-        [lecturePromise resolve:lecture];
-    }];
-    return [lecturePromise promise];
-}
-
-#pragma mark Document Internal
-
-/**
- * Called by FileMangerViewController when document is choosen
- */
-- (void)openDocumentForEditing:(NSString *)docName completion:(void(^)(AMLecture *lecture))completion  
-{
-    _document = [FileManager findDocumentWithName:docName];
-    if (_document == nil) {
-        NSLog(@"Failed to find document %@", docName);
-    } else {
-        [_document openWithCompletionHandler:^(BOOL success) {
-            if (success) {
-                completion(_document);
-            } else {
-                NSLog(@"Something when wrong opening the docuement");
-            }
-        }];
-    }
-}
-
-/**
- * Presents the document picker controllers onto of the current active controller
- */
-- (void)promptUserToPickDocument
-{
-    UIPageViewController *openDoc = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
-                                                                            navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
-                                                                                          options:nil];
-    UIWindow *mainWindow = [[UIApplication sharedApplication].windows firstObject];
-    UIViewController *activeViewController = [mainWindow.rootViewController presentedViewController];
-    [openDoc setModalPresentationStyle:UIModalPresentationFormSheet];
-    [openDoc setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
-    [activeViewController presentViewController:openDoc animated:YES completion:nil];
 }
 
 #pragma mark Class Helper Methods
