@@ -9,3 +9,6 @@ xcode_scheme: AccessLecture
 
 xcode_sdk: iphonesimulator
 
+notifications:
+  slack: accessmath:4mggxmfe383Y0RDD6kS2E5V6
+
