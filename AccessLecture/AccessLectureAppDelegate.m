@@ -59,13 +59,6 @@
 }
 
 /**
- * Did fall from main view
- */
-- (void)applicationWillResignActive:(UIApplication *)application {
-    
-}
-
-/**
  * Resume main view
  */
 - (void)applicationDidBecomeActive:(UIApplication *)application {
