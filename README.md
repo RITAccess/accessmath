@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/ritaccess/accessmath.png?label=ready&title=Ready)](https://waffle.io/ritaccess/accessmath)
 AccessMath
 ==========
 [![Build Status](https://travis-ci.org/RITAccess/accessmath.png?branch=master)](https://travis-ci.org/RITAccess/accessmath)

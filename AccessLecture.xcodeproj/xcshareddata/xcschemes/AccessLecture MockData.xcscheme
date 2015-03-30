@@ -96,7 +96,7 @@
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "MOCKDATA"
-            value = "0"
+            value = "1"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>
