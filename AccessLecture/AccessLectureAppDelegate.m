@@ -4,6 +4,7 @@
 
 #import "AccessLectureAppDelegate.h"
 #import "FileManager.h"
+#import "MockData.h"
 
 @implementation AccessLectureAppDelegate
 
@@ -22,6 +23,17 @@
     NSDictionary *environment = [NSProcessInfo processInfo].environment;
     NSString *injectBundlePath = environment[@"XCInjectBundle"];
     if ([injectBundlePath.pathExtension isEqualToString:@"xctest"]) return YES;
+    
+    if ([environment[@"MOCKDATA"] boolValue]) {
+        dispatch_queue_t generation = dispatch_queue_create("al.mockdata.generate", DISPATCH_QUEUE_CONCURRENT);
+        NSLog(@"DEBUG: Mock Data loading");
+        MockData *generator = [MockData new];
+        dispatch_async(generation, ^{
+            [generator generateData];
+            NSLog(@"DEBUG: Mock Data Loaded");
+        });
+    }
+    
     #endif    
     
     // Set the application defaults

@@ -123,16 +123,18 @@
         __block AMLecture *newDoc = [[AMLecture alloc] initWithFileURL:[NSURL fileURLWithPath:filePath]];
         newDoc.metadata.title = name;
         newDoc.metadata.dateCreated = [NSDate new];
-        [newDoc saveToURL:newDoc.fileURL forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL status) {
-            if (status) {
-                NSLog(@"Created document instance %@", newDoc);
-                success(newDoc);
-            } else {
-                NSError *err = [NSError errorWithDomain:NSOSStatusErrorDomain code:FileManagerErrorSaveError userInfo:@{ @"Message" : @"Failed to save document" }];
-                newDoc = nil;
-                failure(err);
-            }
-        }];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [newDoc saveToURL:newDoc.fileURL forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL status) {
+                if (status) {
+                    NSLog(@"Created document instance %@", newDoc);
+                    success(newDoc);
+                } else {
+                    NSError *err = [NSError errorWithDomain:NSOSStatusErrorDomain code:FileManagerErrorSaveError userInfo:@{ @"Message" : @"Failed to save document" }];
+                    newDoc = nil;
+                    failure(err);
+                }
+            }];
+        });
     }
 
 }
@@ -150,16 +152,18 @@
         __block AMLecture *newDoc = [[AMLecture alloc] initWithFileURL:[NSURL fileURLWithPath:filePath]];
         newDoc.metadata.title = name;
         newDoc.metadata.dateCreated = [NSDate new];
-        [newDoc saveToURL:newDoc.fileURL forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success) {
-            if (success) {
-                NSLog(@"Created document instance %@", newDoc);
-                completion(nil, newDoc);
-            } else {
-                NSError *err = [NSError errorWithDomain:NSOSStatusErrorDomain code:FileManagerErrorSaveError userInfo:@{ @"Message" : @"Failed to save document" }];
-                newDoc = nil;
-                completion(err, newDoc);
-            }
-        }];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [newDoc saveToURL:newDoc.fileURL forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success) {
+                if (success) {
+                    NSLog(@"Created document instance %@", newDoc);
+                    completion(nil, newDoc);
+                } else {
+                    NSError *err = [NSError errorWithDomain:NSOSStatusErrorDomain code:FileManagerErrorSaveError userInfo:@{ @"Message" : @"Failed to save document" }];
+                    newDoc = nil;
+                    completion(err, newDoc);
+                }
+            }];
+        });
     }
 }
 
