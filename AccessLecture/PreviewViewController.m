@@ -100,7 +100,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 1;
+    return 2;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -112,7 +112,16 @@
         l.textAlignment = NSTextAlignmentCenter;
         l.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
         l.font = [UIFont systemFontOfSize:24];
-        l.text = _selectedLecture.metadata.dateCreated.description ?: @"No Creation date found";
+        switch (indexPath.row) {
+            case 0:
+                l.text = _selectedLecture.metadata.dateCreated.description ?: @"No Creation date found";
+                break;
+            case 1:
+                l.text = [NSString stringWithFormat:@"Number of notes %ul", _selectedLecture.lecture.notes.count];
+                break;
+            default:
+                break;
+        }
         l;
     });
     

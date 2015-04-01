@@ -8,6 +8,7 @@
 
 #import "FileManager.h"
 #import "MockData.h"
+#import "Note.h"
 
 void signal_done(dispatch_semaphore_t lc, dispatch_semaphore_t count) {
     int res = dispatch_semaphore_wait(count, DISPATCH_TIME_NOW);
@@ -61,8 +62,17 @@ void signal_done(dispatch_semaphore_t lc, dispatch_semaphore_t count) {
 
 - (void)createNoteDataOnLecture:(AMLecture *)lecture completion:(void(^)())completion
 {
-    // Do things
-    completion();
+    for (int i = 0; i < 20; i++) {
+        Note *n = [Note new];
+        n.title = @"Test Note";
+        n.content = @"Note stuff";
+        [lecture.lecture addNotes:[NSSet setWithObject:n]];
+    }
+    
+    [lecture saveWithCompletetion:^(BOOL success) {
+        completion();
+    }];
+
 }
 
 
