@@ -5,6 +5,7 @@
 #import "AccessLectureAppDelegate.h"
 #import "FileManager.h"
 #import "MockData.h"
+#import "FSIndex.h"
 
 @implementation AccessLectureAppDelegate
 
@@ -33,8 +34,10 @@
             NSLog(@"DEBUG: Mock Data Loaded");
         });
     }
+    #endif       
     
-    #endif    
+    // Index
+    [FSIndex sharedIndex];
     
     // Set the application defaults
     defaults = [NSUserDefaults standardUserDefaults];

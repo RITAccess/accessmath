@@ -10,8 +10,13 @@
 
 @interface FSIndex : NSObject
 
++ (instancetype)sharedIndex;
 - (instancetype)initWithIndex:(NSURL *)pathToIndex;
 
-@property (nonatomic, readonly) NSArray *files;
+- (void)invalidate;
+
+@property (readonly) NSUInteger count;
+- (id)objectAtIndexedSubscript:(NSUInteger)idx;
+- (void)setObject:(id)obj atIndexedSubscript:(NSUInteger)idx;
 
 @end
