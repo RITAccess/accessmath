@@ -64,25 +64,33 @@
 
 - (id)objectAtIndexedSubscript:(NSUInteger)idx
 {
+    
     return _files[idx];
 }
 
 - (void)setObject:(id)obj atIndexedSubscript:(NSUInteger)idx
 {
-    
+    return;
 }
 
 - (void)beginIndexing
 {
+    [self beginIndexingAtPath:@"/"];
+}
+
+- (void)beginIndexingAtPath:(NSString *)path
+{
     NSLog(@"DEBUG: FS Indexing started");
-    NSArray *docuemnts = [FileManager listContentsOfDirectory:[FileManager localDocumentsDirectoryPath]];
+    NSString *base = [FSIndex localDocumentsDirectoryPath];
+    NSLog(@"DEBUG: %@", base);
+    NSArray *docuemnts = [FSIndex listContentsOfDirectory:[base stringByAppendingPathComponent:path]];
     [_db inDatabase:^(FMDatabase *db) {
-        bool success = [db executeStatements:@"drop table if exists fs_name_index; create table fs_name_index (filename varchar(80), unique (filename));"];
-        NSLog(@"DEBUG: query %@", success ? @"YES" : @"NO");
+        bool success = [db executeStatements:@"drop table if exists fs_name_index; create table fs_name_index (filename varchar(80), directory varchar(80));"];
+        NSLog(@"DEBUG: created table %@", success ? @"YES" : @"NO");
     }];
     [_db inDatabase:^(FMDatabase *db) {
         for (NSString *fileName in docuemnts) {
-            [db executeUpdate:@"INSERT into fs_name_index (filename) VALUES (?)", fileName];
+            [db executeUpdate:@"INSERT into fs_name_index (filename, directory) VALUES (?,?)", fileName, path];
         }
     }];
     NSMutableArray *files = [NSMutableArray new];
@@ -90,6 +98,7 @@
         FMResultSet *results = [db executeQuery:@"select * from fs_name_index;"];
         while ([results next]) {
             [files addObject:[results stringForColumn:@"filename"]];
+//            NSLog(@"DEBUG: %@ in %@", [results stringForColumn:@"filename"], [results stringForColumn:@"directory"]);
         }
         [results close];
     }];
@@ -98,7 +107,65 @@
 
 - (void)invalidate
 {
-	
+    [self createDatabase];
+    [self beginIndexing];
 }
+
+#pragma mark - File System Quering
+
++ (NSArray *)listContentsOfDirectory:(NSString *)path
+{
+    NSError *err;
+    NSArray *names = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:&err];
+    if (err) {
+        NSLog(@"There was an error reading directory '%@', %@", path, err);
+        return nil;
+    }
+    NSPredicate *isFile = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+        NSString *fullPath = [path stringByAppendingPathComponent:evaluatedObject];
+        NSLog(@"DEBUG: %@", fullPath);
+        bool isDirectory = NO;
+        [[NSFileManager defaultManager] fileExistsAtPath:fullPath isDirectory:&isDirectory];
+        NSLog(@"DEBUG: isDirectory %@", isDirectory ? @"YES" : @"NO");
+        return !(isDirectory);
+    }];
+    NSPredicate *isLecture = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+        return [[[evaluatedObject componentsSeparatedByString:@"."] lastObject] isEqualToString:@"lec"];
+    }];
+    return [[[names filteredArrayUsingPredicate:isFile] filteredArrayUsingPredicate:isLecture]
+    sortedArrayWithOptions:NSSortStable usingComparator:^NSComparisonResult(NSString *file1, NSString *file2) {
+        NSError *error;
+        
+        NSString *f1 = [[FSIndex localDocumentsDirectoryPath] stringByAppendingPathComponent:file1];
+        NSString *f2 = [[FSIndex localDocumentsDirectoryPath] stringByAppendingPathComponent:file2];
+        
+        NSDictionary* p1 = [[NSFileManager defaultManager]
+                            attributesOfItemAtPath:f1
+                            error:&error];
+        
+        NSDictionary* p2 = [[NSFileManager defaultManager]
+                            attributesOfItemAtPath:f2
+                            error:&error];
+        
+        NSDate *fileDate1 = [p1 objectForKey:NSFileModificationDate];
+        NSDate *fileDate2 = [p2 objectForKey:NSFileModificationDate];
+        
+        return [fileDate2 compare:fileDate1];
+    }];
+}
+
++ (NSString *)localDocumentsDirectoryPath {
+    static NSString *documentsDirectoryPath;
+    if (!documentsDirectoryPath) {
+        documentsDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    }
+    return documentsDirectoryPath;
+}
+
++ (NSURL *)iCloudDirectoryURL {
+    NSURL *ubiquity = [[NSFileManager defaultManager] URLForUbiquityContainerIdentifier:nil];
+    return ubiquity;
+}
+
 
 @end

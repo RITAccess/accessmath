@@ -70,6 +70,7 @@
 		4C5C50CD177B7B7C0095801A /* LectureViewContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5C50CC177B7B7C0095801A /* LectureViewContainer.m */; };
 		4C62BECD175651DB00CAF4CF /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F99F1FA1543641E0065CBB9 /* FileManager.m */; };
 		4CA4A0651ADC3287004536B7 /* FSIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4A0641ADC3287004536B7 /* FSIndex.m */; };
+		4CA4A0681ADC365E004536B7 /* FSDirectoryResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4A0671ADC365E004536B7 /* FSDirectoryResult.m */; };
 		4CBD62B51A89516500B6AC9E /* ContinueButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBD62B41A89516500B6AC9E /* ContinueButton.m */; };
 		4CBF5D871768DAD200746377 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11D217625F150066A4FA /* libicucore.dylib */; };
 		4CBF5D881768DAD500746377 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11D017625F0D0066A4FA /* CFNetwork.framework */; };
@@ -257,6 +258,8 @@
 		4C5C50CC177B7B7C0095801A /* LectureViewContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LectureViewContainer.m; sourceTree = "<group>"; };
 		4CA4A0631ADC3287004536B7 /* FSIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSIndex.h; sourceTree = "<group>"; };
 		4CA4A0641ADC3287004536B7 /* FSIndex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSIndex.m; sourceTree = "<group>"; };
+		4CA4A0661ADC365E004536B7 /* FSDirectoryResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSDirectoryResult.h; sourceTree = "<group>"; };
+		4CA4A0671ADC365E004536B7 /* FSDirectoryResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSDirectoryResult.m; sourceTree = "<group>"; };
 		4CBD62B31A89516500B6AC9E /* ContinueButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContinueButton.h; sourceTree = "<group>"; };
 		4CBD62B41A89516500B6AC9E /* ContinueButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContinueButton.m; sourceTree = "<group>"; };
 		4CD7CE281A8568CB00A9717F /* PreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviewViewController.h; sourceTree = "<group>"; };
@@ -724,6 +727,8 @@
 			children = (
 				4CA4A0631ADC3287004536B7 /* FSIndex.h */,
 				4CA4A0641ADC3287004536B7 /* FSIndex.m */,
+				4CA4A0661ADC365E004536B7 /* FSDirectoryResult.h */,
+				4CA4A0671ADC365E004536B7 /* FSDirectoryResult.m */,
 			);
 			name = Indexing;
 			sourceTree = "<group>";
@@ -989,6 +994,7 @@
 				3F07C352187B3627005BC7EC /* TextNoteView.m in Sources */,
 				3F8FD2CB18AD33350059EF9C /* AddNote.m in Sources */,
 				3F8D99331880ACBE0061DEA2 /* NSString+TrimmingAdditions.m in Sources */,
+				4CA4A0681ADC365E004536B7 /* FSDirectoryResult.m in Sources */,
 				3F8D990E187DD9100061DEA2 /* FullScreenNoteViewController.m in Sources */,
 				3F07C34F187B2BA7005BC7EC /* TextNoteViewController.m in Sources */,
 				3FED96191370863E00D8D1B8 /* main.m in Sources */,
