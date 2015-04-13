@@ -6,20 +6,6 @@
 	objectVersion = 46;
 	objects = {
 
-/* Begin PBXAggregateTarget section */
-		4CBD8E61182069CC005E5997 /* OCLint */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = 4CBD8E64182069CC005E5997 /* Build configuration list for PBXAggregateTarget "OCLint" */;
-			buildPhases = (
-				4CBD8E6518206ADC005E5997 /* ShellScript */,
-			);
-			dependencies = (
-			);
-			name = OCLint;
-			productName = OCLint;
-		};
-/* End PBXAggregateTarget section */
-
 /* Begin PBXBuildFile section */
 		213733791937B18F00E2AD81 /* DrawViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 213733781937B18F00E2AD81 /* DrawViewTests.m */; };
 		21DA3D9318905B5000BFD96B /* DrawViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21DA3D8C18905B5000BFD96B /* DrawViewController.xib */; };
@@ -72,7 +58,6 @@
 		4C3BE5F01A729F0F0017854C /* MenuData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BE5EF1A729F0F0017854C /* MenuData.m */; };
 		4C46910D1AB767CF006EE0CF /* MockData.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4C46910C1AB767CF006EE0CF /* MockData.h */; };
 		4C46910F1AB767CF006EE0CF /* MockData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C46910E1AB767CF006EE0CF /* MockData.m */; };
-		4C4691151AB767D0006EE0CF /* libMockData.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C46910A1AB767CF006EE0CF /* libMockData.a */; };
 		4C4691231AB767DF006EE0CF /* libMockData.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C46910A1AB767CF006EE0CF /* libMockData.a */; };
 		4C46E6391A7FE23200087229 /* LoadingLectureCVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C46E6381A7FE23200087229 /* LoadingLectureCVC.m */; };
 		4C4B8BFC178EF8D900C2F94B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C4B8BFB178EF8D900C2F94B /* AVFoundation.framework */; };
@@ -80,7 +65,6 @@
 		4C4FA6F31A72CC8100161ABE /* OpenLectureController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4FA6F21A72CC8100161ABE /* OpenLectureController.m */; };
 		4C4FA6FB1A76C14400161ABE /* AccessLectureKit.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4C4FA6FA1A76C14400161ABE /* AccessLectureKit.h */; };
 		4C4FA6FD1A76C14400161ABE /* AccessLectureKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4FA6FC1A76C14400161ABE /* AccessLectureKit.m */; };
-		4C4FA7031A76C14400161ABE /* libAccessLectureKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C4FA6F81A76C14400161ABE /* libAccessLectureKit.a */; };
 		4C4FA7161A76C27000161ABE /* NavBackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4FA7151A76C27000161ABE /* NavBackButton.m */; };
 		4C4FA7171A76C2FE00161ABE /* libAccessLectureKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C4FA6F81A76C14400161ABE /* libAccessLectureKit.a */; };
 		4C5C50CD177B7B7C0095801A /* LectureViewContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5C50CC177B7B7C0095801A /* LectureViewContainer.m */; };
@@ -110,26 +94,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		4C4691161AB767D0006EE0CF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3FED95FE1370863E00D8D1B8 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4C4691091AB767CF006EE0CF;
-			remoteInfo = MockData;
-		};
 		4C4691211AB767DC006EE0CF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3FED95FE1370863E00D8D1B8 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 4C4691091AB767CF006EE0CF;
 			remoteInfo = MockData;
-		};
-		4C4FA7041A76C14400161ABE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3FED95FE1370863E00D8D1B8 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4C4FA6F71A76C14300161ABE;
-			remoteInfo = AccessLectureKit;
 		};
 		4CBF5D8A1768DB4E00746377 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -270,8 +240,6 @@
 		4C46910A1AB767CF006EE0CF /* libMockData.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMockData.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C46910C1AB767CF006EE0CF /* MockData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MockData.h; sourceTree = "<group>"; };
 		4C46910E1AB767CF006EE0CF /* MockData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MockData.m; sourceTree = "<group>"; };
-		4C4691141AB767CF006EE0CF /* MockDataTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MockDataTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4C46911A1AB767D0006EE0CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C46E6371A7FE23200087229 /* LoadingLectureCVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingLectureCVC.h; sourceTree = "<group>"; };
 		4C46E6381A7FE23200087229 /* LoadingLectureCVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingLectureCVC.m; sourceTree = "<group>"; };
 		4C4B8BFB178EF8D900C2F94B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -282,8 +250,6 @@
 		4C4FA6F81A76C14400161ABE /* libAccessLectureKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAccessLectureKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C4FA6FA1A76C14400161ABE /* AccessLectureKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccessLectureKit.h; sourceTree = "<group>"; };
 		4C4FA6FC1A76C14400161ABE /* AccessLectureKit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccessLectureKit.m; sourceTree = "<group>"; };
-		4C4FA7021A76C14400161ABE /* AccessLectureKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AccessLectureKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4C4FA7081A76C14400161ABE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C4FA7141A76C27000161ABE /* NavBackButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavBackButton.h; sourceTree = "<group>"; };
 		4C4FA7151A76C27000161ABE /* NavBackButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavBackButton.m; sourceTree = "<group>"; };
 		4C5C50CB177B7B7C0095801A /* LectureViewContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LectureViewContainer.h; sourceTree = "<group>"; };
@@ -352,26 +318,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4C4691111AB767CF006EE0CF /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4C4691151AB767D0006EE0CF /* libMockData.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		4C4FA6F51A76C14300161ABE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4C4FA6FF1A76C14400161ABE /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4C4FA7031A76C14400161ABE /* libAccessLectureKit.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -564,14 +514,12 @@
 			isa = PBXGroup;
 			children = (
 				3FED96111370863E00D8D1B8 /* AccessLecture */,
+				4CE742C71768BDE60026DE71 /* AccessLecture Tests */,
 				4C4FA6F91A76C14400161ABE /* AccessLectureKit */,
-				4C4FA7061A76C14400161ABE /* AccessLectureKitTests */,
 				4C46910B1AB767CF006EE0CF /* MockData */,
-				4C4691181AB767D0006EE0CF /* MockDataTests */,
 				3FED960A1370863E00D8D1B8 /* Frameworks */,
 				3FED96121370863E00D8D1B8 /* Supporting Files */,
 				3FED96081370863E00D8D1B8 /* Products */,
-				4CE742C71768BDE60026DE71 /* AccessLecture Tests */,
 				5FDD27956F3D415D1450C0BB /* Pods */,
 			);
 			sourceTree = "<group>";
@@ -582,9 +530,7 @@
 				3FED96071370863E00D8D1B8 /* AccessLecture.app */,
 				4CE742C31768BDE60026DE71 /* AccessLecture Tests.octest */,
 				4C4FA6F81A76C14400161ABE /* libAccessLectureKit.a */,
-				4C4FA7021A76C14400161ABE /* AccessLectureKitTests.xctest */,
 				4C46910A1AB767CF006EE0CF /* libMockData.a */,
-				4C4691141AB767CF006EE0CF /* MockDataTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -694,22 +640,6 @@
 			path = MockData;
 			sourceTree = "<group>";
 		};
-		4C4691181AB767D0006EE0CF /* MockDataTests */ = {
-			isa = PBXGroup;
-			children = (
-				4C4691191AB767D0006EE0CF /* Supporting Files */,
-			);
-			path = MockDataTests;
-			sourceTree = "<group>";
-		};
-		4C4691191AB767D0006EE0CF /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				4C46911A1AB767D0006EE0CF /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		4C4FA6F91A76C14400161ABE /* AccessLectureKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -733,22 +663,6 @@
 				4CBD62B41A89516500B6AC9E /* ContinueButton.m */,
 			);
 			path = AccessLectureKit;
-			sourceTree = "<group>";
-		};
-		4C4FA7061A76C14400161ABE /* AccessLectureKitTests */ = {
-			isa = PBXGroup;
-			children = (
-				4C4FA7071A76C14400161ABE /* Supporting Files */,
-			);
-			path = AccessLectureKitTests;
-			sourceTree = "<group>";
-		};
-		4C4FA7071A76C14400161ABE /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				4C4FA7081A76C14400161ABE /* Info.plist */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		4C5C50C9177B7B300095801A /* Controllers */ = {
@@ -830,7 +744,7 @@
 				213733781937B18F00E2AD81 /* DrawViewTests.m */,
 			);
 			path = "AccessLecture Tests";
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
 		5FDD27956F3D415D1450C0BB /* Pods */ = {
 			isa = PBXGroup;
@@ -884,24 +798,6 @@
 			productReference = 4C46910A1AB767CF006EE0CF /* libMockData.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		4C4691131AB767CF006EE0CF /* MockDataTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 4C46911E1AB767D0006EE0CF /* Build configuration list for PBXNativeTarget "MockDataTests" */;
-			buildPhases = (
-				4C4691101AB767CF006EE0CF /* Sources */,
-				4C4691111AB767CF006EE0CF /* Frameworks */,
-				4C4691121AB767CF006EE0CF /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				4C4691171AB767D0006EE0CF /* PBXTargetDependency */,
-			);
-			name = MockDataTests;
-			productName = MockDataTests;
-			productReference = 4C4691141AB767CF006EE0CF /* MockDataTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		4C4FA6F71A76C14300161ABE /* AccessLectureKit */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4C4FA70D1A76C14400161ABE /* Build configuration list for PBXNativeTarget "AccessLectureKit" */;
@@ -918,24 +814,6 @@
 			productName = AccessLectureKit;
 			productReference = 4C4FA6F81A76C14400161ABE /* libAccessLectureKit.a */;
 			productType = "com.apple.product-type.library.static";
-		};
-		4C4FA7011A76C14400161ABE /* AccessLectureKitTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 4C4FA70E1A76C14400161ABE /* Build configuration list for PBXNativeTarget "AccessLectureKitTests" */;
-			buildPhases = (
-				4C4FA6FE1A76C14400161ABE /* Sources */,
-				4C4FA6FF1A76C14400161ABE /* Frameworks */,
-				4C4FA7001A76C14400161ABE /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				4C4FA7051A76C14400161ABE /* PBXTargetDependency */,
-			);
-			name = AccessLectureKitTests;
-			productName = AccessLectureKitTests;
-			productReference = 4C4FA7021A76C14400161ABE /* AccessLectureKitTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		4CE742C21768BDE60026DE71 /* AccessLecture Tests */ = {
 			isa = PBXNativeTarget;
@@ -972,13 +850,7 @@
 					4C4691091AB767CF006EE0CF = {
 						CreatedOnToolsVersion = 6.1.1;
 					};
-					4C4691131AB767CF006EE0CF = {
-						CreatedOnToolsVersion = 6.1.1;
-					};
 					4C4FA6F71A76C14300161ABE = {
-						CreatedOnToolsVersion = 6.1.1;
-					};
-					4C4FA7011A76C14400161ABE = {
 						CreatedOnToolsVersion = 6.1.1;
 					};
 					4CE742C21768BDE60026DE71 = {
@@ -1000,11 +872,8 @@
 			targets = (
 				3FED96061370863E00D8D1B8 /* AccessLecture */,
 				4CE742C21768BDE60026DE71 /* AccessLecture Tests */,
-				4CBD8E61182069CC005E5997 /* OCLint */,
 				4C4FA6F71A76C14300161ABE /* AccessLectureKit */,
-				4C4FA7011A76C14400161ABE /* AccessLectureKitTests */,
 				4C4691091AB767CF006EE0CF /* MockData */,
-				4C4691131AB767CF006EE0CF /* MockDataTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1022,20 +891,6 @@
 				3F8D9908187B4E010061DEA2 /* TextNoteView.xib in Resources */,
 				2CA93202188596D400199CC4 /* Images.xcassets in Resources */,
 				2CFC32A0175E60FC00384AEC /* MainStoryboard.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4C4691121AB767CF006EE0CF /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4C4FA7001A76C14400161ABE /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1063,19 +918,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AccessLecture Tests/Pods-AccessLecture Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
-		};
-		4CBD8E6518206ADC005E5997 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "source ~/.bash_profile\n\nhash oclint &> /dev/null\nif [ $? -eq 1 ]; then\necho >&2 \"oclint not found, analyzing stopped\"\nexit 1\nfi\n\ncd ${TARGET_TEMP_DIR}\n\nif [ ! -f compile_commands.json ]; then\necho \"[*] compile_commands.json not found, possibly clean was performed\"\necho \"[*] starting xcodebuild to rebuild the project..\"\n# clean previous output\nif [ -f xcodebuild.log ]; then\nrm xcodebuild.log\nfi\n\ncd ${SRCROOT}\n\nxcodebuild clean\n\n#build xcodebuild.log\nxcodebuild | tee ${TARGET_TEMP_DIR}/xcodebuild.log\n#xcodebuild <options>| tee ${TARGET_TEMP_DIR}/xcodebuild.log\n\necho \"[*] transforming xcodebuild.log into compile_commands.json...\"\ncd ${TARGET_TEMP_DIR}\n#transform it into compile_commands.json\noclint-xcodebuild\n\necho \"[*] copy compile_commands.json to the project root...\"\ncp ${TARGET_TEMP_DIR}/compile_commands.json ${SRCROOT}/compile_commands.json\n\nfi\n\necho \"[*] starting analyzing\"\ncd ${TARGET_TEMP_DIR}\noclint-json-compilation-database | sed 's/\\(.*\\.\\m\\{1,2\\}:[0-9]*:[0-9]*:\\)/\\1 warning:/'";
 		};
 		5D7CE565F90449668FE5BE49 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1181,13 +1023,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4C4691101AB767CF006EE0CF /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		4C4FA6F41A76C14300161ABE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1204,13 +1039,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4C4FA6FE1A76C14400161ABE /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		4CE742BF1768BDE60026DE71 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1223,20 +1051,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		4C4691171AB767D0006EE0CF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 4C4691091AB767CF006EE0CF /* MockData */;
-			targetProxy = 4C4691161AB767D0006EE0CF /* PBXContainerItemProxy */;
-		};
 		4C4691221AB767DC006EE0CF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 4C4691091AB767CF006EE0CF /* MockData */;
 			targetProxy = 4C4691211AB767DC006EE0CF /* PBXContainerItemProxy */;
-		};
-		4C4FA7051A76C14400161ABE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 4C4FA6F71A76C14300161ABE /* AccessLectureKit */;
-			targetProxy = 4C4FA7041A76C14400161ABE /* PBXContainerItemProxy */;
 		};
 		4CBF5D8B1768DB4E00746377 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1469,81 +1287,6 @@
 			};
 			name = Release;
 		};
-		4C46911F1AB767D0006EE0CF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				INFOPLIST_FILE = MockDataTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		4C4691201AB767D0006EE0CF /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				INFOPLIST_FILE = MockDataTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
 		4C4FA7091A76C14400161ABE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1612,99 +1355,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		4C4FA70B1A76C14400161ABE /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				INFOPLIST_FILE = AccessLectureKitTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		4C4FA70C1A76C14400161ABE /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				INFOPLIST_FILE = AccessLectureKitTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		4CBD8E62182069CC005E5997 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		4CBD8E63182069CC005E5997 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -1826,38 +1476,13 @@
 				4C46911D1AB767D0006EE0CF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-		};
-		4C46911E1AB767D0006EE0CF /* Build configuration list for PBXNativeTarget "MockDataTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				4C46911F1AB767D0006EE0CF /* Debug */,
-				4C4691201AB767D0006EE0CF /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4C4FA70D1A76C14400161ABE /* Build configuration list for PBXNativeTarget "AccessLectureKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4C4FA7091A76C14400161ABE /* Debug */,
 				4C4FA70A1A76C14400161ABE /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		4C4FA70E1A76C14400161ABE /* Build configuration list for PBXNativeTarget "AccessLectureKitTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				4C4FA70B1A76C14400161ABE /* Debug */,
-				4C4FA70C1A76C14400161ABE /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		4CBD8E64182069CC005E5997 /* Build configuration list for PBXAggregateTarget "OCLint" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				4CBD8E62182069CC005E5997 /* Debug */,
-				4CBD8E63182069CC005E5997 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
