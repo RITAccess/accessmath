@@ -69,6 +69,7 @@
 		4C4FA7171A76C2FE00161ABE /* libAccessLectureKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C4FA6F81A76C14400161ABE /* libAccessLectureKit.a */; };
 		4C5C50CD177B7B7C0095801A /* LectureViewContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5C50CC177B7B7C0095801A /* LectureViewContainer.m */; };
 		4C62BECD175651DB00CAF4CF /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F99F1FA1543641E0065CBB9 /* FileManager.m */; };
+		4CA4A0651ADC3287004536B7 /* FSIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4A0641ADC3287004536B7 /* FSIndex.m */; };
 		4CBD62B51A89516500B6AC9E /* ContinueButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBD62B41A89516500B6AC9E /* ContinueButton.m */; };
 		4CBF5D871768DAD200746377 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11D217625F150066A4FA /* libicucore.dylib */; };
 		4CBF5D881768DAD500746377 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11D017625F0D0066A4FA /* CFNetwork.framework */; };
@@ -254,6 +255,8 @@
 		4C4FA7151A76C27000161ABE /* NavBackButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavBackButton.m; sourceTree = "<group>"; };
 		4C5C50CB177B7B7C0095801A /* LectureViewContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LectureViewContainer.h; sourceTree = "<group>"; };
 		4C5C50CC177B7B7C0095801A /* LectureViewContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LectureViewContainer.m; sourceTree = "<group>"; };
+		4CA4A0631ADC3287004536B7 /* FSIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSIndex.h; sourceTree = "<group>"; };
+		4CA4A0641ADC3287004536B7 /* FSIndex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSIndex.m; sourceTree = "<group>"; };
 		4CBD62B31A89516500B6AC9E /* ContinueButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContinueButton.h; sourceTree = "<group>"; };
 		4CBD62B41A89516500B6AC9E /* ContinueButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContinueButton.m; sourceTree = "<group>"; };
 		4CD7CE281A8568CB00A9717F /* PreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviewViewController.h; sourceTree = "<group>"; };
@@ -504,6 +507,7 @@
 		3FCD5D14154382F5005F2A60 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4CA4A0621ADC3276004536B7 /* Indexing */,
 				4CDB057A17B557AF00D8EB85 /* CoreData */,
 				3F99F1ED15435F9D0065CBB9 /* Document Model */,
 			);
@@ -713,6 +717,15 @@
 				3F4DE76018EB492900BB9970 /* ABDrawToggleSwitch.m */,
 			);
 			name = "Views Icons";
+			sourceTree = "<group>";
+		};
+		4CA4A0621ADC3276004536B7 /* Indexing */ = {
+			isa = PBXGroup;
+			children = (
+				4CA4A0631ADC3287004536B7 /* FSIndex.h */,
+				4CA4A0641ADC3287004536B7 /* FSIndex.m */,
+			);
+			name = Indexing;
 			sourceTree = "<group>";
 		};
 		4CDB057A17B557AF00D8EB85 /* CoreData */ = {
@@ -990,6 +1003,7 @@
 				4CCBC8DD17E222FF00CB303E /* Note.m in Sources */,
 				3F8FD2E418B3F7BF0059EF9C /* Promise.m in Sources */,
 				4C4FA6F01A72C52E00161ABE /* UINavigationBar+hight.m in Sources */,
+				4CA4A0651ADC3287004536B7 /* FSIndex.m in Sources */,
 				4CD7CE2A1A8568CB00A9717F /* PreviewViewController.m in Sources */,
 				4C3BE5ED1A729B760017854C /* MenuIconCell.m in Sources */,
 				4C62BECD175651DB00CAF4CF /* FileManager.m in Sources */,

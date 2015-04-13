@@ -23,6 +23,7 @@
 #import "Deferred.h"
 
 #import "LectureViewContainer.h"
+#import "FSIndex.h"
 
 
 @interface OpenLectureController ()
@@ -32,8 +33,7 @@
 @implementation OpenLectureController
 {
     NSArray *_navigationItems;
-    NSInteger _lectureCount;
-    NSArray *_documentTitles;
+    FSIndex *_fsIndex;
     
     // Selected Lecture
     __strong Promise *_selectedLecture;
@@ -62,8 +62,8 @@ static NSString * const reuseIdentifier = @"lecture";
 
 - (void)loadDocumentPreviews
 {
-    _documentTitles = [FileManager listContentsOfDirectory:[FileManager localDocumentsDirectoryPath]];
-    _lectureCount = _documentTitles.count;
+    NSLog(@"DEBUG: Loading document previews");
+    _fsIndex = [FSIndex sharedIndex];
 }
 
 - (void)setUpNavigation
@@ -171,7 +171,7 @@ static NSString * const reuseIdentifier = @"lecture";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     Deferred *promise = [Deferred deferred];
-    [FileManager findDocumentWithName:_documentTitles[indexPath.row] completion:^(AMLecture *lecture) {
+    [FileManager findDocumentWithName:_fsIndex[indexPath.row] completion:^(AMLecture *lecture) {
         [promise resolve:lecture];
     }];
     _selectedLecture = [promise promise];
@@ -194,14 +194,14 @@ static NSString * const reuseIdentifier = @"lecture";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return _lectureCount;
+    return _fsIndex.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     LoadingLectureCVC *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
-    NSString *name = _documentTitles[indexPath.row];
+    NSString *name = _fsIndex[indexPath.row];
     cell.title.text = name;
     [cell loadLecturePreview:name];
     

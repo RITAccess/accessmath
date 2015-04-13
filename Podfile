@@ -14,6 +14,7 @@ pod 'UIAlertController+Blocks'
 pod 'TMCache'
 pod 'AsyncDisplayKit'
 pod 'SpinKit'
+pod 'FMDB'
 
 end
 
