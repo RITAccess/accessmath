@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Rr7-bG-jB9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Rr7-bG-jB9">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -293,6 +293,49 @@
                                     <outlet property="title" destination="4yg-Xb-F7B" id="Q9M-xw-dsQ"/>
                                 </connections>
                             </collectionViewCell>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="directory" id="vdr-Dn-Ngv" customClass="DirectoryCVC">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="239" height="72"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="vJ6-h7-olp">
+                                            <rect key="frame" x="8" y="197" width="164" height="45"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerY" secondItem="vJ6-h7-olp" secondAttribute="centerY" id="2vL-qJ-Tpm"/>
+                                    <constraint firstItem="vJ6-h7-olp" firstAttribute="bottom" secondItem="vdr-Dn-Ngv" secondAttribute="bottomMargin" id="73g-Bc-j6u">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="-6"/>
+                                    </constraint>
+                                    <constraint firstItem="vJ6-h7-olp" firstAttribute="leading" secondItem="vdr-Dn-Ngv" secondAttribute="leadingMargin" id="GqZ-9S-Stn"/>
+                                    <constraint firstAttribute="centerX" secondItem="vJ6-h7-olp" secondAttribute="centerX" id="Inm-Wb-FTS"/>
+                                    <constraint firstItem="vJ6-h7-olp" firstAttribute="trailing" secondItem="vdr-Dn-Ngv" secondAttribute="trailingMargin" id="R5L-vD-Xce"/>
+                                </constraints>
+                                <size key="customSize" width="239" height="72"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="2vL-qJ-Tpm"/>
+                                        <exclude reference="Inm-Wb-FTS"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="2vL-qJ-Tpm"/>
+                                        <include reference="Inm-Wb-FTS"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <outlet property="title" destination="vJ6-h7-olp" id="C5U-Xd-v2y"/>
+                                </connections>
+                            </collectionViewCell>
                         </cells>
                         <connections>
                             <outlet property="dataSource" destination="h9S-1H-C9h" id="dCt-60-bEO"/>
@@ -308,7 +351,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="co1-Dr-1hT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1467.75" y="612.75"/>
+            <point key="canvasLocation" x="1539" y="546"/>
         </scene>
         <!--Preview View Controller-->
         <scene sceneID="cGX-np-E1m">
@@ -372,6 +415,7 @@
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="blankCell" id="y1I-3u-ffa">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>

@@ -24,6 +24,7 @@
 
 #import "LectureViewContainer.h"
 #import "FSIndex.h"
+#import "DirectoryCVC.h"
 
 
 @interface OpenLectureController ()
@@ -42,6 +43,7 @@
 }
 
 static NSString * const lectureCellReuseID = @"lecture";
+static NSString * const directoryCellReuseID = @"directory";
 
 - (void)viewDidLoad
 {
@@ -200,7 +202,7 @@ static NSString * const lectureCellReuseID = @"lecture";
 {
     switch (section) {
         case 0:
-            return 0;
+            return 5;
             break;
         case 1:
             return _fsIndex[_currectPath].count;
@@ -227,12 +229,20 @@ static NSString * const lectureCellReuseID = @"lecture";
     return cell;
 }
 
+- (UICollectionViewCell *)directoryViewCellWithCell:(DirectoryCVC *)cell indexPath:(NSIndexPath *)indexPath
+{
+    cell.title.text = @[@"A",@"B",@"C",@"D",@"E",][indexPath.row];
+    return cell;
+}
+
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     switch (indexPath.section) {
         case 0:
-            return nil;
-            break;
+        {
+            UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:directoryCellReuseID forIndexPath:indexPath];
+            return [self directoryViewCellWithCell:(DirectoryCVC *)cell indexPath:indexPath];
+        } break;
             
         case 1:
         {
@@ -241,6 +251,20 @@ static NSString * const lectureCellReuseID = @"lecture";
         } break;
     }
     return nil;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    switch (indexPath.section) {
+        case 0:
+            return (CGSize) { .width = 180.0, .height = 60.0 };
+            break;
+            
+        case 1:
+            return (CGSize) { .width = 180.0, .height = 250.0 };
+            break;
+    }
+    return CGSizeZero;
 }
 
 @end
