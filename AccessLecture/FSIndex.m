@@ -57,52 +57,55 @@
     _db = [FMDatabaseQueue databaseQueueWithPath:_indexPath.absoluteString];
 }
 
-- (NSUInteger)count
+- (NSArray *)objectForKeyedSubscript:(id <NSCopying>)key;
 {
-    return _files.count;
-}
-
-- (id)objectAtIndexedSubscript:(NSUInteger)idx
-{
+    NSString *path = (NSString *)key;
+    NSMutableArray *documents = [NSMutableArray new];
+    [_db inDatabase:^(FMDatabase *db) {
+        FMResultSet *results = [db executeQuery:@"select * from fs_name_index where directory=?;", path];
+        while ([results next]) {
+            [documents addObject:[results stringForColumn:@"filename"]];
+        }
+        [results close];
+    }];
     
-    return _files[idx];
-}
-
-- (void)setObject:(id)obj atIndexedSubscript:(NSUInteger)idx
-{
-    return;
+    return (NSArray *)documents;
 }
 
 - (void)beginIndexing
 {
-    [self beginIndexingAtPath:@"/"];
-}
-
-- (void)beginIndexingAtPath:(NSString *)path
-{
-    NSLog(@"DEBUG: FS Indexing started");
-    NSString *base = [FSIndex localDocumentsDirectoryPath];
-    NSLog(@"DEBUG: %@", base);
-    NSArray *docuemnts = [FSIndex listContentsOfDirectory:[base stringByAppendingPathComponent:path]];
     [_db inDatabase:^(FMDatabase *db) {
         bool success = [db executeStatements:@"drop table if exists fs_name_index; create table fs_name_index (filename varchar(80), directory varchar(80));"];
         NSLog(@"DEBUG: created table %@", success ? @"YES" : @"NO");
     }];
+    [self beginIndexingAtPath:@"/"];
+    NSLog(@"DEBUG: Finished");
+}
+
+- (void)beginIndexingAtPath:(NSString *)path
+{
+    NSLog(@"DEBUG: FS Indexing started at %@", path);
+    NSString *base = [FSIndex localDocumentsDirectoryPath];
+    NSArray *directories = [FSIndex listContentsOfDirectory:[base stringByAppendingPathComponent:path] justDirectorys:YES];
+    NSArray *docs = [FSIndex listContentsOfDirectory:[base stringByAppendingPathComponent:path] justDirectorys:NO];
     [_db inDatabase:^(FMDatabase *db) {
-        for (NSString *fileName in docuemnts) {
+        for (NSString *fileName in docs) {
             [db executeUpdate:@"INSERT into fs_name_index (filename, directory) VALUES (?,?)", fileName, path];
         }
     }];
+    
+    for (NSString *directory in directories) {
+        [self beginIndexingAtPath:[path stringByAppendingPathComponent:directory]];
+    }
+    
     NSMutableArray *files = [NSMutableArray new];
     [_db inDatabase:^(FMDatabase *db) {
-        FMResultSet *results = [db executeQuery:@"select * from fs_name_index;"];
+        FMResultSet *results = [db executeQuery:@"select * from fs_name_index where directory='/';"];
         while ([results next]) {
             [files addObject:[results stringForColumn:@"filename"]];
-//            NSLog(@"DEBUG: %@ in %@", [results stringForColumn:@"filename"], [results stringForColumn:@"directory"]);
         }
         [results close];
     }];
-    _files = files;
 }
 
 - (void)invalidate
@@ -113,7 +116,7 @@
 
 #pragma mark - File System Quering
 
-+ (NSArray *)listContentsOfDirectory:(NSString *)path
++ (NSArray *)listContentsOfDirectory:(NSString *)path justDirectorys:(bool)justDirectory
 {
     NSError *err;
     NSArray *names = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:&err];
@@ -123,16 +126,21 @@
     }
     NSPredicate *isFile = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
         NSString *fullPath = [path stringByAppendingPathComponent:evaluatedObject];
-        NSLog(@"DEBUG: %@", fullPath);
         bool isDirectory = NO;
         [[NSFileManager defaultManager] fileExistsAtPath:fullPath isDirectory:&isDirectory];
-        NSLog(@"DEBUG: isDirectory %@", isDirectory ? @"YES" : @"NO");
         return !(isDirectory);
+    }];
+    NSPredicate *isDirectory = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+        NSString *fullPath = [path stringByAppendingPathComponent:evaluatedObject];
+        bool _isDirectory = NO;
+        [[NSFileManager defaultManager] fileExistsAtPath:fullPath isDirectory:&_isDirectory];
+        return _isDirectory;
     }];
     NSPredicate *isLecture = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
         return [[[evaluatedObject componentsSeparatedByString:@"."] lastObject] isEqualToString:@"lec"];
     }];
-    return [[[names filteredArrayUsingPredicate:isFile] filteredArrayUsingPredicate:isLecture]
+    NSCompoundPredicate *filterLecture = [NSCompoundPredicate andPredicateWithSubpredicates:@[isFile, isLecture]];
+    return [[names filteredArrayUsingPredicate:justDirectory ? isDirectory : filterLecture]
     sortedArrayWithOptions:NSSortStable usingComparator:^NSComparisonResult(NSString *file1, NSString *file2) {
         NSError *error;
         

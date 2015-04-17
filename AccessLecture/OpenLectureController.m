@@ -33,16 +33,20 @@
 @implementation OpenLectureController
 {
     NSArray *_navigationItems;
+
     FSIndex *_fsIndex;
+    NSString *_currectPath;
     
     // Selected Lecture
     __strong Promise *_selectedLecture;
 }
 
-static NSString * const reuseIdentifier = @"lecture";
+static NSString * const lectureCellReuseID = @"lecture";
 
 - (void)viewDidLoad
 {
+    _currectPath = [@"/" stringByAppendingPathComponent:@"/Physics/Ses 2"];
+    
     [super viewDidLoad];
     
     [self setUpNavigation];
@@ -165,13 +169,13 @@ static NSString * const reuseIdentifier = @"lecture";
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 1;
+    return 2;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     Deferred *promise = [Deferred deferred];
-    [FileManager findDocumentWithName:_fsIndex[indexPath.row] completion:^(AMLecture *lecture) {
+    [FileManager findDocumentWithName:_fsIndex[_currectPath][indexPath.row] completion:^(AMLecture *lecture) {
         [promise resolve:lecture];
     }];
     _selectedLecture = [promise promise];
@@ -194,14 +198,20 @@ static NSString * const reuseIdentifier = @"lecture";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return _fsIndex.count;
+    switch (section) {
+        case 0:
+            return 0;
+            break;
+        case 1:
+            return _fsIndex[_currectPath].count;
+            break;
+    }
+    return nil;
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+- (UICollectionViewCell *)lectureViewCellWithCell:(LoadingLectureCVC *)cell indexPath:(NSIndexPath *)indexPath
 {
-    LoadingLectureCVC *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    
-    NSString *name = _fsIndex[indexPath.row];
+    NSString *name = _fsIndex[_currectPath][indexPath.row];
     cell.title.text = name;
     [cell loadLecturePreview:name];
     
@@ -215,6 +225,22 @@ static NSString * const reuseIdentifier = @"lecture";
     [cell addGestureRecognizer:doubletap];
     
     return cell;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    switch (indexPath.section) {
+        case 0:
+            return nil;
+            break;
+            
+        case 1:
+        {
+            UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:lectureCellReuseID forIndexPath:indexPath];
+            return [self lectureViewCellWithCell:(LoadingLectureCVC *)cell indexPath:indexPath];
+        } break;
+    }
+    return nil;
 }
 
 @end

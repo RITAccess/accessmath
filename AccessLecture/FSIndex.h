@@ -15,8 +15,6 @@
 
 - (void)invalidate;
 
-@property (readonly) NSUInteger count;
-- (id)objectAtIndexedSubscript:(NSUInteger)idx;
-- (void)setObject:(id)obj atIndexedSubscript:(NSUInteger)idx;
+- (NSArray *)objectForKeyedSubscript:(id <NSCopying>)key;
 
 @end
