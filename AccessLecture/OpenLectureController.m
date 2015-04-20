@@ -24,6 +24,7 @@
 
 #import "LectureViewContainer.h"
 #import "FSIndex.h"
+#import "DirectoryCVC.h"
 
 
 @interface OpenLectureController ()
@@ -33,16 +34,21 @@
 @implementation OpenLectureController
 {
     NSArray *_navigationItems;
+
     FSIndex *_fsIndex;
+    NSString *_currectPath;
     
     // Selected Lecture
     __strong Promise *_selectedLecture;
 }
 
-static NSString * const reuseIdentifier = @"lecture";
+static NSString * const lectureCellReuseID = @"lecture";
+static NSString * const directoryCellReuseID = @"directory";
 
 - (void)viewDidLoad
 {
+    _currectPath = [@"/" stringByAppendingPathComponent:@"/"];
+    
     [super viewDidLoad];
     
     [self setUpNavigation];
@@ -165,16 +171,23 @@ static NSString * const reuseIdentifier = @"lecture";
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 1;
+    return 2;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    Deferred *promise = [Deferred deferred];
-    [FileManager findDocumentWithName:_fsIndex[indexPath.row] completion:^(AMLecture *lecture) {
-        [promise resolve:lecture];
-    }];
-    _selectedLecture = [promise promise];
+    switch (indexPath.section) {
+        case 0:
+            return;
+            
+        case 1: {
+            Deferred *promise = [Deferred deferred];
+            [FileManager findDocumentWithName:_fsIndex[_currectPath][indexPath.row] completion:^(AMLecture *lecture) {
+                [promise resolve:lecture];
+            }];
+            _selectedLecture = [promise promise];
+        } break;
+    }
 }
 
 - (void)cellDidTap:(UITapGestureRecognizer *)reg
@@ -194,14 +207,20 @@ static NSString * const reuseIdentifier = @"lecture";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return _fsIndex.count;
+    switch (section) {
+        case 0:
+            return _fsIndex[[_currectPath stringByAppendingPathComponent:@"*"]].count;
+            break;
+        case 1:
+            return _fsIndex[_currectPath].count;
+            break;
+    }
+    return nil;
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+- (UICollectionViewCell *)lectureViewCellWithCell:(LoadingLectureCVC *)cell indexPath:(NSIndexPath *)indexPath
 {
-    LoadingLectureCVC *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    
-    NSString *name = _fsIndex[indexPath.row];
+    NSString *name = _fsIndex[_currectPath][indexPath.row];
     cell.title.text = name;
     [cell loadLecturePreview:name];
     
@@ -215,6 +234,44 @@ static NSString * const reuseIdentifier = @"lecture";
     [cell addGestureRecognizer:doubletap];
     
     return cell;
+}
+
+- (UICollectionViewCell *)directoryViewCellWithCell:(DirectoryCVC *)cell indexPath:(NSIndexPath *)indexPath
+{
+    cell.title.text = _fsIndex[[_currectPath stringByAppendingPathComponent:@"*"]][indexPath.row];
+    return cell;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    switch (indexPath.section) {
+        case 0:
+        {
+            UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:directoryCellReuseID forIndexPath:indexPath];
+            return [self directoryViewCellWithCell:(DirectoryCVC *)cell indexPath:indexPath];
+        } break;
+            
+        case 1:
+        {
+            UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:lectureCellReuseID forIndexPath:indexPath];
+            return [self lectureViewCellWithCell:(LoadingLectureCVC *)cell indexPath:indexPath];
+        } break;
+    }
+    return nil;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    switch (indexPath.section) {
+        case 0:
+            return (CGSize) { .width = 180.0, .height = 60.0 };
+            break;
+            
+        case 1:
+            return (CGSize) { .width = 180.0, .height = 250.0 };
+            break;
+    }
+    return CGSizeZero;
 }
 
 @end
