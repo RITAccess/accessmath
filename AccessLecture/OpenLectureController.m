@@ -47,7 +47,7 @@ static NSString * const directoryCellReuseID = @"directory";
 
 - (void)viewDidLoad
 {
-    _currectPath = [@"/" stringByAppendingPathComponent:@"/Physics/Ses 2"];
+    _currectPath = [@"/" stringByAppendingPathComponent:@"/"];
     
     [super viewDidLoad];
     
@@ -176,11 +176,18 @@ static NSString * const directoryCellReuseID = @"directory";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    Deferred *promise = [Deferred deferred];
-    [FileManager findDocumentWithName:_fsIndex[_currectPath][indexPath.row] completion:^(AMLecture *lecture) {
-        [promise resolve:lecture];
-    }];
-    _selectedLecture = [promise promise];
+    switch (indexPath.section) {
+        case 0:
+            return;
+            
+        case 1: {
+            Deferred *promise = [Deferred deferred];
+            [FileManager findDocumentWithName:_fsIndex[_currectPath][indexPath.row] completion:^(AMLecture *lecture) {
+                [promise resolve:lecture];
+            }];
+            _selectedLecture = [promise promise];
+        } break;
+    }
 }
 
 - (void)cellDidTap:(UITapGestureRecognizer *)reg
@@ -202,7 +209,7 @@ static NSString * const directoryCellReuseID = @"directory";
 {
     switch (section) {
         case 0:
-            return 5;
+            return _fsIndex[[_currectPath stringByAppendingPathComponent:@"*"]].count;
             break;
         case 1:
             return _fsIndex[_currectPath].count;
@@ -231,7 +238,7 @@ static NSString * const directoryCellReuseID = @"directory";
 
 - (UICollectionViewCell *)directoryViewCellWithCell:(DirectoryCVC *)cell indexPath:(NSIndexPath *)indexPath
 {
-    cell.title.text = @[@"A",@"B",@"C",@"D",@"E",][indexPath.row];
+    cell.title.text = _fsIndex[[_currectPath stringByAppendingPathComponent:@"*"]][indexPath.row];
     return cell;
 }
 

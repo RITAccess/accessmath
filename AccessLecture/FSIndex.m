@@ -59,17 +59,29 @@
 
 - (NSArray *)objectForKeyedSubscript:(id <NSCopying>)key;
 {
-    NSString *path = (NSString *)key;
-    NSMutableArray *documents = [NSMutableArray new];
-    [_db inDatabase:^(FMDatabase *db) {
-        FMResultSet *results = [db executeQuery:@"select * from fs_name_index where directory=?;", path];
-        while ([results next]) {
-            [documents addObject:[results stringForColumn:@"filename"]];
-        }
-        [results close];
-    }];
+    NSString *requested = (NSString *)key;
+    bool directoryRequest = [[requested substringFromIndex:requested.length - 1] isEqualToString:@"*"];
+    if (directoryRequest) {
+        NSString *dir = [[FSIndex localDocumentsDirectoryPath] stringByAppendingPathComponent:[requested substringToIndex:requested.length - 1]];
+        return [FSIndex listContentsOfDirectory:dir justDirectorys:YES];
+    }
     
-    return (NSArray *)documents;
+    static NSString *path;
+    static NSMutableArray *documents;
+    if (documents && path && [requested isEqualToString:path]) {
+        return documents;
+    } else {
+        path = requested;
+        documents = [NSMutableArray new];
+        [_db inDatabase:^(FMDatabase *db) {
+            FMResultSet *results = [db executeQuery:@"select * from fs_name_index where directory=?;", path];
+            while ([results next]) {
+                [documents addObject:[results stringForColumn:@"filename"]];
+            }
+            [results close];
+        }];
+        return (NSArray *)documents;
+    }
 }
 
 - (void)beginIndexing
