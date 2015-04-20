@@ -25,6 +25,7 @@
 #import "LectureViewContainer.h"
 #import "FSIndex.h"
 #import "DirectoryCVC.h"
+#import "Stack.h"
 
 
 @interface OpenLectureController ()
@@ -40,6 +41,9 @@
     
     // Selected Lecture
     __strong Promise *_selectedLecture;
+    
+    // Dir nav stack
+    Stack *_dirNavStack;
 }
 
 static NSString * const lectureCellReuseID = @"lecture";
@@ -47,7 +51,10 @@ static NSString * const directoryCellReuseID = @"directory";
 
 - (void)viewDidLoad
 {
-    _currectPath = [@"/" stringByAppendingPathComponent:@"/"];
+    _currectPath = @"/";
+
+    _dirNavStack = [Stack new];
+    [_dirNavStack push:_currectPath];
     
     [super viewDidLoad];
     
@@ -158,7 +165,13 @@ static NSString * const directoryCellReuseID = @"directory";
 
 - (void)back
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    if (![_dirNavStack.pop isEqualToString:@"/"]) {
+        NSLog(@"DEBUG: %@", _dirNavStack.print);
+        _currectPath = [_dirNavStack.print stringByStandardizingPath];
+        [self.collectionView reloadData];
+    } else {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 #pragma mark <UICollectionViewDataSource>
@@ -177,15 +190,28 @@ static NSString * const directoryCellReuseID = @"directory";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     switch (indexPath.section) {
-        case 0:
-            return;
-            
+        case 0: {
+            NSString *sub = _fsIndex[[_currectPath stringByAppendingPathComponent:@"*"]][indexPath.row];
+            _currectPath = [_currectPath stringByAppendingPathComponent:sub];
+            [self.collectionView reloadData];
+            [_dirNavStack push:sub];
+        } break;
         case 1: {
             Deferred *promise = [Deferred deferred];
-            [FileManager findDocumentWithName:_fsIndex[_currectPath][indexPath.row] completion:^(AMLecture *lecture) {
-                [promise resolve:lecture];
-            }];
             _selectedLecture = [promise promise];
+            NSString *name = _fsIndex[_currectPath][indexPath.row];
+            NSString *fpath = [[[FileManager localDocumentsDirectoryPath] stringByAppendingPathComponent:_currectPath] stringByAppendingPathComponent:name];
+            NSURL *path = [NSURL fileURLWithPath:fpath isDirectory:NO];
+            
+            
+            AMLecture *lecture = [[AMLecture alloc] initWithFileURL:path];
+             [lecture openWithCompletionHandler:^(BOOL success) {
+                 [promise resolve:lecture];
+                 NSLog(@"DEBUG: Opened");
+             }];
+            NSLog(@"DEBUG: After");
+            
+            
         } break;
     }
 }

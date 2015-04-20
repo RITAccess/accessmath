@@ -71,6 +71,7 @@
 		4C62BECD175651DB00CAF4CF /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F99F1FA1543641E0065CBB9 /* FileManager.m */; };
 		4CA4A0651ADC3287004536B7 /* FSIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4A0641ADC3287004536B7 /* FSIndex.m */; };
 		4CA4A06B1AE185D1004536B7 /* DirectoryCVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4A06A1AE185D1004536B7 /* DirectoryCVC.m */; };
+		4CA4A0711AE59127004536B7 /* Stack.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4A0701AE59127004536B7 /* Stack.m */; };
 		4CBD62B51A89516500B6AC9E /* ContinueButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBD62B41A89516500B6AC9E /* ContinueButton.m */; };
 		4CBF5D871768DAD200746377 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11D217625F150066A4FA /* libicucore.dylib */; };
 		4CBF5D881768DAD500746377 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11D017625F0D0066A4FA /* CFNetwork.framework */; };
@@ -260,6 +261,8 @@
 		4CA4A0641ADC3287004536B7 /* FSIndex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSIndex.m; sourceTree = "<group>"; };
 		4CA4A0691AE185D1004536B7 /* DirectoryCVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectoryCVC.h; sourceTree = "<group>"; };
 		4CA4A06A1AE185D1004536B7 /* DirectoryCVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectoryCVC.m; sourceTree = "<group>"; };
+		4CA4A06F1AE59127004536B7 /* Stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stack.h; sourceTree = "<group>"; };
+		4CA4A0701AE59127004536B7 /* Stack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stack.m; sourceTree = "<group>"; };
 		4CBD62B31A89516500B6AC9E /* ContinueButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContinueButton.h; sourceTree = "<group>"; };
 		4CBD62B41A89516500B6AC9E /* ContinueButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContinueButton.m; sourceTree = "<group>"; };
 		4CD7CE281A8568CB00A9717F /* PreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviewViewController.h; sourceTree = "<group>"; };
@@ -441,6 +444,8 @@
 				3F8D99321880ACBE0061DEA2 /* NSString+TrimmingAdditions.m */,
 				4C4FA6EE1A72C52E00161ABE /* UINavigationBar+hight.h */,
 				4C4FA6EF1A72C52E00161ABE /* UINavigationBar+hight.m */,
+				4CA4A06F1AE59127004536B7 /* Stack.h */,
+				4CA4A0701AE59127004536B7 /* Stack.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -1009,6 +1014,7 @@
 				4CA4A06B1AE185D1004536B7 /* DirectoryCVC.m in Sources */,
 				3F8FD2E418B3F7BF0059EF9C /* Promise.m in Sources */,
 				4C4FA6F01A72C52E00161ABE /* UINavigationBar+hight.m in Sources */,
+				4CA4A0711AE59127004536B7 /* Stack.m in Sources */,
 				4CA4A0651ADC3287004536B7 /* FSIndex.m in Sources */,
 				4CD7CE2A1A8568CB00A9717F /* PreviewViewController.m in Sources */,
 				4C3BE5ED1A729B760017854C /* MenuIconCell.m in Sources */,
