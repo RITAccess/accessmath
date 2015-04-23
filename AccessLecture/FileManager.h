@@ -12,6 +12,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#include <AvailabilityMacros.h>
 #import "AMLecture.h"
 
 #import "Promise.h"
@@ -24,17 +25,16 @@ typedef enum {
 
 @interface FileManager : NSObject
 
-+ (void)findDocumentWithName:(NSString *)name completion:(void(^)(AMLecture *lecture))completion;
++ (void)findDocumentWithName:(NSString *)name completion:(void(^)(AMLecture *lecture))completion __deprecated;
 
 + (AMLecture *)findDocumentWithName:(NSString *)name;
 + (AMLecture *)findDocumentWithName:(NSString *)name failure:(void (^)(NSError *))error;
 
-+ (NSArray *)listContentsOfDirectory:(NSString *)path;
-+ (NSString *)localDocumentsDirectoryPath;
-+ (NSURL *)iCloudDirectoryURL;
-
 + (void)createDocumentWithName:(NSString *) name success:(void (^)(AMLecture *current)) success failure:(void (^)(NSError *error)) failure;
 + (void)createDocumentWithName:(NSString *)name completion:(void (^)(NSError *error, AMLecture *current))completion;
 
++ (NSArray *)listContentsOfDirectory:(NSString *)path __deprecated;
++ (NSString *)localDocumentsDirectoryPath __deprecated;
++ (NSURL *)iCloudDirectoryURL __deprecated;
 
 @end

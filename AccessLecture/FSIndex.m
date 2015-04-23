@@ -123,7 +123,9 @@
 - (void)invalidate
 {
     [self createDatabase];
-    [self beginIndexing];
+    dispatch_async(_worker, ^{
+        [self beginIndexing];
+    });
 }
 
 #pragma mark - File System Quering
