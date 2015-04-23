@@ -51,7 +51,7 @@ static NSString * const directoryCellReuseID = @"directory";
 
 - (void)viewDidLoad
 {
-    _currectPath = @"/";
+    _currectPath = @"~/Documents";
 
     _dirNavStack = [Stack new];
     [_dirNavStack push:_currectPath];
@@ -131,7 +131,6 @@ static NSString * const directoryCellReuseID = @"directory";
     [super updateViewConstraints];
 }
 
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -140,7 +139,7 @@ static NSString * const directoryCellReuseID = @"directory";
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"newLecture"]) {
-        ((NewLectureController *)segue.destinationViewController).delegate = self;
+        ((NewLectureController *)((UINavigationController *)segue.destinationViewController).childViewControllers.firstObject).delegate = self;
     }
     if ([segue.identifier isEqualToString:@"toLecture"]) {
         UINavigationController *nav = [segue destinationViewController];
@@ -156,16 +155,17 @@ static NSString * const directoryCellReuseID = @"directory";
 
 - (void)newLectureViewController:(NewLectureController *)controller didCreateNewLecture:(AMLecture *)lecture
 {
-    // Go straight to lecture
-    // Not called bug...
-    NSLog(@"DEBUG: created %@", lecture);
+    __weak OpenLectureController *weakSelf = self;
+    [_fsIndex addToIndex:lecture.fileURL completion:^(NSError *error) {
+        [weakSelf.collectionView reloadData];
+    }];
 }
 
 #pragma mark Navigation
 
 - (void)back
 {
-    if (![_dirNavStack.pop isEqualToString:@"/"]) {
+    if (![[_dirNavStack.pop stringByAbbreviatingWithTildeInPath] isEqualToString:@"~/Documents"]) {
         NSLog(@"DEBUG: %@", _dirNavStack.print);
         _currectPath = [_dirNavStack.print stringByStandardizingPath];
         [self.collectionView reloadData];
@@ -200,8 +200,8 @@ static NSString * const directoryCellReuseID = @"directory";
             Deferred *promise = [Deferred deferred];
             _selectedLecture = [promise promise];
             NSString *name = _fsIndex[_currectPath][indexPath.row];
-            NSString *fpath = [[[FileManager localDocumentsDirectoryPath] stringByAppendingPathComponent:_currectPath] stringByAppendingPathComponent:name];
-            NSURL *path = [NSURL fileURLWithPath:fpath isDirectory:NO];
+            NSString *fpath = [_currectPath stringByAppendingPathComponent:name];
+            NSURL *path = [NSURL fileURLWithPath:[fpath stringByExpandingTildeInPath] isDirectory:NO];
             
             
             AMLecture *lecture = [[AMLecture alloc] initWithFileURL:path];

@@ -19,7 +19,7 @@
 
 @interface NewLectureController : UIViewController
 
-@property (weak) id delegate;
+@property (weak) id<NewLetureVCDelegate> delegate;
 
 @property (weak, nonatomic) IBOutlet UITextField *lectureName;
 - (IBAction)goBack;

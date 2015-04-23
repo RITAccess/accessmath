@@ -16,7 +16,6 @@
     FMDatabaseQueue *_db;
     NSURL *_indexPath;
     dispatch_queue_t _worker;
-    NSArray *_files;
 }
 
 + (instancetype)sharedIndex {
@@ -59,10 +58,10 @@
 
 - (NSArray *)objectForKeyedSubscript:(id <NSCopying>)key;
 {
-    NSString *requested = (NSString *)key;
+    NSString *requested = [[(NSString *)key stringByExpandingTildeInPath] stringByStandardizingPath];
     bool directoryRequest = [[requested substringFromIndex:requested.length - 1] isEqualToString:@"*"];
     if (directoryRequest) {
-        NSString *dir = [[FSIndex localDocumentsDirectoryPath] stringByAppendingPathComponent:[requested substringToIndex:requested.length - 1]];
+        NSString *dir = [requested substringToIndex:requested.length - 1];
         return [FSIndex listContentsOfDirectory:dir justDirectorys:YES];
     }
     
@@ -74,7 +73,7 @@
         path = requested;
         documents = [NSMutableArray new];
         [_db inDatabase:^(FMDatabase *db) {
-            FMResultSet *results = [db executeQuery:@"select * from fs_name_index where directory=?;", path];
+            FMResultSet *results = [db executeQuery:@"select * from fs_name_index where directory=?;", [path stringByAbbreviatingWithTildeInPath]];
             while ([results next]) {
                 [documents addObject:[results stringForColumn:@"filename"]];
             }
@@ -90,35 +89,42 @@
         bool success = [db executeStatements:@"drop table if exists fs_name_index; create table fs_name_index (filename varchar(80), directory varchar(80));"];
         NSLog(@"DEBUG: created table %@", success ? @"YES" : @"NO");
     }];
-    [self beginIndexingAtPath:@"/"];
+    [self beginIndexingAtPath:@"~/Documents"];
     NSLog(@"DEBUG: Finished");
 }
 
 - (void)beginIndexingAtPath:(NSString *)path
 {
     NSLog(@"DEBUG: FS Indexing started at %@", path);
-    NSString *base = [FSIndex localDocumentsDirectoryPath];
-    NSArray *directories = [FSIndex listContentsOfDirectory:[base stringByAppendingPathComponent:path] justDirectorys:YES];
-    NSArray *docs = [FSIndex listContentsOfDirectory:[base stringByAppendingPathComponent:path] justDirectorys:NO];
+    NSArray *directories = [FSIndex listContentsOfDirectory:[path stringByExpandingTildeInPath] justDirectorys:YES];
+    NSArray *docs = [FSIndex listContentsOfDirectory:[path stringByExpandingTildeInPath] justDirectorys:NO];
+    
     [_db inDatabase:^(FMDatabase *db) {
         for (NSString *fileName in docs) {
-            [db executeUpdate:@"INSERT into fs_name_index (filename, directory) VALUES (?,?)", fileName, path];
+            [db executeUpdate:@"INSERT into fs_name_index (filename, directory) VALUES (?,?)", fileName, [path stringByAbbreviatingWithTildeInPath]];
         }
     }];
     
     for (NSString *directory in directories) {
         [self beginIndexingAtPath:[path stringByAppendingPathComponent:directory]];
     }
-    
-    NSMutableArray *files = [NSMutableArray new];
-    [_db inDatabase:^(FMDatabase *db) {
-        FMResultSet *results = [db executeQuery:@"select * from fs_name_index where directory='/';"];
-        while ([results next]) {
-            [files addObject:[results stringForColumn:@"filename"]];
-        }
-        [results close];
-    }];
 }
+
+- (void)addToIndex:(NSURL *)file completion:(void(^)(NSError *error))completion
+{
+    if (file.isFileURL) {
+        NSString *directory = [file.resourceSpecifier stringByDeletingLastPathComponent];
+        NSString *docName = [file.resourceSpecifier stringByReplacingOccurrencesOfString:directory withString:@""];
+        
+        [_db inDatabase:^(FMDatabase *db) {
+            [db executeUpdate:@"INSERT into fs_name_index (filename, directory) VALUES (?,?)", [[docName stringByRemovingPercentEncoding] substringFromIndex:1], [directory stringByAbbreviatingWithTildeInPath]];
+        }];
+        completion(nil);
+    } else {
+        completion([NSError errorWithDomain:@"FSError" code:401 userInfo:@{}]);
+    }
+}
+
 
 - (void)invalidate
 {
@@ -140,13 +146,13 @@
     }
     NSPredicate *isFile = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
         NSString *fullPath = [path stringByAppendingPathComponent:evaluatedObject];
-        bool isDirectory = NO;
+        BOOL isDirectory = NO;
         [[NSFileManager defaultManager] fileExistsAtPath:fullPath isDirectory:&isDirectory];
         return !(isDirectory);
     }];
     NSPredicate *isDirectory = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
         NSString *fullPath = [path stringByAppendingPathComponent:evaluatedObject];
-        bool _isDirectory = NO;
+        BOOL _isDirectory = NO;
         [[NSFileManager defaultManager] fileExistsAtPath:fullPath isDirectory:&_isDirectory];
         return _isDirectory;
     }];
@@ -188,6 +194,5 @@
     NSURL *ubiquity = [[NSFileManager defaultManager] URLForUbiquityContainerIdentifier:nil];
     return ubiquity;
 }
-
 
 @end

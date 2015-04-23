@@ -13,6 +13,7 @@
 + (instancetype)sharedIndex;
 - (instancetype)initWithIndex:(NSURL *)pathToIndex;
 
+- (void)addToIndex:(NSURL *)file completion:(void(^)(NSError *error))completion;
 - (void)invalidate;
 
 - (NSArray *)objectForKeyedSubscript:(id <NSCopying>)key;
