@@ -120,7 +120,6 @@
 
 - (IBAction)minimize:(id)sender forEvent:(UIEvent *)event
 {
-    UIButton* button = (UIButton *)sender;
     [_delegate textNoteView:self didMinimize:YES];
     [self changeUserInteraction:NO];
 }

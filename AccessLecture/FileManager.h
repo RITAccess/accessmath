@@ -28,7 +28,7 @@ typedef enum {
 + (void)findDocumentWithName:(NSString *)name completion:(void(^)(AMLecture *lecture))completion __deprecated;
 
 + (AMLecture *)findDocumentWithName:(NSString *)name;
-+ (AMLecture *)findDocumentWithName:(NSString *)name failure:(void (^)(NSError *))error;
++ (AMLecture *)findDocumentWithName:(NSString *)name failure:(void (^)(NSError *))error __deprecated;
 
 + (void)createDocumentWithName:(NSString *) name success:(void (^)(AMLecture *current)) success failure:(void (^)(NSError *error)) failure;
 + (void)createDocumentWithName:(NSString *)name completion:(void (^)(NSError *error, AMLecture *current))completion;
