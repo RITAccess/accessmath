@@ -4,4 +4,4 @@ machine:
 
 test:
   override:
-    - xctool build test
+    - xctool build
