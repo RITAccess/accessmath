@@ -11,9 +11,12 @@
 #import "FMDatabase.h"
 #import "FileManager.h"
 
+NSString *const FSFileChangeNotification = @"static NSString *const FSFileChangeNotification";
+
 @implementation FSIndex
 {
     FMDatabaseQueue *_db;
+    NSNotificationCenter *_nc;
     NSURL *_indexPath;
     dispatch_queue_t _worker;
 }
@@ -22,7 +25,7 @@
     static id shared;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        shared = [[FSIndex alloc] initWithIndex:[NSURL URLWithString:[[FileManager localDocumentsDirectoryPath] stringByAppendingPathComponent:@"fs_index.db"]]];
+        shared = [[FSIndex alloc] initWithIndex:[NSURL URLWithString:[[@"~" stringByExpandingTildeInPath] stringByAppendingPathComponent:@"fs_index.db"]]];
     });
     return shared;
 }
@@ -91,6 +94,7 @@
     }];
     [self beginIndexingAtPath:@"~/Documents"];
     NSLog(@"DEBUG: Finished");
+    [self notifyFileCacheChange];
 }
 
 - (void)beginIndexingAtPath:(NSString *)path
@@ -119,6 +123,7 @@
         [_db inDatabase:^(FMDatabase *db) {
             [db executeUpdate:@"INSERT into fs_name_index (filename, directory) VALUES (?,?)", [[docName stringByRemovingPercentEncoding] substringFromIndex:1], [directory stringByAbbreviatingWithTildeInPath]];
         }];
+        [self notifyFileCacheChange];
         completion(nil);
     } else {
         completion([NSError errorWithDomain:@"FSError" code:401 userInfo:@{}]);
@@ -132,6 +137,16 @@
     dispatch_async(_worker, ^{
         [self beginIndexing];
     });
+}
+
+#pragma mark - Notifications
+
+- (void)notifyFileCacheChange
+{
+    if (!_nc) {
+        _nc = [NSNotificationCenter defaultCenter];
+    }
+    [_nc postNotificationName:FSFileChangeNotification object:nil userInfo:nil];
 }
 
 #pragma mark - File System Quering

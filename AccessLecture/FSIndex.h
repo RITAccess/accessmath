@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString *const FSFileChangeNotification;
+
 @interface FSIndex : NSObject
 
 + (instancetype)sharedIndex;

@@ -77,6 +77,14 @@ static NSString * const directoryCellReuseID = @"directory";
 {
     NSLog(@"DEBUG: Loading document previews");
     _fsIndex = [FSIndex sharedIndex];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fsChange) name:FSFileChangeNotification object:nil];
+    
+}
+
+- (void)fsChange
+{
+    [self.collectionView reloadData];
 }
 
 - (void)setUpNavigation
