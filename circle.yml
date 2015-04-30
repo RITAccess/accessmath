@@ -9,4 +9,4 @@ checkout:
 
 test:
   override:
-    - xctool build
+    - xctool build test
