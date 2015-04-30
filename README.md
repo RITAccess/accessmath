@@ -9,8 +9,9 @@ Led by [Stephanie Ludi](https://github.com/retrogamer80s), this project has prev
 * [Michael Timbrook](https://github.com/7imbrook) SE Undergraduate 
 * [Piper Chester](https://github.com/piperchester) SE Undergraduate 
 
-### Status
-Currently our build supports iOS 6.1.x and up. View our current discussion, thoughts, and questions on our [wiki](https://github.com/RITAccess/accessmath/wiki/home).
-
-### Documentation
-We're currently maintaining our documentation on Google Drive.
+### Building
+```
+$ pod install
+$ xctool
+$ xctool test
+```

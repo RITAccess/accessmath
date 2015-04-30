@@ -1,0 +1,6 @@
+[
+  "-workspace", "AccessLecture.xcworkspace",
+  "-scheme", "AccessLecture",
+  "-sdk", "iphonesimulator",
+  "-arch", "i386"
+]
