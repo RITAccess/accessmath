@@ -2,12 +2,6 @@ machine:
   xcode:
     version: "6.2"
 
-dependencies:
-  pre:
-    - gem install cocoapods
-    - pod setup
-    - pod install
-
 test:
   override:
     - xctool build
