@@ -11,4 +11,4 @@ dependencies:
 
 test:
   override:
-  	- xctool build
+    - xctool build
