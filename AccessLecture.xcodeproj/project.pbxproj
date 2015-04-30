@@ -7,10 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		213733791937B18F00E2AD81 /* DrawViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 213733781937B18F00E2AD81 /* DrawViewTests.m */; };
 		21DA3D9318905B5000BFD96B /* DrawViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21DA3D8C18905B5000BFD96B /* DrawViewController.xib */; };
 		21DA3D9518905B5000BFD96B /* DrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21DA3D8E18905B5000BFD96B /* DrawViewController.m */; };
-		2C5AD2C217B5430000BFB795 /* StreamViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5AD2C117B5430000BFB795 /* StreamViewControllerTests.m */; };
 		2C882F2E1A8572E500D8E214 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CDF9961193CDE70005707D3 /* SearchViewController.m */; };
 		2CA93202188596D400199CC4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CA93201188596D400199CC4 /* Images.xcassets */; };
 		2CF45FDD17971C0400E6C69E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF45FDC17971C0400E6C69E /* QuartzCore.framework */; };
@@ -82,7 +80,6 @@
 		4CDB057D17B557C300D8EB85 /* AccessLecture.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4CDB057B17B557C300D8EB85 /* AccessLecture.xcdatamodeld */; };
 		4CDB058017B5589A00D8EB85 /* Favorites.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CDB057F17B5589A00D8EB85 /* Favorites.m */; };
 		4CDDF69717EB690900FE34E7 /* AMLecture.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CDDF69617EB690900FE34E7 /* AMLecture.m */; };
-		4CE742C41768BDE60026DE71 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F9BA9C21758FE1C00BEFB55 /* SenTestingKit.framework */; };
 		4CE742C51768BDE60026DE71 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FED960D1370863E00D8D1B8 /* Foundation.framework */; };
 		4CE742C61768BDE60026DE71 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FED960B1370863E00D8D1B8 /* UIKit.framework */; };
 		4CEA1A03177CAAED00A1DE05 /* LectureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEA1A00177CAAED00A1DE05 /* LectureCell.m */; };
@@ -150,11 +147,9 @@
 		09983FD2441D47DAA38B408E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FAD181C458E4CEEB87F6ECE /* libPods-AccessLecture Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AccessLecture Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		10BDE2E5B090C64338F60EA3 /* Pods-AccessLecture.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AccessLecture.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AccessLecture/Pods-AccessLecture.debug.xcconfig"; sourceTree = "<group>"; };
-		213733781937B18F00E2AD81 /* DrawViewTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawViewTests.m; sourceTree = "<group>"; };
 		21DA3D8C18905B5000BFD96B /* DrawViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawViewController.xib; sourceTree = "<group>"; };
 		21DA3D8E18905B5000BFD96B /* DrawViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawViewController.m; sourceTree = "<group>"; };
 		21DA3D8F18905B5000BFD96B /* DrawViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawViewController.h; sourceTree = "<group>"; };
-		2C5AD2C117B5430000BFB795 /* StreamViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamViewControllerTests.m; sourceTree = "<group>"; };
 		2CA93201188596D400199CC4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Images.xcassets; sourceTree = "<group>"; };
 		2CDF995E193CDE32005707D3 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		2CDF9961193CDE70005707D3 /* SearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
@@ -338,7 +333,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4CE742C41768BDE60026DE71 /* SenTestingKit.framework in Frameworks */,
 				4CE742C61768BDE60026DE71 /* UIKit.framework in Frameworks */,
 				4CBF5D881768DAD500746377 /* CFNetwork.framework in Frameworks */,
 				4CBF5D891768DAD700746377 /* Security.framework in Frameworks */,
@@ -763,8 +757,6 @@
 			isa = PBXGroup;
 			children = (
 				3F62DEDC1919808500BDD4EE /* Suporting Files */,
-				2C5AD2C117B5430000BFB795 /* StreamViewControllerTests.m */,
-				213733781937B18F00E2AD81 /* DrawViewTests.m */,
 			);
 			path = "AccessLecture Tests";
 			sourceTree = SOURCE_ROOT;
@@ -1069,8 +1061,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				213733791937B18F00E2AD81 /* DrawViewTests.m in Sources */,
-				2C5AD2C217B5430000BFB795 /* StreamViewControllerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
