@@ -4,7 +4,6 @@ machine:
 
 dependencies:
   pre:
-    - brew install xctool
     - gem install cocoapods
     - pod setup
     - pod install
