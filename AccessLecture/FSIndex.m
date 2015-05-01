@@ -70,6 +70,10 @@ NSString *const FSFileChangeNotification = @"static NSString *const FSFileChange
     
     static NSString *path;
     static NSMutableArray *documents;
+    [[NSNotificationCenter defaultCenter] addObserverForName:FSFileChangeNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
+        // This caching should probable be moved into a global state.
+        documents = nil;
+    }];
     if (documents && path && [requested isEqualToString:path]) {
         return documents;
     } else {

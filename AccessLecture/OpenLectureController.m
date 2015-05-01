@@ -66,6 +66,7 @@ static NSString * const directoryCellReuseID = @"directory";
 - (void)viewDidDisappear:(BOOL)animated
 {
     _selectedLecture = nil;
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:FSFileChangeNotification object:nil];
 }
 
 - (void)goToNewLecture:(AMLecture *)lecture
@@ -165,7 +166,9 @@ static NSString * const directoryCellReuseID = @"directory";
 {
     __weak OpenLectureController *weakSelf = self;
     [_fsIndex addToIndex:lecture.fileURL completion:^(NSError *error) {
-        [weakSelf.collectionView reloadData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf.collectionView reloadData];
+        });
     }];
 }
 
