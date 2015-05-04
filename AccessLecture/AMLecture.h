@@ -14,8 +14,11 @@ static NSString *const AMLectutueFileExtention = @"lec";
 
 @interface AMLecture : UIDocument
 
-@property ALMetaData *metadata;
-@property Lecture *lecture;
+// Stored Data (slow)
+@property (nonatomic, strong) Lecture *lecture;
+
+// Quick Access Data (fast)
+@property (nonatomic, strong) ALMetaData *metadata;
 
 /**
  * Save the document

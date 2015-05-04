@@ -10,7 +10,7 @@
 
 extern NSString *const FSFileChangeNotification;
 
-@interface FSIndex : NSObject
+@interface AMIndex : NSObject
 
 + (instancetype)sharedIndex;
 - (instancetype)initWithIndex:(NSURL *)pathToIndex;

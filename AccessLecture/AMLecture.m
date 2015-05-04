@@ -11,6 +11,12 @@
 static NSString *MetaKey = @"meta";
 static NSString *LectureKey = @"lecture";
 
+@interface AMLecture ()
+
+@property NSFileWrapper *fileWrapper;
+
+@end
+
 @implementation AMLecture
 
 - (id)initWithFileURL:(NSURL *)url
@@ -26,6 +32,84 @@ static NSString *LectureKey = @"lecture";
     return self;
 }
 
+#pragma mark Encode and decode file wrappers
+
+- (void)encodeObject:(id<NSCoding>)object toWrappers:(NSMutableDictionary *)wrappers preferredFilename:(NSString  *)preferredFilename
+{
+    NSMutableData *data = [NSMutableData data];
+    NSKeyedArchiver *archive = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+    [archive encodeObject:object forKey:@"data"];
+    [archive finishEncoding];
+    NSFileWrapper *wrap = [[NSFileWrapper alloc] initRegularFileWithContents:data];
+    [wrappers setObject:wrap forKey:preferredFilename];
+}
+
+- (id)decodeObjectFromWrapperWithPreferredFilename:(NSString *)preferredFilename {
+    
+    NSFileWrapper * fileWrapper = [self.fileWrapper.fileWrappers objectForKey:preferredFilename];
+    if (!fileWrapper) {
+        NSLog(@"Unexpected error: Couldn't find %@ in file wrapper!", preferredFilename);
+        return nil;
+    }
+    
+    NSData * data = [fileWrapper regularFileContents];
+    NSKeyedUnarchiver * unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+    
+    return [unarchiver decodeObjectForKey:@"data"];
+    
+}
+
+#pragma mark Open and close file wrapper
+
+- (id)contentsForType:(NSString *)typeName error:(NSError *__autoreleasing *)outError
+{
+    if (self.metadata == nil || self.lecture == nil) {
+        return nil;
+    }
+    
+    NSMutableDictionary *wrappers = [NSMutableDictionary dictionary];
+    [self encodeObject:self.metadata toWrappers:wrappers preferredFilename:@"lecture.meta"];
+    [self encodeObject:self.lecture toWrappers:wrappers preferredFilename:@"lecture.data"];
+    NSFileWrapper *fileWrapper = [[NSFileWrapper alloc] initDirectoryWithFileWrappers:wrappers];
+    
+    return fileWrapper;
+}
+
+- (BOOL)loadFromContents:(id)contents ofType:(NSString *)typeName error:(NSError *__autoreleasing *)outError
+{
+    self.fileWrapper = (NSFileWrapper *)contents;
+    // Lazy load everything
+    self.metadata = nil;
+    self.lecture = nil;
+    return YES;
+}
+
+#pragma mark Load in file contents
+
+- (ALMetaData *)metadata
+{
+    if (_metadata == nil) {
+        if (self.fileWrapper != nil) {
+            self.metadata = [self decodeObjectFromWrapperWithPreferredFilename:@"lecture.meta"];
+        } else {
+            self.metadata = [ALMetaData new];
+        }
+    }
+    return _metadata;
+}
+
+- (Lecture *)lecture
+{
+    if (_lecture == nil) {
+        if (self.fileWrapper != nil) {
+            self.lecture = [self decodeObjectFromWrapperWithPreferredFilename:@"lecture.data"];
+        } else {
+            self.lecture = [Lecture new];
+        }
+    }
+    return _lecture;
+}
+
 - (void)save
 {
     [self saveWithCompletetion:nil];
@@ -34,30 +118,6 @@ static NSString *LectureKey = @"lecture";
 - (void)saveWithCompletetion:(void(^)(BOOL success))completion
 {
     [self saveToURL:self.fileURL forSaveOperation:UIDocumentSaveForOverwriting completionHandler:completion];
-}
-
-- (BOOL)loadFromContents:(id)contents ofType:(NSString *)typeName error:(NSError *__autoreleasing *)outError
-{
-    NSData *archivedData = (NSData *)contents;
-    NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:archivedData];
-    
-    _metadata = [unarchiver decodeObjectForKey:MetaKey];
-    _lecture = [unarchiver decodeObjectForKey:LectureKey];
-    [_lecture setParent:self];
-    
-    return YES;
-}
-
-- (id)contentsForType:(NSString *)typeName error:(NSError *__autoreleasing *)outError
-{
-    NSMutableData *archivedData = [[NSMutableData alloc] init];
-    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:archivedData];
-    
-    [archiver encodeObject:_metadata forKey:MetaKey];
-    [archiver encodeObject:_lecture forKey:LectureKey];
-    [archiver finishEncoding];
-    
-    return (NSData *)archivedData;
 }
 
 - (NSString *)description

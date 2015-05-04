@@ -5,7 +5,7 @@
 #import "AccessLectureAppDelegate.h"
 #import "FileManager.h"
 #import "MockData.h"
-#import "FSIndex.h"
+#import "AMIndex.h"
 
 @implementation AccessLectureAppDelegate
 
@@ -32,13 +32,13 @@
         dispatch_async(generation, ^{
             [generator generateData];
             NSLog(@"DEBUG: Mock Data Loaded");
-            [[FSIndex sharedIndex] invalidate];
+            [[AMIndex sharedIndex] invalidate];
         });
     }
     #endif       
     
     // Index
-    [FSIndex sharedIndex];
+    [AMIndex sharedIndex];
     
     // Set the application defaults
     defaults = [NSUserDefaults standardUserDefaults];

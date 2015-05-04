@@ -6,14 +6,14 @@
 //
 //
 
-#import "FSIndex.h"
+#import "AMIndex.h"
 #import "FMDatabaseQueue.h"
 #import "FMDatabase.h"
 #import "FileManager.h"
 
 NSString *const FSFileChangeNotification = @"static NSString *const FSFileChangeNotification";
 
-@implementation FSIndex
+@implementation AMIndex
 {
     FMDatabaseQueue *_db;
     NSNotificationCenter *_nc;
@@ -25,7 +25,7 @@ NSString *const FSFileChangeNotification = @"static NSString *const FSFileChange
     static id shared;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        shared = [[FSIndex alloc] initWithIndex:[NSURL URLWithString:[[@"~" stringByExpandingTildeInPath] stringByAppendingPathComponent:@"fs_index.db"]]];
+        shared = [[AMIndex alloc] initWithIndex:[NSURL URLWithString:[[@"~" stringByExpandingTildeInPath] stringByAppendingPathComponent:@"fs_index.db"]]];
     });
     return shared;
 }
@@ -65,7 +65,7 @@ NSString *const FSFileChangeNotification = @"static NSString *const FSFileChange
     bool directoryRequest = [[requested substringFromIndex:requested.length - 1] isEqualToString:@"*"];
     if (directoryRequest) {
         NSString *dir = [requested substringToIndex:requested.length - 1];
-        return [FSIndex listContentsOfDirectory:dir justDirectorys:YES];
+        return [AMIndex listContentsOfDirectory:dir justDirectorys:YES];
     }
     
     static NSString *path;
@@ -104,8 +104,8 @@ NSString *const FSFileChangeNotification = @"static NSString *const FSFileChange
 - (void)beginIndexingAtPath:(NSString *)path
 {
     NSLog(@"DEBUG: FS Indexing started at %@", path);
-    NSArray *directories = [FSIndex listContentsOfDirectory:[path stringByExpandingTildeInPath] justDirectorys:YES];
-    NSArray *docs = [FSIndex listContentsOfDirectory:[path stringByExpandingTildeInPath] justDirectorys:NO];
+    NSArray *directories = [AMIndex listContentsOfDirectory:[path stringByExpandingTildeInPath] justDirectorys:YES];
+    NSArray *docs = [AMIndex listContentsOfDirectory:[path stringByExpandingTildeInPath] justDirectorys:NO];
     
     [_db inDatabase:^(FMDatabase *db) {
         for (NSString *fileName in docs) {
@@ -190,8 +190,8 @@ NSString *const FSFileChangeNotification = @"static NSString *const FSFileChange
     sortedArrayWithOptions:NSSortStable usingComparator:^NSComparisonResult(NSString *file1, NSString *file2) {
         NSError *error;
         
-        NSString *f1 = [[FSIndex localDocumentsDirectoryPath] stringByAppendingPathComponent:file1];
-        NSString *f2 = [[FSIndex localDocumentsDirectoryPath] stringByAppendingPathComponent:file2];
+        NSString *f1 = [[AMIndex localDocumentsDirectoryPath] stringByAppendingPathComponent:file1];
+        NSString *f2 = [[AMIndex localDocumentsDirectoryPath] stringByAppendingPathComponent:file2];
         
         NSDictionary* p1 = [[NSFileManager defaultManager]
                             attributesOfItemAtPath:f1

@@ -23,7 +23,7 @@
 #import "Deferred.h"
 
 #import "LectureViewContainer.h"
-#import "FSIndex.h"
+#import "AMIndex.h"
 #import "DirectoryCVC.h"
 #import "Stack.h"
 
@@ -36,7 +36,7 @@
 {
     NSArray *_navigationItems;
 
-    FSIndex *_fsIndex;
+    AMIndex *_fsIndex;
     NSString *_currectPath;
     
     // Selected Lecture
@@ -77,7 +77,7 @@ static NSString * const directoryCellReuseID = @"directory";
 - (void)loadDocumentPreviews
 {
     NSLog(@"DEBUG: Loading document previews");
-    _fsIndex = [FSIndex sharedIndex];
+    _fsIndex = [AMIndex sharedIndex];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fsChange) name:FSFileChangeNotification object:nil];
     

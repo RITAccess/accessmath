@@ -9,7 +9,7 @@
 #import "FileManager.h"
 #import "MockData.h"
 #import "Note.h"
-#import "FSIndex.h"
+#import "AMIndex.h"
 
 void signal_done(dispatch_semaphore_t lc, dispatch_semaphore_t count) {
     int res = dispatch_semaphore_wait(count, DISPATCH_TIME_NOW);
@@ -37,7 +37,7 @@ void signal_done(dispatch_semaphore_t lc, dispatch_semaphore_t count) {
 {
     NSLog(@"DEBUG: deleting old docs...");
     NSFileManager *fm = [NSFileManager defaultManager];
-    NSString *directory = [[FSIndex localDocumentsDirectoryPath] stringByAppendingPathComponent:@"/"];
+    NSString *directory = [[AMIndex localDocumentsDirectoryPath] stringByAppendingPathComponent:@"/"];
     NSError *error = nil;
     for (NSString *file in [fm contentsOfDirectoryAtPath:directory error:&error]) {
         BOOL success = [fm removeItemAtPath:[NSString stringWithFormat:@"%@/%@", directory, file] error:&error];
