@@ -924,6 +924,18 @@ static UIColor* _brushDefault = nil;
     return imageOfBackButton;
 }
 
++ (UIImage*)imageOfNoLecture:(CGRect)frame
+{
+    UIGraphicsBeginImageContextWithOptions(frame.size, NO, 0.0f);
+    [AccessLectureKit drawLectureNoInfoWithFrame:frame];
+    
+    UIImage* imageOfBackButton = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return imageOfBackButton;
+}
+
+
 @end
 
 

@@ -14,6 +14,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *title;
 @property (strong, nonatomic) RTSpinKitView *progress;
 
-- (void)loadLecturePreview:(NSString *)name;
+- (void)loadLecturePreview:(NSString *)path;
 
 @end

@@ -14,11 +14,10 @@ static NSString *const AMLectutueFileExtention = @"lec";
 
 @interface AMLecture : UIDocument
 
-// Stored Data (slow)
+// Each propery is lazy loaded, try to only start a load if you have to
 @property (nonatomic, strong) Lecture *lecture;
-
-// Quick Access Data (fast)
 @property (nonatomic, strong) ALMetaData *metadata;
+@property (nonatomic, strong) UIImage *thumb;
 
 /**
  * Save the document

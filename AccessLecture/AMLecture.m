@@ -7,6 +7,7 @@
 //
 
 #import "AMLecture.h"
+#import "AccessLectureKit.h"
 
 static NSString *MetaKey = @"meta";
 static NSString *LectureKey = @"lecture";
@@ -44,6 +45,12 @@ static NSString *LectureKey = @"lecture";
     [wrappers setObject:wrap forKey:preferredFilename];
 }
 
+- (void)encodeImage:(UIImage *)image toWrappers:(NSMutableDictionary *)wrappers preferredFilename:(NSString *)preferredFilename
+{
+    NSFileWrapper *wrap = [[NSFileWrapper alloc] initRegularFileWithContents:UIImagePNGRepresentation(image)];
+    [wrappers setObject:wrap forKey:preferredFilename];
+}
+
 - (id)decodeObjectFromWrapperWithPreferredFilename:(NSString *)preferredFilename {
     
     NSFileWrapper * fileWrapper = [self.fileWrapper.fileWrappers objectForKey:preferredFilename];
@@ -59,6 +66,18 @@ static NSString *LectureKey = @"lecture";
     
 }
 
+- (id)decodeImageFromWrapperWithPreferredFilename:(NSString *)preferredFilename
+{
+    NSFileWrapper * fileWrapper = [self.fileWrapper.fileWrappers objectForKey:preferredFilename];
+    if (!fileWrapper) {
+        NSLog(@"Unexpected error: Couldn't find %@ in file wrapper!", preferredFilename);
+        return nil;
+    }
+    
+    NSData * data = [fileWrapper regularFileContents];
+    return [UIImage imageWithData:data];
+}
+
 #pragma mark Open and close file wrapper
 
 - (id)contentsForType:(NSString *)typeName error:(NSError *__autoreleasing *)outError
@@ -70,6 +89,7 @@ static NSString *LectureKey = @"lecture";
     NSMutableDictionary *wrappers = [NSMutableDictionary dictionary];
     [self encodeObject:self.metadata toWrappers:wrappers preferredFilename:@"lecture.meta"];
     [self encodeObject:self.lecture toWrappers:wrappers preferredFilename:@"lecture.data"];
+    [self encodeImage:self.thumb toWrappers:wrappers preferredFilename:@"thumb.png"];
     NSFileWrapper *fileWrapper = [[NSFileWrapper alloc] initDirectoryWithFileWrappers:wrappers];
     
     return fileWrapper;
@@ -85,6 +105,18 @@ static NSString *LectureKey = @"lecture";
 }
 
 #pragma mark Load in file contents
+
+- (UIImage *)thumb
+{
+    if (_thumb == nil) {
+        if (self.fileWrapper != nil) {
+            self.thumb = [self decodeImageFromWrapperWithPreferredFilename:@"thumb.png"];
+        } else {
+            self.thumb = [AccessLectureKit imageOfNoLecture:CGRectMake(0, 0, 180, 250)];
+        }
+    }
+    return _thumb;
+}
 
 - (ALMetaData *)metadata
 {

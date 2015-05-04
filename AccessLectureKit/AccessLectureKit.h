@@ -32,6 +32,7 @@
 
 // Generated Images
 + (UIImage*)imageOfBackButtonWithFrame: (CGRect)frame;
++ (UIImage*)imageOfNoLecture:(CGRect)frame;
 
 @end
 

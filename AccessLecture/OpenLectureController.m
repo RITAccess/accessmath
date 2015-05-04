@@ -259,7 +259,7 @@ static NSString * const directoryCellReuseID = @"directory";
 {
     NSString *name = _fsIndex[_currectPath][indexPath.row];
     cell.title.text = name;
-    [cell loadLecturePreview:name];
+    [cell loadLecturePreview:[_currectPath stringByAppendingPathComponent:name]];
     
     UITapGestureRecognizer *singletap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cellDidTap:)];
     [singletap setNumberOfTapsRequired:1];
