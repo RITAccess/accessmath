@@ -49,7 +49,9 @@ void signal_done(dispatch_semaphore_t lc, dispatch_semaphore_t count) {
     NSLog(@"DEBUG: done");
     
     // Get Data
-    NSArray *lines = [self loadData];
+    NSArray *lines = [[self loadData] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(NSString *string, NSDictionary *bindings) {
+        return ![string isEqualToString:@""];
+    }]];
     
     int count = 500;
     int chunks = floor(lines.count / count);
@@ -81,7 +83,7 @@ void signal_done(dispatch_semaphore_t lc, dispatch_semaphore_t count) {
 
 - (void)createNoteDataOnLecture:(AMLecture *)lecture withRange:(NSRange)range inCtx:(NSArray *)lines completion:(void(^)())completion
 {
-    for (int i = range.location; i < range.length; i++) {
+    for (int i = range.location; i < range.location + range.length; i++) {
         Note *n = [Note new];
         NSString *line = lines[i];
         n.title = line;
