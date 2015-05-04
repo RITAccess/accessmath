@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DrawViewController">
@@ -23,29 +23,33 @@
             <rect key="frame" x="0.0" y="0.0" width="1024" height="846"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" id="W7a-Cd-lu1" customClass="ACEDrawingView">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W7a-Cd-lu1" customClass="ACEDrawingView">
                     <rect key="frame" x="0.0" y="0.0" width="1024" height="802"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
                 </view>
-                <slider hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.10000000149011612" maxValue="1" id="H3n-3S-0LX" userLabel="Alpha Slider">
+                <slider hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.10000000149011612" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="H3n-3S-0LX" userLabel="Alpha Slider">
                     <rect key="frame" x="18" y="409" width="355" height="29"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="351" id="uAD-ow-bvQ"/>
+                    </constraints>
                     <connections>
                         <action selector="alphaChange:" destination="-1" eventType="valueChanged" id="vxg-YT-L8V"/>
                     </connections>
                 </slider>
-                <slider hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="1" maxValue="20" id="vXn-Kr-XPA" userLabel="Width Slider">
+                <slider hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="1" maxValue="20" translatesAutoresizingMaskIntoConstraints="NO" id="vXn-Kr-XPA" userLabel="Width Slider">
                     <rect key="frame" x="18" y="409" width="348" height="29"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="344" id="7EY-k9-3yX"/>
+                        <constraint firstAttribute="height" constant="28" id="heu-7h-pgv"/>
+                    </constraints>
                     <connections>
                         <action selector="widthChange:" destination="-1" eventType="valueChanged" id="Ol3-0c-Yc9"/>
                     </connections>
                 </slider>
-                <toolbar clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" id="aHb-Kp-jdc">
+                <toolbar clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aHb-Kp-jdc">
                     <rect key="frame" x="0.0" y="802" width="1024" height="44"/>
                     <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                     <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
@@ -92,9 +96,23 @@
                 </toolbar>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+            <constraints>
+                <constraint firstItem="aHb-Kp-jdc" firstAttribute="leading" secondItem="W7a-Cd-lu1" secondAttribute="leading" id="19p-IJ-F2t"/>
+                <constraint firstItem="W7a-Cd-lu1" firstAttribute="top" secondItem="BEN-wz-v9C" secondAttribute="top" id="K1M-D4-fhM"/>
+                <constraint firstItem="vXn-Kr-XPA" firstAttribute="bottom" secondItem="H3n-3S-0LX" secondAttribute="bottom" id="Mb8-Pd-xUq"/>
+                <constraint firstAttribute="bottom" secondItem="aHb-Kp-jdc" secondAttribute="bottom" id="RQr-Vq-Ucq"/>
+                <constraint firstAttribute="trailing" secondItem="aHb-Kp-jdc" secondAttribute="trailing" id="Rh2-f6-CzY"/>
+                <constraint firstItem="vXn-Kr-XPA" firstAttribute="top" secondItem="H3n-3S-0LX" secondAttribute="top" id="SST-zI-yFO"/>
+                <constraint firstItem="H3n-3S-0LX" firstAttribute="centerY" secondItem="BEN-wz-v9C" secondAttribute="centerY" id="X2X-Qn-eMa"/>
+                <constraint firstItem="vXn-Kr-XPA" firstAttribute="leading" secondItem="BEN-wz-v9C" secondAttribute="leading" constant="20" id="XDn-DW-eBg"/>
+                <constraint firstItem="aHb-Kp-jdc" firstAttribute="trailing" secondItem="W7a-Cd-lu1" secondAttribute="trailing" id="dVY-hx-PgJ"/>
+                <constraint firstItem="W7a-Cd-lu1" firstAttribute="leading" secondItem="BEN-wz-v9C" secondAttribute="leading" id="eLj-al-4Wf"/>
+                <constraint firstItem="aHb-Kp-jdc" firstAttribute="top" secondItem="W7a-Cd-lu1" secondAttribute="bottom" id="pPe-if-oCX"/>
+                <constraint firstItem="H3n-3S-0LX" firstAttribute="leading" secondItem="vXn-Kr-XPA" secondAttribute="leading" id="xDf-Ma-Efw"/>
+            </constraints>
             <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="288" y="290"/>
         </view>
     </objects>
 </document>
