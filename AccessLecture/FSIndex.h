@@ -19,5 +19,6 @@ extern NSString *const FSFileChangeNotification;
 - (void)invalidate;
 
 - (NSArray *)objectForKeyedSubscript:(id <NSCopying>)key;
++ (NSString *)localDocumentsDirectoryPath;
 
 @end
