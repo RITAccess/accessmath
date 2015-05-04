@@ -80,7 +80,7 @@ NSString *const FSFileChangeNotification = @"static NSString *const FSFileChange
         path = requested;
         documents = [NSMutableArray new];
         [_db inDatabase:^(FMDatabase *db) {
-            FMResultSet *results = [db executeQuery:@"select * from fs_name_index where directory=?;", [path stringByAbbreviatingWithTildeInPath]];
+            FMResultSet *results = [db executeQuery:@"select * from fs_name_index where directory=? order by modification desc;", [path stringByAbbreviatingWithTildeInPath]];
             while ([results next]) {
                 [documents addObject:[results stringForColumn:@"filename"]];
             }
@@ -93,7 +93,7 @@ NSString *const FSFileChangeNotification = @"static NSString *const FSFileChange
 - (void)beginIndexing
 {
     [_db inDatabase:^(FMDatabase *db) {
-        bool success = [db executeStatements:@"drop table if exists fs_name_index; create table fs_name_index (filename varchar(80), directory varchar(80));"];
+        bool success = [db executeStatements:@"drop table if exists fs_name_index; create table fs_name_index (filename varchar(80), directory varchar(80), modification REAL);"];
         NSLog(@"DEBUG: created table %@", success ? @"YES" : @"NO");
     }];
     [self beginIndexingAtPath:@"~/Documents"];
@@ -109,7 +109,13 @@ NSString *const FSFileChangeNotification = @"static NSString *const FSFileChange
     
     [_db inDatabase:^(FMDatabase *db) {
         for (NSString *fileName in docs) {
-            [db executeUpdate:@"INSERT into fs_name_index (filename, directory) VALUES (?,?)", fileName, [path stringByAbbreviatingWithTildeInPath]];
+            NSError *error;
+            NSDictionary* p1 = [[NSFileManager defaultManager]
+                                attributesOfItemAtPath:[[path stringByExpandingTildeInPath] stringByAppendingPathComponent:fileName]
+                                error:&error];
+            double date = (double)[[p1 objectForKey:NSFileModificationDate] timeIntervalSince1970];
+            NSNumber *time = [NSNumber numberWithDouble:date];
+            [db executeUpdate:@"INSERT into fs_name_index (filename, directory, modification) VALUES (?,?,?)", fileName, [path stringByAbbreviatingWithTildeInPath], time];
         }
     }];
     
@@ -123,9 +129,10 @@ NSString *const FSFileChangeNotification = @"static NSString *const FSFileChange
     if (file.isFileURL) {
         NSString *directory = [file.resourceSpecifier stringByDeletingLastPathComponent];
         NSString *docName = [file.resourceSpecifier stringByReplacingOccurrencesOfString:directory withString:@""];
-        
+        double date = (double)[[NSDate new] timeIntervalSince1970];
+        NSNumber *time = [NSNumber numberWithDouble:date];
         [_db inDatabase:^(FMDatabase *db) {
-            [db executeUpdate:@"INSERT into fs_name_index (filename, directory) VALUES (?,?)", [[docName stringByRemovingPercentEncoding] substringFromIndex:1], [directory stringByAbbreviatingWithTildeInPath]];
+            [db executeUpdate:@"INSERT into fs_name_index (filename, directory, modification) VALUES (?,?,?)", [[docName stringByRemovingPercentEncoding] substringFromIndex:1], [directory stringByAbbreviatingWithTildeInPath], time];
         }];
         [self notifyFileCacheChange];
         completion(nil);
