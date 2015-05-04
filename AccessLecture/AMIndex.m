@@ -170,23 +170,16 @@ NSString *const FSFileChangeNotification = @"static NSString *const FSFileChange
         NSLog(@"There was an error reading directory '%@', %@", path, err);
         return nil;
     }
-    NSPredicate *isFile = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
-        NSString *fullPath = [path stringByAppendingPathComponent:evaluatedObject];
-        BOOL isDirectory = NO;
-        [[NSFileManager defaultManager] fileExistsAtPath:fullPath isDirectory:&isDirectory];
-        return !(isDirectory);
-    }];
     NSPredicate *isDirectory = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
         NSString *fullPath = [path stringByAppendingPathComponent:evaluatedObject];
         BOOL _isDirectory = NO;
         [[NSFileManager defaultManager] fileExistsAtPath:fullPath isDirectory:&_isDirectory];
-        return _isDirectory;
+        return _isDirectory && ![[[evaluatedObject componentsSeparatedByString:@"."] lastObject] isEqualToString:@"lec"];
     }];
     NSPredicate *isLecture = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
         return [[[evaluatedObject componentsSeparatedByString:@"."] lastObject] isEqualToString:@"lec"];
     }];
-    NSCompoundPredicate *filterLecture = [NSCompoundPredicate andPredicateWithSubpredicates:@[isFile, isLecture]];
-    return [[names filteredArrayUsingPredicate:justDirectory ? isDirectory : filterLecture]
+    return [[names filteredArrayUsingPredicate:justDirectory ? isDirectory : isLecture]
     sortedArrayWithOptions:NSSortStable usingComparator:^NSComparisonResult(NSString *file1, NSString *file2) {
         NSError *error;
         
