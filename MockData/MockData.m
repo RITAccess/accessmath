@@ -20,6 +20,19 @@ void signal_done(dispatch_semaphore_t lc, dispatch_semaphore_t count) {
 
 @implementation MockData
 
+- (NSArray *)loadData
+{
+    NSURL *contentURL = [NSURL URLWithString:@"http://www.gutenberg.org/files/98/98.txt"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:contentURL];
+    NSError *error;
+    NSURLResponse *response;
+    NSData *totc = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    NSString *story = [NSString stringWithUTF8String:totc.bytes];
+    
+    NSArray *breakDown = [story componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+    return breakDown;
+}
+
 - (BOOL)generateData
 {
     NSLog(@"DEBUG: deleting old docs...");
@@ -35,7 +48,11 @@ void signal_done(dispatch_semaphore_t lc, dispatch_semaphore_t count) {
     }
     NSLog(@"DEBUG: done");
     
+    // Get Data
+    NSArray *lines = [self loadData];
+    
     int count = 500;
+    int chunks = floor(lines.count / count);
     
     // In order for dispatch_release() to be called on the semaphore, the calls
     // between signal/wait need to be ballanced. Can't just create a semaphore
@@ -49,7 +66,8 @@ void signal_done(dispatch_semaphore_t lc, dispatch_semaphore_t count) {
     dispatch_semaphore_t lecture_creation = dispatch_semaphore_create(0);
     while (--count >= 0) {
         [FileManager createDocumentWithName:[NSString stringWithFormat:@"Test Document %i", count] completion:^(NSError *error, AMLecture *current) {
-            [self createNoteDataOnLecture:current completion:^{
+            NSRange range = NSMakeRange(count * chunks, chunks);
+            [self createNoteDataOnLecture:current withRange:range inCtx:lines completion:^{
                 signal_done(lecture_creation, created);
             }];
         }];
@@ -61,12 +79,13 @@ void signal_done(dispatch_semaphore_t lc, dispatch_semaphore_t count) {
     return YES;
 }
 
-- (void)createNoteDataOnLecture:(AMLecture *)lecture completion:(void(^)())completion
+- (void)createNoteDataOnLecture:(AMLecture *)lecture withRange:(NSRange)range inCtx:(NSArray *)lines completion:(void(^)())completion
 {
-    for (int i = 0; i < 20; i++) {
+    for (int i = range.location; i < range.length; i++) {
         Note *n = [Note new];
-        n.title = @"Test Note";
-        n.content = @"Note stuff";
+        NSString *line = lines[i];
+        n.title = line;
+        n.content = line;
         [lecture.lecture addNotes:[NSSet setWithObject:n]];
     }
     

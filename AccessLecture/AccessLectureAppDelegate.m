@@ -32,6 +32,7 @@
         dispatch_async(generation, ^{
             [generator generateData];
             NSLog(@"DEBUG: Mock Data Loaded");
+            [[FSIndex sharedIndex] invalidate];
         });
     }
     #endif       
