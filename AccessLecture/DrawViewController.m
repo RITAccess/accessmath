@@ -37,20 +37,16 @@ static const CGFloat SliderPaddingFromSides = 100;
     self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, [UIScreen mainScreen].bounds.size.height);
     
     // Ensure toolbar is properly oriented
-    [self positionToolbar:self.interfaceOrientation withAnimation:NO];
+    // TODO: realign toolbar positining
+//    [self positionToolbar:self.interfaceOrientation withAnimation:NO];
 }
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [self positionToolbar:self.interfaceOrientation withAnimation:NO];
-}
-
 
 #pragma mark - Rotation
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
-    [self positionToolbar:toInterfaceOrientation withAnimation:NO];
+    // TODO: realign toolbar positioning
+//    [self positionToolbar:toInterfaceOrientation withAnimation:NO];
 }
 
 /**

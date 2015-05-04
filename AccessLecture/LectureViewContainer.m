@@ -95,6 +95,7 @@
     
     UIButton *brush = ({
         UIButton *b = [BrushButton buttonWithType:UIButtonTypeRoundedRect];
+        [b addTarget:self action:@selector(toggleDrawViewController) forControlEvents:UIControlEventTouchUpInside];
         b.accessibilityValue = @"draw";
         b;
     });
@@ -155,19 +156,20 @@
     }
 }
 
-// TODO - Switch to stack based with a push and pop controller type maybe?
-// TODO - disable if off
-//- (void)toggledDrawMode:(MKToggleButton *)sender
-//{
-//    [_dvc hideToolbar:!sender.selected];
-//    if (sender.selected) {
-//        [_dvc displayToolbarWithAnimation:YES];
-//        [self moveControlTo:_dvc];
-//    } else {
-//        [_dvc dismissToolbarWithAnimation:YES];
-//        [self.view sendSubviewToBack:_dvc.view];
-//    }
-//}
+- (void)toggleDrawViewController  // backlog: consider parameterizing animation
+{
+    UIButton *drawButton = [_navigationItems objectAtIndex:3];  // update index
+
+    if (drawButton.selected) {
+        [_dvc dismissToolbarWithAnimation:YES];
+        [self.view sendSubviewToBack:_dvc.view];
+    } else {
+        [_dvc displayToolbarWithAnimation:YES];
+        [self moveControlTo:_dvc];
+    }
+
+    drawButton.selected = ![drawButton isSelected];
+}
 
 - (void)actionFromMenu:(MTRadialMenu *)menu
 {
