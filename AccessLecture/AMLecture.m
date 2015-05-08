@@ -73,7 +73,6 @@ static NSString *LectureKey = @"lecture";
         NSLog(@"Unexpected error: Couldn't find %@ in file wrapper!", preferredFilename);
         return nil;
     }
-    
     NSData * data = [fileWrapper regularFileContents];
     return [UIImage imageWithData:data];
 }
@@ -82,10 +81,7 @@ static NSString *LectureKey = @"lecture";
 
 - (id)contentsForType:(NSString *)typeName error:(NSError *__autoreleasing *)outError
 {
-    if (self.metadata == nil || self.lecture == nil) {
-        return nil;
-    }
-    
+
     NSMutableDictionary *wrappers = [NSMutableDictionary dictionary];
     [self encodeObject:self.metadata toWrappers:wrappers preferredFilename:@"lecture.meta"];
     [self encodeObject:self.lecture toWrappers:wrappers preferredFilename:@"lecture.data"];
@@ -101,6 +97,7 @@ static NSString *LectureKey = @"lecture";
     // Lazy load everything
     self.metadata = nil;
     self.lecture = nil;
+    self.thumb = nil;
     return YES;
 }
 

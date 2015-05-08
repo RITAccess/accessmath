@@ -24,7 +24,6 @@
 
 @interface LectureViewContainer ()
 
-@property (weak) AMLecture *document;
 @property (strong, nonatomic) MTRadialMenu *actionMenu;
 @property (strong) DrawViewController *dvc;
 @property (strong) NoteTakingViewController *ntvc;
@@ -133,9 +132,20 @@
 
 - (void)saveLecture
 {
+    [self doCapture];
     [_selectedLecture saveWithCompletetion:^(BOOL success) {
         NSAssert(success, @"Lecture did not save.");
     }];
+}
+
+- (void)doCapture
+{
+    UIGraphicsBeginImageContext(self.view.window.bounds.size);
+    [self.view.window.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    [_selectedLecture setThumb:image];
+    [_selectedLecture save];
 }
 
 - (void)back
