@@ -12,7 +12,7 @@
 
 @implementation LoadingLectureCVC
 {
-    BOOL _loadFailed;
+    UIImageView *img;
 }
 
 -(void)awakeFromNib
@@ -32,21 +32,19 @@
         self.progress.alpha = 0.0;
     } completion:^(BOOL finished) {
         [self.progress removeFromSuperview];
-        UIImageView *img = [[UIImageView alloc] initWithImage:image];
+        img = [[UIImageView alloc] initWithImage:image];
+        [img setContentMode:UIViewContentModeScaleAspectFill];
         [img setFrame:self.bounds];
         [self addSubview:img];
+        [self sendSubviewToBack:img];
         [self setNeedsDisplay];
     }];
 }
 
-//- (void)drawRect:(CGRect)rect
-//{
-//    
-//}
-
 - (void)prepareForReuse
 {
-    // TODO Check for cached values
+    [img removeFromSuperview];
+    img = nil;
 }
 
 @end

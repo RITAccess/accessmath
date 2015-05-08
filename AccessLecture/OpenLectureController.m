@@ -63,6 +63,11 @@ static NSString * const directoryCellReuseID = @"directory";
     [self loadDocumentPreviews];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self loadDocumentPreviews];
+}
+
 - (void)viewDidDisappear:(BOOL)animated
 {
     _selectedLecture = nil;
@@ -76,11 +81,9 @@ static NSString * const directoryCellReuseID = @"directory";
 
 - (void)loadDocumentPreviews
 {
-    NSLog(@"DEBUG: Loading document previews");
     _fsIndex = [AMIndex sharedIndex];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fsChange) name:FSFileChangeNotification object:nil];
-    
+    [self.collectionView reloadData];
 }
 
 - (void)fsChange
@@ -177,7 +180,6 @@ static NSString * const directoryCellReuseID = @"directory";
 - (void)back
 {
     if (![[_dirNavStack.pop stringByAbbreviatingWithTildeInPath] isEqualToString:@"~/Documents"]) {
-        NSLog(@"DEBUG: %@", _dirNavStack.print);
         _currectPath = [_dirNavStack.print stringByStandardizingPath];
         [self.collectionView reloadData];
     } else {
@@ -218,11 +220,7 @@ static NSString * const directoryCellReuseID = @"directory";
             AMLecture *lecture = [[AMLecture alloc] initWithFileURL:path];
              [lecture openWithCompletionHandler:^(BOOL success) {
                  [promise resolve:lecture];
-                 NSLog(@"DEBUG: Opened");
              }];
-            NSLog(@"DEBUG: After");
-            
-            
         } break;
     }
 }
