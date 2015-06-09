@@ -11,11 +11,13 @@ Integrating an iOS application with Mimio to provide an accessible lecture strea
 ### Current Contributors
 Led by [Stephanie Ludi](https://github.com/retrogamer80s), this project has previously seen development. Its current team consists of:
 * [Michael Timbrook](https://github.com/7imbrook) SE Undergraduate 
-* [Piper Chester](https://github.com/piperchester) SE Undergraduate 
-
+* [Piper Chester](https://github.com/piperchester) SE Undergraduate
+* [Christina Howard] (https://github.com/chtinahow) SE Undergraduate
 ### Building
 ```
 $ pod install
+$ git submodule init
+$ git submodule update
 $ xctool
 $ xctool test
 ```
