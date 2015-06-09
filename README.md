@@ -13,10 +13,13 @@ Led by [Stephanie Ludi](https://github.com/retrogamer80s), this project has prev
 * [Michael Timbrook](https://github.com/7imbrook) SE Undergraduate 
 * [Piper Chester](https://github.com/piperchester) SE Undergraduate 
 * [Kimberly Sookoo](https://github.com/MukeytheMuse) SE Undergraduate
+* [Christina Howard](https://github.com/chtinahow) SE Undergraduate
 
 ### Building
 ```
 $ pod install
+$ git submodule init
+$ git submodule update
 $ xctool
 $ xctool test
 ```
