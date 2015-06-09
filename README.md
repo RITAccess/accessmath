@@ -12,6 +12,7 @@ Integrating an iOS application with Mimio to provide an accessible lecture strea
 Led by [Stephanie Ludi](https://github.com/retrogamer80s), this project has previously seen development. Its current team consists of:
 * [Michael Timbrook](https://github.com/7imbrook) SE Undergraduate 
 * [Piper Chester](https://github.com/piperchester) SE Undergraduate 
+* [Kimberly Sookoo](https://github.com/MukeytheMuse) SE Undergraduate
 
 ### Building
 ```
