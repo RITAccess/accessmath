@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Rr7-bG-jB9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Rr7-bG-jB9">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -131,6 +131,7 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <connections>
                         <segue destination="d96-Uo-nnX" kind="presentation" identifier="open" id="5uf-HQ-p7c"/>
+                        <segue destination="5hH-RB-bUd" kind="presentation" identifier="toAbout" id="4RO-wy-4zE"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fTF-1V-g9W" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -622,8 +623,140 @@
             </objects>
             <point key="canvasLocation" x="2790" y="1269"/>
         </scene>
+        <!--About View Controller-->
+        <scene sceneID="KWB-Mn-FIr">
+            <objects>
+                <viewController storyboardIdentifier="AboutViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="5hH-RB-bUd" customClass="AboutViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WhU-QO-qXQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="pDz-kU-RkC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3uE-Vy-h1z">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="mso-bC-ass">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <items>
+                                    <navigationItem title="About" id="JD0-Jr-ezN">
+                                        <barButtonItem key="leftBarButtonItem" image="Back" width="38" id="eSq-s4-ziV">
+                                            <inset key="imageInsets" minX="0.0" minY="6" maxX="18" maxY="0.0"/>
+                                            <color key="tintColor" red="0.2862934278" green="1" blue="0.37172340440000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="returnToHome:" destination="5hH-RB-bUd" id="EK6-kN-fgf"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jDr-5q-1wR">
+                                <rect key="frame" x="20" y="71" width="560" height="583"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="583" id="Z7u-nm-Gng"/>
+                                </constraints>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content">AccessMath is being developed by students at the Rochester Institute of Technology. 
+
+</string>
+                                        <attributes>
+                                            <font key="NSFont" size="35" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" headerLevel="1"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="Team (2010 − 2011)">
+                                        <attributes>
+                                            <font key="NSFont" size="40" name="HelveticaNeue-Bold"/>
+                                            <font key="NSOriginalFont" size="35" name="HelveticaNeue-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" headerLevel="1"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content" base64-UTF8="YES">
+IAo
+</string>
+                                        <attributes>
+                                            <font key="NSFont" size="35" name="HelveticaNeue-Bold"/>
+                                            <font key="NSOriginalFont" size="35" name="HelveticaNeue-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" headerLevel="1"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">Alex Canter, Lindsey Ellis, Abhishek Shrestha, Steven Brunwasser
+ 
+</string>
+                                        <attributes>
+                                            <font key="NSFont" size="35" name="HelveticaNeue"/>
+                                            <font key="NSOriginalFont" size="35" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" headerLevel="1"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">Team (2013)
+</string>
+                                        <attributes>
+                                            <font key="NSFont" size="40" name="HelveticaNeue-Bold"/>
+                                            <font key="NSOriginalFont" size="35" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" headerLevel="1"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="Pratik Rasam, Michael Timbrook and Piper Chester">
+                                        <attributes>
+                                            <font key="NSFont" size="35" name="HelveticaNeue"/>
+                                            <font key="NSOriginalFont" size="35" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" headerLevel="1"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content" base64-UTF8="YES">
+IAoKA
+</string>
+                                        <attributes>
+                                            <font key="NSFont" size="35" name="HelveticaNeue-Bold"/>
+                                            <font key="NSOriginalFont" size="35" name="HelveticaNeue-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" headerLevel="1"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">Special Thanks
+</string>
+                                        <attributes>
+                                            <font key="NSFont" size="40" name="HelveticaNeue-Bold"/>
+                                            <font key="NSOriginalFont" size="35" name="HelveticaNeue-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" headerLevel="1"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="CRA, Usability Volunteers">
+                                        <attributes>
+                                            <font key="NSFont" size="35" name="HelveticaNeue"/>
+                                            <font key="NSOriginalFont" size="35" name="HelveticaNeue-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" headerLevel="1"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="jDr-5q-1wR" firstAttribute="top" secondItem="3uE-Vy-h1z" secondAttribute="top" constant="71" id="H2V-Um-csF"/>
+                            <constraint firstItem="mso-bC-ass" firstAttribute="leading" secondItem="3uE-Vy-h1z" secondAttribute="leading" id="Iso-uD-z5m"/>
+                            <constraint firstAttribute="trailing" secondItem="jDr-5q-1wR" secondAttribute="trailing" constant="20" symbolic="YES" id="Iyy-aF-JTx"/>
+                            <constraint firstItem="jDr-5q-1wR" firstAttribute="leading" secondItem="3uE-Vy-h1z" secondAttribute="leading" constant="20" symbolic="YES" id="Wpz-uz-Edn"/>
+                            <constraint firstItem="jDr-5q-1wR" firstAttribute="centerX" secondItem="mso-bC-ass" secondAttribute="centerX" id="XIm-e8-ssv"/>
+                            <constraint firstItem="mso-bC-ass" firstAttribute="top" secondItem="3uE-Vy-h1z" secondAttribute="top" id="mqb-1H-qNF"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pgs-Z7-ad1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="85" y="1294"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="Back" width="56" height="56"/>
         <image name="NotesButton" width="1024" height="1024"/>
         <image name="accesslecture" width="695" height="512"/>
     </resources>
