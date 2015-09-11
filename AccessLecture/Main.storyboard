@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Rr7-bG-jB9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Rr7-bG-jB9">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -35,7 +35,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZe-EG-U3F">
                                             <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -247,7 +247,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T4O-K4-3M4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4093" y="1276"/>
+            <point key="canvasLocation" x="4757" y="1276"/>
         </scene>
         <!--Open Lecture Controller-->
         <scene sceneID="FuS-Md-ciF">
@@ -277,7 +277,7 @@
                                                 <constraint firstAttribute="height" constant="45" id="F14-tM-h34"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -303,7 +303,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" misplaced="YES" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="vJ6-h7-olp">
                                             <rect key="frame" x="8" y="197" width="164" height="45"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -351,7 +351,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="co1-Dr-1hT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1539" y="546"/>
+            <point key="canvasLocation" x="1467" y="612"/>
         </scene>
         <!--Preview View Controller-->
         <scene sceneID="cGX-np-E1m">
@@ -532,7 +532,23 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tug-dL-jYS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4748" y="1276"/>
+            <point key="canvasLocation" x="5412" y="1276"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="PcV-SZ-G6d">
+            <objects>
+                <navigationController id="FNr-LW-qVv" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="LdC-xz-55Q">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="uHf-Yh-apF" kind="relationship" relationship="rootViewController" id="Qb3-MF-gwX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KPC-Su-7wL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3441" y="1269"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qvf-ww-VgQ">
@@ -548,7 +564,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mHK-Hd-KWB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3417" y="1930"/>
+            <point key="canvasLocation" x="4081" y="1930"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="9o1-SO-unf">
@@ -567,12 +583,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rrk-9F-JWQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4079" y="1936"/>
+            <point key="canvasLocation" x="4743" y="1936"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="wdB-UV-dfs">
             <objects>
                 <splitViewController storyboardIdentifier="SearchViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uHf-Yh-apF" customClass="SearchViewController" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Olt-Tu-mXr"/>
                     <connections>
                         <segue destination="ZZa-dy-pkl" kind="relationship" relationship="masterViewController" id="Fkg-Lu-mc5"/>
                         <segue destination="0l8-oK-CWQ" kind="relationship" relationship="detailViewController" id="egj-px-1cB"/>
@@ -580,7 +597,7 @@
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gDH-xv-spo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3427" y="1269"/>
+            <point key="canvasLocation" x="4091" y="1269"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Qmu-WW-thy">
@@ -615,7 +632,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="fhv-2t-716"/>
                     <connections>
-                        <segue destination="uHf-Yh-apF" kind="presentation" identifier="toSearch" id="E3K-OQ-M6d"/>
+                        <segue destination="FNr-LW-qVv" kind="presentation" identifier="toSearch" id="jCI-nK-BJK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VzL-Ye-1Il" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -47,7 +47,7 @@
 {
     UIButton *back = ({
         UIButton *b = [NavBackButton buttonWithType:UIButtonTypeRoundedRect];
-        [b addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+        [b addTarget:self action:@selector(dismissSearch) forControlEvents:UIControlEventTouchUpInside];
         b.accessibilityValue = @"back";
         b;
     });
@@ -55,9 +55,10 @@
     _navigationItems = @[back];
     
     [_navigationItems enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [self.splitViewController.navigationController.navigationBar addSubview:obj];
+                [self.navigationController.navigationBar addSubview:obj];
     }];
-        [self.splitViewController.navigationController.navigationBar setNeedsUpdateConstraints];
+    
+    [self.navigationController.navigationBar setNeedsUpdateConstraints];
 }
 
 - (void)updateViewConstraints
@@ -68,6 +69,7 @@
         [view autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:0 relation:NSLayoutRelationEqual];
     }];
     
+    // Pin the back button to the left side of the nav controller
     [_navigationItems.firstObject autoPinEdgeToSuperviewEdge:ALEdgeLeft];
     UIView *previous = nil;
     for (UIView *view in _navigationItems) {
@@ -78,6 +80,13 @@
     }
     
     [super updateViewConstraints];
+}
+
+- (void)dismissSearch
+{
+    [self dismissViewControllerAnimated:YES completion:^{
+        NSLog(@"DEBUG: Dismissed Search View Controller.");
+    }];
 }
 
 // TODO: clean up -- shouldn't have to pass lecture directly from LVC

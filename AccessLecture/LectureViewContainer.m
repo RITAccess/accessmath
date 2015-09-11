@@ -161,8 +161,10 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    // Grabbing the SearchViewController through the segue to the navigation controller and setting its selected lecture
     if ([segue.identifier isEqualToString:@"toSearch"]) {
-        ((SearchViewController *)[segue destinationViewController]).selectedLecture = sender;
+        UINavigationController *navigationController = [segue destinationViewController];
+        ((SearchViewController *)([navigationController viewControllers][0])).selectedLecture = sender;
     }
 }
 
