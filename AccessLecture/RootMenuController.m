@@ -110,7 +110,7 @@ static NSString * const reuseIdentifier = @"menu";
 
 - (void)openAbout:(id)sender
 {
-    
+    [self performSegueWithIdentifier:@"toAbout" sender:self];
 }
 
 - (void)openLecture:(id)sender
