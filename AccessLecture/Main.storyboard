@@ -600,9 +600,18 @@
                     <view key="view" contentMode="scaleToFill" id="zeQ-fQ-2Fv">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wPv-sg-K6W">
+                                <rect key="frame" x="233" y="236" width="240" height="128"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" red="0.92549026010000002" green="0.92549026010000002" blue="0.92549026010000002" alpha="0.90000000000000002" colorSpace="deviceRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="rAH-yw-rtJ"/>
+                    <connections>
+                        <outlet property="noteView" destination="wPv-sg-K6W" id="LlR-oF-OCY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rrk-9F-JWQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

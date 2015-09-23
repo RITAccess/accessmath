@@ -6,15 +6,21 @@
 //
 //
 
-#import "NoteSearchTableViewController.h"
 #import "AccessLectureKit.h"  // for AccessBlue zebra-cells
+#import "NoteSearchTableViewController.h"
+#import "NoteSearchResultsViewController.h"
 
 @implementation NoteSearchTableViewController
+{
+    NoteSearchResultsViewController *_resultsViewController;
+}
 
 
 -(void)viewDidLoad
 {
     _filteredSearchNotes = [NSMutableArray new];
+    _resultsViewController = [NoteSearchResultsViewController new];
+    
 }
 
 #pragma mark - Content Filtering
@@ -79,6 +85,9 @@
 {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     NSLog(@"DEBUG: Selected %@ at indexPath: %d", cell, indexPath.row);
+    
+    // TODO: stubbed for now
+    [_resultsViewController presentNote:nil];
 }
 
 @end
