@@ -13,12 +13,12 @@
 #import "NSArray+PureLayout.h"
 #import "NavBackButton.h"
 #import "Note.h"
-#import "AccessLectureKit.h"
+#import "NoteSearchTableViewController.h"
 
 @implementation SearchViewController
 {
     @private
-    UITableViewController *_sidePanelController;
+    NoteSearchTableViewController *_sidePanelController;
     UIViewController *_mainController;
     NSArray *_lectures;
     NSArray *_notes;
@@ -30,14 +30,11 @@
     [super viewDidLoad];
     // Get references
     UINavigationController *sideNav = self.childViewControllers[0];
-    _sidePanelController = sideNav.childViewControllers[0];
-    _mainController = self.childViewControllers[1];
-    _sidePanelController.tableView.delegate = self;
-    _sidePanelController.tableView.dataSource = self;
+    _sidePanelController = (NoteSearchTableViewController *)sideNav.childViewControllers[0];
     [_sidePanelController.tableView reloadData];
+    _mainController = self.childViewControllers[1];
 
     [self loadLectures];
-    
     [self setUpNavigation];
 }
 
@@ -108,37 +105,15 @@
     
     // TODO: get lecture timestamp too
     _notes = [[NSArray alloc]initWithArray:_selectedLecture.lecture.notes];
-}
-
-#pragma mark - Side Panel TableView DataSouce
-
-- (void)tableViewCell:(UITableViewCell *)cell becameActivePanel:(BOOL)active
-{
-    // TODO: anything
-}
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return _notes.count;
-}
-
-- (void)tableView:(UITableView*)tableView willDisplayCell:(UITableViewCell*)cell forRowAtIndexPath: (NSIndexPath*)indexPath
-{
-    if (indexPath.row % 2 == 0) {
-        cell.backgroundColor = [UIColor whiteColor];
-    } else {
-        cell.backgroundColor = [AccessLectureKit accessBlue];
+    
+    // TODO: pass notes to note search view controller
+    NSMutableArray *lectureNoteTitles = [NSMutableArray new];
+    for (Note* note in _notes) {
+        [lectureNoteTitles addObject:note.title];
     }
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString* searchViewControllerIdentifier = @"noteCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:searchViewControllerIdentifier forIndexPath:indexPath];
-    if (!cell) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:searchViewControllerIdentifier];
-    // Set the title
-    cell.textLabel.text = ((Note*)[_notes objectAtIndex:indexPath.row]).title;
-    return cell;
+    
+    // Pass the notes into the searchedNotes array in the NoteSearchViewController
+    _sidePanelController.searchedNotes = [NSArray arrayWithArray:lectureNoteTitles];
 }
 
 #pragma mark - Memory

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		216BE84B1BA718E400B43584 /* NoteSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 216BE84A1BA718E400B43584 /* NoteSearchTableViewController.m */; };
 		21DA3D9318905B5000BFD96B /* DrawViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21DA3D8C18905B5000BFD96B /* DrawViewController.xib */; };
 		21DA3D9518905B5000BFD96B /* DrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21DA3D8E18905B5000BFD96B /* DrawViewController.m */; };
 		2C882F2E1A8572E500D8E214 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CDF9961193CDE70005707D3 /* SearchViewController.m */; };
@@ -147,6 +148,8 @@
 		09983FD2441D47DAA38B408E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FAD181C458E4CEEB87F6ECE /* libPods-AccessLecture Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AccessLecture Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		10BDE2E5B090C64338F60EA3 /* Pods-AccessLecture.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AccessLecture.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AccessLecture/Pods-AccessLecture.debug.xcconfig"; sourceTree = "<group>"; };
+		216BE8491BA718E400B43584 /* NoteSearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteSearchTableViewController.h; sourceTree = "<group>"; };
+		216BE84A1BA718E400B43584 /* NoteSearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteSearchTableViewController.m; sourceTree = "<group>"; };
 		21DA3D8C18905B5000BFD96B /* DrawViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawViewController.xib; sourceTree = "<group>"; };
 		21DA3D8E18905B5000BFD96B /* DrawViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawViewController.m; sourceTree = "<group>"; };
 		21DA3D8F18905B5000BFD96B /* DrawViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawViewController.h; sourceTree = "<group>"; };
@@ -360,6 +363,8 @@
 			children = (
 				2CDF9961193CDE70005707D3 /* SearchViewController.m */,
 				2CDF995E193CDE32005707D3 /* SearchViewController.h */,
+				216BE8491BA718E400B43584 /* NoteSearchTableViewController.h */,
+				216BE84A1BA718E400B43584 /* NoteSearchTableViewController.m */,
 			);
 			name = SearchViewController;
 			sourceTree = "<group>";
@@ -1021,6 +1026,7 @@
 				3F8FD2E318B3F7BF0059EF9C /* Deferred.m in Sources */,
 				3F408C0A18BF94F600F6B113 /* XMLReader.m in Sources */,
 				3F4DE76118EB492900BB9970 /* ABDrawToggleSwitch.m in Sources */,
+				216BE84B1BA718E400B43584 /* NoteSearchTableViewController.m in Sources */,
 				4CDDF69717EB690900FE34E7 /* AMLecture.m in Sources */,
 				3F2DC9871887225D008C29BF /* ImageNoteView.m in Sources */,
 				21DA3D9518905B5000BFD96B /* DrawViewController.m in Sources */,

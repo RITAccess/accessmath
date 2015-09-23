@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Rr7-bG-jB9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Rr7-bG-jB9">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -23,7 +23,7 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="menu" id="V3N-ja-7Og" customClass="MenuIconCell">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <rect key="frame" x="50" y="350" width="180" height="180"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
@@ -169,7 +169,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Lecture Name" textAlignment="center" minimumFontSize="42" translatesAutoresizingMaskIntoConstraints="NO" id="cYO-2g-77U" customClass="ALTextField">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Lecture Name" textAlignment="center" minimumFontSize="42" translatesAutoresizingMaskIntoConstraints="NO" id="cYO-2g-77U" customClass="ALTextField">
                                 <rect key="frame" x="31" y="84" width="538" height="70"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="XNJ-qE-GWd"/>
@@ -266,7 +266,7 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="lecture" id="o4w-Xy-A9z" customClass="LoadingLectureCVC">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <rect key="frame" x="20" y="84" width="180" height="250"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="180" height="250"/>
@@ -295,7 +295,7 @@
                                 </connections>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="directory" id="vdr-Dn-Ngv" customClass="DirectoryCVC">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <rect key="frame" x="215" y="173" width="239" height="72"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="239" height="72"/>
@@ -511,32 +511,49 @@
         <!--Lecture Title and Timestamp-->
         <scene sceneID="e8e-N1-Cuo">
             <objects>
-                <tableViewController clearsSelectionOnViewWillAppear="NO" id="cCX-fZ-zB4" sceneMemberID="viewController">
+                <tableViewController clearsSelectionOnViewWillAppear="NO" id="cCX-fZ-zB4" customClass="NoteSearchTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Hfg-91-CBT">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" id="4gw-Qx-k17">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="5IZ-aR-dco">
+                            <rect key="frame" x="0.0" y="64" width="600" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="Hfg-91-CBT" id="ZEV-lh-fIz"/>
+                            </connections>
                         </searchBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="noteCell" id="dDO-t7-f6y">
+                                <rect key="frame" x="0.0" y="130" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dDO-t7-f6y" id="Ogz-x8-0CZ">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="cCX-fZ-zB4" id="hDl-4l-Nz9"/>
-                            <outlet property="delegate" destination="cCX-fZ-zB4" id="21x-6Y-47K"/>
+                            <outlet property="dataSource" destination="cCX-fZ-zB4" id="8hq-jc-MeA"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Lecture Title and Timestamp" id="dSR-7f-Mm9"/>
+                    <connections>
+                        <outlet property="noteSearchBar" destination="5IZ-aR-dco" id="Tx8-jZ-g5t"/>
+                        <outlet property="searchDisplayController" destination="HSI-el-ZhJ" id="4gq-av-65d"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tug-dL-jYS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="HSI-el-ZhJ">
+                    <connections>
+                        <outlet property="delegate" destination="cCX-fZ-zB4" id="J1X-m3-CGs"/>
+                        <outlet property="searchBar" destination="5IZ-aR-dco" id="8Oc-2l-ko7"/>
+                        <outlet property="searchContentsController" destination="cCX-fZ-zB4" id="M04-Ew-1Q7"/>
+                        <outlet property="searchResultsDataSource" destination="cCX-fZ-zB4" id="jQ8-vh-HQ8"/>
+                        <outlet property="searchResultsDelegate" destination="cCX-fZ-zB4" id="WIV-Ca-l4j"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="5412" y="1276"/>
         </scene>
