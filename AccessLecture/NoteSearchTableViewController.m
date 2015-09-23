@@ -58,13 +58,11 @@
     static NSString* searchViewControllerIdentifier = @"noteCell";
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:searchViewControllerIdentifier forIndexPath:indexPath];
     
-    // Zebra-stripe alternate cells
-    cell.backgroundColor = (indexPath.row % 2 == 0) ? [UIColor whiteColor] : [AccessLectureKit accessBlue];
-    
     // Search results VS. normal results
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         if (_filteredSearchNotes.count > indexPath.row) {
             cell.textLabel.text = [_filteredSearchNotes objectAtIndex:indexPath.row];
+            cell.backgroundColor = (indexPath.row % 2 == 0) ? [UIColor whiteColor] : [AccessLectureKit accessBlue];      // Zebra-stripe alternate cells
         }
       return cell;
     } else {
@@ -72,6 +70,7 @@
          cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:searchViewControllerIdentifier];
         }
         cell.textLabel.text = [_searchedNotes objectAtIndex:indexPath.row];
+        cell.backgroundColor = (indexPath.row % 2 == 0) ? [UIColor whiteColor] : [AccessLectureKit accessBlue];
         return cell;
     }
 }
