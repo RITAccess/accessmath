@@ -75,4 +75,10 @@
     }
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    NSLog(@"DEBUG: Selected %@ at indexPath: %d", cell, indexPath.row);
+}
+
 @end
