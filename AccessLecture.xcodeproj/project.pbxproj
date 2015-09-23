@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		216BE84B1BA718E400B43584 /* NoteSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 216BE84A1BA718E400B43584 /* NoteSearchTableViewController.m */; };
+		2194AD201BB2F7DE002D9BD1 /* NoteSearchResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2194AD1F1BB2F7DE002D9BD1 /* NoteSearchResultsViewController.m */; settings = {ASSET_TAGS = (); }; };
 		21DA3D9318905B5000BFD96B /* DrawViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21DA3D8C18905B5000BFD96B /* DrawViewController.xib */; };
 		21DA3D9518905B5000BFD96B /* DrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21DA3D8E18905B5000BFD96B /* DrawViewController.m */; };
 		2C882F2E1A8572E500D8E214 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CDF9961193CDE70005707D3 /* SearchViewController.m */; };
@@ -150,6 +151,8 @@
 		10BDE2E5B090C64338F60EA3 /* Pods-AccessLecture.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AccessLecture.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AccessLecture/Pods-AccessLecture.debug.xcconfig"; sourceTree = "<group>"; };
 		216BE8491BA718E400B43584 /* NoteSearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteSearchTableViewController.h; sourceTree = "<group>"; };
 		216BE84A1BA718E400B43584 /* NoteSearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteSearchTableViewController.m; sourceTree = "<group>"; };
+		2194AD1E1BB2F7DE002D9BD1 /* NoteSearchResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteSearchResultsViewController.h; sourceTree = "<group>"; };
+		2194AD1F1BB2F7DE002D9BD1 /* NoteSearchResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteSearchResultsViewController.m; sourceTree = "<group>"; };
 		21DA3D8C18905B5000BFD96B /* DrawViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawViewController.xib; sourceTree = "<group>"; };
 		21DA3D8E18905B5000BFD96B /* DrawViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawViewController.m; sourceTree = "<group>"; };
 		21DA3D8F18905B5000BFD96B /* DrawViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawViewController.h; sourceTree = "<group>"; };
@@ -348,6 +351,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2194AD211BB2F7EB002D9BD1 /* NoteSearchViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2194AD1E1BB2F7DE002D9BD1 /* NoteSearchResultsViewController.h */,
+				2194AD1F1BB2F7DE002D9BD1 /* NoteSearchResultsViewController.m */,
+				216BE8491BA718E400B43584 /* NoteSearchTableViewController.h */,
+				216BE84A1BA718E400B43584 /* NoteSearchTableViewController.m */,
+			);
+			name = NoteSearchViewController;
+			sourceTree = "<group>";
+		};
 		2CBF3014177B700C0087C17C /* DrawViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -361,10 +375,9 @@
 		2CF21688193CDA170014F947 /* SearchViewController */ = {
 			isa = PBXGroup;
 			children = (
+				2194AD211BB2F7EB002D9BD1 /* NoteSearchViewController */,
 				2CDF9961193CDE70005707D3 /* SearchViewController.m */,
 				2CDF995E193CDE32005707D3 /* SearchViewController.h */,
-				216BE8491BA718E400B43584 /* NoteSearchTableViewController.h */,
-				216BE84A1BA718E400B43584 /* NoteSearchTableViewController.m */,
 			);
 			name = SearchViewController;
 			sourceTree = "<group>";
@@ -1004,6 +1017,7 @@
 				4C3BE5F01A729F0F0017854C /* MenuData.m in Sources */,
 				2C882F2E1A8572E500D8E214 /* SearchViewController.m in Sources */,
 				3F8FD2CF18AD34EB0059EF9C /* DrawMode.m in Sources */,
+				2194AD201BB2F7DE002D9BD1 /* NoteSearchResultsViewController.m in Sources */,
 				3F0DBDD613BD174900E3FEE8 /* AboutViewController.m in Sources */,
 				3F99F20215436E090065CBB9 /* Lecture.m in Sources */,
 				4C5C50CD177B7B7C0095801A /* LectureViewContainer.m in Sources */,

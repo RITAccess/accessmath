@@ -589,10 +589,10 @@
             </objects>
             <point key="canvasLocation" x="4081" y="1930"/>
         </scene>
-        <!--View Controller-->
+        <!--Note Search Results View Controller-->
         <scene sceneID="9o1-SO-unf">
             <objects>
-                <viewController id="Qsn-00-Ig4" sceneMemberID="viewController">
+                <viewController id="Qsn-00-Ig4" customClass="NoteSearchResultsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jlX-9w-f7h"/>
                         <viewControllerLayoutGuide type="bottom" id="z2s-Pc-PSj"/>
