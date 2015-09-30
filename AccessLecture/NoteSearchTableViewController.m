@@ -19,8 +19,9 @@
 -(void)viewDidLoad
 {
     _filteredSearchNotes = [NSMutableArray new];
-    _resultsViewController = [NoteSearchResultsViewController new];
     
+    // Bubble up VC stack to get reference to detail VC
+    _resultsViewController = ((NoteSearchResultsViewController*)((UISplitViewController*)self.splitViewController).childViewControllers[1]);
 }
 
 #pragma mark - Content Filtering
@@ -83,8 +84,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    NSLog(@"DEBUG: Selected %@ at indexPath: %d", cell, indexPath.row);
+    NSLog(@"DEBUG: Selected at indexPath: %d", indexPath.row);
     
     // TODO: stubbed for now
     [_resultsViewController presentNote:nil];
