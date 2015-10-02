@@ -584,9 +584,51 @@
                     <view key="view" contentMode="scaleToFill" id="zeQ-fQ-2Fv">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.92549026010000002" green="0.92549026010000002" blue="0.92549026010000002" alpha="0.90000000000000002" colorSpace="deviceRGB"/>
+                        <subviews>
+                            <view hidden="YES" multipleTouchEnabled="YES" alpha="0.80000001192092896" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="zo3-3N-sFy">
+                                <rect key="frame" x="360" y="72" width="220" height="98"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="Title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c4r-O7-ZOR" userLabel="Title">
+                                        <rect key="frame" x="8" y="8" width="195" height="29"/>
+                                        <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="195" id="r3d-PC-28t"/>
+                                            <constraint firstAttribute="height" constant="29" id="rYy-VI-qrA"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
+                                    </textField>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Note content" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="YB2-aK-ryb">
+                                        <rect key="frame" x="8" y="35" width="204" height="63"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" notEnabled="YES"/>
+                                        </accessibility>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.92549026010000002" green="0.92549026010000002" blue="0.92549026010000002" alpha="0.90000000000000002" colorSpace="deviceRGB"/>
+                                <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="c4r-O7-ZOR" secondAttribute="centerX" constant="4.5" id="S5g-qe-GVR"/>
+                                    <constraint firstAttribute="centerY" secondItem="c4r-O7-ZOR" secondAttribute="centerY" constant="26.5" id="mZn-Pa-K8d"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="z2s-Pc-PSj" firstAttribute="top" secondItem="zo3-3N-sFy" secondAttribute="bottom" constant="430" id="5IW-CJ-oVt"/>
+                            <constraint firstItem="zo3-3N-sFy" firstAttribute="centerX" secondItem="zeQ-fQ-2Fv" secondAttribute="centerX" constant="170" id="6tw-Kp-YKt"/>
+                            <constraint firstItem="zo3-3N-sFy" firstAttribute="top" secondItem="jlX-9w-f7h" secondAttribute="bottom" constant="8" id="JJG-7n-0Ct"/>
+                            <constraint firstItem="zo3-3N-sFy" firstAttribute="leading" secondItem="zeQ-fQ-2Fv" secondAttribute="leadingMargin" constant="340" id="s9C-aM-bau"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="rAH-yw-rtJ"/>
+                    <connections>
+                        <outlet property="textNoteView" destination="zo3-3N-sFy" id="U2K-3f-TL5"/>
+                        <outlet property="textNoteViewContent" destination="YB2-aK-ryb" id="2yV-Iw-okz"/>
+                        <outlet property="textNoteViewTitle" destination="c4r-O7-ZOR" id="Gyu-4W-IkC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rrk-9F-JWQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

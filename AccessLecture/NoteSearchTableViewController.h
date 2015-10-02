@@ -12,7 +12,8 @@
 
 @property (weak, nonatomic) IBOutlet UISearchBar *noteSearchBar;
 
-@property NSArray* searchedNotes;
+@property NSArray* noteTitlesFromCurrentLecture;
 @property NSMutableArray* filteredSearchNotes;
+@property NSArray* notesFromCurrentLecture;
 
 @end

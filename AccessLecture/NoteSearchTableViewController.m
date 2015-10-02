@@ -6,6 +6,7 @@
 //
 //
 
+#import "Note.h"
 #import "AccessLectureKit.h"  // for AccessBlue zebra-cells
 #import "NoteSearchTableViewController.h"
 #import "NoteSearchResultsViewController.h"
@@ -31,7 +32,7 @@
 {
     [_filteredSearchNotes removeAllObjects];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF contains[c] %@", searchText];
-    _filteredSearchNotes = [NSMutableArray arrayWithArray:[_searchedNotes filteredArrayUsingPredicate:predicate]];
+    _filteredSearchNotes = [NSMutableArray arrayWithArray:[_noteTitlesFromCurrentLecture filteredArrayUsingPredicate:predicate]];
 }
 
 #pragma mark - UISearchDisplayController Delegate Methods
@@ -57,7 +58,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _searchedNotes.count;
+    return _noteTitlesFromCurrentLecture.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -76,7 +77,7 @@
         if (!cell) {
          cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:searchViewControllerIdentifier];
         }
-        cell.textLabel.text = [_searchedNotes objectAtIndex:indexPath.row];
+        cell.textLabel.text = [_noteTitlesFromCurrentLecture objectAtIndex:indexPath.row];
         cell.backgroundColor = (indexPath.row % 2 == 0) ? [UIColor whiteColor] : [AccessLectureKit accessBlue];
         return cell;
     }
@@ -84,10 +85,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"DEBUG: Selected at indexPath: %d", indexPath.row);
-    
-    // TODO: stubbed for now
-    [_resultsViewController presentNote:nil];
+    [_resultsViewController presentNote:[_notesFromCurrentLecture objectAtIndex:indexPath.row]];
 }
 
 @end

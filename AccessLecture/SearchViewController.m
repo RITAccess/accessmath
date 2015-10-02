@@ -113,7 +113,8 @@
     }
     
     // Pass the notes into the searchedNotes array in the NoteSearchViewController
-    _sidePanelController.searchedNotes = [NSArray arrayWithArray:lectureNoteTitles];
+    _sidePanelController.noteTitlesFromCurrentLecture = [NSArray arrayWithArray:lectureNoteTitles];
+    _sidePanelController.notesFromCurrentLecture = [NSArray arrayWithArray:_notes];
 }
 
 #pragma mark - Memory
