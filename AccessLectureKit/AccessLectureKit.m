@@ -907,6 +907,15 @@ static UIColor* _brushDefault = nil;
     }
 }
 
+
+
++ (void)drawNoteShuffleButtonWithFrame: (CGRect)frame
+{
+    // TODO: add new icon code from PaintCode
+}
+
+
+
 + (void)drawAppIcon
 {
 }

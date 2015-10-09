@@ -11,6 +11,7 @@
 		2194AD201BB2F7DE002D9BD1 /* NoteSearchResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2194AD1F1BB2F7DE002D9BD1 /* NoteSearchResultsViewController.m */; settings = {ASSET_TAGS = (); }; };
 		21DA3D9318905B5000BFD96B /* DrawViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21DA3D8C18905B5000BFD96B /* DrawViewController.xib */; };
 		21DA3D9518905B5000BFD96B /* DrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21DA3D8E18905B5000BFD96B /* DrawViewController.m */; };
+		21EF12D11BC8055C001B0121 /* NoteShuffleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 21EF12D01BC8055C001B0121 /* NoteShuffleButton.m */; settings = {ASSET_TAGS = (); }; };
 		2C882F2E1A8572E500D8E214 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CDF9961193CDE70005707D3 /* SearchViewController.m */; };
 		2CA93202188596D400199CC4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CA93201188596D400199CC4 /* Images.xcassets */; };
 		2CF45FDD17971C0400E6C69E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF45FDC17971C0400E6C69E /* QuartzCore.framework */; };
@@ -156,6 +157,8 @@
 		21DA3D8C18905B5000BFD96B /* DrawViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawViewController.xib; sourceTree = "<group>"; };
 		21DA3D8E18905B5000BFD96B /* DrawViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawViewController.m; sourceTree = "<group>"; };
 		21DA3D8F18905B5000BFD96B /* DrawViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawViewController.h; sourceTree = "<group>"; };
+		21EF12CF1BC8055C001B0121 /* NoteShuffleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteShuffleButton.h; sourceTree = "<group>"; };
+		21EF12D01BC8055C001B0121 /* NoteShuffleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteShuffleButton.m; sourceTree = "<group>"; };
 		2CA93201188596D400199CC4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Images.xcassets; sourceTree = "<group>"; };
 		2CDF995E193CDE32005707D3 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		2CDF9961193CDE70005707D3 /* SearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
@@ -687,6 +690,8 @@
 				4CFC4BF21A795500001E2E27 /* ALTextField.m */,
 				4CBD62B31A89516500B6AC9E /* ContinueButton.h */,
 				4CBD62B41A89516500B6AC9E /* ContinueButton.m */,
+				21EF12CF1BC8055C001B0121 /* NoteShuffleButton.h */,
+				21EF12D01BC8055C001B0121 /* NoteShuffleButton.m */,
 			);
 			path = AccessLectureKit;
 			sourceTree = "<group>";
@@ -1068,6 +1073,7 @@
 				4CFC4BE71A76D62B001E2E27 /* BrushButton.m in Sources */,
 				4C4FA7161A76C27000161ABE /* NavBackButton.m in Sources */,
 				4CFC4BEA1A76D859001E2E27 /* SaveButton.m in Sources */,
+				21EF12D11BC8055C001B0121 /* NoteShuffleButton.m in Sources */,
 				4CFC4BF01A76E961001E2E27 /* CheckButton.m in Sources */,
 				4CFC4BE11A76CFDF001E2E27 /* NewLectureButton.m in Sources */,
 				4C4FA6FD1A76C14400161ABE /* AccessLectureKit.m in Sources */,

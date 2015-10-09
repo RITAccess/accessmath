@@ -26,6 +26,7 @@
 + (void)drawSaveButtonWithFrame: (CGRect)frame;
 + (void)drawCheckButtonWithFrame: (CGRect)frame;
 + (void)drawContButtonWithFrame: (CGRect)frame;
++ (void)drawNoteShuffleButtonWithFrame: (CGRect)frame;
 + (void)drawTextInputWithFrame: (CGRect)frame;
 + (void)drawLectureNoInfoWithFrame: (CGRect)frame;
 + (void)drawAppIcon;
