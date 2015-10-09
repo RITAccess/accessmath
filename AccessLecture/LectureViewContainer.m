@@ -19,6 +19,7 @@
 #import "SaveButton.h"
 #import "SearchButton.h"
 #import "BrushButton.h"
+#import "NoteShuffleButton.h"
 
 #pragma mark - Lecture Container Class
 
@@ -98,8 +99,15 @@
         b.accessibilityValue = @"draw";
         b;
     });
+
+    UIButton *shuffle = ({
+        UIButton *s = [NoteShuffleButton buttonWithType:UIButtonTypeRoundedRect];
+        [s addTarget:self action:@selector(toggleNoteShuffleViewController) forControlEvents:UIControlEventTouchUpInside];
+        s.accessibilityValue = @"shuffle notes";
+        s;
+    });
     
-    _navigationItems = @[back, save, search, brush];
+    _navigationItems = @[back, save, search, brush, shuffle];
     [_navigationItems enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         [self.navigationController.navigationBar addSubview:obj];
     }];
@@ -181,6 +189,11 @@
     }
 
     drawButton.selected = ![drawButton isSelected];
+}
+
+- (void)toggleNoteShuffleViewController
+{
+    // TODO: seque to note shuffling
 }
 
 - (void)actionFromMenu:(MTRadialMenu *)menu
