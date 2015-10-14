@@ -928,6 +928,9 @@ IAoKA
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="VGn-9V-0Yq"/>
+                    <connections>
+                        <segue destination="ygB-ob-5sj" kind="presentation" identifier="toNewNote" id="InL-w9-jPY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vID-No-fC3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -950,6 +953,81 @@ IAoKA
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hfi-br-vw0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3441" y="596.25"/>
+        </scene>
+        <!--New Notes View Controller-->
+        <scene sceneID="mPv-8A-CTr">
+            <objects>
+                <viewController storyboardIdentifier="newNotes" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wrH-io-EVq" customClass="NewNotesViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="b9p-Zt-3AO"/>
+                        <viewControllerLayoutGuide type="bottom" id="7tp-Zz-SMi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2cQ-xr-Kwl">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E03-tA-Tqy">
+                                <rect key="frame" x="67" y="96" width="450" height="182"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tNg-L9-C1R">
+                                <rect key="frame" x="0.0" y="280" width="432" height="300"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems>
+                        <barButtonItem title="Decrease" id="l9f-dz-lQG">
+                            <connections>
+                                <action selector="decreaseTextSize:" destination="wrH-io-EVq" id="9lj-Iw-8tY"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem title="Increase" width="83" id="g3z-R6-M2g">
+                            <inset key="imageInsets" minX="46" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <connections>
+                                <action selector="increaseTextSize:" destination="wrH-io-EVq" id="qh9-Mf-3Fe"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem title="Highlight Color" id="Jhk-3h-Xs4">
+                            <connections>
+                                <action selector="highlightColor:" destination="wrH-io-EVq" id="SjR-zI-tK3"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" id="R1A-jO-VDA"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="decreaseTextSize" destination="l9f-dz-lQG" id="XJO-BX-e0z"/>
+                        <outlet property="highlightColor" destination="Jhk-3h-Xs4" id="UHH-dI-JLk"/>
+                        <outlet property="imageView" destination="E03-tA-Tqy" id="62L-6U-04a"/>
+                        <outlet property="increaseTextSize" destination="g3z-R6-M2g" id="dCw-dI-R1U"/>
+                        <outlet property="textView" destination="tNg-L9-C1R" id="fU9-FP-o25"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3sE-cr-luQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5471.25" y="596.25"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="jI4-cf-XCq">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ygB-ob-5sj" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cwd-G2-f7J">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="wrH-io-EVq" kind="relationship" relationship="rootViewController" id="Jrb-Ty-XV5"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="anp-ew-cUa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4818" y="596.25"/>
         </scene>
     </scenes>
     <resources>

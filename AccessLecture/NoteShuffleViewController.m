@@ -98,8 +98,10 @@
 -(void) presentNewNotesViewController
 {
     // TODO: connect if need be
-    NewNotesViewController *wViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"newNotes"];
-    [self.navigationController pushViewController:wViewController animated:YES];
+
+    [self performSegueWithIdentifier:@"toNewNote" sender:nil];
+//    NewNotesViewController *wViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"newNotes"];
+//    [self.navigationController pushViewController:wViewController animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

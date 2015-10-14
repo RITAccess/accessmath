@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FullScreenNoteViewController">
@@ -31,7 +31,7 @@
                     <items>
                         <barButtonItem style="plain" id="KKY-NC-4L1">
                             <stepper key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="20" minimumValue="10" maximumValue="100" stepValue="2" id="Dqe-Vn-R7y">
-                                <rect key="frame" x="16" y="8" width="94" height="29"/>
+                                <rect key="frame" x="20" y="8" width="94" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <action selector="changeFontSize:" destination="-1" eventType="valueChanged" id="0qa-7t-i6T"/>
@@ -40,7 +40,7 @@
                         </barButtonItem>
                         <barButtonItem style="plain" id="1EI-Jq-BFh">
                             <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="wwZ-hI-CGn">
-                                <rect key="frame" x="120" y="8" width="176" height="29"/>
+                                <rect key="frame" x="124" y="8" width="176" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
                                     <segment title="Normal"/>
@@ -77,9 +77,4 @@
     <resources>
         <image name="Back" width="56" height="56"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
 </document>
