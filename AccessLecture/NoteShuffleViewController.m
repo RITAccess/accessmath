@@ -91,6 +91,7 @@
 -(void) presentWeeksNotesViewController
 {
     // TODO: connect if need be
+    [self performSegueWithIdentifier:@"toNoteSelectViewController" sender:nil];
 //    weeksNotesViewController *wViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"tabView"];
 //    [self.navigationController pushViewController:wViewController animated:YES];
 }

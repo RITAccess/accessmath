@@ -20,6 +20,14 @@
 		21C36E091BCEA1D2000CB5B0 /* saveData.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C36E081BCEA1D2000CB5B0 /* saveData.m */; settings = {ASSET_TAGS = (); }; };
 		21C36E0C1BCEA1E1000CB5B0 /* backgroundImages.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C36E0B1BCEA1E1000CB5B0 /* backgroundImages.m */; settings = {ASSET_TAGS = (); }; };
 		21C36E0F1BCEA229000CB5B0 /* saveColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C36E0E1BCEA229000CB5B0 /* saveColor.m */; settings = {ASSET_TAGS = (); }; };
+		21C36E131BCEBA79000CB5B0 /* DefinitionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C36E121BCEBA79000CB5B0 /* DefinitionsViewController.m */; settings = {ASSET_TAGS = (); }; };
+		21C36E161BCEBA90000CB5B0 /* FormulasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C36E151BCEBA90000CB5B0 /* FormulasViewController.m */; settings = {ASSET_TAGS = (); }; };
+		21C36E1A1BCEBAB2000CB5B0 /* Book-Open-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 21C36E181BCEBAB2000CB5B0 /* Book-Open-32.png */; settings = {ASSET_TAGS = (); }; };
+		21C36E1B1BCEBAB2000CB5B0 /* Book-Open-128.png in Resources */ = {isa = PBXBuildFile; fileRef = 21C36E191BCEBAB2000CB5B0 /* Book-Open-128.png */; settings = {ASSET_TAGS = (); }; };
+		21C36E221BCEBADD000CB5B0 /* Stationery-Pen-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 21C36E201BCEBADD000CB5B0 /* Stationery-Pen-32.png */; settings = {ASSET_TAGS = (); }; };
+		21C36E231BCEBADD000CB5B0 /* Stationery-Pen-128 (1).png in Resources */ = {isa = PBXBuildFile; fileRef = 21C36E211BCEBADD000CB5B0 /* Stationery-Pen-128 (1).png */; settings = {ASSET_TAGS = (); }; };
+		21C36E261BCEBB02000CB5B0 /* Square Root-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 21C36E241BCEBB02000CB5B0 /* Square Root-32.png */; settings = {ASSET_TAGS = (); }; };
+		21C36E271BCEBB02000CB5B0 /* Square Root-128.png in Resources */ = {isa = PBXBuildFile; fileRef = 21C36E251BCEBB02000CB5B0 /* Square Root-128.png */; settings = {ASSET_TAGS = (); }; };
 		21DA3D9318905B5000BFD96B /* DrawViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21DA3D8C18905B5000BFD96B /* DrawViewController.xib */; };
 		21DA3D9518905B5000BFD96B /* DrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21DA3D8E18905B5000BFD96B /* DrawViewController.m */; };
 		21EF12D11BC8055C001B0121 /* NoteShuffleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 21EF12D01BC8055C001B0121 /* NoteShuffleButton.m */; settings = {ASSET_TAGS = (); }; };
@@ -185,6 +193,16 @@
 		21C36E0B1BCEA1E1000CB5B0 /* backgroundImages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = backgroundImages.m; sourceTree = "<group>"; };
 		21C36E0D1BCEA229000CB5B0 /* saveColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = saveColor.h; sourceTree = "<group>"; };
 		21C36E0E1BCEA229000CB5B0 /* saveColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = saveColor.m; sourceTree = "<group>"; };
+		21C36E111BCEBA79000CB5B0 /* DefinitionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefinitionsViewController.h; sourceTree = "<group>"; };
+		21C36E121BCEBA79000CB5B0 /* DefinitionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefinitionsViewController.m; sourceTree = "<group>"; };
+		21C36E141BCEBA90000CB5B0 /* FormulasViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormulasViewController.h; sourceTree = "<group>"; };
+		21C36E151BCEBA90000CB5B0 /* FormulasViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormulasViewController.m; sourceTree = "<group>"; };
+		21C36E181BCEBAB2000CB5B0 /* Book-Open-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Book-Open-32.png"; sourceTree = "<group>"; };
+		21C36E191BCEBAB2000CB5B0 /* Book-Open-128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Book-Open-128.png"; sourceTree = "<group>"; };
+		21C36E201BCEBADD000CB5B0 /* Stationery-Pen-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Stationery-Pen-32.png"; sourceTree = "<group>"; };
+		21C36E211BCEBADD000CB5B0 /* Stationery-Pen-128 (1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Stationery-Pen-128 (1).png"; sourceTree = "<group>"; };
+		21C36E241BCEBB02000CB5B0 /* Square Root-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Square Root-32.png"; sourceTree = "<group>"; };
+		21C36E251BCEBB02000CB5B0 /* Square Root-128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Square Root-128.png"; sourceTree = "<group>"; };
 		21DA3D8C18905B5000BFD96B /* DrawViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawViewController.xib; sourceTree = "<group>"; };
 		21DA3D8E18905B5000BFD96B /* DrawViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawViewController.m; sourceTree = "<group>"; };
 		21DA3D8F18905B5000BFD96B /* DrawViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawViewController.h; sourceTree = "<group>"; };
@@ -399,6 +417,7 @@
 		21C36DEF1BCE9FA8000CB5B0 /* NoteShuffleViewController */ = {
 			isa = PBXGroup;
 			children = (
+				21C36E101BCEBA6A000CB5B0 /* NoteSelectViewController */,
 				21C36E0D1BCEA229000CB5B0 /* saveColor.h */,
 				21C36E0E1BCEA229000CB5B0 /* saveColor.m */,
 				21C36E0A1BCEA1E1000CB5B0 /* backgroundImages.h */,
@@ -420,6 +439,31 @@
 				21C36DF01BCE9FB8000CB5B0 /* NotesViewController.xib */,
 			);
 			name = NoteShuffleViewController;
+			sourceTree = "<group>";
+		};
+		21C36E101BCEBA6A000CB5B0 /* NoteSelectViewController */ = {
+			isa = PBXGroup;
+			children = (
+				21C36E171BCEBAA3000CB5B0 /* TabBarController Icons */,
+				21C36E141BCEBA90000CB5B0 /* FormulasViewController.h */,
+				21C36E151BCEBA90000CB5B0 /* FormulasViewController.m */,
+				21C36E111BCEBA79000CB5B0 /* DefinitionsViewController.h */,
+				21C36E121BCEBA79000CB5B0 /* DefinitionsViewController.m */,
+			);
+			name = NoteSelectViewController;
+			sourceTree = "<group>";
+		};
+		21C36E171BCEBAA3000CB5B0 /* TabBarController Icons */ = {
+			isa = PBXGroup;
+			children = (
+				21C36E241BCEBB02000CB5B0 /* Square Root-32.png */,
+				21C36E251BCEBB02000CB5B0 /* Square Root-128.png */,
+				21C36E201BCEBADD000CB5B0 /* Stationery-Pen-32.png */,
+				21C36E211BCEBADD000CB5B0 /* Stationery-Pen-128 (1).png */,
+				21C36E181BCEBAB2000CB5B0 /* Book-Open-32.png */,
+				21C36E191BCEBAB2000CB5B0 /* Book-Open-128.png */,
+			);
+			name = "TabBarController Icons";
 			sourceTree = "<group>";
 		};
 		2CBF3014177B700C0087C17C /* DrawViewController */ = {
@@ -986,10 +1030,16 @@
 				3F2DC98318871FE4008C29BF /* ImageNoteViewController.xib in Resources */,
 				21C36DF11BCE9FB8000CB5B0 /* NotesViewController.xib in Resources */,
 				3F8D990F187DD9100061DEA2 /* FullScreenNoteViewController.xib in Resources */,
+				21C36E1B1BCEBAB2000CB5B0 /* Book-Open-128.png in Resources */,
 				4C3BE5E71A7296F10017854C /* Main.storyboard in Resources */,
+				21C36E231BCEBADD000CB5B0 /* Stationery-Pen-128 (1).png in Resources */,
+				21C36E261BCEBB02000CB5B0 /* Square Root-32.png in Resources */,
+				21C36E221BCEBADD000CB5B0 /* Stationery-Pen-32.png in Resources */,
 				3F8D9908187B4E010061DEA2 /* TextNoteView.xib in Resources */,
+				21C36E1A1BCEBAB2000CB5B0 /* Book-Open-32.png in Resources */,
 				2CA93202188596D400199CC4 /* Images.xcassets in Resources */,
 				2CFC32A0175E60FC00384AEC /* MainStoryboard.storyboard in Resources */,
+				21C36E271BCEBB02000CB5B0 /* Square Root-128.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1079,6 +1129,7 @@
 				3F07C34F187B2BA7005BC7EC /* TextNoteViewController.m in Sources */,
 				3FED96191370863E00D8D1B8 /* main.m in Sources */,
 				4CEA1A03177CAAED00A1DE05 /* LectureCell.m in Sources */,
+				21C36E131BCEBA79000CB5B0 /* DefinitionsViewController.m in Sources */,
 				21C36E001BCEA179000CB5B0 /* AssignmentsViewController.m in Sources */,
 				3FED961C1370863E00D8D1B8 /* AccessLectureAppDelegate.m in Sources */,
 				4C3BE5F01A729F0F0017854C /* MenuData.m in Sources */,
@@ -1102,6 +1153,7 @@
 				3F2DC98218871FE4008C29BF /* ImageNoteViewController.m in Sources */,
 				4C37CCB018295FC0006D3B1F /* ALMetaData.m in Sources */,
 				3F8FD2CA18AD33350059EF9C /* AddImage.m in Sources */,
+				21C36E161BCEBA90000CB5B0 /* FormulasViewController.m in Sources */,
 				3F8B515618FD90580053BFE8 /* UIImage+Rotate.m in Sources */,
 				4CFC573017DF800700393A1E /* NoteTakingViewController.m in Sources */,
 				4CDB057D17B557C300D8EB85 /* AccessLecture.xcdatamodeld in Sources */,
