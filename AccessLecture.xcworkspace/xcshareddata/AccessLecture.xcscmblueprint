@@ -1,0 +1,44 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "F9D18CBF9FBD0B607BB3BE44744E414B45C926B4",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "F9D18CBF9FBD0B607BB3BE44744E414B45C926B4" : 0,
+    "7d9da3f9-6c55-437f-899e-6b6d3f32cefe++6469" : 0,
+    "BD38C8B786D7B90D0BF640AD3DC94D7341FA30ED" : 0,
+    "D1F2D03B53668085825BFAD093A7C55FDF57EDC5" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "471461FC-37B2-4A6E-9396-C96A18C0D417",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "F9D18CBF9FBD0B607BB3BE44744E414B45C926B4" : "accessmath",
+    "7d9da3f9-6c55-437f-899e-6b6d3f32cefe++6469" : "accessmathAccessLecture.xcodeproj",
+    "BD38C8B786D7B90D0BF640AD3DC94D7341FA30ED" : "accessmath\/objc-promise",
+    "D1F2D03B53668085825BFAD093A7C55FDF57EDC5" : "accessmath\/LandScapeV2\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "AccessLecture",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "AccessLecture.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/sse.se.rit.edu\/public-svn\/lle6138-AccessLecture",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "7d9da3f9-6c55-437f-899e-6b6d3f32cefe++6469"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mproberts\/objc-promise",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "BD38C8B786D7B90D0BF640AD3DC94D7341FA30ED"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/chtinahow\/NoteBoard",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D1F2D03B53668085825BFAD093A7C55FDF57EDC5"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/RITAccess\/accessmath",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F9D18CBF9FBD0B607BB3BE44744E414B45C926B4"
+    }
+  ]
+}

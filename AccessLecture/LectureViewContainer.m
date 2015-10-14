@@ -193,7 +193,7 @@
 
 - (void)toggleNoteShuffleViewController
 {
-    // TODO: seque to note shuffling
+    [self performSegueWithIdentifier:@"toNoteShuffle" sender:nil];
 }
 
 - (void)actionFromMenu:(MTRadialMenu *)menu

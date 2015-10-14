@@ -586,10 +586,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view hidden="YES" multipleTouchEnabled="YES" alpha="0.80000001192092896" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="zo3-3N-sFy">
+                            <view hidden="YES" multipleTouchEnabled="YES" alpha="0.80000001192092896" contentMode="center" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zo3-3N-sFy">
                                 <rect key="frame" x="379" y="72" width="201" height="140"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="Title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c4r-O7-ZOR" userLabel="Note Title">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="Title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c4r-O7-ZOR" userLabel="Note Title">
                                         <rect key="frame" x="-132" y="8" width="325" height="29"/>
                                         <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
                                         <constraints>
@@ -608,7 +608,7 @@
                                             </mask>
                                         </variation>
                                     </textField>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Note content" translatesAutoresizingMaskIntoConstraints="NO" id="YB2-aK-ryb" userLabel="Note Content View">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" editable="NO" text="Note content" translatesAutoresizingMaskIntoConstraints="NO" id="YB2-aK-ryb" userLabel="Note Content View">
                                         <rect key="frame" x="-8" y="45" width="201" height="107"/>
                                         <accessibility key="accessibilityConfiguration">
                                             <accessibilityTraits key="traits" notEnabled="YES"/>
@@ -657,13 +657,13 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="S8I-uK-MAb"/>
-                                        <exclude reference="brd-PE-d4D"/>
                                         <exclude reference="PC0-Gc-WaO"/>
                                         <exclude reference="c8U-1c-C4h"/>
                                         <exclude reference="jeT-RD-Evk"/>
                                         <exclude reference="pQ8-UO-Uru"/>
                                         <exclude reference="pjG-yD-GFm"/>
+                                        <exclude reference="S8I-uK-MAb"/>
+                                        <exclude reference="brd-PE-d4D"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular" misplaced="YES">
@@ -673,14 +673,14 @@
                                     <mask key="constraints">
                                         <exclude reference="Ltm-kB-zaH"/>
                                         <exclude reference="Qmi-SF-tEg"/>
-                                        <exclude reference="S8I-uK-MAb"/>
-                                        <exclude reference="brd-PE-d4D"/>
                                         <include reference="PC0-Gc-WaO"/>
                                         <include reference="c8U-1c-C4h"/>
                                         <exclude reference="eab-Hn-dKz"/>
                                         <include reference="jeT-RD-Evk"/>
                                         <include reference="pQ8-UO-Uru"/>
                                         <exclude reference="pjG-yD-GFm"/>
+                                        <exclude reference="S8I-uK-MAb"/>
+                                        <exclude reference="brd-PE-d4D"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -776,6 +776,7 @@
                     <navigationItem key="navigationItem" id="fhv-2t-716"/>
                     <connections>
                         <segue destination="FNr-LW-qVv" kind="presentation" identifier="toSearch" id="jCI-nK-BJK"/>
+                        <segue destination="4Jc-4b-1wl" kind="presentation" identifier="toNoteShuffle" id="fLo-dd-jff"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VzL-Ye-1Il" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -912,6 +913,43 @@ IAoKA
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pgs-Z7-ad1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="85" y="1294"/>
+        </scene>
+        <!--Note Shuffle View Controller-->
+        <scene sceneID="cPo-ob-ngD">
+            <objects>
+                <viewController id="iXe-6e-Dac" customClass="NoteShuffleViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fYB-UM-wHM"/>
+                        <viewControllerLayoutGuide type="bottom" id="FiN-W5-vol"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="68t-ra-bgd" customClass="SKView">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="VGn-9V-0Yq"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vID-No-fC3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4155.75" y="596.25"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="6Xq-LL-Kyb">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4Jc-4b-1wl" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="did-Ub-Or4">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="iXe-6e-Dac" kind="relationship" relationship="rootViewController" id="XJ4-ZZ-c0d"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hfi-br-vw0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3441" y="596.25"/>
         </scene>
     </scenes>
     <resources>
