@@ -34,7 +34,7 @@
     [_sidePanelController.tableView reloadData];
     _mainController = self.childViewControllers[1];
 
-    [self loadLectures];
+    [self populateWithLectureNotes];
     [self setUpNavigation];
 }
 
@@ -87,21 +87,10 @@
 }
 
 // TODO: clean up -- shouldn't have to pass lecture directly from LVC
-- (void)loadLectures
+- (void)populateWithLectureNotes
 {
-    NSString *path = [FileManager localDocumentsDirectoryPath];
-    NSArray *contents = [FileManager listContentsOfDirectory:path];
-    NSString *lectureName;
-    NSMutableArray *lec = [NSMutableArray new];
-    for (NSString *file in contents) {
-        lectureName = file;
-        NSString *title = [file componentsSeparatedByString:@"."][0];
-        [lec addObject:title];
-    }
-    _lectures = lec;
-    
     // Update side panel controller with lecture title
-    _sidePanelController.title = [_lectures objectAtIndex:0];
+    _sidePanelController.title = _selectedLecture.metadata.title;
     
     // TODO: get lecture timestamp too
     _notes = [[NSArray alloc]initWithArray:_selectedLecture.lecture.notes];

@@ -4,7 +4,7 @@
 profile
 *~.nib
 xcuserdata
-!xcshareddata
+xcshareddata
 !xcschemes
 *.moved-aside
 *.xccheckout
