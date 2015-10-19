@@ -419,7 +419,7 @@ static const int outline3Category = 3;
     // get the screensize
     CGSize scr = self.scene.frame.size;
     // setup a position constraint
-    SKConstraint *c = [SKConstraint positionX:[SKRange rangeWithLowerLimit:150 upperLimit:(scr.width-150)] Y:[SKRange rangeWithLowerLimit:200 upperLimit:(scr.height-100)]];
+    SKConstraint *positionConstraint = [SKConstraint positionX:[SKRange rangeWithLowerLimit:150 upperLimit:(scr.width-150)] Y:[SKRange rangeWithLowerLimit:200 upperLimit:(scr.height-100)]];
     
     if ([saveData sharedData].date != nil) {
         date = [saveData sharedData].date;
@@ -441,7 +441,7 @@ static const int outline3Category = 3;
         SKTexture *tex = [self.scene.view textureFromNode:outline1];
         newNode = [SKSpriteNode spriteNodeWithTexture:tex];
         newNode.name = @"newNode";
-        newNode.constraints = @[c];
+        newNode.constraints = @[positionConstraint];
         [newNode addChild:date];
         
         SKSpriteNode *pap2 = [self paperNode];
@@ -454,7 +454,7 @@ static const int outline3Category = 3;
         
         newNode2 = [SKSpriteNode spriteNodeWithTexture:tex2];
         newNode2.name = @"newNode2";
-        newNode2.constraints = @[c];
+        newNode2.constraints = @[positionConstraint];
         
         SKSpriteNode *pap3 = [self paperNode];
         pap3.position = CGPointMake(CGRectGetMidX(outline3.frame), CGRectGetMidY(outline3.frame));
@@ -466,20 +466,20 @@ static const int outline3Category = 3;
         
         newNode3 = [SKSpriteNode spriteNodeWithTexture:tex3];
         newNode3.name = @"newNode3";
-        newNode3.constraints = @[c];
+        newNode3.constraints = @[positionConstraint];
     } else {
         newNode = [[SKSpriteNode alloc] initWithTexture:[saveData sharedData].current];
         newNode.name = @"newNode";
-        newNode.constraints = @[c];
+        newNode.constraints = @[positionConstraint];
         [newNode addChild:date];
         
         newNode2 = [[SKSpriteNode alloc] initWithTexture:[saveData sharedData].current];
         newNode2.name = @"newNode2";
-        newNode2.constraints = @[c];
+        newNode2.constraints = @[positionConstraint];
         
         newNode3 = [[SKSpriteNode alloc] initWithTexture:[saveData sharedData].current];
         newNode3.name = @"newNode3";
-        newNode3.constraints = @[c];
+        newNode3.constraints = @[positionConstraint];
     }
     
     for (SKSpriteNode *sprite in [saveData sharedData].array) {
@@ -488,18 +488,18 @@ static const int outline3Category = 3;
             if ([saveData sharedData].current != nil) {
                 sprite.texture = [saveData sharedData].current;
             } else {
+                
                 SKSpriteNode *outliner = [self outlineNode];
-                
-                SKSpriteNode *pap = [self paperNode];
-                pap.position = CGPointMake(CGRectGetMidX(outliner.frame), CGRectGetMidY(outliner.frame));
-                
-                [outliner addChild:pap];
+                SKSpriteNode *paperNode = [self paperNode];
+                paperNode.position = CGPointMake(CGRectGetMidX(outliner.frame), CGRectGetMidY(outliner.frame));
+
+                [outliner addChild:paperNode];
                 
                 SKTexture *texSoft = [self.scene.view textureFromNode:outliner];
                 sprite.texture = texSoft;
             }
             // TODO: might need to clear notes/save properly on shuffle dismissal
-            sprite.constraints = @[c];
+            sprite.constraints = @[positionConstraint];
             [self addChild:sprite];
         }
     }
