@@ -1059,7 +1059,7 @@ IAoKA
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Formulas" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VS3-hx-6IQ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Formulas" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VS3-hx-6IQ">
                                 <rect key="frame" x="214" y="94" width="172" height="42"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="172" id="0Sg-tk-rX1"/>
@@ -1137,14 +1137,14 @@ IAoKA
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="lFi-hD-q0f"/>
                                         <exclude reference="Izt-tz-YvE"/>
+                                        <exclude reference="lFi-hD-q0f"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular">
                                     <mask key="constraints">
-                                        <include reference="lFi-hD-q0f"/>
                                         <include reference="Izt-tz-YvE"/>
+                                        <include reference="lFi-hD-q0f"/>
                                     </mask>
                                 </variation>
                             </textView>
@@ -1191,23 +1191,23 @@ IAoKA
                                 <exclude reference="WS3-pi-VRR"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="ern-0q-4nW"/>
                                 <exclude reference="MrY-vo-7UF"/>
                                 <exclude reference="Xsh-mb-qNA"/>
-                                <exclude reference="Pil-4Y-sbf"/>
+                                <exclude reference="ern-0q-4nW"/>
                                 <exclude reference="1gX-Xe-m9L"/>
+                                <exclude reference="Pil-4Y-sbf"/>
                                 <exclude reference="c1y-NA-shZ"/>
-                                <exclude reference="iw4-pJ-YD9"/>
                                 <exclude reference="f8N-az-DCH"/>
-                                <exclude reference="eqp-MO-Pve"/>
-                                <exclude reference="Yn8-LJ-KpG"/>
-                                <exclude reference="TbW-0r-ICL"/>
+                                <exclude reference="iw4-pJ-YD9"/>
                                 <exclude reference="8aY-kF-nc5"/>
                                 <exclude reference="Nad-z6-hhk"/>
+                                <exclude reference="TbW-0r-ICL"/>
+                                <exclude reference="Yn8-LJ-KpG"/>
+                                <exclude reference="eqp-MO-Pve"/>
                                 <exclude reference="5KI-KX-Sce"/>
-                                <exclude reference="Tfi-ed-VGW"/>
                                 <exclude reference="FKf-kW-EEa"/>
                                 <exclude reference="MUz-DV-alV"/>
+                                <exclude reference="Tfi-ed-VGW"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular">
@@ -1220,23 +1220,23 @@ IAoKA
                                 <include reference="WS3-pi-VRR"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="ern-0q-4nW"/>
                                 <include reference="MrY-vo-7UF"/>
                                 <include reference="Xsh-mb-qNA"/>
-                                <include reference="Pil-4Y-sbf"/>
+                                <include reference="ern-0q-4nW"/>
                                 <include reference="1gX-Xe-m9L"/>
+                                <include reference="Pil-4Y-sbf"/>
                                 <include reference="c1y-NA-shZ"/>
-                                <include reference="iw4-pJ-YD9"/>
                                 <include reference="f8N-az-DCH"/>
-                                <include reference="eqp-MO-Pve"/>
-                                <include reference="Yn8-LJ-KpG"/>
-                                <include reference="TbW-0r-ICL"/>
+                                <include reference="iw4-pJ-YD9"/>
                                 <include reference="8aY-kF-nc5"/>
                                 <include reference="Nad-z6-hhk"/>
+                                <include reference="TbW-0r-ICL"/>
+                                <include reference="Yn8-LJ-KpG"/>
+                                <include reference="eqp-MO-Pve"/>
                                 <include reference="5KI-KX-Sce"/>
-                                <include reference="Tfi-ed-VGW"/>
                                 <include reference="FKf-kW-EEa"/>
                                 <include reference="MUz-DV-alV"/>
+                                <include reference="Tfi-ed-VGW"/>
                             </mask>
                         </variation>
                     </view>
@@ -1247,7 +1247,7 @@ IAoKA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tLD-h9-dBu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6594" y="1582"/>
+            <point key="canvasLocation" x="6234.75" y="1245.75"/>
         </scene>
         <!--Definitions-->
         <scene sceneID="Mfj-F9-MKF">
@@ -1289,14 +1289,14 @@ IAoKA
                                 <textInputTraits key="textInputTraits"/>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="Spa-Qa-Z4P"/>
                                         <exclude reference="ATw-7L-UPR"/>
+                                        <exclude reference="Spa-Qa-Z4P"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular">
                                     <mask key="constraints">
-                                        <include reference="Spa-Qa-Z4P"/>
                                         <include reference="ATw-7L-UPR"/>
+                                        <include reference="Spa-Qa-Z4P"/>
                                     </mask>
                                 </variation>
                             </textField>
@@ -1384,16 +1384,16 @@ In a proof by contradiction we assume, along with the hypotheses, the logical ne
                                 <exclude reference="yAC-LJ-f50"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="Rat-Ve-wJC"/>
                                 <exclude reference="l6A-0C-Oe5"/>
                                 <exclude reference="pPy-lM-aeC"/>
-                                <exclude reference="Rat-Ve-wJC"/>
                                 <exclude reference="4AZ-OV-LzB"/>
+                                <exclude reference="SWn-ps-e49"/>
                                 <exclude reference="s49-u2-sOu"/>
                                 <exclude reference="tv5-kx-Bk9"/>
-                                <exclude reference="SWn-ps-e49"/>
-                                <exclude reference="S7i-qb-Mkv"/>
-                                <exclude reference="Irf-ur-tgR"/>
                                 <exclude reference="Amf-UB-989"/>
+                                <exclude reference="Irf-ur-tgR"/>
+                                <exclude reference="S7i-qb-Mkv"/>
                                 <exclude reference="7a6-kS-99q"/>
                                 <exclude reference="QKA-GU-Sek"/>
                                 <exclude reference="d6A-fZ-0lW"/>
@@ -1410,16 +1410,16 @@ In a proof by contradiction we assume, along with the hypotheses, the logical ne
                                 <include reference="yAC-LJ-f50"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="Rat-Ve-wJC"/>
                                 <include reference="l6A-0C-Oe5"/>
                                 <include reference="pPy-lM-aeC"/>
-                                <include reference="Rat-Ve-wJC"/>
                                 <include reference="4AZ-OV-LzB"/>
+                                <include reference="SWn-ps-e49"/>
                                 <include reference="s49-u2-sOu"/>
                                 <include reference="tv5-kx-Bk9"/>
-                                <include reference="SWn-ps-e49"/>
-                                <include reference="S7i-qb-Mkv"/>
-                                <include reference="Irf-ur-tgR"/>
                                 <include reference="Amf-UB-989"/>
+                                <include reference="Irf-ur-tgR"/>
+                                <include reference="S7i-qb-Mkv"/>
                                 <include reference="7a6-kS-99q"/>
                                 <include reference="QKA-GU-Sek"/>
                                 <include reference="d6A-fZ-0lW"/>
@@ -1438,7 +1438,7 @@ In a proof by contradiction we assume, along with the hypotheses, the logical ne
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n7b-EQ-Ne1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6658" y="587"/>
+            <point key="canvasLocation" x="6234.75" y="589.5"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="aDY-RI-JXd">
@@ -1485,12 +1485,12 @@ In a proof by contradiction we assume, along with the hypotheses, the logical ne
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cnm-Er-PXx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8910" y="527"/>
+            <point key="canvasLocation" x="9000" y="-149.25"/>
         </scene>
         <!--Notes-->
         <scene sceneID="Fns-l2-0WA">
             <objects>
-                <viewController storyboardIdentifier="weeksNotes" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Udv-Ls-s6S" customClass="weeksNotesViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="weeksNotes" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Udv-Ls-s6S" customClass="WeeksNotesViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Rzm-ep-bgt"/>
                         <viewControllerLayoutGuide type="bottom" id="83R-rK-FWC"/>
@@ -1499,7 +1499,7 @@ In a proof by contradiction we assume, along with the hypotheses, the logical ne
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uPB-0M-X1h">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Notes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uPB-0M-X1h">
                                 <rect key="frame" x="277" y="79" width="213" height="57"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="213" id="f3G-4S-OQq"/>
@@ -1588,7 +1588,7 @@ Now when we run our app we will have a visible scrollview has a frame of 0,0,320
                                     <outletCollection property="gestureRecognizers" destination="mHN-Js-FID" appends="YES" id="lRN-Ai-9QF"/>
                                 </connections>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SY8-kx-5ZP">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SY8-kx-5ZP">
                                 <rect key="frame" x="0.0" y="49" width="162" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="162" id="gcn-68-upM"/>
@@ -1600,15 +1600,15 @@ Now when we run our app we will have a visible scrollview has a frame of 0,0,320
                                 </state>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="snw-wN-GcL"/>
                                         <exclude reference="gcn-68-upM"/>
+                                        <exclude reference="snw-wN-GcL"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular">
                                     <mask key="constraints">
-                                        <exclude reference="wC0-pX-9Tm"/>
-                                        <include reference="snw-wN-GcL"/>
                                         <include reference="gcn-68-upM"/>
+                                        <include reference="snw-wN-GcL"/>
+                                        <exclude reference="wC0-pX-9Tm"/>
                                     </mask>
                                 </variation>
                                 <connections>
@@ -1659,12 +1659,12 @@ Now when we run our app we will have a visible scrollview has a frame of 0,0,320
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="FAu-cb-Q8f"/>
-                                <exclude reference="jIF-gd-RIu"/>
-                                <exclude reference="bAh-XS-Swk"/>
-                                <exclude reference="iDZ-eZ-acg"/>
-                                <exclude reference="hMb-L9-hFf"/>
-                                <exclude reference="EWd-qb-WLc"/>
                                 <exclude reference="4wS-N4-QBt"/>
+                                <exclude reference="EWd-qb-WLc"/>
+                                <exclude reference="bAh-XS-Swk"/>
+                                <exclude reference="hMb-L9-hFf"/>
+                                <exclude reference="iDZ-eZ-acg"/>
+                                <exclude reference="jIF-gd-RIu"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular">
@@ -1674,17 +1674,17 @@ Now when we run our app we will have a visible scrollview has a frame of 0,0,320
                             <mask key="constraints">
                                 <include reference="FAu-cb-Q8f"/>
                                 <exclude reference="UBu-ni-eXP"/>
-                                <exclude reference="EEX-is-6mm"/>
+                                <exclude reference="3Ox-Dx-CZ3"/>
+                                <include reference="4wS-N4-QBt"/>
                                 <exclude reference="AZI-KX-RwG"/>
-                                <include reference="jIF-gd-RIu"/>
-                                <include reference="bAh-XS-Swk"/>
-                                <include reference="iDZ-eZ-acg"/>
-                                <include reference="hMb-L9-hFf"/>
+                                <exclude reference="EEX-is-6mm"/>
                                 <include reference="EWd-qb-WLc"/>
                                 <exclude reference="Qf4-Mw-HaO"/>
-                                <include reference="4wS-N4-QBt"/>
-                                <exclude reference="3Ox-Dx-CZ3"/>
+                                <include reference="bAh-XS-Swk"/>
+                                <include reference="hMb-L9-hFf"/>
+                                <include reference="iDZ-eZ-acg"/>
                                 <exclude reference="igL-Eb-fOq"/>
+                                <include reference="jIF-gd-RIu"/>
                                 <exclude reference="8WX-1H-sjz"/>
                             </mask>
                         </variation>
@@ -1693,7 +1693,7 @@ Now when we run our app we will have a visible scrollview has a frame of 0,0,320
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="768" height="1024"/>
                     <connections>
-                        <outlet property="currDate" destination="yeo-Hc-DbZ" id="b54-AH-mny"/>
+                        <outlet property="currentDate" destination="yeo-Hc-DbZ" id="2en-Et-Jpa"/>
                         <outlet property="text" destination="5K7-mt-qOf" id="q8v-db-L7X"/>
                         <outlet property="textZoom" destination="KDD-Wu-89w" id="W1F-vH-CyJ"/>
                         <outlet property="upcomingDD" destination="SY8-kx-5ZP" id="BUA-qv-NW3"/>
@@ -1711,7 +1711,7 @@ Now when we run our app we will have a visible scrollview has a frame of 0,0,320
                     </connections>
                 </pinchGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="6393.75" y="-338.25"/>
+            <point key="canvasLocation" x="6195.75" y="-147.75"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="v5T-0i-atr">
@@ -1732,7 +1732,7 @@ Now when we run our app we will have a visible scrollview has a frame of 0,0,320
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B74-BN-LVo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5655" y="595.5"/>
+            <point key="canvasLocation" x="5550" y="595.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="NgM-cJ-Nlm">
@@ -1750,7 +1750,7 @@ Now when we run our app we will have a visible scrollview has a frame of 0,0,320
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0AJ-h9-cIA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8756" y="-457"/>
+            <point key="canvasLocation" x="8335.5" y="-143.25"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="lG9-8F-GaI">
@@ -1768,7 +1768,7 @@ Now when we run our app we will have a visible scrollview has a frame of 0,0,320
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="52h-Jk-7Wj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7092" y="-338.25"/>
+            <point key="canvasLocation" x="6921" y="-143.25"/>
         </scene>
         <!--Upcoming Due Dates-->
         <scene sceneID="rtx-Lz-WEd">
@@ -1811,7 +1811,7 @@ Now when we run our app we will have a visible scrollview has a frame of 0,0,320
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hzk-cd-obP" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="ZZ6-pu-rqD" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="7743" y="-341.25"/>
+            <point key="canvasLocation" x="7677" y="-146.25"/>
         </scene>
     </scenes>
     <resources>

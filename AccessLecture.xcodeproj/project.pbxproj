@@ -7,18 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2160E3931BD54B650081A73D /* saveData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2160E3921BD54B650081A73D /* saveData.m */; settings = {ASSET_TAGS = (); }; };
 		216BE84B1BA718E400B43584 /* NoteSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 216BE84A1BA718E400B43584 /* NoteSearchTableViewController.m */; };
 		2194AD201BB2F7DE002D9BD1 /* NoteSearchResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2194AD1F1BB2F7DE002D9BD1 /* NoteSearchResultsViewController.m */; settings = {ASSET_TAGS = (); }; };
 		21C36DF11BCE9FB8000CB5B0 /* NotesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21C36DF01BCE9FB8000CB5B0 /* NotesViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		21C36DF71BCEA061000CB5B0 /* NoteShuffleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C36DF61BCEA061000CB5B0 /* NoteShuffleViewController.m */; settings = {ASSET_TAGS = (); }; };
 		21C36DFA1BCEA140000CB5B0 /* MoreShuffle.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C36DF91BCEA140000CB5B0 /* MoreShuffle.m */; settings = {ASSET_TAGS = (); }; };
-		21C36DFD1BCEA150000CB5B0 /* weeksNotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C36DFC1BCEA150000CB5B0 /* weeksNotesViewController.m */; settings = {ASSET_TAGS = (); }; };
+		21C36DFD1BCEA150000CB5B0 /* WeeksNotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C36DFC1BCEA150000CB5B0 /* WeeksNotesViewController.m */; settings = {ASSET_TAGS = (); }; };
 		21C36E001BCEA179000CB5B0 /* AssignmentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C36DFF1BCEA179000CB5B0 /* AssignmentsViewController.m */; settings = {ASSET_TAGS = (); }; };
 		21C36E031BCEA193000CB5B0 /* AssignmentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C36E021BCEA193000CB5B0 /* AssignmentItem.m */; settings = {ASSET_TAGS = (); }; };
 		21C36E061BCEA1AE000CB5B0 /* NewNotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C36E051BCEA1AE000CB5B0 /* NewNotesViewController.m */; settings = {ASSET_TAGS = (); }; };
-		21C36E091BCEA1D2000CB5B0 /* saveData.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C36E081BCEA1D2000CB5B0 /* saveData.m */; settings = {ASSET_TAGS = (); }; };
-		21C36E0C1BCEA1E1000CB5B0 /* backgroundImages.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C36E0B1BCEA1E1000CB5B0 /* backgroundImages.m */; settings = {ASSET_TAGS = (); }; };
-		21C36E0F1BCEA229000CB5B0 /* saveColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C36E0E1BCEA229000CB5B0 /* saveColor.m */; settings = {ASSET_TAGS = (); }; };
+		21C36E0C1BCEA1E1000CB5B0 /* BackgroundImages.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C36E0B1BCEA1E1000CB5B0 /* BackgroundImages.m */; settings = {ASSET_TAGS = (); }; };
+		21C36E0F1BCEA229000CB5B0 /* SaveColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C36E0E1BCEA229000CB5B0 /* SaveColor.m */; settings = {ASSET_TAGS = (); }; };
 		21C36E131BCEBA79000CB5B0 /* DefinitionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C36E121BCEBA79000CB5B0 /* DefinitionsViewController.m */; settings = {ASSET_TAGS = (); }; };
 		21C36E161BCEBA90000CB5B0 /* FormulasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C36E151BCEBA90000CB5B0 /* FormulasViewController.m */; settings = {ASSET_TAGS = (); }; };
 		21C36E1A1BCEBAB2000CB5B0 /* Book-Open-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 21C36E181BCEBAB2000CB5B0 /* Book-Open-32.png */; settings = {ASSET_TAGS = (); }; };
@@ -168,6 +168,8 @@
 		09983FD2441D47DAA38B408E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FAD181C458E4CEEB87F6ECE /* libPods-AccessLecture Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AccessLecture Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		10BDE2E5B090C64338F60EA3 /* Pods-AccessLecture.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AccessLecture.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AccessLecture/Pods-AccessLecture.debug.xcconfig"; sourceTree = "<group>"; };
+		2160E3911BD54B650081A73D /* saveData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = saveData.h; sourceTree = "<group>"; };
+		2160E3921BD54B650081A73D /* saveData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = saveData.m; sourceTree = "<group>"; };
 		216BE8491BA718E400B43584 /* NoteSearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteSearchTableViewController.h; sourceTree = "<group>"; };
 		216BE84A1BA718E400B43584 /* NoteSearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteSearchTableViewController.m; sourceTree = "<group>"; };
 		2194AD1E1BB2F7DE002D9BD1 /* NoteSearchResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteSearchResultsViewController.h; sourceTree = "<group>"; };
@@ -177,20 +179,18 @@
 		21C36DF61BCEA061000CB5B0 /* NoteShuffleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteShuffleViewController.m; sourceTree = "<group>"; };
 		21C36DF81BCEA140000CB5B0 /* MoreShuffle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreShuffle.h; sourceTree = "<group>"; };
 		21C36DF91BCEA140000CB5B0 /* MoreShuffle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreShuffle.m; sourceTree = "<group>"; };
-		21C36DFB1BCEA150000CB5B0 /* weeksNotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = weeksNotesViewController.h; sourceTree = "<group>"; };
-		21C36DFC1BCEA150000CB5B0 /* weeksNotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = weeksNotesViewController.m; sourceTree = "<group>"; };
+		21C36DFB1BCEA150000CB5B0 /* WeeksNotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeeksNotesViewController.h; sourceTree = "<group>"; };
+		21C36DFC1BCEA150000CB5B0 /* WeeksNotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeeksNotesViewController.m; sourceTree = "<group>"; };
 		21C36DFE1BCEA179000CB5B0 /* AssignmentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssignmentsViewController.h; sourceTree = "<group>"; };
 		21C36DFF1BCEA179000CB5B0 /* AssignmentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssignmentsViewController.m; sourceTree = "<group>"; };
 		21C36E011BCEA193000CB5B0 /* AssignmentItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssignmentItem.h; sourceTree = "<group>"; };
 		21C36E021BCEA193000CB5B0 /* AssignmentItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssignmentItem.m; sourceTree = "<group>"; };
 		21C36E041BCEA1AE000CB5B0 /* NewNotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewNotesViewController.h; sourceTree = "<group>"; };
 		21C36E051BCEA1AE000CB5B0 /* NewNotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewNotesViewController.m; sourceTree = "<group>"; };
-		21C36E071BCEA1D2000CB5B0 /* saveData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = saveData.h; sourceTree = "<group>"; };
-		21C36E081BCEA1D2000CB5B0 /* saveData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = saveData.m; sourceTree = "<group>"; };
-		21C36E0A1BCEA1E1000CB5B0 /* backgroundImages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = backgroundImages.h; sourceTree = "<group>"; };
-		21C36E0B1BCEA1E1000CB5B0 /* backgroundImages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = backgroundImages.m; sourceTree = "<group>"; };
-		21C36E0D1BCEA229000CB5B0 /* saveColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = saveColor.h; sourceTree = "<group>"; };
-		21C36E0E1BCEA229000CB5B0 /* saveColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = saveColor.m; sourceTree = "<group>"; };
+		21C36E0A1BCEA1E1000CB5B0 /* BackgroundImages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundImages.h; sourceTree = "<group>"; };
+		21C36E0B1BCEA1E1000CB5B0 /* BackgroundImages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundImages.m; sourceTree = "<group>"; };
+		21C36E0D1BCEA229000CB5B0 /* SaveColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveColor.h; sourceTree = "<group>"; };
+		21C36E0E1BCEA229000CB5B0 /* SaveColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveColor.m; sourceTree = "<group>"; };
 		21C36E111BCEBA79000CB5B0 /* DefinitionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefinitionsViewController.h; sourceTree = "<group>"; };
 		21C36E121BCEBA79000CB5B0 /* DefinitionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefinitionsViewController.m; sourceTree = "<group>"; };
 		21C36E141BCEBA90000CB5B0 /* FormulasViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormulasViewController.h; sourceTree = "<group>"; };
@@ -416,20 +416,20 @@
 			isa = PBXGroup;
 			children = (
 				21C36E101BCEBA6A000CB5B0 /* NoteSelectViewController */,
-				21C36E0D1BCEA229000CB5B0 /* saveColor.h */,
-				21C36E0E1BCEA229000CB5B0 /* saveColor.m */,
-				21C36E0A1BCEA1E1000CB5B0 /* backgroundImages.h */,
-				21C36E0B1BCEA1E1000CB5B0 /* backgroundImages.m */,
-				21C36E071BCEA1D2000CB5B0 /* saveData.h */,
-				21C36E081BCEA1D2000CB5B0 /* saveData.m */,
+				21C36E0D1BCEA229000CB5B0 /* SaveColor.h */,
+				21C36E0E1BCEA229000CB5B0 /* SaveColor.m */,
+				21C36E0A1BCEA1E1000CB5B0 /* BackgroundImages.h */,
+				21C36E0B1BCEA1E1000CB5B0 /* BackgroundImages.m */,
 				21C36E041BCEA1AE000CB5B0 /* NewNotesViewController.h */,
 				21C36E051BCEA1AE000CB5B0 /* NewNotesViewController.m */,
 				21C36E011BCEA193000CB5B0 /* AssignmentItem.h */,
+				2160E3911BD54B650081A73D /* saveData.h */,
+				2160E3921BD54B650081A73D /* saveData.m */,
 				21C36E021BCEA193000CB5B0 /* AssignmentItem.m */,
 				21C36DFE1BCEA179000CB5B0 /* AssignmentsViewController.h */,
 				21C36DFF1BCEA179000CB5B0 /* AssignmentsViewController.m */,
-				21C36DFB1BCEA150000CB5B0 /* weeksNotesViewController.h */,
-				21C36DFC1BCEA150000CB5B0 /* weeksNotesViewController.m */,
+				21C36DFB1BCEA150000CB5B0 /* WeeksNotesViewController.h */,
+				21C36DFC1BCEA150000CB5B0 /* WeeksNotesViewController.m */,
 				21C36DF81BCEA140000CB5B0 /* MoreShuffle.h */,
 				21C36DF91BCEA140000CB5B0 /* MoreShuffle.m */,
 				21C36DF51BCEA061000CB5B0 /* NoteShuffleViewController.h */,
@@ -1139,7 +1139,6 @@
 				4CA4A06B1AE185D1004536B7 /* DirectoryCVC.m in Sources */,
 				3F8FD2E418B3F7BF0059EF9C /* Promise.m in Sources */,
 				4C4FA6F01A72C52E00161ABE /* UINavigationBar+hight.m in Sources */,
-				21C36E091BCEA1D2000CB5B0 /* saveData.m in Sources */,
 				4CA4A0711AE59127004536B7 /* Stack.m in Sources */,
 				4CA4A0651ADC3287004536B7 /* AMIndex.m in Sources */,
 				4CD7CE2A1A8568CB00A9717F /* PreviewViewController.m in Sources */,
@@ -1152,19 +1151,20 @@
 				21C36E161BCEBA90000CB5B0 /* FormulasViewController.m in Sources */,
 				3F8B515618FD90580053BFE8 /* UIImage+Rotate.m in Sources */,
 				4CFC573017DF800700393A1E /* NoteTakingViewController.m in Sources */,
+				2160E3931BD54B650081A73D /* saveData.m in Sources */,
 				4CDB057D17B557C300D8EB85 /* AccessLecture.xcdatamodeld in Sources */,
 				21C36E031BCEA193000CB5B0 /* AssignmentItem.m in Sources */,
 				3F8B515418FD90580053BFE8 /* UIImage+FixOrientation.m in Sources */,
 				3F8FD2E318B3F7BF0059EF9C /* Deferred.m in Sources */,
 				3F408C0A18BF94F600F6B113 /* XMLReader.m in Sources */,
 				3F4DE76118EB492900BB9970 /* ABDrawToggleSwitch.m in Sources */,
-				21C36E0F1BCEA229000CB5B0 /* saveColor.m in Sources */,
+				21C36E0F1BCEA229000CB5B0 /* SaveColor.m in Sources */,
 				216BE84B1BA718E400B43584 /* NoteSearchTableViewController.m in Sources */,
 				4CDDF69717EB690900FE34E7 /* AMLecture.m in Sources */,
-				21C36DFD1BCEA150000CB5B0 /* weeksNotesViewController.m in Sources */,
+				21C36DFD1BCEA150000CB5B0 /* WeeksNotesViewController.m in Sources */,
 				3F2DC9871887225D008C29BF /* ImageNoteView.m in Sources */,
 				21C36DF71BCEA061000CB5B0 /* NoteShuffleViewController.m in Sources */,
-				21C36E0C1BCEA1E1000CB5B0 /* backgroundImages.m in Sources */,
+				21C36E0C1BCEA1E1000CB5B0 /* BackgroundImages.m in Sources */,
 				21DA3D9518905B5000BFD96B /* DrawViewController.m in Sources */,
 				21C36E061BCEA1AE000CB5B0 /* NewNotesViewController.m in Sources */,
 				4C4FA6F31A72CC8100161ABE /* OpenLectureController.m in Sources */,

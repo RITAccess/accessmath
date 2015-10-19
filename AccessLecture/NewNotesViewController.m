@@ -16,11 +16,12 @@
 
 @interface NewNotesViewController ()
 
-@property IBOutlet UITextField *currDate;
+@property IBOutlet UITextField *currentDate;
 
 @end
 
-@implementation NewNotesViewController {
+@implementation NewNotesViewController
+{
     //open side view
     UISwipeGestureRecognizer *leftSwipe;
     
@@ -43,23 +44,21 @@
     //PopOverViewController for highlighter color
     UIPopoverController *popover;
     
-    
     NSArray *_navigationItems;
-
 }
+
 @synthesize textView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
     //date things
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
     [dateFormat setDateFormat:@"yyyy-MM-dd"];
     NSDate *now = [[NSDate alloc]init];
     NSString *theDate = [dateFormat stringFromDate:now];
-    _currDate.text = theDate;
-    _currDate.userInteractionEnabled = NO;
+    _currentDate.text = theDate;
+    _currentDate.userInteractionEnabled = NO;
     
     [textView sizeThatFits:CGSizeMake(self.view.frame.size.width, self.view.frame.size.height)];
     
@@ -97,9 +96,9 @@
 }
 
 //sends out notification that orientation has been changed
--(void)viewWillAppear:(BOOL)animated{
+-(void)viewWillAppear:(BOOL)animated
+{
     [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(orientationChanged:)    name:UIDeviceOrientationDidChangeNotification  object:nil];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(sideViewRemoved:)    name:UIDeviceOrientationDidChangeNotification  object:nil];
     
     [self.navigationController setToolbarHidden:NO animated:YES];
@@ -111,14 +110,11 @@
 }
 
 //removes notification
--(void)viewDidDisappear:(BOOL)animated{
+-(void)viewDidDisappear:(BOOL)animated
+{
     [[NSNotificationCenter defaultCenter]removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
 }
 
-
-
-
-// TODO: reusable would be nice
 #pragma mark - Navbar Setup
 
 - (void)setUpNavigation
@@ -157,15 +153,6 @@
     
     [super updateViewConstraints];
 }
-
-- (void)dismissNewNoteViewController
-{
-    [self dismissViewControllerAnimated:YES completion:^{
-        NSLog(@"DEBUG: Dismissed NewNotesViewController.");
-    }];
-}
-
-
 
 //updates view based on changes
 - (void)orientationChanged:(NSNotification *)notification{
@@ -271,16 +258,15 @@
 }
 
 //Uses NSMutableAttributedString to highlight the text selected by the user.
--(void) highlightText{
+-(void)highlightText
+{
     
     NSRange selectedRange = textView.selectedRange;
-    
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithAttributedString:textView.attributedText];
     
-    if ([saveColor sharedData].hightlightColor != nil) {
-        [attributedString addAttribute:NSBackgroundColorAttributeName value:[saveColor sharedData].hightlightColor range:selectedRange];
-    }
-    else{
+    if ([SaveColor sharedData].hightlightColor != nil) {
+        [attributedString addAttribute:NSBackgroundColorAttributeName value:[SaveColor sharedData].hightlightColor range:selectedRange];
+    } else {
         [attributedString addAttribute:NSBackgroundColorAttributeName value:[UIColor yellowColor] range:selectedRange];
     }
     
@@ -288,18 +274,11 @@
 }
 
 //allows the user to add images to their notes
-- (IBAction)addImage:(UIButton *)sender {
-    
+- (IBAction)addImage:(UIButton *)sender
+{
     if ([[UIApplication sharedApplication] statusBarOrientation] != UIInterfaceOrientationPortrait) {
-        
+        // TODO: implement or remove
     }
-    
-    /*UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    picker.delegate = self;
-    picker.allowsEditing = YES;
-    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    
-    [self presentViewController:picker animated:YES completion:NULL];*/
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
@@ -317,7 +296,8 @@
     
 }
 
-//decreases overall text size
+#pragma mark - Text Size
+
 - (IBAction)decreaseTextSize:(UIBarButtonItem*)sender {
     
     CGFloat value = textView.font.pointSize;
@@ -329,7 +309,6 @@
     }
 }
 
-//increases overall text size
 - (IBAction)increaseTextSize:(UIBarButtonItem*)sender {
     
     CGFloat value = textView.font.pointSize;
@@ -340,6 +319,8 @@
         [textView sizeToFit];
     }
 }
+
+#pragma mark - Highlight Color
 
 //Changes highlighter color to one of the choices listed below and saves the selection
 - (IBAction)highlightColor:(UIBarButtonItem *)sender {
@@ -481,19 +462,24 @@
 }
 
 -(void)changeHighlightColor:(UIButton*)sender{
-    [saveColor sharedData].hightlightColor = sender.backgroundColor;
+    [SaveColor sharedData].hightlightColor = sender.backgroundColor;
     [self.popOverController dismissPopoverAnimated:true];
-    [[saveColor sharedData] save];
+    [[SaveColor sharedData] save];
+}
+
+#pragma mark - Segue
+
+- (void)dismissNewNoteViewController
+{
+    [self dismissViewControllerAnimated:YES completion:^{
+        NSLog(@"DEBUG: Dismissed NewNotesViewController.");
+    }];
 }
 
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
--(IBAction)unwindToList:(UIStoryboardSegue *)segue
-{
 }
 
 @end

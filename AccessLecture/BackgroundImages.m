@@ -9,17 +9,17 @@
 //  Copyright (c) 2015 Kimberly Sookoo. All rights reserved.
 //
 
-#import "backgroundImages.h"
+#import "BackgroundImages.h"
 #import "MoreShuffle.h"
 #import "saveData.h"
 
-@interface backgroundImages()
+@interface BackgroundImages()
 
 @property BOOL created; //checks to see if scene is created
 
 @end
 
-@implementation backgroundImages
+@implementation BackgroundImages
 {
     //background images
     SKSpriteNode *image;

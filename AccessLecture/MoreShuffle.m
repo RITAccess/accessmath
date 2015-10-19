@@ -7,8 +7,8 @@
 //
 
 #import "MoreShuffle.h"
-#import "saveData.h"
-#import "backgroundImages.h"
+#import "SaveData.h"
+#import "BackgroundImages.h"
 
 @interface MoreShuffle()
 
@@ -292,7 +292,7 @@ static const int outline3Category = 3;
     [self.view removeGestureRecognizer:zoomIn];
     [self.view removeGestureRecognizer:leftSwipe];
     [self.view removeGestureRecognizer:panRecognizer];
-    backgroundImages *backy = [[backgroundImages alloc] initWithSize:CGSizeMake(1024, 768)];
+    BackgroundImages *backy = [[BackgroundImages alloc] initWithSize:CGSizeMake(1024, 768)];
     SKView *view = (SKView *) self.view;
     [view presentScene:backy];
 }

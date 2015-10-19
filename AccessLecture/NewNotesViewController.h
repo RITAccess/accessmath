@@ -9,19 +9,11 @@
 
 @interface NewNotesViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPopoverControllerDelegate>
 
-
 @property UIPopoverController *popOverController;
-
 @property (weak, nonatomic) IBOutlet UITextView *textView;
-
--(IBAction)unwindToList:(UIStoryboardSegue *)segue;
-
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
-
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *increaseTextSize;
-
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *decreaseTextSize;
-
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *highlightColor;
 
 @end

@@ -6,16 +6,15 @@
 //  Copyright (c) 2015 Student. All rights reserved.
 //
 
-#import "weeksNotesViewController.h"
-#import "AssignmentsViewController.h"
+#import "WeeksNotesViewController.h"
 
 #import "ALView+PureLayout.h"
 #import "NSArray+PureLayout.h"
 #import "NavBackButton.h"
 
 
-@implementation weeksNotesViewController{
-    UITextField *currDate;
+@implementation WeeksNotesViewController{
+    IBOutlet UITextField *currentDate;
         NSArray *_navigationItems;
 }
 
@@ -26,18 +25,17 @@
 {
     [super viewDidLoad];
     
-    currDate = [[UITextField alloc] initWithFrame:CGRectMake(20, 90, 166, 21)];
+    currentDate = [[UITextField alloc] initWithFrame:CGRectMake(20, 90, 166, 21)];
     
-    //date things
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
-    [dateFormat setDateFormat:@"yyyy-MM-dd"];
-    NSDate *now = [[NSDate alloc]init];
+    dateFormat.dateFormat = @"yyyy-MM-dd";
+    NSDate *now = [NSDate new];
     NSString *theDate = [dateFormat stringFromDate:now];
-    currDate.text = theDate;
-    currDate.userInteractionEnabled = NO;
-    [self.view addSubview:currDate];
+    currentDate.text = theDate;
+    currentDate.userInteractionEnabled = NO;
+    [self.view addSubview:currentDate];
     
-    UITapGestureRecognizer * recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleZoom:)];
+    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleZoom:)];
     recognizer.delegate = self;
     recognizer.numberOfTapsRequired = 2;
     recognizer.numberOfTouchesRequired = 1;
@@ -45,7 +43,6 @@
     
     // NavigationController's back button
     [self setUpNavigation];
-
 }
 
 # pragma mark - Navbar
@@ -89,19 +86,14 @@
     [super updateViewConstraints];
 }
 
+#pragma mark - Segues
+
 - (void)dismissNewNoteViewController
 {
     [self dismissViewControllerAnimated:YES completion:^{
         NSLog(@"DEBUG: Dismissed NewNoteViewController.");
     }];
 }
-
-
--(IBAction)upcomingAssignments{
-    AssignmentsViewController *aViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"UpcomingDueDates"];
-    [self.navigationController pushViewController:aViewController animated:YES];
-}
-
 
 - (void)didReceiveMemoryWarning
 {

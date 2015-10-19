@@ -1,5 +1,5 @@
 //
-//  backgroundImages.h
+//  BackgroundImages.h
 //  LandScapeV2
 //
 //  Created by Student on 7/24/15.
@@ -8,6 +8,6 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-@interface backgroundImages : SKScene
+@interface BackgroundImages : SKScene
 
 @end

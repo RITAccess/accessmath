@@ -1,14 +1,14 @@
 //
-//  saveColor.m
+//  SaveColor.m
 //  LandScapeV2
 //
 //  Created by Kimberly Sookoo on 10/6/15.
 //  Copyright (c) 2015 Student. All rights reserved.
 //
 
-#import "saveColor.h"
+#import "SaveColor.h"
 
-@implementation saveColor
+@implementation SaveColor
 
 static NSString* const highlightColor = @"highlightColor";
 
@@ -39,13 +39,13 @@ static NSString* const highlightColor = @"highlightColor";
 
 +(instancetype)loadInstance
 {
-    NSData* decodedData = [NSData dataWithContentsOfFile: [saveColor filePath]];
+    NSData* decodedData = [NSData dataWithContentsOfFile: [SaveColor filePath]];
     if (decodedData) {
-        saveColor* data = [NSKeyedUnarchiver unarchiveObjectWithData:decodedData];
+        SaveColor* data = [NSKeyedUnarchiver unarchiveObjectWithData:decodedData];
         return data;
     }
     
-    return [[saveColor alloc] init];
+    return [[SaveColor alloc] init];
 }
 
 + (instancetype)sharedData
@@ -63,7 +63,7 @@ static NSString* const highlightColor = @"highlightColor";
 -(void)save
 {
     NSData* encodedData = [NSKeyedArchiver archivedDataWithRootObject: self];
-    [encodedData writeToFile:[saveColor filePath] atomically:YES];
+    [encodedData writeToFile:[SaveColor filePath] atomically:YES];
 }
 
 @end

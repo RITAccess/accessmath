@@ -40,12 +40,11 @@
     SelectedRows = [NSMutableArray arrayWithArray:[userDef objectForKey:@"SelectedRows"]];
     
     [self loadInitialData];
-
 }
 
 
 /*
- loadInitialData loads everything statically for the intial information that goes into the array
+ * Loads everything statically for the intial information that goes into the array
  */
 -(void) loadInitialData
 {
@@ -63,31 +62,13 @@
     [self.toDoItems addObject:item4];
 }
 
-/*- (IBAction)unwindToList:(UIStoryboardSegue *)segue {
- AddToDoItemViewController *source = [segue sourceViewController];
- ToDoItem *item = source.toDoItem;
- if (item != nil) {
- [self.toDoItems addObject:item];
- [self.tableView reloadData];
- }
- 
- }*/
-
--(IBAction)unwindToList:(UIStoryboardSegue *)segue
-{
-    /*UITabBarController *tc = [self.storyboard instantiateViewControllerWithIdentifier:@"tabViews"];
-    [self.navigationController pushViewController:tc animated:YES];*/
-}
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
     return [self.toDoItems count];
 }
 
@@ -144,14 +125,6 @@
     
 }
 
-// Override to support conditional editing of the table view.
-// This only needs to be implemented if you are going to be returning NO
-// for some items. By default, all items are editable.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return YES if you want the specified item to be editable.
-    return YES;
-}
-
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
@@ -165,18 +138,7 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 @end
 

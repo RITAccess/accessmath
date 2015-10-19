@@ -9,7 +9,7 @@
 #import "NoteShuffleViewController.h"
 #import <SpriteKit/SpriteKit.h>
 #import "MoreShuffle.h"
-#import "weeksNotesViewController.h"
+#import "WeeksNotesViewController.h"
 #import "NewNotesViewController.h"
 
 #import "Promise.h"
@@ -17,13 +17,23 @@
 #import "NSArray+PureLayout.h"
 #import "NavBackButton.h"
 
-@interface NoteShuffleViewController () {
+@interface NoteShuffleViewController ()
+{
     @private
-        NSArray *_navigationItems;
+    NSArray *_navigationItems;
 }
 @end
 
 @implementation NoteShuffleViewController : UIViewController
+
+#pragma mark - Views
+
+-(void) viewWillAppear:(BOOL)animated
+{
+    MoreShuffle *math = [[MoreShuffle alloc] initWithSize:CGSizeMake(2000, 1768)];
+    SKView *view = (SKView *)self.view;
+    [view presentScene:math];
+}
 
 - (void)viewDidLoad
 {
@@ -74,6 +84,8 @@
     [super updateViewConstraints];
 }
 
+#pragma mark - Segues
+
 - (void)dismissNoteShuffleViewController
 {
     [self dismissViewControllerAnimated:YES completion:^{
@@ -81,28 +93,14 @@
     }];
 }
 
--(void) viewWillAppear:(BOOL)animated
-{
-    MoreShuffle *math = [[MoreShuffle alloc] initWithSize:CGSizeMake(2000, 1768)];
-    SKView *view = (SKView *) self.view;
-    [view presentScene:math];
-}
-
 -(void) presentWeeksNotesViewController
 {
-    // TODO: connect if need be
     [self performSegueWithIdentifier:@"toNoteSelectViewController" sender:nil];
-//    weeksNotesViewController *wViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"tabView"];
-//    [self.navigationController pushViewController:wViewController animated:YES];
 }
 
 -(void) presentNewNotesViewController
 {
-    // TODO: connect if need be
-
     [self performSegueWithIdentifier:@"toNewNote" sender:nil];
-//    NewNotesViewController *wViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"newNotes"];
-//    [self.navigationController pushViewController:wViewController animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

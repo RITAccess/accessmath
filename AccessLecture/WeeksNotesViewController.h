@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface weeksNotesViewController : UIViewController <UIGestureRecognizerDelegate>
+@interface WeeksNotesViewController : UIViewController <UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextView *text;
 @property (strong, nonatomic) IBOutlet UIButton *upcomingDD;

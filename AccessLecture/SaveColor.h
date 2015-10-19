@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface saveColor : NSObject <NSCoding>
+@interface SaveColor : NSObject <NSCoding>
 
 @property UIColor* hightlightColor;
 

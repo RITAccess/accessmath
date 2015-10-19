@@ -10,8 +10,4 @@
 
 @interface AssignmentsViewController : UIViewController
 
-
-- (IBAction)unwindToList:(UIStoryboardSegue *)segue;
-
-
 @end
