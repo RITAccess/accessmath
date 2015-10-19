@@ -1,8 +1,4 @@
-[![](http://am-slack.herokuapp.com/badge.svg)](http://am-slack.herokuapp.com/)
-
-Build [![Circle CI](https://circleci.com/gh/RITAccess/accessmath/tree/master.svg?style=svg)](https://circleci.com/gh/RITAccess/accessmath/tree/master) on master
-
-Build [![Circle CI](https://circleci.com/gh/RITAccess/accessmath/tree/development.svg?style=svg)](https://circleci.com/gh/RITAccess/accessmath/tree/development) on development
+[![Circle CI](https://circleci.com/gh/RITAccess/accessmath/tree/development.svg?style=svg)](https://circleci.com/gh/RITAccess/accessmath/tree/development) on development
 
 AccessMath
 ==========
