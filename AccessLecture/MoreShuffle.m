@@ -98,7 +98,7 @@ static const int outline3Category = 3;
     }
     
     //detects device orientation specifically for UIButtons
-    if([UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationPortrait || [UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationPortraitUpsideDown) {
+    if ([UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationPortrait || [UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationPortraitUpsideDown) {
         
         stackButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         stackButton.backgroundColor = [UIColor darkGrayColor];
@@ -120,7 +120,7 @@ static const int outline3Category = 3;
         reset.frame = CGRectMake(500, 995, 100, 20);
     }
     
-    if( [UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationLandscapeLeft || [UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationLandscapeRight){
+    if ([UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationLandscapeLeft || [UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationLandscapeRight) {
         stackButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         stackButton.backgroundColor = [UIColor darkGrayColor];
         [stackButton setTitle:@"Stack Papers" forState:UIControlStateNormal];
@@ -369,6 +369,7 @@ static const int outline3Category = 3;
 //saves the texture of the nodes and keeps it; also used to keep the nodes in their specific positions
 - (IBAction)saveButton:(UIButton *)pressed
 {
+    // TODO: implement save 
 }
 
 //action to stack papers
@@ -599,7 +600,7 @@ static const int outline3Category = 3;
     firstBody = contact.bodyA;
     secondBody = contact.bodyB;
     
-    if((firstBody.categoryBitMask == (outline2Category | outline3Category)) || (secondBody.categoryBitMask == (outline2Category | outline3Category))){
+    if ((firstBody.categoryBitMask == (outline2Category | outline3Category)) || (secondBody.categoryBitMask == (outline2Category | outline3Category))) {
     }
 }
 
@@ -657,15 +658,15 @@ static const int outline3Category = 3;
      The first if checks to see if the node being clicked is the SKSpriteNode for the paper itself, and thus checks to see if
      it is being dragged or being double clicked to transition to another page.
      */
-    if(checkNode && ([checkNode.name hasPrefix:@"newNode"])){
-        if([touch tapCount] == 2){
+    if (checkNode && ([checkNode.name hasPrefix:@"newNode"])) {
+        if ([touch tapCount] == 2) {
             _tappedTwice = YES;
             if ([checkNode.name isEqualToString:@"newNode"] || [checkNode.name isEqualToString:@"newNode2"] || [checkNode.name isEqualToString:@"newNode3"]) {
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"gotoNotes" object:nil];
             } else{
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"gotoNewNotes" object:nil];
             }
-        } else if([touch tapCount] == 1 && !_tappedTwice) {
+        } else if ([touch tapCount] == 1 && !_tappedTwice) {
             _activeDragNode = (SKSpriteNode *)checkNode;
             [checkNode removeFromParent];
             [self addChild:checkNode];
@@ -674,27 +675,27 @@ static const int outline3Category = 3;
         }
         //changes the color of the text and stores it.
     }
-    else if (checkNode && [checkNode.name hasPrefix:@"color"]){
-        for(SKNode *check in self.children){
-            if([check.name isEqualToString:@"newNode"]){
-                for(SKLabelNode *label in check.children){
-                    if([checkNode.name isEqualToString:@"color1"]){
+    else if (checkNode && [checkNode.name hasPrefix:@"color"]) {
+        for(SKNode *check in self.children) {
+            if ([check.name isEqualToString:@"newNode"]) {
+                for(SKLabelNode *label in check.children) {
+                    if ([checkNode.name isEqualToString:@"color1"]) {
                         label.fontColor = [SKColor blackColor];
                         [saveData sharedData].date = label;
                     }
-                    if([checkNode.name isEqualToString:@"color2"]){
+                    if ([checkNode.name isEqualToString:@"color2"]) {
                         label.fontColor = [SKColor darkGrayColor];
                         [saveData sharedData].date = label;
                     }
-                    if([checkNode.name isEqualToString:@"color3"]){
+                    if ([checkNode.name isEqualToString:@"color3"]) {
                         label.fontColor = [SKColor grayColor];
                         [saveData sharedData].date = label;
                     }
-                    if([checkNode.name isEqualToString:@"color4"]){
+                    if ([checkNode.name isEqualToString:@"color4"]) {
                         label.fontColor = [SKColor lightGrayColor];
                         [saveData sharedData].date = label;
                     }
-                    if([checkNode.name isEqualToString:@"color5"]){
+                    if ([checkNode.name isEqualToString:@"color5"]) {
                         label.fontColor = [SKColor whiteColor];
                         [saveData sharedData].date = label;
                     }
@@ -702,7 +703,7 @@ static const int outline3Category = 3;
             }
         }
     }
-    else if (checkNode && [checkNode.name hasPrefix:@"delete"]){
+    else if (checkNode && [checkNode.name hasPrefix:@"delete"]) {
         [[saveData sharedData].array removeObject:checkNode.parent];
         [checkNode.parent removeFromParent];
         [checkNode removeFromParent];
@@ -723,7 +724,7 @@ static const int outline3Category = 3;
     
     SKNode *checkNode = [self nodeAtPoint:scenePosition];
     
-    if(_activeDragNode != nil){
+    if (_activeDragNode != nil) {
         UITouch *touch = [touches anyObject];
         CGPoint scenePosition = [touch locationInNode:self];
         CGPoint lastPos = [touch previousLocationInNode:self];
