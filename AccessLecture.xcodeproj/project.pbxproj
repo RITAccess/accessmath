@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		216BE84B1BA718E400B43584 /* NoteSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 216BE84A1BA718E400B43584 /* NoteSearchTableViewController.m */; };
 		2194AD201BB2F7DE002D9BD1 /* NoteSearchResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2194AD1F1BB2F7DE002D9BD1 /* NoteSearchResultsViewController.m */; settings = {ASSET_TAGS = (); }; };
-		21C36DEE1BCE9440000CB5B0 /* LandScapeV2 in Resources */ = {isa = PBXBuildFile; fileRef = 21C36DED1BCE9440000CB5B0 /* LandScapeV2 */; settings = {ASSET_TAGS = (); }; };
 		21C36DF11BCE9FB8000CB5B0 /* NotesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21C36DF01BCE9FB8000CB5B0 /* NotesViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		21C36DF71BCEA061000CB5B0 /* NoteShuffleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C36DF61BCEA061000CB5B0 /* NoteShuffleViewController.m */; settings = {ASSET_TAGS = (); }; };
 		21C36DFA1BCEA140000CB5B0 /* MoreShuffle.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C36DF91BCEA140000CB5B0 /* MoreShuffle.m */; settings = {ASSET_TAGS = (); }; };
@@ -173,7 +172,6 @@
 		216BE84A1BA718E400B43584 /* NoteSearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteSearchTableViewController.m; sourceTree = "<group>"; };
 		2194AD1E1BB2F7DE002D9BD1 /* NoteSearchResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteSearchResultsViewController.h; sourceTree = "<group>"; };
 		2194AD1F1BB2F7DE002D9BD1 /* NoteSearchResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteSearchResultsViewController.m; sourceTree = "<group>"; };
-		21C36DED1BCE9440000CB5B0 /* LandScapeV2 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = LandScapeV2; sourceTree = "<group>"; };
 		21C36DF01BCE9FB8000CB5B0 /* NotesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotesViewController.xib; sourceTree = "<group>"; };
 		21C36DF51BCEA061000CB5B0 /* NoteShuffleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteShuffleViewController.h; sourceTree = "<group>"; };
 		21C36DF61BCEA061000CB5B0 /* NoteShuffleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteShuffleViewController.m; sourceTree = "<group>"; };
@@ -641,7 +639,6 @@
 		3FED95FC1370863E00D8D1B8 = {
 			isa = PBXGroup;
 			children = (
-				21C36DED1BCE9440000CB5B0 /* LandScapeV2 */,
 				3FED96111370863E00D8D1B8 /* AccessLecture */,
 				4CE742C71768BDE60026DE71 /* AccessLecture Tests */,
 				4C4FA6F91A76C14400161ABE /* AccessLectureKit */,
@@ -1025,7 +1022,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3FED96161370863E00D8D1B8 /* InfoPlist.strings in Resources */,
-				21C36DEE1BCE9440000CB5B0 /* LandScapeV2 in Resources */,
 				21DA3D9318905B5000BFD96B /* DrawViewController.xib in Resources */,
 				3F2DC98318871FE4008C29BF /* ImageNoteViewController.xib in Resources */,
 				21C36DF11BCE9FB8000CB5B0 /* NotesViewController.xib in Resources */,
