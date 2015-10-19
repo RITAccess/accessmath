@@ -908,6 +908,7 @@
 				3FED96051370863E00D8D1B8 /* Resources */,
 				6BBD5438D4314FD2921B91D1 /* Copy Pods Resources */,
 				4C4691021AB7677E006EE0CF /* Embed Frameworks */,
+				844AC1BF7C8108F16026D9E9 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1092,6 +1093,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AccessLecture/Pods-AccessLecture-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		844AC1BF7C8108F16026D9E9 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AccessLecture/Pods-AccessLecture-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C689DAC0904340B8B718833A /* Check Pods Manifest.lock */ = {
