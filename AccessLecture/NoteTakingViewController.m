@@ -31,7 +31,7 @@
 
 + (instancetype)loadFromStoryboard
 {
-    return [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"NoteTakingViewController"];
+    return [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"NoteTakingViewController"];
 }
 
 - (void)viewDidLoad

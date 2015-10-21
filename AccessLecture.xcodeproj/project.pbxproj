@@ -33,7 +33,6 @@
 		2C882F2E1A8572E500D8E214 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CDF9961193CDE70005707D3 /* SearchViewController.m */; };
 		2CA93202188596D400199CC4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CA93201188596D400199CC4 /* Images.xcassets */; };
 		2CF45FDD17971C0400E6C69E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF45FDC17971C0400E6C69E /* QuartzCore.framework */; };
-		2CFC32A0175E60FC00384AEC /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CFC329F175E60FC00384AEC /* MainStoryboard.storyboard */; };
 		32C23AE47DD846CB8427DBC1 /* libPods-AccessLecture Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FAD181C458E4CEEB87F6ECE /* libPods-AccessLecture Tests.a */; };
 		3F07C34F187B2BA7005BC7EC /* TextNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F07C34E187B2BA7005BC7EC /* TextNoteViewController.m */; };
 		3F07C352187B3627005BC7EC /* TextNoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F07C351187B3627005BC7EC /* TextNoteView.m */; };
@@ -210,7 +209,6 @@
 		2CDF995E193CDE32005707D3 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		2CDF9961193CDE70005707D3 /* SearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		2CF45FDC17971C0400E6C69E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		2CFC329F175E60FC00384AEC /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		3F07C34D187B2BA7005BC7EC /* TextNoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextNoteViewController.h; sourceTree = "<group>"; };
 		3F07C34E187B2BA7005BC7EC /* TextNoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextNoteViewController.m; sourceTree = "<group>"; };
 		3F07C350187B3627005BC7EC /* TextNoteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextNoteView.h; sourceTree = "<group>"; };
@@ -704,7 +702,6 @@
 				3FED96141370863E00D8D1B8 /* InfoPlist.strings */,
 				3FED96171370863E00D8D1B8 /* AccessLecture-Prefix.pch */,
 				3FED96181370863E00D8D1B8 /* main.m */,
-				2CFC329F175E60FC00384AEC /* MainStoryboard.storyboard */,
 				4C3BE5E61A7296F10017854C /* Main.storyboard */,
 			);
 			name = "Supporting Files";
@@ -1035,7 +1032,6 @@
 				3F8D9908187B4E010061DEA2 /* TextNoteView.xib in Resources */,
 				21C36E1A1BCEBAB2000CB5B0 /* Book-Open-32.png in Resources */,
 				2CA93202188596D400199CC4 /* Images.xcassets in Resources */,
-				2CFC32A0175E60FC00384AEC /* MainStoryboard.storyboard in Resources */,
 				21C36E271BCEBB02000CB5B0 /* Square Root-128.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
