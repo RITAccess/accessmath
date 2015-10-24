@@ -483,37 +483,17 @@ static const int outline3Category = 3;
     }
     
     //Undergoing revision
-    /*for (SKSpriteNode *sprite in [saveData sharedData].array) {
-        if ([saveData sharedData].array != nil) {
-            sprite.name = @"newNodeX";
-            if ([saveData sharedData].current != nil) {
-                sprite.texture = [saveData sharedData].current;
-            } else {
-                
-                SKSpriteNode *outliner = [self outlineNode];
-                SKSpriteNode *paperNode = [self paperNode];
-                paperNode.position = CGPointMake(CGRectGetMidX(outliner.frame), CGRectGetMidY(outliner.frame));
-
-                [outliner addChild:paperNode];
-                
-                SKTexture *texSoft = [self.scene.view textureFromNode:outliner];
-                sprite.texture = texSoft;
-            }
-            
-            // TODO: might need to clear notes/save properly on shuffle dismissal
-            //sprite.constraints = @[positionConstraint];
-        
-            [self addChild:sprite];
-        }
-    }*/
     
     NSMutableArray *counter = [[NSMutableArray alloc] init];
     
     for (int i = 0; i < [[saveData sharedData].array count]; i++) {
+        
         SKSpriteNode *sprite;
     
         if ([saveData sharedData].current != nil) {
+            
             sprite = [[SKSpriteNode alloc] initWithTexture:[saveData sharedData].current];
+            
         } else {
             
             SKSpriteNode *outliner = [self outlineNode];
@@ -527,6 +507,7 @@ static const int outline3Category = 3;
         }
         
         sprite.name = @"newNodeX";
+        sprite.position = [[[saveData sharedData].array objectAtIndex:i] position];
         
         sprite.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(20, 20)];
         sprite.physicsBody.categoryBitMask = outline1Category;
@@ -557,14 +538,11 @@ static const int outline3Category = 3;
         
         [[saveData sharedData].array removeObjectAtIndex:i];
         [counter addObject:sprite];
-        
-        [[saveData sharedData] save];
     }
     
     for (SKSpriteNode *node in counter) {
         [[saveData sharedData].array addObject:node];
     }
-    //
     
     if ([saveData sharedData].isStacked == NO) {
         if ([saveData sharedData].isSet == YES) {

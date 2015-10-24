@@ -1012,6 +1012,11 @@ IAoKA
                                 <action selector="highlightColor:" destination="wrH-io-EVq" id="SjR-zI-tK3"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem title="Text Color" id="hXd-Cj-ost">
+                            <connections>
+                                <action selector="changeTextColor:" destination="wrH-io-EVq" id="xec-Ug-LHZ"/>
+                            </connections>
+                        </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="R1A-jO-VDA"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
@@ -1020,6 +1025,7 @@ IAoKA
                         <outlet property="highlightColor" destination="Jhk-3h-Xs4" id="UHH-dI-JLk"/>
                         <outlet property="imageView" destination="E03-tA-Tqy" id="62L-6U-04a"/>
                         <outlet property="increaseTextSize" destination="g3z-R6-M2g" id="dCw-dI-R1U"/>
+                        <outlet property="textColor" destination="hXd-Cj-ost" id="gXq-lV-YyN"/>
                         <outlet property="textView" destination="tNg-L9-C1R" id="fU9-FP-o25"/>
                     </connections>
                 </viewController>
