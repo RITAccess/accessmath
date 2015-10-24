@@ -303,6 +303,7 @@
         
         SKTexture *newTex = [self.scene.view textureFromNode:outliner];
         [saveData sharedData].current = newTex;
+        [[saveData sharedData] save];
         
         MoreShuffle *backy = [[MoreShuffle alloc] initWithSize:CGSizeMake(2000, 1768)];
         SKView *view = (SKView *) self.view;

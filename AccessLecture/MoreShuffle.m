@@ -482,7 +482,8 @@ static const int outline3Category = 3;
         newNode3.constraints = @[positionConstraint];
     }
     
-    for (SKSpriteNode *sprite in [saveData sharedData].array) {
+    //Undergoing revision
+    /*for (SKSpriteNode *sprite in [saveData sharedData].array) {
         if ([saveData sharedData].array != nil) {
             sprite.name = @"newNodeX";
             if ([saveData sharedData].current != nil) {
@@ -498,11 +499,72 @@ static const int outline3Category = 3;
                 SKTexture *texSoft = [self.scene.view textureFromNode:outliner];
                 sprite.texture = texSoft;
             }
+            
             // TODO: might need to clear notes/save properly on shuffle dismissal
-            sprite.constraints = @[positionConstraint];
+            //sprite.constraints = @[positionConstraint];
+        
             [self addChild:sprite];
         }
+    }*/
+    
+    NSMutableArray *counter = [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i < [[saveData sharedData].array count]; i++) {
+        SKSpriteNode *sprite;
+    
+        if ([saveData sharedData].current != nil) {
+            sprite = [[SKSpriteNode alloc] initWithTexture:[saveData sharedData].current];
+        } else {
+            
+            SKSpriteNode *outliner = [self outlineNode];
+            SKSpriteNode *paperNode = [self paperNode];
+            paperNode.position = CGPointMake(CGRectGetMidX(outliner.frame), CGRectGetMidY(outliner.frame));
+            
+            [outliner addChild:paperNode];
+            
+            SKTexture *texSoft = [self.scene.view textureFromNode:outliner];
+            sprite = [[SKSpriteNode alloc] initWithTexture:texSoft];
+        }
+        
+        sprite.name = @"newNodeX";
+        
+        sprite.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(20, 20)];
+        sprite.physicsBody.categoryBitMask = outline1Category;
+        sprite.physicsBody.contactTestBitMask = outline2Category | outline3Category;
+        sprite.physicsBody.collisionBitMask = outline2Category | outline3Category;
+        sprite.physicsBody.affectedByGravity = NO;
+        sprite.physicsBody.allowsRotation = NO;
+        
+        //delete button for user generated note cards
+        SKLabelNode *delText = [SKLabelNode labelNodeWithFontNamed:@"Arial-BoldMT"];
+        delText.text = @"Delete";
+        delText.fontColor = [SKColor blueColor];
+        delText.fontSize = 12;
+        delText.position = CGPointMake(0, -5);
+        
+        SKSpriteNode *delete = [[SKSpriteNode alloc] initWithColor:[SKColor redColor] size:CGSizeMake(50, 20)];
+        [delete addChild:delText];
+        
+        SKTexture *deleture = [self.scene.view textureFromNode:delete];
+        
+        SKSpriteNode *deleteButton = [SKSpriteNode spriteNodeWithTexture:deleture];
+        deleteButton.position = CGPointMake(125, -90);
+        deleteButton.name = @"delete";
+        [sprite addChild:deleteButton];
+        
+        sprite.constraints = @[positionConstraint];
+        [self addChild:sprite];
+        
+        [[saveData sharedData].array removeObjectAtIndex:i];
+        [counter addObject:sprite];
+        
+        [[saveData sharedData] save];
     }
+    
+    for (SKSpriteNode *node in counter) {
+        [[saveData sharedData].array addObject:node];
+    }
+    //
     
     if ([saveData sharedData].isStacked == NO) {
         if ([saveData sharedData].isSet == YES) {
@@ -725,8 +787,6 @@ static const int outline3Category = 3;
     SKNode *checkNode = [self nodeAtPoint:scenePosition];
     
     if (_activeDragNode != nil) {
-        UITouch *touch = [touches anyObject];
-        CGPoint scenePosition = [touch locationInNode:self];
         CGPoint lastPos = [touch previousLocationInNode:self];
         
         CGPoint newLoc = CGPointMake(_activeDragNode.position.x + (scenePosition.x - lastPos.x), _activeDragNode.position.y + (scenePosition.y - lastPos.y));

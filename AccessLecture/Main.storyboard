@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Rr7-bG-jB9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Rr7-bG-jB9">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -170,7 +169,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Lecture Name" textAlignment="center" minimumFontSize="42" translatesAutoresizingMaskIntoConstraints="NO" id="cYO-2g-77U" customClass="ALTextField">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Lecture Name" textAlignment="center" minimumFontSize="42" translatesAutoresizingMaskIntoConstraints="NO" id="cYO-2g-77U" customClass="ALTextField">
                                 <rect key="frame" x="31" y="84" width="538" height="70"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="XNJ-qE-GWd"/>
@@ -417,7 +416,6 @@
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="blankCell" id="y1I-3u-ffa">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="400" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
@@ -589,7 +587,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KPC-Su-7wL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3441" y="1269"/>
+            <point key="canvasLocation" x="3469" y="1269"/>
         </scene>
         <!--Note Search Results View Controller-->
         <scene sceneID="9o1-SO-unf">
@@ -628,7 +626,7 @@
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" editable="NO" text="Note content" translatesAutoresizingMaskIntoConstraints="NO" id="YB2-aK-ryb" userLabel="Note Content View">
                                         <rect key="frame" x="-8" y="45" width="201" height="107"/>
                                         <accessibility key="accessibilityConfiguration">
-                                            <accessibilityTraits key="traits" notEnabled="YES"/>
+                                            <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
                                         </accessibility>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="201" id="05b-pV-xLq"/>
@@ -709,7 +707,7 @@
                                 <variation key="heightClass=regular-widthClass=regular" constant="26"/>
                             </constraint>
                             <constraint firstItem="zo3-3N-sFy" firstAttribute="trailing" secondItem="zeQ-fQ-2Fv" secondAttribute="trailingMargin" id="PcG-40-F7K"/>
-                            <constraint firstAttribute="left" secondItem="zo3-3N-sFy" secondAttribute="leftMargin" identifier="Space from left" id="c6c-AG-4e3">
+                            <constraint firstAttribute="left" secondItem="zo3-3N-sFy" secondAttribute="leftMargin" id="c6c-AG-4e3">
                                 <variation key="heightClass=regular-widthClass=regular" constant="-335"/>
                             </constraint>
                             <constraint firstItem="zo3-3N-sFy" firstAttribute="top" secondItem="jlX-9w-f7h" secondAttribute="bottom" constant="8" symbolic="YES" id="qJL-yN-640"/>
@@ -798,7 +796,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VzL-Ye-1Il" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2790" y="1269"/>
+            <point key="canvasLocation" x="2785" y="1289"/>
         </scene>
         <!--About View Controller-->
         <scene sceneID="KWB-Mn-FIr">
@@ -970,7 +968,7 @@ IAoKA
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hfi-br-vw0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3441" y="596.25"/>
+            <point key="canvasLocation" x="3481" y="596"/>
         </scene>
         <!--New Notes View Controller-->
         <scene sceneID="mPv-8A-CTr">
@@ -1261,7 +1259,7 @@ IAoKA
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Date: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DDG-Ke-r50">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DDG-Ke-r50">
                                 <rect key="frame" x="16" y="31" width="41" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1338,7 +1336,7 @@ In a proof by contradiction we assume, along with the hypotheses, the logical ne
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8MD-dT-aLz">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8MD-dT-aLz">
                                 <rect key="frame" x="16" y="57" width="153" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="153" id="3vD-HR-TzQ"/>
