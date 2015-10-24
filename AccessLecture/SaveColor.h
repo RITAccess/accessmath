@@ -13,6 +13,7 @@
 
 @property UIColor* hightlightColor;
 @property UIColor* textColor;
+@property NSAttributedString* attributed;
 
 +(instancetype)sharedData;
 -(void)save;

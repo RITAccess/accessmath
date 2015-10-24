@@ -94,6 +94,13 @@
     
     [[UIMenuController sharedMenuController] setMenuItems:@[highlightText]];
     
+    if ([SaveColor sharedData].textColor != nil) {
+        textView.textColor = [SaveColor sharedData].textColor;
+    }
+    
+    if ([SaveColor sharedData].attributed != nil) {
+        textView.attributedText = [SaveColor sharedData].attributed;
+    }
     
     [self setUpNavigation];
 }
@@ -274,6 +281,8 @@
     }
     
     textView.attributedText = attributedString;
+    [SaveColor sharedData].attributed = attributedString;
+    [[SaveColor sharedData] save];
 }
 
 //allows the user to add images to their notes

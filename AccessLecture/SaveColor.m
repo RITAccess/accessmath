@@ -12,6 +12,7 @@
 
 static NSString* const highlightColor = @"highlightColor";
 static NSString* const textColor = @"textColor";
+static NSString* const attributed = @"attributed";
 
 - (instancetype)initWithCoder:(NSCoder *)decoder
 {
@@ -19,6 +20,7 @@ static NSString* const textColor = @"textColor";
     if (self) {
         self.hightlightColor = [decoder decodeObjectForKey:highlightColor];
         self.textColor = [decoder decodeObjectForKey:textColor];
+        self.attributed = [decoder decodeObjectForKey:attributed];
     }
     return self;
 }
@@ -27,6 +29,7 @@ static NSString* const textColor = @"textColor";
 {
     [encoder encodeObject:self.hightlightColor forKey:highlightColor];
     [encoder encodeObject:self.textColor forKey:textColor];
+    [encoder encodeObject:self.attributed forKey:attributed];
 }
 
 +(NSString*)filePath
