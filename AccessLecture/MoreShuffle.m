@@ -13,7 +13,6 @@
 @interface MoreShuffle()
 
 @property BOOL created; //checks to see if scene is created
-@property BOOL tappedTwice; //checks to see is node is tapped twice
 @property SKSpriteNode *activeDragNode; //sets the node to be dragged
 
 @end
@@ -78,9 +77,9 @@
 }
 
 //paper nodes physics categories
-static const int outline1Category = 1;
-static const int outline2Category = 2;
-static const int outline3Category = 3;
+enum PHYSICS_CATEGORIES {
+    PHYSICS_CATEGORY_OUTLINE_1, PHYSICS_CATEGORY_OUTLINE_2, PHYSICS_CATEGORY_OUTLINE_3
+};
 
 /*
  Creates the SpriteKity scene
@@ -292,9 +291,9 @@ static const int outline3Category = 3;
     [self.view removeGestureRecognizer:zoomIn];
     [self.view removeGestureRecognizer:leftSwipe];
     [self.view removeGestureRecognizer:panRecognizer];
-    BackgroundImages *backy = [[BackgroundImages alloc] initWithSize:CGSizeMake(1024, 768)];
+    BackgroundImages *backgroundImages = [[BackgroundImages alloc] initWithSize:CGSizeMake(1024, 768)];
     SKView *view = (SKView *) self.view;
-    [view presentScene:backy];
+    [view presentScene:backgroundImages];
 }
 
 //generates more nodes
@@ -304,7 +303,7 @@ static const int outline3Category = 3;
     if ([saveData sharedData].current != nil) {
         newPap = [[SKSpriteNode alloc] initWithTexture:[saveData sharedData].current];
     } else {
-        SKSpriteNode *pap = [self paperNode];
+        SKSpriteNode *pap = [self createPaperNode];
         pap.position = CGPointMake(CGRectGetMidX(outline1.frame), CGRectGetMidY(outline1.frame));
         
         outline1 = [self outlineNode];
@@ -323,9 +322,9 @@ static const int outline3Category = 3;
     newPap.constraints = @[c];
     
     newPap.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(20, 20)];
-    newPap.physicsBody.categoryBitMask = outline1Category;
-    newPap.physicsBody.contactTestBitMask = outline2Category | outline3Category;
-    newPap.physicsBody.collisionBitMask = outline2Category | outline3Category;
+    newPap.physicsBody.categoryBitMask = PHYSICS_CATEGORY_OUTLINE_1;
+    newPap.physicsBody.contactTestBitMask = PHYSICS_CATEGORY_OUTLINE_2 | PHYSICS_CATEGORY_OUTLINE_3;
+    newPap.physicsBody.collisionBitMask = PHYSICS_CATEGORY_OUTLINE_2 | PHYSICS_CATEGORY_OUTLINE_3;
     newPap.physicsBody.affectedByGravity = NO;
     newPap.physicsBody.allowsRotation = NO;
     
@@ -412,8 +411,6 @@ static const int outline3Category = 3;
     self.backgroundColor = [SKColor lightGrayColor];
     self.scaleMode = SKSceneScaleModeFill;
     
-    //[self sceneBoundaries];
-    
     // setup a position constraint
     
     // get the screensize
@@ -432,11 +429,11 @@ static const int outline3Category = 3;
     
     if ([saveData sharedData].current == nil) {
         //for the following nodes, the ability to return to default needs to be instantiated
-        SKSpriteNode *pap = [self paperNode];
-        pap.position = CGPointMake(CGRectGetMidX(outline1.frame), CGRectGetMidY(outline1.frame));
+        SKSpriteNode *paperNode = [self createPaperNode];
+        paperNode.position = CGPointMake(CGRectGetMidX(outline1.frame), CGRectGetMidY(outline1.frame));
         
         outline1 = [self outlineNode];
-        [outline1 addChild:pap];
+        [outline1 addChild:paperNode];
         
         SKTexture *tex = [self.scene.view textureFromNode:outline1];
         newNode = [SKSpriteNode spriteNodeWithTexture:tex];
@@ -444,7 +441,7 @@ static const int outline3Category = 3;
         newNode.constraints = @[positionConstraint];
         [newNode addChild:date];
         
-        SKSpriteNode *pap2 = [self paperNode];
+        SKSpriteNode *pap2 = [self createPaperNode];
         pap2.position = CGPointMake(CGRectGetMidX(outline2.frame), CGRectGetMidY(outline2.frame));
         
         outline2 = [self outlineNode];
@@ -456,7 +453,7 @@ static const int outline3Category = 3;
         newNode2.name = @"newNode2";
         newNode2.constraints = @[positionConstraint];
         
-        SKSpriteNode *pap3 = [self paperNode];
+        SKSpriteNode *pap3 = [self createPaperNode];
         pap3.position = CGPointMake(CGRectGetMidX(outline3.frame), CGRectGetMidY(outline3.frame));
         
         outline3 = [self outlineNode];
@@ -490,15 +487,13 @@ static const int outline3Category = 3;
             } else {
                 
                 SKSpriteNode *outliner = [self outlineNode];
-                SKSpriteNode *paperNode = [self paperNode];
+                SKSpriteNode *paperNode = [self createPaperNode];
                 paperNode.position = CGPointMake(CGRectGetMidX(outliner.frame), CGRectGetMidY(outliner.frame));
-
                 [outliner addChild:paperNode];
-                
-                SKTexture *texSoft = [self.scene.view textureFromNode:outliner];
-                sprite.texture = texSoft;
+            
+                sprite.texture = [self.scene.view textureFromNode:outliner];
             }
-            // TODO: might need to clear notes/save properly on shuffle dismissal
+            // TODO: CRASHES. might need to clear notes/save properly on shuffle dismissal
             sprite.constraints = @[positionConstraint];
             [self addChild:sprite];
         }
@@ -507,22 +502,19 @@ static const int outline3Category = 3;
     if ([saveData sharedData].isStacked == NO) {
         if ([saveData sharedData].isSet == YES) {
             newNode.position = [saveData sharedData].pos1;
-        }
-        else{
+        } else {
             newNode.position =  CGPointMake(CGRectGetMidX(self.frame)-200, CGRectGetMidY(self.frame)+250);
         }
         
         if ([saveData sharedData].isSet2 == YES) {
             newNode2.position = [saveData sharedData].pos2;
-        }
-        else{
+        } else{
             newNode2.position = CGPointMake(CGRectGetMidX(self.frame)-195, CGRectGetMidY(self.frame)+240);
         }
         
         if ([saveData sharedData].isSet3 == YES) {
             newNode3.position = [saveData sharedData].pos3;
-        }
-        else{
+        } else{
             newNode3.position = CGPointMake(CGRectGetMidX(self.frame)-190, CGRectGetMidY(self.frame)+230);
         }
     } else{
@@ -533,25 +525,25 @@ static const int outline3Category = 3;
     
     //newNode1 physics body
     newNode.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(20, 20)];
-    newNode.physicsBody.categoryBitMask = outline1Category;
-    newNode.physicsBody.contactTestBitMask = outline2Category | outline3Category;
-    newNode.physicsBody.collisionBitMask = outline2Category | outline3Category;
+    newNode.physicsBody.categoryBitMask = PHYSICS_CATEGORY_OUTLINE_1;
+    newNode.physicsBody.contactTestBitMask = PHYSICS_CATEGORY_OUTLINE_2 | PHYSICS_CATEGORY_OUTLINE_3;
+    newNode.physicsBody.collisionBitMask = PHYSICS_CATEGORY_OUTLINE_2 | PHYSICS_CATEGORY_OUTLINE_3;
     newNode.physicsBody.affectedByGravity = NO;
     newNode.physicsBody.allowsRotation = NO;
     
     //newNode2 physics body
     newNode2.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(20, 20)];
-    newNode2.physicsBody.categoryBitMask = outline2Category;
-    newNode2.physicsBody.contactTestBitMask = outline1Category | outline3Category;
-    newNode2.physicsBody.collisionBitMask = outline1Category | outline3Category;
+    newNode2.physicsBody.categoryBitMask = PHYSICS_CATEGORY_OUTLINE_2;
+    newNode2.physicsBody.contactTestBitMask = PHYSICS_CATEGORY_OUTLINE_1 | PHYSICS_CATEGORY_OUTLINE_3;
+    newNode2.physicsBody.collisionBitMask = PHYSICS_CATEGORY_OUTLINE_1 | PHYSICS_CATEGORY_OUTLINE_3;
     newNode2.physicsBody.affectedByGravity = NO;
     newNode2.physicsBody.allowsRotation = NO;
     
     //newNode3
     newNode3.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(20, 20)];
-    newNode3.physicsBody.categoryBitMask = outline3Category;
-    newNode3.physicsBody.contactTestBitMask = outline2Category | outline1Category;
-    newNode3.physicsBody.collisionBitMask = outline2Category | outline1Category;
+    newNode3.physicsBody.categoryBitMask = PHYSICS_CATEGORY_OUTLINE_3;
+    newNode3.physicsBody.contactTestBitMask = PHYSICS_CATEGORY_OUTLINE_2 | PHYSICS_CATEGORY_OUTLINE_1;
+    newNode3.physicsBody.collisionBitMask = PHYSICS_CATEGORY_OUTLINE_2 | PHYSICS_CATEGORY_OUTLINE_1;
     newNode3.physicsBody.affectedByGravity = NO;
     newNode3.physicsBody.allowsRotation = NO;
     
@@ -560,58 +552,53 @@ static const int outline3Category = 3;
     [self addChild:newNode];
     
     //Change the color of the text
-    SKSpriteNode *color1 = [[SKSpriteNode alloc] initWithColor:[SKColor blackColor] size:CGSizeMake(120, 60)];
-    color1.position = CGPointMake(-240, 0);
-    color1.name = @"color1";
+    SKSpriteNode *blackColorNode = [[SKSpriteNode alloc] initWithColor:[SKColor blackColor] size:CGSizeMake(120, 60)];
+    blackColorNode.position = CGPointMake(-240, 0);
+    blackColorNode.name = @"blackColorNode";
     
-    SKSpriteNode *color2 = [[SKSpriteNode alloc] initWithColor:[SKColor darkGrayColor] size:CGSizeMake(120, 60)];
-    color2.position = CGPointMake(-120, 0);
-    color2.name = @"color2";
+    SKSpriteNode *darkGrayColorNode = [[SKSpriteNode alloc] initWithColor:[SKColor darkGrayColor] size:CGSizeMake(120, 60)];
+    darkGrayColorNode.position = CGPointMake(-120, 0);
+    darkGrayColorNode.name = @"darkGrayColorNode";
     
-    SKSpriteNode *color3 = [[SKSpriteNode alloc] initWithColor:[SKColor grayColor] size:CGSizeMake(120, 60)];
-    color3.position = CGPointMake(0, 0);
-    color3.name = @"color3";
+    SKSpriteNode *grayColorNode = [[SKSpriteNode alloc] initWithColor:[SKColor grayColor] size:CGSizeMake(120, 60)];
+    grayColorNode.position = CGPointMake(0, 0);
+    grayColorNode.name = @"grayColorNode";
     
-    SKSpriteNode *color4 = [[SKSpriteNode alloc] initWithColor:[SKColor lightGrayColor] size:CGSizeMake(120, 60)];
-    color4.position = CGPointMake(120, 0);
-    color4.name = @"color4";
+    SKSpriteNode *lightGrayColorNode = [[SKSpriteNode alloc] initWithColor:[SKColor lightGrayColor] size:CGSizeMake(120, 60)];
+    lightGrayColorNode.position = CGPointMake(120, 0);
+    lightGrayColorNode.name = @"lightGrayColorNode";
     
-    SKSpriteNode *color5 = [[SKSpriteNode alloc] initWithColor:[SKColor whiteColor] size:CGSizeMake(120, 60)];
-    color5.position = CGPointMake(240, 0);
-    color5.name = @"color5";
+    SKSpriteNode *whiteColorNode = [[SKSpriteNode alloc] initWithColor:[SKColor whiteColor] size:CGSizeMake(120, 60)];
+    whiteColorNode.position = CGPointMake(240, 0);
+    whiteColorNode.name = @"whiteColorNode";
     
     changeText = [[SKSpriteNode alloc] initWithColor:[SKColor blueColor] size:CGSizeMake(612, 66)];
     changeText.position = CGPointMake(325, 40);
-    [changeText addChild:color1];
-    [changeText addChild:color2];
-    [changeText addChild:color3];
-    [changeText addChild:color4];
-    [changeText addChild:color5];
+    [changeText addChild:blackColorNode];
+    [changeText addChild:darkGrayColorNode];
+    [changeText addChild:grayColorNode];
+    [changeText addChild:lightGrayColorNode];
+    [changeText addChild:whiteColorNode];
     [self addChild:changeText];
     
     [[saveData sharedData] save];
 }
 
 //detects if contact is made
--(void)didBeginContact:(SKPhysicsContact *)contact
+- (void)didBeginContact:(SKPhysicsContact *)contact
 {
-    SKPhysicsBody *firstBody, *secondBody;
-    
-    firstBody = contact.bodyA;
-    secondBody = contact.bodyB;
-    
-    if ((firstBody.categoryBitMask == (outline2Category | outline3Category)) || (secondBody.categoryBitMask == (outline2Category | outline3Category))) {
+    if ((contact.bodyA.categoryBitMask == (PHYSICS_CATEGORY_OUTLINE_2 | PHYSICS_CATEGORY_OUTLINE_3)) ||
+        (contact.bodyB.categoryBitMask == (PHYSICS_CATEGORY_OUTLINE_2 | PHYSICS_CATEGORY_OUTLINE_3))) {
+        // TODO: implement
     }
 }
 
 #pragma mark
 
-- (SKSpriteNode *)paperNode
+- (SKSpriteNode *)createPaperNode
 {
     SKSpriteNode *paper = [[SKSpriteNode alloc] initWithColor:[SKColor greenColor] size:CGSizeMake(300, 200)];
-    paper.name = @"paper";
-    _activeDragNode = nil;
-    
+    paper.name = @"paper";    
     return paper;
 }
 
@@ -647,7 +634,9 @@ static const int outline3Category = 3;
 
 //in this section, the nodes' backgrounds will be able to by customized by the students using Access Math
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    _tappedTwice = NO;
+    
+    BOOL tappedTwice = NO;
+    
     UITouch *touch = [touches anyObject];
     CGPoint scenePosition = [touch locationInNode:self];
     
@@ -659,14 +648,15 @@ static const int outline3Category = 3;
      it is being dragged or being double clicked to transition to another page.
      */
     if (checkNode && ([checkNode.name hasPrefix:@"newNode"])) {
+        
         if ([touch tapCount] == 2) {
-            _tappedTwice = YES;
+            tappedTwice = YES;
             if ([checkNode.name isEqualToString:@"newNode"] || [checkNode.name isEqualToString:@"newNode2"] || [checkNode.name isEqualToString:@"newNode3"]) {
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"gotoNotes" object:nil];
             } else{
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"gotoNewNotes" object:nil];
             }
-        } else if ([touch tapCount] == 1 && !_tappedTwice) {
+        } else if ([touch tapCount] == 1 && !tappedTwice) {
             _activeDragNode = (SKSpriteNode *)checkNode;
             [checkNode removeFromParent];
             [self addChild:checkNode];
@@ -676,29 +666,26 @@ static const int outline3Category = 3;
         //changes the color of the text and stores it.
     }
     else if (checkNode && [checkNode.name hasPrefix:@"color"]) {
-        for(SKNode *check in self.children) {
+        for (SKNode *check in self.children) {
             if ([check.name isEqualToString:@"newNode"]) {
-                for(SKLabelNode *label in check.children) {
-                    if ([checkNode.name isEqualToString:@"color1"]) {
+                for (SKLabelNode *label in check.children) {
+                    if ([checkNode.name isEqualToString:@"blackColorNode"]) {
                         label.fontColor = [SKColor blackColor];
-                        [saveData sharedData].date = label;
                     }
-                    if ([checkNode.name isEqualToString:@"color2"]) {
+                    if ([checkNode.name isEqualToString:@"darkGrayColorNode"]) {
                         label.fontColor = [SKColor darkGrayColor];
-                        [saveData sharedData].date = label;
                     }
-                    if ([checkNode.name isEqualToString:@"color3"]) {
+                    if ([checkNode.name isEqualToString:@"grayColorNode"]) {
                         label.fontColor = [SKColor grayColor];
-                        [saveData sharedData].date = label;
                     }
-                    if ([checkNode.name isEqualToString:@"color4"]) {
+                    if ([checkNode.name isEqualToString:@"lightGrayColorNode"]) {
                         label.fontColor = [SKColor lightGrayColor];
-                        [saveData sharedData].date = label;
                     }
-                    if ([checkNode.name isEqualToString:@"color5"]) {
+                    if ([checkNode.name isEqualToString:@"whiteColorNode"]) {
                         label.fontColor = [SKColor whiteColor];
-                        [saveData sharedData].date = label;
                     }
+                    
+                    [saveData sharedData].date = label;
                 }
             }
         }
@@ -725,8 +712,6 @@ static const int outline3Category = 3;
     SKNode *checkNode = [self nodeAtPoint:scenePosition];
     
     if (_activeDragNode != nil) {
-        UITouch *touch = [touches anyObject];
-        CGPoint scenePosition = [touch locationInNode:self];
         CGPoint lastPos = [touch previousLocationInNode:self];
         
         CGPoint newLoc = CGPointMake(_activeDragNode.position.x + (scenePosition.x - lastPos.x), _activeDragNode.position.y + (scenePosition.y - lastPos.y));
