@@ -57,28 +57,24 @@
     //changes color of text
     SKSpriteNode *changeText;
     
-    //stack button
+    // button
     UIButton *stackButton;
-    //generate new node
     UIButton *newPaper;
-    //reset button
     UIButton *reset;
     
     //update date and texture
     SKTexture *curr;
     SKLabelNode *dateColor;
     
+    // gestures
     UISwipeGestureRecognizer *leftSwipe;
-    
     UIPanGestureRecognizer *panRecognizer;
-    
-    //zoom
     UIPinchGestureRecognizer *zoomIn;
 }
 
 //paper nodes physics categories
 enum PHYSICS_CATEGORIES {
-    PHYSICS_CATEGORY_OUTLINE_1, PHYSICS_CATEGORY_OUTLINE_2, PHYSICS_CATEGORY_OUTLINE_3
+    PHYSICS_CATEGORY_OUTLINE_1 = 1, PHYSICS_CATEGORY_OUTLINE_2, PHYSICS_CATEGORY_OUTLINE_3
 };
 
 /*
