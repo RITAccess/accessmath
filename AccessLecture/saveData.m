@@ -11,8 +11,10 @@
 @implementation saveData
 
 static NSString* const array = @"array";
-static NSString* const newNode = @"newNode";
+static NSString* const colorName = @"colorName";
+
 static NSString* const currentTexture = @"currentTexture";
+static NSString* const savedTexture = @"savedTexture";
 static NSString* const dateColor = @"dateColor";
 
 static NSString* const posi1 = @"posi1";
@@ -29,6 +31,7 @@ static NSString* const statPos3 = @"statPos3";
 
 static NSString* const isStacked = @"isStacked";
 
+
 /*
  "Deserializes" the data
  */
@@ -39,9 +42,13 @@ static NSString* const isStacked = @"isStacked";
         if(!_array){
             _array = [[NSMutableArray alloc] init];
         }
+        
         _array = [[decoder decodeObjectForKey:array] mutableCopy];
-        _node = [decoder decodeObjectForKey:newNode];
+    
+        _colorName =[decoder decodeObjectForKey:colorName];
+        
         _current = [decoder decodeObjectForKey:currentTexture];
+        _savedTexture = [decoder decodeBoolForKey:savedTexture];
         _date = [decoder decodeObjectForKey:dateColor];
         
         _pos1 = [decoder decodeCGPointForKey:posi1];
@@ -69,8 +76,10 @@ static NSString* const isStacked = @"isStacked";
         self.array = [[NSMutableArray alloc] init];
     }
     [encoder encodeObject:self.array forKey:array];
-    [encoder encodeObject:self.node forKey:newNode];
+    
+    [encoder encodeObject:self.colorName forKey:colorName];
     [encoder encodeObject:self.current forKey:currentTexture];
+    [encoder encodeBool:self.savedTexture forKey:savedTexture];
     [encoder encodeObject:self.date forKey:dateColor];
     
     [encoder encodeCGPoint:self.pos1 forKey:posi1];
@@ -145,8 +154,8 @@ static NSString* const isStacked = @"isStacked";
 -(void)reset
 {
     self.current = nil;
+    self.colorName = @"";
     self.date = nil;
-    self.node = nil;
     [self.array removeAllObjects];
 }
 

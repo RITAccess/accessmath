@@ -24,12 +24,18 @@
 
 - (id)initWithCoder:(NSCoder *)aCoder {
     if (self = [super init]) {
-        _notes = [aCoder decodeObjectForKey:@"NotesArray"];
+        if (!_notes) {
+            _notes = [[NSMutableArray alloc] init];
+        }
+        _notes = [[aCoder decodeObjectForKey:@"NotesArray"] mutableCopy];
     }
     return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
+    if (!_notes) {
+        _notes = [[NSMutableArray alloc] init];
+    }
     [aCoder encodeObject:_notes forKey:@"NotesArray"];
 }
 

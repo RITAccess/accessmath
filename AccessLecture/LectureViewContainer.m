@@ -21,6 +21,9 @@
 #import "BrushButton.h"
 #import "NoteShuffleButton.h"
 
+#import "saveData.h"
+#import "TextNoteViewController.h"
+
 #pragma mark - Lecture Container Class
 
 @interface LectureViewContainer ()
@@ -65,6 +68,24 @@
 {
     // Refresh the view with the currently selected lecture
     [_ntvc lectureContainer:self switchedToDocument:_selectedLecture];
+    
+    /*
+     Attempt to add note to lecture view
+     */
+    float x = 200;
+    float y = 300;
+    for (int i = 0; i < [[saveData sharedData].array count]; i++) {
+        Note *n = [Note new];
+        n.title = @"Test";
+        n.content = @"Test";
+        n.location = CGPointMake(x, y);
+        
+        x += 50;
+        y += 50;
+        
+        TextNoteViewController *tnvc = [[TextNoteViewController alloc] initWithNote:n];
+        [self.view addSubview:tnvc.view];
+    }
 }
 
 // TODO: reusable would be nice

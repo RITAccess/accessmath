@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Rr7-bG-jB9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Rr7-bG-jB9">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -169,7 +170,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Lecture Name" textAlignment="center" minimumFontSize="42" translatesAutoresizingMaskIntoConstraints="NO" id="cYO-2g-77U" customClass="ALTextField">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Lecture Name" textAlignment="center" minimumFontSize="42" translatesAutoresizingMaskIntoConstraints="NO" id="cYO-2g-77U" customClass="ALTextField">
                                 <rect key="frame" x="31" y="84" width="538" height="70"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="XNJ-qE-GWd"/>
@@ -488,7 +489,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0wo-d8-9p8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2142" y="1269"/>
+            <point key="canvasLocation" x="2116" y="1331"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="05p-cW-hE3">
@@ -545,7 +546,7 @@
                                 <rect key="frame" x="0.0" y="130" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dDO-t7-f6y" id="Ogz-x8-0CZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -626,7 +627,7 @@
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" editable="NO" text="Note content" translatesAutoresizingMaskIntoConstraints="NO" id="YB2-aK-ryb" userLabel="Note Content View">
                                         <rect key="frame" x="-8" y="45" width="201" height="107"/>
                                         <accessibility key="accessibilityConfiguration">
-                                            <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
+                                            <accessibilityTraits key="traits" notEnabled="YES"/>
                                         </accessibility>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="201" id="05b-pV-xLq"/>
@@ -796,7 +797,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VzL-Ye-1Il" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2785" y="1289"/>
+            <point key="canvasLocation" x="2669" y="1321"/>
         </scene>
         <!--About View Controller-->
         <scene sceneID="KWB-Mn-FIr">
@@ -950,7 +951,7 @@ IAoKA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vID-No-fC3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4155.75" y="596.25"/>
+            <point key="canvasLocation" x="4181" y="596"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="6Xq-LL-Kyb">
@@ -1265,7 +1266,7 @@ IAoKA
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DDG-Ke-r50">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Date: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DDG-Ke-r50">
                                 <rect key="frame" x="16" y="31" width="41" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1342,7 +1343,7 @@ In a proof by contradiction we assume, along with the hypotheses, the logical ne
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8MD-dT-aLz">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8MD-dT-aLz">
                                 <rect key="frame" x="16" y="57" width="153" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="153" id="3vD-HR-TzQ"/>
@@ -1787,7 +1788,7 @@ Now when we run our app we will have a visible scrollview has a frame of 0,0,320
                                 <rect key="frame" x="0.0" y="86" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MVF-9r-IOo" id="LwJ-IH-Euu">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -1867,13 +1868,13 @@ Now when we run our app we will have a visible scrollview has a frame of 0,0,320
                                 <rect key="frame" x="0.0" y="86" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="t9X-il-wXN" id="iDT-9W-99L">
-                                    <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" fixedFrame="YES" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pvg-4u-iT2">
                                             <rect key="frame" x="15" y="0.0" width="270" height="43"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -1912,7 +1913,7 @@ Now when we run our app we will have a visible scrollview has a frame of 0,0,320
                                 <rect key="frame" x="0.0" y="86" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5UP-Ru-1y3" id="PyC-m6-w1w">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -2106,7 +2107,7 @@ Now when we run our app we will have a visible scrollview has a frame of 0,0,320
                                         <rect key="frame" x="0.0" y="22" width="554" height="56"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lBv-Jn-Ebn" id="bDi-ni-eRD">
-                                            <rect key="frame" x="0.0" y="0.0" width="554" height="55"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="554" height="55.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -2114,7 +2115,7 @@ Now when we run our app we will have a visible scrollview has a frame of 0,0,320
                                         <rect key="frame" x="0.0" y="78" width="554" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6SJ-0I-YZW" id="0YP-Ax-dPY">
-                                            <rect key="frame" x="0.0" y="0.0" width="554" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="554" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -2122,7 +2123,7 @@ Now when we run our app we will have a visible scrollview has a frame of 0,0,320
                                         <rect key="frame" x="0.0" y="122" width="554" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xm8-zY-KsD" id="r8w-3v-Nq3">
-                                            <rect key="frame" x="0.0" y="0.0" width="554" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="554" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>

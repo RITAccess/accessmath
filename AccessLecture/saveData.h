@@ -14,10 +14,12 @@
 //array that stores SKSpriteNodes
 @property NSMutableArray* array;
 
-@property SKSpriteNode *node;
+//the name of the saved background image/color
+@property NSString* colorName;
 
 //saves the background image as a texture
 @property SKTexture *current;
+@property BOOL savedTexture;
 
 //saves the label to be added
 @property SKLabelNode *date;

@@ -2,13 +2,18 @@
 //  MoreShuffle.m
 //  LandScapeV2
 //
-//  Created by Student on 7/24/15.
-//  Copyright (c) 2015 Student. All rights reserved.
+//  TODO: Major refactoring of code to make it neater and more legible.
+//  Created by Kimberly Sookoo on 7/24/15.
+//  Copyright (c) 2015 Kimberly Sookoo. All rights reserved.
 //
 
 #import "MoreShuffle.h"
 #import "SaveData.h"
 #import "BackgroundImages.h"
+#import "LectureViewContainer.h"
+#import "NoteTakingViewController.h"
+#import "Note.h"
+#import "TextNoteViewController.h"
 
 @interface MoreShuffle()
 
@@ -75,6 +80,16 @@
     
     //zoom
     UIPinchGestureRecognizer *zoomIn;
+    
+    //Array with images
+    NSMutableArray *imageArray;
+    
+    //Array with colors and names
+    NSMutableArray *colorArray;
+    NSMutableArray *colorNames;
+    
+    //Dictionary with colors
+    NSMutableDictionary *colorDict;
 }
 
 //paper nodes physics categories
@@ -82,8 +97,20 @@ static const int outline1Category = 1;
 static const int outline2Category = 2;
 static const int outline3Category = 3;
 
+static NSString* const neon = @"IS787-189.jpg";
+static NSString* const lights = @"IS787-191.jpg";
+static NSString* const note = @"notebook-page.jpg";
+static NSString* const sky = @"sky-183869_640.jpg";
+static NSString* const velvet = @"background-68622_640.jpg";
+static NSString* const ball = @"ball-443852_640.jpg";
+static NSString* const cosmea = @"cosmea-583092_640.jpg";
+static NSString* const ellipse = @"ellipse-784354_640.jpg";
+static NSString* const abstract = @"abstract-21851_640.jpg";
+static NSString* const lines = @"lines-593191_640.jpg";
+static NSString* const stream = @"IS098Z75U.jpg";
+
 /*
- Creates the SpriteKity scene
+ Creates the SpriteKit scene
  Determines what the current orientation of the device is and what the appropriate placement for the UIButtons will be
  Adds the left swipe functionality to display the background options for the papers/nodes.
  Adds the zoom in/zoom out functionality.
@@ -298,7 +325,7 @@ static const int outline3Category = 3;
 }
 
 //generates more nodes
--(IBAction)newPaper
+-(void)newPaper
 {
     SKSpriteNode *newPap;
     if ([saveData sharedData].current != nil) {
@@ -350,11 +377,21 @@ static const int outline3Category = 3;
      Creating more nodes that have their physicsBodies instantiated and can adapt to changes in texture like those in
      the original stack can be stored and saved via the NSMutableArray.
      */
-    [saveData sharedData].node = newPap;
     [[saveData sharedData].array addObject:newPap];
     [[saveData sharedData] save];
     
     [self addChild:newPap];
+    
+    /*
+     Attempt to add note to lecture view
+     
+    Note *n = [Note new];
+    n.title = @"Test";
+    n.content = @"Test";
+    n.location = CGPointMake(200, 300);
+    
+    TextNoteViewController *tnvc = [[TextNoteViewController alloc] initWithNote:n];
+    [self.view addSubview:tnvc.view];*/
 }
 
 
@@ -412,6 +449,16 @@ static const int outline3Category = 3;
     self.backgroundColor = [SKColor lightGrayColor];
     self.scaleMode = SKSceneScaleModeFill;
     
+    //Initialize the arrays
+    imageArray = [[NSMutableArray alloc] initWithObjects:neon,lights,note,sky,velvet,ball,cosmea,ellipse,abstract,lines,stream, nil];
+    
+    colorArray = [[NSMutableArray alloc] initWithObjects:[SKColor yellowColor],[SKColor greenColor],[SKColor orangeColor],[SKColor purpleColor],[SKColor brownColor],[SKColor colorWithRed:0.0f/255.0f green:226.0f/255.0f blue:255.0f/255.0f alpha:1.0],[SKColor colorWithRed:130.0f/255.0f green:0.0f/255.0f blue:255.0f/255.0f alpha:1.0],[SKColor colorWithRed:38.0f/255.0f green:167.0f/255.0f blue:162.0f/255.0f alpha:1.0],[SKColor colorWithRed:255.0f/255.0f green:0.0f/255.0f blue:183.0f/255.0f alpha:1.0],[SKColor colorWithRed:39.0f/255.0f green:78.0f/255.0f blue:19.0f/255.0f alpha:1.0],[SKColor colorWithRed:208.0f/255.0f green:0.0f/255.0f blue:72.0f/255.0f alpha:1.0],[SKColor colorWithRed:158.0f/255.0f green:237.0f/255.0f blue:255.0f/255.0f alpha:1.0],[SKColor colorWithRed:0.0f/255.0f green:48.0f/255.0f blue:154.0f/255.0f alpha:1.0],[SKColor colorWithRed:196.0f/255.0f green:255.0f/255.0f blue:110.0f/255.0f alpha:1.0], nil];
+    
+    colorNames = [[NSMutableArray alloc] initWithObjects:@"yellow", @"green", @"orange", @"purple", @"brown", @"skyblue", @"darkpurple", @"turquoise", @"pink", @"moss", @"softred", @"lightblue", @"darkblue", @"lime", nil];
+    
+    //dictionary that pairs the SKColors with specific names so that they can be recognized.
+    colorDict = [[NSMutableDictionary alloc] initWithObjects:colorArray forKeys:colorNames];
+    
     //[self sceneBoundaries];
     
     // setup a position constraint
@@ -430,7 +477,7 @@ static const int outline3Category = 3;
     }
     date.position = CGPointMake(-110, 70);
     
-    if ([saveData sharedData].current == nil) {
+    if ([[saveData sharedData].colorName length] == 0) {
         //for the following nodes, the ability to return to default needs to be instantiated
         SKSpriteNode *pap = [self paperNode];
         pap.position = CGPointMake(CGRectGetMidX(outline1.frame), CGRectGetMidY(outline1.frame));
@@ -468,33 +515,62 @@ static const int outline3Category = 3;
         newNode3.name = @"newNode3";
         newNode3.constraints = @[positionConstraint];
     } else {
-        newNode = [[SKSpriteNode alloc] initWithTexture:[saveData sharedData].current];
+        
+        SKTexture *newTex;
+        
+        for (NSString *strI in imageArray) {
+            if ([[saveData sharedData].colorName isEqualToString:strI]) {
+                SKSpriteNode *node = [SKSpriteNode spriteNodeWithImageNamed:strI];
+                
+                SKTexture *tex = [self.scene.view textureFromNode:node];
+                SKSpriteNode *paper = [[SKSpriteNode alloc] initWithTexture:tex];
+                paper.size = CGSizeMake(300, 200);
+                
+                SKSpriteNode *outliner = [self outlineNode];
+                [outliner addChild:paper];
+                
+                newTex = [self.scene.view textureFromNode:outliner];
+            }
+        }
+        
+        for (NSString *strC in colorNames) {
+            if ([[saveData sharedData].colorName isEqualToString:strC]) {
+                SKSpriteNode *node = [SKSpriteNode spriteNodeWithColor:[colorDict valueForKey:strC] size:CGSizeMake(100, 100)];
+                
+                SKTexture *tex = [self.scene.view textureFromNode:node];
+                SKSpriteNode *paper = [[SKSpriteNode alloc] initWithTexture:tex];
+                paper.size = CGSizeMake(300, 200);
+                
+                SKSpriteNode *outliner = [self outlineNode];
+                [outliner addChild:paper];
+                
+                newTex = [self.scene.view textureFromNode:outliner];
+            }
+        }
+        
+        newNode = [[SKSpriteNode alloc] initWithTexture:newTex];
         newNode.name = @"newNode";
         newNode.constraints = @[positionConstraint];
         [newNode addChild:date];
         
-        newNode2 = [[SKSpriteNode alloc] initWithTexture:[saveData sharedData].current];
+        newNode2 = [[SKSpriteNode alloc] initWithTexture:newTex];
         newNode2.name = @"newNode2";
         newNode2.constraints = @[positionConstraint];
         
-        newNode3 = [[SKSpriteNode alloc] initWithTexture:[saveData sharedData].current];
+        newNode3 = [[SKSpriteNode alloc] initWithTexture:newTex];
         newNode3.name = @"newNode3";
         newNode3.constraints = @[positionConstraint];
     }
     
     //Undergoing revision
     
-    NSMutableArray *counter = [[NSMutableArray alloc] init];
-    
     for (int i = 0; i < [[saveData sharedData].array count]; i++) {
         
+         NSLog(@"i: %d",i);
+        
         SKSpriteNode *sprite;
-    
-        if ([saveData sharedData].current != nil) {
-            
-            sprite = [[SKSpriteNode alloc] initWithTexture:[saveData sharedData].current];
-            
-        } else {
+        
+        if ([[saveData sharedData].colorName length] == 0) {
             
             SKSpriteNode *outliner = [self outlineNode];
             SKSpriteNode *paperNode = [self paperNode];
@@ -504,6 +580,43 @@ static const int outline3Category = 3;
             
             SKTexture *texSoft = [self.scene.view textureFromNode:outliner];
             sprite = [[SKSpriteNode alloc] initWithTexture:texSoft];
+            
+        } else {
+            
+            SKTexture *newTex;
+            
+            for (NSString *strI in imageArray) {
+                if ([[saveData sharedData].colorName isEqualToString:strI]) {
+                    SKSpriteNode *node = [SKSpriteNode spriteNodeWithImageNamed:strI];
+                    
+                    SKTexture *tex = [self.scene.view textureFromNode:node];
+                    SKSpriteNode *paper = [[SKSpriteNode alloc] initWithTexture:tex];
+                    paper.size = CGSizeMake(300, 200);
+                    
+                    SKSpriteNode *outliner = [self outlineNode];
+                    [outliner addChild:paper];
+                    
+                    newTex = [self.scene.view textureFromNode:outliner];
+                }
+            }
+            
+            for (NSString *strC in colorNames) {
+                if ([[saveData sharedData].colorName isEqualToString:strC]) {
+                    SKSpriteNode *node = [SKSpriteNode spriteNodeWithColor:[colorDict valueForKey:strC] size:CGSizeMake(100, 100)];
+                    
+                    SKTexture *tex = [self.scene.view textureFromNode:node];
+                    SKSpriteNode *paper = [[SKSpriteNode alloc] initWithTexture:tex];
+                    paper.size = CGSizeMake(300, 200);
+                    
+                    SKSpriteNode *outliner = [self outlineNode];
+                    [outliner addChild:paper];
+                    
+                    newTex = [self.scene.view textureFromNode:outliner];
+                }
+            }
+            
+            sprite = [[SKSpriteNode alloc] initWithTexture:newTex];
+
         }
         
         sprite.name = @"newNodeX";
@@ -535,13 +648,6 @@ static const int outline3Category = 3;
         
         sprite.constraints = @[positionConstraint];
         [self addChild:sprite];
-        
-        [[saveData sharedData].array removeObjectAtIndex:i];
-        [counter addObject:sprite];
-    }
-    
-    for (SKSpriteNode *node in counter) {
-        [[saveData sharedData].array addObject:node];
     }
     
     if ([saveData sharedData].isStacked == NO) {

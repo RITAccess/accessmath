@@ -15,6 +15,7 @@
 #import "AddNote.h"
 #import "AddImage.h"
 #import "ImageNoteViewController.h"
+#import "saveData.h"
 
 @interface NoteTakingViewController ()
 
@@ -125,6 +126,12 @@
     } completion:^(BOOL finished) {
             [_document save];
     }];
+    
+    SKSpriteNode *paper = [[SKSpriteNode alloc] initWithColor:[SKColor greenColor] size:CGSizeMake(300, 200)];
+    
+    [[saveData sharedData].array addObject:paper];
+    NSLog(@"%d",[[saveData sharedData].array count]);
+    [[saveData sharedData] save];
 }
 
 - (void)createImageNoteAndPresentAtPoint:(CGPoint)point

@@ -10,6 +10,7 @@
 #import "MockData.h"
 #import "Note.h"
 #import "AMIndex.h"
+#import "MoreShuffle.h"
 
 void signal_done(dispatch_semaphore_t lc, dispatch_semaphore_t count) {
     int res = dispatch_semaphore_wait(count, DISPATCH_TIME_NOW);
