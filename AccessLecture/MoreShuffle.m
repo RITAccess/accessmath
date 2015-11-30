@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 Student. All rights reserved.
 //
 
+#import "Note.h"
+
 #import "MoreShuffle.h"
 #import "SaveData.h"
 #import "BackgroundImages.h"
@@ -59,7 +61,7 @@
     
     // button
     UIButton *stackButton;
-    UIButton *newPaper;
+    UIButton *createPaperNoteButton;
     UIButton *reset;
     
     //update date and texture
@@ -92,6 +94,13 @@ enum PHYSICS_CATEGORIES {
         self.created = YES;
     }
     
+    NSArray* notes = _notesFromSelectedLecture;
+    for (Note* note in notes) {
+        // TODO: create note representation for each note
+        NSLog(@"DEBUG from SKView: %@", note.title);
+        [self newPaper];
+    }
+    
     //detects device orientation specifically for UIButtons
     if ([UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationPortrait || [UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationPortraitUpsideDown) {
         
@@ -100,10 +109,10 @@ enum PHYSICS_CATEGORIES {
         [stackButton setTitle:@"Stack Papers" forState:UIControlStateNormal];
         [stackButton addTarget:self action:@selector(stackPapers:) forControlEvents:UIControlEventTouchUpInside];
         
-        newPaper = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        newPaper.backgroundColor = [UIColor darkGrayColor];
-        [newPaper setTitle:@"Make More" forState:UIControlStateNormal];
-        [newPaper addTarget:self action:@selector(newPaper) forControlEvents:UIControlEventTouchUpInside];
+        createPaperNoteButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        createPaperNoteButton.backgroundColor = [UIColor darkGrayColor];
+        [createPaperNoteButton setTitle:@"Make More" forState:UIControlStateNormal];
+        [createPaperNoteButton addTarget:self action:@selector(newPaper) forControlEvents:UIControlEventTouchUpInside];
         
         reset = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         reset.backgroundColor = [UIColor darkGrayColor];
@@ -111,7 +120,7 @@ enum PHYSICS_CATEGORIES {
         [reset addTarget:self action:@selector(resetButton) forControlEvents:UIControlEventTouchUpInside];
         
         stackButton.frame = CGRectMake(640, 940, 100, 20);
-        newPaper.frame = CGRectMake(640, 995, 100, 20);
+        createPaperNoteButton.frame = CGRectMake(640, 995, 100, 20);
         reset.frame = CGRectMake(500, 995, 100, 20);
     }
     
@@ -121,10 +130,10 @@ enum PHYSICS_CATEGORIES {
         [stackButton setTitle:@"Stack Papers" forState:UIControlStateNormal];
         [stackButton addTarget:self action:@selector(stackPapers:) forControlEvents:UIControlEventTouchUpInside];
         
-        newPaper = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        newPaper.backgroundColor = [UIColor darkGrayColor];
-        [newPaper setTitle:@"Make More" forState:UIControlStateNormal];
-        [newPaper addTarget:self action:@selector(newPaper) forControlEvents:UIControlEventTouchUpInside];
+        createPaperNoteButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        createPaperNoteButton.backgroundColor = [UIColor darkGrayColor];
+        [createPaperNoteButton setTitle:@"Make More" forState:UIControlStateNormal];
+        [createPaperNoteButton addTarget:self action:@selector(newPaper) forControlEvents:UIControlEventTouchUpInside];
         
         reset = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         reset.backgroundColor = [UIColor darkGrayColor];
@@ -132,11 +141,11 @@ enum PHYSICS_CATEGORIES {
         [reset addTarget:self action:@selector(resetButton) forControlEvents:UIControlEventTouchUpInside];
         
         stackButton.frame = CGRectMake(890, 690, 100, 20);
-        newPaper.frame = CGRectMake(890, 740, 100, 20);
+        createPaperNoteButton.frame = CGRectMake(890, 740, 100, 20);
         reset.frame = CGRectMake(750, 740, 100, 20);
     }
     
-    [view addSubview:newPaper];
+    [view addSubview:createPaperNoteButton];
     [view addSubview:reset];
     [view addSubview:stackButton];
     
@@ -163,7 +172,7 @@ enum PHYSICS_CATEGORIES {
     
     self.created = NO;
     
-    [newPaper removeFromSuperview];
+    [createPaperNoteButton removeFromSuperview];
     [reset removeFromSuperview];
     [stackButton removeFromSuperview];
     
@@ -174,6 +183,8 @@ enum PHYSICS_CATEGORIES {
     
     [[NSNotificationCenter defaultCenter]removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
 }
+
+#pragma mark - Orientation
 
 //updates view based on changes
 - (void)orientationChanged:(NSNotification *)notification{
@@ -189,7 +200,7 @@ enum PHYSICS_CATEGORIES {
         case UIInterfaceOrientationPortraitUpsideDown:
         {
             stackButton.frame = CGRectMake(640, 940, 100, 20);
-            newPaper.frame = CGRectMake(640, 995, 100, 20);
+            createPaperNoteButton.frame = CGRectMake(640, 995, 100, 20);
             reset.frame = CGRectMake(500, 995, 100, 20);
         }
             
@@ -198,13 +209,16 @@ enum PHYSICS_CATEGORIES {
         case UIInterfaceOrientationLandscapeRight:
         {
             stackButton.frame = CGRectMake(890, 690, 100, 20);
-            newPaper.frame = CGRectMake(890, 740, 100, 20);
+            createPaperNoteButton.frame = CGRectMake(890, 740, 100, 20);
             reset.frame = CGRectMake(750, 740, 100, 20);
         }
             break;
         case UIInterfaceOrientationUnknown:break;
     }
 }
+
+
+#pragma mark - Gestures
 
 //Allows for user to be able to pan around scence
 - (void)handlePanGesture:(UIPanGestureRecognizer *)panGesture
@@ -292,13 +306,17 @@ enum PHYSICS_CATEGORIES {
     [view presentScene:backgroundImages];
 }
 
+#pragma mark - Node Creation
+
 //generates more nodes
 -(IBAction)newPaper
 {
-    SKSpriteNode *newPap;
+    SKSpriteNode *paperSpriteNode;
+    
     if ([saveData sharedData].current != nil) {
-        newPap = [[SKSpriteNode alloc] initWithTexture:[saveData sharedData].current];
+        paperSpriteNode = [[SKSpriteNode alloc] initWithTexture:[saveData sharedData].current];
     } else {
+        
         SKSpriteNode *pap = [self createPaperNode];
         pap.position = CGPointMake(CGRectGetMidX(outline1.frame), CGRectGetMidY(outline1.frame));
         
@@ -306,23 +324,23 @@ enum PHYSICS_CATEGORIES {
         [outline1 addChild:pap];
         
         SKTexture *tex = [self.scene.view textureFromNode:outline1];
-        newPap = [[SKSpriteNode alloc] initWithTexture:tex];
+        paperSpriteNode = [[SKSpriteNode alloc] initWithTexture:tex];
     }
     // get the screensize
     CGSize scr = self.scene.frame.size;
     // setup a position constraint
     SKConstraint *c = [SKConstraint positionX:[SKRange rangeWithLowerLimit:150 upperLimit:(scr.width-150)] Y:[SKRange rangeWithLowerLimit:200 upperLimit:(scr.height-100)]];
     
-    newPap.position = CGPointMake(450, 500);
-    newPap.name = @"newNodeX";
-    newPap.constraints = @[c];
+    paperSpriteNode.position = CGPointMake(450, 500);
+    paperSpriteNode.name = @"newNodeX";
+    paperSpriteNode.constraints = @[c];
     
-    newPap.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(20, 20)];
-    newPap.physicsBody.categoryBitMask = PHYSICS_CATEGORY_OUTLINE_1;
-    newPap.physicsBody.contactTestBitMask = PHYSICS_CATEGORY_OUTLINE_2 | PHYSICS_CATEGORY_OUTLINE_3;
-    newPap.physicsBody.collisionBitMask = PHYSICS_CATEGORY_OUTLINE_2 | PHYSICS_CATEGORY_OUTLINE_3;
-    newPap.physicsBody.affectedByGravity = NO;
-    newPap.physicsBody.allowsRotation = NO;
+    paperSpriteNode.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(20, 20)];
+    paperSpriteNode.physicsBody.categoryBitMask = PHYSICS_CATEGORY_OUTLINE_1;
+    paperSpriteNode.physicsBody.contactTestBitMask = PHYSICS_CATEGORY_OUTLINE_2 | PHYSICS_CATEGORY_OUTLINE_3;
+    paperSpriteNode.physicsBody.collisionBitMask = PHYSICS_CATEGORY_OUTLINE_2 | PHYSICS_CATEGORY_OUTLINE_3;
+    paperSpriteNode.physicsBody.affectedByGravity = NO;
+    paperSpriteNode.physicsBody.allowsRotation = NO;
     
     //delete button for user generated note cards
     SKLabelNode *delText = [SKLabelNode labelNodeWithFontNamed:@"Arial-BoldMT"];
@@ -339,17 +357,17 @@ enum PHYSICS_CATEGORIES {
     SKSpriteNode *deleteButton = [SKSpriteNode spriteNodeWithTexture:deleture];
     deleteButton.position = CGPointMake(125, -90);
     deleteButton.name = @"delete";
-    [newPap addChild:deleteButton];
+    [paperSpriteNode addChild:deleteButton];
     
     /*
      Creating more nodes that have their physicsBodies instantiated and can adapt to changes in texture like those in
      the original stack can be stored and saved via the NSMutableArray.
      */
-    [saveData sharedData].node = newPap;
-    [[saveData sharedData].array addObject:newPap];
+    [saveData sharedData].node = paperSpriteNode;
+    [[saveData sharedData].array addObject:paperSpriteNode];
     [[saveData sharedData] save];
     
-    [self addChild:newPap];
+    [self addChild:paperSpriteNode];
 }
 
 

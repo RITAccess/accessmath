@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 Student. All rights reserved.
 //
 
+#import "Note.h"
+
 #import "NoteShuffleViewController.h"
 #import <SpriteKit/SpriteKit.h>
 #import "MoreShuffle.h"
@@ -30,9 +32,15 @@
 
 -(void) viewWillAppear:(BOOL)animated
 {
-    MoreShuffle *math = [[MoreShuffle alloc] initWithSize:CGSizeMake(2000, 1768)];
+    NSArray* notes = [[NSArray alloc]initWithArray:_selectedLecture.lecture.notes];
+    
+    // Pass notes to MoreShuffle
+    // TODO: fix propogation issue
+    MoreShuffle *shuffleSKScene = [[MoreShuffle alloc] initWithSize:CGSizeMake(2000, 1768)];
+    shuffleSKScene.notesFromSelectedLecture = notes;
+    
     SKView *view = (SKView *)self.view;
-    [view presentScene:math];
+    [view presentScene:shuffleSKScene];
 }
 
 - (void)viewDidLoad

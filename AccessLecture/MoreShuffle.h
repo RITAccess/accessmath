@@ -10,4 +10,6 @@
 
 @interface MoreShuffle : SKScene
 
+@property NSArray* notesFromSelectedLecture;
+
 @end
