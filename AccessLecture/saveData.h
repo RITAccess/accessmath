@@ -17,7 +17,7 @@
 @property SKSpriteNode *node;
 
 //saves the background image as a texture
-@property SKTexture *current;
+@property SKTexture *currentTexture;
 
 //saves the label to be added
 @property SKLabelNode *date;
@@ -25,11 +25,11 @@
 //saves the positions of the SKSpriteNodes not created by the user
 //booleans helps decide if data is stacked or not
 @property CGPoint pos1;
-@property BOOL isSet;
+@property BOOL isStacked;
 @property CGPoint pos2;
-@property BOOL isSet2;
+@property BOOL isStacked2;
 @property CGPoint pos3;
-@property BOOL isSet3;
+@property BOOL isStacked3;
 
 //the location of the SKSpriteNodes when stacked
 @property CGPoint statPos;
@@ -37,7 +37,7 @@
 @property CGPoint statPos3;
 
 //determines if they're stacked
-@property BOOL isStacked;
+@property BOOL isAllStacked;
 
 
 +(instancetype)sharedData;

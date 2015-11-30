@@ -25,9 +25,6 @@
     //original center
     CGPoint _originalCenter;
     
-    //date node
-    SKLabelNode *date;
-    
     //black outlines for the nodes
     SKSpriteNode *outline;
     SKSpriteNode *outline1;
@@ -306,118 +303,8 @@ enum PHYSICS_CATEGORIES {
     [view presentScene:backgroundImages];
 }
 
-#pragma mark - Node Creation
 
-//generates more nodes
--(IBAction)newPaper
-{
-    SKSpriteNode *paperSpriteNode;
-    
-    if ([saveData sharedData].current != nil) {
-        paperSpriteNode = [[SKSpriteNode alloc] initWithTexture:[saveData sharedData].current];
-    } else {
-        
-        SKSpriteNode *pap = [self createPaperNode];
-        pap.position = CGPointMake(CGRectGetMidX(outline1.frame), CGRectGetMidY(outline1.frame));
-        
-        outline1 = [self outlineNode];
-        [outline1 addChild:pap];
-        
-        SKTexture *tex = [self.scene.view textureFromNode:outline1];
-        paperSpriteNode = [[SKSpriteNode alloc] initWithTexture:tex];
-    }
-    // get the screensize
-    CGSize scr = self.scene.frame.size;
-    // setup a position constraint
-    SKConstraint *c = [SKConstraint positionX:[SKRange rangeWithLowerLimit:150 upperLimit:(scr.width-150)] Y:[SKRange rangeWithLowerLimit:200 upperLimit:(scr.height-100)]];
-    
-    paperSpriteNode.position = CGPointMake(450, 500);
-    paperSpriteNode.name = @"newNodeX";
-    paperSpriteNode.constraints = @[c];
-    
-    paperSpriteNode.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(20, 20)];
-    paperSpriteNode.physicsBody.categoryBitMask = PHYSICS_CATEGORY_OUTLINE_1;
-    paperSpriteNode.physicsBody.contactTestBitMask = PHYSICS_CATEGORY_OUTLINE_2 | PHYSICS_CATEGORY_OUTLINE_3;
-    paperSpriteNode.physicsBody.collisionBitMask = PHYSICS_CATEGORY_OUTLINE_2 | PHYSICS_CATEGORY_OUTLINE_3;
-    paperSpriteNode.physicsBody.affectedByGravity = NO;
-    paperSpriteNode.physicsBody.allowsRotation = NO;
-    
-    //delete button for user generated note cards
-    SKLabelNode *delText = [SKLabelNode labelNodeWithFontNamed:@"Arial-BoldMT"];
-    delText.text = @"Delete";
-    delText.fontColor = [SKColor blueColor];
-    delText.fontSize = 12;
-    delText.position = CGPointMake(0, -5);
-    
-    SKSpriteNode *delete = [[SKSpriteNode alloc] initWithColor:[SKColor redColor] size:CGSizeMake(50, 20)];
-    [delete addChild:delText];
-    
-    SKTexture *deleture = [self.scene.view textureFromNode:delete];
-    
-    SKSpriteNode *deleteButton = [SKSpriteNode spriteNodeWithTexture:deleture];
-    deleteButton.position = CGPointMake(125, -90);
-    deleteButton.name = @"delete";
-    [paperSpriteNode addChild:deleteButton];
-    
-    /*
-     Creating more nodes that have their physicsBodies instantiated and can adapt to changes in texture like those in
-     the original stack can be stored and saved via the NSMutableArray.
-     */
-    [saveData sharedData].node = paperSpriteNode;
-    [[saveData sharedData].array addObject:paperSpriteNode];
-    [[saveData sharedData] save];
-    
-    [self addChild:paperSpriteNode];
-}
-
-
-- (IBAction)resetButton
-{
-    [self removeAllChildren];
-    [[saveData sharedData] reset];
-    [[saveData sharedData] save];
-    [self createScene];
-}
-
-//saves the texture of the nodes and keeps it; also used to keep the nodes in their specific positions
-- (IBAction)saveButton:(UIButton *)pressed
-{
-    // TODO: implement save 
-}
-
-//action to stack papers
--(IBAction)stackPapers:(UIButton *)pressed
-{
-    [saveData sharedData].isStacked = YES;
-    
-    for (SKSpriteNode *node in self.children) {
-        if ([node.name isEqualToString:@"newNode"]) {
-            newNode.position = CGPointMake(600, 1000);
-            [saveData sharedData].statPos = newNode.position;
-        }
-        if ([node.name isEqualToString:@"newNode2"]) {
-            newNode2.position = CGPointMake(610, 990);
-            [saveData sharedData].statPos2 = newNode2.position;
-        }
-        if ([node.name isEqualToString:@"newNode3"]) {
-            newNode3.position = CGPointMake(620, 980);
-            [saveData sharedData].statPos3 = newNode3.position;
-        }
-    }
-    
-    float x = 1200;
-    float y = 1000;
-    
-    if ([saveData sharedData].array != nil) {
-        for (SKSpriteNode *sprite in [saveData sharedData].array) {
-            sprite.position = CGPointMake(x, y);
-            x -= 10;
-            y += 15;
-        }
-    }
-    
-    [[saveData sharedData] save];
-}
+#pragma mark - Scene Creation
 
 //creates the initial SKScene
 -(void)createScene
@@ -426,22 +313,20 @@ enum PHYSICS_CATEGORIES {
     self.scaleMode = SKSceneScaleModeFill;
     
     // setup a position constraint
+    CGSize screenSize = self.scene.frame.size;
+    SKConstraint *positionConstraint = [SKConstraint positionX:[SKRange rangeWithLowerLimit:150 upperLimit:(screenSize.width-150)] Y:[SKRange rangeWithLowerLimit:200 upperLimit:(screenSize.height-100)]];
     
-    // get the screensize
-    CGSize scr = self.scene.frame.size;
-    // setup a position constraint
-    SKConstraint *positionConstraint = [SKConstraint positionX:[SKRange rangeWithLowerLimit:150 upperLimit:(scr.width-150)] Y:[SKRange rangeWithLowerLimit:200 upperLimit:(scr.height-100)]];
-    
+    // Create date label if NULL
+    SKLabelNode *dateLabelNode;
     if ([saveData sharedData].date != nil) {
-        date = [saveData sharedData].date;
-        [date removeFromParent];
+        dateLabelNode = [saveData sharedData].date;
+        [dateLabelNode removeFromParent];
     } else {
-        
-        date = [self dateNode];
+        dateLabelNode = [self dateNode];
     }
-    date.position = CGPointMake(-110, 70);
+    dateLabelNode.position = CGPointMake(-110, 70);
     
-    if ([saveData sharedData].current == nil) {
+    if ([saveData sharedData].currentTexture == nil) {
         //for the following nodes, the ability to return to default needs to be instantiated
         SKSpriteNode *paperNode = [self createPaperNode];
         paperNode.position = CGPointMake(CGRectGetMidX(outline1.frame), CGRectGetMidY(outline1.frame));
@@ -453,7 +338,7 @@ enum PHYSICS_CATEGORIES {
         newNode = [SKSpriteNode spriteNodeWithTexture:tex];
         newNode.name = @"newNode";
         newNode.constraints = @[positionConstraint];
-        [newNode addChild:date];
+        [newNode addChild:dateLabelNode];
         
         SKSpriteNode *pap2 = [self createPaperNode];
         pap2.position = CGPointMake(CGRectGetMidX(outline2.frame), CGRectGetMidY(outline2.frame));
@@ -479,16 +364,16 @@ enum PHYSICS_CATEGORIES {
         newNode3.name = @"newNode3";
         newNode3.constraints = @[positionConstraint];
     } else {
-        newNode = [[SKSpriteNode alloc] initWithTexture:[saveData sharedData].current];
+        newNode = [[SKSpriteNode alloc] initWithTexture:[saveData sharedData].currentTexture];
         newNode.name = @"newNode";
         newNode.constraints = @[positionConstraint];
-        [newNode addChild:date];
+        [newNode addChild:dateLabelNode];
         
-        newNode2 = [[SKSpriteNode alloc] initWithTexture:[saveData sharedData].current];
+        newNode2 = [[SKSpriteNode alloc] initWithTexture:[saveData sharedData].currentTexture];
         newNode2.name = @"newNode2";
         newNode2.constraints = @[positionConstraint];
         
-        newNode3 = [[SKSpriteNode alloc] initWithTexture:[saveData sharedData].current];
+        newNode3 = [[SKSpriteNode alloc] initWithTexture:[saveData sharedData].currentTexture];
         newNode3.name = @"newNode3";
         newNode3.constraints = @[positionConstraint];
     }
@@ -496,8 +381,8 @@ enum PHYSICS_CATEGORIES {
     for (SKSpriteNode *sprite in [saveData sharedData].array) {
         if ([saveData sharedData].array != nil) {
             sprite.name = @"newNodeX";
-            if ([saveData sharedData].current != nil) {
-                sprite.texture = [saveData sharedData].current;
+            if ([saveData sharedData].currentTexture != nil) {
+                sprite.texture = [saveData sharedData].currentTexture;
             } else {
                 
                 SKSpriteNode *outliner = [self outlineNode];
@@ -514,19 +399,19 @@ enum PHYSICS_CATEGORIES {
     }
     
     if ([saveData sharedData].isStacked == NO) {
-        if ([saveData sharedData].isSet == YES) {
+        if ([saveData sharedData].isStacked) {
             newNode.position = [saveData sharedData].pos1;
         } else {
             newNode.position =  CGPointMake(CGRectGetMidX(self.frame)-200, CGRectGetMidY(self.frame)+250);
         }
         
-        if ([saveData sharedData].isSet2 == YES) {
+        if ([saveData sharedData].isStacked2) {
             newNode2.position = [saveData sharedData].pos2;
         } else{
             newNode2.position = CGPointMake(CGRectGetMidX(self.frame)-195, CGRectGetMidY(self.frame)+240);
         }
         
-        if ([saveData sharedData].isSet3 == YES) {
+        if ([saveData sharedData].isStacked3) {
             newNode3.position = [saveData sharedData].pos3;
         } else{
             newNode3.position = CGPointMake(CGRectGetMidX(self.frame)-190, CGRectGetMidY(self.frame)+230);
@@ -598,16 +483,121 @@ enum PHYSICS_CATEGORIES {
     [[saveData sharedData] save];
 }
 
-//detects if contact is made
-- (void)didBeginContact:(SKPhysicsContact *)contact
+
+#pragma mark - Button Creation
+
+//generates more nodes
+-(IBAction)newPaper
 {
-    if ((contact.bodyA.categoryBitMask == (PHYSICS_CATEGORY_OUTLINE_2 | PHYSICS_CATEGORY_OUTLINE_3)) ||
-        (contact.bodyB.categoryBitMask == (PHYSICS_CATEGORY_OUTLINE_2 | PHYSICS_CATEGORY_OUTLINE_3))) {
-        // TODO: implement
+    SKSpriteNode *paperSpriteNode;
+    
+    if ([saveData sharedData].currentTexture != nil) {
+        paperSpriteNode = [[SKSpriteNode alloc] initWithTexture:[saveData sharedData].currentTexture];
+    } else {
+        
+        SKSpriteNode *pap = [self createPaperNode];
+        pap.position = CGPointMake(CGRectGetMidX(outline1.frame), CGRectGetMidY(outline1.frame));
+        
+        outline1 = [self outlineNode];
+        [outline1 addChild:pap];
+        
+        SKTexture *tex = [self.scene.view textureFromNode:outline1];
+        paperSpriteNode = [[SKSpriteNode alloc] initWithTexture:tex];
     }
+    // get the screensize
+    CGSize scr = self.scene.frame.size;
+    // setup a position constraint
+    SKConstraint *c = [SKConstraint positionX:[SKRange rangeWithLowerLimit:150 upperLimit:(scr.width-150)] Y:[SKRange rangeWithLowerLimit:200 upperLimit:(scr.height-100)]];
+    
+    paperSpriteNode.position = CGPointMake(450, 500);
+    paperSpriteNode.name = @"newNodeX";
+    paperSpriteNode.constraints = @[c];
+    
+    paperSpriteNode.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(20, 20)];
+    paperSpriteNode.physicsBody.categoryBitMask = PHYSICS_CATEGORY_OUTLINE_1;
+    paperSpriteNode.physicsBody.contactTestBitMask = PHYSICS_CATEGORY_OUTLINE_2 | PHYSICS_CATEGORY_OUTLINE_3;
+    paperSpriteNode.physicsBody.collisionBitMask = PHYSICS_CATEGORY_OUTLINE_2 | PHYSICS_CATEGORY_OUTLINE_3;
+    paperSpriteNode.physicsBody.affectedByGravity = NO;
+    paperSpriteNode.physicsBody.allowsRotation = NO;
+    
+    //delete button for user generated note cards
+    SKLabelNode *delText = [SKLabelNode labelNodeWithFontNamed:@"Arial-BoldMT"];
+    delText.text = @"Delete";
+    delText.fontColor = [SKColor blueColor];
+    delText.fontSize = 12;
+    delText.position = CGPointMake(0, -5);
+    
+    SKSpriteNode *delete = [[SKSpriteNode alloc] initWithColor:[SKColor redColor] size:CGSizeMake(50, 20)];
+    [delete addChild:delText];
+    
+    SKTexture *deleture = [self.scene.view textureFromNode:delete];
+    
+    SKSpriteNode *deleteButton = [SKSpriteNode spriteNodeWithTexture:deleture];
+    deleteButton.position = CGPointMake(125, -90);
+    deleteButton.name = @"delete";
+    [paperSpriteNode addChild:deleteButton];
+    
+    /*
+     Creating more nodes that have their physicsBodies instantiated and can adapt to changes in texture like those in
+     the original stack can be stored and saved via the NSMutableArray.
+     */
+    [saveData sharedData].node = paperSpriteNode;
+    [[saveData sharedData].array addObject:paperSpriteNode];
+    [[saveData sharedData] save];
+    
+    [self addChild:paperSpriteNode];
 }
 
-#pragma mark
+
+- (IBAction)resetButton
+{
+    [self removeAllChildren];
+    [[saveData sharedData] reset];
+    [[saveData sharedData] save];
+    [self createScene];
+}
+
+//saves the texture of the nodes and keeps it; also used to keep the nodes in their specific positions
+- (IBAction)saveButton:(UIButton *)pressed
+{
+    // TODO: implement save
+}
+
+//action to stack papers
+-(IBAction)stackPapers:(UIButton *)pressed
+{
+    [saveData sharedData].isStacked = YES;
+    
+    for (SKSpriteNode *node in self.children) {
+        if ([node.name isEqualToString:@"newNode"]) {
+            newNode.position = CGPointMake(600, 1000);
+            [saveData sharedData].statPos = newNode.position;
+        }
+        if ([node.name isEqualToString:@"newNode2"]) {
+            newNode2.position = CGPointMake(610, 990);
+            [saveData sharedData].statPos2 = newNode2.position;
+        }
+        if ([node.name isEqualToString:@"newNode3"]) {
+            newNode3.position = CGPointMake(620, 980);
+            [saveData sharedData].statPos3 = newNode3.position;
+        }
+    }
+    
+    float x = 1200;
+    float y = 1000;
+    
+    if ([saveData sharedData].array != nil) {
+        for (SKSpriteNode *sprite in [saveData sharedData].array) {
+            sprite.position = CGPointMake(x, y);
+            x -= 10;
+            y += 15;
+        }
+    }
+    
+    [[saveData sharedData] save];
+}
+
+#pragma mark - Node Creation
 
 - (SKSpriteNode *)createPaperNode
 {
@@ -615,8 +605,6 @@ enum PHYSICS_CATEGORIES {
     paper.name = @"paper";    
     return paper;
 }
-
-#pragma mark
 
 - (SKSpriteNode *)outlineNode
 {
@@ -626,24 +614,31 @@ enum PHYSICS_CATEGORIES {
     return outline;
 }
 
-#pragma mark
-
 - (SKLabelNode *)dateNode
 {
-    SKLabelNode *datey = [SKLabelNode labelNodeWithFontNamed:@"Arial-BoldMT"];
-    datey.name = @"date";
-    datey.text = @"Date: ";
-    datey.fontSize = 35;
-    datey.fontColor = [SKColor whiteColor];
-    return datey;
+    SKLabelNode *dateLabelNode = [SKLabelNode labelNodeWithFontNamed:@"Arial-BoldMT"];
+    dateLabelNode.name = @"date";
+    dateLabelNode.text = @"Date: ";
+    dateLabelNode.fontSize = 35;
+    dateLabelNode.fontColor = [SKColor whiteColor];
+    return dateLabelNode;
 }
-
-#pragma mark
 -(SKSpriteNode *)optionsView
 {
     SKSpriteNode *opt2 = [[SKSpriteNode alloc] initWithColor:[SKColor lightGrayColor] size:CGSizeMake(300, 2600)];
     opt2.position = CGPointMake(CGRectGetMaxX(self.frame)-100, CGRectGetMaxY(self.frame)-500);
     return opt2;
+}
+
+#pragma mark - Touches
+
+//detects if contact is made
+- (void)didBeginContact:(SKPhysicsContact *)contact
+{
+    if ((contact.bodyA.categoryBitMask == (PHYSICS_CATEGORY_OUTLINE_2 | PHYSICS_CATEGORY_OUTLINE_3)) ||
+        (contact.bodyB.categoryBitMask == (PHYSICS_CATEGORY_OUTLINE_2 | PHYSICS_CATEGORY_OUTLINE_3))) {
+        // TODO: implement
+    }
 }
 
 //in this section, the nodes' backgrounds will be able to by customized by the students using Access Math
@@ -734,15 +729,15 @@ enum PHYSICS_CATEGORIES {
         
         if ([checkNode.name isEqualToString:@"newNode"]) {
             [saveData sharedData].pos1 = newLoc;
-            [saveData sharedData].isSet = YES;
+            [saveData sharedData].isStacked = YES;
         }
         if ([checkNode.name isEqualToString:@"newNode2"]) {
             [saveData sharedData].pos2 = newLoc;
-            [saveData sharedData].isSet2 = YES;
+            [saveData sharedData].isStacked2 = YES;
         }
         if ([checkNode.name isEqualToString:@"newNode3"]) {
             [saveData sharedData].pos3 = newLoc;
-            [saveData sharedData].isSet3 = YES;
+            [saveData sharedData].isStacked3 = YES;
         }
         
         [saveData sharedData].isStacked = NO;
