@@ -48,7 +48,6 @@ static NSString* const isStacked = @"isStacked";
         _colorName =[decoder decodeObjectForKey:colorName];
         
         _current = [decoder decodeObjectForKey:currentTexture];
-        _savedTexture = [decoder decodeBoolForKey:savedTexture];
         _date = [decoder decodeObjectForKey:dateColor];
         
         _pos1 = [decoder decodeCGPointForKey:posi1];
@@ -79,7 +78,6 @@ static NSString* const isStacked = @"isStacked";
     
     [encoder encodeObject:self.colorName forKey:colorName];
     [encoder encodeObject:self.current forKey:currentTexture];
-    [encoder encodeBool:self.savedTexture forKey:savedTexture];
     [encoder encodeObject:self.date forKey:dateColor];
     
     [encoder encodeCGPoint:self.pos1 forKey:posi1];

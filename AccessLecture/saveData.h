@@ -19,7 +19,6 @@
 
 //saves the background image as a texture
 @property SKTexture *current;
-@property BOOL savedTexture;
 
 //saves the label to be added
 @property SKLabelNode *date;

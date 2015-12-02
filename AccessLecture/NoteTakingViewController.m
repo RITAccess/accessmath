@@ -127,6 +127,7 @@
             [_document save];
     }];
     
+    //HERE IS THE SPRITEKIT
     SKSpriteNode *paper = [[SKSpriteNode alloc] initWithColor:[SKColor greenColor] size:CGSizeMake(300, 200)];
     
     [[saveData sharedData].array addObject:paper];
