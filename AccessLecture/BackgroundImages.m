@@ -12,6 +12,8 @@
 #import "BackgroundImages.h"
 #import "MoreShuffle.h"
 #import "saveData.h"
+#import "BackgroundTile.h"
+#import "ShuffleNoteActions.h"
 
 @interface BackgroundImages()
 
@@ -38,6 +40,8 @@
     
     //Dictionary with colors
     NSMutableDictionary *colorDict;
+    
+    NSMutableArray *backgroundTiles;
 }
 
 static NSString* const neon = @"IS787-189.jpg";
@@ -74,7 +78,6 @@ static NSString* const stream = @"IS098Z75U.jpg";
 {
     [self.view removeGestureRecognizer:closeSwipe];
     [self.view removeGestureRecognizer:zoomIn];
-    [saveData sharedData].savedTexture = NO;
     [[saveData sharedData] save];
     MoreShuffle *backy = [[MoreShuffle alloc] initWithSize:CGSizeMake(2000, 1768)];
     SKView *view = (SKView *) self.view;
@@ -117,11 +120,9 @@ static NSString* const stream = @"IS098Z75U.jpg";
     }
 }
 
-//Creates the scene and presents the images.
--(void)createScene
-{
-    self.backgroundColor = [SKColor grayColor];
-    self.scaleMode = SKSceneScaleModeFill;
+//creates custom version of images
+//allows images to have a boolean value
+-(NSMutableArray*)createTiles{
     
     //Initialize the arrays
     imageArray = [[NSMutableArray alloc] initWithObjects:neon,lights,note,sky,velvet,ball,cosmea,ellipse,abstract,lines,stream, nil];
@@ -132,33 +133,53 @@ static NSString* const stream = @"IS098Z75U.jpg";
     
     colorDict = [[NSMutableDictionary alloc] initWithObjects:colorArray forKeys:colorNames];
     
+    backgroundTiles = [[NSMutableArray alloc] init];
+    
+    //Loop to generate background image/color choices
+    
+    for (NSString *str in imageArray) {
+        BackgroundTile *bt = [[BackgroundTile alloc] init];
+        bt.backgroundTileName = str;
+        bt.isColor = NO;
+        bt.colorName = NULL;
+        [backgroundTiles addObject:bt];
+    }
+    
+    for (NSString* key in colorDict) {
+        BackgroundTile *bt = [[BackgroundTile alloc] init];
+        bt.backgroundTileName = key;
+        bt.isColor = YES;
+        bt.colorName = [colorDict valueForKey:key];
+        [backgroundTiles addObject:bt];
+    }
+    
+    return backgroundTiles;
+}
+
+//Creates the scene and presents the images.
+-(void)createScene
+{
+    self.backgroundColor = [SKColor grayColor];
+    self.scaleMode = SKSceneScaleModeFill;
+    
+    NSMutableArray *array = [self createTiles];
     
     //Loop to generate background image/color choices
     CGFloat x = 80;
     CGFloat y = 600;
     
-    for (NSString *str in imageArray) {
-        SKSpriteNode *node = [SKSpriteNode spriteNodeWithImageNamed:str];
-        node.size = CGSizeMake(100, 100);
-        node.position = CGPointMake(x, y);
-        node.name = str;
+    for (BackgroundTile* tile in array) {
+        SKSpriteNode *node;
         
-        if (x < 920) {
-            x += 120;
-        }
-        else {
-            x = 80;
-            y -= 150;
+        if (tile.isColor) {
+            node = [SKSpriteNode spriteNodeWithColor:tile.colorName size:CGSizeMake(100, 100)];
+        } else {
+            node = [SKSpriteNode spriteNodeWithImageNamed:tile.backgroundTileName];
+            node.size = CGSizeMake(100, 100);
         }
         
-        [self addChild:node];
-    }
-    
-    for (NSString* key in colorNames) {
-        SKSpriteNode *node = [SKSpriteNode spriteNodeWithColor:[colorDict valueForKey:key] size:CGSizeMake(100, 100)];
         node.position = CGPointMake(x, y);
-        
-        node.name = key;
+        node.name = tile.backgroundTileName;
         
         if (x < 920) {
             x += 120;
@@ -174,20 +195,12 @@ static NSString* const stream = @"IS098Z75U.jpg";
     //[self addChild:arrow];
 }
 
-#pragma mark
-
-//Forms the basic outline of the node.
-- (SKSpriteNode *)outlineNode
-{
-    SKSpriteNode* outline = [[SKSpriteNode alloc] initWithColor:[SKColor blackColor] size:CGSizeMake(325, 225)];
-    outline.name = @"outline";
-    
-    return outline;
-}
 
 //Selected image becomes the new background of the SKSpriteNodes
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    ShuffleNoteActions *sna = [[ShuffleNoteActions alloc] init];
+    
     UITouch *touch = [touches anyObject];
     CGPoint scenePosition = [touch locationInNode:self];
     
@@ -201,7 +214,7 @@ static NSString* const stream = @"IS098Z75U.jpg";
         SKSpriteNode *paper = [[SKSpriteNode alloc] initWithTexture:tex];
         paper.size = CGSizeMake(300, 200);
         
-        SKSpriteNode *outliner = [self outlineNode];
+        SKSpriteNode *outliner = [sna outlineNode];
         [outliner addChild:paper];
         
         SKTexture *newTex = [self.scene.view textureFromNode:outliner];

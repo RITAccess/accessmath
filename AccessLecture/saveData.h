@@ -26,16 +26,8 @@
 //saves the positions of the SKSpriteNodes not created by the user
 //booleans helps decide if data is stacked or not
 @property CGPoint pos1;
-@property BOOL isSet;
 @property CGPoint pos2;
-@property BOOL isSet2;
 @property CGPoint pos3;
-@property BOOL isSet3;
-
-//the location of the SKSpriteNodes when stacked
-@property CGPoint statPos;
-@property CGPoint statPos2;
-@property CGPoint statPos3;
 
 //determines if they're stacked
 @property BOOL isStacked;

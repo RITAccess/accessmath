@@ -21,14 +21,6 @@ static NSString* const posi1 = @"posi1";
 static NSString* const posi2 = @"posi2";
 static NSString* const posi3 = @"posi3";
 
-static NSString* const set = @"set";
-static NSString* const set2 = @"set2";
-static NSString* const set3 = @"set3";
-
-static NSString* const statPos = @"statPos";
-static NSString* const statPos2 = @"statPos2";
-static NSString* const statPos3 = @"statPos3";
-
 static NSString* const isStacked = @"isStacked";
 
 
@@ -51,15 +43,8 @@ static NSString* const isStacked = @"isStacked";
         _date = [decoder decodeObjectForKey:dateColor];
         
         _pos1 = [decoder decodeCGPointForKey:posi1];
-        _isSet = [decoder decodeBoolForKey:set];
         _pos2 = [decoder decodeCGPointForKey:posi2];
-        _isSet2 = [decoder decodeBoolForKey:set2];
         _pos3 = [decoder decodeCGPointForKey:posi3];
-        _isSet3 = [decoder decodeBoolForKey:set3];
-        
-        _statPos = [decoder decodeCGPointForKey:statPos];
-        _statPos2 = [decoder decodeCGPointForKey:statPos2];
-        _statPos3 = [decoder decodeCGPointForKey:statPos3];
         
         _isStacked = [decoder decodeBoolForKey:isStacked];
     }
@@ -81,15 +66,8 @@ static NSString* const isStacked = @"isStacked";
     [encoder encodeObject:self.date forKey:dateColor];
     
     [encoder encodeCGPoint:self.pos1 forKey:posi1];
-    [encoder encodeBool:self.isSet forKey:set];
     [encoder encodeCGPoint:self.pos2 forKey:posi2];
-    [encoder encodeBool:self.isSet2 forKey:set2];
     [encoder encodeCGPoint:self.pos3 forKey:posi3];
-    [encoder encodeBool:self.isSet3 forKey:set3];
-    
-    [encoder encodeCGPoint:self.statPos forKey:statPos];
-    [encoder encodeCGPoint:self.statPos2 forKey:statPos2];
-    [encoder encodeCGPoint:self.statPos3 forKey:statPos3];
     
     [encoder encodeBool:self.isStacked forKey:isStacked];
 }
