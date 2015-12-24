@@ -2,7 +2,6 @@
 //  MoreShuffle.m
 //  LandScapeV2
 //
-//  TODO: Major refactoring of code to make it neater and more legible.
 //  Created by Kimberly Sookoo on 7/24/15.
 //  Copyright (c) 2015 Kimberly Sookoo. All rights reserved.
 //
@@ -35,9 +34,6 @@
     
     //black outlines for the nodes
     SKSpriteNode *outline;
-    SKSpriteNode *outline1;
-    SKSpriteNode *outline2;
-    SKSpriteNode *outline3;
     
     //the nodes themselves
     SKSpriteNode *newNode;
@@ -50,10 +46,6 @@
     UIButton *newPaper;
     //reset button
     UIButton *reset;
-    
-    //update date and texture
-    SKTexture *curr;
-    SKLabelNode *dateColor;
     
     UISwipeGestureRecognizer *leftSwipe;
     
@@ -270,23 +262,65 @@ static const int outline3Category = 3;
     [view presentScene:backy];
 }
 
+#pragma mark: Textures
+
+//original texture
+-(SKTexture*)originalTexture
+{
+    ShuffleNoteActions *sna = [[ShuffleNoteActions alloc] init];
+    
+    SKSpriteNode *pap = [sna paperNode];
+    pap.position = CGPointMake(CGRectGetMidX(outline.frame), CGRectGetMidY(outline.frame));
+    
+    outline = [sna outlineNode];
+    [outline addChild:pap];
+    
+    SKTexture *tex = [self.scene.view textureFromNode:outline];
+    
+    return tex;
+}
+
+//make notecard with saved background image
+-(SKTexture*)makeNotecardWithSavedImage
+{
+    ShuffleNoteActions *sna = [[ShuffleNoteActions alloc] init];
+    BackgroundImages *images = [[BackgroundImages alloc] init];
+    
+    SKTexture *newTex;
+    SKSpriteNode *node;
+    
+    for (BackgroundTile *image in [images createTiles]) {
+        if ([[saveData sharedData].colorName isEqualToString:image.backgroundTileName]) {
+            if (image.isColor) {
+                node = [SKSpriteNode spriteNodeWithColor:image.colorName size:CGSizeMake(100, 100)];
+            } else {
+                node = [SKSpriteNode spriteNodeWithImageNamed:image.backgroundTileName];
+                node.size = CGSizeMake(100, 100);
+            }
+            
+            SKTexture *tex = [self.scene.view textureFromNode:node];
+            SKSpriteNode *paper = [[SKSpriteNode alloc] initWithTexture:tex];
+            paper.size = CGSizeMake(300, 200);
+            
+            SKSpriteNode *outliner = [sna outlineNode];
+            [outliner addChild:paper];
+            
+            newTex = [self.scene.view textureFromNode:outliner];
+        }
+    }
+    
+    return newTex;
+}
+
 //generates more nodes
 -(void)newPaper
 {
-    ShuffleNoteActions *sna = [[ShuffleNoteActions alloc] init];
     SKSpriteNode *newPap;
     
     if ([saveData sharedData].current != nil) {
         newPap = [[SKSpriteNode alloc] initWithTexture:[saveData sharedData].current];
     } else {
-        SKSpriteNode *pap = [sna paperNode];
-        pap.position = CGPointMake(CGRectGetMidX(outline1.frame), CGRectGetMidY(outline1.frame));
-        
-        outline1 = [sna outlineNode];
-        [outline1 addChild:pap];
-        
-        SKTexture *tex = [self.scene.view textureFromNode:outline1];
-        newPap = [[SKSpriteNode alloc] initWithTexture:tex];
+        newPap = [[SKSpriteNode alloc] initWithTexture:[self originalTexture]];
     }
     
     newPap.position = CGPointMake(450, 500);
@@ -381,7 +415,6 @@ static const int outline3Category = 3;
     self.scaleMode = SKSceneScaleModeFill;
     
     ShuffleNoteActions *sna = [[ShuffleNoteActions alloc] init];
-    BackgroundImages *images = [[BackgroundImages alloc] init];
     
     if ([saveData sharedData].date != nil) {
         date = [saveData sharedData].date;
@@ -394,129 +427,21 @@ static const int outline3Category = 3;
     
     if ([[saveData sharedData].colorName length] == 0) {
         //for the following nodes, the ability to return to default needs to be instantiated
-        SKSpriteNode *pap = [sna paperNode];
-        pap.position = CGPointMake(CGRectGetMidX(outline1.frame), CGRectGetMidY(outline1.frame));
         
-        outline1 = [sna outlineNode];
-        [outline1 addChild:pap];
-        
-        SKTexture *tex = [self.scene.view textureFromNode:outline1];
-        newNode = [SKSpriteNode spriteNodeWithTexture:tex];
-        newNode.name = @"newNode";
-        [newNode addChild:date];
-        
-        SKSpriteNode *pap2 = [sna paperNode];
-        pap2.position = CGPointMake(CGRectGetMidX(outline2.frame), CGRectGetMidY(outline2.frame));
-        
-        outline2 = [sna outlineNode];
-        [outline2 addChild:pap2];
-        
-        SKTexture *tex2 = [self.scene.view textureFromNode:outline2];
-        
-        newNode2 = [SKSpriteNode spriteNodeWithTexture:tex2];
-        newNode2.name = @"newNode2";
-        
-        SKSpriteNode *pap3 = [sna paperNode];
-        pap3.position = CGPointMake(CGRectGetMidX(outline3.frame), CGRectGetMidY(outline3.frame));
-        
-        outline3 = [sna outlineNode];
-        [outline3 addChild:pap3];
-        
-        SKTexture *tex3 = [self.scene.view textureFromNode:outline3];
-        
-        newNode3 = [SKSpriteNode spriteNodeWithTexture:tex3];
-        newNode3.name = @"newNode3";
+        newNode = [SKSpriteNode spriteNodeWithTexture:[self originalTexture]];
+        newNode2 = [SKSpriteNode spriteNodeWithTexture:[self originalTexture]];
+        newNode3 = [SKSpriteNode spriteNodeWithTexture:[self originalTexture]];
         
     } else {
-        
-        SKTexture *newTex;
-        SKSpriteNode *node;
-        
-        for (BackgroundTile *image in [images createTiles]) {
-            if ([[saveData sharedData].colorName isEqualToString:image.backgroundTileName]) {
-                if (image.isColor) {
-                    node = [SKSpriteNode spriteNodeWithColor:image.colorName size:CGSizeMake(100, 100)];
-                } else {
-                    node = [SKSpriteNode spriteNodeWithImageNamed:image.backgroundTileName];
-                    node.size = CGSizeMake(100, 100);
-                }
-        
-               SKTexture *tex = [self.scene.view textureFromNode:node];
-               SKSpriteNode *paper = [[SKSpriteNode alloc] initWithTexture:tex];
-                paper.size = CGSizeMake(300, 200);
-                
-                SKSpriteNode *outliner = [sna outlineNode];
-                [outliner addChild:paper];
-                
-                newTex = [self.scene.view textureFromNode:outliner];
-            }
-        }
-        
-        newNode = [[SKSpriteNode alloc] initWithTexture:newTex];
-        newNode.name = @"newNode";
-        [newNode addChild:date];
-        
-        newNode2 = [[SKSpriteNode alloc] initWithTexture:newTex];
-        newNode2.name = @"newNode2";
-        
-        newNode3 = [[SKSpriteNode alloc] initWithTexture:newTex];
-        newNode3.name = @"newNode3";
+        newNode = [[SKSpriteNode alloc] initWithTexture:[self makeNotecardWithSavedImage]];
+        newNode2 = [[SKSpriteNode alloc] initWithTexture:[self makeNotecardWithSavedImage]];
+        newNode3 = [[SKSpriteNode alloc] initWithTexture:[self makeNotecardWithSavedImage]];
     }
     
-    //Undergoing revision
-    
-    for (int i = 0; i < [[saveData sharedData].array count]; i++) {
-        
-        SKSpriteNode *sprite;
-        
-        if ([[saveData sharedData].colorName length] == 0) {
-            
-            SKSpriteNode *outliner = [sna outlineNode];
-            SKSpriteNode *paperNode = [sna paperNode];
-            paperNode.position = CGPointMake(CGRectGetMidX(outliner.frame), CGRectGetMidY(outliner.frame));
-            
-            [outliner addChild:paperNode];
-            
-            SKTexture *texSoft = [self.scene.view textureFromNode:outliner];
-            sprite = [[SKSpriteNode alloc] initWithTexture:texSoft];
-            
-        } else {
-            
-            SKTexture *newTex;
-            SKSpriteNode *node;
-            
-            for (BackgroundTile *image in [images createTiles]) {
-                if ([[saveData sharedData].colorName isEqualToString:image.backgroundTileName]) {
-                    if (image.isColor) {
-                        node = [SKSpriteNode spriteNodeWithColor:image.colorName size:CGSizeMake(100, 100)];
-                    } else {
-                        node = [SKSpriteNode spriteNodeWithImageNamed:image.backgroundTileName];
-                        node.size = CGSizeMake(100, 100);
-                    }
-                    
-                    SKTexture *tex = [self.scene.view textureFromNode:node];
-                    SKSpriteNode *paper = [[SKSpriteNode alloc] initWithTexture:tex];
-                    paper.size = CGSizeMake(300, 200);
-                    
-                    SKSpriteNode *outliner = [sna outlineNode];
-                    [outliner addChild:paper];
-                    
-                    newTex = [self.scene.view textureFromNode:outliner];
-                }
-            }
-            
-            sprite = [[SKSpriteNode alloc] initWithTexture:newTex];
-
-        }
-        
-        sprite.name = @"newNodeX";
-        sprite.position = [[[saveData sharedData].array objectAtIndex:i] position];
-        
-        [self makePhysicsBody:sprite];
-        [self addDeleteButton:sprite];
-        
-        [self addChild:sprite];
-    }
+    newNode.name = @"newNode";
+    [newNode addChild:date];
+    newNode2.name = @"newNode2";
+    newNode3.name = @"newNode3";
     
     if ([saveData sharedData].isStacked == NO) {
         newNode.position = [saveData sharedData].pos1;
@@ -533,6 +458,28 @@ static const int outline3Category = 3;
     [self addChild:newNode2];
     [self addChild:newNode];
     
+    //Undergoing revision
+    
+    for (int i = 0; i < [[saveData sharedData].array count]; i++) {
+        
+        SKSpriteNode *sprite;
+        
+        if ([[saveData sharedData].colorName length] == 0) {
+            
+            sprite = [[SKSpriteNode alloc] initWithTexture:[self originalTexture]];
+            
+        } else {
+            sprite = [[SKSpriteNode alloc] initWithTexture:[self makeNotecardWithSavedImage]];
+        }
+        
+        sprite.name = @"newNodeX";
+        sprite.position = [[[saveData sharedData].array objectAtIndex:i] position];
+        
+        [self addDeleteButton:sprite];
+        
+        [self addChild:sprite];
+    }
+    
     for (SKSpriteNode* notecard in self.children) {
         [self makePhysicsBody:notecard];
         [self addPositionConstraints:notecard];
@@ -542,7 +489,6 @@ static const int outline3Category = 3;
     
     [[saveData sharedData] save];
 }
-
 
 #pragma mark: Instantiating Physics Bodies
 
@@ -568,7 +514,6 @@ static const int outline3Category = 3;
     notecard.physicsBody.affectedByGravity = NO;
     notecard.physicsBody.allowsRotation = NO;
 }
-
 
 #pragma mark: User Interaction with Notecards
 

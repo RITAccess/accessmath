@@ -8,6 +8,8 @@
 
 #import "ShuffleNoteActions.h"
 #import "saveData.h"
+#import "BackgroundImages.h"
+#import "BackgroundTile.h"
 
 @implementation ShuffleNoteActions
 {
