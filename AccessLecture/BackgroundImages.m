@@ -218,7 +218,7 @@ static NSString* const stream = @"IS098Z75U.jpg";
         [outliner addChild:paper];
         
         SKTexture *newTex = [self.scene.view textureFromNode:outliner];
-        [saveData sharedData].currentTexture = newTex;
+//        [saveData sharedData].currentTexture = newTex;
         
         [saveData sharedData].colorName = checkNode.name;
         [[saveData sharedData] save];
