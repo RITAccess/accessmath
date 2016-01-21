@@ -44,6 +44,9 @@
     //PopOverViewController for highlighter color
     UIPopoverController *popover;
     
+    //PopOverViewController for text color
+    UIPopoverController *popoverText;
+    
     NSArray *_navigationItems;
 }
 
@@ -91,6 +94,13 @@
     
     [[UIMenuController sharedMenuController] setMenuItems:@[highlightText]];
     
+    if ([SaveColor sharedData].textColor != nil) {
+        textView.textColor = [SaveColor sharedData].textColor;
+    }
+    
+    if ([SaveColor sharedData].attributed != nil) {
+        textView.attributedText = [SaveColor sharedData].attributed;
+    }
     
     [self setUpNavigation];
 }
@@ -271,6 +281,8 @@
     }
     
     textView.attributedText = attributedString;
+    [SaveColor sharedData].attributed = attributedString;
+    [[SaveColor sharedData] save];
 }
 
 //allows the user to add images to their notes
@@ -466,6 +478,55 @@
     [self.popOverController dismissPopoverAnimated:true];
     [[SaveColor sharedData] save];
 }
+
+- (IBAction)changeTextColor:(UIBarButtonItem *)sender {
+    
+    NewNotesViewController *newNote = [[NewNotesViewController alloc] init];
+    popoverText = [[UIPopoverController alloc] initWithContentViewController:newNote];
+    popoverText.delegate = self;
+    
+    popoverText.popoverContentSize = CGSizeMake(285, 200);
+    
+    self.popOverControllerText = popoverText;
+    
+    //color choices
+    UIButton *color1 = [[UIButton alloc] initWithFrame:CGRectMake(5, 15, 50, 50)];
+    color1.backgroundColor = [UIColor colorWithRed:0.0f/255.0f green:0.0f/255.0f blue:0.0f/255.0f alpha:1.0];
+    color1.layer.borderColor = [UIColor blackColor].CGColor;
+    color1.layer.borderWidth = 1.0f;
+    color1.layer.cornerRadius = 10.0f;
+    [color1 addTarget:self action:@selector(textColorChanger:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton *color2 = [[UIButton alloc] initWithFrame:CGRectMake(60, 15, 50, 50)];
+    color2.backgroundColor = [UIColor colorWithRed:0.0f/255.0f green:0.0f/255.0f blue:255.0f/255.0f alpha:1.0];
+    color2.layer.borderColor = [UIColor blackColor].CGColor;
+    color2.layer.borderWidth = 1.0f;
+    color2.layer.cornerRadius = 10.0f;
+    [color2 addTarget:self action:@selector(textColorChanger:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton *color3 = [[UIButton alloc] initWithFrame:CGRectMake(115, 15, 50, 50)];
+    color3.backgroundColor = [UIColor colorWithRed:166.0f/255.0f green:28.0f/255.0f blue:0.0f/255.0f alpha:1.0];
+    color3.layer.borderColor = [UIColor blackColor].CGColor;
+    color3.layer.borderWidth = 1.0f;
+    color3.layer.cornerRadius = 10.0f;
+    [color3 addTarget:self action:@selector(textColorChanger:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [popoverText.contentViewController.view addSubview:color1];
+    [popoverText.contentViewController.view addSubview:color2];
+    [popoverText.contentViewController.view addSubview:color3];
+    
+    
+    [self.popOverControllerText presentPopoverFromBarButtonItem:sender
+                                       permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+}
+
+-(void)textColorChanger:(UIButton*)sender{
+    [SaveColor sharedData].textColor = sender.backgroundColor;
+    [self.popOverControllerText dismissPopoverAnimated:true];
+    textView.textColor = [SaveColor sharedData].textColor;
+    [[SaveColor sharedData] save];
+}
+
 
 #pragma mark - Segue
 

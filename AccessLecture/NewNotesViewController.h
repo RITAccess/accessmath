@@ -10,10 +10,15 @@
 @interface NewNotesViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPopoverControllerDelegate>
 
 @property UIPopoverController *popOverController;
+@property UIPopoverController *popOverControllerText;
+
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *increaseTextSize;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *decreaseTextSize;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *highlightColor;
+
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *textColor;
+
 
 @end

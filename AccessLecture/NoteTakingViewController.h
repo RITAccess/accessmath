@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "LectureViewContainer.h"
 #import "AMLecture.h"
+#import "Note.h"
 
 @interface NoteTakingViewController : UIViewController <LectureViewChild>
 
@@ -17,5 +18,7 @@
 @property (strong, readonly) AMLecture *document;
 
 - (void)lectureContainer:(LectureViewContainer *)container switchedToDocument:(AMLecture *)document;
+
+- (void)loadNoteAndPresent:(Note *)note;
 
 @end

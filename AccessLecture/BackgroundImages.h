@@ -10,4 +10,6 @@
 
 @interface BackgroundImages : SKScene
 
+-(NSMutableArray*)createTiles;
+
 @end

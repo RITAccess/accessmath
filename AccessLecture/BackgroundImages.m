@@ -12,6 +12,8 @@
 #import "BackgroundImages.h"
 #import "MoreShuffle.h"
 #import "saveData.h"
+#import "BackgroundTile.h"
+#import "ShuffleNoteActions.h"
 
 @interface BackgroundImages()
 
@@ -21,33 +23,6 @@
 
 @implementation BackgroundImages
 {
-    //background images
-    SKSpriteNode *image;
-    SKSpriteNode *image2;
-    SKSpriteNode *image3;
-    SKSpriteNode *image4;
-    SKSpriteNode *image5;
-    SKSpriteNode *image6;
-    SKSpriteNode *image7;
-    SKSpriteNode *image8;
-    SKSpriteNode *image9;
-    SKSpriteNode *image10;
-    SKSpriteNode *image11;
-    SKSpriteNode *image12;
-    SKSpriteNode *image13;
-    SKSpriteNode *image14;
-    SKSpriteNode *image15;
-    SKSpriteNode *image16;
-    SKSpriteNode *image17;
-    SKSpriteNode *image18;
-    SKSpriteNode *image19;
-    SKSpriteNode *image20;
-    SKSpriteNode *image21;
-    SKSpriteNode *image22;
-    SKSpriteNode *image23;
-    SKSpriteNode *image24;
-    SKSpriteNode *image25;
-    
     //arrow to traverse pages
     SKSpriteNode *arrow;
     
@@ -55,7 +30,32 @@
     UISwipeGestureRecognizer *closeSwipe;
     //zoom
     UIPinchGestureRecognizer *zoomIn;
+    
+    //Array with images
+    NSMutableArray *imageArray;
+    
+    //Array with colors and names
+    NSMutableArray *colorArray;
+    NSMutableArray *colorNames;
+    
+    //Dictionary with colors
+    NSMutableDictionary *colorDict;
+    
+    NSMutableArray *backgroundTiles;
 }
+
+static NSString* const neon = @"IS787-189.jpg";
+static NSString* const lights = @"IS787-191.jpg";
+static NSString* const note = @"notebook-page.jpg";
+static NSString* const sky = @"sky-183869_640.jpg";
+static NSString* const velvet = @"background-68622_640.jpg";
+static NSString* const ball = @"ball-443852_640.jpg";
+static NSString* const cosmea = @"cosmea-583092_640.jpg";
+static NSString* const ellipse = @"ellipse-784354_640.jpg";
+static NSString* const abstract = @"abstract-21851_640.jpg";
+static NSString* const lines = @"lines-593191_640.jpg";
+static NSString* const stream = @"IS098Z75U.jpg";
+
 
 - (void)didMoveToView: (SKView *) view
 {
@@ -78,6 +78,7 @@
 {
     [self.view removeGestureRecognizer:closeSwipe];
     [self.view removeGestureRecognizer:zoomIn];
+    [[saveData sharedData] save];
     MoreShuffle *backy = [[MoreShuffle alloc] initWithSize:CGSizeMake(2000, 1768)];
     SKView *view = (SKView *) self.view;
     [view presentScene:backy];
@@ -119,178 +120,93 @@
     }
 }
 
+//creates custom version of images
+//allows images to have a boolean value
+-(NSMutableArray*)createTiles{
+    
+    //Initialize the arrays
+    imageArray = [[NSMutableArray alloc] initWithObjects:neon,lights,note,sky,velvet,ball,cosmea,ellipse,abstract,lines,stream, nil];
+    
+    colorArray = [[NSMutableArray alloc] initWithObjects:[SKColor yellowColor],[SKColor greenColor],[SKColor orangeColor],[SKColor purpleColor],[SKColor brownColor],[SKColor colorWithRed:0.0f/255.0f green:226.0f/255.0f blue:255.0f/255.0f alpha:1.0],[SKColor colorWithRed:130.0f/255.0f green:0.0f/255.0f blue:255.0f/255.0f alpha:1.0],[SKColor colorWithRed:38.0f/255.0f green:167.0f/255.0f blue:162.0f/255.0f alpha:1.0],[SKColor colorWithRed:255.0f/255.0f green:0.0f/255.0f blue:183.0f/255.0f alpha:1.0],[SKColor colorWithRed:39.0f/255.0f green:78.0f/255.0f blue:19.0f/255.0f alpha:1.0],[SKColor colorWithRed:208.0f/255.0f green:0.0f/255.0f blue:72.0f/255.0f alpha:1.0],[SKColor colorWithRed:158.0f/255.0f green:237.0f/255.0f blue:255.0f/255.0f alpha:1.0],[SKColor colorWithRed:0.0f/255.0f green:48.0f/255.0f blue:154.0f/255.0f alpha:1.0],[SKColor colorWithRed:196.0f/255.0f green:255.0f/255.0f blue:110.0f/255.0f alpha:1.0], nil];
+    
+    colorNames = [[NSMutableArray alloc] initWithObjects:@"yellow", @"green", @"orange", @"purple", @"brown", @"skyblue", @"darkpurple", @"turquoise", @"pink", @"moss", @"softred", @"lightblue", @"darkblue", @"lime", nil];
+    
+    colorDict = [[NSMutableDictionary alloc] initWithObjects:colorArray forKeys:colorNames];
+    
+    backgroundTiles = [[NSMutableArray alloc] init];
+    
+    //Loop to generate background image/color choices
+    
+    for (NSString *str in imageArray) {
+        BackgroundTile *bt = [[BackgroundTile alloc] init];
+        bt.backgroundTileName = str;
+        bt.isColor = NO;
+        bt.colorName = NULL;
+        [backgroundTiles addObject:bt];
+    }
+    
+    for (NSString* key in colorDict) {
+        BackgroundTile *bt = [[BackgroundTile alloc] init];
+        bt.backgroundTileName = key;
+        bt.isColor = YES;
+        bt.colorName = [colorDict valueForKey:key];
+        [backgroundTiles addObject:bt];
+    }
+    
+    return backgroundTiles;
+}
+
 //Creates the scene and presents the images.
 -(void)createScene
 {
     self.backgroundColor = [SKColor grayColor];
     self.scaleMode = SKSceneScaleModeFill;
     
-    //creates clickable background images
-    image = [SKSpriteNode spriteNodeWithColor:[SKColor yellowColor] size:CGSizeMake(100, 100)];
-    image.position = CGPointMake(80, 600);
-    image.name = @"image1";
+    NSMutableArray *array = [self createTiles];
     
-    image2 = [SKSpriteNode spriteNodeWithImageNamed:@"IS787-189.jpg"];
-    image2.size = CGSizeMake(100, 100);
-    image2.position = CGPointMake(200, 600);
-    image2.name = @"image2";
+    //Loop to generate background image/color choices
+    CGFloat x = 80;
+    CGFloat y = 600;
     
-    image3 = [SKSpriteNode spriteNodeWithImageNamed:@"IS787-191.jpg"];
-    image3.size = CGSizeMake(100, 100);
-    image3.position = CGPointMake(320, 600);
-    image3.name = @"image3";
+    for (BackgroundTile* tile in array) {
+        SKSpriteNode *node;
+        
+        if (tile.isColor) {
+            node = [SKSpriteNode spriteNodeWithColor:tile.colorName size:CGSizeMake(100, 100)];
+        } else {
+            node = [SKSpriteNode spriteNodeWithImageNamed:tile.backgroundTileName];
+            node.size = CGSizeMake(100, 100);
+        }
+        
+        node.position = CGPointMake(x, y);
+        node.name = tile.backgroundTileName;
+        
+        if (x < 920) {
+            x += 120;
+        }
+        else {
+            x = 80;
+            y -= 150;
+        }
+        
+        [self addChild:node];
+    }
     
-    image4 = [SKSpriteNode spriteNodeWithColor:[SKColor greenColor] size:CGSizeMake(100, 100)];
-    image4.position = CGPointMake(440, 600);
-    image4.name = @"image4";
-    
-    image5 = [SKSpriteNode spriteNodeWithColor:[SKColor orangeColor] size:CGSizeMake(100, 100)];
-    image5.position = CGPointMake(560, 600);
-    image5.name = @"image5";
-    
-    image6 = [SKSpriteNode spriteNodeWithColor:[SKColor purpleColor] size:CGSizeMake(100, 100)];
-    image6.position = CGPointMake(680, 600);
-    image6.name = @"image6";
-    
-    image7 = [SKSpriteNode spriteNodeWithColor:[SKColor brownColor] size:CGSizeMake(100, 100)];
-    image7.position = CGPointMake(800, 600);
-    image7.name = @"image7";
-    
-    image8 = [SKSpriteNode spriteNodeWithImageNamed:@"notebook-page.jpg"];
-    image8.size = CGSizeMake(100, 100);
-    image8.position = CGPointMake(920, 600);
-    image8.name = @"image8";
-    
-    image9 = [SKSpriteNode spriteNodeWithColor:[SKColor colorWithRed:0.0f/255.0f green:226.0f/255.0f blue:255.0f/255.0f alpha:1.0] size:CGSizeMake(100, 100)];
-    image9.position = CGPointMake(80, 450);
-    image9.name = @"image9";
-    
-    image10 = [SKSpriteNode spriteNodeWithColor:[SKColor colorWithRed:130.0f/255.0f green:0.0f/255.0f blue:255.0f/255.0f alpha:1.0] size:CGSizeMake(100, 100)];
-    image10.position = CGPointMake(200, 450);
-    image10.name = @"image10";
-    
-    image11 = [SKSpriteNode spriteNodeWithImageNamed:@"sky-183869_640.jpg"];
-    image11.size = CGSizeMake(100, 100);
-    image11.position = CGPointMake(320, 450);
-    image11.name = @"image11";
-    
-    image12 = [SKSpriteNode spriteNodeWithImageNamed:@"background-68622_640.jpg"];
-    image12.size = CGSizeMake(100, 100);
-    image12.position = CGPointMake(440, 450);
-    image12.name = @"image12";
-    
-    image13 = [SKSpriteNode spriteNodeWithImageNamed:@"ball-443852_640.jpg"];
-    image13.size = CGSizeMake(100, 100);
-    image13.position = CGPointMake(560, 450);
-    image13.name = @"image13";
-    
-    image14 = [SKSpriteNode spriteNodeWithImageNamed:@"cosmea-583092_640.jpg"];
-    image14.size = CGSizeMake(100, 100);
-    image14.position = CGPointMake(680, 450);
-    image14.name = @"image14";
-    
-    image15 = [SKSpriteNode spriteNodeWithImageNamed:@"ellipse-784354_640.jpg"];
-    image15.size = CGSizeMake(100, 100);
-    image15.position = CGPointMake(800, 450);
-    image15.name = @"image15";
-    
-    image16 = [SKSpriteNode spriteNodeWithImageNamed:@"abstract-21851_640.jpg"];
-    image16.size = CGSizeMake(100, 100);
-    image16.position = CGPointMake(920, 450);
-    image16.name = @"image16";
-    
-    image17 = [SKSpriteNode spriteNodeWithImageNamed:@"lines-593191_640.jpg"];
-    image17.size = CGSizeMake(100, 100);
-    image17.position = CGPointMake(80, 300);
-    image17.name = @"image17";
-    
-    image18 = [SKSpriteNode spriteNodeWithImageNamed:@"IS098Z75U.jpg"];
-    image18.size = CGSizeMake(100, 100);
-    image18.position = CGPointMake(200, 300);
-    image18.name = @"image18";
-    
-    image19 = [SKSpriteNode spriteNodeWithColor:[SKColor colorWithRed:38.0f/255.0f green:167.0f/255.0f blue:162.0f/255.0f alpha:1.0] size:CGSizeMake(100, 100)];
-    image19.position = CGPointMake(320, 300);
-    image19.name = @"image19";
-    
-    image20 = [SKSpriteNode spriteNodeWithColor:[SKColor colorWithRed:255.0f/255.0f green:0.0f/255.0f blue:183.0f/255.0f alpha:1.0] size:CGSizeMake(100, 100)];
-    image20.position = CGPointMake(440, 300);
-    image20.name = @"image20";
-    
-    image21 = [SKSpriteNode spriteNodeWithColor:[SKColor colorWithRed:39.0f/255.0f green:78.0f/255.0f blue:19.0f/255.0f alpha:1.0] size:CGSizeMake(100, 100)];
-    image21.position = CGPointMake(560, 300);
-    image21.name = @"image21";
-    
-    image22 = [SKSpriteNode spriteNodeWithColor:[SKColor colorWithRed:208.0f/255.0f green:0.0f/255.0f blue:72.0f/255.0f alpha:1.0] size:CGSizeMake(100, 100)];
-    image22.position = CGPointMake(680, 300);
-    image22.name = @"image22";
-    
-    image23 = [SKSpriteNode spriteNodeWithColor:[SKColor colorWithRed:158.0f/255.0f green:237.0f/255.0f blue:255.0f/255.0f alpha:1.0] size:CGSizeMake(100, 100)];
-    image23.position = CGPointMake(800, 300);
-    image23.name = @"image23";
-    
-    image24 = [SKSpriteNode spriteNodeWithColor:[SKColor colorWithRed:0.0f/255.0f green:48.0f/255.0f blue:154.0f/255.0f alpha:1.0] size:CGSizeMake(100, 100)];
-    image24.position = CGPointMake(920, 300);
-    image24.name = @"image24";
-    
-    image25 = [SKSpriteNode spriteNodeWithColor:[SKColor colorWithRed:196.0f/255.0f green:255.0f/255.0f blue:110.0f/255.0f alpha:1.0] size:CGSizeMake(100, 100)];
-    image25.position = CGPointMake(80, 150);
-    image25.name = @"image25";
-    
-    //arrow to go cycle through backgrounds
-    arrow = [SKSpriteNode spriteNodeWithImageNamed:@"transparent-arrow-th.png"];
-    arrow.size = CGSizeMake(100, 30);
-    arrow.position = CGPointMake(500, 50);
-    arrow.name = @"arrow";
-    
-    [self addChild:image];
-    [self addChild:image2];
-    [self addChild:image3];
-    [self addChild:image4];
-    [self addChild:image5];
-    [self addChild:image6];
-    [self addChild:image7];
-    [self addChild:image8];
-    [self addChild:image9];
-    [self addChild:image10];
-    [self addChild:image11];
-    [self addChild:image12];
-    [self addChild:image13];
-    [self addChild:image14];
-    [self addChild:image15];
-    [self addChild:image16];
-    [self addChild:image17];
-    [self addChild:image18];
-    [self addChild:image19];
-    [self addChild:image20];
-    [self addChild:image21];
-    [self addChild:image22];
-    [self addChild:image23];
-    [self addChild:image24];
-    [self addChild:image25];
     //[self addChild:arrow];
 }
 
-#pragma mark
-
-//Forms the basic outline of the node.
-- (SKSpriteNode *)outlineNode
-{
-    SKSpriteNode* outline = [[SKSpriteNode alloc] initWithColor:[SKColor blackColor] size:CGSizeMake(325, 225)];
-    outline.name = @"outline";
-    
-    return outline;
-}
 
 //Selected image becomes the new background of the SKSpriteNodes
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    ShuffleNoteActions *sna = [[ShuffleNoteActions alloc] init];
+    
     UITouch *touch = [touches anyObject];
     CGPoint scenePosition = [touch locationInNode:self];
     
     SKNode *checkNode = [self nodeAtPoint:scenePosition];
     
-    if(checkNode && ([checkNode.name hasPrefix:@"image"])){
+    if(checkNode){
         [self.view removeGestureRecognizer:closeSwipe];
         [self.view removeGestureRecognizer:zoomIn];
         
@@ -298,11 +214,14 @@
         SKSpriteNode *paper = [[SKSpriteNode alloc] initWithTexture:tex];
         paper.size = CGSizeMake(300, 200);
         
-        SKSpriteNode *outliner = [self outlineNode];
+        SKSpriteNode *outliner = [sna outlineNode];
         [outliner addChild:paper];
         
         SKTexture *newTex = [self.scene.view textureFromNode:outliner];
         [saveData sharedData].currentTexture = newTex;
+        
+        [saveData sharedData].colorName = checkNode.name;
+        [[saveData sharedData] save];
         
         MoreShuffle *backy = [[MoreShuffle alloc] initWithSize:CGSizeMake(2000, 1768)];
         SKView *view = (SKView *) self.view;

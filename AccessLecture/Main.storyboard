@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Rr7-bG-jB9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Rr7-bG-jB9">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -417,7 +417,6 @@
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="blankCell" id="y1I-3u-ffa">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="400" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
@@ -490,7 +489,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0wo-d8-9p8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2142" y="1269"/>
+            <point key="canvasLocation" x="2116" y="1331"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="05p-cW-hE3">
@@ -547,7 +546,7 @@
                                 <rect key="frame" x="0.0" y="130" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dDO-t7-f6y" id="Ogz-x8-0CZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -589,7 +588,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KPC-Su-7wL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3441" y="1269"/>
+            <point key="canvasLocation" x="3469" y="1269"/>
         </scene>
         <!--Note Search Results View Controller-->
         <scene sceneID="9o1-SO-unf">
@@ -709,7 +708,7 @@
                                 <variation key="heightClass=regular-widthClass=regular" constant="26"/>
                             </constraint>
                             <constraint firstItem="zo3-3N-sFy" firstAttribute="trailing" secondItem="zeQ-fQ-2Fv" secondAttribute="trailingMargin" id="PcG-40-F7K"/>
-                            <constraint firstAttribute="left" secondItem="zo3-3N-sFy" secondAttribute="leftMargin" identifier="Space from left" id="c6c-AG-4e3">
+                            <constraint firstAttribute="left" secondItem="zo3-3N-sFy" secondAttribute="leftMargin" id="c6c-AG-4e3">
                                 <variation key="heightClass=regular-widthClass=regular" constant="-335"/>
                             </constraint>
                             <constraint firstItem="zo3-3N-sFy" firstAttribute="top" secondItem="jlX-9w-f7h" secondAttribute="bottom" constant="8" symbolic="YES" id="qJL-yN-640"/>
@@ -798,7 +797,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VzL-Ye-1Il" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2790" y="1269"/>
+            <point key="canvasLocation" x="2669" y="1321"/>
         </scene>
         <!--About View Controller-->
         <scene sceneID="KWB-Mn-FIr">
@@ -952,7 +951,7 @@ IAoKA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vID-No-fC3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4155.75" y="596.25"/>
+            <point key="canvasLocation" x="4181" y="596"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="6Xq-LL-Kyb">
@@ -970,7 +969,7 @@ IAoKA
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hfi-br-vw0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3441" y="596.25"/>
+            <point key="canvasLocation" x="3481" y="596"/>
         </scene>
         <!--New Notes View Controller-->
         <scene sceneID="mPv-8A-CTr">
@@ -1014,6 +1013,11 @@ IAoKA
                                 <action selector="highlightColor:" destination="wrH-io-EVq" id="SjR-zI-tK3"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem title="Text Color" id="hXd-Cj-ost">
+                            <connections>
+                                <action selector="changeTextColor:" destination="wrH-io-EVq" id="xec-Ug-LHZ"/>
+                            </connections>
+                        </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="R1A-jO-VDA"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
@@ -1022,6 +1026,7 @@ IAoKA
                         <outlet property="highlightColor" destination="Jhk-3h-Xs4" id="UHH-dI-JLk"/>
                         <outlet property="imageView" destination="E03-tA-Tqy" id="62L-6U-04a"/>
                         <outlet property="increaseTextSize" destination="g3z-R6-M2g" id="dCw-dI-R1U"/>
+                        <outlet property="textColor" destination="hXd-Cj-ost" id="gXq-lV-YyN"/>
                         <outlet property="textView" destination="tNg-L9-C1R" id="fU9-FP-o25"/>
                     </connections>
                 </viewController>
@@ -1783,7 +1788,7 @@ Now when we run our app we will have a visible scrollview has a frame of 0,0,320
                                 <rect key="frame" x="0.0" y="86" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MVF-9r-IOo" id="LwJ-IH-Euu">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -1863,13 +1868,13 @@ Now when we run our app we will have a visible scrollview has a frame of 0,0,320
                                 <rect key="frame" x="0.0" y="86" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="t9X-il-wXN" id="iDT-9W-99L">
-                                    <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" fixedFrame="YES" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pvg-4u-iT2">
                                             <rect key="frame" x="15" y="0.0" width="270" height="43"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -1908,7 +1913,7 @@ Now when we run our app we will have a visible scrollview has a frame of 0,0,320
                                 <rect key="frame" x="0.0" y="86" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5UP-Ru-1y3" id="PyC-m6-w1w">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -2102,7 +2107,7 @@ Now when we run our app we will have a visible scrollview has a frame of 0,0,320
                                         <rect key="frame" x="0.0" y="22" width="554" height="56"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lBv-Jn-Ebn" id="bDi-ni-eRD">
-                                            <rect key="frame" x="0.0" y="0.0" width="554" height="55"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="554" height="55.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -2110,7 +2115,7 @@ Now when we run our app we will have a visible scrollview has a frame of 0,0,320
                                         <rect key="frame" x="0.0" y="78" width="554" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6SJ-0I-YZW" id="0YP-Ax-dPY">
-                                            <rect key="frame" x="0.0" y="0.0" width="554" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="554" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -2118,7 +2123,7 @@ Now when we run our app we will have a visible scrollview has a frame of 0,0,320
                                         <rect key="frame" x="0.0" y="122" width="554" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xm8-zY-KsD" id="r8w-3v-Nq3">
-                                            <rect key="frame" x="0.0" y="0.0" width="554" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="554" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>

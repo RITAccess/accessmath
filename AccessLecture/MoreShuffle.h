@@ -7,6 +7,7 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import "AMLecture.h"
 
 @interface MoreShuffle : SKScene
 
