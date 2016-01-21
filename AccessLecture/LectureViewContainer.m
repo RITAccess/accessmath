@@ -10,6 +10,7 @@
 #import "LectureViewContainer.h"
 #import "NoteTakingViewController.h"
 #import "SearchViewController.h"
+#import "NoteShuffleViewController.h"
 #import "AMLecture.h"
 #import "Promise.h"
 
@@ -194,6 +195,10 @@
     if ([segue.identifier isEqualToString:@"toSearch"]) {
         UINavigationController *navigationController = [segue destinationViewController];
         ((SearchViewController *)([navigationController viewControllers][0])).selectedLecture = sender;
+    } else if ([segue.identifier isEqualToString:@"toNoteShuffle"]) {
+        UINavigationController *navigationController = [segue destinationViewController];
+        
+        ((NoteShuffleViewController *)([navigationController viewControllers][0])).selectedLecture = sender;
     }
 }
 

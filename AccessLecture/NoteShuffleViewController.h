@@ -6,7 +6,10 @@
 //  Copyright (c) 2015 Student. All rights reserved.
 //
 
+#import "AMLecture.h"
 
 @interface NoteShuffleViewController : UIViewController
+
+@property AMLecture *selectedLecture;
 
 @end
