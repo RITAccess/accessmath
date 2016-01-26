@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:AccessLecture/SaveData.m">
+   </FileRef>
+   <FileRef
+      location = "group:AccessLecture/SaveData.h">
+   </FileRef>
+   <FileRef
       location = "group:AccessLecture.xcodeproj">
    </FileRef>
    <FileRef

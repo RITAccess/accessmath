@@ -19,15 +19,15 @@ static NSString* const posi1 = @"posi1";
 static NSString* const posi2 = @"posi2";
 static NSString* const posi3 = @"posi3";
 
-static NSString* const set = @"set";
-static NSString* const set2 = @"set2";
-static NSString* const set3 = @"set3";
+static NSString* const stacked = @"set";
+static NSString* const stacked2 = @"set2";
+static NSString* const stacked3 = @"set3";
 
 static NSString* const statPos = @"statPos";
 static NSString* const statPos2 = @"statPos2";
 static NSString* const statPos3 = @"statPos3";
 
-static NSString* const isStacked = @"isStacked";
+static NSString* const isAllStacked = @"isStacked";
 
 /*
  "Deserializes" the data
@@ -41,21 +41,21 @@ static NSString* const isStacked = @"isStacked";
         }
         _array = [[decoder decodeObjectForKey:array] mutableCopy];
         _node = [decoder decodeObjectForKey:newNode];
-        _current = [decoder decodeObjectForKey:currentTexture];
+        _currentTexture = [decoder decodeObjectForKey:currentTexture];
         _date = [decoder decodeObjectForKey:dateColor];
         
         _pos1 = [decoder decodeCGPointForKey:posi1];
-        _isSet = [decoder decodeBoolForKey:set];
+        _isStacked = [decoder decodeBoolForKey:stacked];
         _pos2 = [decoder decodeCGPointForKey:posi2];
-        _isSet2 = [decoder decodeBoolForKey:set2];
+        _isStacked2 = [decoder decodeBoolForKey:stacked2];
         _pos3 = [decoder decodeCGPointForKey:posi3];
-        _isSet3 = [decoder decodeBoolForKey:set3];
+        _isStacked3 = [decoder decodeBoolForKey:stacked3];
         
         _statPos = [decoder decodeCGPointForKey:statPos];
         _statPos2 = [decoder decodeCGPointForKey:statPos2];
         _statPos3 = [decoder decodeCGPointForKey:statPos3];
         
-        _isStacked = [decoder decodeBoolForKey:isStacked];
+        _isStacked = [decoder decodeBoolForKey:isAllStacked];
     }
     return self;
 }
@@ -70,21 +70,21 @@ static NSString* const isStacked = @"isStacked";
     }
     [encoder encodeObject:self.array forKey:array];
     [encoder encodeObject:self.node forKey:newNode];
-    [encoder encodeObject:self.current forKey:currentTexture];
+    [encoder encodeObject:self.currentTexture forKey:currentTexture];
     [encoder encodeObject:self.date forKey:dateColor];
     
     [encoder encodeCGPoint:self.pos1 forKey:posi1];
-    [encoder encodeBool:self.isSet forKey:set];
+    [encoder encodeBool:self.isStacked forKey:stacked];
     [encoder encodeCGPoint:self.pos2 forKey:posi2];
-    [encoder encodeBool:self.isSet2 forKey:set2];
+    [encoder encodeBool:self.isStacked2 forKey:stacked2];
     [encoder encodeCGPoint:self.pos3 forKey:posi3];
-    [encoder encodeBool:self.isSet3 forKey:set3];
+    [encoder encodeBool:self.isStacked3 forKey:stacked3];
     
     [encoder encodeCGPoint:self.statPos forKey:statPos];
     [encoder encodeCGPoint:self.statPos2 forKey:statPos2];
     [encoder encodeCGPoint:self.statPos3 forKey:statPos3];
     
-    [encoder encodeBool:self.isStacked forKey:isStacked];
+    [encoder encodeBool:self.isStacked forKey:isAllStacked];
 }
 
 /*
@@ -144,10 +144,10 @@ static NSString* const isStacked = @"isStacked";
  */
 -(void)reset
 {
-    self.current = nil;
-    self.date = nil;
-    self.node = nil;
-    [self.array removeAllObjects];
+    _currentTexture = nil;
+    _date = nil;
+    _node = nil;
+    [_array removeAllObjects];
 }
 
 @end

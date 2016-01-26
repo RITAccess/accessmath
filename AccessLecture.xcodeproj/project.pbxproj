@@ -7,29 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2160E3931BD54B650081A73D /* saveData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2160E3921BD54B650081A73D /* saveData.m */; settings = {ASSET_TAGS = (); }; };
 		216BE84B1BA718E400B43584 /* NoteSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 216BE84A1BA718E400B43584 /* NoteSearchTableViewController.m */; };
-		2194AD201BB2F7DE002D9BD1 /* NoteSearchResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2194AD1F1BB2F7DE002D9BD1 /* NoteSearchResultsViewController.m */; settings = {ASSET_TAGS = (); }; };
-		21C36DF11BCE9FB8000CB5B0 /* NotesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21C36DF01BCE9FB8000CB5B0 /* NotesViewController.xib */; settings = {ASSET_TAGS = (); }; };
-		21C36DF71BCEA061000CB5B0 /* NoteShuffleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C36DF61BCEA061000CB5B0 /* NoteShuffleViewController.m */; settings = {ASSET_TAGS = (); }; };
-		21C36DFA1BCEA140000CB5B0 /* MoreShuffle.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C36DF91BCEA140000CB5B0 /* MoreShuffle.m */; settings = {ASSET_TAGS = (); }; };
-		21C36DFD1BCEA150000CB5B0 /* WeeksNotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C36DFC1BCEA150000CB5B0 /* WeeksNotesViewController.m */; settings = {ASSET_TAGS = (); }; };
-		21C36E001BCEA179000CB5B0 /* AssignmentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C36DFF1BCEA179000CB5B0 /* AssignmentsViewController.m */; settings = {ASSET_TAGS = (); }; };
-		21C36E031BCEA193000CB5B0 /* AssignmentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C36E021BCEA193000CB5B0 /* AssignmentItem.m */; settings = {ASSET_TAGS = (); }; };
-		21C36E061BCEA1AE000CB5B0 /* NewNotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C36E051BCEA1AE000CB5B0 /* NewNotesViewController.m */; settings = {ASSET_TAGS = (); }; };
-		21C36E0C1BCEA1E1000CB5B0 /* BackgroundImages.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C36E0B1BCEA1E1000CB5B0 /* BackgroundImages.m */; settings = {ASSET_TAGS = (); }; };
-		21C36E0F1BCEA229000CB5B0 /* SaveColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C36E0E1BCEA229000CB5B0 /* SaveColor.m */; settings = {ASSET_TAGS = (); }; };
-		21C36E131BCEBA79000CB5B0 /* DefinitionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C36E121BCEBA79000CB5B0 /* DefinitionsViewController.m */; settings = {ASSET_TAGS = (); }; };
-		21C36E161BCEBA90000CB5B0 /* FormulasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C36E151BCEBA90000CB5B0 /* FormulasViewController.m */; settings = {ASSET_TAGS = (); }; };
-		21C36E1A1BCEBAB2000CB5B0 /* Book-Open-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 21C36E181BCEBAB2000CB5B0 /* Book-Open-32.png */; settings = {ASSET_TAGS = (); }; };
-		21C36E1B1BCEBAB2000CB5B0 /* Book-Open-128.png in Resources */ = {isa = PBXBuildFile; fileRef = 21C36E191BCEBAB2000CB5B0 /* Book-Open-128.png */; settings = {ASSET_TAGS = (); }; };
-		21C36E221BCEBADD000CB5B0 /* Stationery-Pen-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 21C36E201BCEBADD000CB5B0 /* Stationery-Pen-32.png */; settings = {ASSET_TAGS = (); }; };
-		21C36E231BCEBADD000CB5B0 /* Stationery-Pen-128 (1).png in Resources */ = {isa = PBXBuildFile; fileRef = 21C36E211BCEBADD000CB5B0 /* Stationery-Pen-128 (1).png */; settings = {ASSET_TAGS = (); }; };
-		21C36E261BCEBB02000CB5B0 /* Square Root-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 21C36E241BCEBB02000CB5B0 /* Square Root-32.png */; settings = {ASSET_TAGS = (); }; };
-		21C36E271BCEBB02000CB5B0 /* Square Root-128.png in Resources */ = {isa = PBXBuildFile; fileRef = 21C36E251BCEBB02000CB5B0 /* Square Root-128.png */; settings = {ASSET_TAGS = (); }; };
+		2194AD201BB2F7DE002D9BD1 /* NoteSearchResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2194AD1F1BB2F7DE002D9BD1 /* NoteSearchResultsViewController.m */; };
+		21BFC94D1C57EBCF001BD5C8 /* SaveData.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BFC94B1C57EBCF001BD5C8 /* SaveData.m */; };
+		21C36DF11BCE9FB8000CB5B0 /* NotesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21C36DF01BCE9FB8000CB5B0 /* NotesViewController.xib */; };
+		21C36DF71BCEA061000CB5B0 /* NoteShuffleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C36DF61BCEA061000CB5B0 /* NoteShuffleViewController.m */; };
+		21C36DFA1BCEA140000CB5B0 /* MoreShuffle.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C36DF91BCEA140000CB5B0 /* MoreShuffle.m */; };
+		21C36DFD1BCEA150000CB5B0 /* WeeksNotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C36DFC1BCEA150000CB5B0 /* WeeksNotesViewController.m */; };
+		21C36E001BCEA179000CB5B0 /* AssignmentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C36DFF1BCEA179000CB5B0 /* AssignmentsViewController.m */; };
+		21C36E031BCEA193000CB5B0 /* AssignmentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C36E021BCEA193000CB5B0 /* AssignmentItem.m */; };
+		21C36E061BCEA1AE000CB5B0 /* NewNotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C36E051BCEA1AE000CB5B0 /* NewNotesViewController.m */; };
+		21C36E0C1BCEA1E1000CB5B0 /* BackgroundImages.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C36E0B1BCEA1E1000CB5B0 /* BackgroundImages.m */; };
+		21C36E0F1BCEA229000CB5B0 /* SaveColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C36E0E1BCEA229000CB5B0 /* SaveColor.m */; };
+		21C36E131BCEBA79000CB5B0 /* DefinitionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C36E121BCEBA79000CB5B0 /* DefinitionsViewController.m */; };
+		21C36E161BCEBA90000CB5B0 /* FormulasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C36E151BCEBA90000CB5B0 /* FormulasViewController.m */; };
+		21C36E1A1BCEBAB2000CB5B0 /* Book-Open-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 21C36E181BCEBAB2000CB5B0 /* Book-Open-32.png */; };
+		21C36E1B1BCEBAB2000CB5B0 /* Book-Open-128.png in Resources */ = {isa = PBXBuildFile; fileRef = 21C36E191BCEBAB2000CB5B0 /* Book-Open-128.png */; };
+		21C36E221BCEBADD000CB5B0 /* Stationery-Pen-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 21C36E201BCEBADD000CB5B0 /* Stationery-Pen-32.png */; };
+		21C36E231BCEBADD000CB5B0 /* Stationery-Pen-128 (1).png in Resources */ = {isa = PBXBuildFile; fileRef = 21C36E211BCEBADD000CB5B0 /* Stationery-Pen-128 (1).png */; };
+		21C36E261BCEBB02000CB5B0 /* Square Root-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 21C36E241BCEBB02000CB5B0 /* Square Root-32.png */; };
+		21C36E271BCEBB02000CB5B0 /* Square Root-128.png in Resources */ = {isa = PBXBuildFile; fileRef = 21C36E251BCEBB02000CB5B0 /* Square Root-128.png */; };
 		21DA3D9318905B5000BFD96B /* DrawViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21DA3D8C18905B5000BFD96B /* DrawViewController.xib */; };
 		21DA3D9518905B5000BFD96B /* DrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21DA3D8E18905B5000BFD96B /* DrawViewController.m */; };
-		21EF12D11BC8055C001B0121 /* NoteShuffleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 21EF12D01BC8055C001B0121 /* NoteShuffleButton.m */; settings = {ASSET_TAGS = (); }; };
+		21EF12D11BC8055C001B0121 /* NoteShuffleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 21EF12D01BC8055C001B0121 /* NoteShuffleButton.m */; };
 		2C882F2E1A8572E500D8E214 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CDF9961193CDE70005707D3 /* SearchViewController.m */; };
 		2CA93202188596D400199CC4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CA93201188596D400199CC4 /* Images.xcassets */; };
 		2CF45FDD17971C0400E6C69E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF45FDC17971C0400E6C69E /* QuartzCore.framework */; };
@@ -167,12 +167,12 @@
 		09983FD2441D47DAA38B408E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FAD181C458E4CEEB87F6ECE /* libPods-AccessLecture Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AccessLecture Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		10BDE2E5B090C64338F60EA3 /* Pods-AccessLecture.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AccessLecture.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AccessLecture/Pods-AccessLecture.debug.xcconfig"; sourceTree = "<group>"; };
-		2160E3911BD54B650081A73D /* saveData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = saveData.h; sourceTree = "<group>"; };
-		2160E3921BD54B650081A73D /* saveData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = saveData.m; sourceTree = "<group>"; };
 		216BE8491BA718E400B43584 /* NoteSearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteSearchTableViewController.h; sourceTree = "<group>"; };
 		216BE84A1BA718E400B43584 /* NoteSearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteSearchTableViewController.m; sourceTree = "<group>"; };
 		2194AD1E1BB2F7DE002D9BD1 /* NoteSearchResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteSearchResultsViewController.h; sourceTree = "<group>"; };
 		2194AD1F1BB2F7DE002D9BD1 /* NoteSearchResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteSearchResultsViewController.m; sourceTree = "<group>"; };
+		21BFC94B1C57EBCF001BD5C8 /* SaveData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveData.m; sourceTree = "<group>"; };
+		21BFC94C1C57EBCF001BD5C8 /* SaveData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveData.h; sourceTree = "<group>"; };
 		21C36DF01BCE9FB8000CB5B0 /* NotesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotesViewController.xib; sourceTree = "<group>"; };
 		21C36DF51BCEA061000CB5B0 /* NoteShuffleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteShuffleViewController.h; sourceTree = "<group>"; };
 		21C36DF61BCEA061000CB5B0 /* NoteShuffleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteShuffleViewController.m; sourceTree = "<group>"; };
@@ -421,8 +421,8 @@
 				21C36E041BCEA1AE000CB5B0 /* NewNotesViewController.h */,
 				21C36E051BCEA1AE000CB5B0 /* NewNotesViewController.m */,
 				21C36E011BCEA193000CB5B0 /* AssignmentItem.h */,
-				2160E3911BD54B650081A73D /* saveData.h */,
-				2160E3921BD54B650081A73D /* saveData.m */,
+				21BFC94B1C57EBCF001BD5C8 /* SaveData.m */,
+				21BFC94C1C57EBCF001BD5C8 /* SaveData.h */,
 				21C36E021BCEA193000CB5B0 /* AssignmentItem.m */,
 				21C36DFE1BCEA179000CB5B0 /* AssignmentsViewController.h */,
 				21C36DFF1BCEA179000CB5B0 /* AssignmentsViewController.m */,
@@ -1163,7 +1163,6 @@
 				21C36E161BCEBA90000CB5B0 /* FormulasViewController.m in Sources */,
 				3F8B515618FD90580053BFE8 /* UIImage+Rotate.m in Sources */,
 				4CFC573017DF800700393A1E /* NoteTakingViewController.m in Sources */,
-				2160E3931BD54B650081A73D /* saveData.m in Sources */,
 				4CDB057D17B557C300D8EB85 /* AccessLecture.xcdatamodeld in Sources */,
 				21C36E031BCEA193000CB5B0 /* AssignmentItem.m in Sources */,
 				3F8B515418FD90580053BFE8 /* UIImage+FixOrientation.m in Sources */,
@@ -1182,6 +1181,7 @@
 				4C4FA6F31A72CC8100161ABE /* OpenLectureController.m in Sources */,
 				4C46E6391A7FE23200087229 /* LoadingLectureCVC.m in Sources */,
 				4CDB058017B5589A00D8EB85 /* Favorites.m in Sources */,
+				21BFC94D1C57EBCF001BD5C8 /* SaveData.m in Sources */,
 				3F8B515718FD90580053BFE8 /* UIImage+RoundedCorner.m in Sources */,
 				3F8FD2C418AD21860059EF9C /* AMOpenButton.m in Sources */,
 				4CFC4BED1A76E72C001E2E27 /* NewLectureController.m in Sources */,
