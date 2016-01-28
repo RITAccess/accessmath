@@ -111,6 +111,7 @@
 		4CFC4BF01A76E961001E2E27 /* CheckButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC4BEF1A76E961001E2E27 /* CheckButton.m */; };
 		4CFC4BF31A795500001E2E27 /* ALTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC4BF21A795500001E2E27 /* ALTextField.m */; };
 		4CFC573017DF800700393A1E /* NoteTakingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC572F17DF800700393A1E /* NoteTakingViewController.m */; };
+		C9B4A0C81C5AB16800E9CE8B /* HighlighterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B4A0C71C5AB16800E9CE8B /* HighlighterViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -344,6 +345,8 @@
 		8BC023B512F24FD184B9F806 /* libPods-AccessLecture.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AccessLecture.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EB895DA5C2A9D423EC1C01C /* Pods-AccessLecture.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AccessLecture.release.xcconfig"; path = "Pods/Target Support Files/Pods-AccessLecture/Pods-AccessLecture.release.xcconfig"; sourceTree = "<group>"; };
 		A7108E144D7ABDACF00E2CBA /* Pods-AccessLecture Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AccessLecture Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AccessLecture Tests/Pods-AccessLecture Tests.release.xcconfig"; sourceTree = "<group>"; };
+		C9B4A0C61C5AB16800E9CE8B /* HighlighterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighlighterViewController.h; sourceTree = "<group>"; };
+		C9B4A0C71C5AB16800E9CE8B /* HighlighterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighlighterViewController.m; sourceTree = "<group>"; };
 		E42E409B29FC0EF386FD2A96 /* Pods-AccessLecture Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AccessLecture Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AccessLecture Tests/Pods-AccessLecture Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -418,18 +421,15 @@
 				21C36E0E1BCEA229000CB5B0 /* SaveColor.m */,
 				21C36E0A1BCEA1E1000CB5B0 /* BackgroundImages.h */,
 				21C36E0B1BCEA1E1000CB5B0 /* BackgroundImages.m */,
-				21C36E041BCEA1AE000CB5B0 /* NewNotesViewController.h */,
-				21C36E051BCEA1AE000CB5B0 /* NewNotesViewController.m */,
-				21BFC94C1C57EBCF001BD5C8 /* SaveData.h */,
-				21BFC94B1C57EBCF001BD5C8 /* SaveData.m */,
+				C9B4A0C51C5AB12D00E9CE8B /* NewNotesSection */,
+				C9B4A0C41C5A98A700E9CE8B /* SaveData */,
 				21C36E011BCEA193000CB5B0 /* AssignmentItem.h */,
 				21C36E021BCEA193000CB5B0 /* AssignmentItem.m */,
 				21C36DFE1BCEA179000CB5B0 /* AssignmentsViewController.h */,
 				21C36DFF1BCEA179000CB5B0 /* AssignmentsViewController.m */,
 				21C36DFB1BCEA150000CB5B0 /* WeeksNotesViewController.h */,
 				21C36DFC1BCEA150000CB5B0 /* WeeksNotesViewController.m */,
-				21C36DF81BCEA140000CB5B0 /* MoreShuffle.h */,
-				21C36DF91BCEA140000CB5B0 /* MoreShuffle.m */,
+				C9B4A0C31C5A989B00E9CE8B /* MoreShuffle */,
 				21C36DF51BCEA061000CB5B0 /* NoteShuffleViewController.h */,
 				21C36DF61BCEA061000CB5B0 /* NoteShuffleViewController.m */,
 				21C36DF01BCE9FB8000CB5B0 /* NotesViewController.xib */,
@@ -892,6 +892,35 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		C9B4A0C31C5A989B00E9CE8B /* MoreShuffle */ = {
+			isa = PBXGroup;
+			children = (
+				21C36DF81BCEA140000CB5B0 /* MoreShuffle.h */,
+				21C36DF91BCEA140000CB5B0 /* MoreShuffle.m */,
+			);
+			name = MoreShuffle;
+			sourceTree = "<group>";
+		};
+		C9B4A0C41C5A98A700E9CE8B /* SaveData */ = {
+			isa = PBXGroup;
+			children = (
+				21BFC94C1C57EBCF001BD5C8 /* SaveData.h */,
+				21BFC94B1C57EBCF001BD5C8 /* SaveData.m */,
+			);
+			name = SaveData;
+			sourceTree = "<group>";
+		};
+		C9B4A0C51C5AB12D00E9CE8B /* NewNotesSection */ = {
+			isa = PBXGroup;
+			children = (
+				21C36E041BCEA1AE000CB5B0 /* NewNotesViewController.h */,
+				21C36E051BCEA1AE000CB5B0 /* NewNotesViewController.m */,
+				C9B4A0C61C5AB16800E9CE8B /* HighlighterViewController.h */,
+				C9B4A0C71C5AB16800E9CE8B /* HighlighterViewController.m */,
+			);
+			name = NewNotesSection;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1134,6 +1163,7 @@
 				3F8FD2CB18AD33350059EF9C /* AddNote.m in Sources */,
 				3F8D99331880ACBE0061DEA2 /* NSString+TrimmingAdditions.m in Sources */,
 				3F8D990E187DD9100061DEA2 /* FullScreenNoteViewController.m in Sources */,
+				C9B4A0C81C5AB16800E9CE8B /* HighlighterViewController.m in Sources */,
 				3F07C34F187B2BA7005BC7EC /* TextNoteViewController.m in Sources */,
 				3FED96191370863E00D8D1B8 /* main.m in Sources */,
 				4CEA1A03177CAAED00A1DE05 /* LectureCell.m in Sources */,

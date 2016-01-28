@@ -12,8 +12,10 @@
 @property UIPopoverController *popOverController;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *increaseTextSize;
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *decreaseTextSize;
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *highlightColor;
+
+- (IBAction)changeFontSize:(UIStepper *)sender;
+- (IBAction)changeFontStyle:(UISegmentedControl *)sender;
+- (IBAction)changeHighlighterColor:(UIBarButtonItem *)sender;
+
 
 @end

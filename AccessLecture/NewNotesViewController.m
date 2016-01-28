@@ -8,6 +8,7 @@
 //
 
 #import "NewNotesViewController.h"
+#import "HighlighterViewController.h"
 #import "saveColor.h"
 
 #import "ALView+PureLayout.h"
@@ -47,8 +48,6 @@
     NSArray *_navigationItems;
 }
 
-@synthesize textView;
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -60,7 +59,7 @@
     _currentDate.text = theDate;
     _currentDate.userInteractionEnabled = NO;
     
-    [textView sizeThatFits:CGSizeMake(self.view.frame.size.width, self.view.frame.size.height)];
+    [_textView sizeThatFits:CGSizeMake(self.view.frame.size.width, self.view.frame.size.height)];
     
     //leftSwipe
     leftSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action: @selector(orientationChanged:)];
@@ -101,12 +100,12 @@
     [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(orientationChanged:)    name:UIDeviceOrientationDidChangeNotification  object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(sideViewRemoved:)    name:UIDeviceOrientationDidChangeNotification  object:nil];
     
-    [self.navigationController setToolbarHidden:NO animated:YES];
+    //[self.navigationController setToolbarHidden:NO animated:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [self.navigationController setToolbarHidden:YES animated:YES];
+    //[self.navigationController setToolbarHidden:YES animated:YES];
 }
 
 //removes notification
@@ -257,81 +256,63 @@
 
 }
 
-//Uses NSMutableAttributedString to highlight the text selected by the user.
--(void)highlightText
-{
+#pragma mark: Text View
+
+- (IBAction)changeFontSize:(UIStepper*)sender {
     
-    NSRange selectedRange = textView.selectedRange;
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithAttributedString:textView.attributedText];
-    
-    if ([SaveColor sharedData].hightlightColor != nil) {
-        [attributedString addAttribute:NSBackgroundColorAttributeName value:[SaveColor sharedData].hightlightColor range:selectedRange];
-    } else {
-        [attributedString addAttribute:NSBackgroundColorAttributeName value:[UIColor yellowColor] range:selectedRange];
-    }
-    
-    textView.attributedText = attributedString;
+    _textView.font = [_textView.font fontWithSize:[sender value]];
 }
 
-//allows the user to add images to their notes
-- (IBAction)addImage:(UIButton *)sender
-{
-    if ([[UIApplication sharedApplication] statusBarOrientation] != UIInterfaceOrientationPortrait) {
-        // TODO: implement or remove
-    }
-}
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+- (IBAction)changeFontStyle:(UISegmentedControl *)sender {
     
-    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
-    self.imageView.image = chosenImage;
-    
-    [picker dismissViewControllerAnimated:YES completion:NULL];
-    
-}
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
-    
-    [picker dismissViewControllerAnimated:YES completion:NULL];
-    
-}
-
-#pragma mark - Text Size
-
-- (IBAction)decreaseTextSize:(UIBarButtonItem*)sender {
-    
-    CGFloat value = textView.font.pointSize;
-    
-    if (sender == self.decreaseTextSize) {
-        value -= 1;
-        [textView setFont:[UIFont systemFontOfSize:value]];
-        [textView sizeToFit];
+    switch (sender.selectedSegmentIndex) {
+        case 0:
+            [_textView setFont:[UIFont systemFontOfSize:_textView.font.pointSize]];
+            break;
+        case 1:
+            [_textView setFont:[UIFont boldSystemFontOfSize:_textView.font.pointSize]];
+            break;
+        case 2:
+            [_textView setFont:[UIFont italicSystemFontOfSize:_textView.font.pointSize]];
+            break;
+        default:
+            break;
     }
 }
 
-- (IBAction)increaseTextSize:(UIBarButtonItem*)sender {
+- (IBAction)changeHighlighterColor:(UIBarButtonItem *)sender {
     
-    CGFloat value = textView.font.pointSize;
-    
-    if (sender == self.increaseTextSize) {
-        value += 1;
-        [textView setFont:[UIFont systemFontOfSize:value]];
-        [textView sizeToFit];
-    }
-}
-
-#pragma mark - Highlight Color
-
-//Changes highlighter color to one of the choices listed below and saves the selection
-- (IBAction)highlightColor:(UIBarButtonItem *)sender {
-    
-    NewNotesViewController *newNote = [[NewNotesViewController alloc] init];
+    HighlighterViewController *newNote = [[HighlighterViewController alloc] init];
     popover = [[UIPopoverController alloc] initWithContentViewController:newNote];
     popover.delegate = self;
     
     popover.popoverContentSize = CGSizeMake(285, 200);
     
+    NSMutableArray *highlighterColorChoices = [[NSMutableArray alloc] initWithObjects:[UIColor colorWithRed:127.0f/255.0f green:226.0f/255.0f blue:255.0f/255.0f alpha:1.0], [UIColor colorWithRed:245.0f/255.0f green:255.0f/255.0f blue:0.0f/255.0f alpha:1.0], [UIColor colorWithRed:208.0f/255.0f green:164.0f/255.0f blue:237.0f/255.0f alpha:1.0], [UIColor colorWithRed:108.0f/255.0f green:255.0f/255.0f blue:95.0f/255.0f alpha:1.0], [UIColor colorWithRed:253.0f/255.0f green:153.0f/255.0f blue:176.0f/255.0f alpha:1.0], [UIColor colorWithRed:233.0f/255.0f green:215.0f/255.0f blue:255.0f/255.0f alpha:1.0], [UIColor colorWithRed:154.0f/255.0f green:159.0f/255.0f blue:91.0f/255.0f alpha:1.0], [UIColor colorWithRed:0.0f/255.0f green:255.0f/255.0f blue:226.0f/255.0f alpha:1.0], [UIColor colorWithRed:107.0f/255.0f green:191.0f/255.0f blue:211.0f/255.0f alpha:1.0], [UIColor colorWithRed:255.0f/255.0f green:0.0f/255.0f blue:236.0f/255.0f alpha:1.0], [UIColor colorWithRed:255.0f/255.0f green:62.0f/255.0f blue:62.0f/255.0f alpha:1.0], [UIColor colorWithRed:132.0f/255.0f green:100.0f/255.0f blue:174.0f/255.0f alpha:1.0], [UIColor colorWithRed:255.0f/255.0f green:170.0f/255.0f blue:170.0f/255.0f alpha:1.0], [UIColor colorWithRed:212.0f/255.0f green:255.0f/255.0f blue:170.0f/255.0f alpha:1.0], [UIColor colorWithRed:101.0f/255.0f green:188.0f/255.0f blue:255.0f/255.0f alpha:1.0], nil];
+    
     //color choices
+    
+    CGFloat x = 5;
+    CGFloat y = 15;
+    
+    for (UIColor *currentColor in highlighterColorChoices) {
+        
+        if (x <= 225) {
+            x += 55;
+        } else {
+            x = 5;
+            y += 55;
+        }
+        
+        UIButton *color = [[UIButton alloc] initWithFrame:CGRectMake(x, y, 50, 50)];
+        color.backgroundColor = currentColor;
+        color.layer.borderColor = [UIColor blackColor].CGColor;
+        color.layer.borderWidth = 1.0f;
+        color.layer.cornerRadius = 10.0f;
+        [color addTarget:self action:@selector(changeHighlightColor:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [popover.contentViewController.view addSubview:color];
+    }
     UIButton *color1 = [[UIButton alloc] initWithFrame:CGRectMake(5, 15, 50, 50)];
     color1.backgroundColor = [UIColor colorWithRed:127.0f/255.0f green:226.0f/255.0f blue:255.0f/255.0f alpha:1.0];
     color1.layer.borderColor = [UIColor blackColor].CGColor;
@@ -455,11 +436,48 @@
     
     self.popOverController = popover;
     
+    [self.popOverController presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+}
+
+//Uses NSMutableAttributedString to highlight the text selected by the user.
+-(void)highlightText
+{
+    NSRange selectedRange = _textView.selectedRange;
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithAttributedString:_textView.attributedText];
     
-    [self.popOverController presentPopoverFromBarButtonItem:sender
-                                   permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    if ([SaveColor sharedData].hightlightColor != nil) {
+        [attributedString addAttribute:NSBackgroundColorAttributeName value:[SaveColor sharedData].hightlightColor range:selectedRange];
+    } else {
+        [attributedString addAttribute:NSBackgroundColorAttributeName value:[UIColor yellowColor] range:selectedRange];
+    }
+    
+    _textView.attributedText = attributedString;
+}
+
+//allows the user to add images to their notes
+- (IBAction)addImage:(UIButton *)sender
+{
+    if ([[UIApplication sharedApplication] statusBarOrientation] != UIInterfaceOrientationPortrait) {
+        // TODO: implement or remove
+    }
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    self.imageView.image = chosenImage;
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
     
 }
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
+
+#pragma mark - Highlight Color
 
 -(void)changeHighlightColor:(UIButton*)sender{
     [SaveColor sharedData].hightlightColor = sender.backgroundColor;
