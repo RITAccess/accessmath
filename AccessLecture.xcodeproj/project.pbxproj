@@ -69,6 +69,7 @@
 		3FED96191370863E00D8D1B8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FED96181370863E00D8D1B8 /* main.m */; };
 		3FED961C1370863E00D8D1B8 /* AccessLectureAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FED961B1370863E00D8D1B8 /* AccessLectureAppDelegate.m */; };
 		3FFCFB2213A25388003DAB63 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FFCFB2113A25388003DAB63 /* MessageUI.framework */; };
+		4C03E4BF1C5A6211001CE560 /* NoteInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C03E4BE1C5A6211001CE560 /* NoteInterface.m */; };
 		4C37CCB018295FC0006D3B1F /* ALMetaData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C37CCAF18295FC0006D3B1F /* ALMetaData.m */; };
 		4C3BE5E71A7296F10017854C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C3BE5E61A7296F10017854C /* Main.storyboard */; };
 		4C3BE5EA1A72973C0017854C /* RootMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BE5E91A72973C0017854C /* RootMenuController.m */; };
@@ -280,6 +281,8 @@
 		3FED961A1370863E00D8D1B8 /* AccessLectureAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccessLectureAppDelegate.h; sourceTree = "<group>"; };
 		3FED961B1370863E00D8D1B8 /* AccessLectureAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccessLectureAppDelegate.m; sourceTree = "<group>"; };
 		3FFCFB2113A25388003DAB63 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		4C03E4BD1C5A6211001CE560 /* NoteInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteInterface.h; sourceTree = "<group>"; };
+		4C03E4BE1C5A6211001CE560 /* NoteInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteInterface.m; sourceTree = "<group>"; };
 		4C37CCAE18295FC0006D3B1F /* ALMetaData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALMetaData.h; sourceTree = "<group>"; };
 		4C37CCAF18295FC0006D3B1F /* ALMetaData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALMetaData.m; sourceTree = "<group>"; };
 		4C3BE5E61A7296F10017854C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -597,6 +600,7 @@
 		3F99F1ED15435F9D0065CBB9 /* Document Model */ = {
 			isa = PBXGroup;
 			children = (
+				4C03E4BC1C5A61E6001CE560 /* Interfaces */,
 				4CDDF69417EB68F100FE34E7 /* Lectures */,
 				3F99F1EE15435FA80065CBB9 /* UIDocument */,
 				3F99F1EF15435FB40065CBB9 /* FileManager */,
@@ -737,6 +741,15 @@
 				4CEA1A00177CAAED00A1DE05 /* LectureCell.m */,
 			);
 			name = "Lecture View";
+			sourceTree = "<group>";
+		};
+		4C03E4BC1C5A61E6001CE560 /* Interfaces */ = {
+			isa = PBXGroup;
+			children = (
+				4C03E4BD1C5A6211001CE560 /* NoteInterface.h */,
+				4C03E4BE1C5A6211001CE560 /* NoteInterface.m */,
+			);
+			name = Interfaces;
 			sourceTree = "<group>";
 		};
 		4C3BE5F11A72A8300017854C /* OpenViewController */ = {
@@ -1165,6 +1178,7 @@
 				4CFC573017DF800700393A1E /* NoteTakingViewController.m in Sources */,
 				4CDB057D17B557C300D8EB85 /* AccessLecture.xcdatamodeld in Sources */,
 				21C36E031BCEA193000CB5B0 /* AssignmentItem.m in Sources */,
+				4C03E4BF1C5A6211001CE560 /* NoteInterface.m in Sources */,
 				3F8B515418FD90580053BFE8 /* UIImage+FixOrientation.m in Sources */,
 				3F8FD2E318B3F7BF0059EF9C /* Deferred.m in Sources */,
 				3F408C0A18BF94F600F6B113 /* XMLReader.m in Sources */,

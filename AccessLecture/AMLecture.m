@@ -11,8 +11,7 @@
 #import "FMDatabaseQueue.h"
 #import "FMDatabase.h"
 #import "Note.h"
-
-#define TEST 1
+#import "NoteInterface.h"
 
 #define DB_NAME @"notes.db"
 #define NOTE_TABLE @"notes"
@@ -61,10 +60,8 @@ static NSString *LectureKey = @"lecture";
     _db = [FMDatabaseQueue databaseQueueWithPath:self.databasePath];
     [_db inDatabase:^(FMDatabase *db) {
         bool success = [db executeStatements:
-                        @"create table IF NOT EXISTS " NOTE_TABLE @" (title varchar(80), contents varchar(5000), modification REAL);"
-                        @"create table IF NOT EXISTS " STATE_TABLE @" (position varchar(80), modification REAL);"
-                        @"create table IF NOT EXISTS " META_TABLE @" (title varchar(80), date varchar(80) modification REAL);"
-
+                        @"create table IF NOT EXISTS " NOTE_TABLE @" (id integer primary key autoincrement, title varchar(80), contents TEXT );"
+                        @"create table IF NOT EXISTS " STATE_TABLE @" (id integer primary key autoincrement, position varchar(80), zIndex integer, stateGrouping integer, noteId integer );"
                     ];
         
         NSLog(@"DEBUG: created %@", success ? @"YES" : @"NO");
@@ -135,9 +132,9 @@ static NSString *LectureKey = @"lecture";
     self.lecture = nil;
     self.thumb = nil;
     [self initDatabaseConnection];
-#if TEST
+
     NSLog(@"DEBUG: %@", [self testSomeCode]);;
-#endif
+    
     return YES;
 }
 
@@ -194,26 +191,26 @@ static NSString *LectureKey = @"lecture";
     return [NSString stringWithFormat:@"AMLecture<%d> Title: '%@' number of notes %d", [super hash], _metadata.title, _lecture.notes.count];
 }
 
-#if TEST
-- (NSArray<Note *> *)testSomeCode {
-    __block FMResultSet *results;
-    [_db inDatabase:^(FMDatabase *db) {
-        [db executeUpdate:
-            @"INSERT into " NOTE_TABLE @" (title, contents) VALUES ('Test Note', 'Test not content that is resonably long but probably doesnt reach some edge case');"
-         ];
-        results = [db executeQuery:@"select * from " NOTE_TABLE];
-    }];
-    NSMutableArray<Note *> *resultsArray = [@[] mutableCopy];
-    while ([results next]) {
-        Note *n = [Note new];
-        [n setTitle:[results stringForColumn:@"title"]];
-        [n setContent:[results stringForColumn:@"contents"]];
-        [resultsArray addObject:n];
-    }
-    [results close];
-    return resultsArray;
+- (NoteInterface *)createNoteWithClass:(Class)class inState:(NSString *)state {
+    assert([class isSubclassOfClass:[NoteInterface class]]);
+    NoteInterface *note = [class new];
+    // TODO
+    [note setID:state inDB:_db new:true id:NULL];
+    return note;
 }
-#endif
+
+- (void)_saveNote:(NoteInterface *)note toState:(NSString *)state {
+    
+    
+    
+}
+
+- (NSArray<Note *> *)testSomeCode {
+    
+    NoteInterface *note = [self createNoteWithClass:[NoteInterface class] inState:NSStringFromClass([NoteInterface class])];
+    
+    return @[];
+}
 
 - (NSArray *)getNotes __deprecated_msg("Getting notes will require a state referance otherwise locations can't be populated. More info on how note listing will work. Will most likely be moved to Lecture.h and be a promise");
 {
