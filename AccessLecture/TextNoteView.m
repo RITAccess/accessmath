@@ -24,7 +24,7 @@
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panNote:)];
     [panGesture setMinimumNumberOfTouches:2];
     [self addGestureRecognizer:panGesture];
-    [self.layer setBorderWidth:1];
+    self.layer.borderWidth = 0;
 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(preferredContentSizeChanged:)
