@@ -21,5 +21,8 @@
 @property (atomic, readwrite) NSInteger zIndex;
 
 - (void)setID:(NSString *)state inDB:(FMDatabaseQueue *)pdb new:(BOOL)create id:(NSInteger) idx;
+- (id)initWithOutsaveToDB:(FMDatabaseQueue *)pdb
+                withState:(NSString *)state
+                      xid:(int)xid;
 
 @end

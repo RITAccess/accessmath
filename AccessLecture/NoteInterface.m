@@ -20,6 +20,19 @@
     FMDatabaseQueue *_db;
 }
 
+- (id)initWithOutsaveToDB:(FMDatabaseQueue *)pdb
+                withState:(NSString *)state
+                      xid:(int)xid
+{
+    self = [super init];
+    if (self) {
+        _db = pdb;
+        _state = [state hash];
+        _noteID = xid;
+    }
+    return self;
+}
+
 - (void)setID:(NSString *)state inDB:(FMDatabaseQueue *)pdb new:(BOOL)create id:(NSInteger) idx {
     _state = [state hash];
     _db = pdb;
@@ -49,11 +62,10 @@
 - (CGPoint)location {
     __block FMResultSet *r;
     [_db inDatabase:^(FMDatabase *db) {
-        r = [db executeQuery:@"select position from state where noteId=? and stateGrouping=?;" withArgumentsInArray:@[@(_noteID), @(_state)]];
+        r = [db executeQuery:@"select position from state where noteId=? and stateGrouping=?" withArgumentsInArray:@[@(_noteID), @(_state)]];
     }];
     [r next];
     NSString *point = [r stringForColumn:@"position"];
-    NSLog(@"DEBUG: %@", point);
     [r close];
     return CGPointFromString(point);
 }

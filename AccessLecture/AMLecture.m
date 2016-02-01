@@ -133,7 +133,7 @@ static NSString *LectureKey = @"lecture";
     self.thumb = nil;
     [self initDatabaseConnection];
 
-    NSLog(@"DEBUG: %@", [self testSomeCode]);;
+    [self testSomeCode];
     
     return YES;
 }
@@ -199,15 +199,35 @@ static NSString *LectureKey = @"lecture";
     return note;
 }
 
+- (NSArray<NoteInterface *> *)_loadNotesFromState:(NSString *)state intoClass:(Class)class {
+    
+    NSUInteger shash = [state hash];
+    
+    __block FMResultSet *r;
+    [_db inDatabase:^(FMDatabase *db) {
+        r = [db executeQuery:@"select notes.id from notes join state on state.noteId=notes.id where stateGrouping=?" withArgumentsInArray:@[@(shash)]];
+    }];
+    NSMutableArray<NoteInterface *> *resultSet = [NSMutableArray new];
+    while ([r next]) {
+        NoteInterface *n = [[NoteInterface alloc] initWithOutsaveToDB:_db withState:state xid:[r intForColumn:@"id"]];
+        [resultSet addObject:n];
+    }
+    
+    [r close];
+    return resultSet;
+}
+
 - (void)_saveNote:(NoteInterface *)note toState:(NSString *)state {
-    
-    
     
 }
 
 - (NSArray<Note *> *)testSomeCode {
-    
-    NoteInterface *note = [self createNoteWithClass:[NoteInterface class] inState:NSStringFromClass([NoteInterface class])];
+//    [self createNoteWithClass:[NoteInterface class] inState:NSStringFromClass([NoteInterface class])];
+    NSArray<NoteInterface *> *res = [self _loadNotesFromState:NSStringFromClass([NoteInterface class]) intoClass:[NoteInterface class]];
+    for (NoteInterface *r in res) {
+        long test = r.location.x;
+        NSLog(@"DEBUG: %lu", test);
+    }
     
     return @[];
 }
