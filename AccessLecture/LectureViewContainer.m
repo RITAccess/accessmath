@@ -186,15 +186,22 @@
 {
     UIButton *drawButton = [_navigationItems objectAtIndex:3];  // update index
 
-    if (drawButton.selected) {
+    if (_active == _dvc) {
+        // toggle button unselected
+        drawButton.layer.cornerRadius = 0;
+        drawButton.backgroundColor = [UIColor clearColor];
+        
         [_dvc dismissToolbarWithAnimation:YES];
-        [self.view sendSubviewToBack:_dvc.view];
+        [self moveControlTo:_ntvc];
+        
     } else {
+        // toggle button selected
+        drawButton.layer.cornerRadius = 5;
+        drawButton.backgroundColor = [UIColor colorWithRed:179.0f/255.0f green:210.0f/255.0f blue:252.0f/255.0f alpha:.8];
+        
         [_dvc displayToolbarWithAnimation:YES];
         [self moveControlTo:_dvc];
     }
-
-    drawButton.selected = ![drawButton isSelected];
 }
 
 - (void)toggleNoteShuffleViewController
