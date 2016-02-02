@@ -205,7 +205,7 @@ static NSString *LectureKey = @"lecture";
     
     __block FMResultSet *r;
     [_db inDatabase:^(FMDatabase *db) {
-        r = [db executeQuery:@"select notes.id from notes join state on state.noteId=notes.id where stateGrouping=?" withArgumentsInArray:@[@(shash)]];
+        r = [db executeQuery:@"select id from notes" withArgumentsInArray:@[@(shash)]];
     }];
     NSMutableArray<NoteInterface *> *resultSet = [NSMutableArray new];
     while ([r next]) {
@@ -229,6 +229,7 @@ static NSString *LectureKey = @"lecture";
     }
     
     res[0].location = CGPointMake(5,9);
+    res[0].zIndex = 9;
     
     for (NoteInterface *r in res) {
         NSLog(@"DEBUG 2: %@", NSStringFromCGPoint(r.location));
@@ -237,7 +238,7 @@ static NSString *LectureKey = @"lecture";
     return @[];
 }
 
-- (NSArray *)getNotes __deprecated_msg("Getting notes will require a state referance otherwise locations can't be populated. More info on how note listing will work. Will most likely be moved to Lecture.h and be a promise");
+- (NSArray *)getNotes;
 {
     return _lecture.notes;
 }

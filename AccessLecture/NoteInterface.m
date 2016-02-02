@@ -58,17 +58,19 @@
     return self;
 }
 
-- (void)_updateLocation:(CGPoint)loc {
-    NSString *s = NSStringFromCGPoint(loc);
+- (void)_update:(NSString *)col with:(id)arg {
     [_db inDatabase:^(FMDatabase *db) {
-        [db executeUpdate:@"update state set position=? where noteId=? and stateGrouping=?" withArgumentsInArray:@[s, @(_noteID), @(_state)]];
+        [db executeUpdate:[NSString stringWithFormat:@"update state set %@=? where noteId=? and stateGrouping=?", col] withArgumentsInArray:@[arg, @(_noteID), @(_state)]];
     }];
 }
 
+- (void)_updateLocation:(CGPoint)loc {
+    NSString *s = NSStringFromCGPoint(loc);
+    [self _update:@"position" with:s];
+}
+
 - (void)_updateZIndex:(NSInteger)z {
-    [_db inDatabase:^(FMDatabase *db) {
-        [db executeUpdate:@"update state set zIndex=? where noteId=? and stateGrouping=?" withArgumentsInArray:@[@(z), @(_noteID), @(_state)]];
-    }];
+    [self _update:@"zIndex" with:@(z)];
 }
 
 - (void)setID:(NSString *)state inDB:(FMDatabaseQueue *)pdb new:(BOOL)create id:(NSInteger) idx {

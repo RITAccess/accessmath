@@ -15,12 +15,19 @@
 @interface NoteInterface : NSObject
 
 /**
- * Posision Tracked Items
+ * Global Tracked Items
+ */
+@property (atomic, readwrite) NSString *title;
+@property (atomic, readwrite) NSString *content;
+
+/**
+ * Posision Tracked Items dependant on state initilized with.
  */
 @property (atomic, readwrite) CGPoint location;
 @property (atomic, readwrite) NSInteger zIndex;
 
-- (void)setID:(NSString *)state inDB:(FMDatabaseQueue *)pdb new:(BOOL)create id:(NSInteger) idx;
+- (void)setID:(NSString *)state inDB:(FMDatabaseQueue *)pdb new:(BOOL)create id:(NSInteger) idx __deprecated_msg("Not the clean interface we want");
+
 - (id)initWithOutsaveToDB:(FMDatabaseQueue *)pdb
                 withState:(NSString *)state
                       xid:(int)xid;
