@@ -34,13 +34,18 @@
         // Update location
         __block FMResultSet *r;
         [_db inDatabase:^(FMDatabase *db) {
-            r = [db executeQuery:@"select position, zIndex from state where noteId=? and stateGrouping=?" withArgumentsInArray:@[@(_noteID), @(_state)]];
+            r = [db executeQuery:@"select position, zIndex, title, contents from state join notes on notes.id=state.noteId where noteId=? and stateGrouping=?" withArgumentsInArray:@[@(_noteID), @(_state)]];
         }];
         [r next];
+        
+        self.title = [r stringForColumn:@"title"];
+        self.content = [r stringForColumn:@"contents"];
+        
         NSString *point = [r stringForColumn:@"position"];
         self.zIndex = [r intForColumn:@"zIndex"];
-        [r close];
         self.location = CGPointFromString(point);
+       
+         [r close];
         
         [[RACObserve(self, zIndex)
           throttle:3.0]
@@ -54,23 +59,48 @@
              [self _updateLocation:[x CGPointValue]];
         }];
         
+        [[RACObserve(self, title)
+          throttle:3.0]
+          subscribeNext:^(id x) {
+             [self _updateTitle:[x stringValue]];
+         }];
+        
+        [[RACObserve(self, content)
+          throttle:3.0]
+          subscribeNext:^(id x) {
+             [self _updateContent:[x stringValue]];
+         }];
     }
     return self;
 }
 
-- (void)_update:(NSString *)col with:(id)arg {
+- (void)_updateState:(NSString *)col with:(id)arg {
     [_db inDatabase:^(FMDatabase *db) {
         [db executeUpdate:[NSString stringWithFormat:@"update state set %@=? where noteId=? and stateGrouping=?", col] withArgumentsInArray:@[arg, @(_noteID), @(_state)]];
     }];
 }
 
+- (void)_updateNote:(NSString *)col with:(id)arg {
+    [_db inDatabase:^(FMDatabase *db) {
+        [db executeUpdate:[NSString stringWithFormat:@"update note set %@=? where id=?", col] withArgumentsInArray:@[arg, @(_noteID)]];
+    }];
+}
+
+- (void)_updateTitle:(NSString *)title {
+    [self _updateNote:@"title" with:title];
+}
+
+- (void)_updateContent:(NSString *)cont {
+    [self _updateNote:@"contents" with:cont];
+}
+
 - (void)_updateLocation:(CGPoint)loc {
     NSString *s = NSStringFromCGPoint(loc);
-    [self _update:@"position" with:s];
+    [self _updateState:@"position" with:s];
 }
 
 - (void)_updateZIndex:(NSInteger)z {
-    [self _update:@"zIndex" with:@(z)];
+    [self _updateState:@"zIndex" with:@(z)];
 }
 
 - (void)setID:(NSString *)state inDB:(FMDatabaseQueue *)pdb new:(BOOL)create id:(NSInteger) idx {
