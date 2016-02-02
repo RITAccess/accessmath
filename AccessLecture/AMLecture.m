@@ -225,8 +225,13 @@ static NSString *LectureKey = @"lecture";
 //    [self createNoteWithClass:[NoteInterface class] inState:NSStringFromClass([NoteInterface class])];
     NSArray<NoteInterface *> *res = [self _loadNotesFromState:NSStringFromClass([NoteInterface class]) intoClass:[NoteInterface class]];
     for (NoteInterface *r in res) {
-        long test = r.location.x;
-        NSLog(@"DEBUG: %lu", test);
+        NSLog(@"DEBUG: %@", NSStringFromCGPoint(r.location));
+    }
+    
+    res[0].location = CGPointMake(5,9);
+    
+    for (NoteInterface *r in res) {
+        NSLog(@"DEBUG 2: %@", NSStringFromCGPoint(r.location));
     }
     
     return @[];
