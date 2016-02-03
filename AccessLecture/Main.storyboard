@@ -84,7 +84,6 @@
                                 <connections>
                                     <outlet property="iconImage" destination="UKl-sP-OJI" id="VVl-UN-53o"/>
                                     <outlet property="title" destination="dZe-EG-U3F" id="4Fb-ji-pcC"/>
-                                    <segue destination="Vju-WG-RbO" kind="presentation" identifier="toSettings" id="3DZ-cp-DuF"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -134,11 +133,12 @@
                     <connections>
                         <segue destination="d96-Uo-nnX" kind="presentation" identifier="open" id="5uf-HQ-p7c"/>
                         <segue destination="5hH-RB-bUd" kind="presentation" identifier="toAbout" id="4RO-wy-4zE"/>
+                        <segue destination="Vju-WG-RbO" kind="presentation" identifier="toSettings" id="fEY-Ui-SgZ"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fTF-1V-g9W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="85.5" y="612.75"/>
+            <point key="canvasLocation" x="-221" y="558"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="NLE-sI-zhX">
@@ -157,7 +157,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t2Z-br-1wB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="719.25" y="612.75"/>
+            <point key="canvasLocation" x="623" y="558"/>
         </scene>
         <!--New Lecture Controller-->
         <scene sceneID="lCx-bl-3RS">
@@ -836,7 +836,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eJi-aa-fkY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-470" y="2130"/>
+            <point key="canvasLocation" x="-424" y="2100"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1fL-4B-Rqo">
@@ -983,7 +983,7 @@ IAoKA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pgs-Z7-ad1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="539" y="1348"/>
+            <point key="canvasLocation" x="505" y="1546"/>
         </scene>
         <!--Note Shuffle View Controller-->
         <scene sceneID="cPo-ob-ngD">
