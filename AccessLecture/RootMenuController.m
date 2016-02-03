@@ -54,6 +54,7 @@ static NSString * const reuseIdentifier = @"menu";
         m.title = @"Settings";
         m.imageName = @"Settings";
         m.target = self;
+        m.action = @selector(openSettings:);
         m;
     })];
     
@@ -116,6 +117,11 @@ static NSString * const reuseIdentifier = @"menu";
 - (void)openLecture:(id)sender
 {
     [self performSegueWithIdentifier:@"open" sender:self];
+}
+
+- (void)openSettings:(id)sender
+{
+    [self performSegueWithIdentifier:@"toSettings" sender:self];
 }
 
 - (void)openSearch:(id)sender
