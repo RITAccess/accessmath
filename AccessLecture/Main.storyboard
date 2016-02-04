@@ -810,20 +810,88 @@
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="sectionIndexColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="settingsCell" id="y4I-G8-fCK">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="settingsCell" id="yls-bN-GLu">
                                 <rect key="frame" x="0.0" y="114" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" semanticContentAttribute="forceLeftToRight" tableViewCell="y4I-G8-fCK" id="uz6-WD-oMq">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yls-bN-GLu" id="F9j-ox-tdl">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zxo-vL-2sL">
-                                            <rect key="frame" x="13" y="11" width="81" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Default Text Size" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fcX-uy-XHE">
+                                            <rect key="frame" x="18" y="11" width="187" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="187" id="UIp-FY-vVP"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="UIp-FY-vVP"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="widthClass=regular">
+                                                <mask key="constraints">
+                                                    <include reference="UIp-FY-vVP"/>
+                                                </mask>
+                                            </variation>
                                         </label>
+                                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="gwO-OU-YY0">
+                                            <rect key="frame" x="0.0" y="-15" width="118" height="31"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="301" id="Czq-GY-IjS"/>
+                                                <constraint firstAttribute="height" constant="30" id="DWL-pJ-SkD"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="Czq-GY-IjS"/>
+                                                    <exclude reference="DWL-pJ-SkD"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="widthClass=regular">
+                                                <mask key="constraints">
+                                                    <include reference="Czq-GY-IjS"/>
+                                                    <include reference="DWL-pJ-SkD"/>
+                                                </mask>
+                                            </variation>
+                                        </slider>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="fcX-uy-XHE" firstAttribute="centerY" secondItem="gwO-OU-YY0" secondAttribute="centerY" id="6F8-6c-UYT"/>
+                                        <constraint firstItem="fcX-uy-XHE" firstAttribute="leading" secondItem="F9j-ox-tdl" secondAttribute="leadingMargin" constant="10" id="VaE-YX-ByE"/>
+                                        <constraint firstItem="gwO-OU-YY0" firstAttribute="trailing" secondItem="F9j-ox-tdl" secondAttribute="trailingMargin" id="ixw-lb-4vm"/>
+                                        <constraint firstItem="gwO-OU-YY0" firstAttribute="centerY" secondItem="F9j-ox-tdl" secondAttribute="centerY" id="lja-Mv-h4U"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="subviews">
+                                            <exclude reference="gwO-OU-YY0"/>
+                                        </mask>
+                                        <mask key="constraints">
+                                            <exclude reference="6F8-6c-UYT"/>
+                                            <exclude reference="VaE-YX-ByE"/>
+                                            <exclude reference="ixw-lb-4vm"/>
+                                            <exclude reference="lja-Mv-h4U"/>
+                                        </mask>
+                                    </variation>
+                                    <variation key="widthClass=regular">
+                                        <mask key="subviews">
+                                            <include reference="gwO-OU-YY0"/>
+                                        </mask>
+                                        <mask key="constraints">
+                                            <include reference="6F8-6c-UYT"/>
+                                            <include reference="VaE-YX-ByE"/>
+                                            <include reference="ixw-lb-4vm"/>
+                                            <include reference="lja-Mv-h4U"/>
+                                        </mask>
+                                    </variation>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="XfQ-sR-2tC">
+                                <rect key="frame" x="0.0" y="158" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XfQ-sR-2tC" id="xb6-fe-38n">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -836,7 +904,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eJi-aa-fkY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-424" y="2100"/>
+            <point key="canvasLocation" x="-256.5" y="2076"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1fL-4B-Rqo">
