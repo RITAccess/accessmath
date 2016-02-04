@@ -983,8 +983,15 @@ IAoKA
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E03-tA-Tqy">
-                                <rect key="frame" x="67" y="96" width="450" height="182"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tNg-L9-C1R">
+                                <rect key="frame" x="0.0" y="314" width="600" height="142"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="E03-tA-Tqy">
+                                <rect key="frame" x="40" y="95" width="520" height="169"/>
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BJ3-WG-VHr">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
@@ -1017,20 +1024,26 @@ IAoKA
                                             <action selector="changeHighlighterColor:" destination="wrH-io-EVq" id="0Oe-hq-2i3"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem title="Text Color" id="7Bg-bc-ual">
+                                        <connections>
+                                            <action selector="changeTextColor:" destination="wrH-io-EVq" id="twL-uN-BGR"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tNg-L9-C1R">
-                                <rect key="frame" x="0.0" y="280" width="432" height="300"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="7tp-Zz-SMi" firstAttribute="top" secondItem="BJ3-WG-VHr" secondAttribute="bottom" id="NHE-u1-Pbx"/>
+                            <constraint firstItem="BJ3-WG-VHr" firstAttribute="top" secondItem="tNg-L9-C1R" secondAttribute="bottom" constant="100" id="4ox-gC-YwY"/>
+                            <constraint firstItem="tNg-L9-C1R" firstAttribute="top" secondItem="E03-tA-Tqy" secondAttribute="bottom" constant="50" id="94D-iE-f0D"/>
+                            <constraint firstItem="7tp-Zz-SMi" firstAttribute="top" secondItem="BJ3-WG-VHr" secondAttribute="bottom" id="Jeh-gE-igF"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="E03-tA-Tqy" secondAttribute="trailing" constant="20" id="Qk9-tM-L45"/>
+                            <constraint firstItem="tNg-L9-C1R" firstAttribute="leading" secondItem="2cQ-xr-Kwl" secondAttribute="leadingMargin" constant="-20" id="UU7-xf-037"/>
                             <constraint firstItem="BJ3-WG-VHr" firstAttribute="leading" secondItem="2cQ-xr-Kwl" secondAttribute="leadingMargin" constant="-20" id="Uuw-Wi-gxj"/>
+                            <constraint firstItem="E03-tA-Tqy" firstAttribute="leading" secondItem="2cQ-xr-Kwl" secondAttribute="leadingMargin" constant="20" id="beQ-hN-q5h"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="tNg-L9-C1R" secondAttribute="trailing" constant="-20" id="fSN-Ez-WCz"/>
+                            <constraint firstItem="E03-tA-Tqy" firstAttribute="top" secondItem="b9p-Zt-3AO" secondAttribute="bottom" constant="31" id="krV-tM-bcM"/>
+                            <constraint firstItem="tNg-L9-C1R" firstAttribute="top" secondItem="b9p-Zt-3AO" secondAttribute="bottom" constant="250" id="ref-xX-iiB"/>
                             <constraint firstAttribute="trailingMargin" secondItem="BJ3-WG-VHr" secondAttribute="trailing" constant="-20" id="yhQ-d3-nSe"/>
                         </constraints>
                     </view>
@@ -1043,7 +1056,25 @@ IAoKA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3sE-cr-luQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4793" y="-148"/>
+            <point key="canvasLocation" x="4830" y="-157"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="vJd-UL-fKy">
+            <objects>
+                <viewController id="h8y-ok-cKW" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="MoB-sa-TT3"/>
+                        <viewControllerLayoutGuide type="bottom" id="xtp-XB-VNH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="i2h-mr-bZ0">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8qi-0V-L88" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5483" y="-150"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jI4-cf-XCq">
@@ -1885,7 +1916,7 @@ Now when we run our app we will have a visible scrollview has a frame of 0,0,320
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" fixedFrame="YES" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pvg-4u-iT2">
                                             <rect key="frame" x="15" y="0.0" width="270" height="43"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>

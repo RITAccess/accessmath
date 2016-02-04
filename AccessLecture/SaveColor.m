@@ -11,12 +11,14 @@
 @implementation SaveColor
 
 static NSString* const highlightColor = @"highlightColor";
+static NSString* const textColor = @"textColor";
 
 - (instancetype)initWithCoder:(NSCoder *)decoder
 {
     self = [self init];
     if (self) {
         self.hightlightColor = [decoder decodeObjectForKey:highlightColor];
+        self.textColor = [decoder decodeObjectForKey:textColor];
     }
     return self;
 }
@@ -24,6 +26,7 @@ static NSString* const highlightColor = @"highlightColor";
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
     [encoder encodeObject:self.hightlightColor forKey:highlightColor];
+    [encoder encodeObject:self.textColor forKey:textColor];
 }
 
 +(NSString*)filePath
