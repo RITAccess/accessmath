@@ -15,7 +15,8 @@
 {
     @private
     NSArray *_navigationItems;
-    NSUserDefaults *userDefaults;
+    NSUserDefaults *_userDefaults;
+    IBOutlet UISlider *_textSizeSlider;
 }
 
 @end
@@ -29,8 +30,8 @@
     // preserves selection between presentations.
     self.clearsSelectionOnViewWillAppear = NO;
     
-    // TODO: get userDefaults
-//    userDefaults = [NSUserDefaults standardUserDefaults];
+    _userDefaults = [NSUserDefaults standardUserDefaults];
+    [_textSizeSlider setValue:[_userDefaults floatForKey:@"AMTextSize"]];
   
     [self setUpNavigation];
 }
@@ -91,11 +92,12 @@
     return 1;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+
+#pragma mark - Changing Defaults
+
+- (IBAction)setTextSize:(UISlider*)sender
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"settingsCell" forIndexPath:indexPath];
-    
-    return cell;
+    [_userDefaults setFloat:sender.value forKey:@"AMTextSize"];
 }
 
 - (void)didReceiveMemoryWarning

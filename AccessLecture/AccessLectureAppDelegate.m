@@ -54,6 +54,7 @@
     [defaults setFloat:.3 forKey:@"penSize"];
     [defaults setFloat:.2 forKey:@"eraserSize"];
     [defaults setValue:@"biology.png" forKey:@"testImage"];
+    [defaults setFloat:0.42f forKey:@"AMTextSize"];
     [defaults synchronize];
     
     // Keyboard Manager
