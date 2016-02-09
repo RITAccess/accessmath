@@ -13,6 +13,7 @@
 #import "NoteShuffleViewController.h"
 #import "AMLecture.h"
 #import "Promise.h"
+#import "TextNoteView.h"
 
 #import "ALView+PureLayout.h"
 #import "NSArray+PureLayout.h"
@@ -66,6 +67,21 @@
 {
     // Refresh the view with the currently selected lecture
     [_ntvc lectureContainer:self switchedToDocument:_selectedLecture];
+    
+    // Update text note views based on settings menu
+    [self applyNoteDefaults];
+}
+
+- (void)applyNoteDefaults
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    for (TextNoteView* view in _ntvc.view.subviews) {
+        if ([view isKindOfClass:[TextNoteView class]]) {
+            UIFont *updatedFont = [UIFont systemFontOfSize:[defaults floatForKey:@"AMTextSize"] * 50.0f weight:5];
+            view.title.font = updatedFont;
+            view.text.font = updatedFont;
+        }
+    }
 }
 
 // TODO: reusable would be nice
