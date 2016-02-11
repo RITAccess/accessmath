@@ -10,8 +10,10 @@
 #import "ALView+PureLayout.h"
 #import "NSArray+PureLayout.h"
 #import "NavBackButton.h"
+#import "CancelButton.h"
 #import "NewLectureButton.h"
 #import "SearchButton.h"
+#import "SearchBar.h"
 #import "BrushButton.h"
 #import "SaveButton.h"
 #import "NewLectureController.h"
@@ -26,7 +28,6 @@
 #import "AMIndex.h"
 #import "DirectoryCVC.h"
 #import "Stack.h"
-
 
 @interface OpenLectureController ()
 
@@ -44,6 +45,11 @@
     
     // Dir nav stack
     Stack *_dirNavStack;
+    
+    BOOL searchBarIsActive;
+    NSArray *searchResults;
+    
+    SearchBar *searchBar;
 }
 
 static NSString * const lectureCellReuseID = @"lecture";
@@ -114,7 +120,21 @@ static NSString * const directoryCellReuseID = @"directory";
         b;
     });
     
-    _navigationItems = @[back, new, search];
+    searchBar = ({
+        SearchBar *bar = [[SearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, 300.0, 100.0)];
+        bar.accessibilityValue = @"search text field";
+        bar.delegate = self;
+        bar;
+    });
+
+    UIButton *cancelSearch = ({
+        UIButton *b = [CancelButton buttonWithType:UIButtonTypeRoundedRect];
+        [b addTarget:self action:@selector(cancelSearch) forControlEvents:UIControlEventTouchUpInside];
+        b.accessibilityValue = @"cancel search";
+        b;
+    });
+    
+    _navigationItems = @[back, new, search, searchBar, cancelSearch];
     
     [_navigationItems enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         [self.navigationController.navigationBar addSubview:obj];
@@ -126,7 +146,11 @@ static NSString * const directoryCellReuseID = @"directory";
 - (void)updateViewConstraints
 {
     [_navigationItems enumerateObjectsUsingBlock:^(UIView *view, NSUInteger idx, BOOL *stop) {
-        [view autoSetDimensionsToSize:CGSizeMake(120, 100)];
+        if ([view isKindOfClass:[UISearchBar class]]) {
+            [view autoSetDimensionsToSize:CGSizeMake(300, 100)];
+        } else {
+            [view autoSetDimensionsToSize:CGSizeMake(120, 100)];
+        }
         [view autoAlignAxis:ALAxisLastBaseline toSameAxisOfView:view.superview];
         [view autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:0 relation:NSLayoutRelationEqual];
     }];
@@ -193,6 +217,13 @@ static NSString * const directoryCellReuseID = @"directory";
     [self performSegueWithIdentifier:@"newLecture" sender:_navigationItems[1]];
 }
 
+- (void)cancelSearch
+{
+    searchBar.searchBarTextField.text = @"";
+    [searchBar.searchBarTextField.delegate textField:searchBar.searchBarTextField shouldChangeCharactersInRange:(NSRange){0, [searchBar.searchBarTextField.text length]} replacementString:@""];
+}
+
+
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -212,7 +243,7 @@ static NSString * const directoryCellReuseID = @"directory";
         case 1: {
             Deferred *promise = [Deferred deferred];
             _selectedLecture = [promise promise];
-            NSString *name = _fsIndex[_currectPath][indexPath.row];
+            NSString *name = searchBarIsActive ? searchResults[indexPath.row] : _fsIndex[_currectPath][indexPath.row];
             NSString *fpath = [_currectPath stringByAppendingPathComponent:name];
             NSURL *path = [NSURL fileURLWithPath:[fpath stringByExpandingTildeInPath] isDirectory:NO];
             
@@ -227,7 +258,7 @@ static NSString * const directoryCellReuseID = @"directory";
 
 - (void)cellDidTap:(UITapGestureRecognizer *)reg
 {
-    assert(_selectedLecture);
+//    assert(_selectedLecture);
     [_selectedLecture when:^(AMLecture *lecture) {
         switch (reg.numberOfTapsRequired) {
             default:
@@ -247,7 +278,11 @@ static NSString * const directoryCellReuseID = @"directory";
             return _fsIndex[[_currectPath stringByAppendingPathComponent:@"*"]].count;
             break;
         case 1:
-            return _fsIndex[_currectPath].count;
+            if (searchBarIsActive) {
+                return searchResults.count;
+            } else {
+                return _fsIndex[_currectPath].count;
+            }
             break;
     }
     return nil;
@@ -255,7 +290,7 @@ static NSString * const directoryCellReuseID = @"directory";
 
 - (UICollectionViewCell *)lectureViewCellWithCell:(LoadingLectureCVC *)cell indexPath:(NSIndexPath *)indexPath
 {
-    NSString *name = _fsIndex[_currectPath][indexPath.row];
+    NSString *name = searchBarIsActive ? searchResults[indexPath.row] : _fsIndex[_currectPath][indexPath.row];
     cell.title.text = name;
     [cell loadLecturePreview:[_currectPath stringByAppendingPathComponent:name]];
     
@@ -307,6 +342,20 @@ static NSString * const directoryCellReuseID = @"directory";
             break;
     }
     return CGSizeZero;
+}
+
+#pragma mark <UISearchBarDelegate>
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    if (searchText.length > 0) {
+        searchBarIsActive = YES;
+        NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"self contains[c] %@", searchText];
+        searchResults = [_fsIndex[_currectPath] filteredArrayUsingPredicate:searchPredicate];
+        [self.collectionView reloadData];
+    } else {
+        searchBarIsActive = NO;
+        [self.collectionView reloadData];
+    }
 }
 
 @end
