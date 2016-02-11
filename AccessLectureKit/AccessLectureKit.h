@@ -20,6 +20,7 @@
 
 // Drawing Methods
 + (void)drawBackButtonWithFrame: (CGRect)frame;
++ (void)drawCancelButtonWithFrame: (CGRect)frame;
 + (void)drawCreateButtonWithFrame: (CGRect)frame;
 + (void)drawSearchButtonWithFrame: (CGRect)frame;
 + (void)drawBrushButtonWithFrame: (CGRect)frame brushColor: (UIColor*)brushColor;

@@ -175,6 +175,138 @@ static UIColor* _brushDefault = nil;
     }
 }
 
++ (void)drawCancelButtonWithFrame: (CGRect)frame
+{
+    //// Color Declarations
+    UIColor* color0 = [UIColor colorWithRed: 0 green: 0 blue: 0 alpha: 1];
+    
+    
+    //// Subframes
+    CGRect left = CGRectMake(CGRectGetMinX(frame) + 18.26, CGRectGetMinY(frame) + 8, CGRectGetWidth(frame) - 37, CGRectGetHeight(frame) - 16);
+    
+    
+    //// Captions
+    {
+    }
+    
+    
+    //// Plus
+    {
+    }
+    
+    
+    //// Minus
+    {
+    }
+    
+    
+    //// Right
+    {
+    }
+    
+    
+    //// Left
+    {
+        //// Oval 2 Drawing
+        UIBezierPath* oval2Path = [UIBezierPath bezierPathWithOvalInRect: CGRectMake(CGRectGetMinX(left) + floor(CGRectGetWidth(left) * 0.00000 + 0.5), CGRectGetMinY(left) + floor(CGRectGetHeight(left) * 0.00000 + 0.5), floor(CGRectGetWidth(left) * 1.00000 + 0.5) - floor(CGRectGetWidth(left) * 0.00000 + 0.5), floor(CGRectGetHeight(left) * 1.00000 + 0.5) - floor(CGRectGetHeight(left) * 0.00000 + 0.5))];
+        [color0 setStroke];
+        oval2Path.lineWidth = 6;
+        [oval2Path stroke];
+        
+        
+        //// Bezier 2 Drawing
+        UIBezierPath* bezier2Path = UIBezierPath.bezierPath;
+        [bezier2Path moveToPoint: CGPointMake(CGRectGetMinX(left) + 0.80851 * CGRectGetWidth(left), CGRectGetMinY(left) + 0.53191 * CGRectGetHeight(left))];
+        [bezier2Path addLineToPoint: CGPointMake(CGRectGetMinX(left) + 0.30851 * CGRectGetWidth(left), CGRectGetMinY(left) + 0.53191 * CGRectGetHeight(left))];
+        [bezier2Path closePath];
+        bezier2Path.miterLimit = 4;
+        
+        [UIColor.redColor setStroke];
+        bezier2Path.lineWidth = 5.5;
+        [bezier2Path stroke];
+    }
+    
+    
+    //// Up
+    {
+    }
+    
+    
+    //// Down
+    {
+    }
+    
+    
+    //// Play
+    {
+    }
+    
+    
+    //// Forward
+    {
+    }
+    
+    
+    //// Reverse
+    {
+    }
+    
+    
+    //// Stop
+    {
+    }
+    
+    
+    //// Pause_1_
+    {
+    }
+    
+    
+    //// Record
+    {
+    }
+    
+    
+    //// Close
+    {
+    }
+    
+    
+    //// Check
+    {
+    }
+    
+    
+    //// Power
+    {
+    }
+    
+    
+    //// Skip_Forward
+    {
+    }
+    
+    
+    //// Skip_Backward
+    {
+    }
+    
+    
+    //// Cancel
+    {
+    }
+    
+    
+    //// Info
+    {
+    }
+    
+    
+    //// Help
+    {
+    }
+}
+
 + (void)drawCreateButtonWithFrame: (CGRect)frame
 {
     //// Color Declarations

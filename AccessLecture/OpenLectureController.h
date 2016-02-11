@@ -10,6 +10,6 @@
 #import "NewLectureController.h"
 #import "PreviewViewController.h"
 
-@interface OpenLectureController : UICollectionViewController <NewLetureVCDelegate, CreateAndPresentLecture, UICollectionViewDelegateFlowLayout>
+@interface OpenLectureController : UICollectionViewController <NewLetureVCDelegate, CreateAndPresentLecture, UICollectionViewDelegateFlowLayout, UISearchBarDelegate>
 
 @end

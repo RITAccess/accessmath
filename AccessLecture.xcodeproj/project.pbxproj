@@ -112,6 +112,8 @@
 		4CFC4BF01A76E961001E2E27 /* CheckButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC4BEF1A76E961001E2E27 /* CheckButton.m */; };
 		4CFC4BF31A795500001E2E27 /* ALTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC4BF21A795500001E2E27 /* ALTextField.m */; };
 		4CFC573017DF800700393A1E /* NoteTakingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC572F17DF800700393A1E /* NoteTakingViewController.m */; };
+		F4A5C9461C6A3857004AFEF0 /* SearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A5C9451C6A3857004AFEF0 /* SearchBar.m */; };
+		F4ADF8DD1C6CF323007ABC35 /* CancelButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F4ADF8DC1C6CF323007ABC35 /* CancelButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -348,6 +350,10 @@
 		9EB895DA5C2A9D423EC1C01C /* Pods-AccessLecture.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AccessLecture.release.xcconfig"; path = "Pods/Target Support Files/Pods-AccessLecture/Pods-AccessLecture.release.xcconfig"; sourceTree = "<group>"; };
 		A7108E144D7ABDACF00E2CBA /* Pods-AccessLecture Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AccessLecture Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AccessLecture Tests/Pods-AccessLecture Tests.release.xcconfig"; sourceTree = "<group>"; };
 		E42E409B29FC0EF386FD2A96 /* Pods-AccessLecture Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AccessLecture Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AccessLecture Tests/Pods-AccessLecture Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		F4A5C9441C6A3857004AFEF0 /* SearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchBar.h; sourceTree = "<group>"; };
+		F4A5C9451C6A3857004AFEF0 /* SearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchBar.m; sourceTree = "<group>"; };
+		F4ADF8DB1C6CF323007ABC35 /* CancelButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CancelButton.h; sourceTree = "<group>"; };
+		F4ADF8DC1C6CF323007ABC35 /* CancelButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CancelButton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -784,6 +790,8 @@
 				4C4FA6FC1A76C14400161ABE /* AccessLectureKit.m */,
 				4C4FA7141A76C27000161ABE /* NavBackButton.h */,
 				4C4FA7151A76C27000161ABE /* NavBackButton.m */,
+				F4ADF8DB1C6CF323007ABC35 /* CancelButton.h */,
+				F4ADF8DC1C6CF323007ABC35 /* CancelButton.m */,
 				4CFC4BDF1A76CFDF001E2E27 /* NewLectureButton.h */,
 				4CFC4BE01A76CFDF001E2E27 /* NewLectureButton.m */,
 				4CFC4BE21A76D28D001E2E27 /* SearchButton.h */,
@@ -800,6 +808,8 @@
 				4CBD62B41A89516500B6AC9E /* ContinueButton.m */,
 				21EF12CF1BC8055C001B0121 /* NoteShuffleButton.h */,
 				21EF12D01BC8055C001B0121 /* NoteShuffleButton.m */,
+				F4A5C9441C6A3857004AFEF0 /* SearchBar.h */,
+				F4A5C9451C6A3857004AFEF0 /* SearchBar.m */,
 			);
 			path = AccessLectureKit;
 			sourceTree = "<group>";
@@ -1217,8 +1227,10 @@
 				4CFC4BE71A76D62B001E2E27 /* BrushButton.m in Sources */,
 				4C4FA7161A76C27000161ABE /* NavBackButton.m in Sources */,
 				4CFC4BEA1A76D859001E2E27 /* SaveButton.m in Sources */,
+				F4ADF8DD1C6CF323007ABC35 /* CancelButton.m in Sources */,
 				21EF12D11BC8055C001B0121 /* NoteShuffleButton.m in Sources */,
 				4CFC4BF01A76E961001E2E27 /* CheckButton.m in Sources */,
+				F4A5C9461C6A3857004AFEF0 /* SearchBar.m in Sources */,
 				4CFC4BE11A76CFDF001E2E27 /* NewLectureButton.m in Sources */,
 				4C4FA6FD1A76C14400161ABE /* AccessLectureKit.m in Sources */,
 				4CFC4BF31A795500001E2E27 /* ALTextField.m in Sources */,
