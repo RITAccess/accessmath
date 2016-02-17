@@ -35,8 +35,13 @@
     self.searchBarTextField.backgroundColor = [UIColor whiteColor];
     [[self.subviews objectAtIndex:0] addSubview:self.searchBarTextField];
     
-    self.searchBarTextField.layer.borderColor = [UIColor magentaColor].CGColor;
-    self.searchBarTextField.layer.borderWidth = 1.0;
+    self.searchBarTextField.layer.borderColor = [UIColor blackColor].CGColor;
+    self.searchBarTextField.layer.borderWidth = 7.0;
+    
+    //Padding the view so the placeholder is not hidden
+    UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+    self.searchBarTextField.leftView = paddingView;
+    self.searchBarTextField.leftViewMode = UITextFieldViewModeAlways;
     
 }
 
