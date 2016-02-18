@@ -11,12 +11,20 @@
 #import "NewNotesViewController.h"
 #import "HighlighterViewController.h"
 #import "saveColor.h"
+#import "NewNotesSideViewController.h"
 
 #import "ALView+PureLayout.h"
 #import "NSArray+PureLayout.h"
 #import "NavBackButton.h"
 
-@interface NewNotesViewController ()
+#define RIGHT_PANEL_TAG 1
+
+@interface NewNotesViewController () <NewNotesSideViewControllerDelegate>
+
+@property (nonatomic, strong) NewNotesSideViewController *sideViewController;
+@property (nonatomic, assign) BOOL showingSideView;
+
+@property (nonatomic, assign) CGPoint preVelocity;
 
 @property IBOutlet UITextField *currentDate;
 
@@ -24,25 +32,6 @@
 
 @implementation NewNotesViewController
 {
-    //open side view
-    UISwipeGestureRecognizer *leftSwipe;
-    
-    //close side view
-    UISwipeGestureRecognizer *rightSwipe;
-    
-    //portrait and landscape views of side view
-    UIView *portraitView;
-    UIView *landscapeView;
-    
-    //determines if device is in portrait or landscape orientation
-    BOOL portrait;
-    BOOL landscape;
-    
-    //user options to add image, text, or video
-    UIButton *addImage;
-    UIButton *addText;
-    UIButton *addVideo;
-
     NSMutableArray *highlighterColorChoices;
     NSMutableArray *textColorChoices;
     
@@ -53,6 +42,7 @@
     
     NSArray *_navigationItems;
 }
+
 //x and y values
 CGFloat x = 5;
 CGFloat y = 15;
@@ -78,57 +68,27 @@ CGFloat y = 15;
     
     [_textView sizeThatFits:CGSizeMake(self.view.frame.size.width, self.view.frame.size.height)];
     
-    //leftSwipe
-    leftSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action: @selector(orientationChanged:)];
-    [leftSwipe setDirection:UISwipeGestureRecognizerDirectionLeft];
-    [leftSwipe setNumberOfTouchesRequired:2];
-    [self.view addGestureRecognizer:leftSwipe];
-    
-    //rightSwipe
-    rightSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(sideViewRemoved:)];
-    [rightSwipe setDirection:UISwipeGestureRecognizerDirectionRight];
-    [rightSwipe setNumberOfTouchesRequired:2];
-    
-    addImage = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    addImage.backgroundColor = [UIColor grayColor];
-    [addImage setTitle:@"Add Image" forState:UIControlStateNormal];
-    [addImage addTarget:self action:@selector(addImage:) forControlEvents:UIControlEventTouchUpInside];
-    
-    addText = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    addText.backgroundColor = [UIColor grayColor];
-    [addText setTitle:@"Add Text" forState:UIControlStateNormal];
-    
-    addVideo = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    addVideo.backgroundColor = [UIColor grayColor];
-    [addVideo setTitle:@"Add Video" forState:UIControlStateNormal];
-    
     //creates the additional option to highlight the selected text
     UIMenuItem *highlightText = [[UIMenuItem alloc] initWithTitle:@"Highlight" action:@selector(highlightText)];
     
     [[UIMenuController sharedMenuController] setMenuItems:@[highlightText]];
     
-    
+    [self setupGestures];
     [self setUpNavigation];
 }
 
 //sends out notification that orientation has been changed
 -(void)viewWillAppear:(BOOL)animated
 {
-    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(orientationChanged:)    name:UIDeviceOrientationDidChangeNotification  object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(sideViewRemoved:)    name:UIDeviceOrientationDidChangeNotification  object:nil];
-    
-    //[self.navigationController setToolbarHidden:NO animated:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    //[self.navigationController setToolbarHidden:YES animated:YES];
 }
 
 //removes notification
 -(void)viewDidDisappear:(BOOL)animated
 {
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
 }
 
 #pragma mark - Navbar Setup
@@ -170,107 +130,58 @@ CGFloat y = 15;
     [super updateViewConstraints];
 }
 
-//updates view based on changes
-- (void)orientationChanged:(NSNotification *)notification{
-    [self adjustViewsForOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
-}
+#pragma mark - Set Up Sidebar view
 
-//removes side view
-- (void)sideViewRemoved:(NSNotification *)notification{
-    [self removeSideView:[[UIApplication sharedApplication] statusBarOrientation]];
-}
-
-//actual code for updating in this method
-- (void) adjustViewsForOrientation:(UIInterfaceOrientation) orientation {
-    
-    [self.view addGestureRecognizer:rightSwipe];
-    [self.view removeGestureRecognizer:leftSwipe];
-    
-    switch (orientation)
+-(UIView *)getSideView {
+    // init view if it doesn't already exist
+    if (_sideViewController == nil)
     {
-        case UIInterfaceOrientationPortrait:
-        case UIInterfaceOrientationPortraitUpsideDown:
-        {
-            if (landscape == YES) {
-                [landscapeView removeFromSuperview];
-                landscape = NO;
-            }
-            
-            portraitView = [[UIView alloc] initWithFrame:CGRectMake(600, 0, 200, self.view.frame.size.height)];
-            portraitView.backgroundColor = [UIColor lightGrayColor];
-            
-            addImage.frame = CGRectMake(20, 300, 120, 30);
-            addText.frame = CGRectMake(20, 350, 120, 30);
-            addVideo.frame = CGRectMake(20, 400, 120, 30);
-            
-            [self.view addSubview:portraitView];
-            [portraitView addSubview:addImage];
-            [portraitView addSubview:addText];
-            [portraitView addSubview:addVideo];
-            portrait = YES;
+        // this is where you define the view for the right panel
+        _sideViewController = [[NewNotesSideViewController alloc] init];
+        _sideViewController.view.tag = RIGHT_PANEL_TAG;
+        _sideViewController.delegate = self;
+        _sideViewController.view.backgroundColor = [UIColor grayColor];
+        
+        [self.view addSubview:_sideViewController.view];
+        
+        [self addChildViewController:_sideViewController];
+        [_sideViewController didMoveToParentViewController:self];
+        
+        _sideViewController.view.frame = CGRectMake(650, 0, self.view.frame.size.width, self.view.frame.size.height);
+    }
+    
+    _showingSideView = YES;
+    
+    
+    UIView *view = _sideViewController.view;
+    return view;
+}
 
-        }
-            
-            break;
-        case UIInterfaceOrientationLandscapeLeft:
-        case UIInterfaceOrientationLandscapeRight:
-        {
-            if (portrait == YES) {
-                [portraitView removeFromSuperview];
-                portrait = NO;
-            }
-            
-            landscapeView = [[UIView alloc] initWithFrame:CGRectMake(725, 0, 300, self.view.frame.size.height)];
-            landscapeView.backgroundColor = [UIColor lightGrayColor];
-            
-            addImage.frame = CGRectMake(100, 300, 120, 30);
-            addText.frame = CGRectMake(100, 350, 120, 30);
-            addVideo.frame = CGRectMake(100, 400, 120, 30);
-            
-            [self.view addSubview:landscapeView];
-            [landscapeView addSubview:addImage];
-            [landscapeView addSubview:addText];
-            [landscapeView addSubview:addVideo];
-            landscape = YES;
-            
-        }
-            break;
-        case UIInterfaceOrientationUnknown:break;
+-(void)removeSideView {
+    if (_sideViewController != nil) {
+        [_sideViewController.view removeFromSuperview];
+        _sideViewController = nil;
+        _showingSideView = NO;
     }
 }
 
-- (void) removeSideView:(UIInterfaceOrientation) orientation {
-    
-    [self.view removeGestureRecognizer:rightSwipe];
-    [self.view addGestureRecognizer:leftSwipe];
-    
-    switch (orientation)
-    {
-        case UIInterfaceOrientationPortrait:
-        case UIInterfaceOrientationPortraitUpsideDown:
-        {
-            [portraitView removeFromSuperview];
-            [addImage removeFromSuperview];
-            [addText removeFromSuperview];
-            [addVideo removeFromSuperview];
-            
-        }
-            
-            break;
-        case UIInterfaceOrientationLandscapeLeft:
-        case UIInterfaceOrientationLandscapeRight:
-        {
-            
-            [landscapeView removeFromSuperview];
-            [addImage removeFromSuperview];
-            [addText removeFromSuperview];
-            [addVideo removeFromSuperview];
-            
-        }
-            break;
-        case UIInterfaceOrientationUnknown:break;
-    }
+#pragma mark -
+#pragma mark Swipe Gesture Setup/Actions
 
+#pragma mark - setup
+
+- (void)setupGestures
+{
+    UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(getSideView)];
+    [swipeLeft setNumberOfTouchesRequired:2];
+    [swipeLeft setDirection:UISwipeGestureRecognizerDirectionLeft];
+    
+    UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(removeSideView)];
+    [swipeRight setNumberOfTouchesRequired:2];
+    [swipeRight setDirection:UISwipeGestureRecognizerDirectionRight];
+    
+    [self.view addGestureRecognizer:swipeLeft];
+    [self.view addGestureRecognizer:swipeRight];
 }
 
 #pragma mark: Text View
@@ -392,29 +303,6 @@ CGFloat y = 15;
     _textView.attributedText = attributedString;
 }
 
-//allows the user to add images to their notes
-- (IBAction)addImage:(UIButton *)sender
-{
-    if ([[UIApplication sharedApplication] statusBarOrientation] != UIInterfaceOrientationPortrait) {
-        // TODO: implement or remove
-    }
-}
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    
-    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
-    self.imageView.image = chosenImage;
-    
-    [picker dismissViewControllerAnimated:YES completion:NULL];
-    
-}
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
-    
-    [picker dismissViewControllerAnimated:YES completion:NULL];
-    
-}
-
 #pragma mark - Highlight Color
 
 -(void)changeHighlightColor:(UIButton*)sender{
@@ -431,7 +319,6 @@ CGFloat y = 15;
         NSLog(@"DEBUG: Dismissed NewNotesViewController.");
     }];
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
