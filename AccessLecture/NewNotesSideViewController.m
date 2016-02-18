@@ -2,6 +2,7 @@
 //  NewNotesSideViewController.m
 //  AccessLecture
 //
+//  TODO: Fix up buttons and other elements of view so that they can be seen.
 //  Created by Kimberly Sookoo on 2/11/16.
 //
 //
@@ -28,6 +29,7 @@
     // Do any additional setup after loading the view.
     
     addImage = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    addImage.frame = CGRectMake(150, 150, 120, 50);
     addImage.backgroundColor = [UIColor grayColor];
     [addImage setTitle:@"Add Image" forState:UIControlStateNormal];
     [addImage addTarget:self action:@selector(addImage:) forControlEvents:UIControlEventTouchUpInside];
@@ -39,6 +41,8 @@
     addVideo = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     addVideo.backgroundColor = [UIColor grayColor];
     [addVideo setTitle:@"Add Video" forState:UIControlStateNormal];
+    
+    [self.view addSubview:addImage];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {

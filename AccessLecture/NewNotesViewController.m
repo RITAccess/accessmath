@@ -2,10 +2,8 @@
 //  NewNotesViewController.m
 //  LandScapeV2
 //
-//  TODO: Add the change text color capability.
-//  A few updates have been made; camera roll to be fixed as it only works with portrait view
-//  Created by Student on 7/31/15.
-//  Copyright (c) 2015 Student. All rights reserved.
+//  Created by Kimberly Sookoo on 7/31/15.
+//  Copyright (c) 2015 Kimberly Sookoo. All rights reserved.
 //
 
 #import "NewNotesViewController.h"
@@ -147,7 +145,7 @@ CGFloat y = 15;
         [self addChildViewController:_sideViewController];
         [_sideViewController didMoveToParentViewController:self];
         
-        _sideViewController.view.frame = CGRectMake(650, 0, self.view.frame.size.width, self.view.frame.size.height);
+        _sideViewController.view.frame = CGRectMake(500, 0, 300, self.view.frame.size.height);
     }
     
     _showingSideView = YES;
