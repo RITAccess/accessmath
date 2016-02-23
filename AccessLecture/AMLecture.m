@@ -11,6 +11,7 @@
 #import "FMDatabaseQueue.h"
 #import "FMDatabase.h"
 #import "Note.h"
+#import "AMNote.h"
 #import "NoteInterface.h"
 
 #define DB_NAME @"notes.db"
@@ -29,7 +30,12 @@ static NSString *LectureKey = @"lecture";
 @end
 
 @implementation AMLecture {
-     FMDatabaseQueue * _Nonnull _db;
+    FMDatabaseQueue * _Nonnull _db;
+    
+    // Core Data
+    NSManagedObjectModel *_managedObjectModel;
+    NSManagedObjectContext *_managedObjectContext;
+    NSPersistentStoreCoordinator *_persistentStoreCoordinator;
 }
 
 - (id)initWithFileURL:(NSURL *)url
@@ -54,19 +60,70 @@ static NSString *LectureKey = @"lecture";
 }
 
 - (void)initDatabaseConnection {
-    if (![NSFileManager.defaultManager fileExistsAtPath:self.databasePath]) {
-        NSLog(@"DEBUG: creating new database file on disk");
-        [NSFileManager.defaultManager createFileAtPath:self.databasePath contents:[NSData new] attributes:NULL];
+//    if (![NSFileManager.defaultManager fileExistsAtPath:self.databasePath]) {
+//        NSLog(@"DEBUG: creating new database file on disk");
+//        [NSFileManager.defaultManager createFileAtPath:self.databasePath contents:[NSData new] attributes:NULL];
+//    }
+//    _db = [FMDatabaseQueue databaseQueueWithPath:self.databasePath];
+//    [_db inDatabase:^(FMDatabase *db) {
+//        bool success = [db executeStatements:
+//                        @"create table IF NOT EXISTS " NOTE_TABLE @" (id integer primary key autoincrement, title varchar(80), contents TEXT );"
+//                        @"create table IF NOT EXISTS " STATE_TABLE @" (id integer primary key autoincrement, position varchar(80), zIndex integer, stateGrouping integer, noteId integer );"
+//                    ];
+//        
+//        NSLog(@"DEBUG: created new tables %@", success ? @"YES" : @"NO");
+//    }];
+}
+
+#pragma mark - Core Data stack
+
+// Returns the managed object context for the application.
+// If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
+- (NSManagedObjectContext *)managedObjectContext
+{
+    if (_managedObjectContext != nil) {
+        return _managedObjectContext;
     }
-    _db = [FMDatabaseQueue databaseQueueWithPath:self.databasePath];
-    [_db inDatabase:^(FMDatabase *db) {
-        bool success = [db executeStatements:
-                        @"create table IF NOT EXISTS " NOTE_TABLE @" (id integer primary key autoincrement, title varchar(80), contents TEXT );"
-                        @"create table IF NOT EXISTS " STATE_TABLE @" (id integer primary key autoincrement, position varchar(80), zIndex integer, stateGrouping integer, noteId integer );"
-                    ];
-        
-        NSLog(@"DEBUG: created new tables %@", success ? @"YES" : @"NO");
-    }];
+    
+    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
+    if (coordinator != nil) {
+        _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+        [_managedObjectContext setPersistentStoreCoordinator:coordinator];
+    }
+    return _managedObjectContext;
+}
+
+// Returns the managed object model for the application.
+// If the model doesn't already exist, it is created from the application's model.
+- (NSManagedObjectModel *)managedObjectModel
+{
+    if (_managedObjectModel != nil) {
+        return _managedObjectModel;
+    }
+    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"AccessLecture" withExtension:@"momd"];
+    _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
+    return _managedObjectModel;
+}
+
+// Returns the persistent store coordinator for the application.
+// If the coordinator doesn't already exist, it is created and the application's store added to it.
+- (NSPersistentStoreCoordinator *)persistentStoreCoordinator
+{
+    if (_persistentStoreCoordinator != nil) {
+        return _persistentStoreCoordinator;
+    }
+    
+    NSURL *storeURL = [NSURL fileURLWithPath:self.databasePath];
+    
+    NSError *error = nil;
+    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
+    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+        // Should properly handle dump here, abort() shouldn't be used in production
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+    
+    return _persistentStoreCoordinator;
 }
 
 #pragma mark Encode and decode file wrappers
@@ -228,9 +285,10 @@ static NSString *LectureKey = @"lecture";
 
 - (NSArray *)getNotes;
 {
-    NSArray *notes;
-    notes = [self _loadNotesFromState:@"default" intoClass:[Note class]];
-    return notes;
+    __unused AMNote *note = [NSEntityDescription insertNewObjectForEntityForName:@"Notes" inManagedObjectContext:[self managedObjectContext]];
+    [[self managedObjectContext] save:nil];
+    NSFetchRequest *fetch = [NSFetchRequest fetchRequestWithEntityName:@"Notes"];
+    return [[self managedObjectContext] executeFetchRequest:fetch error:nil];
 }
 
 @end

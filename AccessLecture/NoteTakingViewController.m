@@ -89,14 +89,17 @@
         [view removeFromSuperview];
     }
     _document = document;
-    for (id note in [_document getNotes]) {
+    
+    NSLog(@"DEBUG: %@", [_document getNotes]);
+    
+//    for (id note in [_document getNotes]) {
 //        if ([note isKindOfClass:[Note class]]) {
-            [self loadNoteAndPresent:note];
+//            [self loadNoteAndPresent:note];
 //        } else if ([note isKindOfClass:[ImageNoteViewController class]]) {
 //            ImageNoteViewController *i = (ImageNoteViewController *)note;
 //            [self loadImageNoteAndPresent:i];
 //        }
-    }
+//    }
 }
 
 - (void)loadNoteAndPresent:(Note *)note

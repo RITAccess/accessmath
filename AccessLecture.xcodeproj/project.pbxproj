@@ -104,6 +104,7 @@
 		4CE742C51768BDE60026DE71 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FED960D1370863E00D8D1B8 /* Foundation.framework */; };
 		4CE742C61768BDE60026DE71 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FED960B1370863E00D8D1B8 /* UIKit.framework */; };
 		4CEA1A03177CAAED00A1DE05 /* LectureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEA1A00177CAAED00A1DE05 /* LectureCell.m */; };
+		4CFAF78E1C7CACB2008615D4 /* AMNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFAF78D1C7CACB2008615D4 /* AMNote.m */; };
 		4CFC4BE11A76CFDF001E2E27 /* NewLectureButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC4BE01A76CFDF001E2E27 /* NewLectureButton.m */; };
 		4CFC4BE41A76D28D001E2E27 /* SearchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC4BE31A76D28D001E2E27 /* SearchButton.m */; };
 		4CFC4BE71A76D62B001E2E27 /* BrushButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC4BE61A76D62B001E2E27 /* BrushButton.m */; };
@@ -328,6 +329,8 @@
 		4CE742C31768BDE60026DE71 /* AccessLecture Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "AccessLecture Tests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CEA19FF177CAAED00A1DE05 /* LectureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LectureCell.h; sourceTree = "<group>"; };
 		4CEA1A00177CAAED00A1DE05 /* LectureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LectureCell.m; sourceTree = "<group>"; };
+		4CFAF78C1C7CACB2008615D4 /* AMNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMNote.h; sourceTree = "<group>"; };
+		4CFAF78D1C7CACB2008615D4 /* AMNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMNote.m; sourceTree = "<group>"; };
 		4CFC4BDF1A76CFDF001E2E27 /* NewLectureButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewLectureButton.h; sourceTree = "<group>"; };
 		4CFC4BE01A76CFDF001E2E27 /* NewLectureButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewLectureButton.m; sourceTree = "<group>"; };
 		4CFC4BE21A76D28D001E2E27 /* SearchButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchButton.h; sourceTree = "<group>"; };
@@ -748,6 +751,8 @@
 			children = (
 				4C03E4BD1C5A6211001CE560 /* NoteInterface.h */,
 				4C03E4BE1C5A6211001CE560 /* NoteInterface.m */,
+				4CFAF78C1C7CACB2008615D4 /* AMNote.h */,
+				4CFAF78D1C7CACB2008615D4 /* AMNote.m */,
 			);
 			name = Interfaces;
 			sourceTree = "<group>";
@@ -1159,6 +1164,7 @@
 				2194AD201BB2F7DE002D9BD1 /* NoteSearchResultsViewController.m in Sources */,
 				3F0DBDD613BD174900E3FEE8 /* AboutViewController.m in Sources */,
 				3F99F20215436E090065CBB9 /* Lecture.m in Sources */,
+				4CFAF78E1C7CACB2008615D4 /* AMNote.m in Sources */,
 				4C5C50CD177B7B7C0095801A /* LectureViewContainer.m in Sources */,
 				4CCBC8DD17E222FF00CB303E /* Note.m in Sources */,
 				4CA4A06B1AE185D1004536B7 /* DirectoryCVC.m in Sources */,
