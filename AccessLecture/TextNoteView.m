@@ -6,6 +6,7 @@
 //
 //
 
+#import <ReactiveCocoa.h>
 #import "TextNoteView.h"
 #import "FullScreenNoteViewController.h"
 #import "TextNoteViewController.h"
@@ -30,6 +31,21 @@
                                              selector:@selector(preferredContentSizeChanged:)
                                                  name:UIContentSizeCategoryDidChangeNotification
                                                object:nil];
+    
+}
+
+- (void)setData:(Note *)data
+{
+    _data = data;
+    self.center = _data.location;
+    [RACObserve(self, center)
+     subscribeNext:^(id x) {
+         if (self.data) {
+             self.data.location = [x CGPointValue];
+         } else {
+             NSLog(@"WARNING: note has not data store attached");
+         }
+     }];
 }
 
 - (void)preferredContentSizeChanged:(NSNotification*)notification

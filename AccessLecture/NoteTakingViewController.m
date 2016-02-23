@@ -89,18 +89,22 @@
         [view removeFromSuperview];
     }
     _document = document;
-    for (id note in _document.lecture.notes) {
-        if ([note isKindOfClass:[Note class]]) {
-            [self loadNoteAndPresent:note];
-        } else if ([note isKindOfClass:[ImageNoteViewController class]]) {
-            ImageNoteViewController *i = (ImageNoteViewController *)note;
-            [self loadImageNoteAndPresent:i];
-        }
-    }
+    
+    NSLog(@"DEBUG: %@", [_document getNotes]);
+    
+//    for (id note in [_document getNotes]) {
+//        if ([note isKindOfClass:[Note class]]) {
+//            [self loadNoteAndPresent:note];
+//        } else if ([note isKindOfClass:[ImageNoteViewController class]]) {
+//            ImageNoteViewController *i = (ImageNoteViewController *)note;
+//            [self loadImageNoteAndPresent:i];
+//        }
+//    }
 }
 
 - (void)loadNoteAndPresent:(Note *)note
 {
+    NSLog(@"DEBUG: %@", note);
     TextNoteViewController *tnvc = [[TextNoteViewController alloc] initWithNote:note];
     [self addChildViewController:tnvc];
     [self.view addSubview:tnvc.view];
@@ -115,8 +119,9 @@
 
 - (void)createTextNoteAndPresentAtPoint:(CGPoint)point
 {
-    TextNoteViewController *tnvc = [[TextNoteViewController alloc] initWithPoint:point];
-    [_document.lecture addNotes:[NSSet setWithObject:[(TextNoteView *)tnvc.view data]]];
+    Note *note = (Note *)[_document createNoteWithClass:[Note class] inState:@"default"];
+    note.location = point;
+    TextNoteViewController *tnvc = [[TextNoteViewController alloc] initWithNote:note];
     [self addChildViewController:tnvc];
     [self.view addSubview:tnvc.view];
     tnvc.view.transform = CGAffineTransformMakeScale(0.0, 0.0);

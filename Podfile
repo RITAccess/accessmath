@@ -18,6 +18,8 @@ pod 'AsyncDisplayKit'
 pod 'SpinKit'
 pod 'FMDB'
 
+pod 'ReactiveCocoa'
+
 end
 
 target "AccessLecture Tests" do

@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
 #import "ALMetaData.h"
 #import "Lecture.h"
+
+@class NoteInterface;
 
 static NSString *const AMLectutueFileExtention = @"lec";
 
@@ -24,7 +27,7 @@ static NSString *const AMLectutueFileExtention = @"lec";
  */
 - (void)save;
 - (void)saveWithCompletetion:(void(^)(BOOL success))completion;
-
+- (NoteInterface *)createNoteWithClass:(Class)class inState:(NSString *)state;
 - (NSArray*)getNotes;
 
 @end

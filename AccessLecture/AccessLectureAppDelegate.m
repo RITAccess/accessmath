@@ -35,7 +35,7 @@
             [[AMIndex sharedIndex] invalidate];
         });
     }
-    #endif       
+    #endif
     
     // Index
     [AMIndex sharedIndex];
