@@ -113,6 +113,7 @@
 		4CFC573017DF800700393A1E /* NoteTakingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC572F17DF800700393A1E /* NoteTakingViewController.m */; };
 		C9B4A0C81C5AB16800E9CE8B /* HighlighterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B4A0C71C5AB16800E9CE8B /* HighlighterViewController.m */; };
 		C9BAE6DB1C6D265000F2E8C7 /* NewNotesSideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BAE6DA1C6D265000F2E8C7 /* NewNotesSideViewController.m */; };
+		C9C136241C7CE97400EAAA74 /* SaveImage.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C136231C7CE97400EAAA74 /* SaveImage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -350,6 +351,8 @@
 		C9B4A0C71C5AB16800E9CE8B /* HighlighterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighlighterViewController.m; sourceTree = "<group>"; };
 		C9BAE6D91C6D265000F2E8C7 /* NewNotesSideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewNotesSideViewController.h; sourceTree = "<group>"; };
 		C9BAE6DA1C6D265000F2E8C7 /* NewNotesSideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewNotesSideViewController.m; sourceTree = "<group>"; };
+		C9C136221C7CE97400EAAA74 /* SaveImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveImage.h; sourceTree = "<group>"; };
+		C9C136231C7CE97400EAAA74 /* SaveImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveImage.m; sourceTree = "<group>"; };
 		E42E409B29FC0EF386FD2A96 /* Pods-AccessLecture Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AccessLecture Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AccessLecture Tests/Pods-AccessLecture Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -922,6 +925,8 @@
 				C9B4A0C71C5AB16800E9CE8B /* HighlighterViewController.m */,
 				C9BAE6D91C6D265000F2E8C7 /* NewNotesSideViewController.h */,
 				C9BAE6DA1C6D265000F2E8C7 /* NewNotesSideViewController.m */,
+				C9C136221C7CE97400EAAA74 /* SaveImage.h */,
+				C9C136231C7CE97400EAAA74 /* SaveImage.m */,
 			);
 			name = NewNotesSection;
 			sourceTree = "<group>";
@@ -1190,6 +1195,7 @@
 				4CA4A0711AE59127004536B7 /* Stack.m in Sources */,
 				4CA4A0651ADC3287004536B7 /* AMIndex.m in Sources */,
 				4CD7CE2A1A8568CB00A9717F /* PreviewViewController.m in Sources */,
+				C9C136241C7CE97400EAAA74 /* SaveImage.m in Sources */,
 				21C36DFA1BCEA140000CB5B0 /* MoreShuffle.m in Sources */,
 				4C3BE5ED1A729B760017854C /* MenuIconCell.m in Sources */,
 				4C62BECD175651DB00CAF4CF /* FileManager.m in Sources */,

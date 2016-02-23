@@ -9,20 +9,18 @@
 #import "NewNotesViewController.h"
 #import "HighlighterViewController.h"
 #import "saveColor.h"
+#import "SaveImage.h"
+
 #import "NewNotesSideViewController.h"
 
 #import "ALView+PureLayout.h"
 #import "NSArray+PureLayout.h"
 #import "NavBackButton.h"
 
-#define RIGHT_PANEL_TAG 1
-
 @interface NewNotesViewController () <NewNotesSideViewControllerDelegate>
 
 @property (nonatomic, strong) NewNotesSideViewController *sideViewController;
 @property (nonatomic, assign) BOOL showingSideView;
-
-@property (nonatomic, assign) CGPoint preVelocity;
 
 @property IBOutlet UITextField *currentDate;
 
@@ -136,7 +134,6 @@ CGFloat y = 15;
     {
         // this is where you define the view for the right panel
         _sideViewController = [[NewNotesSideViewController alloc] init];
-        _sideViewController.view.tag = RIGHT_PANEL_TAG;
         _sideViewController.delegate = self;
         _sideViewController.view.backgroundColor = [UIColor grayColor];
         
@@ -159,14 +156,14 @@ CGFloat y = 15;
     if (_sideViewController != nil) {
         [_sideViewController.view removeFromSuperview];
         _sideViewController = nil;
-        _showingSideView = NO;
+    }
+    _showingSideView = NO;
+    if ([SaveImage sharedData].notesImage != nil) {
+        _imageView.image = [SaveImage sharedData].notesImage;
     }
 }
 
-#pragma mark -
 #pragma mark Swipe Gesture Setup/Actions
-
-#pragma mark - setup
 
 - (void)setupGestures
 {
@@ -182,7 +179,7 @@ CGFloat y = 15;
     [self.view addGestureRecognizer:swipeRight];
 }
 
-#pragma mark: Text View
+#pragma mark: Text View Section
 
 - (IBAction)changeFontSize:(UIStepper*)sender {
     
@@ -249,7 +246,7 @@ CGFloat y = 15;
     _textView.textColor = sender.backgroundColor;
 }
 
-#pragma mark Highlighter
+#pragma mark Highlighter Section
 
 - (IBAction)changeHighlighterColor:(UIBarButtonItem *)sender {
     
@@ -300,8 +297,6 @@ CGFloat y = 15;
     
     _textView.attributedText = attributedString;
 }
-
-#pragma mark - Highlight Color
 
 -(void)changeHighlightColor:(UIButton*)sender{
     [SaveColor sharedData].hightlightColor = sender.backgroundColor;

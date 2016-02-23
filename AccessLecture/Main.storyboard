@@ -990,9 +990,6 @@ IAoKA
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="E03-tA-Tqy">
-                                <rect key="frame" x="40" y="95" width="520" height="169"/>
-                            </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BJ3-WG-VHr">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
@@ -1031,6 +1028,9 @@ IAoKA
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="E03-tA-Tqy">
+                                <rect key="frame" x="40" y="95" width="520" height="169"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1058,10 +1058,10 @@ IAoKA
             </objects>
             <point key="canvasLocation" x="4830" y="-157"/>
         </scene>
-        <!--View Controller-->
+        <!--New Notes Side View Controller-->
         <scene sceneID="vJd-UL-fKy">
             <objects>
-                <viewController id="h8y-ok-cKW" sceneMemberID="viewController">
+                <viewController id="h8y-ok-cKW" customClass="NewNotesSideViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MoB-sa-TT3"/>
                         <viewControllerLayoutGuide type="bottom" id="xtp-XB-VNH"/>

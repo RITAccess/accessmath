@@ -12,7 +12,7 @@
 
 @end
 
-@interface NewNotesSideViewController : UIViewController
+@interface NewNotesSideViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (nonatomic, assign) id<NewNotesSideViewControllerDelegate> delegate;
 
