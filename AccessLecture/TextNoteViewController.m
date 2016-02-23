@@ -22,8 +22,6 @@
     if (self) {
         TextNoteView *view = (TextNoteView *)self.view;
         view.frame = CGRectMake(point.x - 200, point.y - 100, self.view.frame.size.width, self.view.frame.size.height);
-        view.data = [Note new];
-        view.data.location = self.view.frame.origin;
     }
     return self;
 }

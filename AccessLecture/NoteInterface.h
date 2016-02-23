@@ -8,8 +8,8 @@
 
 @import UIKit;
 
-#import "FMDatabaseQueue.h"
-#import "FMDatabase.h"
+@class FMDatabaseQueue;
+
 #import <Foundation/Foundation.h>
 
 @interface NoteInterface : NSObject

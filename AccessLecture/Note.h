@@ -13,11 +13,10 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "NoteInterface.h"
 
-@interface Note : UIView <NSCoding>
+@interface Note : NoteInterface <NSCoding>
 
-@property (strong, nonatomic) NSString *title;
-@property (strong, nonatomic) NSString *content;
 @property (strong, nonatomic) NSString *color;  // may change to NSColor; NSString to be flexible for now
 @property (strong, nonatomic) NSString *type;  // distinguishing between teacher, formula, definition, etc.
 @property CGPoint location;

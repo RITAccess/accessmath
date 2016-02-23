@@ -55,6 +55,7 @@ static NSString *LectureKey = @"lecture";
 
 - (void)initDatabaseConnection {
     if (![NSFileManager.defaultManager fileExistsAtPath:self.databasePath]) {
+        NSLog(@"DEBUG: creating new database file on disk");
         [NSFileManager.defaultManager createFileAtPath:self.databasePath contents:[NSData new] attributes:NULL];
     }
     _db = [FMDatabaseQueue databaseQueueWithPath:self.databasePath];
@@ -64,7 +65,7 @@ static NSString *LectureKey = @"lecture";
                         @"create table IF NOT EXISTS " STATE_TABLE @" (id integer primary key autoincrement, position varchar(80), zIndex integer, stateGrouping integer, noteId integer );"
                     ];
         
-        NSLog(@"DEBUG: created %@", success ? @"YES" : @"NO");
+        NSLog(@"DEBUG: created new tables %@", success ? @"YES" : @"NO");
     }];
 }
 
@@ -86,7 +87,8 @@ static NSString *LectureKey = @"lecture";
     [wrappers setObject:wrap forKey:preferredFilename];
 }
 
-- (id)decodeObjectFromWrapperWithPreferredFilename:(NSString *)preferredFilename {
+- (id)decodeObjectFromWrapperWithPreferredFilename:(NSString *)preferredFilename
+{
     
     NSFileWrapper * fileWrapper = [self.fileWrapper.fileWrappers objectForKey:preferredFilename];
     if (!fileWrapper) {
@@ -120,6 +122,11 @@ static NSString *LectureKey = @"lecture";
     [self encodeObject:self.metadata toWrappers:wrappers preferredFilename:@"lecture.meta"];
     [self encodeObject:self.lecture toWrappers:wrappers preferredFilename:@"lecture.data"];
     [self encodeImage:self.thumb toWrappers:wrappers preferredFilename:@"thumb.png"];
+    
+    NSFileWrapper *dbfile = [[NSFileWrapper alloc] initRegularFileWithContents:[[NSFileManager defaultManager] contentsAtPath:self.databasePath]];
+    
+    [wrappers setObject:dbfile forKey:DB_NAME];
+    
     NSFileWrapper *fileWrapper = [[NSFileWrapper alloc] initDirectoryWithFileWrappers:wrappers];
     return fileWrapper;
 }
@@ -132,8 +139,6 @@ static NSString *LectureKey = @"lecture";
     self.lecture = nil;
     self.thumb = nil;
     [self initDatabaseConnection];
-
-    [self testSomeCode];
     
     return YES;
 }
@@ -191,7 +196,8 @@ static NSString *LectureKey = @"lecture";
     return [NSString stringWithFormat:@"AMLecture<%d> Title: '%@' number of notes %d", [super hash], _metadata.title, _lecture.notes.count];
 }
 
-- (NoteInterface *)createNoteWithClass:(Class)class inState:(NSString *)state {
+- (NoteInterface *)createNoteWithClass:(Class)class inState:(NSString *)state
+{
     assert([class isSubclassOfClass:[NoteInterface class]]);
     NoteInterface *note = [class new];
     // TODO
@@ -199,47 +205,32 @@ static NSString *LectureKey = @"lecture";
     return note;
 }
 
-- (NSArray<NoteInterface *> *)_loadNotesFromState:(NSString *)state intoClass:(Class)class {
-    
-    NSUInteger shash = [state hash];
-    
+- (NSArray<NoteInterface *> *)_loadNotesFromState:(NSString *)state intoClass:(Class)class
+{
     __block FMResultSet *r;
     [_db inDatabase:^(FMDatabase *db) {
-        r = [db executeQuery:@"select id from notes" withArgumentsInArray:@[@(shash)]];
+        r = [db executeQuery:@"select id from notes"];
     }];
     NSMutableArray<NoteInterface *> *resultSet = [NSMutableArray new];
     while ([r next]) {
         NoteInterface *n = [[NoteInterface alloc] initWithOutsaveToDB:_db withState:state xid:[r intForColumn:@"id"]];
         [resultSet addObject:n];
     }
-    
+    NSLog(@"DEBUG: %@", resultSet);
     [r close];
     return resultSet;
 }
 
-- (void)_saveNote:(NoteInterface *)note toState:(NSString *)state {
+- (void)_saveNote:(NoteInterface *)note toState:(NSString *)state
+{
     
-}
-
-- (NSArray<Note *> *)testSomeCode {
-//    [self createNoteWithClass:[NoteInterface class] inState:NSStringFromClass([NoteInterface class])];
-    NSArray<NoteInterface *> *res = [self _loadNotesFromState:NSStringFromClass([NoteInterface class]) intoClass:[NoteInterface class]];
-    for (NoteInterface *r in res) {
-        NSLog(@"DEBUG: %@", r.title);
-        NSLog(@"DEBUG: %@", r.content);
-    }
-    
-    for (NoteInterface *r in res) {
-        NSLog(@"DEBUG 2: %@", r.title);
-        NSLog(@"DEBUG 2: %@", r.content);
-    }
-    
-    return @[];
 }
 
 - (NSArray *)getNotes;
 {
-    return _lecture.notes;
+    NSArray *notes;
+    notes = [self _loadNotesFromState:@"default" intoClass:[Note class]];
+    return notes;
 }
 
 @end

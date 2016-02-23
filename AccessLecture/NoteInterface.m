@@ -8,6 +8,10 @@
 
 #import <ReactiveCocoa.h>
 #import "NoteInterface.h"
+#import "FMDatabaseQueue.h"
+#import "FMDatabase.h"
+
+#define THROTTLE 0.5
 
 @interface NoteInterface ()
 
@@ -48,27 +52,27 @@
          [r close];
         
         [[RACObserve(self, zIndex)
-          throttle:3.0]
+          throttle:THROTTLE]
           subscribeNext:^(id x) {
              [self _updateZIndex:[x integerValue]];
          }];
         
         [[RACObserve(self, location)
-          throttle:3.0]
+          throttle:THROTTLE]
           subscribeNext:^(id x) {
              [self _updateLocation:[x CGPointValue]];
         }];
         
         [[RACObserve(self, title)
-          throttle:3.0]
-          subscribeNext:^(id x) {
-             [self _updateTitle:[x stringValue]];
+          throttle:THROTTLE]
+          subscribeNext:^(NSString *x) {
+             [self _updateTitle:x];
          }];
         
         [[RACObserve(self, content)
-          throttle:3.0]
-          subscribeNext:^(id x) {
-             [self _updateContent:[x stringValue]];
+          throttle:THROTTLE]
+          subscribeNext:^(NSString *x) {
+             [self _updateContent:x];
          }];
     }
     return self;
@@ -82,7 +86,7 @@
 
 - (void)_updateNote:(NSString *)col with:(id)arg {
     [_db inDatabase:^(FMDatabase *db) {
-        [db executeUpdate:[NSString stringWithFormat:@"update note set %@=? where id=?", col] withArgumentsInArray:@[arg, @(_noteID)]];
+        [db executeUpdate:[NSString stringWithFormat:@"update notes set %@=? where id=?", col] withArgumentsInArray:@[arg, @(_noteID)]];
     }];
 }
 
@@ -96,6 +100,7 @@
 
 - (void)_updateLocation:(CGPoint)loc {
     NSString *s = NSStringFromCGPoint(loc);
+    NSLog(@"DEBUG: saving location %@", s);
     [self _updateState:@"position" with:s];
 }
 

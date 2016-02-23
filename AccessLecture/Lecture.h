@@ -25,6 +25,6 @@
  * param notes - the set of notes to be added
  * returns - BOOL for success status
  */
-- (BOOL)addNotes:(NSSet *)notes;
+- (BOOL)addNotes:(NSSet *)notes __deprecated;
 
 @end

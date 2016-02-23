@@ -12,7 +12,7 @@
 
 @interface TextNoteViewController : UIViewController <TextNoteViewDelegate>
 
-- (instancetype)initWithPoint:(CGPoint)point;
+- (instancetype)initWithPoint:(CGPoint)point __deprecated;
 - (instancetype)initWithNote:(Note *)note;
 
 @end

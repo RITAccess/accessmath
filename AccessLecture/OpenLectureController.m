@@ -227,7 +227,9 @@ static NSString * const directoryCellReuseID = @"directory";
 
 - (void)cellDidTap:(UITapGestureRecognizer *)reg
 {
-    assert(_selectedLecture);
+    while (!_selectedLecture) {
+        [[NSRunLoop currentRunLoop] run];
+    }
     [_selectedLecture when:^(AMLecture *lecture) {
         switch (reg.numberOfTapsRequired) {
             default:
