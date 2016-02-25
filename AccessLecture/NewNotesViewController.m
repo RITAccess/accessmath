@@ -10,6 +10,7 @@
 #import "HighlighterViewController.h"
 #import "saveColor.h"
 #import "SaveImage.h"
+#import "SaveTextSize.h"
 
 #import "NewNotesSideViewController.h"
 
@@ -86,6 +87,10 @@ CGFloat y = 15;
     
     if ([SaveColor sharedData].textColor != nil) {
         _textView.textColor = [SaveColor sharedData].textColor;
+    }
+    
+    if ([SaveTextSize sharedData].textFont != nil) {
+        _textView.font = [SaveTextSize sharedData].textFont;
     }
 }
 
@@ -192,6 +197,8 @@ CGFloat y = 15;
 - (IBAction)changeFontSize:(UIStepper*)sender {
     
     _textView.font = [_textView.font fontWithSize:[sender value]];
+    [SaveTextSize sharedData].textFont = _textView.font;
+    [[SaveTextSize sharedData] save];
 }
 
 - (IBAction)changeFontStyle:(UISegmentedControl *)sender {

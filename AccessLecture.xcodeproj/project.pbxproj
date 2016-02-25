@@ -112,6 +112,7 @@
 		4CFC4BF01A76E961001E2E27 /* CheckButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC4BEF1A76E961001E2E27 /* CheckButton.m */; };
 		4CFC4BF31A795500001E2E27 /* ALTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC4BF21A795500001E2E27 /* ALTextField.m */; };
 		4CFC573017DF800700393A1E /* NoteTakingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC572F17DF800700393A1E /* NoteTakingViewController.m */; };
+		C97E9ADA1C7F908100EF7783 /* SaveTextSize.m in Sources */ = {isa = PBXBuildFile; fileRef = C97E9AD91C7F908100EF7783 /* SaveTextSize.m */; };
 		C9B4A0C81C5AB16800E9CE8B /* HighlighterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B4A0C71C5AB16800E9CE8B /* HighlighterViewController.m */; };
 		C9BAE6DB1C6D265000F2E8C7 /* NewNotesSideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BAE6DA1C6D265000F2E8C7 /* NewNotesSideViewController.m */; };
 		C9C136241C7CE97400EAAA74 /* SaveImage.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C136231C7CE97400EAAA74 /* SaveImage.m */; };
@@ -350,6 +351,8 @@
 		8BC023B512F24FD184B9F806 /* libPods-AccessLecture.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AccessLecture.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EB895DA5C2A9D423EC1C01C /* Pods-AccessLecture.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AccessLecture.release.xcconfig"; path = "Pods/Target Support Files/Pods-AccessLecture/Pods-AccessLecture.release.xcconfig"; sourceTree = "<group>"; };
 		A7108E144D7ABDACF00E2CBA /* Pods-AccessLecture Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AccessLecture Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AccessLecture Tests/Pods-AccessLecture Tests.release.xcconfig"; sourceTree = "<group>"; };
+		C97E9AD81C7F908100EF7783 /* SaveTextSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveTextSize.h; sourceTree = "<group>"; };
+		C97E9AD91C7F908100EF7783 /* SaveTextSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveTextSize.m; sourceTree = "<group>"; };
 		C9B4A0C61C5AB16800E9CE8B /* HighlighterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighlighterViewController.h; sourceTree = "<group>"; };
 		C9B4A0C71C5AB16800E9CE8B /* HighlighterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighlighterViewController.m; sourceTree = "<group>"; };
 		C9BAE6D91C6D265000F2E8C7 /* NewNotesSideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewNotesSideViewController.h; sourceTree = "<group>"; };
@@ -940,6 +943,8 @@
 				C9BAE6DA1C6D265000F2E8C7 /* NewNotesSideViewController.m */,
 				C9C136221C7CE97400EAAA74 /* SaveImage.h */,
 				C9C136231C7CE97400EAAA74 /* SaveImage.m */,
+				C97E9AD81C7F908100EF7783 /* SaveTextSize.h */,
+				C97E9AD91C7F908100EF7783 /* SaveTextSize.m */,
 			);
 			name = NewNotesSection;
 			sourceTree = "<group>";
@@ -1200,6 +1205,7 @@
 				3F8FD2CF18AD34EB0059EF9C /* DrawMode.m in Sources */,
 				2194AD201BB2F7DE002D9BD1 /* NoteSearchResultsViewController.m in Sources */,
 				3F0DBDD613BD174900E3FEE8 /* AboutViewController.m in Sources */,
+				C97E9ADA1C7F908100EF7783 /* SaveTextSize.m in Sources */,
 				3F99F20215436E090065CBB9 /* Lecture.m in Sources */,
 				4C5C50CD177B7B7C0095801A /* LectureViewContainer.m in Sources */,
 				4CCBC8DD17E222FF00CB303E /* Note.m in Sources */,

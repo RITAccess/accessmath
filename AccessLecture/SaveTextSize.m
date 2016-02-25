@@ -1,29 +1,29 @@
 //
-//  SaveImage.m
+//  SaveTextSize.m
 //  AccessLecture
 //
-//  Created by Kimberly Sookoo on 2/23/16.
+//  Created by Kimberly Sookoo on 2/25/16.
 //
 //
 
-#import "SaveImage.h"
+#import "SaveTextSize.h"
 
-@implementation SaveImage
+@implementation SaveTextSize
 
-static NSString* const image = @"image";
+static NSString* const textSize = @"textSize";
 
 - (instancetype)initWithCoder:(NSCoder *)decoder
 {
     self = [self init];
     if (self) {
-        _notesImage = [decoder decodeObjectForKey:image];
+        self.textFont = [decoder decodeObjectForKey:textSize];
     }
     return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
-    [encoder encodeObject:_notesImage forKey:image];
+    [encoder encodeObject:self.textFont forKey:textSize];
 }
 
 +(NSString*)filePath
@@ -32,20 +32,20 @@ static NSString* const image = @"image";
     if (!filePath) {
         filePath =
         [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]
-         stringByAppendingPathComponent:@"ImageData"];
+         stringByAppendingPathComponent:@"TextData"];
     }
     return filePath;
 }
 
 +(instancetype)loadInstance
 {
-    NSData* decodedData = [NSData dataWithContentsOfFile: [SaveImage filePath]];
+    NSData* decodedData = [NSData dataWithContentsOfFile: [SaveTextSize filePath]];
     if (decodedData) {
-        SaveImage* data = [NSKeyedUnarchiver unarchiveObjectWithData:decodedData];
+        SaveTextSize* data = [NSKeyedUnarchiver unarchiveObjectWithData:decodedData];
         return data;
     }
     
-    return [[SaveImage alloc] init];
+    return [[SaveTextSize alloc] init];
 }
 
 + (instancetype)sharedData
@@ -63,7 +63,7 @@ static NSString* const image = @"image";
 -(void)save
 {
     NSData* encodedData = [NSKeyedArchiver archivedDataWithRootObject: self];
-    [encodedData writeToFile:[SaveImage filePath] atomically:YES];
+    [encodedData writeToFile:[SaveTextSize filePath] atomically:YES];
 }
 
 @end
