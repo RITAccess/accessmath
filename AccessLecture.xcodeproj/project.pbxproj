@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		211166B11C62997D000F5F77 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 211166B01C62997D000F5F77 /* SettingsTableViewController.m */; };
 		216BE84B1BA718E400B43584 /* NoteSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 216BE84A1BA718E400B43584 /* NoteSearchTableViewController.m */; };
 		2194AD201BB2F7DE002D9BD1 /* NoteSearchResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2194AD1F1BB2F7DE002D9BD1 /* NoteSearchResultsViewController.m */; };
 		21BFC94D1C57EBCF001BD5C8 /* SaveData.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BFC94B1C57EBCF001BD5C8 /* SaveData.m */; };
@@ -170,6 +171,8 @@
 		09983FD2441D47DAA38B408E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FAD181C458E4CEEB87F6ECE /* libPods-AccessLecture Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AccessLecture Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		10BDE2E5B090C64338F60EA3 /* Pods-AccessLecture.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AccessLecture.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AccessLecture/Pods-AccessLecture.debug.xcconfig"; sourceTree = "<group>"; };
+		211166AF1C62997D000F5F77 /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
+		211166B01C62997D000F5F77 /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
 		216BE8491BA718E400B43584 /* NoteSearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteSearchTableViewController.h; sourceTree = "<group>"; };
 		216BE84A1BA718E400B43584 /* NoteSearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteSearchTableViewController.m; sourceTree = "<group>"; };
 		2194AD1E1BB2F7DE002D9BD1 /* NoteSearchResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteSearchResultsViewController.h; sourceTree = "<group>"; };
@@ -408,6 +411,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		211166AE1C62993F000F5F77 /* SettingsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				211166AF1C62997D000F5F77 /* SettingsTableViewController.h */,
+				211166B01C62997D000F5F77 /* SettingsTableViewController.m */,
+			);
+			name = SettingsViewController;
+			sourceTree = "<group>";
+		};
 		2194AD211BB2F7EB002D9BD1 /* NoteSearchViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -801,6 +813,7 @@
 		4C5C50C9177B7B300095801A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				211166AE1C62993F000F5F77 /* SettingsViewController */,
 				4C3BE5F11A72A8300017854C /* OpenViewController */,
 				2CF21688193CDA170014F947 /* SearchViewController */,
 				3F0DBDCC13BD170C00E3FEE8 /* AboutViewController */,
@@ -1167,6 +1180,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				211166B11C62997D000F5F77 /* SettingsTableViewController.m in Sources */,
 				3F408C0D18BF94FD00F6B113 /* NSString+asciihexcodes.m in Sources */,
 				4C3BE5EA1A72973C0017854C /* RootMenuController.m in Sources */,
 				3F07C352187B3627005BC7EC /* TextNoteView.m in Sources */,
