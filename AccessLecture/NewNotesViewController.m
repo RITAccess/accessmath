@@ -54,10 +54,6 @@ CGFloat y = 15;
     _currentDate.text = theDate;
     _currentDate.userInteractionEnabled = NO;
     
-    if ([SaveColor sharedData].textColor != nil) {
-        _textView.textColor = [SaveColor sharedData].textColor;
-    }
-    
     highlighterColorChoices = [[NSMutableArray alloc] initWithObjects:[UIColor colorWithRed:127.0f/255.0f green:226.0f/255.0f blue:255.0f/255.0f alpha:1.0], [UIColor colorWithRed:245.0f/255.0f green:255.0f/255.0f blue:0.0f/255.0f alpha:1.0], [UIColor colorWithRed:208.0f/255.0f green:164.0f/255.0f blue:237.0f/255.0f alpha:1.0], [UIColor colorWithRed:108.0f/255.0f green:255.0f/255.0f blue:95.0f/255.0f alpha:1.0], [UIColor colorWithRed:253.0f/255.0f green:153.0f/255.0f blue:176.0f/255.0f alpha:1.0], [UIColor colorWithRed:233.0f/255.0f green:215.0f/255.0f blue:255.0f/255.0f alpha:1.0], [UIColor colorWithRed:154.0f/255.0f green:159.0f/255.0f blue:91.0f/255.0f alpha:1.0], [UIColor colorWithRed:0.0f/255.0f green:255.0f/255.0f blue:226.0f/255.0f alpha:1.0], [UIColor colorWithRed:107.0f/255.0f green:191.0f/255.0f blue:211.0f/255.0f alpha:1.0], [UIColor colorWithRed:255.0f/255.0f green:0.0f/255.0f blue:236.0f/255.0f alpha:1.0], [UIColor colorWithRed:255.0f/255.0f green:62.0f/255.0f blue:62.0f/255.0f alpha:1.0], [UIColor colorWithRed:132.0f/255.0f green:100.0f/255.0f blue:174.0f/255.0f alpha:1.0], [UIColor colorWithRed:255.0f/255.0f green:170.0f/255.0f blue:170.0f/255.0f alpha:1.0], [UIColor colorWithRed:212.0f/255.0f green:255.0f/255.0f blue:170.0f/255.0f alpha:1.0], [UIColor colorWithRed:101.0f/255.0f green:188.0f/255.0f blue:255.0f/255.0f alpha:1.0], nil];
     
     textColorChoices = [[NSMutableArray alloc] initWithObjects:[UIColor blackColor], [UIColor blueColor], nil];
@@ -68,6 +64,12 @@ CGFloat y = 15;
     UIMenuItem *highlightText = [[UIMenuItem alloc] initWithTitle:@"Highlight" action:@selector(highlightText)];
     
     [[UIMenuController sharedMenuController] setMenuItems:@[highlightText]];
+    
+    if ([SaveColor sharedData].highlighted != nil) {
+        for (NSMutableAttributedString *string in [SaveColor sharedData].highlighted) {
+            _textView.attributedText = string;
+        }
+    }
     
     [self setupGestures];
     [self setUpNavigation];
@@ -81,6 +83,10 @@ CGFloat y = 15;
     }
     
     [self removeSideView];
+    
+    if ([SaveColor sharedData].textColor != nil) {
+        _textView.textColor = [SaveColor sharedData].textColor;
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -298,6 +304,8 @@ CGFloat y = 15;
     }
     
     _textView.attributedText = attributedString;
+    [[SaveColor sharedData].highlighted addObject:attributedString];
+    [[SaveColor sharedData] save];
 }
 
 -(void)changeHighlightColor:(UIButton*)sender{

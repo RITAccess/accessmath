@@ -12,11 +12,16 @@
 
 static NSString* const highlightColor = @"highlightColor";
 static NSString* const textColor = @"textColor";
+static NSString* const highlightedText = @"highlightedText";
 
 - (instancetype)initWithCoder:(NSCoder *)decoder
 {
     self = [self init];
     if (self) {
+        if(!self.highlighted){
+            self.highlighted = [[NSMutableArray alloc] init];
+        }
+        self.highlighted = [[decoder decodeObjectForKey:highlightedText] mutableCopy];
         self.hightlightColor = [decoder decodeObjectForKey:highlightColor];
         self.textColor = [decoder decodeObjectForKey:textColor];
     }
@@ -25,6 +30,10 @@ static NSString* const textColor = @"textColor";
 
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
+    if(!self.highlighted){
+        self.highlighted = [[NSMutableArray alloc] init];
+    }
+    [encoder encodeObject:self.highlighted forKey:highlightedText];
     [encoder encodeObject:self.hightlightColor forKey:highlightColor];
     [encoder encodeObject:self.textColor forKey:textColor];
 }

@@ -13,6 +13,7 @@
 
 @property UIColor* hightlightColor;
 @property UIColor* textColor;
+@property NSMutableArray* highlighted;
 
 +(instancetype)sharedData;
 -(void)save;
