@@ -76,6 +76,11 @@ CGFloat y = 15;
 //sends out notification that orientation has been changed
 -(void)viewWillAppear:(BOOL)animated
 {
+    if ([SaveImage sharedData].notesImage != nil) {
+        _imageView.image = [SaveImage sharedData].notesImage;
+    }
+    
+    [self removeSideView];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -158,9 +163,6 @@ CGFloat y = 15;
         _sideViewController = nil;
     }
     _showingSideView = NO;
-    if ([SaveImage sharedData].notesImage != nil) {
-        _imageView.image = [SaveImage sharedData].notesImage;
-    }
 }
 
 #pragma mark Swipe Gesture Setup/Actions

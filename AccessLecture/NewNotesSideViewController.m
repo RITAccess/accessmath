@@ -50,7 +50,6 @@
     [[SaveImage sharedData] save];
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
-    
 }
 
 //allows the user to add images to their notes
