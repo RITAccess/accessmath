@@ -6,6 +6,8 @@
 //
 //
 
+@import CoreData;
+
 #import "AMLecture.h"
 #import "AccessLectureKit.h"
 
@@ -16,9 +18,19 @@ static NSString *LectureKey = @"lecture";
 
 @property NSFileWrapper *fileWrapper;
 
+// Core Data
+@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
+@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+
 @end
 
 @implementation AMLecture
+{
+    NSManagedObjectContext *_managedObjectContext;
+    NSManagedObjectModel *_managedObjectModel;
+    NSPersistentStoreCoordinator *_persistentStoreCoordinator;
+}
 
 - (id)initWithFileURL:(NSURL *)url
 {
@@ -76,6 +88,58 @@ static NSString *LectureKey = @"lecture";
     NSData * data = [fileWrapper regularFileContents];
     return [UIImage imageWithData:data];
 }
+
+#pragma mark - Core Data stack
+
+// Returns the managed object context for the application.
+// If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
+- (NSManagedObjectContext *)managedObjectContext
+{
+    if (_managedObjectContext != nil) {
+        return _managedObjectContext;
+    }
+    
+    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
+    if (coordinator != nil) {
+        _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+        [_managedObjectContext setPersistentStoreCoordinator:coordinator];
+    }
+    return _managedObjectContext;
+}
+
+// Returns the managed object model for the application.
+// If the model doesn't already exist, it is created from the application's model.
+- (NSManagedObjectModel *)managedObjectModel
+{
+    if (_managedObjectModel != nil) {
+        return _managedObjectModel;
+    }
+    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"AccessLecture" withExtension:@"momd"];
+    _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
+    return _managedObjectModel;
+}
+
+// Returns the persistent store coordinator for the application.
+// If the coordinator doesn't already exist, it is created and the application's store added to it.
+- (NSPersistentStoreCoordinator *)persistentStoreCoordinator
+{
+    if (_persistentStoreCoordinator != nil) {
+        return _persistentStoreCoordinator;
+    }
+    
+    NSURL *storeURL = [[self fileURL] URLByAppendingPathComponent:@"notes.sqlite"];
+    
+    NSError *error = nil;
+    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
+    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+        // Should properly handle dump here, abort() shouldn't be used in production
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+    
+    return _persistentStoreCoordinator;
+}
+
 
 #pragma mark Open and close file wrapper
 
@@ -154,9 +218,32 @@ static NSString *LectureKey = @"lecture";
     return [NSString stringWithFormat:@"AMLecture<%d> Title: '%@' number of notes %d", [super hash], _metadata.title, _lecture.notes.count];
 }
 
+#pragma mark - Note factory methods
+- (Note *)createNote
+{
+    return [self createNoteAtPosition:CGPointZero];
+}
+
+- (Note *)createNoteAtPosition:(CGPoint)point
+{
+    NSEntityDescription *ent = [NSEntityDescription entityForName:@"Note" inManagedObjectContext:self.managedObjectContext];
+    Note *note = [[Note alloc] initWithEntity:ent insertIntoManagedObjectContext:self.managedObjectContext];
+    note.location = point;
+    NSLog(@"DEBUG: %@", note);
+    return note;
+}
+
 - (NSArray *)getNotes
 {
-    return _lecture.notes;
+    NSLog(@"DEBUG: fetching notes");
+    NSFetchRequest *allNotes = [[NSFetchRequest alloc] initWithEntityName:@"Note"];
+    
+    
+    NSArray *notes = [[self managedObjectContext] executeFetchRequest:allNotes error:nil];
+    
+    NSLog(@"DEBUG: %@", notes);
+    
+    return notes;
 }
 
 @end

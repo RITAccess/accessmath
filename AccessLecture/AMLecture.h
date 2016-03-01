@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ALMetaData.h"
 #import "Lecture.h"
+#import "Note.h"
 
 static NSString *const AMLectutueFileExtention = @"lec";
 
@@ -24,6 +25,10 @@ static NSString *const AMLectutueFileExtention = @"lec";
  */
 - (void)save;
 - (void)saveWithCompletetion:(void(^)(BOOL success))completion;
+
+
+- (Note *)createNote;
+- (Note *)createNoteAtPosition:(CGPoint)point;
 
 - (NSArray*)getNotes;
 

@@ -8,27 +8,19 @@
 
 #import "Note.h"
 
+@interface Note ()
+
+@property (nonatomic) NSNumber *location_x;
+@property (nonatomic) NSNumber *location_y;
+
+@end
+
 @implementation Note
 
-- (id)initWithCoder:(NSCoder *)aCoder
-{
-    if (self = [super init]) {
-        _title = [aCoder decodeObjectForKey:@"title-note"];
-        _content = [aCoder decodeObjectForKey:@"content"];
-        _color = [aCoder decodeObjectForKey:@"color"];
-        _type = [aCoder decodeObjectForKey:@"type-note"];
-        _location = [aCoder decodeCGPointForKey:@"location"];
-    }
-    return self;
-}
+@dynamic title;
+@dynamic content;
+@dynamic location_x;
+@dynamic location_y;
 
-- (void)encodeWithCoder:(NSCoder *)aCoder
-{
-    [aCoder encodeObject:(_title ?: @"Untitled") forKey:@"title-note"];
-    [aCoder encodeObject:(_content ?: @"") forKey:@"content"];
-    [aCoder encodeObject:(_color ?: @"") forKey:@"color"];
-    [aCoder encodeObject:(_type ?: @"Default") forKey:@"type-note"];
-    [aCoder encodeCGPoint:_location forKey:@"location"];
-}
 
 @end

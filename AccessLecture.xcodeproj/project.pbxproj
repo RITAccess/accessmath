@@ -88,6 +88,7 @@
 		4C4FA7171A76C2FE00161ABE /* libAccessLectureKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C4FA6F81A76C14400161ABE /* libAccessLectureKit.a */; };
 		4C5C50CD177B7B7C0095801A /* LectureViewContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5C50CC177B7B7C0095801A /* LectureViewContainer.m */; };
 		4C62BECD175651DB00CAF4CF /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F99F1FA1543641E0065CBB9 /* FileManager.m */; };
+		4C7403B81C85DD19002557DF /* LectureNoteFactoryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7403B71C85DD19002557DF /* LectureNoteFactoryTests.m */; };
 		4CA4A0651ADC3287004536B7 /* AMIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4A0641ADC3287004536B7 /* AMIndex.m */; };
 		4CA4A06B1AE185D1004536B7 /* DirectoryCVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4A06A1AE185D1004536B7 /* DirectoryCVC.m */; };
 		4CA4A0711AE59127004536B7 /* Stack.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4A0701AE59127004536B7 /* Stack.m */; };
@@ -99,7 +100,6 @@
 		4CD7CE2A1A8568CB00A9717F /* PreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD7CE291A8568CB00A9717F /* PreviewViewController.m */; };
 		4CDB053817B5567300D8EB85 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CDB053717B5567300D8EB85 /* CoreData.framework */; };
 		4CDB057D17B557C300D8EB85 /* AccessLecture.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4CDB057B17B557C300D8EB85 /* AccessLecture.xcdatamodeld */; };
-		4CDB058017B5589A00D8EB85 /* Favorites.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CDB057F17B5589A00D8EB85 /* Favorites.m */; };
 		4CDDF69717EB690900FE34E7 /* AMLecture.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CDDF69617EB690900FE34E7 /* AMLecture.m */; };
 		4CE742C51768BDE60026DE71 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FED960D1370863E00D8D1B8 /* Foundation.framework */; };
 		4CE742C61768BDE60026DE71 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FED960B1370863E00D8D1B8 /* UIKit.framework */; };
@@ -121,6 +121,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 4C4691091AB767CF006EE0CF;
 			remoteInfo = MockData;
+		};
+		4C7403BA1C85DD19002557DF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3FED95FE1370863E00D8D1B8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3FED96061370863E00D8D1B8;
+			remoteInfo = AccessLecture;
 		};
 		4CBF5D8A1768DB4E00746377 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -309,6 +316,9 @@
 		4C4FA7151A76C27000161ABE /* NavBackButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavBackButton.m; sourceTree = "<group>"; };
 		4C5C50CB177B7B7C0095801A /* LectureViewContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LectureViewContainer.h; sourceTree = "<group>"; };
 		4C5C50CC177B7B7C0095801A /* LectureViewContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LectureViewContainer.m; sourceTree = "<group>"; };
+		4C7403B51C85DD19002557DF /* LectureNoteFactoryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LectureNoteFactoryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C7403B71C85DD19002557DF /* LectureNoteFactoryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LectureNoteFactoryTests.m; sourceTree = "<group>"; };
+		4C7403B91C85DD19002557DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4CA4A0631ADC3287004536B7 /* AMIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMIndex.h; sourceTree = "<group>"; };
 		4CA4A0641ADC3287004536B7 /* AMIndex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMIndex.m; sourceTree = "<group>"; };
 		4CA4A0691AE185D1004536B7 /* DirectoryCVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectoryCVC.h; sourceTree = "<group>"; };
@@ -321,8 +331,6 @@
 		4CD7CE291A8568CB00A9717F /* PreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviewViewController.m; sourceTree = "<group>"; };
 		4CDB053717B5567300D8EB85 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		4CDB057C17B557C300D8EB85 /* AccessLecture.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AccessLecture.xcdatamodel; sourceTree = "<group>"; };
-		4CDB057E17B5589A00D8EB85 /* Favorites.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Favorites.h; sourceTree = "<group>"; };
-		4CDB057F17B5589A00D8EB85 /* Favorites.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Favorites.m; sourceTree = "<group>"; };
 		4CDDF69517EB690900FE34E7 /* AMLecture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMLecture.h; sourceTree = "<group>"; };
 		4CDDF69617EB690900FE34E7 /* AMLecture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMLecture.m; sourceTree = "<group>"; };
 		4CE742C31768BDE60026DE71 /* AccessLecture Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "AccessLecture Tests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -380,6 +388,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		4C4FA6F51A76C14300161ABE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4C7403B21C85DD19002557DF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -653,6 +668,7 @@
 				4CE742C71768BDE60026DE71 /* AccessLecture Tests */,
 				4C4FA6F91A76C14400161ABE /* AccessLectureKit */,
 				4C46910B1AB767CF006EE0CF /* MockData */,
+				4C7403B61C85DD19002557DF /* LectureNoteFactoryTests */,
 				3FED960A1370863E00D8D1B8 /* Frameworks */,
 				3FED96121370863E00D8D1B8 /* Supporting Files */,
 				3FED96081370863E00D8D1B8 /* Products */,
@@ -667,6 +683,7 @@
 				4CE742C31768BDE60026DE71 /* AccessLecture Tests.octest */,
 				4C4FA6F81A76C14400161ABE /* libAccessLectureKit.a */,
 				4C46910A1AB767CF006EE0CF /* libMockData.a */,
+				4C7403B51C85DD19002557DF /* LectureNoteFactoryTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -832,6 +849,15 @@
 			name = LectureViewController;
 			sourceTree = "<group>";
 		};
+		4C7403B61C85DD19002557DF /* LectureNoteFactoryTests */ = {
+			isa = PBXGroup;
+			children = (
+				4C7403B71C85DD19002557DF /* LectureNoteFactoryTests.m */,
+				4C7403B91C85DD19002557DF /* Info.plist */,
+			);
+			path = LectureNoteFactoryTests;
+			sourceTree = "<group>";
+		};
 		4C8ABE7C177CA341007C934C /* NotesViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -869,8 +895,6 @@
 			isa = PBXGroup;
 			children = (
 				4CDB057B17B557C300D8EB85 /* AccessLecture.xcdatamodeld */,
-				4CDB057E17B5589A00D8EB85 /* Favorites.h */,
-				4CDB057F17B5589A00D8EB85 /* Favorites.m */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
@@ -964,6 +988,24 @@
 			productReference = 4C4FA6F81A76C14400161ABE /* libAccessLectureKit.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		4C7403B41C85DD19002557DF /* LectureNoteFactoryTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4C7403BE1C85DD19002557DF /* Build configuration list for PBXNativeTarget "LectureNoteFactoryTests" */;
+			buildPhases = (
+				4C7403B11C85DD19002557DF /* Sources */,
+				4C7403B21C85DD19002557DF /* Frameworks */,
+				4C7403B31C85DD19002557DF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4C7403BB1C85DD19002557DF /* PBXTargetDependency */,
+			);
+			name = LectureNoteFactoryTests;
+			productName = LectureNoteFactoryTests;
+			productReference = 4C7403B51C85DD19002557DF /* LectureNoteFactoryTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		4CE742C21768BDE60026DE71 /* AccessLecture Tests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4CE742D21768BDE60026DE71 /* Build configuration list for PBXNativeTarget "AccessLecture Tests" */;
@@ -1002,6 +1044,10 @@
 					4C4FA6F71A76C14300161ABE = {
 						CreatedOnToolsVersion = 6.1.1;
 					};
+					4C7403B41C85DD19002557DF = {
+						CreatedOnToolsVersion = 7.2.1;
+						TestTargetID = 3FED96061370863E00D8D1B8;
+					};
 					4CE742C21768BDE60026DE71 = {
 						TestTargetID = 3FED96061370863E00D8D1B8;
 					};
@@ -1023,6 +1069,7 @@
 				4CE742C21768BDE60026DE71 /* AccessLecture Tests */,
 				4C4FA6F71A76C14300161ABE /* AccessLectureKit */,
 				4C4691091AB767CF006EE0CF /* MockData */,
+				4C7403B41C85DD19002557DF /* LectureNoteFactoryTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1046,6 +1093,13 @@
 				21C36E1A1BCEBAB2000CB5B0 /* Book-Open-32.png in Resources */,
 				2CA93202188596D400199CC4 /* Images.xcassets in Resources */,
 				21C36E271BCEBB02000CB5B0 /* Square Root-128.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4C7403B31C85DD19002557DF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1194,7 +1248,6 @@
 				21C36E061BCEA1AE000CB5B0 /* NewNotesViewController.m in Sources */,
 				4C4FA6F31A72CC8100161ABE /* OpenLectureController.m in Sources */,
 				4C46E6391A7FE23200087229 /* LoadingLectureCVC.m in Sources */,
-				4CDB058017B5589A00D8EB85 /* Favorites.m in Sources */,
 				21BFC94D1C57EBCF001BD5C8 /* SaveData.m in Sources */,
 				3F8B515718FD90580053BFE8 /* UIImage+RoundedCorner.m in Sources */,
 				3F8FD2C418AD21860059EF9C /* AMOpenButton.m in Sources */,
@@ -1227,6 +1280,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4C7403B11C85DD19002557DF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C7403B81C85DD19002557DF /* LectureNoteFactoryTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4CE742BF1768BDE60026DE71 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1241,6 +1302,11 @@
 			isa = PBXTargetDependency;
 			target = 4C4691091AB767CF006EE0CF /* MockData */;
 			targetProxy = 4C4691211AB767DC006EE0CF /* PBXContainerItemProxy */;
+		};
+		4C7403BB1C85DD19002557DF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3FED96061370863E00D8D1B8 /* AccessLecture */;
+			targetProxy = 4C7403BA1C85DD19002557DF /* PBXContainerItemProxy */;
 		};
 		4CBF5D8B1768DB4E00746377 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1547,6 +1613,83 @@
 			};
 			name = Release;
 		};
+		4C7403BC1C85DD19002557DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = LectureNoteFactoryTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = edi.rit.accesslecture.LectureNoteFactoryTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AccessLecture.app/AccessLecture";
+			};
+			name = Debug;
+		};
+		4C7403BD1C85DD19002557DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = LectureNoteFactoryTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = edi.rit.accesslecture.LectureNoteFactoryTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AccessLecture.app/AccessLecture";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		4CE742D31768BDE60026DE71 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E42E409B29FC0EF386FD2A96 /* Pods-AccessLecture Tests.debug.xcconfig */;
@@ -1677,6 +1820,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		4C7403BE1C85DD19002557DF /* Build configuration list for PBXNativeTarget "LectureNoteFactoryTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C7403BC1C85DD19002557DF /* Debug */,
+				4C7403BD1C85DD19002557DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		4CE742D21768BDE60026DE71 /* Build configuration list for PBXNativeTarget "AccessLecture Tests" */ = {
 			isa = XCConfigurationList;
