@@ -43,6 +43,17 @@
     [self.view addSubview:addImage];
 }
 
+-(UIImage*)resizeImage:(UIImage*)image toSize:(CGFloat)newSize{
+    CGFloat scale = newSize/image.size.height;
+    CGFloat newWidth = image.size.width*scale;
+    UIGraphicsBeginImageContext(CGSizeMake(newWidth, newSize));
+    
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage;
+}
+
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
