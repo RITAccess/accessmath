@@ -113,6 +113,15 @@
 		4CFC4BF31A795500001E2E27 /* ALTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC4BF21A795500001E2E27 /* ALTextField.m */; };
 		4CFC573017DF800700393A1E /* NoteTakingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC572F17DF800700393A1E /* NoteTakingViewController.m */; };
 		C928E8641C88C5EE00E37CC5 /* ShuffleNoteActions.m in Sources */ = {isa = PBXBuildFile; fileRef = C928E8621C88C5EE00E37CC5 /* ShuffleNoteActions.m */; };
+		C928E8701C88C71300E37CC5 /* abstract-21851_640.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C928E8671C88C71300E37CC5 /* abstract-21851_640.jpg */; };
+		C928E8711C88C71300E37CC5 /* background-68622_640.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C928E8681C88C71300E37CC5 /* background-68622_640.jpg */; };
+		C928E8721C88C71300E37CC5 /* ball-443852_640.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C928E8691C88C71300E37CC5 /* ball-443852_640.jpg */; };
+		C928E8731C88C71300E37CC5 /* cosmea-583092_640.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C928E86A1C88C71300E37CC5 /* cosmea-583092_640.jpg */; };
+		C928E8741C88C71300E37CC5 /* ellipse-784354_640.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C928E86B1C88C71300E37CC5 /* ellipse-784354_640.jpg */; };
+		C928E8751C88C71300E37CC5 /* IS098Z75U.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C928E86C1C88C71300E37CC5 /* IS098Z75U.jpg */; };
+		C928E8761C88C71300E37CC5 /* IS787-189.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C928E86D1C88C71300E37CC5 /* IS787-189.jpg */; };
+		C928E8771C88C71300E37CC5 /* IS787-191.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C928E86E1C88C71300E37CC5 /* IS787-191.jpg */; };
+		C928E8781C88C71300E37CC5 /* lines-593191_640.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C928E86F1C88C71300E37CC5 /* lines-593191_640.jpg */; };
 		C97E9ADA1C7F908100EF7783 /* SaveTextSize.m in Sources */ = {isa = PBXBuildFile; fileRef = C97E9AD91C7F908100EF7783 /* SaveTextSize.m */; };
 		C9B4A0C81C5AB16800E9CE8B /* HighlighterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B4A0C71C5AB16800E9CE8B /* HighlighterViewController.m */; };
 		C9BAE6DB1C6D265000F2E8C7 /* NewNotesSideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BAE6DA1C6D265000F2E8C7 /* NewNotesSideViewController.m */; };
@@ -354,6 +363,15 @@
 		A7108E144D7ABDACF00E2CBA /* Pods-AccessLecture Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AccessLecture Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AccessLecture Tests/Pods-AccessLecture Tests.release.xcconfig"; sourceTree = "<group>"; };
 		C928E8621C88C5EE00E37CC5 /* ShuffleNoteActions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShuffleNoteActions.m; sourceTree = "<group>"; };
 		C928E8631C88C5EE00E37CC5 /* ShuffleNoteActions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShuffleNoteActions.h; sourceTree = "<group>"; };
+		C928E8671C88C71300E37CC5 /* abstract-21851_640.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "abstract-21851_640.jpg"; sourceTree = "<group>"; };
+		C928E8681C88C71300E37CC5 /* background-68622_640.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "background-68622_640.jpg"; sourceTree = "<group>"; };
+		C928E8691C88C71300E37CC5 /* ball-443852_640.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "ball-443852_640.jpg"; sourceTree = "<group>"; };
+		C928E86A1C88C71300E37CC5 /* cosmea-583092_640.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "cosmea-583092_640.jpg"; sourceTree = "<group>"; };
+		C928E86B1C88C71300E37CC5 /* ellipse-784354_640.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "ellipse-784354_640.jpg"; sourceTree = "<group>"; };
+		C928E86C1C88C71300E37CC5 /* IS098Z75U.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IS098Z75U.jpg; sourceTree = "<group>"; };
+		C928E86D1C88C71300E37CC5 /* IS787-189.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "IS787-189.jpg"; sourceTree = "<group>"; };
+		C928E86E1C88C71300E37CC5 /* IS787-191.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "IS787-191.jpg"; sourceTree = "<group>"; };
+		C928E86F1C88C71300E37CC5 /* lines-593191_640.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "lines-593191_640.jpg"; sourceTree = "<group>"; };
 		C97E9AD81C7F908100EF7783 /* SaveTextSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveTextSize.h; sourceTree = "<group>"; };
 		C97E9AD91C7F908100EF7783 /* SaveTextSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveTextSize.m; sourceTree = "<group>"; };
 		C9B4A0C61C5AB16800E9CE8B /* HighlighterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighlighterViewController.h; sourceTree = "<group>"; };
@@ -440,6 +458,7 @@
 		21C36DEF1BCE9FA8000CB5B0 /* NoteShuffleViewController */ = {
 			isa = PBXGroup;
 			children = (
+				C928E8661C88C6F500E37CC5 /* BackgroundImages */,
 				21C36E101BCEBA6A000CB5B0 /* NoteSelectViewController */,
 				21C36E0D1BCEA229000CB5B0 /* SaveColor.h */,
 				21C36E0E1BCEA229000CB5B0 /* SaveColor.m */,
@@ -935,6 +954,22 @@
 			name = ShuffleNoteAction;
 			sourceTree = "<group>";
 		};
+		C928E8661C88C6F500E37CC5 /* BackgroundImages */ = {
+			isa = PBXGroup;
+			children = (
+				C928E8671C88C71300E37CC5 /* abstract-21851_640.jpg */,
+				C928E8681C88C71300E37CC5 /* background-68622_640.jpg */,
+				C928E8691C88C71300E37CC5 /* ball-443852_640.jpg */,
+				C928E86A1C88C71300E37CC5 /* cosmea-583092_640.jpg */,
+				C928E86B1C88C71300E37CC5 /* ellipse-784354_640.jpg */,
+				C928E86C1C88C71300E37CC5 /* IS098Z75U.jpg */,
+				C928E86D1C88C71300E37CC5 /* IS787-189.jpg */,
+				C928E86E1C88C71300E37CC5 /* IS787-191.jpg */,
+				C928E86F1C88C71300E37CC5 /* lines-593191_640.jpg */,
+			);
+			name = BackgroundImages;
+			sourceTree = "<group>";
+		};
 		C9B4A0C31C5A989B00E9CE8B /* MoreShuffle */ = {
 			isa = PBXGroup;
 			children = (
@@ -1097,17 +1132,26 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C928E8781C88C71300E37CC5 /* lines-593191_640.jpg in Resources */,
+				C928E8701C88C71300E37CC5 /* abstract-21851_640.jpg in Resources */,
+				C928E8761C88C71300E37CC5 /* IS787-189.jpg in Resources */,
+				C928E8731C88C71300E37CC5 /* cosmea-583092_640.jpg in Resources */,
+				C928E8721C88C71300E37CC5 /* ball-443852_640.jpg in Resources */,
 				3FED96161370863E00D8D1B8 /* InfoPlist.strings in Resources */,
 				21DA3D9318905B5000BFD96B /* DrawViewController.xib in Resources */,
 				3F2DC98318871FE4008C29BF /* ImageNoteViewController.xib in Resources */,
 				21C36DF11BCE9FB8000CB5B0 /* NotesViewController.xib in Resources */,
+				C928E8711C88C71300E37CC5 /* background-68622_640.jpg in Resources */,
 				3F8D990F187DD9100061DEA2 /* FullScreenNoteViewController.xib in Resources */,
+				C928E8771C88C71300E37CC5 /* IS787-191.jpg in Resources */,
 				21C36E1B1BCEBAB2000CB5B0 /* Book-Open-128.png in Resources */,
 				4C3BE5E71A7296F10017854C /* Main.storyboard in Resources */,
 				21C36E231BCEBADD000CB5B0 /* Stationery-Pen-128 (1).png in Resources */,
 				21C36E261BCEBB02000CB5B0 /* Square Root-32.png in Resources */,
 				21C36E221BCEBADD000CB5B0 /* Stationery-Pen-32.png in Resources */,
+				C928E8741C88C71300E37CC5 /* ellipse-784354_640.jpg in Resources */,
 				3F8D9908187B4E010061DEA2 /* TextNoteView.xib in Resources */,
+				C928E8751C88C71300E37CC5 /* IS098Z75U.jpg in Resources */,
 				21C36E1A1BCEBAB2000CB5B0 /* Book-Open-32.png in Resources */,
 				2CA93202188596D400199CC4 /* Images.xcassets in Resources */,
 				21C36E271BCEBB02000CB5B0 /* Square Root-128.png in Resources */,
