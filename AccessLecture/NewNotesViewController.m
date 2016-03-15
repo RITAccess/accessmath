@@ -94,15 +94,6 @@ CGFloat y = 15;
     }
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
-}
-
-//removes notification
--(void)viewDidDisappear:(BOOL)animated
-{
-}
-
 #pragma mark - Navbar Setup
 
 - (void)setUpNavigation
@@ -144,7 +135,8 @@ CGFloat y = 15;
 
 #pragma mark - Set Up Sidebar view
 
--(UIView *)getSideView {
+-(UIView *)getSideView
+{
     // init view if it doesn't already exist
     if (_sideViewController == nil)
     {
@@ -168,7 +160,8 @@ CGFloat y = 15;
     return view;
 }
 
--(void)removeSideView {
+-(void)removeSideView
+{
     if (_sideViewController != nil) {
         [_sideViewController.view removeFromSuperview];
         _sideViewController = nil;
@@ -194,14 +187,16 @@ CGFloat y = 15;
 
 #pragma mark: Text View Section
 
-- (IBAction)changeFontSize:(UIStepper*)sender {
+- (IBAction)changeFontSize:(UIStepper*)sender
+{
     
     _textView.font = [_textView.font fontWithSize:[sender value]];
     [SaveTextSize sharedData].textFont = _textView.font;
     [[SaveTextSize sharedData] save];
 }
 
-- (IBAction)changeFontStyle:(UISegmentedControl *)sender {
+- (IBAction)changeFontStyle:(UISegmentedControl *)sender
+{
     
     switch (sender.selectedSegmentIndex) {
         case 0:
@@ -218,7 +213,8 @@ CGFloat y = 15;
     }
 }
 
-- (IBAction)changeTextColor:(UIBarButtonItem *)sender {
+- (IBAction)changeTextColor:(UIBarButtonItem *)sender
+{
     
     UIViewController *newNote = [[UIViewController alloc] init];
     textPopover = [[UIPopoverController alloc] initWithContentViewController:newNote];
@@ -263,7 +259,8 @@ CGFloat y = 15;
 
 #pragma mark Highlighter Section
 
-- (IBAction)changeHighlighterColor:(UIBarButtonItem *)sender {
+- (IBAction)changeHighlighterColor:(UIBarButtonItem *)sender
+{
     
     HighlighterViewController *newNote = [[HighlighterViewController alloc] init];
     popover = [[UIPopoverController alloc] initWithContentViewController:newNote];
@@ -315,7 +312,8 @@ CGFloat y = 15;
     [[SaveColor sharedData] save];
 }
 
--(void)changeHighlightColor:(UIButton*)sender{
+-(void)changeHighlightColor:(UIButton*)sender
+{
     [SaveColor sharedData].hightlightColor = sender.backgroundColor;
     [self.popOverController dismissPopoverAnimated:true];
     [[SaveColor sharedData] save];
@@ -330,9 +328,9 @@ CGFloat y = 15;
     }];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

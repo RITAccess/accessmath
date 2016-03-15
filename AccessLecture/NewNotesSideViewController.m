@@ -22,9 +22,9 @@
     UIButton *addVideo;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
     addImage = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     addImage.frame = CGRectMake(150, 150, 120, 50);
@@ -43,7 +43,8 @@
     [self.view addSubview:addImage];
 }
 
--(UIImage*)resizeImage:(UIImage*)image toSize:(CGFloat)newSize{
+-(UIImage*)resizeImage:(UIImage*)image toSize:(CGFloat)newSize
+{
     CGFloat scale = newSize/image.size.height;
     CGFloat newWidth = image.size.width*scale;
     UIGraphicsBeginImageContext(CGSizeMake(newWidth, newSize));
@@ -54,7 +55,8 @@
     return newImage;
 }
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
     
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     [SaveImage sharedData].notesImage = chosenImage;
@@ -97,25 +99,14 @@
     [self presentViewController:picker animated:YES completion:NULL];
 }
 
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
-    
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
     [picker dismissViewControllerAnimated:YES completion:NULL];
-    
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
