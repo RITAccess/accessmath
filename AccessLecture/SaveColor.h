@@ -12,6 +12,8 @@
 @interface SaveColor : NSObject <NSCoding>
 
 @property UIColor* hightlightColor;
+@property UIColor* textColor;
+@property NSMutableArray* highlighted;
 
 +(instancetype)sharedData;
 -(void)save;

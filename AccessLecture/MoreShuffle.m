@@ -2,19 +2,23 @@
 //  MoreShuffle.m
 //  LandScapeV2
 //
-//  Created by Student on 7/24/15.
-//  Copyright (c) 2015 Student. All rights reserved.
+//  Created by Kimberly Sookoo on 7/24/15.
+//  Copyright (c) 2015 Kimberly Sookoo. All rights reserved.
 //
-
-#import "Note.h"
 
 #import "MoreShuffle.h"
 #import "SaveData.h"
 #import "BackgroundImages.h"
+#import "LectureViewContainer.h"
+#import "NoteTakingViewController.h"
+#import "BackgroundTile.h"
+#import "TextNoteViewController.h"
+#import "ShuffleNoteActions.h"
 
 @interface MoreShuffle()
 
 @property BOOL created; //checks to see if scene is created
+@property BOOL tappedTwice; //checks to see is node is tapped twice
 @property SKSpriteNode *activeDragNode; //sets the node to be dragged
 
 @end
@@ -25,59 +29,40 @@
     //original center
     CGPoint _originalCenter;
     
+    //date node
+    SKLabelNode *date;
+    
     //black outlines for the nodes
     SKSpriteNode *outline;
-    SKSpriteNode *outline1;
-    SKSpriteNode *outline2;
-    SKSpriteNode *outline3;
     
     //the nodes themselves
     SKSpriteNode *newNode;
     SKSpriteNode *newNode2;
     SKSpriteNode *newNode3;
     
-    //button to expand the backgrounds for nodes
-    SKSpriteNode *backButton;
-    SKSpriteNode *opt;
-    
-    //background images
-    SKSpriteNode *image;
-    SKSpriteNode *image2;
-    SKSpriteNode *image3;
-    SKSpriteNode *image4;
-    SKSpriteNode *image5;
-    SKSpriteNode *image6;
-    SKSpriteNode *image7;
-    SKSpriteNode *image8;
-    
-    //arrow to traverse pages
-    SKSpriteNode *arrow;
-    
-    //changes color of text
-    SKSpriteNode *changeText;
-    
-    // button
+    //stack button
     UIButton *stackButton;
-    UIButton *createPaperNoteButton;
+    //generate new node
+    UIButton *newPaper;
+    //reset button
     UIButton *reset;
     
-    //update date and texture
-    SKTexture *curr;
-    SKLabelNode *dateColor;
-    
-    // gestures
     UISwipeGestureRecognizer *leftSwipe;
+    
     UIPanGestureRecognizer *panRecognizer;
+    
+    //zoom
     UIPinchGestureRecognizer *zoomIn;
 }
 
 //paper nodes physics categories
-enum PHYSICS_CATEGORIES {
-    PHYSICS_CATEGORY_OUTLINE_1 = 1, PHYSICS_CATEGORY_OUTLINE_2, PHYSICS_CATEGORY_OUTLINE_3
-};
+static const int outline1Category = 1;
+static const int outline2Category = 2;
+static const int outline3Category = 3;
+
 
 /*
- Creates the SpriteKity scene
+ Creates the SpriteKit scene
  Determines what the current orientation of the device is and what the appropriate placement for the UIButtons will be
  Adds the left swipe functionality to display the background options for the papers/nodes.
  Adds the zoom in/zoom out functionality.
@@ -91,65 +76,44 @@ enum PHYSICS_CATEGORIES {
         self.created = YES;
     }
     
-    NSArray* notes = _notesFromSelectedLecture;
-    for (Note* note in notes) {
-        // TODO: create note representation for each note
-        NSLog(@"DEBUG from SKView: %@", note.title);
-        [self newPaper];
-    }
+    stackButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    stackButton.backgroundColor = [UIColor darkGrayColor];
+    [stackButton setTitle:@"Stack Papers" forState:UIControlStateNormal];
+    [stackButton addTarget:self action:@selector(stackPapers) forControlEvents:UIControlEventTouchUpInside];
+    
+    newPaper = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    newPaper.backgroundColor = [UIColor darkGrayColor];
+    [newPaper setTitle:@"Make More" forState:UIControlStateNormal];
+    [newPaper addTarget:self action:@selector(newPaper) forControlEvents:UIControlEventTouchUpInside];
+    
+    reset = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    reset.backgroundColor = [UIColor darkGrayColor];
+    [reset setTitle:@"Reset" forState:UIControlStateNormal];
+    [reset addTarget:self action:@selector(resetButton) forControlEvents:UIControlEventTouchUpInside];
     
     //detects device orientation specifically for UIButtons
     if ([UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationPortrait || [UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationPortraitUpsideDown) {
         
-        stackButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        stackButton.backgroundColor = [UIColor darkGrayColor];
-        [stackButton setTitle:@"Stack Papers" forState:UIControlStateNormal];
-        [stackButton addTarget:self action:@selector(stackPapers:) forControlEvents:UIControlEventTouchUpInside];
-        
-        createPaperNoteButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        createPaperNoteButton.backgroundColor = [UIColor darkGrayColor];
-        [createPaperNoteButton setTitle:@"Make More" forState:UIControlStateNormal];
-        [createPaperNoteButton addTarget:self action:@selector(newPaper) forControlEvents:UIControlEventTouchUpInside];
-        
-        reset = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        reset.backgroundColor = [UIColor darkGrayColor];
-        [reset setTitle:@"Reset" forState:UIControlStateNormal];
-        [reset addTarget:self action:@selector(resetButton) forControlEvents:UIControlEventTouchUpInside];
-        
         stackButton.frame = CGRectMake(640, 940, 100, 20);
-        createPaperNoteButton.frame = CGRectMake(640, 995, 100, 20);
+        newPaper.frame = CGRectMake(640, 995, 100, 20);
         reset.frame = CGRectMake(500, 995, 100, 20);
     }
     
     if ([UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationLandscapeLeft || [UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationLandscapeRight) {
-        stackButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        stackButton.backgroundColor = [UIColor darkGrayColor];
-        [stackButton setTitle:@"Stack Papers" forState:UIControlStateNormal];
-        [stackButton addTarget:self action:@selector(stackPapers:) forControlEvents:UIControlEventTouchUpInside];
-        
-        createPaperNoteButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        createPaperNoteButton.backgroundColor = [UIColor darkGrayColor];
-        [createPaperNoteButton setTitle:@"Make More" forState:UIControlStateNormal];
-        [createPaperNoteButton addTarget:self action:@selector(newPaper) forControlEvents:UIControlEventTouchUpInside];
-        
-        reset = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        reset.backgroundColor = [UIColor darkGrayColor];
-        [reset setTitle:@"Reset" forState:UIControlStateNormal];
-        [reset addTarget:self action:@selector(resetButton) forControlEvents:UIControlEventTouchUpInside];
         
         stackButton.frame = CGRectMake(890, 690, 100, 20);
-        createPaperNoteButton.frame = CGRectMake(890, 740, 100, 20);
+        newPaper.frame = CGRectMake(890, 740, 100, 20);
         reset.frame = CGRectMake(750, 740, 100, 20);
     }
     
-    [view addSubview:createPaperNoteButton];
+    [view addSubview:newPaper];
     [view addSubview:reset];
     [view addSubview:stackButton];
     
     //swipes to show backgrounds
     leftSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action: @selector(leftFlip:)];
     [leftSwipe setDirection:UISwipeGestureRecognizerDirectionLeft];
-    [leftSwipe setNumberOfTouchesRequired:2];                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+    [leftSwipe setNumberOfTouchesRequired:2];
     [view addGestureRecognizer:leftSwipe];
     
     zoomIn = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinchGesture:)];
@@ -169,7 +133,7 @@ enum PHYSICS_CATEGORIES {
     
     self.created = NO;
     
-    [createPaperNoteButton removeFromSuperview];
+    [newPaper removeFromSuperview];
     [reset removeFromSuperview];
     [stackButton removeFromSuperview];
     
@@ -180,8 +144,6 @@ enum PHYSICS_CATEGORIES {
     
     [[NSNotificationCenter defaultCenter]removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
 }
-
-#pragma mark - Orientation
 
 //updates view based on changes
 - (void)orientationChanged:(NSNotification *)notification{
@@ -197,7 +159,7 @@ enum PHYSICS_CATEGORIES {
         case UIInterfaceOrientationPortraitUpsideDown:
         {
             stackButton.frame = CGRectMake(640, 940, 100, 20);
-            createPaperNoteButton.frame = CGRectMake(640, 995, 100, 20);
+            newPaper.frame = CGRectMake(640, 995, 100, 20);
             reset.frame = CGRectMake(500, 995, 100, 20);
         }
             
@@ -206,16 +168,13 @@ enum PHYSICS_CATEGORIES {
         case UIInterfaceOrientationLandscapeRight:
         {
             stackButton.frame = CGRectMake(890, 690, 100, 20);
-            createPaperNoteButton.frame = CGRectMake(890, 740, 100, 20);
+            newPaper.frame = CGRectMake(890, 740, 100, 20);
             reset.frame = CGRectMake(750, 740, 100, 20);
         }
             break;
         case UIInterfaceOrientationUnknown:break;
     }
 }
-
-
-#pragma mark - Gestures
 
 //Allows for user to be able to pan around scence
 - (void)handlePanGesture:(UIPanGestureRecognizer *)panGesture
@@ -298,228 +257,138 @@ enum PHYSICS_CATEGORIES {
     [self.view removeGestureRecognizer:zoomIn];
     [self.view removeGestureRecognizer:leftSwipe];
     [self.view removeGestureRecognizer:panRecognizer];
-    BackgroundImages *backgroundImages = [[BackgroundImages alloc] initWithSize:CGSizeMake(1024, 768)];
+    BackgroundImages *backy = [[BackgroundImages alloc] initWithSize:CGSizeMake(1024, 768)];
     SKView *view = (SKView *) self.view;
-    [view presentScene:backgroundImages];
+    [view presentScene:backy];
+}
+
+#pragma mark: Textures
+
+//original texture
+-(SKTexture*)originalTexture
+{
+    ShuffleNoteActions *sna = [[ShuffleNoteActions alloc] init];
+    
+    SKSpriteNode *pap = [sna paperNode];
+    pap.position = CGPointMake(CGRectGetMidX(outline.frame), CGRectGetMidY(outline.frame));
+    
+    outline = [sna outlineNode];
+    [outline addChild:pap];
+    
+    SKTexture *tex = [self.scene.view textureFromNode:outline];
+    
+    return tex;
+}
+
+//make notecard with saved background image
+-(SKTexture*)makeNotecardWithSavedImage
+{
+    ShuffleNoteActions *sna = [[ShuffleNoteActions alloc] init];
+    BackgroundImages *images = [[BackgroundImages alloc] init];
+    
+    SKTexture *newTex;
+    SKSpriteNode *node;
+    
+    for (BackgroundTile *image in [images createTiles]) {
+        if ([[saveData sharedData].colorName isEqualToString:image.backgroundTileName]) {
+            if (image.isColor) {
+                node = [SKSpriteNode spriteNodeWithColor:image.colorName size:CGSizeMake(100, 100)];
+            } else {
+                node = [SKSpriteNode spriteNodeWithImageNamed:image.backgroundTileName];
+                node.size = CGSizeMake(100, 100);
+            }
+            
+            SKTexture *tex = [self.scene.view textureFromNode:node];
+            SKSpriteNode *paper = [[SKSpriteNode alloc] initWithTexture:tex];
+            paper.size = CGSizeMake(300, 200);
+            
+            SKSpriteNode *outliner = [sna outlineNode];
+            [outliner addChild:paper];
+            
+            newTex = [self.scene.view textureFromNode:outliner];
+        }
+    }
+    
+    return newTex;
+}
+
+//generates more nodes
+-(void)newPaper
+{
+    SKSpriteNode *newPap;
+    
+    if ([saveData sharedData].current != nil) {
+        newPap = [[SKSpriteNode alloc] initWithTexture:[saveData sharedData].current];
+    } else {
+        newPap = [[SKSpriteNode alloc] initWithTexture:[self originalTexture]];
+    }
+    
+    newPap.position = CGPointMake(450, 500);
+    newPap.name = @"newNodeX";
+    
+    [self addPositionConstraints:newPap];
+    [self makePhysicsBody:newPap];
+    [self addDeleteButton:newPap];
+    
+    /*
+     Creating more nodes that have their physicsBodies instantiated and can adapt to changes in texture like those in
+     the original stack can be stored and saved via the NSMutableArray.
+     */
+    [[saveData sharedData].array addObject:newPap];
+    [[saveData sharedData] save];
+    
+    [self addChild:newPap];
 }
 
 
-#pragma mark - Scene Creation
-
-//creates the initial SKScene
--(void)createScene
+- (IBAction)resetButton
 {
-    self.backgroundColor = [SKColor lightGrayColor];
-    self.scaleMode = SKSceneScaleModeFill;
+    [self removeAllChildren];
+    [[saveData sharedData] reset];
+    [[saveData sharedData] save];
+    [self createScene];
+}
+
+//action to stack papers
+-(IBAction)stackPapers
+{
+    float x = 1200;
+    float y = 1000;
     
-    // setup a position constraint
-    CGSize screenSize = self.scene.frame.size;
-    SKConstraint *positionConstraint = [SKConstraint positionX:[SKRange rangeWithLowerLimit:150 upperLimit:(screenSize.width-150)] Y:[SKRange rangeWithLowerLimit:200 upperLimit:(screenSize.height-100)]];
+    [saveData sharedData].isStacked = YES;
     
-    // Create date label if NULL
-    SKLabelNode *dateLabelNode;
-    if ([saveData sharedData].date != nil) {
-        dateLabelNode = [saveData sharedData].date;
-        [dateLabelNode removeFromParent];
-    } else {
-        dateLabelNode = [self dateNode];
-    }
-    dateLabelNode.position = CGPointMake(-110, 70);
+    newNode.position = CGPointMake(600, 1000);
+    newNode2.position = CGPointMake(610, 990);
+    newNode3.position = CGPointMake(620, 980);
     
-    if ([saveData sharedData].currentTexture == nil) {
-        //for the following nodes, the ability to return to default needs to be instantiated
-        SKSpriteNode *paperNode = [self createPaperNode];
-        paperNode.position = CGPointMake(CGRectGetMidX(outline1.frame), CGRectGetMidY(outline1.frame));
-        
-        outline1 = [self outlineNode];
-        [outline1 addChild:paperNode];
-        
-        SKTexture *tex = [self.scene.view textureFromNode:outline1];
-        newNode = [SKSpriteNode spriteNodeWithTexture:tex];
-        newNode.name = @"newNode";
-        newNode.constraints = @[positionConstraint];
-        [newNode addChild:dateLabelNode];
-        
-        SKSpriteNode *pap2 = [self createPaperNode];
-        pap2.position = CGPointMake(CGRectGetMidX(outline2.frame), CGRectGetMidY(outline2.frame));
-        
-        outline2 = [self outlineNode];
-        [outline2 addChild:pap2];
-        
-        SKTexture *tex2 = [self.scene.view textureFromNode:outline2];
-        
-        newNode2 = [SKSpriteNode spriteNodeWithTexture:tex2];
-        newNode2.name = @"newNode2";
-        newNode2.constraints = @[positionConstraint];
-        
-        SKSpriteNode *pap3 = [self createPaperNode];
-        pap3.position = CGPointMake(CGRectGetMidX(outline3.frame), CGRectGetMidY(outline3.frame));
-        
-        outline3 = [self outlineNode];
-        [outline3 addChild:pap3];
-        
-        SKTexture *tex3 = [self.scene.view textureFromNode:outline3];
-        
-        newNode3 = [SKSpriteNode spriteNodeWithTexture:tex3];
-        newNode3.name = @"newNode3";
-        newNode3.constraints = @[positionConstraint];
-    } else {
-        newNode = [[SKSpriteNode alloc] initWithTexture:[saveData sharedData].currentTexture];
-        newNode.name = @"newNode";
-        newNode.constraints = @[positionConstraint];
-        [newNode addChild:dateLabelNode];
-        
-        newNode2 = [[SKSpriteNode alloc] initWithTexture:[saveData sharedData].currentTexture];
-        newNode2.name = @"newNode2";
-        newNode2.constraints = @[positionConstraint];
-        
-        newNode3 = [[SKSpriteNode alloc] initWithTexture:[saveData sharedData].currentTexture];
-        newNode3.name = @"newNode3";
-        newNode3.constraints = @[positionConstraint];
-    }
-    
-    for (SKSpriteNode *sprite in [saveData sharedData].array) {
-        if ([saveData sharedData].array != nil) {
-            sprite.name = @"newNodeX";
-            if ([saveData sharedData].currentTexture != nil) {
-                sprite.texture = [saveData sharedData].currentTexture;
-            } else {
-                
-                SKSpriteNode *outliner = [self outlineNode];
-                SKSpriteNode *paperNode = [self createPaperNode];
-                paperNode.position = CGPointMake(CGRectGetMidX(outliner.frame), CGRectGetMidY(outliner.frame));
-                [outliner addChild:paperNode];
-            
-                sprite.texture = [self.scene.view textureFromNode:outliner];
-            }
-            // TODO: CRASHES. might need to clear notes/save properly on shuffle dismissal
-            sprite.constraints = @[positionConstraint];
-            [self addChild:sprite];
+    for (SKSpriteNode *node in self.children) {
+        if ([node.name isEqualToString:@"newNodeX"])
+        {
+            node.position = CGPointMake(x, y);
+            x -= 10;
+            y += 15;
         }
     }
-    
-    if ([saveData sharedData].isStacked == NO) {
-        if ([saveData sharedData].isStacked) {
-            newNode.position = [saveData sharedData].pos1;
-        } else {
-            newNode.position =  CGPointMake(CGRectGetMidX(self.frame)-200, CGRectGetMidY(self.frame)+250);
-        }
-        
-        if ([saveData sharedData].isStacked2) {
-            newNode2.position = [saveData sharedData].pos2;
-        } else{
-            newNode2.position = CGPointMake(CGRectGetMidX(self.frame)-195, CGRectGetMidY(self.frame)+240);
-        }
-        
-        if ([saveData sharedData].isStacked3) {
-            newNode3.position = [saveData sharedData].pos3;
-        } else{
-            newNode3.position = CGPointMake(CGRectGetMidX(self.frame)-190, CGRectGetMidY(self.frame)+230);
-        }
-    } else{
-        newNode.position = [saveData sharedData].statPos;
-        newNode2.position = [saveData sharedData].statPos2;
-        newNode3.position = [saveData sharedData].statPos3;
-    }
-    
-    //newNode1 physics body
-    newNode.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(20, 20)];
-    newNode.physicsBody.categoryBitMask = PHYSICS_CATEGORY_OUTLINE_1;
-    newNode.physicsBody.contactTestBitMask = PHYSICS_CATEGORY_OUTLINE_2 | PHYSICS_CATEGORY_OUTLINE_3;
-    newNode.physicsBody.collisionBitMask = PHYSICS_CATEGORY_OUTLINE_2 | PHYSICS_CATEGORY_OUTLINE_3;
-    newNode.physicsBody.affectedByGravity = NO;
-    newNode.physicsBody.allowsRotation = NO;
-    
-    //newNode2 physics body
-    newNode2.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(20, 20)];
-    newNode2.physicsBody.categoryBitMask = PHYSICS_CATEGORY_OUTLINE_2;
-    newNode2.physicsBody.contactTestBitMask = PHYSICS_CATEGORY_OUTLINE_1 | PHYSICS_CATEGORY_OUTLINE_3;
-    newNode2.physicsBody.collisionBitMask = PHYSICS_CATEGORY_OUTLINE_1 | PHYSICS_CATEGORY_OUTLINE_3;
-    newNode2.physicsBody.affectedByGravity = NO;
-    newNode2.physicsBody.allowsRotation = NO;
-    
-    //newNode3
-    newNode3.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(20, 20)];
-    newNode3.physicsBody.categoryBitMask = PHYSICS_CATEGORY_OUTLINE_3;
-    newNode3.physicsBody.contactTestBitMask = PHYSICS_CATEGORY_OUTLINE_2 | PHYSICS_CATEGORY_OUTLINE_1;
-    newNode3.physicsBody.collisionBitMask = PHYSICS_CATEGORY_OUTLINE_2 | PHYSICS_CATEGORY_OUTLINE_1;
-    newNode3.physicsBody.affectedByGravity = NO;
-    newNode3.physicsBody.allowsRotation = NO;
-    
-    [self addChild:newNode3];
-    [self addChild:newNode2];
-    [self addChild:newNode];
-    
-    //Change the color of the text
-    SKSpriteNode *blackColorNode = [[SKSpriteNode alloc] initWithColor:[SKColor blackColor] size:CGSizeMake(120, 60)];
-    blackColorNode.position = CGPointMake(-240, 0);
-    blackColorNode.name = @"blackColorNode";
-    
-    SKSpriteNode *darkGrayColorNode = [[SKSpriteNode alloc] initWithColor:[SKColor darkGrayColor] size:CGSizeMake(120, 60)];
-    darkGrayColorNode.position = CGPointMake(-120, 0);
-    darkGrayColorNode.name = @"darkGrayColorNode";
-    
-    SKSpriteNode *grayColorNode = [[SKSpriteNode alloc] initWithColor:[SKColor grayColor] size:CGSizeMake(120, 60)];
-    grayColorNode.position = CGPointMake(0, 0);
-    grayColorNode.name = @"grayColorNode";
-    
-    SKSpriteNode *lightGrayColorNode = [[SKSpriteNode alloc] initWithColor:[SKColor lightGrayColor] size:CGSizeMake(120, 60)];
-    lightGrayColorNode.position = CGPointMake(120, 0);
-    lightGrayColorNode.name = @"lightGrayColorNode";
-    
-    SKSpriteNode *whiteColorNode = [[SKSpriteNode alloc] initWithColor:[SKColor whiteColor] size:CGSizeMake(120, 60)];
-    whiteColorNode.position = CGPointMake(240, 0);
-    whiteColorNode.name = @"whiteColorNode";
-    
-    changeText = [[SKSpriteNode alloc] initWithColor:[SKColor blueColor] size:CGSizeMake(612, 66)];
-    changeText.position = CGPointMake(325, 40);
-    [changeText addChild:blackColorNode];
-    [changeText addChild:darkGrayColorNode];
-    [changeText addChild:grayColorNode];
-    [changeText addChild:lightGrayColorNode];
-    [changeText addChild:whiteColorNode];
-    [self addChild:changeText];
     
     [[saveData sharedData] save];
 }
 
+#pragma mark
 
-#pragma mark - Button Creation
-
-//generates more nodes
--(IBAction)newPaper
+//notecard position constraints
+-(void)addPositionConstraints:(SKSpriteNode*)notecard
 {
-    SKSpriteNode *paperSpriteNode;
-    
-    if ([saveData sharedData].currentTexture != nil) {
-        paperSpriteNode = [[SKSpriteNode alloc] initWithTexture:[saveData sharedData].currentTexture];
-    } else {
-        
-        SKSpriteNode *pap = [self createPaperNode];
-        pap.position = CGPointMake(CGRectGetMidX(outline1.frame), CGRectGetMidY(outline1.frame));
-        
-        outline1 = [self outlineNode];
-        [outline1 addChild:pap];
-        
-        SKTexture *tex = [self.scene.view textureFromNode:outline1];
-        paperSpriteNode = [[SKSpriteNode alloc] initWithTexture:tex];
-    }
     // get the screensize
     CGSize scr = self.scene.frame.size;
     // setup a position constraint
-    SKConstraint *c = [SKConstraint positionX:[SKRange rangeWithLowerLimit:150 upperLimit:(scr.width-150)] Y:[SKRange rangeWithLowerLimit:200 upperLimit:(scr.height-100)]];
+    SKConstraint *positionConstraint = [SKConstraint positionX:[SKRange rangeWithLowerLimit:150 upperLimit:(scr.width-150)] Y:[SKRange rangeWithLowerLimit:200 upperLimit:(scr.height-100)]];
     
-    paperSpriteNode.position = CGPointMake(450, 500);
-    paperSpriteNode.name = @"newNodeX";
-    paperSpriteNode.constraints = @[c];
-    
-    paperSpriteNode.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(20, 20)];
-    paperSpriteNode.physicsBody.categoryBitMask = PHYSICS_CATEGORY_OUTLINE_1;
-    paperSpriteNode.physicsBody.contactTestBitMask = PHYSICS_CATEGORY_OUTLINE_2 | PHYSICS_CATEGORY_OUTLINE_3;
-    paperSpriteNode.physicsBody.collisionBitMask = PHYSICS_CATEGORY_OUTLINE_2 | PHYSICS_CATEGORY_OUTLINE_3;
-    paperSpriteNode.physicsBody.affectedByGravity = NO;
-    paperSpriteNode.physicsBody.allowsRotation = NO;
-    
+    notecard.constraints = @[positionConstraint];
+}
+
+//adds delete button to notecard
+-(void)addDeleteButton:(SKSpriteNode*)sprite
+{
     //delete button for user generated note cards
     SKLabelNode *delText = [SKLabelNode labelNodeWithFontNamed:@"Arial-BoldMT"];
     delText.text = @"Delete";
@@ -535,117 +404,122 @@ enum PHYSICS_CATEGORIES {
     SKSpriteNode *deleteButton = [SKSpriteNode spriteNodeWithTexture:deleture];
     deleteButton.position = CGPointMake(125, -90);
     deleteButton.name = @"delete";
-    [paperSpriteNode addChild:deleteButton];
     
-    /*
-     Creating more nodes that have their physicsBodies instantiated and can adapt to changes in texture like those in
-     the original stack can be stored and saved via the NSMutableArray.
-     */
-    [saveData sharedData].node = paperSpriteNode;
-    [[saveData sharedData].array addObject:paperSpriteNode];
-    [[saveData sharedData] save];
-    
-    [self addChild:paperSpriteNode];
+    [sprite addChild:deleteButton];
 }
 
-
-- (IBAction)resetButton
+//creates the initial SKScene
+-(void)createScene
 {
-    [self removeAllChildren];
-    [[saveData sharedData] reset];
-    [[saveData sharedData] save];
-    [self createScene];
-}
-
-//saves the texture of the nodes and keeps it; also used to keep the nodes in their specific positions
-- (IBAction)saveButton:(UIButton *)pressed
-{
-    // TODO: implement save
-}
-
-//action to stack papers
--(IBAction)stackPapers:(UIButton *)pressed
-{
-    [saveData sharedData].isStacked = YES;
+    self.backgroundColor = [SKColor lightGrayColor];
+    self.scaleMode = SKSceneScaleModeFill;
     
-    for (SKSpriteNode *node in self.children) {
-        if ([node.name isEqualToString:@"newNode"]) {
-            newNode.position = CGPointMake(600, 1000);
-            [saveData sharedData].statPos = newNode.position;
-        }
-        if ([node.name isEqualToString:@"newNode2"]) {
-            newNode2.position = CGPointMake(610, 990);
-            [saveData sharedData].statPos2 = newNode2.position;
-        }
-        if ([node.name isEqualToString:@"newNode3"]) {
-            newNode3.position = CGPointMake(620, 980);
-            [saveData sharedData].statPos3 = newNode3.position;
-        }
+    ShuffleNoteActions *sna = [[ShuffleNoteActions alloc] init];
+    
+    if ([saveData sharedData].date != nil) {
+        date = [saveData sharedData].date;
+        [date removeFromParent];
+    } else {
+        
+        date = [sna dateNode];
+    }
+    date.position = CGPointMake(-110, 70);
+    
+    if ([[saveData sharedData].colorName length] == 0) {
+        //for the following nodes, the ability to return to default needs to be instantiated
+        
+        newNode = [SKSpriteNode spriteNodeWithTexture:[self originalTexture]];
+        newNode2 = [SKSpriteNode spriteNodeWithTexture:[self originalTexture]];
+        newNode3 = [SKSpriteNode spriteNodeWithTexture:[self originalTexture]];
+        
+    } else {
+        newNode = [[SKSpriteNode alloc] initWithTexture:[self makeNotecardWithSavedImage]];
+        newNode2 = [[SKSpriteNode alloc] initWithTexture:[self makeNotecardWithSavedImage]];
+        newNode3 = [[SKSpriteNode alloc] initWithTexture:[self makeNotecardWithSavedImage]];
     }
     
-    float x = 1200;
-    float y = 1000;
+    newNode.name = @"newNode";
+    [newNode addChild:date];
+    newNode2.name = @"newNode2";
+    newNode3.name = @"newNode3";
     
-    if ([saveData sharedData].array != nil) {
-        for (SKSpriteNode *sprite in [saveData sharedData].array) {
-            sprite.position = CGPointMake(x, y);
-            x -= 10;
-            y += 15;
-        }
+    if ([saveData sharedData].isStacked == NO) {
+        newNode.position = [saveData sharedData].pos1;
+        newNode2.position = [saveData sharedData].pos2;
+        newNode3.position = [saveData sharedData].pos3;
+        
+    } else {
+        newNode.position = CGPointMake(600, 1000);
+        newNode2.position = CGPointMake(610, 990);
+        newNode3.position = CGPointMake(620, 980);
     }
+    
+    [self addChild:newNode3];
+    [self addChild:newNode2];
+    [self addChild:newNode];
+    
+    //Undergoing revision
+    
+    for (int i = 0; i < [[saveData sharedData].array count]; i++) {
+        
+        SKSpriteNode *sprite;
+        
+        if ([[saveData sharedData].colorName length] == 0) {
+            
+            sprite = [[SKSpriteNode alloc] initWithTexture:[self originalTexture]];
+            
+        } else {
+            sprite = [[SKSpriteNode alloc] initWithTexture:[self makeNotecardWithSavedImage]];
+        }
+        
+        sprite.name = @"newNodeX";
+        sprite.position = [[[saveData sharedData].array objectAtIndex:i] position];
+        
+        [self addDeleteButton:sprite];
+        
+        [self addChild:sprite];
+    }
+    
+    for (SKSpriteNode* notecard in self.children) {
+        [self makePhysicsBody:notecard];
+        [self addPositionConstraints:notecard];
+    }
+    
+    [self addChild:sna.changeDateColor];
     
     [[saveData sharedData] save];
 }
 
-#pragma mark - Node Creation
-
-- (SKSpriteNode *)createPaperNode
-{
-    SKSpriteNode *paper = [[SKSpriteNode alloc] initWithColor:[SKColor greenColor] size:CGSizeMake(300, 200)];
-    paper.name = @"paper";    
-    return paper;
-}
-
-- (SKSpriteNode *)outlineNode
-{
-    outline = [[SKSpriteNode alloc] initWithColor:[SKColor blackColor] size:CGSizeMake(325, 225)];
-    outline.name = @"outline";
-    
-    return outline;
-}
-
-- (SKLabelNode *)dateNode
-{
-    SKLabelNode *dateLabelNode = [SKLabelNode labelNodeWithFontNamed:@"Arial-BoldMT"];
-    dateLabelNode.name = @"date";
-    dateLabelNode.text = @"Date: ";
-    dateLabelNode.fontSize = 35;
-    dateLabelNode.fontColor = [SKColor whiteColor];
-    return dateLabelNode;
-}
--(SKSpriteNode *)optionsView
-{
-    SKSpriteNode *opt2 = [[SKSpriteNode alloc] initWithColor:[SKColor lightGrayColor] size:CGSizeMake(300, 2600)];
-    opt2.position = CGPointMake(CGRectGetMaxX(self.frame)-100, CGRectGetMaxY(self.frame)-500);
-    return opt2;
-}
-
-#pragma mark - Touches
+#pragma mark: Instantiating Physics Bodies
 
 //detects if contact is made
-- (void)didBeginContact:(SKPhysicsContact *)contact
+-(void)didBeginContact:(SKPhysicsContact *)contact
 {
-    if ((contact.bodyA.categoryBitMask == (PHYSICS_CATEGORY_OUTLINE_2 | PHYSICS_CATEGORY_OUTLINE_3)) ||
-        (contact.bodyB.categoryBitMask == (PHYSICS_CATEGORY_OUTLINE_2 | PHYSICS_CATEGORY_OUTLINE_3))) {
-        // TODO: implement
+    SKPhysicsBody *firstBody, *secondBody;
+    
+    firstBody = contact.bodyA;
+    secondBody = contact.bodyB;
+    
+    if ((firstBody.categoryBitMask == (outline2Category | outline3Category)) || (secondBody.categoryBitMask == (outline2Category | outline3Category))) {
     }
 }
 
+//make physics body for specific notecard
+-(void)makePhysicsBody:(SKSpriteNode*)notecard
+{
+    notecard.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(20, 20)];
+    notecard.physicsBody.categoryBitMask = outline1Category;
+    notecard.physicsBody.contactTestBitMask = outline2Category | outline3Category;
+    notecard.physicsBody.collisionBitMask = outline2Category | outline3Category;
+    notecard.physicsBody.affectedByGravity = NO;
+    notecard.physicsBody.allowsRotation = NO;
+}
+
+#pragma mark: User Interaction with Notecards
+
 //in this section, the nodes' backgrounds will be able to by customized by the students using Access Math
-- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    
-    BOOL tappedTwice = NO;
-    
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    _tappedTwice = NO;
     UITouch *touch = [touches anyObject];
     CGPoint scenePosition = [touch locationInNode:self];
     
@@ -657,15 +531,14 @@ enum PHYSICS_CATEGORIES {
      it is being dragged or being double clicked to transition to another page.
      */
     if (checkNode && ([checkNode.name hasPrefix:@"newNode"])) {
-        
         if ([touch tapCount] == 2) {
-            tappedTwice = YES;
+            _tappedTwice = YES;
             if ([checkNode.name isEqualToString:@"newNode"] || [checkNode.name isEqualToString:@"newNode2"] || [checkNode.name isEqualToString:@"newNode3"]) {
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"gotoNotes" object:nil];
             } else{
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"gotoNewNotes" object:nil];
             }
-        } else if ([touch tapCount] == 1 && !tappedTwice) {
+        } else if ([touch tapCount] == 1 && !_tappedTwice) {
             _activeDragNode = (SKSpriteNode *)checkNode;
             [checkNode removeFromParent];
             [self addChild:checkNode];
@@ -675,26 +548,29 @@ enum PHYSICS_CATEGORIES {
         //changes the color of the text and stores it.
     }
     else if (checkNode && [checkNode.name hasPrefix:@"color"]) {
-        for (SKNode *check in self.children) {
+        for(SKNode *check in self.children) {
             if ([check.name isEqualToString:@"newNode"]) {
-                for (SKLabelNode *label in check.children) {
-                    if ([checkNode.name isEqualToString:@"blackColorNode"]) {
+                for(SKLabelNode *label in check.children) {
+                    if ([checkNode.name isEqualToString:@"color1"]) {
                         label.fontColor = [SKColor blackColor];
+                        [saveData sharedData].date = label;
                     }
-                    if ([checkNode.name isEqualToString:@"darkGrayColorNode"]) {
+                    if ([checkNode.name isEqualToString:@"color2"]) {
                         label.fontColor = [SKColor darkGrayColor];
+                        [saveData sharedData].date = label;
                     }
-                    if ([checkNode.name isEqualToString:@"grayColorNode"]) {
+                    if ([checkNode.name isEqualToString:@"color3"]) {
                         label.fontColor = [SKColor grayColor];
+                        [saveData sharedData].date = label;
                     }
-                    if ([checkNode.name isEqualToString:@"lightGrayColorNode"]) {
+                    if ([checkNode.name isEqualToString:@"color4"]) {
                         label.fontColor = [SKColor lightGrayColor];
+                        [saveData sharedData].date = label;
                     }
-                    if ([checkNode.name isEqualToString:@"whiteColorNode"]) {
+                    if ([checkNode.name isEqualToString:@"color5"]) {
                         label.fontColor = [SKColor whiteColor];
+                        [saveData sharedData].date = label;
                     }
-                    
-                    [saveData sharedData].date = label;
                 }
             }
         }
@@ -729,15 +605,12 @@ enum PHYSICS_CATEGORIES {
         
         if ([checkNode.name isEqualToString:@"newNode"]) {
             [saveData sharedData].pos1 = newLoc;
-            [saveData sharedData].isStacked = YES;
         }
         if ([checkNode.name isEqualToString:@"newNode2"]) {
             [saveData sharedData].pos2 = newLoc;
-            [saveData sharedData].isStacked2 = YES;
         }
         if ([checkNode.name isEqualToString:@"newNode3"]) {
             [saveData sharedData].pos3 = newLoc;
-            [saveData sharedData].isStacked3 = YES;
         }
         
         [saveData sharedData].isStacked = NO;

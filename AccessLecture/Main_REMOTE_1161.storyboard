@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Rr7-bG-jB9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Rr7-bG-jB9">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -1108,98 +1108,50 @@ IAoKA
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BJ3-WG-VHr">
-                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
-                                <items>
-                                    <barButtonItem style="plain" id="3lo-Lr-mw1">
-                                        <stepper key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" id="Xuj-RL-mGY">
-                                            <rect key="frame" x="20" y="7.5" width="94" height="29"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <connections>
-                                                <action selector="changeFontSize:" destination="wrH-io-EVq" eventType="valueChanged" id="Icb-LE-uGr"/>
-                                            </connections>
-                                        </stepper>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" id="aLi-VT-Gvx">
-                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="EHX-Wu-pCb">
-                                            <rect key="frame" x="124" y="7" width="185" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <segments>
-                                                <segment title="Normal"/>
-                                                <segment title="Bold"/>
-                                                <segment title="Italic"/>
-                                            </segments>
-                                            <connections>
-                                                <action selector="changeFontStyle:" destination="wrH-io-EVq" eventType="valueChanged" id="EN6-gc-Xlc"/>
-                                            </connections>
-                                        </segmentedControl>
-                                    </barButtonItem>
-                                    <barButtonItem title="Highlight" id="JwY-hL-8zl">
-                                        <connections>
-                                            <action selector="changeHighlighterColor:" destination="wrH-io-EVq" id="0Oe-hq-2i3"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem title="Text Color" id="7Bg-bc-ual">
-                                        <connections>
-                                            <action selector="changeTextColor:" destination="wrH-io-EVq" id="twL-uN-BGR"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="E03-tA-Tqy">
-                                <rect key="frame" x="40" y="95" width="520" height="169"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E03-tA-Tqy">
+                                <rect key="frame" x="67" y="96" width="450" height="182"/>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tNg-L9-C1R">
-                                <rect key="frame" x="0.0" y="314" width="600" height="142"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tNg-L9-C1R">
+                                <rect key="frame" x="0.0" y="280" width="432" height="300"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="BJ3-WG-VHr" firstAttribute="top" secondItem="tNg-L9-C1R" secondAttribute="bottom" constant="100" id="4ox-gC-YwY"/>
-                            <constraint firstItem="tNg-L9-C1R" firstAttribute="top" secondItem="E03-tA-Tqy" secondAttribute="bottom" constant="50" id="94D-iE-f0D"/>
-                            <constraint firstItem="7tp-Zz-SMi" firstAttribute="top" secondItem="BJ3-WG-VHr" secondAttribute="bottom" id="Jeh-gE-igF"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="E03-tA-Tqy" secondAttribute="trailing" constant="20" id="Qk9-tM-L45"/>
-                            <constraint firstItem="tNg-L9-C1R" firstAttribute="leading" secondItem="2cQ-xr-Kwl" secondAttribute="leadingMargin" constant="-20" id="UU7-xf-037"/>
-                            <constraint firstItem="BJ3-WG-VHr" firstAttribute="leading" secondItem="2cQ-xr-Kwl" secondAttribute="leadingMargin" constant="-20" id="Uuw-Wi-gxj"/>
-                            <constraint firstItem="E03-tA-Tqy" firstAttribute="leading" secondItem="2cQ-xr-Kwl" secondAttribute="leadingMargin" constant="20" id="beQ-hN-q5h"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="tNg-L9-C1R" secondAttribute="trailing" constant="-20" id="fSN-Ez-WCz"/>
-                            <constraint firstItem="E03-tA-Tqy" firstAttribute="top" secondItem="b9p-Zt-3AO" secondAttribute="bottom" constant="31" id="krV-tM-bcM"/>
-                            <constraint firstItem="tNg-L9-C1R" firstAttribute="top" secondItem="b9p-Zt-3AO" secondAttribute="bottom" constant="250" id="ref-xX-iiB"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="BJ3-WG-VHr" secondAttribute="trailing" constant="-20" id="yhQ-d3-nSe"/>
-                        </constraints>
                     </view>
-                    <toolbarItems/>
+                    <toolbarItems>
+                        <barButtonItem title="Decrease" id="l9f-dz-lQG">
+                            <connections>
+                                <action selector="decreaseTextSize:" destination="wrH-io-EVq" id="9lj-Iw-8tY"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem title="Increase" width="83" id="g3z-R6-M2g">
+                            <inset key="imageInsets" minX="46" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <connections>
+                                <action selector="increaseTextSize:" destination="wrH-io-EVq" id="qh9-Mf-3Fe"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem title="Highlight Color" id="Jhk-3h-Xs4">
+                            <connections>
+                                <action selector="highlightColor:" destination="wrH-io-EVq" id="SjR-zI-tK3"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" id="R1A-jO-VDA"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="decreaseTextSize" destination="l9f-dz-lQG" id="XJO-BX-e0z"/>
+                        <outlet property="highlightColor" destination="Jhk-3h-Xs4" id="UHH-dI-JLk"/>
                         <outlet property="imageView" destination="E03-tA-Tqy" id="62L-6U-04a"/>
+                        <outlet property="increaseTextSize" destination="g3z-R6-M2g" id="dCw-dI-R1U"/>
                         <outlet property="textView" destination="tNg-L9-C1R" id="fU9-FP-o25"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3sE-cr-luQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4830" y="-157"/>
-        </scene>
-        <!--New Notes Side View Controller-->
-        <scene sceneID="vJd-UL-fKy">
-            <objects>
-                <viewController id="h8y-ok-cKW" customClass="NewNotesSideViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="MoB-sa-TT3"/>
-                        <viewControllerLayoutGuide type="bottom" id="xtp-XB-VNH"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="i2h-mr-bZ0">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8qi-0V-L88" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5483" y="-150"/>
+            <point key="canvasLocation" x="4793.25" y="-147.75"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jI4-cf-XCq">

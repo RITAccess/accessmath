@@ -112,6 +112,21 @@
 		4CFC4BF01A76E961001E2E27 /* CheckButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC4BEF1A76E961001E2E27 /* CheckButton.m */; };
 		4CFC4BF31A795500001E2E27 /* ALTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC4BF21A795500001E2E27 /* ALTextField.m */; };
 		4CFC573017DF800700393A1E /* NoteTakingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC572F17DF800700393A1E /* NoteTakingViewController.m */; };
+		C928E8641C88C5EE00E37CC5 /* ShuffleNoteActions.m in Sources */ = {isa = PBXBuildFile; fileRef = C928E8621C88C5EE00E37CC5 /* ShuffleNoteActions.m */; };
+		C928E8701C88C71300E37CC5 /* abstract-21851_640.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C928E8671C88C71300E37CC5 /* abstract-21851_640.jpg */; };
+		C928E8711C88C71300E37CC5 /* background-68622_640.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C928E8681C88C71300E37CC5 /* background-68622_640.jpg */; };
+		C928E8721C88C71300E37CC5 /* ball-443852_640.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C928E8691C88C71300E37CC5 /* ball-443852_640.jpg */; };
+		C928E8731C88C71300E37CC5 /* cosmea-583092_640.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C928E86A1C88C71300E37CC5 /* cosmea-583092_640.jpg */; };
+		C928E8741C88C71300E37CC5 /* ellipse-784354_640.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C928E86B1C88C71300E37CC5 /* ellipse-784354_640.jpg */; };
+		C928E8751C88C71300E37CC5 /* IS098Z75U.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C928E86C1C88C71300E37CC5 /* IS098Z75U.jpg */; };
+		C928E8761C88C71300E37CC5 /* IS787-189.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C928E86D1C88C71300E37CC5 /* IS787-189.jpg */; };
+		C928E8771C88C71300E37CC5 /* IS787-191.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C928E86E1C88C71300E37CC5 /* IS787-191.jpg */; };
+		C928E8781C88C71300E37CC5 /* lines-593191_640.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C928E86F1C88C71300E37CC5 /* lines-593191_640.jpg */; };
+		C928E87D1C88CA7800E37CC5 /* BackgroundTile.m in Sources */ = {isa = PBXBuildFile; fileRef = C928E87C1C88CA7800E37CC5 /* BackgroundTile.m */; };
+		C97E9ADA1C7F908100EF7783 /* SaveTextSize.m in Sources */ = {isa = PBXBuildFile; fileRef = C97E9AD91C7F908100EF7783 /* SaveTextSize.m */; };
+		C9B4A0C81C5AB16800E9CE8B /* HighlighterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B4A0C71C5AB16800E9CE8B /* HighlighterViewController.m */; };
+		C9BAE6DB1C6D265000F2E8C7 /* NewNotesSideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BAE6DA1C6D265000F2E8C7 /* NewNotesSideViewController.m */; };
+		C9C136241C7CE97400EAAA74 /* SaveImage.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C136231C7CE97400EAAA74 /* SaveImage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -347,6 +362,27 @@
 		8BC023B512F24FD184B9F806 /* libPods-AccessLecture.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AccessLecture.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EB895DA5C2A9D423EC1C01C /* Pods-AccessLecture.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AccessLecture.release.xcconfig"; path = "Pods/Target Support Files/Pods-AccessLecture/Pods-AccessLecture.release.xcconfig"; sourceTree = "<group>"; };
 		A7108E144D7ABDACF00E2CBA /* Pods-AccessLecture Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AccessLecture Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AccessLecture Tests/Pods-AccessLecture Tests.release.xcconfig"; sourceTree = "<group>"; };
+		C928E8621C88C5EE00E37CC5 /* ShuffleNoteActions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShuffleNoteActions.m; sourceTree = "<group>"; };
+		C928E8631C88C5EE00E37CC5 /* ShuffleNoteActions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShuffleNoteActions.h; sourceTree = "<group>"; };
+		C928E8671C88C71300E37CC5 /* abstract-21851_640.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "abstract-21851_640.jpg"; sourceTree = "<group>"; };
+		C928E8681C88C71300E37CC5 /* background-68622_640.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "background-68622_640.jpg"; sourceTree = "<group>"; };
+		C928E8691C88C71300E37CC5 /* ball-443852_640.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "ball-443852_640.jpg"; sourceTree = "<group>"; };
+		C928E86A1C88C71300E37CC5 /* cosmea-583092_640.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "cosmea-583092_640.jpg"; sourceTree = "<group>"; };
+		C928E86B1C88C71300E37CC5 /* ellipse-784354_640.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "ellipse-784354_640.jpg"; sourceTree = "<group>"; };
+		C928E86C1C88C71300E37CC5 /* IS098Z75U.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IS098Z75U.jpg; sourceTree = "<group>"; };
+		C928E86D1C88C71300E37CC5 /* IS787-189.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "IS787-189.jpg"; sourceTree = "<group>"; };
+		C928E86E1C88C71300E37CC5 /* IS787-191.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "IS787-191.jpg"; sourceTree = "<group>"; };
+		C928E86F1C88C71300E37CC5 /* lines-593191_640.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "lines-593191_640.jpg"; sourceTree = "<group>"; };
+		C928E87B1C88CA7800E37CC5 /* BackgroundTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundTile.h; sourceTree = "<group>"; };
+		C928E87C1C88CA7800E37CC5 /* BackgroundTile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundTile.m; sourceTree = "<group>"; };
+		C97E9AD81C7F908100EF7783 /* SaveTextSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveTextSize.h; sourceTree = "<group>"; };
+		C97E9AD91C7F908100EF7783 /* SaveTextSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveTextSize.m; sourceTree = "<group>"; };
+		C9B4A0C61C5AB16800E9CE8B /* HighlighterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighlighterViewController.h; sourceTree = "<group>"; };
+		C9B4A0C71C5AB16800E9CE8B /* HighlighterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighlighterViewController.m; sourceTree = "<group>"; };
+		C9BAE6D91C6D265000F2E8C7 /* NewNotesSideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewNotesSideViewController.h; sourceTree = "<group>"; };
+		C9BAE6DA1C6D265000F2E8C7 /* NewNotesSideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewNotesSideViewController.m; sourceTree = "<group>"; };
+		C9C136221C7CE97400EAAA74 /* SaveImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveImage.h; sourceTree = "<group>"; };
+		C9C136231C7CE97400EAAA74 /* SaveImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveImage.m; sourceTree = "<group>"; };
 		E42E409B29FC0EF386FD2A96 /* Pods-AccessLecture Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AccessLecture Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AccessLecture Tests/Pods-AccessLecture Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -425,23 +461,20 @@
 		21C36DEF1BCE9FA8000CB5B0 /* NoteShuffleViewController */ = {
 			isa = PBXGroup;
 			children = (
+				C928E87A1C88CA6100E37CC5 /* BackgroundImageScene */,
+				C928E8661C88C6F500E37CC5 /* BackgroundImages */,
 				21C36E101BCEBA6A000CB5B0 /* NoteSelectViewController */,
 				21C36E0D1BCEA229000CB5B0 /* SaveColor.h */,
 				21C36E0E1BCEA229000CB5B0 /* SaveColor.m */,
-				21C36E0A1BCEA1E1000CB5B0 /* BackgroundImages.h */,
-				21C36E0B1BCEA1E1000CB5B0 /* BackgroundImages.m */,
-				21C36E041BCEA1AE000CB5B0 /* NewNotesViewController.h */,
-				21C36E051BCEA1AE000CB5B0 /* NewNotesViewController.m */,
-				21BFC94C1C57EBCF001BD5C8 /* SaveData.h */,
-				21BFC94B1C57EBCF001BD5C8 /* SaveData.m */,
+				C9B4A0C51C5AB12D00E9CE8B /* NewNotesSection */,
+				C9B4A0C41C5A98A700E9CE8B /* SaveData */,
 				21C36E011BCEA193000CB5B0 /* AssignmentItem.h */,
 				21C36E021BCEA193000CB5B0 /* AssignmentItem.m */,
 				21C36DFE1BCEA179000CB5B0 /* AssignmentsViewController.h */,
 				21C36DFF1BCEA179000CB5B0 /* AssignmentsViewController.m */,
 				21C36DFB1BCEA150000CB5B0 /* WeeksNotesViewController.h */,
 				21C36DFC1BCEA150000CB5B0 /* WeeksNotesViewController.m */,
-				21C36DF81BCEA140000CB5B0 /* MoreShuffle.h */,
-				21C36DF91BCEA140000CB5B0 /* MoreShuffle.m */,
+				C928E8611C88C5C900E37CC5 /* ShuffleScene */,
 				21C36DF51BCEA061000CB5B0 /* NoteShuffleViewController.h */,
 				21C36DF61BCEA061000CB5B0 /* NoteShuffleViewController.m */,
 				21C36DF01BCE9FB8000CB5B0 /* NotesViewController.xib */,
@@ -905,6 +938,86 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		C928E8611C88C5C900E37CC5 /* ShuffleScene */ = {
+			isa = PBXGroup;
+			children = (
+				C928E8651C88C5F900E37CC5 /* ShuffleNoteAction */,
+				C9B4A0C31C5A989B00E9CE8B /* MoreShuffle */,
+			);
+			name = ShuffleScene;
+			sourceTree = "<group>";
+		};
+		C928E8651C88C5F900E37CC5 /* ShuffleNoteAction */ = {
+			isa = PBXGroup;
+			children = (
+				C928E8621C88C5EE00E37CC5 /* ShuffleNoteActions.m */,
+				C928E8631C88C5EE00E37CC5 /* ShuffleNoteActions.h */,
+			);
+			name = ShuffleNoteAction;
+			sourceTree = "<group>";
+		};
+		C928E8661C88C6F500E37CC5 /* BackgroundImages */ = {
+			isa = PBXGroup;
+			children = (
+				C928E8671C88C71300E37CC5 /* abstract-21851_640.jpg */,
+				C928E8681C88C71300E37CC5 /* background-68622_640.jpg */,
+				C928E8691C88C71300E37CC5 /* ball-443852_640.jpg */,
+				C928E86A1C88C71300E37CC5 /* cosmea-583092_640.jpg */,
+				C928E86B1C88C71300E37CC5 /* ellipse-784354_640.jpg */,
+				C928E86C1C88C71300E37CC5 /* IS098Z75U.jpg */,
+				C928E86D1C88C71300E37CC5 /* IS787-189.jpg */,
+				C928E86E1C88C71300E37CC5 /* IS787-191.jpg */,
+				C928E86F1C88C71300E37CC5 /* lines-593191_640.jpg */,
+			);
+			name = BackgroundImages;
+			sourceTree = "<group>";
+		};
+		C928E87A1C88CA6100E37CC5 /* BackgroundImageScene */ = {
+			isa = PBXGroup;
+			children = (
+				C928E87B1C88CA7800E37CC5 /* BackgroundTile.h */,
+				C928E87C1C88CA7800E37CC5 /* BackgroundTile.m */,
+				21C36E0A1BCEA1E1000CB5B0 /* BackgroundImages.h */,
+				21C36E0B1BCEA1E1000CB5B0 /* BackgroundImages.m */,
+			);
+			name = BackgroundImageScene;
+			sourceTree = "<group>";
+		};
+		C9B4A0C31C5A989B00E9CE8B /* MoreShuffle */ = {
+			isa = PBXGroup;
+			children = (
+				21C36DF81BCEA140000CB5B0 /* MoreShuffle.h */,
+				21C36DF91BCEA140000CB5B0 /* MoreShuffle.m */,
+			);
+			name = MoreShuffle;
+			sourceTree = "<group>";
+		};
+		C9B4A0C41C5A98A700E9CE8B /* SaveData */ = {
+			isa = PBXGroup;
+			children = (
+				21BFC94C1C57EBCF001BD5C8 /* SaveData.h */,
+				21BFC94B1C57EBCF001BD5C8 /* SaveData.m */,
+			);
+			name = SaveData;
+			sourceTree = "<group>";
+		};
+		C9B4A0C51C5AB12D00E9CE8B /* NewNotesSection */ = {
+			isa = PBXGroup;
+			children = (
+				21C36E041BCEA1AE000CB5B0 /* NewNotesViewController.h */,
+				21C36E051BCEA1AE000CB5B0 /* NewNotesViewController.m */,
+				C9B4A0C61C5AB16800E9CE8B /* HighlighterViewController.h */,
+				C9B4A0C71C5AB16800E9CE8B /* HighlighterViewController.m */,
+				C9BAE6D91C6D265000F2E8C7 /* NewNotesSideViewController.h */,
+				C9BAE6DA1C6D265000F2E8C7 /* NewNotesSideViewController.m */,
+				C9C136221C7CE97400EAAA74 /* SaveImage.h */,
+				C9C136231C7CE97400EAAA74 /* SaveImage.m */,
+				C97E9AD81C7F908100EF7783 /* SaveTextSize.h */,
+				C97E9AD91C7F908100EF7783 /* SaveTextSize.m */,
+			);
+			name = NewNotesSection;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1032,17 +1145,26 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C928E8781C88C71300E37CC5 /* lines-593191_640.jpg in Resources */,
+				C928E8701C88C71300E37CC5 /* abstract-21851_640.jpg in Resources */,
+				C928E8761C88C71300E37CC5 /* IS787-189.jpg in Resources */,
+				C928E8731C88C71300E37CC5 /* cosmea-583092_640.jpg in Resources */,
+				C928E8721C88C71300E37CC5 /* ball-443852_640.jpg in Resources */,
 				3FED96161370863E00D8D1B8 /* InfoPlist.strings in Resources */,
 				21DA3D9318905B5000BFD96B /* DrawViewController.xib in Resources */,
 				3F2DC98318871FE4008C29BF /* ImageNoteViewController.xib in Resources */,
 				21C36DF11BCE9FB8000CB5B0 /* NotesViewController.xib in Resources */,
+				C928E8711C88C71300E37CC5 /* background-68622_640.jpg in Resources */,
 				3F8D990F187DD9100061DEA2 /* FullScreenNoteViewController.xib in Resources */,
+				C928E8771C88C71300E37CC5 /* IS787-191.jpg in Resources */,
 				21C36E1B1BCEBAB2000CB5B0 /* Book-Open-128.png in Resources */,
 				4C3BE5E71A7296F10017854C /* Main.storyboard in Resources */,
 				21C36E231BCEBADD000CB5B0 /* Stationery-Pen-128 (1).png in Resources */,
 				21C36E261BCEBB02000CB5B0 /* Square Root-32.png in Resources */,
 				21C36E221BCEBADD000CB5B0 /* Stationery-Pen-32.png in Resources */,
+				C928E8741C88C71300E37CC5 /* ellipse-784354_640.jpg in Resources */,
 				3F8D9908187B4E010061DEA2 /* TextNoteView.xib in Resources */,
+				C928E8751C88C71300E37CC5 /* IS098Z75U.jpg in Resources */,
 				21C36E1A1BCEBAB2000CB5B0 /* Book-Open-32.png in Resources */,
 				2CA93202188596D400199CC4 /* Images.xcassets in Resources */,
 				21C36E271BCEBB02000CB5B0 /* Square Root-128.png in Resources */,
@@ -1148,9 +1270,11 @@
 				3F8FD2CB18AD33350059EF9C /* AddNote.m in Sources */,
 				3F8D99331880ACBE0061DEA2 /* NSString+TrimmingAdditions.m in Sources */,
 				3F8D990E187DD9100061DEA2 /* FullScreenNoteViewController.m in Sources */,
+				C9B4A0C81C5AB16800E9CE8B /* HighlighterViewController.m in Sources */,
 				3F07C34F187B2BA7005BC7EC /* TextNoteViewController.m in Sources */,
 				3FED96191370863E00D8D1B8 /* main.m in Sources */,
 				4CEA1A03177CAAED00A1DE05 /* LectureCell.m in Sources */,
+				C9BAE6DB1C6D265000F2E8C7 /* NewNotesSideViewController.m in Sources */,
 				21C36E131BCEBA79000CB5B0 /* DefinitionsViewController.m in Sources */,
 				21C36E001BCEA179000CB5B0 /* AssignmentsViewController.m in Sources */,
 				3FED961C1370863E00D8D1B8 /* AccessLectureAppDelegate.m in Sources */,
@@ -1159,6 +1283,7 @@
 				3F8FD2CF18AD34EB0059EF9C /* DrawMode.m in Sources */,
 				2194AD201BB2F7DE002D9BD1 /* NoteSearchResultsViewController.m in Sources */,
 				3F0DBDD613BD174900E3FEE8 /* AboutViewController.m in Sources */,
+				C97E9ADA1C7F908100EF7783 /* SaveTextSize.m in Sources */,
 				3F99F20215436E090065CBB9 /* Lecture.m in Sources */,
 				4C5C50CD177B7B7C0095801A /* LectureViewContainer.m in Sources */,
 				4CCBC8DD17E222FF00CB303E /* Note.m in Sources */,
@@ -1168,6 +1293,7 @@
 				4CA4A0711AE59127004536B7 /* Stack.m in Sources */,
 				4CA4A0651ADC3287004536B7 /* AMIndex.m in Sources */,
 				4CD7CE2A1A8568CB00A9717F /* PreviewViewController.m in Sources */,
+				C9C136241C7CE97400EAAA74 /* SaveImage.m in Sources */,
 				21C36DFA1BCEA140000CB5B0 /* MoreShuffle.m in Sources */,
 				4C3BE5ED1A729B760017854C /* MenuIconCell.m in Sources */,
 				4C62BECD175651DB00CAF4CF /* FileManager.m in Sources */,
@@ -1194,7 +1320,9 @@
 				21C36E061BCEA1AE000CB5B0 /* NewNotesViewController.m in Sources */,
 				4C4FA6F31A72CC8100161ABE /* OpenLectureController.m in Sources */,
 				4C46E6391A7FE23200087229 /* LoadingLectureCVC.m in Sources */,
+				C928E87D1C88CA7800E37CC5 /* BackgroundTile.m in Sources */,
 				4CDB058017B5589A00D8EB85 /* Favorites.m in Sources */,
+				C928E8641C88C5EE00E37CC5 /* ShuffleNoteActions.m in Sources */,
 				21BFC94D1C57EBCF001BD5C8 /* SaveData.m in Sources */,
 				3F8B515718FD90580053BFE8 /* UIImage+RoundedCorner.m in Sources */,
 				3F8FD2C418AD21860059EF9C /* AMOpenButton.m in Sources */,
