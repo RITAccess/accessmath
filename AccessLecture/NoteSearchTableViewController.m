@@ -6,7 +6,7 @@
 //
 //
 
-#import "Note.h"
+#import "NoteTakingNote.h"
 #import "AccessLectureKit.h"  // for AccessBlue zebra-cells
 #import "NoteSearchTableViewController.h"
 #import "NoteSearchResultsViewController.h"

@@ -90,7 +90,7 @@
     }
     _document = document;
     for (id note in _document.lecture.notes) {
-        if ([note isKindOfClass:[Note class]]) {
+        if ([note isKindOfClass:[NoteTakingNote class]]) {
             [self loadNoteAndPresent:note];
         } else if ([note isKindOfClass:[ImageNoteViewController class]]) {
             ImageNoteViewController *i = (ImageNoteViewController *)note;
@@ -99,7 +99,7 @@
     }
 }
 
-- (void)loadNoteAndPresent:(Note *)note
+- (void)loadNoteAndPresent:(NoteTakingNote *)note
 {
     TextNoteViewController *tnvc = [[TextNoteViewController alloc] initWithNote:note];
     [self addChildViewController:tnvc];

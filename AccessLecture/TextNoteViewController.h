@@ -13,6 +13,6 @@
 @interface TextNoteViewController : UIViewController <TextNoteViewDelegate>
 
 - (instancetype)initWithPoint:(CGPoint)point;
-- (instancetype)initWithNote:(Note *)note;
+- (instancetype)initWithNote:(NoteTakingNote *)note;
 
 @end

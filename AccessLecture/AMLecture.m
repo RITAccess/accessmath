@@ -14,6 +14,12 @@
 static NSString *MetaKey = @"meta";
 static NSString *LectureKey = @"lecture";
 
+@interface NoteTakingNote ()
+
+@property (nonatomic) NSManagedObject *note;
+
+@end
+
 @interface AMLecture ()
 
 @property NSFileWrapper *fileWrapper;
@@ -219,24 +225,22 @@ static NSString *LectureKey = @"lecture";
 }
 
 #pragma mark - Note factory methods
-- (Note *)createNote
+- (NoteTakingNote *)createNote
 {
     return [self createNoteAtPosition:CGPointZero];
 }
 
-- (Note *)createNoteAtPosition:(CGPoint)point
+- (NoteTakingNote *)createNoteAtPosition:(CGPoint)point
 {
-    NSEntityDescription *ent = [NSEntityDescription entityForName:@"Note" inManagedObjectContext:self.managedObjectContext];
-    Note *note = [[Note alloc] initWithEntity:ent insertIntoManagedObjectContext:self.managedObjectContext];
+    NoteTakingNote *note = [NSEntityDescription insertNewObjectForEntityForName:@"NoteTakingNote" inManagedObjectContext:self.managedObjectContext];
     note.location = point;
-    NSLog(@"DEBUG: %@", note);
     return note;
 }
 
 - (NSArray *)getNotes
 {
     NSLog(@"DEBUG: fetching notes");
-    NSFetchRequest *allNotes = [[NSFetchRequest alloc] initWithEntityName:@"Note"];
+    NSFetchRequest *allNotes = [[NSFetchRequest alloc] initWithEntityName:@"ShuffleNote"];
     
     
     NSArray *notes = [[self managedObjectContext] executeFetchRequest:allNotes error:nil];

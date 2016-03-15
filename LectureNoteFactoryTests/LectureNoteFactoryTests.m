@@ -8,7 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "AMLecture.h"
-#import "Note.h"
+#import "NoteTakingNote.h"
 
 static NSString *testPath = @"~/Documents/testing-lecture-16231A42-2361-4A79-8128-CB019BF9A614.lec";
 
@@ -47,17 +47,32 @@ static NSString *testPath = @"~/Documents/testing-lecture-16231A42-2361-4A79-812
 }
 
 - (void)testCreatingANewNoteUsingFactoryMethod_createNote {
-    Note *note = [self.lecture createNote];
+    NoteTakingNote *note = [self.lecture createNote];
     XCTAssertNotNil(note, @"Note failed creation");
     XCTAssertEqual(note.location.x, 0.0, @"Failed x position");
     XCTAssertEqual(note.location.y, 0.0, @"Failed y position");
 }
 
+- (void)testCreatingANewNoteUsingFactoryMethod_hasDefaultTitleAndContent {
+    NoteTakingNote *note = [self.lecture createNote];
+    XCTAssertNotNil(note, @"Note failed creation");
+    XCTAssert([note.title isEqualToString:@"New Note"], @"Failed to have title");
+}
+
 - (void)testCreatingANewNoteUsingFactoryMethod_createNoteAtPosition {
-    Note *note = [self.lecture createNoteAtPosition:(CGPoint) { .x = 50.0, .y = 70.0 }];
+    NoteTakingNote *note = [self.lecture createNoteAtPosition:(CGPoint) { .x = 50.0, .y = 70.0 }];
     XCTAssertNotNil(note, @"Note failed creation");
     XCTAssertEqual(note.location.x, 50.0, @"Failed x position");
     XCTAssertEqual(note.location.y, 70.0, @"Failed y position");
+}
+
+- (void)testFetchingNotesForTypeNoteTakingNote {
+    // Create Three notes as NoteTakingNote
+    [self.lecture createNote]; [self.lecture createNote]; [self.lecture createNote];
+    
+    // Fetch as ShuffleNote
+    [self.lecture getNotes];
+    
 }
 
 //- (void)testPerformanceExample {

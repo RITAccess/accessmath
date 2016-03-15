@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15D21" minimumToolsVersion="Xcode 4.3">
-    <entity name="Note" syncable="YES">
+    <entity name="Note" isAbstract="YES" syncable="YES">
         <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" defaultValueString="New Note" syncable="YES"/>
     </entity>
-    <entity name="NoteTakingNote" syncable="YES">
+    <entity name="NoteTakingNote" representedClassName="NoteTakingNote" parentEntity="Note" syncable="YES">
         <attribute name="location_x" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="location_y" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
-        <relationship name="note" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Note" syncable="YES"/>
+    </entity>
+    <entity name="ShuffleNote" representedClassName="ShuffleNote" parentEntity="Note" syncable="YES">
+        <attribute name="location_x" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="location_y" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Note" positionX="-63" positionY="-18" width="128" height="75"/>
-        <element name="NoteTakingNote" positionX="-54" positionY="9" width="128" height="90"/>
+        <element name="Note" positionX="0" positionY="0" width="128" height="75"/>
+        <element name="NoteTakingNote" positionX="0" positionY="0" width="128" height="75"/>
+        <element name="ShuffleNote" positionX="0" positionY="0" width="128" height="75"/>
     </elements>
 </model>

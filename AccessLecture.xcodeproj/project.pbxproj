@@ -75,6 +75,7 @@
 		4C3BE5EA1A72973C0017854C /* RootMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BE5E91A72973C0017854C /* RootMenuController.m */; };
 		4C3BE5ED1A729B760017854C /* MenuIconCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BE5EC1A729B760017854C /* MenuIconCell.m */; };
 		4C3BE5F01A729F0F0017854C /* MenuData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BE5EF1A729F0F0017854C /* MenuData.m */; };
+		4C3FCAA01C987D4900722BCC /* ShuffleNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3FCA9F1C987D4900722BCC /* ShuffleNote.m */; };
 		4C46910D1AB767CF006EE0CF /* MockData.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4C46910C1AB767CF006EE0CF /* MockData.h */; };
 		4C46910F1AB767CF006EE0CF /* MockData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C46910E1AB767CF006EE0CF /* MockData.m */; };
 		4C4691231AB767DF006EE0CF /* libMockData.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C46910A1AB767CF006EE0CF /* libMockData.a */; };
@@ -96,7 +97,7 @@
 		4CBF5D871768DAD200746377 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11D217625F150066A4FA /* libicucore.dylib */; };
 		4CBF5D881768DAD500746377 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11D017625F0D0066A4FA /* CFNetwork.framework */; };
 		4CBF5D891768DAD700746377 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11CE17625F060066A4FA /* Security.framework */; };
-		4CCBC8DD17E222FF00CB303E /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F99F1FF154364270065CBB9 /* Note.m */; };
+		4CCBC8DD17E222FF00CB303E /* NoteTakingNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F99F1FF154364270065CBB9 /* NoteTakingNote.m */; };
 		4CD7CE2A1A8568CB00A9717F /* PreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD7CE291A8568CB00A9717F /* PreviewViewController.m */; };
 		4CDB053817B5567300D8EB85 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CDB053717B5567300D8EB85 /* CoreData.framework */; };
 		4CDB057D17B557C300D8EB85 /* AccessLecture.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4CDB057B17B557C300D8EB85 /* AccessLecture.xcdatamodeld */; };
@@ -274,8 +275,8 @@
 		3F8FD2E218B3F7BF0059EF9C /* Promise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Promise.m; sourceTree = "<group>"; };
 		3F99F1F91543641E0065CBB9 /* FileManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileManager.h; sourceTree = "<group>"; };
 		3F99F1FA1543641E0065CBB9 /* FileManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileManager.m; sourceTree = "<group>"; };
-		3F99F1FE154364270065CBB9 /* Note.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
-		3F99F1FF154364270065CBB9 /* Note.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
+		3F99F1FE154364270065CBB9 /* NoteTakingNote.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteTakingNote.h; sourceTree = "<group>"; };
+		3F99F1FF154364270065CBB9 /* NoteTakingNote.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteTakingNote.m; sourceTree = "<group>"; };
 		3F99F20015436E090065CBB9 /* Lecture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lecture.h; sourceTree = "<group>"; };
 		3F99F20115436E090065CBB9 /* Lecture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lecture.m; sourceTree = "<group>"; };
 		3F9BA9C21758FE1C00BEFB55 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -299,6 +300,8 @@
 		4C3BE5EC1A729B760017854C /* MenuIconCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuIconCell.m; sourceTree = "<group>"; };
 		4C3BE5EE1A729F0F0017854C /* MenuData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuData.h; sourceTree = "<group>"; };
 		4C3BE5EF1A729F0F0017854C /* MenuData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuData.m; sourceTree = "<group>"; };
+		4C3FCA9E1C987D4900722BCC /* ShuffleNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShuffleNote.h; sourceTree = "<group>"; };
+		4C3FCA9F1C987D4900722BCC /* ShuffleNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShuffleNote.m; sourceTree = "<group>"; };
 		4C46910A1AB767CF006EE0CF /* libMockData.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMockData.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C46910C1AB767CF006EE0CF /* MockData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MockData.h; sourceTree = "<group>"; };
 		4C46910E1AB767CF006EE0CF /* MockData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MockData.m; sourceTree = "<group>"; };
@@ -634,10 +637,12 @@
 		3F99F1EE15435FA80065CBB9 /* UIDocument */ = {
 			isa = PBXGroup;
 			children = (
-				3F99F1FE154364270065CBB9 /* Note.h */,
-				3F99F1FF154364270065CBB9 /* Note.m */,
+				3F99F1FE154364270065CBB9 /* NoteTakingNote.h */,
+				3F99F1FF154364270065CBB9 /* NoteTakingNote.m */,
 				3F99F20015436E090065CBB9 /* Lecture.h */,
 				3F99F20115436E090065CBB9 /* Lecture.m */,
+				4C3FCA9E1C987D4900722BCC /* ShuffleNote.h */,
+				4C3FCA9F1C987D4900722BCC /* ShuffleNote.m */,
 			);
 			name = UIDocument;
 			sourceTree = "<group>";
@@ -1215,7 +1220,7 @@
 				3F0DBDD613BD174900E3FEE8 /* AboutViewController.m in Sources */,
 				3F99F20215436E090065CBB9 /* Lecture.m in Sources */,
 				4C5C50CD177B7B7C0095801A /* LectureViewContainer.m in Sources */,
-				4CCBC8DD17E222FF00CB303E /* Note.m in Sources */,
+				4CCBC8DD17E222FF00CB303E /* NoteTakingNote.m in Sources */,
 				4CA4A06B1AE185D1004536B7 /* DirectoryCVC.m in Sources */,
 				3F8FD2E418B3F7BF0059EF9C /* Promise.m in Sources */,
 				4C4FA6F01A72C52E00161ABE /* UINavigationBar+hight.m in Sources */,
@@ -1244,6 +1249,7 @@
 				3F2DC9871887225D008C29BF /* ImageNoteView.m in Sources */,
 				21C36DF71BCEA061000CB5B0 /* NoteShuffleViewController.m in Sources */,
 				21C36E0C1BCEA1E1000CB5B0 /* BackgroundImages.m in Sources */,
+				4C3FCAA01C987D4900722BCC /* ShuffleNote.m in Sources */,
 				21DA3D9518905B5000BFD96B /* DrawViewController.m in Sources */,
 				21C36E061BCEA1AE000CB5B0 /* NewNotesViewController.m in Sources */,
 				4C4FA6F31A72CC8100161ABE /* OpenLectureController.m in Sources */,
@@ -1828,6 +1834,7 @@
 				4C7403BD1C85DD19002557DF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4CE742D21768BDE60026DE71 /* Build configuration list for PBXNativeTarget "AccessLecture Tests" */ = {
 			isa = XCConfigurationList;

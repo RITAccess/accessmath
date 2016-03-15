@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Student. All rights reserved.
 //
 
-#import "Note.h"
+#import "NoteTakingNote.h"
 
 #import "NoteShuffleViewController.h"
 #import <SpriteKit/SpriteKit.h>

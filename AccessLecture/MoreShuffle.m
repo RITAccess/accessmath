@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Student. All rights reserved.
 //
 
-#import "Note.h"
+#import "NoteTakingNote.h"
 
 #import "MoreShuffle.h"
 #import "SaveData.h"
@@ -92,7 +92,7 @@ enum PHYSICS_CATEGORIES {
     }
     
     NSArray* notes = _notesFromSelectedLecture;
-    for (Note* note in notes) {
+    for (NoteTakingNote* note in notes) {
         // TODO: create note representation for each note
         NSLog(@"DEBUG from SKView: %@", note.title);
         [self newPaper];
