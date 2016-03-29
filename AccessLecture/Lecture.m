@@ -44,4 +44,10 @@
     return TRUE;
 }
 
+- (BOOL)zeroNotes
+{
+    _notes = [[NSArray alloc] init];
+    return TRUE;
+}
+
 @end

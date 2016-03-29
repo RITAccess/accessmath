@@ -464,8 +464,7 @@
 				C928E87A1C88CA6100E37CC5 /* BackgroundImageScene */,
 				C928E8661C88C6F500E37CC5 /* BackgroundImages */,
 				21C36E101BCEBA6A000CB5B0 /* NoteSelectViewController */,
-				21C36E0D1BCEA229000CB5B0 /* SaveColor.h */,
-				21C36E0E1BCEA229000CB5B0 /* SaveColor.m */,
+				C94E36941CAB0DEB008A96DD /* SaveColor */,
 				C9B4A0C51C5AB12D00E9CE8B /* NewNotesSection */,
 				C9B4A0C41C5A98A700E9CE8B /* SaveData */,
 				21C36E011BCEA193000CB5B0 /* AssignmentItem.h */,
@@ -981,6 +980,15 @@
 				21C36E0B1BCEA1E1000CB5B0 /* BackgroundImages.m */,
 			);
 			name = BackgroundImageScene;
+			sourceTree = "<group>";
+		};
+		C94E36941CAB0DEB008A96DD /* SaveColor */ = {
+			isa = PBXGroup;
+			children = (
+				21C36E0D1BCEA229000CB5B0 /* SaveColor.h */,
+				21C36E0E1BCEA229000CB5B0 /* SaveColor.m */,
+			);
+			name = SaveColor;
 			sourceTree = "<group>";
 		};
 		C9B4A0C31C5A989B00E9CE8B /* MoreShuffle */ = {

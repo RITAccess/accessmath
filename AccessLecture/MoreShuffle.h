@@ -12,4 +12,6 @@
 
 @property NSArray* notesFromSelectedLecture;
 
+@property NSMutableArray *notesToSelectedLecture;
+
 @end

@@ -27,4 +27,10 @@
  */
 - (BOOL)addNotes:(NSSet *)notes;
 
+/**
+ * Lecture notes are all erased
+ * Called when SKScene is reset
+ */
+-(BOOL)zeroNotes;
+
 @end

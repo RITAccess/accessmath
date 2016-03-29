@@ -76,6 +76,13 @@ static const int outline3Category = 3;
         self.created = YES;
     }
     
+    NSArray* notes = _notesFromSelectedLecture;
+    for (Note* note in notes) {
+        // TODO: create note representation for each note
+        NSLog(@"DEBUG from SKView: %@", note.title);
+        [self newPaperFromLecture];
+    }
+    
     stackButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     stackButton.backgroundColor = [UIColor darkGrayColor];
     [stackButton setTitle:@"Stack Papers" forState:UIControlStateNormal];
@@ -315,6 +322,19 @@ static const int outline3Category = 3;
 //generates more nodes
 -(void)newPaper
 {
+    [self newPaperFromLecture];
+
+    //Add to lecture view
+    Note *newNote = [[Note alloc] init];
+    _notesToSelectedLecture = [[NSMutableArray alloc] init];
+    [_notesToSelectedLecture addObject:newNote];
+}
+
+/**
+ * Generates notecards from lecture
+ */
+-(void)newPaperFromLecture
+{
     SKSpriteNode *newPap;
     
     if ([saveData sharedData].current != nil) {
@@ -330,16 +350,8 @@ static const int outline3Category = 3;
     [self makePhysicsBody:newPap];
     [self addDeleteButton:newPap];
     
-    /*
-     Creating more nodes that have their physicsBodies instantiated and can adapt to changes in texture like those in
-     the original stack can be stored and saved via the NSMutableArray.
-     */
-    [[saveData sharedData].array addObject:newPap];
-    [[saveData sharedData] save];
-    
     [self addChild:newPap];
 }
-
 
 - (IBAction)resetButton
 {
@@ -347,6 +359,8 @@ static const int outline3Category = 3;
     [[saveData sharedData] reset];
     [[saveData sharedData] save];
     [self createScene];
+    [_notesToSelectedLecture removeAllObjects];
+    _notesFromSelectedLecture = _notesToSelectedLecture;
 }
 
 //action to stack papers
