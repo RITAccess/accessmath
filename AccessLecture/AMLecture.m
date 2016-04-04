@@ -10,15 +10,10 @@
 
 #import "AMLecture.h"
 #import "AccessLectureKit.h"
+#import "ShuffleNote.h"
 
 static NSString *MetaKey = @"meta";
 static NSString *LectureKey = @"lecture";
-
-@interface NoteTakingNote ()
-
-@property (nonatomic) NSManagedObject *note;
-
-@end
 
 @interface AMLecture ()
 
@@ -232,15 +227,24 @@ static NSString *LectureKey = @"lecture";
 
 - (NoteTakingNote *)createNoteAtPosition:(CGPoint)point
 {
-    NoteTakingNote *note = [NSEntityDescription insertNewObjectForEntityForName:@"NoteTakingNote" inManagedObjectContext:self.managedObjectContext];
-    note.location = point;
+    Note *parent = [NSEntityDescription insertNewObjectForEntityForName:@"Note"
+                                              inManagedObjectContext:self.managedObjectContext];
+    
+    NoteTakingNote *note = [NSEntityDescription insertNewObjectForEntityForName:@"NoteTakingNote"
+                                                         inManagedObjectContext:self.managedObjectContext];
+   
+    note.parent = parent;
+    
+    
+//    note.location = point;
+    
     return note;
 }
 
 - (NSArray *)getNotes
 {
     NSLog(@"DEBUG: fetching notes");
-    NSFetchRequest *allNotes = [[NSFetchRequest alloc] initWithEntityName:@"ShuffleNote"];
+    NSFetchRequest *allNotes = [[NSFetchRequest alloc] initWithEntityName:@"Note"];
     
     
     NSArray *notes = [[self managedObjectContext] executeFetchRequest:allNotes error:nil];

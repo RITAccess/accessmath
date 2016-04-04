@@ -15,11 +15,15 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "Note.h"
 
 @interface NoteTakingNote : NSManagedObject
 
 @property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSString *content;
+
+@property (strong, nonatomic) Note *parent;
+
 @property (nonatomic) CGPoint location;
 
 @end

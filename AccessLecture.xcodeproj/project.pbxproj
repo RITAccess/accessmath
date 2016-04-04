@@ -76,6 +76,7 @@
 		4C3BE5ED1A729B760017854C /* MenuIconCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BE5EC1A729B760017854C /* MenuIconCell.m */; };
 		4C3BE5F01A729F0F0017854C /* MenuData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BE5EF1A729F0F0017854C /* MenuData.m */; };
 		4C3FCAA01C987D4900722BCC /* ShuffleNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3FCA9F1C987D4900722BCC /* ShuffleNote.m */; };
+		4C3FCAA31C9B209300722BCC /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3FCAA21C9B209300722BCC /* Note.m */; };
 		4C46910D1AB767CF006EE0CF /* MockData.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4C46910C1AB767CF006EE0CF /* MockData.h */; };
 		4C46910F1AB767CF006EE0CF /* MockData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C46910E1AB767CF006EE0CF /* MockData.m */; };
 		4C4691231AB767DF006EE0CF /* libMockData.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C46910A1AB767CF006EE0CF /* libMockData.a */; };
@@ -90,6 +91,12 @@
 		4C5C50CD177B7B7C0095801A /* LectureViewContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5C50CC177B7B7C0095801A /* LectureViewContainer.m */; };
 		4C62BECD175651DB00CAF4CF /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F99F1FA1543641E0065CBB9 /* FileManager.m */; };
 		4C7403B81C85DD19002557DF /* LectureNoteFactoryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7403B71C85DD19002557DF /* LectureNoteFactoryTests.m */; };
+		4CA128751CB2BEA300F853F9 /* _Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA1286A1CB2BEA300F853F9 /* _Note.m */; };
+		4CA128761CB2BEA300F853F9 /* _NoteTakingNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA1286C1CB2BEA300F853F9 /* _NoteTakingNote.m */; };
+		4CA128771CB2BEA300F853F9 /* _ShuffleNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA1286E1CB2BEA300F853F9 /* _ShuffleNote.m */; };
+		4CA128781CB2BEA300F853F9 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA128701CB2BEA300F853F9 /* Note.m */; };
+		4CA128791CB2BEA300F853F9 /* NoteTakingNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA128721CB2BEA300F853F9 /* NoteTakingNote.m */; };
+		4CA1287A1CB2BEA300F853F9 /* ShuffleNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA128741CB2BEA300F853F9 /* ShuffleNote.m */; };
 		4CA4A0651ADC3287004536B7 /* AMIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4A0641ADC3287004536B7 /* AMIndex.m */; };
 		4CA4A06B1AE185D1004536B7 /* DirectoryCVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4A06A1AE185D1004536B7 /* DirectoryCVC.m */; };
 		4CA4A0711AE59127004536B7 /* Stack.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4A0701AE59127004536B7 /* Stack.m */; };
@@ -302,6 +309,8 @@
 		4C3BE5EF1A729F0F0017854C /* MenuData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuData.m; sourceTree = "<group>"; };
 		4C3FCA9E1C987D4900722BCC /* ShuffleNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShuffleNote.h; sourceTree = "<group>"; };
 		4C3FCA9F1C987D4900722BCC /* ShuffleNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShuffleNote.m; sourceTree = "<group>"; };
+		4C3FCAA11C9B209300722BCC /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
+		4C3FCAA21C9B209300722BCC /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
 		4C46910A1AB767CF006EE0CF /* libMockData.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMockData.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C46910C1AB767CF006EE0CF /* MockData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MockData.h; sourceTree = "<group>"; };
 		4C46910E1AB767CF006EE0CF /* MockData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MockData.m; sourceTree = "<group>"; };
@@ -322,6 +331,18 @@
 		4C7403B51C85DD19002557DF /* LectureNoteFactoryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LectureNoteFactoryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C7403B71C85DD19002557DF /* LectureNoteFactoryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LectureNoteFactoryTests.m; sourceTree = "<group>"; };
 		4C7403B91C85DD19002557DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4CA128691CB2BEA300F853F9 /* _Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _Note.h; path = mogenerator/_Note.h; sourceTree = SOURCE_ROOT; };
+		4CA1286A1CB2BEA300F853F9 /* _Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _Note.m; path = mogenerator/_Note.m; sourceTree = SOURCE_ROOT; };
+		4CA1286B1CB2BEA300F853F9 /* _NoteTakingNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _NoteTakingNote.h; path = mogenerator/_NoteTakingNote.h; sourceTree = SOURCE_ROOT; };
+		4CA1286C1CB2BEA300F853F9 /* _NoteTakingNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _NoteTakingNote.m; path = mogenerator/_NoteTakingNote.m; sourceTree = SOURCE_ROOT; };
+		4CA1286D1CB2BEA300F853F9 /* _ShuffleNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _ShuffleNote.h; path = mogenerator/_ShuffleNote.h; sourceTree = SOURCE_ROOT; };
+		4CA1286E1CB2BEA300F853F9 /* _ShuffleNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _ShuffleNote.m; path = mogenerator/_ShuffleNote.m; sourceTree = SOURCE_ROOT; };
+		4CA1286F1CB2BEA300F853F9 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Note.h; path = mogenerator/Note.h; sourceTree = SOURCE_ROOT; };
+		4CA128701CB2BEA300F853F9 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Note.m; path = mogenerator/Note.m; sourceTree = SOURCE_ROOT; };
+		4CA128711CB2BEA300F853F9 /* NoteTakingNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NoteTakingNote.h; path = mogenerator/NoteTakingNote.h; sourceTree = SOURCE_ROOT; };
+		4CA128721CB2BEA300F853F9 /* NoteTakingNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NoteTakingNote.m; path = mogenerator/NoteTakingNote.m; sourceTree = SOURCE_ROOT; };
+		4CA128731CB2BEA300F853F9 /* ShuffleNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShuffleNote.h; path = mogenerator/ShuffleNote.h; sourceTree = SOURCE_ROOT; };
+		4CA128741CB2BEA300F853F9 /* ShuffleNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShuffleNote.m; path = mogenerator/ShuffleNote.m; sourceTree = SOURCE_ROOT; };
 		4CA4A0631ADC3287004536B7 /* AMIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMIndex.h; sourceTree = "<group>"; };
 		4CA4A0641ADC3287004536B7 /* AMIndex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMIndex.m; sourceTree = "<group>"; };
 		4CA4A0691AE185D1004536B7 /* DirectoryCVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectoryCVC.h; sourceTree = "<group>"; };
@@ -627,6 +648,7 @@
 		3F99F1ED15435F9D0065CBB9 /* Document Model */ = {
 			isa = PBXGroup;
 			children = (
+				4CA128681CB2BE3F00F853F9 /* mogenerator */,
 				4CDDF69417EB68F100FE34E7 /* Lectures */,
 				3F99F1EE15435FA80065CBB9 /* UIDocument */,
 				3F99F1EF15435FB40065CBB9 /* FileManager */,
@@ -643,6 +665,8 @@
 				3F99F20115436E090065CBB9 /* Lecture.m */,
 				4C3FCA9E1C987D4900722BCC /* ShuffleNote.h */,
 				4C3FCA9F1C987D4900722BCC /* ShuffleNote.m */,
+				4C3FCAA11C9B209300722BCC /* Note.h */,
+				4C3FCAA21C9B209300722BCC /* Note.m */,
 			);
 			name = UIDocument;
 			sourceTree = "<group>";
@@ -885,6 +909,25 @@
 				3F4DE76018EB492900BB9970 /* ABDrawToggleSwitch.m */,
 			);
 			name = "Views Icons";
+			sourceTree = "<group>";
+		};
+		4CA128681CB2BE3F00F853F9 /* mogenerator */ = {
+			isa = PBXGroup;
+			children = (
+				4CA128691CB2BEA300F853F9 /* _Note.h */,
+				4CA1286A1CB2BEA300F853F9 /* _Note.m */,
+				4CA1286B1CB2BEA300F853F9 /* _NoteTakingNote.h */,
+				4CA1286C1CB2BEA300F853F9 /* _NoteTakingNote.m */,
+				4CA1286D1CB2BEA300F853F9 /* _ShuffleNote.h */,
+				4CA1286E1CB2BEA300F853F9 /* _ShuffleNote.m */,
+				4CA1286F1CB2BEA300F853F9 /* Note.h */,
+				4CA128701CB2BEA300F853F9 /* Note.m */,
+				4CA128711CB2BEA300F853F9 /* NoteTakingNote.h */,
+				4CA128721CB2BEA300F853F9 /* NoteTakingNote.m */,
+				4CA128731CB2BEA300F853F9 /* ShuffleNote.h */,
+				4CA128741CB2BEA300F853F9 /* ShuffleNote.m */,
+			);
+			name = mogenerator;
 			sourceTree = "<group>";
 		};
 		4CA4A0621ADC3276004536B7 /* Indexing */ = {
@@ -1201,6 +1244,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				211166B11C62997D000F5F77 /* SettingsTableViewController.m in Sources */,
+				4CA128771CB2BEA300F853F9 /* _ShuffleNote.m in Sources */,
 				3F408C0D18BF94FD00F6B113 /* NSString+asciihexcodes.m in Sources */,
 				4C3BE5EA1A72973C0017854C /* RootMenuController.m in Sources */,
 				3F07C352187B3627005BC7EC /* TextNoteView.m in Sources */,
@@ -1208,12 +1252,14 @@
 				3F8D99331880ACBE0061DEA2 /* NSString+TrimmingAdditions.m in Sources */,
 				3F8D990E187DD9100061DEA2 /* FullScreenNoteViewController.m in Sources */,
 				3F07C34F187B2BA7005BC7EC /* TextNoteViewController.m in Sources */,
+				4C3FCAA31C9B209300722BCC /* Note.m in Sources */,
 				3FED96191370863E00D8D1B8 /* main.m in Sources */,
 				4CEA1A03177CAAED00A1DE05 /* LectureCell.m in Sources */,
 				21C36E131BCEBA79000CB5B0 /* DefinitionsViewController.m in Sources */,
 				21C36E001BCEA179000CB5B0 /* AssignmentsViewController.m in Sources */,
 				3FED961C1370863E00D8D1B8 /* AccessLectureAppDelegate.m in Sources */,
 				4C3BE5F01A729F0F0017854C /* MenuData.m in Sources */,
+				4CA128751CB2BEA300F853F9 /* _Note.m in Sources */,
 				2C882F2E1A8572E500D8E214 /* SearchViewController.m in Sources */,
 				3F8FD2CF18AD34EB0059EF9C /* DrawMode.m in Sources */,
 				2194AD201BB2F7DE002D9BD1 /* NoteSearchResultsViewController.m in Sources */,
@@ -1233,12 +1279,14 @@
 				3F2DC98218871FE4008C29BF /* ImageNoteViewController.m in Sources */,
 				4C37CCB018295FC0006D3B1F /* ALMetaData.m in Sources */,
 				3F8FD2CA18AD33350059EF9C /* AddImage.m in Sources */,
+				4CA1287A1CB2BEA300F853F9 /* ShuffleNote.m in Sources */,
 				21C36E161BCEBA90000CB5B0 /* FormulasViewController.m in Sources */,
 				3F8B515618FD90580053BFE8 /* UIImage+Rotate.m in Sources */,
 				4CFC573017DF800700393A1E /* NoteTakingViewController.m in Sources */,
 				4CDB057D17B557C300D8EB85 /* AccessLecture.xcdatamodeld in Sources */,
 				21C36E031BCEA193000CB5B0 /* AssignmentItem.m in Sources */,
 				3F8B515418FD90580053BFE8 /* UIImage+FixOrientation.m in Sources */,
+				4CA128761CB2BEA300F853F9 /* _NoteTakingNote.m in Sources */,
 				3F8FD2E318B3F7BF0059EF9C /* Deferred.m in Sources */,
 				3F408C0A18BF94F600F6B113 /* XMLReader.m in Sources */,
 				3F4DE76118EB492900BB9970 /* ABDrawToggleSwitch.m in Sources */,
@@ -1249,7 +1297,9 @@
 				3F2DC9871887225D008C29BF /* ImageNoteView.m in Sources */,
 				21C36DF71BCEA061000CB5B0 /* NoteShuffleViewController.m in Sources */,
 				21C36E0C1BCEA1E1000CB5B0 /* BackgroundImages.m in Sources */,
+				4CA128791CB2BEA300F853F9 /* NoteTakingNote.m in Sources */,
 				4C3FCAA01C987D4900722BCC /* ShuffleNote.m in Sources */,
+				4CA128781CB2BEA300F853F9 /* Note.m in Sources */,
 				21DA3D9518905B5000BFD96B /* DrawViewController.m in Sources */,
 				21C36E061BCEA1AE000CB5B0 /* NewNotesViewController.m in Sources */,
 				4C4FA6F31A72CC8100161ABE /* OpenLectureController.m in Sources */,

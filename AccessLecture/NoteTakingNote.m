@@ -17,8 +17,7 @@
 
 @implementation NoteTakingNote
 
-@dynamic title;
-@dynamic content;
+@dynamic parent;
 @dynamic location_x;
 @dynamic location_y;
 
@@ -33,5 +32,24 @@
     self.location_y = @(location.y);
 }
 
+- (NSString *)title
+{
+    return self.parent.title;
+}
+
+- (void)setTitle:(NSString *)title
+{
+    self.parent.title = title;
+}
+
+- (NSString *)content
+{
+    return self.parent.content;
+}
+
+- (void)setContent:(NSString *)content
+{
+    self.parent.content = content;
+}
 
 @end

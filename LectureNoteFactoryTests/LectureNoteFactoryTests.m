@@ -68,7 +68,8 @@ static NSString *testPath = @"~/Documents/testing-lecture-16231A42-2361-4A79-812
 
 - (void)testFetchingNotesForTypeNoteTakingNote {
     // Create Three notes as NoteTakingNote
-    [self.lecture createNote]; [self.lecture createNote]; [self.lecture createNote];
+    NoteTakingNote *a = [self.lecture createNote]; [self.lecture createNote]; [self.lecture createNote];
+    a.title = @"Different";
     
     // Fetch as ShuffleNote
     [self.lecture getNotes];
