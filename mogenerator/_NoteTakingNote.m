@@ -3,26 +3,12 @@
 
 #import "_NoteTakingNote.h"
 
-const struct NoteTakingNoteAttributes NoteTakingNoteAttributes = {
-	.location_x = @"location_x",
-	.location_y = @"location_y",
-	.noteid = @"noteid",
-};
-
-const struct NoteTakingNoteRelationships NoteTakingNoteRelationships = {
-	.note = @"note",
-};
-
-const struct NoteTakingNoteFetchedProperties NoteTakingNoteFetchedProperties = {
-	.parent = @"parent",
-};
-
 @implementation NoteTakingNoteID
 @end
 
 @implementation _NoteTakingNote
 
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_ {
++ (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_ {
 	NSParameterAssert(moc_);
 	return [NSEntityDescription insertNewObjectForEntityForName:@"NoteTakingNote" inManagedObjectContext:moc_];
 }
@@ -70,7 +56,7 @@ const struct NoteTakingNoteFetchedProperties NoteTakingNoteFetchedProperties = {
 }
 
 - (void)setLocation_xValue:(float)value_ {
-	[self setLocation_x:[NSNumber numberWithFloat:value_]];
+	[self setLocation_x:@(value_)];
 }
 
 - (float)primitiveLocation_xValue {
@@ -79,7 +65,7 @@ const struct NoteTakingNoteFetchedProperties NoteTakingNoteFetchedProperties = {
 }
 
 - (void)setPrimitiveLocation_xValue:(float)value_ {
-	[self setPrimitiveLocation_x:[NSNumber numberWithFloat:value_]];
+	[self setPrimitiveLocation_x:@(value_)];
 }
 
 @dynamic location_y;
@@ -90,7 +76,7 @@ const struct NoteTakingNoteFetchedProperties NoteTakingNoteFetchedProperties = {
 }
 
 - (void)setLocation_yValue:(float)value_ {
-	[self setLocation_y:[NSNumber numberWithFloat:value_]];
+	[self setLocation_y:@(value_)];
 }
 
 - (float)primitiveLocation_yValue {
@@ -99,7 +85,7 @@ const struct NoteTakingNoteFetchedProperties NoteTakingNoteFetchedProperties = {
 }
 
 - (void)setPrimitiveLocation_yValue:(float)value_ {
-	[self setPrimitiveLocation_y:[NSNumber numberWithFloat:value_]];
+	[self setPrimitiveLocation_y:@(value_)];
 }
 
 @dynamic noteid;
@@ -110,7 +96,7 @@ const struct NoteTakingNoteFetchedProperties NoteTakingNoteFetchedProperties = {
 }
 
 - (void)setNoteidValue:(int32_t)value_ {
-	[self setNoteid:[NSNumber numberWithInt:value_]];
+	[self setNoteid:@(value_)];
 }
 
 - (int32_t)primitiveNoteidValue {
@@ -119,12 +105,36 @@ const struct NoteTakingNoteFetchedProperties NoteTakingNoteFetchedProperties = {
 }
 
 - (void)setPrimitiveNoteidValue:(int32_t)value_ {
-	[self setPrimitiveNoteid:[NSNumber numberWithInt:value_]];
+	[self setPrimitiveNoteid:@(value_)];
 }
 
 @dynamic note;
 
 @dynamic parent;
 
+@end
+
+@implementation NoteTakingNoteAttributes 
++ (NSString *)location_x {
+	return @"location_x";
+}
++ (NSString *)location_y {
+	return @"location_y";
+}
++ (NSString *)noteid {
+	return @"noteid";
+}
+@end
+
+@implementation NoteTakingNoteRelationships 
++ (NSString *)note {
+	return @"note";
+}
+@end
+
+@implementation NoteTakingNoteFetchedProperties 
++ (NSString *)parent {
+	return @"parent";
+}
 @end
 

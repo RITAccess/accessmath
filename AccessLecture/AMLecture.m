@@ -11,6 +11,7 @@
 #import "AMLecture.h"
 #import "AccessLectureKit.h"
 #import "ShuffleNote.h"
+#import "Note.h"
 
 static NSString *MetaKey = @"meta";
 static NSString *LectureKey = @"lecture";
@@ -227,18 +228,17 @@ static NSString *LectureKey = @"lecture";
 
 - (NoteTakingNote *)createNoteAtPosition:(CGPoint)point
 {
-    Note *parent = [NSEntityDescription insertNewObjectForEntityForName:@"Note"
-                                              inManagedObjectContext:self.managedObjectContext];
+    Note *parent = [Note insertInManagedObjectContext:self.managedObjectContext];
     
-    NoteTakingNote *note = [NSEntityDescription insertNewObjectForEntityForName:@"NoteTakingNote"
-                                                         inManagedObjectContext:self.managedObjectContext];
-   
-    note.parent = parent;
+    NoteTakingNote *tnote = [NoteTakingNote insertInManagedObjectContext:self.managedObjectContext];
+    ShuffleNote *snote = [ShuffleNote insertInManagedObjectContext:self.managedObjectContext];
+
+    [tnote setLocation:point];
     
+    [tnote setNote:parent];
+    [snote setNote:parent];
     
-//    note.location = point;
-    
-    return note;
+    return tnote;
 }
 
 - (NSArray *)getNotes

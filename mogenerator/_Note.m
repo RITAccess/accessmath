@@ -3,18 +3,12 @@
 
 #import "_Note.h"
 
-const struct NoteAttributes NoteAttributes = {
-	.content = @"content",
-	.id = @"id",
-	.title = @"title",
-};
-
 @implementation NoteID
 @end
 
 @implementation _Note
 
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_ {
++ (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_ {
 	NSParameterAssert(moc_);
 	return [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:moc_];
 }
@@ -54,7 +48,7 @@ const struct NoteAttributes NoteAttributes = {
 }
 
 - (void)setIdValue:(int32_t)value_ {
-	[self setId:[NSNumber numberWithInt:value_]];
+	[self setId:@(value_)];
 }
 
 - (int32_t)primitiveIdValue {
@@ -63,10 +57,22 @@ const struct NoteAttributes NoteAttributes = {
 }
 
 - (void)setPrimitiveIdValue:(int32_t)value_ {
-	[self setPrimitiveId:[NSNumber numberWithInt:value_]];
+	[self setPrimitiveId:@(value_)];
 }
 
 @dynamic title;
 
+@end
+
+@implementation NoteAttributes 
++ (NSString *)content {
+	return @"content";
+}
++ (NSString *)id {
+	return @"id";
+}
++ (NSString *)title {
+	return @"title";
+}
 @end
 

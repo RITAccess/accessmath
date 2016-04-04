@@ -3,21 +3,12 @@
 
 #import "_ShuffleNote.h"
 
-const struct ShuffleNoteAttributes ShuffleNoteAttributes = {
-	.location_x = @"location_x",
-	.location_y = @"location_y",
-};
-
-const struct ShuffleNoteRelationships ShuffleNoteRelationships = {
-	.note = @"note",
-};
-
 @implementation ShuffleNoteID
 @end
 
 @implementation _ShuffleNote
 
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_ {
++ (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_ {
 	NSParameterAssert(moc_);
 	return [NSEntityDescription insertNewObjectForEntityForName:@"ShuffleNote" inManagedObjectContext:moc_];
 }
@@ -60,7 +51,7 @@ const struct ShuffleNoteRelationships ShuffleNoteRelationships = {
 }
 
 - (void)setLocation_xValue:(float)value_ {
-	[self setLocation_x:[NSNumber numberWithFloat:value_]];
+	[self setLocation_x:@(value_)];
 }
 
 - (float)primitiveLocation_xValue {
@@ -69,7 +60,7 @@ const struct ShuffleNoteRelationships ShuffleNoteRelationships = {
 }
 
 - (void)setPrimitiveLocation_xValue:(float)value_ {
-	[self setPrimitiveLocation_x:[NSNumber numberWithFloat:value_]];
+	[self setPrimitiveLocation_x:@(value_)];
 }
 
 @dynamic location_y;
@@ -80,7 +71,7 @@ const struct ShuffleNoteRelationships ShuffleNoteRelationships = {
 }
 
 - (void)setLocation_yValue:(float)value_ {
-	[self setLocation_y:[NSNumber numberWithFloat:value_]];
+	[self setLocation_y:@(value_)];
 }
 
 - (float)primitiveLocation_yValue {
@@ -89,10 +80,25 @@ const struct ShuffleNoteRelationships ShuffleNoteRelationships = {
 }
 
 - (void)setPrimitiveLocation_yValue:(float)value_ {
-	[self setPrimitiveLocation_y:[NSNumber numberWithFloat:value_]];
+	[self setPrimitiveLocation_y:@(value_)];
 }
 
 @dynamic note;
 
+@end
+
+@implementation ShuffleNoteAttributes 
++ (NSString *)location_x {
+	return @"location_x";
+}
++ (NSString *)location_y {
+	return @"location_y";
+}
+@end
+
+@implementation ShuffleNoteRelationships 
++ (NSString *)note {
+	return @"note";
+}
 @end
 
