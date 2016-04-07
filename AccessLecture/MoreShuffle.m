@@ -83,6 +83,11 @@ static const int outline3Category = 3;
         [self newPaperFromLecture];
     }
     
+    //Initializes array to add and remove notes
+    _notesToSelectedLecture = [[NSMutableArray alloc] init];
+    _notesToBeRemoved = [[NSMutableArray alloc] init];
+    _sceneReset = FALSE;
+    
     stackButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     stackButton.backgroundColor = [UIColor darkGrayColor];
     [stackButton setTitle:@"Stack Papers" forState:UIControlStateNormal];
@@ -326,7 +331,6 @@ static const int outline3Category = 3;
 
     //Add to lecture view
     Note *newNote = [[Note alloc] init];
-    _notesToSelectedLecture = [[NSMutableArray alloc] init];
     [_notesToSelectedLecture addObject:newNote];
 }
 
@@ -360,7 +364,8 @@ static const int outline3Category = 3;
     [[saveData sharedData] save];
     [self createScene];
     [_notesToSelectedLecture removeAllObjects];
-    _notesFromSelectedLecture = _notesToSelectedLecture;
+    [_notesToBeRemoved removeAllObjects];
+    _sceneReset = TRUE;
 }
 
 //action to stack papers
@@ -591,7 +596,6 @@ static const int outline3Category = 3;
     }
     else if (checkNode && [checkNode.name hasPrefix:@"delete"]) {
         Note *note = [[Note alloc] init];
-        _notesToBeRemoved = [[NSMutableArray alloc] init];
         [_notesToBeRemoved addObject:note];
         
         [checkNode.parent removeFromParent];

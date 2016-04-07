@@ -16,4 +16,6 @@
 
 @property NSMutableArray *notesToBeRemoved;
 
+@property BOOL sceneReset;
+
 @end

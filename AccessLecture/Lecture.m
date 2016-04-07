@@ -50,15 +50,12 @@
         return ([obj isKindOfClass:[Note class]]);
     }];
     
-    int remainingNotes = (_notes.count - valid.count);
-    _notes = [[NSArray alloc] init];
-    NSMutableArray *array = [[NSMutableArray alloc] init];
+    NSMutableArray *array = [[NSMutableArray alloc] initWithArray:_notes];
     
-    for (int i = 1; i <= remainingNotes; i++) {
-        for (Note *note in valid) {
-            [array addObject:note];
-        }
+    for (int i = 0; i < valid.count; i++) {
+        [array removeObjectAtIndex:i];
     }
+    
     _notes = [[NSArray alloc] initWithArray:array];
     return TRUE;
 }

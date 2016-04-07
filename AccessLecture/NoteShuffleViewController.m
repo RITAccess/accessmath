@@ -98,25 +98,27 @@
 
 - (void)dismissNoteShuffleViewController
 {
-    [self dismissViewControllerAnimated:YES completion:^{
-        NSLog(@"DEBUG: Dismissed NoteShuffleViewController.");
-    }];
-    
     NSArray* notes;
     NSSet *setOfNotes;
     
-    if ([_shuffleSKScene.notesFromSelectedLecture count] != 0) {
+    if ([_shuffleSKScene.notesToSelectedLecture count] > 0) {
         notes = [[NSArray alloc] initWithArray:_shuffleSKScene.notesToSelectedLecture];
         setOfNotes = [[NSSet alloc] initWithArray:notes];
         [_selectedLecture.lecture addNotes:setOfNotes];
-    } else {
-        [_selectedLecture.lecture zeroNotes];
     }
-    if ([_shuffleSKScene.notesToBeRemoved count] != 0){
+    if ([_shuffleSKScene.notesToBeRemoved count] > 0) {
         notes = [[NSArray alloc] initWithArray:_shuffleSKScene.notesToBeRemoved];
         setOfNotes = [[NSSet alloc] initWithArray:notes];
         [_selectedLecture.lecture removeNotes:setOfNotes];
     }
+    if (_shuffleSKScene.sceneReset) {
+        [_selectedLecture.lecture zeroNotes];
+    }
+    
+    [self dismissViewControllerAnimated:YES completion:^{
+        NSLog(@"DEBUG: Dismissed NoteShuffleViewController.");
+    }];
+    
 }
 
 -(void) presentWeeksNotesViewController
