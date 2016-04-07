@@ -44,6 +44,25 @@
     return TRUE;
 }
 
+- (BOOL) removeNotes:(NSSet *)objects
+{
+    NSSet *valid = [objects objectsPassingTest:^BOOL(id obj, BOOL *stop) {
+        return ([obj isKindOfClass:[Note class]]);
+    }];
+    
+    int remainingNotes = (_notes.count - valid.count);
+    _notes = [[NSArray alloc] init];
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    
+    for (int i = 1; i <= remainingNotes; i++) {
+        for (Note *note in valid) {
+            [array addObject:note];
+        }
+    }
+    _notes = [[NSArray alloc] initWithArray:array];
+    return TRUE;
+}
+
 - (BOOL)zeroNotes
 {
     _notes = [[NSArray alloc] init];

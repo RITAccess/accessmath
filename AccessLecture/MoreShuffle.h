@@ -14,4 +14,6 @@
 
 @property NSMutableArray *notesToSelectedLecture;
 
+@property NSMutableArray *notesToBeRemoved;
+
 @end

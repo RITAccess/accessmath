@@ -590,7 +590,10 @@ static const int outline3Category = 3;
         }
     }
     else if (checkNode && [checkNode.name hasPrefix:@"delete"]) {
-        [[saveData sharedData].array removeObject:checkNode.parent];
+        Note *note = [[Note alloc] init];
+        _notesToBeRemoved = [[NSMutableArray alloc] init];
+        [_notesToBeRemoved addObject:note];
+        
         [checkNode.parent removeFromParent];
         [checkNode removeFromParent];
     }

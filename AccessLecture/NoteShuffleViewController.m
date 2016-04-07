@@ -102,12 +102,20 @@
         NSLog(@"DEBUG: Dismissed NoteShuffleViewController.");
     }];
     
+    NSArray* notes;
+    NSSet *setOfNotes;
+    
     if ([_shuffleSKScene.notesFromSelectedLecture count] != 0) {
-        NSArray* notes = [[NSArray alloc] initWithArray:_shuffleSKScene.notesToSelectedLecture];
-        NSSet *setOfNotes = [[NSSet alloc] initWithArray:notes];
+        notes = [[NSArray alloc] initWithArray:_shuffleSKScene.notesToSelectedLecture];
+        setOfNotes = [[NSSet alloc] initWithArray:notes];
         [_selectedLecture.lecture addNotes:setOfNotes];
     } else {
         [_selectedLecture.lecture zeroNotes];
+    }
+    if ([_shuffleSKScene.notesToBeRemoved count] != 0){
+        notes = [[NSArray alloc] initWithArray:_shuffleSKScene.notesToBeRemoved];
+        setOfNotes = [[NSSet alloc] initWithArray:notes];
+        [_selectedLecture.lecture removeNotes:setOfNotes];
     }
 }
 
