@@ -98,9 +98,15 @@
 
 - (void)dismissNoteShuffleViewController
 {
+    /*
+     * Used to adjust the lecture content view to reflect any changes in SKScene.
+     */
     NSArray* notes;
     NSSet *setOfNotes;
     
+    if (_shuffleSKScene.sceneReset) {
+        [_selectedLecture.lecture zeroNotes];
+    }
     if ([_shuffleSKScene.notesToSelectedLecture count] > 0) {
         notes = [[NSArray alloc] initWithArray:_shuffleSKScene.notesToSelectedLecture];
         setOfNotes = [[NSSet alloc] initWithArray:notes];
@@ -110,9 +116,6 @@
         notes = [[NSArray alloc] initWithArray:_shuffleSKScene.notesToBeRemoved];
         setOfNotes = [[NSSet alloc] initWithArray:notes];
         [_selectedLecture.lecture removeNotes:setOfNotes];
-    }
-    if (_shuffleSKScene.sceneReset) {
-        [_selectedLecture.lecture zeroNotes];
     }
     
     [self dismissViewControllerAnimated:YES completion:^{

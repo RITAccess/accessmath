@@ -44,6 +44,9 @@
     return TRUE;
 }
 
+/*
+ Removes number of notes that corresponds to SKScene.
+ */
 - (BOOL) removeNotes:(NSSet *)objects
 {
     NSSet *valid = [objects objectsPassingTest:^BOOL(id obj, BOOL *stop) {
@@ -51,19 +54,25 @@
     }];
     
     NSMutableArray *array = [[NSMutableArray alloc] initWithArray:_notes];
+    NSMutableArray *arrayCopy = [[NSMutableArray alloc] initWithArray:_notes];
+    NSArray *validArray = [[NSArray alloc] initWithArray:[valid allObjects]];
     
-    for (int i = 0; i < valid.count; i++) {
-        [array removeObjectAtIndex:i];
+    for (int i = 0; i < validArray.count; i++) {
+        Note *note = [arrayCopy objectAtIndex:i];
+        [array removeObject:note];
     }
     
     _notes = [[NSArray alloc] initWithArray:array];
+    
     return TRUE;
 }
 
+/*
+ * Sets note count to zero by initializing new array.
+ */
 - (BOOL)zeroNotes
 {
     _notes = [[NSArray alloc] init];
     return TRUE;
 }
-
 @end

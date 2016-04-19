@@ -357,6 +357,9 @@ static const int outline3Category = 3;
     [self addChild:newPap];
 }
 
+/*
+ * Resets the entire soon.
+ */
 - (IBAction)resetButton
 {
     [self removeAllChildren];
@@ -595,6 +598,7 @@ static const int outline3Category = 3;
         }
     }
     else if (checkNode && [checkNode.name hasPrefix:@"delete"]) {
+        //The number of notes deleted in this manner (via the "delete" button) will be reflected in the lecture.
         Note *note = [[Note alloc] init];
         [_notesToBeRemoved addObject:note];
         
