@@ -79,8 +79,25 @@ CGFloat y = 15;
 //sends out notification that orientation has been changed
 -(void)viewWillAppear:(BOOL)animated
 {
-    if ([SaveImage sharedData].notesImage != nil) {
-        _imageView.image = [SaveImage sharedData].notesImage;
+    if ([SaveImage sharedData].selectedImagesArray != nil) {
+        CGFloat x1 = 50;
+        CGFloat y1 = 600;
+        
+        for (UIImage *image in [SaveImage sharedData].selectedImagesArray) {
+            UIImageView *imageView = [[UIImageView alloc] init];
+            imageView.image = image;
+            imageView.frame = CGRectMake(x1, y1, 100, 100);
+            [imageView setContentMode:UIViewContentModeScaleAspectFill];
+            imageView.clipsToBounds = YES;
+            [self.view addSubview:imageView];
+            
+            if (x1 < 650) {
+                x1 += 150;
+            } else {
+                x1 = 50;
+                y1 += 150;
+            }
+        }
     }
     
     [self removeSideView];

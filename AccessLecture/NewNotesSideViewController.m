@@ -58,8 +58,9 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     
-    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
     [SaveImage sharedData].notesImage = chosenImage;
+    [[SaveImage sharedData].selectedImagesArray addObject:chosenImage];
     [[SaveImage sharedData] save];
     
     [picker dismissViewControllerAnimated:YES completion:NULL];

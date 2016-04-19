@@ -11,11 +11,16 @@
 @implementation SaveImage
 
 static NSString* const image = @"image";
+static NSString* const selectedImages = @"selected images";
 
 - (instancetype)initWithCoder:(NSCoder *)decoder
 {
     self = [self init];
     if (self) {
+        if (!_selectedImagesArray) {
+            _selectedImagesArray = [[NSMutableArray alloc] init];
+        }
+        _selectedImagesArray = [[decoder decodeObjectForKey:selectedImages] mutableCopy];
         _notesImage = [decoder decodeObjectForKey:image];
     }
     return self;
@@ -23,6 +28,10 @@ static NSString* const image = @"image";
 
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
+    if (!_selectedImagesArray) {
+        _selectedImagesArray = [[NSMutableArray alloc] init];
+    }
+    [encoder encodeObject:_selectedImagesArray forKey:selectedImages];
     [encoder encodeObject:_notesImage forKey:image];
 }
 

@@ -330,6 +330,7 @@ static const int outline3Category = 3;
     [self newPaperFromLecture];
 
     //Add to lecture view
+    _sceneReset = FALSE;
     Note *newNote = [[Note alloc] init];
     [_notesToSelectedLecture addObject:newNote];
 }
@@ -357,6 +358,9 @@ static const int outline3Category = 3;
     [self addChild:newPap];
 }
 
+/**
+ * Resets entire scene
+ */
 - (IBAction)resetButton
 {
     [self removeAllChildren];
@@ -595,8 +599,11 @@ static const int outline3Category = 3;
         }
     }
     else if (checkNode && [checkNode.name hasPrefix:@"delete"]) {
+        //adds the note(s) to be deleted to mutable array so that the corresponding number will be deleted
+        //from the lecture view as well.
         Note *note = [[Note alloc] init];
         [_notesToBeRemoved addObject:note];
+        _sceneReset = FALSE;
         
         [checkNode.parent removeFromParent];
         [checkNode removeFromParent];

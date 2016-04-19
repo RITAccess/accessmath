@@ -12,6 +12,7 @@
 @interface SaveImage : NSObject <NSCoding>
 
 @property UIImage *notesImage;
+@property NSMutableArray *selectedImagesArray;
 
 +(instancetype)sharedData;
 -(void)save;
