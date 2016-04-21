@@ -8,6 +8,7 @@
 
 #import "NewNotesViewController.h"
 #import "HighlighterViewController.h"
+#import "TextColorViewController.h"
 #import "saveColor.h"
 #import "SaveImage.h"
 #import "SaveTextSize.h"
@@ -29,9 +30,6 @@
 
 @implementation NewNotesViewController
 {
-    NSMutableArray *highlighterColorChoices;
-    NSMutableArray *textColorChoices;
-    
     //PopOverViewController for highlighter color
     UIPopoverController *popover;
     //PopOverViewController for text color
@@ -40,9 +38,6 @@
     NSArray *_navigationItems;
 }
 
-//x and y values
-CGFloat x = 5;
-CGFloat y = 15;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -54,10 +49,6 @@ CGFloat y = 15;
     NSString *theDate = [dateFormat stringFromDate:now];
     _currentDate.text = theDate;
     _currentDate.userInteractionEnabled = NO;
-    
-    highlighterColorChoices = [[NSMutableArray alloc] initWithObjects:[UIColor colorWithRed:127.0f/255.0f green:226.0f/255.0f blue:255.0f/255.0f alpha:1.0], [UIColor colorWithRed:245.0f/255.0f green:255.0f/255.0f blue:0.0f/255.0f alpha:1.0], [UIColor colorWithRed:208.0f/255.0f green:164.0f/255.0f blue:237.0f/255.0f alpha:1.0], [UIColor colorWithRed:108.0f/255.0f green:255.0f/255.0f blue:95.0f/255.0f alpha:1.0], [UIColor colorWithRed:253.0f/255.0f green:153.0f/255.0f blue:176.0f/255.0f alpha:1.0], [UIColor colorWithRed:233.0f/255.0f green:215.0f/255.0f blue:255.0f/255.0f alpha:1.0], [UIColor colorWithRed:154.0f/255.0f green:159.0f/255.0f blue:91.0f/255.0f alpha:1.0], [UIColor colorWithRed:0.0f/255.0f green:255.0f/255.0f blue:226.0f/255.0f alpha:1.0], [UIColor colorWithRed:107.0f/255.0f green:191.0f/255.0f blue:211.0f/255.0f alpha:1.0], [UIColor colorWithRed:255.0f/255.0f green:0.0f/255.0f blue:236.0f/255.0f alpha:1.0], [UIColor colorWithRed:255.0f/255.0f green:62.0f/255.0f blue:62.0f/255.0f alpha:1.0], [UIColor colorWithRed:132.0f/255.0f green:100.0f/255.0f blue:174.0f/255.0f alpha:1.0], [UIColor colorWithRed:255.0f/255.0f green:170.0f/255.0f blue:170.0f/255.0f alpha:1.0], [UIColor colorWithRed:212.0f/255.0f green:255.0f/255.0f blue:170.0f/255.0f alpha:1.0], [UIColor colorWithRed:101.0f/255.0f green:188.0f/255.0f blue:255.0f/255.0f alpha:1.0], nil];
-    
-    textColorChoices = [[NSMutableArray alloc] initWithObjects:[UIColor blackColor], [UIColor blueColor], nil];
     
     [_textView sizeThatFits:CGSizeMake(self.view.frame.size.width, self.view.frame.size.height)];
     
@@ -80,22 +71,24 @@ CGFloat y = 15;
 -(void)viewWillAppear:(BOOL)animated
 {
     if ([SaveImage sharedData].selectedImagesArray != nil) {
-        CGFloat x1 = 50;
-        CGFloat y1 = 600;
+        CGFloat x = 50;
+        CGFloat y = 600;
         
         for (UIImage *image in [SaveImage sharedData].selectedImagesArray) {
             UIImageView *imageView = [[UIImageView alloc] init];
-            imageView.image = image;
-            imageView.frame = CGRectMake(x1, y1, 100, 100);
+            //imageView.image = image;
+            imageView.backgroundColor = [UIColor grayColor];
+            imageView.frame = CGRectMake(x, y, 100, 100);
             [imageView setContentMode:UIViewContentModeScaleAspectFill];
             imageView.clipsToBounds = YES;
+            imageView.userInteractionEnabled = YES;
             [self.view addSubview:imageView];
             
-            if (x1 < 650) {
-                x1 += 150;
+            if (x < 650) {
+                x += 150;
             } else {
-                x1 = 50;
-                y1 += 150;
+                x = 50;
+                y += 150;
             }
         }
     }
@@ -214,7 +207,6 @@ CGFloat y = 15;
 
 - (IBAction)changeFontStyle:(UISegmentedControl *)sender
 {
-    
     switch (sender.selectedSegmentIndex) {
         case 0:
             [_textView setFont:[UIFont systemFontOfSize:_textView.font.pointSize]];
@@ -230,36 +222,19 @@ CGFloat y = 15;
     }
 }
 
+#pragma mark Text Color Section
+
 - (IBAction)changeTextColor:(UIBarButtonItem *)sender
 {
-    
-    UIViewController *newNote = [[UIViewController alloc] init];
-    textPopover = [[UIPopoverController alloc] initWithContentViewController:newNote];
+    TextColorViewController *tcvc = [[TextColorViewController alloc] init];
+    textPopover = [[UIPopoverController alloc] initWithContentViewController:tcvc];
     textPopover.delegate = self;
     
     textPopover.popoverContentSize = CGSizeMake(285, 200);
     
-    for (UIColor *currentColor in textColorChoices) {
-        
-        UIButton *color = [[UIButton alloc] initWithFrame:CGRectMake(x, y, 50, 50)];
-        color.backgroundColor = currentColor;
-        color.layer.borderColor = [UIColor blackColor].CGColor;
-        color.layer.borderWidth = 1.0f;
-        color.layer.cornerRadius = 10.0f;
-        [color addTarget:self action:@selector(changeColorText:) forControlEvents:UIControlEventTouchUpInside];
-        
-        [textPopover.contentViewController.view addSubview:color];
-        
-        if (x < 225) {
-            x += 55;
-        } else {
-            x = 5;
-            y += 55;
-        }
+    for (UIButton *textColor in tcvc.view.subviews) {
+        [textColor addTarget:self action:@selector(changeColorText:) forControlEvents:UIControlEventTouchUpInside];
     }
-    
-    x = 5;
-    y = 15;
     
     self.textPopOverController = textPopover;
     
@@ -268,44 +243,24 @@ CGFloat y = 15;
 
 -(void)changeColorText: (UIButton*)sender{
     [SaveColor sharedData].textColor = sender.backgroundColor;
-    [self.popOverController dismissPopoverAnimated:true];
-    [[SaveColor sharedData] save];
-    
     _textView.textColor = sender.backgroundColor;
+    [self.textPopOverController dismissPopoverAnimated:true];
+    [[SaveColor sharedData] save];
 }
 
 #pragma mark Highlighter Section
 
 - (IBAction)changeHighlighterColor:(UIBarButtonItem *)sender
 {
-    
-    HighlighterViewController *newNote = [[HighlighterViewController alloc] init];
-    popover = [[UIPopoverController alloc] initWithContentViewController:newNote];
+    HighlighterViewController *hvc = [[HighlighterViewController alloc] init];
+    popover = [[UIPopoverController alloc] initWithContentViewController:hvc];
     popover.delegate = self;
     
     popover.popoverContentSize = CGSizeMake(285, 200);
     
-    for (UIColor *currentColor in highlighterColorChoices) {
-        
-        UIButton *color = [[UIButton alloc] initWithFrame:CGRectMake(x, y, 50, 50)];
-        color.backgroundColor = currentColor;
-        color.layer.borderColor = [UIColor blackColor].CGColor;
-        color.layer.borderWidth = 1.0f;
-        color.layer.cornerRadius = 10.0f;
-        [color addTarget:self action:@selector(changeHighlightColor:) forControlEvents:UIControlEventTouchUpInside];
-        
-        [popover.contentViewController.view addSubview:color];
-        
-        if (x < 225) {
-            x += 55;
-        } else {
-            x = 5;
-            y += 55;
-        }
+    for (UIButton *colour in hvc.view.subviews) {
+        [colour addTarget:self action:@selector(changeHighlightColor:) forControlEvents:UIControlEventTouchUpInside];
     }
-    
-    x = 5;
-    y = 15;
     
     self.popOverController = popover;
     
@@ -320,8 +275,6 @@ CGFloat y = 15;
     
     if ([SaveColor sharedData].hightlightColor != nil) {
         [attributedString addAttribute:NSBackgroundColorAttributeName value:[SaveColor sharedData].hightlightColor range:selectedRange];
-    } else {
-        [attributedString addAttribute:NSBackgroundColorAttributeName value:[UIColor yellowColor] range:selectedRange];
     }
     
     _textView.attributedText = attributedString;
