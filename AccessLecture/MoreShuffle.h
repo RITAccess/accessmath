@@ -12,4 +12,10 @@
 
 @property NSArray* notesFromSelectedLecture;
 
+@property NSMutableArray *notesToSelectedLecture;
+
+@property NSMutableArray *notesToBeRemoved;
+
+@property BOOL sceneReset;
+
 @end

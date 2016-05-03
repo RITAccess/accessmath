@@ -27,4 +27,14 @@
  */
 - (BOOL)addNotes:(NSSet *)notes __deprecated_msg("Moving to AMLecture");
 
+/**
+ * Remove notes from the lecture
+ */
+-(BOOL)removeNotes:(NSSet *)objects;
+/**
+ * Lecture notes are all erased
+ * Called when SKScene is reset
+ */
+-(BOOL)zeroNotes;
+
 @end

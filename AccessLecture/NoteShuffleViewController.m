@@ -24,6 +24,9 @@
     @private
     NSArray *_navigationItems;
 }
+
+@property (strong) MoreShuffle *shuffleSKScene;
+
 @end
 
 @implementation NoteShuffleViewController : UIViewController
@@ -35,12 +38,11 @@
     NSArray* notes = [[NSArray alloc]initWithArray:_selectedLecture.lecture.notes];
     
     // Pass notes to MoreShuffle
-    // TODO: fix propogation issue
-    MoreShuffle *shuffleSKScene = [[MoreShuffle alloc] initWithSize:CGSizeMake(2000, 1768)];
-    shuffleSKScene.notesFromSelectedLecture = notes;
+    _shuffleSKScene = [[MoreShuffle alloc] initWithSize:CGSizeMake(2000, 1768)];
+    _shuffleSKScene.notesFromSelectedLecture = notes;
     
     SKView *view = (SKView *)self.view;
-    [view presentScene:shuffleSKScene];
+    [view presentScene:_shuffleSKScene];
 }
 
 - (void)viewDidLoad
@@ -96,9 +98,30 @@
 
 - (void)dismissNoteShuffleViewController
 {
+    /*
+     * Used to adjust the lecture content view to reflect any changes in SKScene.
+     */
+    NSArray* notes;
+    NSSet *setOfNotes;
+    
+    if (_shuffleSKScene.sceneReset) {
+        [_selectedLecture.lecture zeroNotes];
+    }
+    if ([_shuffleSKScene.notesToSelectedLecture count] > 0) {
+        notes = [[NSArray alloc] initWithArray:_shuffleSKScene.notesToSelectedLecture];
+        setOfNotes = [[NSSet alloc] initWithArray:notes];
+        [_selectedLecture.lecture addNotes:setOfNotes];
+    }
+    if ([_shuffleSKScene.notesToBeRemoved count] > 0) {
+        notes = [[NSArray alloc] initWithArray:_shuffleSKScene.notesToBeRemoved];
+        setOfNotes = [[NSSet alloc] initWithArray:notes];
+        [_selectedLecture.lecture removeNotes:setOfNotes];
+    }
+    
     [self dismissViewControllerAnimated:YES completion:^{
         NSLog(@"DEBUG: Dismissed NoteShuffleViewController.");
     }];
+    
 }
 
 -(void) presentWeeksNotesViewController

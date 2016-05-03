@@ -77,6 +77,18 @@ static const int outline3Category = 3;
         self.created = YES;
     }
     
+    NSArray* notes = _notesFromSelectedLecture;
+    for (Note* note in notes) {
+        // TODO: create note representation for each note
+        NSLog(@"DEBUG from SKView: %@", note.title);
+        [self newPaperFromLecture];
+    }
+    
+    //Initializes array to add and remove notes
+    _notesToSelectedLecture = [[NSMutableArray alloc] init];
+    _notesToBeRemoved = [[NSMutableArray alloc] init];
+    _sceneReset = FALSE;
+    
     stackButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     stackButton.backgroundColor = [UIColor darkGrayColor];
     [stackButton setTitle:@"Stack Papers" forState:UIControlStateNormal];
@@ -323,6 +335,18 @@ static const int outline3Category = 3;
 //generates more nodes
 -(void)newPaper
 {
+    [self newPaperFromLecture];
+
+    //Add to lecture view
+    Note *newNote = [[Note alloc] init];
+    [_notesToSelectedLecture addObject:newNote];
+}
+
+/**
+ * Generates notecards from lecture
+ */
+-(void)newPaperFromLecture
+{
     SKSpriteNode *newPap;
     
     if ([saveData sharedData].current != nil) {
@@ -338,23 +362,21 @@ static const int outline3Category = 3;
     [self makePhysicsBody:newPap];
     [self addDeleteButton:newPap];
     
-    /*
-     Creating more nodes that have their physicsBodies instantiated and can adapt to changes in texture like those in
-     the original stack can be stored and saved via the NSMutableArray.
-     */
-    [[saveData sharedData].array addObject:newPap];
-    [[saveData sharedData] save];
-    
     [self addChild:newPap];
 }
 
-
+/*
+ * Resets the entire soon.
+ */
 - (IBAction)resetButton
 {
     [self removeAllChildren];
     [[saveData sharedData] reset];
     [[saveData sharedData] save];
     [self createScene];
+    [_notesToSelectedLecture removeAllObjects];
+    [_notesToBeRemoved removeAllObjects];
+    _sceneReset = TRUE;
 }
 
 //action to stack papers
@@ -584,7 +606,10 @@ static const int outline3Category = 3;
         }
     }
     else if (checkNode && [checkNode.name hasPrefix:@"delete"]) {
-        [[saveData sharedData].array removeObject:checkNode.parent];
+        //The number of notes deleted in this manner (via the "delete" button) will be reflected in the lecture.
+        Note *note = [[Note alloc] init];
+        [_notesToBeRemoved addObject:note];
+        
         [checkNode.parent removeFromParent];
         [checkNode removeFromParent];
     }
