@@ -12,7 +12,7 @@
 @implementation NoteSearchResultsViewController
 
 // Presents note in search results pane
--(void)presentNote:(Note*)note
+-(void)presentNote:(NoteTakingNote*)note
 {
     _textNoteView.hidden = NO;
     _textNoteViewTitle.text = note.title;

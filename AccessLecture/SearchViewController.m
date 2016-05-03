@@ -12,7 +12,7 @@
 #import "ALView+PureLayout.h"
 #import "NSArray+PureLayout.h"
 #import "NavBackButton.h"
-#import "Note.h"
+#import "NoteTakingNote.h"
 #import "NoteSearchTableViewController.h"
 
 @implementation SearchViewController
@@ -97,7 +97,7 @@
     
     // TODO: pass notes to note search view controller
     NSMutableArray *lectureNoteTitles = [NSMutableArray new];
-    for (Note* note in _notes) {
+    for (NoteTakingNote* note in _notes) {
         [lectureNoteTitles addObject:note.title];
     }
     

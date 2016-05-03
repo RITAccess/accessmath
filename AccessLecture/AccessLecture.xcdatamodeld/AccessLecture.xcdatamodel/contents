@@ -1,10 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3389" systemVersion="13A538g" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Favorites" representedClassName="Favorites" syncable="YES">
-        <attribute name="hostname" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15E65" minimumToolsVersion="Xcode 4.3">
+    <entity name="Note" representedClassName="Note" syncable="YES">
+        <attribute name="content" optional="YES" attributeType="String" defaultValueString="&quot;&quot;" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" defaultValueString="New Note" syncable="YES"/>
+    </entity>
+    <entity name="NoteTakingNote" representedClassName="NoteTakingNote" syncable="YES">
+        <attribute name="location_x" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="location_y" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="noteid" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="note" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Note" syncable="YES"/>
+        <fetchedProperty name="parent" optional="YES" syncable="YES">
+            <fetchRequest name="fetchedPropertyFetchRequest" entity="NoteTakingNote" predicateString="note.id == $FETCH_SOURCE.noteid"/>
+        </fetchedProperty>
+    </entity>
+    <entity name="ShuffleNote" representedClassName="ShuffleNote" syncable="YES">
+        <attribute name="location_x" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="location_y" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="note" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Note" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Favorites" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Note" positionX="252" positionY="168" width="128" height="90"/>
+        <element name="NoteTakingNote" positionX="360" positionY="279" width="128" height="131"/>
+        <element name="ShuffleNote" positionX="-117" positionY="362" width="128" height="88"/>
     </elements>
 </model>

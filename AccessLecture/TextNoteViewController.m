@@ -9,6 +9,7 @@
 #import "TextNoteViewController.h"
 #import "FullScreenNoteViewController.h"
 #import "ImageNoteViewController.h"
+#import "AMLecture.h"
 
 @interface TextNoteViewController ()
 
@@ -16,19 +17,19 @@
 
 @implementation TextNoteViewController
 
-- (instancetype)initWithPoint:(CGPoint)point
+- (instancetype)initWithPoint:(CGPoint)point inLecture:(AMLecture *)lec
 {
     self = [super initWithNibName:@"TextNoteView" bundle:nil];
     if (self) {
         TextNoteView *view = (TextNoteView *)self.view;
         view.frame = CGRectMake(point.x - 200, point.y - 100, self.view.frame.size.width, self.view.frame.size.height);
-        view.data = [Note new];
+        view.data = (NoteTakingNote *)[lec createNoteAtPosition:view.frame.origin ofType:[self class]];
         view.data.location = self.view.frame.origin;
     }
     return self;
 }
 
-- (instancetype)initWithNote:(Note *)note
+- (instancetype)initWithNote:(NoteTakingNote *)note
 {
     self = [super initWithNibName:@"TextNoteView" bundle:nil];
     if (self) {

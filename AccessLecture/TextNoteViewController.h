@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "TextNoteViewDelegate.h"
 #import "TextNoteView.h"
+@class AMLecture;
 
 @interface TextNoteViewController : UIViewController <TextNoteViewDelegate>
 
-- (instancetype)initWithPoint:(CGPoint)point;
-- (instancetype)initWithNote:(Note *)note;
+- (instancetype)initWithPoint:(CGPoint)point inLecture:(AMLecture *)lec;
+- (instancetype)initWithNote:(NoteTakingNote *)note;
 
 @end
