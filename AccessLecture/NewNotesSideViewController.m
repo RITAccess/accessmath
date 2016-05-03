@@ -48,7 +48,7 @@
 }
 
 
-/*- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     
     UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
@@ -57,18 +57,11 @@
     [[SaveImage sharedData] save];
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
-}*/
+}
 
 //allows the user to add images to their notes
 - (IBAction)addImage:(id)sender
 {
-    UIImageView *imageView = [[UIImageView alloc] init];
-    imageView.backgroundColor = [UIColor blueColor];
-    imageView.userInteractionEnabled = YES;
-    imageViewPan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGensture:)];
-    [imageView addGestureRecognizer:imageViewPan];
-    imageView.frame = CGRectMake(150, 170, 100, 100);
-    [self.view addSubview:imageView];
     //To implement the camera if need be, but gallery is available
     /*if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         
@@ -86,45 +79,18 @@
             picker.delegate = self;
             picker.allowsEditing = YES;
             picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-            picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            picker.sourceType = UIImagePickerControllerLivePhoto;
             
             [self presentViewController:picker animated:YES completion:NULL];
         }
-    }
+    }*/
     
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
     picker.allowsEditing = YES;
     picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     
-    [self presentViewController:picker animated:YES completion:NULL];*/
-}
-
-- (void)handlePanGensture:(UIPanGestureRecognizer*)panGesture {
-    CGPoint translation = [panGesture translationInView:panGesture.view.superview];
-    _originalCenter = imageViewPan.view.center;
-    if (UIGestureRecognizerStateBegan == panGesture.state ||UIGestureRecognizerStateChanged == panGesture.state) {
-        panGesture.view.center = CGPointMake(panGesture.view.center.x + translation.x,
-                                             panGesture.view.center.y + translation.y);
-        // Reset translation, so we can get translation delta's (i.e. change in translation)
-        [panGesture setTranslation:CGPointZero inView:self.view];
-        
-    } else if (panGesture.state == UIGestureRecognizerStateEnded) {
-        
-        CGPoint velocity = [panGesture velocityInView:self.view];
-        CGFloat magnitude = sqrtf((velocity.x * velocity.x) + (velocity.y * velocity.y));
-        CGFloat slideMult = magnitude / 200; //original divider 200
-        
-        float slideFactor = 0.1 * slideMult /4; // Increase for more of a slide (original doesn't have a divider)
-        CGPoint finalPoint = CGPointMake(panGesture.view.center.x + (velocity.x * slideFactor),
-                                         panGesture.view.center.y + (velocity.y * slideFactor));
-        finalPoint.x = MIN(MAX(finalPoint.x, 70), self.view.bounds.size.width-70);
-        finalPoint.y = MIN(MAX(finalPoint.y, 100), self.view.bounds.size.height-100);
-        
-        [UIView animateWithDuration:slideFactor*2 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-            panGesture.view.center = finalPoint;
-        } completion:nil];
-    }
+    [self presentViewController:picker animated:YES completion:NULL];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker

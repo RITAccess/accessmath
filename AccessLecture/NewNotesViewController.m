@@ -12,6 +12,7 @@
 #import "saveColor.h"
 #import "SaveImage.h"
 #import "SaveTextSize.h"
+#import "DraggableView.h"
 
 #import "NewNotesSideViewController.h"
 
@@ -38,6 +39,9 @@
     NSArray *_navigationItems;
 }
 
+CGFloat x = 50;
+CGFloat y = 600;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -63,24 +67,13 @@
         }
     }
     
-    [self setupGestures];
-    [self setUpNavigation];
-}
-
-//sends out notification that orientation has been changed
--(void)viewWillAppear:(BOOL)animated
-{
+    //Adds the saved images that user selected.
     if ([SaveImage sharedData].selectedImagesArray != nil) {
-        CGFloat x = 50;
-        CGFloat y = 600;
         
         for (UIImage *image in [SaveImage sharedData].selectedImagesArray) {
-            UIImageView *imageView = [[UIImageView alloc] init];
-            //imageView.image = image;
-            imageView.backgroundColor = [UIColor grayColor];
+            UIImageView *imageView = [[DraggableView alloc] initWithImage:image];
             imageView.frame = CGRectMake(x, y, 100, 100);
             [imageView setContentMode:UIViewContentModeScaleAspectFill];
-            imageView.clipsToBounds = YES;
             imageView.userInteractionEnabled = YES;
             [self.view addSubview:imageView];
             
@@ -91,6 +84,24 @@
                 y += 150;
             }
         }
+    }
+    
+    [self setupGestures];
+    [self setUpNavigation];
+}
+
+//sends out notification that orientation has been changed
+-(void)viewWillAppear:(BOOL)animated
+{
+    //Adds additional images that user selects
+    if ([SaveImage sharedData].notesImage != nil) {
+        UIImageView *imageView = [[DraggableView alloc] initWithImage:[SaveImage sharedData].notesImage];
+        imageView.frame = CGRectMake(x, y, 100, 100);
+        [imageView setContentMode:UIViewContentModeScaleAspectFill];
+        imageView.userInteractionEnabled = YES;
+        [self.view addSubview:imageView];
+        [SaveImage sharedData].notesImage = nil;
+        [[SaveImage sharedData] save];
     }
     
     [self removeSideView];
