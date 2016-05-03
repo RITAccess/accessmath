@@ -30,4 +30,14 @@
     self.note.title = title;
 }
 
+- (NSString *)content
+{
+    return self.note.content;
+}
+
+- (void)setContent:(NSString *)content
+{
+    self.note.content = content;
+}
+
 @end

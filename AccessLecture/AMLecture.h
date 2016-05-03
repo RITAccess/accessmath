@@ -10,6 +10,7 @@
 #import "ALMetaData.h"
 #import "Lecture.h"
 #import "NoteTakingNote.h"
+#import "ShuffleNote.h"
 
 static NSString *const AMLectutueFileExtention = @"lec";
 
@@ -26,10 +27,24 @@ static NSString *const AMLectutueFileExtention = @"lec";
 - (void)save;
 - (void)saveWithCompletetion:(void(^)(BOOL success))completion;
 
+/**
+ *  Create new note for note taking, this also creates a default note in the
+ *  shuffle note context.
+ *
+ *  @return new managed object
+ */
+- (id)createNoteOfType:(Class)type;
 
-- (NoteTakingNote *)createNote;
-- (NoteTakingNote *)createNoteAtPosition:(CGPoint)point;
+/**
+ *  Create new note for note taking, this also creates a default note in the
+ *  shuffle note context.
+ *
+ *  @param point location to place the note in notetaking scene
+ *
+ *  @return new managed object
+ */
+- (id)createNoteAtPosition:(CGPoint)point ofType:(Class)type;
 
-- (NSArray*)getNotes;
+@property (readonly) NSArray *notes;
 
 @end

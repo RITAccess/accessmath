@@ -129,7 +129,12 @@ static NSString *LectureKey = @"lecture";
         return _persistentStoreCoordinator;
     }
     
-    NSURL *storeURL = [[self fileURL] URLByAppendingPathComponent:@"notes.sqlite"];
+    NSString *documentRoot = [[@"~/Documents/" stringByExpandingTildeInPath]
+                              stringByAppendingPathComponent:
+                              [NSString stringWithFormat:@"%@.sqlite", self.metadata.title]
+                              ];
+    
+    NSURL *storeURL = [NSURL fileURLWithPath:documentRoot isDirectory:NO relativeToURL:NULL];
     
     NSError *error = nil;
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
@@ -152,6 +157,13 @@ static NSString *LectureKey = @"lecture";
     [self encodeObject:self.metadata toWrappers:wrappers preferredFilename:@"lecture.meta"];
     [self encodeObject:self.lecture toWrappers:wrappers preferredFilename:@"lecture.data"];
     [self encodeImage:self.thumb toWrappers:wrappers preferredFilename:@"thumb.png"];
+    
+//    NSURL *storeURL = [[self fileURL] URLByAppendingPathComponent:@"notes.sqlite"];
+//    NSData *sqliteData = [NSData dataWithContentsOfFile:storeURL.path];
+//    
+//    NSFileWrapper *wrap = [[NSFileWrapper alloc] initRegularFileWithContents:sqliteData];
+//    [wrappers setObject:wrap forKey:@"db"];
+//    
     NSFileWrapper *fileWrapper = [[NSFileWrapper alloc] initDirectoryWithFileWrappers:wrappers];
     
     return fileWrapper;
@@ -160,6 +172,13 @@ static NSString *LectureKey = @"lecture";
 - (BOOL)loadFromContents:(id)contents ofType:(NSString *)typeName error:(NSError *__autoreleasing *)outError
 {
     self.fileWrapper = (NSFileWrapper *)contents;
+    
+    // Write sqlite data out to file
+//    NSURL *storeURL = [[self fileURL] URLByAppendingPathComponent:@"notes.sqlite"];
+//    NSFileWrapper *fileWrapper = [self.fileWrapper.fileWrappers objectForKey:@"db"];
+//    NSData *data = [fileWrapper regularFileContents];
+//    [data writeToFile:storeURL.path atomically:YES];
+//    
     // Lazy load everything
     self.metadata = nil;
     self.lecture = nil;
@@ -207,44 +226,77 @@ static NSString *LectureKey = @"lecture";
 
 - (void)save
 {
-    [self saveWithCompletetion:nil];
+    [self saveWithCompletetion:^(BOOL success) {
+        //
+    }];
 }
 
 - (void)saveWithCompletetion:(void(^)(BOOL success))completion
 {
-    [self saveToURL:self.fileURL forSaveOperation:UIDocumentSaveForOverwriting completionHandler:completion];
+    NSError *error;
+    [self.managedObjectContext save:&error];
+    NSLog(@"DEBUG: %@", error);
+    static dispatch_once_t onceToken;
+    if (onceToken) {
+        NSLog(@"DEBUG: returning do to another save");
+        completion(FALSE);
+        return;
+    }
+    dispatch_once(&onceToken, ^{
+        NSLog(@"DEBUG: dispatching save");
+        dispatch_after(500, dispatch_get_main_queue(), ^{
+            onceToken = 0;
+            completion(TRUE);
+        });
+        [self saveToURL:self.fileURL forSaveOperation:UIDocumentSaveForOverwriting
+            completionHandler:^(BOOL success) {
+              onceToken = 0;
+              completion(success);
+            }];
+    });
 }
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"AMLecture<%d> Title: '%@' number of notes %d", [super hash], _metadata.title, _lecture.notes.count];
+    return [NSString stringWithFormat:@"AMLecture<%d> Title: '%@'", [super hash], _metadata.title];
 }
 
 #pragma mark - Note factory methods
-- (NoteTakingNote *)createNote
+- (id)createNoteOfType:(Class)type
 {
-    return [self createNoteAtPosition:CGPointZero];
+    return [self createNoteAtPosition:CGPointZero ofType:type];
 }
 
-- (NoteTakingNote *)createNoteAtPosition:(CGPoint)point
+- (id)createNoteAtPosition:(CGPoint)point ofType:(Class)type
 {
     Note *parent = [Note insertInManagedObjectContext:self.managedObjectContext];
     
     NoteTakingNote *tnote = [NoteTakingNote insertInManagedObjectContext:self.managedObjectContext];
     ShuffleNote *snote = [ShuffleNote insertInManagedObjectContext:self.managedObjectContext];
 
-    [tnote setLocation:point];
-    
     [tnote setNote:parent];
     [snote setNote:parent];
     
-    return tnote;
+    [tnote setLocation:point];
+    [snote setLocation:point];
+    
+    [self.managedObjectContext save:nil];
+    
+    if ([NSStringFromClass(type) isEqualToString:@"NoteTakingNote"]) {
+        return tnote;
+    }
+    
+    if ([NSStringFromClass(type) isEqualToString:@"ShuffleNote"]) {
+        return snote;
+    }
+    
+    return nil;
 }
 
-- (NSArray *)getNotes
+- (NSArray *)notes
 {
     NSLog(@"DEBUG: fetching notes");
-    NSFetchRequest *allNotes = [[NSFetchRequest alloc] initWithEntityName:@"Note"];
+    NSFetchRequest *allNotes = [[NSFetchRequest alloc] initWithEntityName:@"NoteTakingNote"];
     
     
     NSArray *notes = [[self managedObjectContext] executeFetchRequest:allNotes error:nil];
