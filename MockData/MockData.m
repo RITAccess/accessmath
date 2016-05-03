@@ -8,7 +8,7 @@
 
 #import "FileManager.h"
 #import "MockData.h"
-#import "Note.h"
+#import "NoteTakingNote.h"
 #import "AMIndex.h"
 
 void signal_done(dispatch_semaphore_t lc, dispatch_semaphore_t count) {
@@ -83,14 +83,14 @@ void signal_done(dispatch_semaphore_t lc, dispatch_semaphore_t count) {
 
 - (void)createNoteDataOnLecture:(AMLecture *)lecture withRange:(NSRange)range inCtx:(NSArray *)lines completion:(void(^)())completion
 {
-    for (int i = range.location; i < range.location + range.length; i++) {
-        Note *n = [Note new];
-        NSString *line = lines[i];
-        n.title = line;
-        n.content = line;
-        [lecture.lecture addNotes:[NSSet setWithObject:n]];
-    }
-    
+//    for (int i = range.location; i < range.location + range.length; i++) {
+//        Note *n = [Note new];
+//        NSString *line = lines[i];
+//        n.title = line;
+//        n.content = line;
+//        [lecture.lecture addNotes:[NSSet setWithObject:n]];
+//    }
+//    
     [lecture saveWithCompletetion:^(BOOL success) {
         completion();
     }];

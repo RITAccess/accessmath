@@ -70,6 +70,12 @@
 		3FED96191370863E00D8D1B8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FED96181370863E00D8D1B8 /* main.m */; };
 		3FED961C1370863E00D8D1B8 /* AccessLectureAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FED961B1370863E00D8D1B8 /* AccessLectureAppDelegate.m */; };
 		3FFCFB2213A25388003DAB63 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FFCFB2113A25388003DAB63 /* MessageUI.framework */; };
+		4C325F3D1CD93BFB002AFC23 /* _Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C325F321CD93BFB002AFC23 /* _Note.m */; };
+		4C325F3E1CD93BFB002AFC23 /* _NoteTakingNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C325F341CD93BFB002AFC23 /* _NoteTakingNote.m */; };
+		4C325F3F1CD93BFB002AFC23 /* _ShuffleNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C325F361CD93BFB002AFC23 /* _ShuffleNote.m */; };
+		4C325F401CD93BFB002AFC23 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C325F381CD93BFB002AFC23 /* Note.m */; };
+		4C325F411CD93BFB002AFC23 /* NoteTakingNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C325F3A1CD93BFB002AFC23 /* NoteTakingNote.m */; };
+		4C325F421CD93BFB002AFC23 /* ShuffleNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C325F3C1CD93BFB002AFC23 /* ShuffleNote.m */; };
 		4C37CCB018295FC0006D3B1F /* ALMetaData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C37CCAF18295FC0006D3B1F /* ALMetaData.m */; };
 		4C3BE5E71A7296F10017854C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C3BE5E61A7296F10017854C /* Main.storyboard */; };
 		4C3BE5EA1A72973C0017854C /* RootMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BE5E91A72973C0017854C /* RootMenuController.m */; };
@@ -95,11 +101,9 @@
 		4CBF5D871768DAD200746377 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11D217625F150066A4FA /* libicucore.dylib */; };
 		4CBF5D881768DAD500746377 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11D017625F0D0066A4FA /* CFNetwork.framework */; };
 		4CBF5D891768DAD700746377 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6D11CE17625F060066A4FA /* Security.framework */; };
-		4CCBC8DD17E222FF00CB303E /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F99F1FF154364270065CBB9 /* Note.m */; };
 		4CD7CE2A1A8568CB00A9717F /* PreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD7CE291A8568CB00A9717F /* PreviewViewController.m */; };
 		4CDB053817B5567300D8EB85 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CDB053717B5567300D8EB85 /* CoreData.framework */; };
 		4CDB057D17B557C300D8EB85 /* AccessLecture.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4CDB057B17B557C300D8EB85 /* AccessLecture.xcdatamodeld */; };
-		4CDB058017B5589A00D8EB85 /* Favorites.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CDB057F17B5589A00D8EB85 /* Favorites.m */; };
 		4CDDF69717EB690900FE34E7 /* AMLecture.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CDDF69617EB690900FE34E7 /* AMLecture.m */; };
 		4CE742C51768BDE60026DE71 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FED960D1370863E00D8D1B8 /* Foundation.framework */; };
 		4CE742C61768BDE60026DE71 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FED960B1370863E00D8D1B8 /* UIKit.framework */; };
@@ -282,8 +286,6 @@
 		3F8FD2E218B3F7BF0059EF9C /* Promise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Promise.m; sourceTree = "<group>"; };
 		3F99F1F91543641E0065CBB9 /* FileManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileManager.h; sourceTree = "<group>"; };
 		3F99F1FA1543641E0065CBB9 /* FileManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileManager.m; sourceTree = "<group>"; };
-		3F99F1FE154364270065CBB9 /* Note.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
-		3F99F1FF154364270065CBB9 /* Note.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
 		3F99F20015436E090065CBB9 /* Lecture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lecture.h; sourceTree = "<group>"; };
 		3F99F20115436E090065CBB9 /* Lecture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lecture.m; sourceTree = "<group>"; };
 		3F9BA9C21758FE1C00BEFB55 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -298,6 +300,18 @@
 		3FED961A1370863E00D8D1B8 /* AccessLectureAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccessLectureAppDelegate.h; sourceTree = "<group>"; };
 		3FED961B1370863E00D8D1B8 /* AccessLectureAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccessLectureAppDelegate.m; sourceTree = "<group>"; };
 		3FFCFB2113A25388003DAB63 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		4C325F311CD93BFB002AFC23 /* _Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _Note.h; path = mogenerator/_Note.h; sourceTree = SOURCE_ROOT; };
+		4C325F321CD93BFB002AFC23 /* _Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _Note.m; path = mogenerator/_Note.m; sourceTree = SOURCE_ROOT; };
+		4C325F331CD93BFB002AFC23 /* _NoteTakingNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _NoteTakingNote.h; path = mogenerator/_NoteTakingNote.h; sourceTree = SOURCE_ROOT; };
+		4C325F341CD93BFB002AFC23 /* _NoteTakingNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _NoteTakingNote.m; path = mogenerator/_NoteTakingNote.m; sourceTree = SOURCE_ROOT; };
+		4C325F351CD93BFB002AFC23 /* _ShuffleNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _ShuffleNote.h; path = mogenerator/_ShuffleNote.h; sourceTree = SOURCE_ROOT; };
+		4C325F361CD93BFB002AFC23 /* _ShuffleNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _ShuffleNote.m; path = mogenerator/_ShuffleNote.m; sourceTree = SOURCE_ROOT; };
+		4C325F371CD93BFB002AFC23 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Note.h; path = mogenerator/Note.h; sourceTree = SOURCE_ROOT; };
+		4C325F381CD93BFB002AFC23 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Note.m; path = mogenerator/Note.m; sourceTree = SOURCE_ROOT; };
+		4C325F391CD93BFB002AFC23 /* NoteTakingNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NoteTakingNote.h; path = mogenerator/NoteTakingNote.h; sourceTree = SOURCE_ROOT; };
+		4C325F3A1CD93BFB002AFC23 /* NoteTakingNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NoteTakingNote.m; path = mogenerator/NoteTakingNote.m; sourceTree = SOURCE_ROOT; };
+		4C325F3B1CD93BFB002AFC23 /* ShuffleNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShuffleNote.h; path = mogenerator/ShuffleNote.h; sourceTree = SOURCE_ROOT; };
+		4C325F3C1CD93BFB002AFC23 /* ShuffleNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShuffleNote.m; path = mogenerator/ShuffleNote.m; sourceTree = SOURCE_ROOT; };
 		4C37CCAE18295FC0006D3B1F /* ALMetaData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALMetaData.h; sourceTree = "<group>"; };
 		4C37CCAF18295FC0006D3B1F /* ALMetaData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALMetaData.m; sourceTree = "<group>"; };
 		4C3BE5E61A7296F10017854C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -336,8 +350,6 @@
 		4CD7CE291A8568CB00A9717F /* PreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviewViewController.m; sourceTree = "<group>"; };
 		4CDB053717B5567300D8EB85 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		4CDB057C17B557C300D8EB85 /* AccessLecture.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AccessLecture.xcdatamodel; sourceTree = "<group>"; };
-		4CDB057E17B5589A00D8EB85 /* Favorites.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Favorites.h; sourceTree = "<group>"; };
-		4CDB057F17B5589A00D8EB85 /* Favorites.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Favorites.m; sourceTree = "<group>"; };
 		4CDDF69517EB690900FE34E7 /* AMLecture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMLecture.h; sourceTree = "<group>"; };
 		4CDDF69617EB690900FE34E7 /* AMLecture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMLecture.m; sourceTree = "<group>"; };
 		4CE742C31768BDE60026DE71 /* AccessLecture Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "AccessLecture Tests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -642,6 +654,7 @@
 		3F99F1ED15435F9D0065CBB9 /* Document Model */ = {
 			isa = PBXGroup;
 			children = (
+				4C325F301CD93BC7002AFC23 /* Mogen */,
 				4CDDF69417EB68F100FE34E7 /* Lectures */,
 				3F99F1EE15435FA80065CBB9 /* UIDocument */,
 				3F99F1EF15435FB40065CBB9 /* FileManager */,
@@ -652,8 +665,6 @@
 		3F99F1EE15435FA80065CBB9 /* UIDocument */ = {
 			isa = PBXGroup;
 			children = (
-				3F99F1FE154364270065CBB9 /* Note.h */,
-				3F99F1FF154364270065CBB9 /* Note.m */,
 				3F99F20015436E090065CBB9 /* Lecture.h */,
 				3F99F20115436E090065CBB9 /* Lecture.m */,
 			);
@@ -784,6 +795,25 @@
 			name = "Lecture View";
 			sourceTree = "<group>";
 		};
+		4C325F301CD93BC7002AFC23 /* Mogen */ = {
+			isa = PBXGroup;
+			children = (
+				4C325F311CD93BFB002AFC23 /* _Note.h */,
+				4C325F321CD93BFB002AFC23 /* _Note.m */,
+				4C325F331CD93BFB002AFC23 /* _NoteTakingNote.h */,
+				4C325F341CD93BFB002AFC23 /* _NoteTakingNote.m */,
+				4C325F351CD93BFB002AFC23 /* _ShuffleNote.h */,
+				4C325F361CD93BFB002AFC23 /* _ShuffleNote.m */,
+				4C325F371CD93BFB002AFC23 /* Note.h */,
+				4C325F381CD93BFB002AFC23 /* Note.m */,
+				4C325F391CD93BFB002AFC23 /* NoteTakingNote.h */,
+				4C325F3A1CD93BFB002AFC23 /* NoteTakingNote.m */,
+				4C325F3B1CD93BFB002AFC23 /* ShuffleNote.h */,
+				4C325F3C1CD93BFB002AFC23 /* ShuffleNote.m */,
+			);
+			name = Mogen;
+			sourceTree = "<group>";
+		};
 		4C3BE5F11A72A8300017854C /* OpenViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -902,8 +932,6 @@
 			isa = PBXGroup;
 			children = (
 				4CDB057B17B557C300D8EB85 /* AccessLecture.xcdatamodeld */,
-				4CDB057E17B5589A00D8EB85 /* Favorites.h */,
-				4CDB057F17B5589A00D8EB85 /* Favorites.m */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
@@ -1263,7 +1291,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C325F411CD93BFB002AFC23 /* NoteTakingNote.m in Sources */,
 				211166B11C62997D000F5F77 /* SettingsTableViewController.m in Sources */,
+				4C325F3E1CD93BFB002AFC23 /* _NoteTakingNote.m in Sources */,
 				3F408C0D18BF94FD00F6B113 /* NSString+asciihexcodes.m in Sources */,
 				4C3BE5EA1A72973C0017854C /* RootMenuController.m in Sources */,
 				3F07C352187B3627005BC7EC /* TextNoteView.m in Sources */,
@@ -1286,7 +1316,6 @@
 				C97E9ADA1C7F908100EF7783 /* SaveTextSize.m in Sources */,
 				3F99F20215436E090065CBB9 /* Lecture.m in Sources */,
 				4C5C50CD177B7B7C0095801A /* LectureViewContainer.m in Sources */,
-				4CCBC8DD17E222FF00CB303E /* Note.m in Sources */,
 				4CA4A06B1AE185D1004536B7 /* DirectoryCVC.m in Sources */,
 				3F8FD2E418B3F7BF0059EF9C /* Promise.m in Sources */,
 				4C4FA6F01A72C52E00161ABE /* UINavigationBar+hight.m in Sources */,
@@ -1297,12 +1326,15 @@
 				21C36DFA1BCEA140000CB5B0 /* MoreShuffle.m in Sources */,
 				4C3BE5ED1A729B760017854C /* MenuIconCell.m in Sources */,
 				4C62BECD175651DB00CAF4CF /* FileManager.m in Sources */,
+				4C325F401CD93BFB002AFC23 /* Note.m in Sources */,
+				4C325F3F1CD93BFB002AFC23 /* _ShuffleNote.m in Sources */,
 				3F2DC98218871FE4008C29BF /* ImageNoteViewController.m in Sources */,
 				4C37CCB018295FC0006D3B1F /* ALMetaData.m in Sources */,
 				3F8FD2CA18AD33350059EF9C /* AddImage.m in Sources */,
 				21C36E161BCEBA90000CB5B0 /* FormulasViewController.m in Sources */,
 				3F8B515618FD90580053BFE8 /* UIImage+Rotate.m in Sources */,
 				4CFC573017DF800700393A1E /* NoteTakingViewController.m in Sources */,
+				4C325F3D1CD93BFB002AFC23 /* _Note.m in Sources */,
 				4CDB057D17B557C300D8EB85 /* AccessLecture.xcdatamodeld in Sources */,
 				21C36E031BCEA193000CB5B0 /* AssignmentItem.m in Sources */,
 				3F8B515418FD90580053BFE8 /* UIImage+FixOrientation.m in Sources */,
@@ -1319,9 +1351,9 @@
 				21DA3D9518905B5000BFD96B /* DrawViewController.m in Sources */,
 				21C36E061BCEA1AE000CB5B0 /* NewNotesViewController.m in Sources */,
 				4C4FA6F31A72CC8100161ABE /* OpenLectureController.m in Sources */,
+				4C325F421CD93BFB002AFC23 /* ShuffleNote.m in Sources */,
 				4C46E6391A7FE23200087229 /* LoadingLectureCVC.m in Sources */,
 				C928E87D1C88CA7800E37CC5 /* BackgroundTile.m in Sources */,
-				4CDB058017B5589A00D8EB85 /* Favorites.m in Sources */,
 				C928E8641C88C5EE00E37CC5 /* ShuffleNoteActions.m in Sources */,
 				21BFC94D1C57EBCF001BD5C8 /* SaveData.m in Sources */,
 				3F8B515718FD90580053BFE8 /* UIImage+RoundedCorner.m in Sources */,

@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Kimberly Sookoo. All rights reserved.
 //
 
+#import "NoteTakingNote.h"
 #import "MoreShuffle.h"
 #import "SaveData.h"
 #import "BackgroundImages.h"
@@ -90,6 +91,13 @@ static const int outline3Category = 3;
     reset.backgroundColor = [UIColor darkGrayColor];
     [reset setTitle:@"Reset" forState:UIControlStateNormal];
     [reset addTarget:self action:@selector(resetButton) forControlEvents:UIControlEventTouchUpInside];
+
+    NSArray* notes = _notesFromSelectedLecture;
+    for (NoteTakingNote* note in notes) {
+        // TODO: create note representation for each note
+        NSLog(@"DEBUG from SKView: %@", note.title);
+        [self newPaper];
+    }
     
     //detects device orientation specifically for UIButtons
     if ([UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationPortrait || [UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationPortraitUpsideDown) {

@@ -159,7 +159,7 @@
 {
     [self doCapture];
     [_selectedLecture saveWithCompletetion:^(BOOL success) {
-        NSAssert(success, @"Lecture did not save.");
+        NSLog(@"DEBUG: document did save %@", success ? @"YES" : @"NO");
     }];
 }
 

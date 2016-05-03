@@ -25,7 +25,7 @@ NSString *const FSFileChangeNotification = @"static NSString *const FSFileChange
     static id shared;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        shared = [[AMIndex alloc] initWithIndex:[NSURL URLWithString:[[@"~" stringByExpandingTildeInPath] stringByAppendingPathComponent:@"fs_index.db"]]];
+        shared = [[AMIndex alloc] initWithIndex:[NSURL URLWithString:[[@"~/Documents" stringByExpandingTildeInPath] stringByAppendingPathComponent:@"fs_index.db"]]];
     });
     return shared;
 }

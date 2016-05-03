@@ -18,13 +18,13 @@
 @property (weak) id parent;
 
 // Access all the notes in the lecture, all objects conform to Note type
-@property (readonly, nonatomic, strong) NSArray *notes;
+@property (readonly, nonatomic, strong) NSArray *notes __deprecated_msg("Moving to AMLecture");
 
 /**
  * Add a note the the lecture
  * param notes - the set of notes to be added
  * returns - BOOL for success status
  */
-- (BOOL)addNotes:(NSSet *)notes;
+- (BOOL)addNotes:(NSSet *)notes __deprecated_msg("Moving to AMLecture");
 
 @end
