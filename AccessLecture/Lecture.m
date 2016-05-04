@@ -10,7 +10,7 @@
 #import "NoteTakingNote.h"
 #import "ImageNoteViewController.h"
 #import "AMLecture.h"
-
+#import "Note.h"
 @interface Lecture ()
 
 // Override public readonly

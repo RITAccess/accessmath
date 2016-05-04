@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Kimberly Sookoo. All rights reserved.
 //
 
+#import "Note.h"
 #import "NoteTakingNote.h"
 #import "MoreShuffle.h"
 #import "SaveData.h"
@@ -104,7 +105,7 @@ static const int outline3Category = 3;
     [reset setTitle:@"Reset" forState:UIControlStateNormal];
     [reset addTarget:self action:@selector(resetButton) forControlEvents:UIControlEventTouchUpInside];
 
-    NSArray* notes = _notesFromSelectedLecture;
+    notes = _notesFromSelectedLecture;
     for (NoteTakingNote* note in notes) {
         // TODO: create note representation for each note
         NSLog(@"DEBUG from SKView: %@", note.title);
