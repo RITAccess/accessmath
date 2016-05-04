@@ -22,15 +22,17 @@
 #import "SearchButton.h"
 #import "BrushButton.h"
 #import "NoteShuffleButton.h"
+#import <VKVideoPlayer/VKVideoPlayerViewController.h>
 
 #pragma mark - Lecture Container Class
 
-@interface LectureViewContainer ()
+@interface LectureViewContainer ()  <VKVideoPlayerDelegate>
 
 @property (strong, nonatomic) MTRadialMenu *actionMenu;
 @property (strong) DrawViewController *dvc;
 @property (strong) NoteTakingViewController *ntvc;
 @property (weak) UIViewController<LectureViewChild> *active;
+@property (nonatomic, strong) VKVideoPlayer *player;
 
 @end
 
@@ -47,6 +49,12 @@
 {
     [super viewDidLoad];
 
+    self.player = [[VKVideoPlayer alloc] init];
+    self.player.delegate = self;
+    self.player.view.frame = self.view.bounds;
+    self.player.view.playerControlsAutoHideTime = @10;
+    [self.view addSubview:self.player.view];
+    
     // Add Controllers
     dispatch_once(&onceToken, ^{
         _dvc = [[DrawViewController alloc] initWithNibName:@"DrawViewController" bundle:nil];
@@ -63,13 +71,23 @@
     [self setUpNavigation];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     // Refresh the view with the currently selected lecture
     [_ntvc lectureContainer:self switchedToDocument:_selectedLecture];
     
     // Update text note views based on settings menu
     [self applyNoteDefaults];
+    [self playSampleClip];
+}
+
+- (void)playSampleClip {
+    [self playStream:[NSURL URLWithString:@"http://129.21.175.19:8080/stream/live.m3u8"]];
+}
+
+- (void)playStream:(NSURL*)url {
+    VKVideoPlayerTrack *track = [[VKVideoPlayerTrack alloc] initWithStreamURL:url];
+    track.hasNext = YES;
+    [self.player loadVideoWithTrack:track];
 }
 
 - (void)applyNoteDefaults

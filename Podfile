@@ -17,6 +17,7 @@ pod 'TMCache'
 pod 'AsyncDisplayKit'
 pod 'SpinKit'
 pod 'FMDB'
+pod 'VKVideoPlayer', '~> 0.1.1'
 
 end
 
