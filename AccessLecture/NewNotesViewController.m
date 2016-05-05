@@ -13,9 +13,7 @@
 #import "SaveImage.h"
 #import "SaveTextSize.h"
 #import "DraggableView.h"
-
 #import "NewNotesSideViewController.h"
-
 #import "ALView+PureLayout.h"
 #import "NSArray+PureLayout.h"
 #import "NavBackButton.h"
@@ -37,6 +35,9 @@
     UIPopoverController *textPopover;
     
     NSArray *_navigationItems;
+    
+    UIDynamicAnimator *animator;
+    UICollisionBehavior *collision;
 }
 
 CGFloat x = 50;
@@ -45,7 +46,6 @@ CGFloat y = 600;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     //date things
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
     [dateFormat setDateFormat:@"yyyy-MM-dd"];
@@ -66,23 +66,13 @@ CGFloat y = 600;
             _textView.attributedText = string;
         }
     }
-    
-    //Adds the saved images that user selected.
+
     if ([SaveImage sharedData].selectedImagesArray != nil) {
-        
-        for (UIImage *image in [SaveImage sharedData].selectedImagesArray) {
-            UIImageView *imageView = [[DraggableView alloc] initWithImage:image];
-            imageView.frame = CGRectMake(x, y, 100, 100);
+        for (DraggableView *imageView in [SaveImage sharedData].selectedImagesArray) {
             [imageView setContentMode:UIViewContentModeScaleAspectFill];
             imageView.userInteractionEnabled = YES;
+            [_textView addSubview:imageView];
             [self.view addSubview:imageView];
-            
-            if (x < 650) {
-                x += 150;
-            } else {
-                x = 50;
-                y += 150;
-            }
         }
     }
     
@@ -95,7 +85,7 @@ CGFloat y = 600;
 {
     //Adds additional images that user selects
     if ([SaveImage sharedData].notesImage != nil) {
-        UIImageView *imageView = [[DraggableView alloc] initWithImage:[SaveImage sharedData].notesImage];
+        DraggableView *imageView = [[DraggableView alloc] initWithImage:[SaveImage sharedData].notesImage];
         imageView.frame = CGRectMake(x, y, 100, 100);
         [imageView setContentMode:UIViewContentModeScaleAspectFill];
         imageView.userInteractionEnabled = YES;
@@ -210,7 +200,6 @@ CGFloat y = 600;
 
 - (IBAction)changeFontSize:(UIStepper*)sender
 {
-    
     _textView.font = [_textView.font fontWithSize:[sender value]];
     [SaveTextSize sharedData].textFont = _textView.font;
     [[SaveTextSize sharedData] save];
@@ -307,6 +296,7 @@ CGFloat y = 600;
     [self dismissViewControllerAnimated:YES completion:^{
         NSLog(@"DEBUG: Dismissed NewNotesViewController.");
     }];
+    [[SaveImage sharedData] save];
 }
 
 - (void)didReceiveMemoryWarning

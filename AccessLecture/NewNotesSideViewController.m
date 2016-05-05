@@ -9,6 +9,7 @@
 
 #import "NewNotesSideViewController.h"
 #import "SaveImage.h"
+#import "DraggableView.h"
 
 @interface NewNotesSideViewController ()
 
@@ -53,7 +54,9 @@
     
     UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
     [SaveImage sharedData].notesImage = chosenImage;
-    [[SaveImage sharedData].selectedImagesArray addObject:chosenImage];
+    DraggableView *imageView = [[DraggableView alloc] initWithImage:chosenImage];
+    imageView.frame = CGRectMake(50, 600, 100, 100);
+    [[SaveImage sharedData].selectedImagesArray addObject:imageView];
     [[SaveImage sharedData] save];
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
@@ -63,7 +66,7 @@
 - (IBAction)addImage:(id)sender
 {
     //To implement the camera if need be, but gallery is available
-    /*if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         
         UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"Error"
                                                               message:@"Device has no camera"
@@ -72,6 +75,13 @@
                                                     otherButtonTitles: nil];
         
         [myAlertView show];
+        
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.allowsEditing = YES;
+        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        
+        [self presentViewController:picker animated:YES completion:NULL];
     } else {
         if ([[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationPortrait) {
             
@@ -79,18 +89,10 @@
             picker.delegate = self;
             picker.allowsEditing = YES;
             picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-            picker.sourceType = UIImagePickerControllerLivePhoto;
             
             [self presentViewController:picker animated:YES completion:NULL];
         }
-    }*/
-    
-    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    picker.delegate = self;
-    picker.allowsEditing = YES;
-    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    
-    [self presentViewController:picker animated:YES completion:NULL];
+    }
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DraggableView : UIImageView {
+@interface DraggableView : UIImageView <NSCoding> {
     CGPoint startLocation;
 }
 

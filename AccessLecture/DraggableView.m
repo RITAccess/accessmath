@@ -7,6 +7,7 @@
 //
 
 #import "DraggableView.h"
+#import "SaveImage.h"
 
 @implementation DraggableView
 
@@ -23,6 +24,7 @@
     frame.origin.x += pt.x - startLocation.x;
     frame.origin.y += pt.y - startLocation.y;
     [self setFrame:frame];
+    //[[SaveImage sharedData] save];
 }
 
 @end

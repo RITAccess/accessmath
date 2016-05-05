@@ -13,7 +13,6 @@
 static NSString* const image = @"image";
 static NSString* const selectedImages = @"selected images";
 
-
 - (instancetype)initWithCoder:(NSCoder *)decoder
 {
     self = [self init];
