@@ -35,14 +35,10 @@
     UIPopoverController *textPopover;
     
     NSArray *_navigationItems;
-    
-    UIDynamicAnimator *animator;
-    UICollisionBehavior *collision;
 }
 
 CGFloat x = 50;
 CGFloat y = 600;
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -67,6 +63,8 @@ CGFloat y = 600;
         }
     }
 
+    //[SaveImage sharedData].selectedImagesArray = nil;
+    //[[SaveImage sharedData] save];
     if ([SaveImage sharedData].selectedImagesArray != nil) {
         for (DraggableView *imageView in [SaveImage sharedData].selectedImagesArray) {
             [imageView setContentMode:UIViewContentModeScaleAspectFill];
