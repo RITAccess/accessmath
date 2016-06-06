@@ -206,7 +206,7 @@ static NSString* const stream = @"IS098Z75U.jpg";
     
     SKNode *checkNode = [self nodeAtPoint:scenePosition];
     
-    if(checkNode){
+    if(checkNode.name != nil){
         [self.view removeGestureRecognizer:closeSwipe];
         [self.view removeGestureRecognizer:zoomIn];
         

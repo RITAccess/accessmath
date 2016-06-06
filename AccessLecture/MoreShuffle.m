@@ -343,7 +343,7 @@ static const int outline3Category = 3;
     SKSpriteNode *newPap;
     
     if ([saveData sharedData].current != nil) {
-        newPap = [[SKSpriteNode alloc] initWithTexture:[saveData sharedData].current];
+        newPap = [[SKSpriteNode alloc] initWithTexture:[self makeNotecardWithSavedImage]];
     } else {
         newPap = [[SKSpriteNode alloc] initWithTexture:[self originalTexture]];
     }
@@ -488,9 +488,7 @@ static const int outline3Category = 3;
         SKSpriteNode *sprite;
         
         if ([[saveData sharedData].colorName length] == 0) {
-            
             sprite = [[SKSpriteNode alloc] initWithTexture:[self originalTexture]];
-            
         } else {
             sprite = [[SKSpriteNode alloc] initWithTexture:[self makeNotecardWithSavedImage]];
         }

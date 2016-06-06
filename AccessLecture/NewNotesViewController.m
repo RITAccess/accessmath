@@ -51,6 +51,7 @@ CGFloat y = 600;
     _currentDate.userInteractionEnabled = NO;
     
     [_textView sizeThatFits:CGSizeMake(self.view.frame.size.width, self.view.frame.size.height)];
+    _textView.backgroundColor = [UIColor grayColor];
     
     //creates the additional option to highlight the selected text
     UIMenuItem *highlightText = [[UIMenuItem alloc] initWithTitle:@"Highlight" action:@selector(highlightText)];
@@ -62,14 +63,15 @@ CGFloat y = 600;
             _textView.attributedText = string;
         }
     }
-
+    
     //[SaveImage sharedData].selectedImagesArray = nil;
     //[[SaveImage sharedData] save];
     if ([SaveImage sharedData].selectedImagesArray != nil) {
         for (DraggableView *imageView in [SaveImage sharedData].selectedImagesArray) {
+            UIPanGestureRecognizer *panGest = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureDected:)];
+            [imageView addGestureRecognizer:panGest];
             [imageView setContentMode:UIViewContentModeScaleAspectFill];
             imageView.userInteractionEnabled = YES;
-            [_textView addSubview:imageView];
             [self.view addSubview:imageView];
         }
     }
@@ -84,6 +86,8 @@ CGFloat y = 600;
     //Adds additional images that user selects
     if ([SaveImage sharedData].notesImage != nil) {
         DraggableView *imageView = [[DraggableView alloc] initWithImage:[SaveImage sharedData].notesImage];
+        UIPanGestureRecognizer *panGest = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureDected:)];
+        [imageView addGestureRecognizer:panGest];
         imageView.frame = CGRectMake(x, y, 100, 100);
         [imageView setContentMode:UIViewContentModeScaleAspectFill];
         imageView.userInteractionEnabled = YES;
@@ -102,6 +106,7 @@ CGFloat y = 600;
         _textView.font = [SaveTextSize sharedData].textFont;
     }
 }
+
 
 #pragma mark - Navbar Setup
 
@@ -176,6 +181,24 @@ CGFloat y = 600;
         _sideViewController = nil;
     }
     _showingSideView = NO;
+}
+
+#pragma mark Panning
+
+-(void)panGestureDected:(UIPanGestureRecognizer*)recognizer {
+    CGPoint translation = [recognizer translationInView:self.view];
+    CGPoint center = recognizer.view.center;
+    
+    if ((center.y >= _textView.frame.origin.y-50) && (center.y <= _textView.center.y+300)) {
+        //Temporary fix until better solution can be implemented
+        //Set fixed coordinates to return to upon entering the text view from above
+        //[UIView animateWithDuration:0.25 animations:^{recognizer.view.center = CGPointMake(200, 300);}];
+        recognizer.view.center = CGPointMake(200, 300);
+    } else {
+        recognizer.view.center = CGPointMake((recognizer.view.center.x+translation.x), (recognizer.view.center.y+translation.y));
+        [recognizer setTranslation:CGPointZero inView:self.view];
+    }
+    
 }
 
 #pragma mark Swipe Gesture Setup/Actions

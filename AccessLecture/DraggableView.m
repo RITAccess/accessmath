@@ -12,6 +12,7 @@
 {
     BOOL tappedTwice;
     CGRect prevFrame;
+    
 }
 
 - (void) touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event {
