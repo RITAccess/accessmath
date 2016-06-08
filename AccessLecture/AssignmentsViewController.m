@@ -3,12 +3,13 @@
 //  AssignmentsViewController.m
 //  LandScapeV2
 //
-//  Created by Student on 6/24/15.
-//  Copyright (c) 2015 Student. All rights reserved.
+//  Created by Kimberly Sookoo on 6/24/15.
+//  Copyright (c) 2015 Kimberly Sookoo. All rights reserved.
 //
 
 #import "AssignmentsViewController.h"
 #import "AssignmentItem.h"
+#import "SaveAssignments.h"
 
 @interface AssignmentsViewController ()
 {
@@ -16,7 +17,6 @@
 }
 
 @property (weak, nonatomic) IBOutlet UITextField *currDate;
-@property NSMutableArray *toDoItems;
 
 @end
 
@@ -42,7 +42,6 @@
     [self loadInitialData];
 }
 
-
 /*
  * Loads everything statically for the intial information that goes into the array
  */
@@ -60,6 +59,18 @@
     AssignmentItem *item4 = [[AssignmentItem alloc]init];
     item4.itemName = @"Chapter 10, section 9                                                                                                                                        5/2/15";
     [self.toDoItems addObject:item4];
+    
+    NSLog(@"%d",[[SaveAssignments sharedData].savedAssignments count]);
+    for (NSString *key in [SaveAssignments sharedData].savedAssignments) {
+        AssignmentItem *newItem = [[AssignmentItem alloc] init];
+        newItem.itemName = key;
+        [self.toDoItems addObject:newItem];
+    }
+    /*if ([SaveAssignments sharedData].savedItem != nil) {
+     AssignmentItem *newItem = [[AssignmentItem alloc] init];
+     newItem.itemName = [SaveAssignments sharedData].savedItem;
+     [self.toDoItems addObject:newItem];
+     }*/
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -129,8 +140,11 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         //add code here for when you hit delete
+        AssignmentItem *removedItem = [self.toDoItems objectAtIndex:indexPath.row];
         [self.toDoItems removeObjectAtIndex:indexPath.row];
+        [[SaveAssignments sharedData].savedAssignments removeObjectForKey:removedItem.itemName];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [[SaveAssignments sharedData] save];
     }
 }
 

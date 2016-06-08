@@ -1612,10 +1612,10 @@ In a proof by contradiction we assume, along with the hypotheses, the logical ne
             </objects>
             <point key="canvasLocation" x="6234.75" y="589.5"/>
         </scene>
-        <!--View Controller-->
+        <!--New Assignment View Controller-->
         <scene sceneID="aDY-RI-JXd">
             <objects>
-                <viewController id="JBL-OU-LDd" sceneMemberID="viewController">
+                <viewController id="JBL-OU-LDd" customClass="NewAssignmentViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dEa-Cm-9rm"/>
                         <viewControllerLayoutGuide type="bottom" id="ANP-sr-Y8D"/>
@@ -1646,6 +1646,9 @@ In a proof by contradiction we assume, along with the hypotheses, the logical ne
                                         <state key="normal" title="Save">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="saveButton:" destination="JBL-OU-LDd" eventType="touchUpInside" id="veZ-sQ-nNX"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1654,6 +1657,10 @@ In a proof by contradiction we assume, along with the hypotheses, the logical ne
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="dl6-ul-I3q"/>
+                    <connections>
+                        <outlet property="assignmentDueDate" destination="OoI-ep-7YQ" id="3tX-Lo-RyL"/>
+                        <outlet property="assignmentName" destination="BXA-DM-LtN" id="Tts-bj-78p"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cnm-Er-PXx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1945,7 +1952,7 @@ Now when we run our app we will have a visible scrollview has a frame of 0,0,320
         <!--Upcoming Due Dates-->
         <scene sceneID="rtx-Lz-WEd">
             <objects>
-                <tableViewController id="FNw-2z-RTE" customClass="AssignmentsTableViewController" sceneMemberID="viewController">
+                <tableViewController id="FNw-2z-RTE" customClass="AssignmentsViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ysB-Qy-xt6">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1968,7 +1975,7 @@ Now when we run our app we will have a visible scrollview has a frame of 0,0,320
                     <navigationItem key="navigationItem" title="Upcoming Due Dates" id="AvJ-6X-3s4">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="FNc-gP-Tln">
                             <connections>
-                                <segue destination="ZZ6-pu-rqD" kind="unwind" unwindAction="unwindToList:" id="cZb-4O-2V8"/>
+                                <segue destination="ZZ6-pu-rqD" kind="unwind" unwindAction="unwindToList:" id="qYu-As-IJl"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="llb-zM-FDl">

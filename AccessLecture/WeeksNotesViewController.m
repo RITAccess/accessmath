@@ -88,6 +88,11 @@
 
 #pragma mark - Segues
 
+-(IBAction)unwindToList:(UIStoryboardSegue*)segue {
+    
+}
+
+
 - (void)dismissNewNoteViewController
 {
     [self dismissViewControllerAnimated:YES completion:^{

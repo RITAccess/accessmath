@@ -123,6 +123,8 @@
 		C928E8771C88C71300E37CC5 /* IS787-191.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C928E86E1C88C71300E37CC5 /* IS787-191.jpg */; };
 		C928E8781C88C71300E37CC5 /* lines-593191_640.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C928E86F1C88C71300E37CC5 /* lines-593191_640.jpg */; };
 		C928E87D1C88CA7800E37CC5 /* BackgroundTile.m in Sources */ = {isa = PBXBuildFile; fileRef = C928E87C1C88CA7800E37CC5 /* BackgroundTile.m */; };
+		C944A4851D0868B000DE04DB /* NewAssignmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C944A4821D0868B000DE04DB /* NewAssignmentViewController.m */; };
+		C944A4861D0868B000DE04DB /* SaveAssignments.m in Sources */ = {isa = PBXBuildFile; fileRef = C944A4841D0868B000DE04DB /* SaveAssignments.m */; };
 		C97E7C161CC951820022EF73 /* TextColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C97E7C151CC951820022EF73 /* TextColorViewController.m */; };
 		C97E9ADA1C7F908100EF7783 /* SaveTextSize.m in Sources */ = {isa = PBXBuildFile; fileRef = C97E9AD91C7F908100EF7783 /* SaveTextSize.m */; };
 		C9849A8B1CD8396D00A31075 /* DraggableView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9849A8A1CD8396D00A31075 /* DraggableView.m */; };
@@ -377,6 +379,10 @@
 		C928E86F1C88C71300E37CC5 /* lines-593191_640.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "lines-593191_640.jpg"; sourceTree = "<group>"; };
 		C928E87B1C88CA7800E37CC5 /* BackgroundTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundTile.h; sourceTree = "<group>"; };
 		C928E87C1C88CA7800E37CC5 /* BackgroundTile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundTile.m; sourceTree = "<group>"; };
+		C944A4811D0868B000DE04DB /* NewAssignmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewAssignmentViewController.h; sourceTree = "<group>"; };
+		C944A4821D0868B000DE04DB /* NewAssignmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewAssignmentViewController.m; sourceTree = "<group>"; };
+		C944A4831D0868B000DE04DB /* SaveAssignments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveAssignments.h; sourceTree = "<group>"; };
+		C944A4841D0868B000DE04DB /* SaveAssignments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveAssignments.m; sourceTree = "<group>"; };
 		C97E7C141CC951820022EF73 /* TextColorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextColorViewController.h; sourceTree = "<group>"; };
 		C97E7C151CC951820022EF73 /* TextColorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextColorViewController.m; sourceTree = "<group>"; };
 		C97E9AD81C7F908100EF7783 /* SaveTextSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveTextSize.h; sourceTree = "<group>"; };
@@ -473,10 +479,7 @@
 				C94E36941CAB0DEB008A96DD /* SaveColor */,
 				C9B4A0C51C5AB12D00E9CE8B /* NewNotesSection */,
 				C9B4A0C41C5A98A700E9CE8B /* SaveData */,
-				21C36E011BCEA193000CB5B0 /* AssignmentItem.h */,
-				21C36E021BCEA193000CB5B0 /* AssignmentItem.m */,
-				21C36DFE1BCEA179000CB5B0 /* AssignmentsViewController.h */,
-				21C36DFF1BCEA179000CB5B0 /* AssignmentsViewController.m */,
+				C944A4871D0868BA00DE04DB /* AssignmentsViewController */,
 				21C36DFB1BCEA150000CB5B0 /* WeeksNotesViewController.h */,
 				21C36DFC1BCEA150000CB5B0 /* WeeksNotesViewController.m */,
 				C928E8611C88C5C900E37CC5 /* ShuffleScene */,
@@ -988,6 +991,21 @@
 			name = BackgroundImageScene;
 			sourceTree = "<group>";
 		};
+		C944A4871D0868BA00DE04DB /* AssignmentsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				21C36E011BCEA193000CB5B0 /* AssignmentItem.h */,
+				21C36E021BCEA193000CB5B0 /* AssignmentItem.m */,
+				21C36DFE1BCEA179000CB5B0 /* AssignmentsViewController.h */,
+				21C36DFF1BCEA179000CB5B0 /* AssignmentsViewController.m */,
+				C944A4811D0868B000DE04DB /* NewAssignmentViewController.h */,
+				C944A4821D0868B000DE04DB /* NewAssignmentViewController.m */,
+				C944A4831D0868B000DE04DB /* SaveAssignments.h */,
+				C944A4841D0868B000DE04DB /* SaveAssignments.m */,
+			);
+			name = AssignmentsViewController;
+			sourceTree = "<group>";
+		};
 		C94E36941CAB0DEB008A96DD /* SaveColor */ = {
 			isa = PBXGroup;
 			children = (
@@ -1363,6 +1381,7 @@
 				4C5C50CD177B7B7C0095801A /* LectureViewContainer.m in Sources */,
 				4CCBC8DD17E222FF00CB303E /* Note.m in Sources */,
 				4CA4A06B1AE185D1004536B7 /* DirectoryCVC.m in Sources */,
+				C944A4851D0868B000DE04DB /* NewAssignmentViewController.m in Sources */,
 				3F8FD2E418B3F7BF0059EF9C /* Promise.m in Sources */,
 				4C4FA6F01A72C52E00161ABE /* UINavigationBar+hight.m in Sources */,
 				4CA4A0711AE59127004536B7 /* Stack.m in Sources */,
@@ -1387,6 +1406,7 @@
 				21C36E0F1BCEA229000CB5B0 /* SaveColor.m in Sources */,
 				216BE84B1BA718E400B43584 /* NoteSearchTableViewController.m in Sources */,
 				4CDDF69717EB690900FE34E7 /* AMLecture.m in Sources */,
+				C944A4861D0868B000DE04DB /* SaveAssignments.m in Sources */,
 				21C36DFD1BCEA150000CB5B0 /* WeeksNotesViewController.m in Sources */,
 				3F2DC9871887225D008C29BF /* ImageNoteView.m in Sources */,
 				21C36DF71BCEA061000CB5B0 /* NoteShuffleViewController.m in Sources */,
