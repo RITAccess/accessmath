@@ -8,8 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol NewAssignmentDelegate <NSObject>
+
+-(void) didDismissView;
+
+@end
+
 @interface NewAssignmentViewController : UIViewController
 
+@property (nonatomic, assign) id <NewAssignmentDelegate> delegate;
 
 @property (weak, nonatomic) IBOutlet UITextField *assignmentName;
 

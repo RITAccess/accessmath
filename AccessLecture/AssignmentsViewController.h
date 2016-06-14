@@ -12,4 +12,7 @@
 
 @property NSMutableArray *toDoItems;
 
+- (IBAction)editButton:(UIBarButtonItem *)sender;
+
+
 @end

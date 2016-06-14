@@ -1627,7 +1627,7 @@ In a proof by contradiction we assume, along with the hypotheses, the logical ne
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CdK-2V-9Fp">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Assignment name and Due date..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BXA-DM-LtN">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Assignment Name..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BXA-DM-LtN">
                                         <rect key="frame" x="17" y="285" width="287" height="30"/>
                                         <color key="backgroundColor" red="0.85098039219999999" green="0.85882352939999995" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="textColor" red="0.001330525038" green="0.043233208439999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1664,7 +1664,7 @@ In a proof by contradiction we assume, along with the hypotheses, the logical ne
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cnm-Er-PXx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="9000" y="-149.25"/>
+            <point key="canvasLocation" x="8409" y="-144"/>
         </scene>
         <!--Notes-->
         <scene sceneID="Fns-l2-0WA">
@@ -1914,24 +1914,6 @@ Now when we run our app we will have a visible scrollview has a frame of 0,0,320
             <point key="canvasLocation" x="5550" y="595.5"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="NgM-cJ-Nlm">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="OTX-u3-VNa" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Fe8-a5-qHm">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="JBL-OU-LDd" kind="relationship" relationship="rootViewController" id="Vgw-qL-qq1"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0AJ-h9-cIA" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="8335.5" y="-143.25"/>
-        </scene>
-        <!--Navigation Controller-->
         <scene sceneID="lG9-8F-GaI">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fqG-41-Cax" sceneMemberID="viewController">
@@ -1957,14 +1939,51 @@ Now when we run our app we will have a visible scrollview has a frame of 0,0,320
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <toolbar key="tableFooterView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="qU6-tZ-TIa">
+                            <rect key="frame" x="0.0" y="130" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <items>
+                                <barButtonItem title="Item" systemItem="add" id="DIW-MM-HB7">
+                                    <connections>
+                                        <segue destination="JBL-OU-LDd" kind="popoverPresentation" identifier="toNewAssignmentViewController" popoverAnchorBarButtonItem="DIW-MM-HB7" id="gzH-AZ-A6I">
+                                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                        </segue>
+                                    </connections>
+                                </barButtonItem>
+                            </items>
+                        </toolbar>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ListPrototypeCell" id="MVF-9r-IOo">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ListPrototypeCell" id="MVF-9r-IOo" customClass="AssignmentTableViewCell">
                                 <rect key="frame" x="0.0" y="86" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MVF-9r-IOo" id="LwJ-IH-Euu">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IcE-dQ-ZqA">
+                                            <rect key="frame" x="28" y="8" width="160" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j5A-N3-TW7">
+                                            <rect key="frame" x="450" y="8" width="80" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9dj-vc-oiK">
+                                            <rect key="frame" x="289" y="8" width="153" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="assignmentDueDate" destination="9dj-vc-oiK" id="j3Z-cE-Dtw"/>
+                                    <outlet property="assignmentName" destination="IcE-dQ-ZqA" id="z2z-7y-cqN"/>
+                                    <outlet property="assignmentTime" destination="j5A-N3-TW7" id="4MY-Bc-BUu"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -1978,11 +1997,9 @@ Now when we run our app we will have a visible scrollview has a frame of 0,0,320
                                 <segue destination="ZZ6-pu-rqD" kind="unwind" unwindAction="unwindToList:" id="qYu-As-IJl"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="llb-zM-FDl">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="llb-zM-FDl">
                             <connections>
-                                <segue destination="OTX-u3-VNa" kind="popoverPresentation" popoverAnchorBarButtonItem="llb-zM-FDl" id="R9m-aV-dTG">
-                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                </segue>
+                                <action selector="editButton:" destination="FNw-2z-RTE" id="q4e-QK-xTu"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1990,7 +2007,7 @@ Now when we run our app we will have a visible scrollview has a frame of 0,0,320
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hzk-cd-obP" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="ZZ6-pu-rqD" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="7677" y="-146.25"/>
+            <point key="canvasLocation" x="7677" y="-147"/>
         </scene>
         <!--Note Taking View Controller-->
         <scene sceneID="4Sr-cc-8G3">

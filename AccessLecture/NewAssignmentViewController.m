@@ -29,10 +29,15 @@
 
 - (IBAction)saveButton:(id)sender {
     NSString *itemName = _assignmentName.text;
+    [[SaveAssignments sharedData].savedArray addObject:itemName];
     [[SaveAssignments sharedData].savedAssignments setObject:_assignmentDueDate.date forKey:itemName];
     [SaveAssignments sharedData].savedItem = itemName;
     [[SaveAssignments sharedData] save];
-    
+    [self willDismissView];
+}
+
+-(void) willDismissView {
+    [self.delegate didDismissView];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

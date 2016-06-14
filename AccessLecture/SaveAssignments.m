@@ -11,7 +11,10 @@
 @implementation SaveAssignments
 
 static NSString* const assignmentsDict = @"assignments dictionary";
+static NSString* const assignmentsArray = @"assignments array";
 static NSString* const assignment = @"assignment";
+static NSString* const changedName = @"changed name";
+static NSString* const initial = @"initial name";
 
 
 /*
@@ -21,12 +24,18 @@ static NSString* const assignment = @"assignment";
 {
     self = [self init];
     if (self) {
+        if (!_savedArray) {
+            _savedArray = [[NSMutableArray alloc] init];
+        }
+        _savedArray = [[decoder decodeObjectForKey:assignmentsArray] mutableCopy];
         if(!_savedAssignments){
             _savedAssignments = [[NSMutableDictionary alloc] init];
         }
         
         _savedAssignments = [[decoder decodeObjectForKey:assignmentsDict] mutableCopy];
         _savedItem = [decoder decodeObjectForKey:assignment];
+        _changedName = [decoder decodeObjectForKey:changedName];
+        _initialName = [decoder decodeObjectForKey:initial];
     }
     return self;
 }
@@ -36,11 +45,17 @@ static NSString* const assignment = @"assignment";
  */
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
+    if(!self.savedArray){
+        self.savedArray = [[NSMutableArray alloc] init];
+    }
+    [encoder encodeObject:self.savedArray forKey:assignmentsArray];
     if(!self.savedAssignments){
         self.savedAssignments = [[NSMutableDictionary alloc] init];
     }
     [encoder encodeObject:self.savedAssignments forKey:assignmentsDict];
     [encoder encodeObject:self.savedItem forKey:assignment];
+    [encoder encodeObject:self.changedName forKey:changedName];
+    [encoder encodeObject:self.initialName forKey:initial];
 }
 
 /*
