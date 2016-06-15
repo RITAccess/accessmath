@@ -60,6 +60,29 @@
     }
 }
 
+#pragma mark - Bubble Sort Algorithm for Date
+
+-(void) bubbleSortForDate {
+    for (int i = 0; i < [[SaveAssignments sharedData].savedArray count]; i++) {
+        for (int j = i; j < [[SaveAssignments sharedData].savedArray count]; j++) {
+            if ([[[SaveAssignments sharedData].savedAssignments objectForKey:[[SaveAssignments sharedData].savedArray objectAtIndex:i]] compare:[[SaveAssignments sharedData].savedAssignments objectForKey:[[SaveAssignments sharedData].savedArray objectAtIndex:j]]] == NSOrderedDescending) {
+                NSLog(@"In if statement");
+                NSString *temp = [[SaveAssignments sharedData].savedArray objectAtIndex:i];
+                [[SaveAssignments sharedData].savedArray replaceObjectAtIndex:i withObject:[[SaveAssignments sharedData].savedArray objectAtIndex:j]];
+                [[SaveAssignments sharedData].savedArray replaceObjectAtIndex:j withObject:temp];
+            }
+        }
+    }
+}
+
+#pragma mark - Alphabetical Sort
+
+- (void) alphabetSort {
+    NSArray *sortedArray =  [[SaveAssignments sharedData].savedArray sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    [[SaveAssignments sharedData].savedArray removeAllObjects];
+    [[SaveAssignments sharedData].savedArray setArray:sortedArray];
+}
+
 #pragma mark - New Assignment
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
