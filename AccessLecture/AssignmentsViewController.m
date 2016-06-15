@@ -44,6 +44,11 @@
     NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
     SelectedRows = [NSMutableArray arrayWithArray:[userDef objectForKey:@"SelectedRows"]];
     
+    //check to see if sorting algorithm for assignments was selected
+    if ([SaveAssignments sharedData].segmentSelected) {
+        self.segmentChoice.selectedSegmentIndex = [SaveAssignments sharedData].segment;
+    }
+    
     [self loadInitialData];
 }
 
@@ -66,7 +71,6 @@
     for (int i = 0; i < [[SaveAssignments sharedData].savedArray count]; i++) {
         for (int j = i; j < [[SaveAssignments sharedData].savedArray count]; j++) {
             if ([[[SaveAssignments sharedData].savedAssignments objectForKey:[[SaveAssignments sharedData].savedArray objectAtIndex:i]] compare:[[SaveAssignments sharedData].savedAssignments objectForKey:[[SaveAssignments sharedData].savedArray objectAtIndex:j]]] == NSOrderedDescending) {
-                NSLog(@"In if statement");
                 NSString *temp = [[SaveAssignments sharedData].savedArray objectAtIndex:i];
                 [[SaveAssignments sharedData].savedArray replaceObjectAtIndex:i withObject:[[SaveAssignments sharedData].savedArray objectAtIndex:j]];
                 [[SaveAssignments sharedData].savedArray replaceObjectAtIndex:j withObject:temp];
@@ -75,12 +79,47 @@
     }
 }
 
-#pragma mark - Alphabetical Sort
+#pragma mark - Alphabetical & Reverse Alphabetical Sort
 
 - (void) alphabetSort {
     NSArray *sortedArray =  [[SaveAssignments sharedData].savedArray sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
     [[SaveAssignments sharedData].savedArray removeAllObjects];
     [[SaveAssignments sharedData].savedArray setArray:sortedArray];
+}
+
+- (void) reverseAlphabetSort {
+    [self alphabetSort];
+    NSUInteger start = 0;
+    NSUInteger end = [[SaveAssignments sharedData].savedArray count]-1;
+    while (start < end) {
+        [[SaveAssignments sharedData].savedArray exchangeObjectAtIndex:start withObjectAtIndex:end];
+        start++;
+        end--;
+    }
+}
+
+- (IBAction)sortingChoice:(UISegmentedControl *)sender {
+    [SaveAssignments sharedData].segment = sender.selectedSegmentIndex;
+    [SaveAssignments sharedData].segmentSelected = YES;
+    [[SaveAssignments sharedData] save];
+    
+    switch (sender.selectedSegmentIndex) {
+        case 0:
+            [self bubbleSortForDate];
+            break;
+        case 1:
+            [self alphabetSort];
+            break;
+        case 2:
+            [self reverseAlphabetSort];
+            break;
+        default:
+            break;
+    }
+    
+    [self.toDoItems removeAllObjects];
+    [self loadInitialData];
+    [self.tableView reloadData];
 }
 
 #pragma mark - New Assignment

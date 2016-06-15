@@ -14,5 +14,9 @@
 
 - (IBAction)editButton:(UIBarButtonItem *)sender;
 
+- (IBAction)sortingChoice:(UISegmentedControl *)sender;
+@property (strong, nonatomic) IBOutlet UISegmentedControl *segmentChoice;
+
+
 
 @end

@@ -15,6 +15,8 @@ static NSString* const assignmentsArray = @"assignments array";
 static NSString* const assignment = @"assignment";
 static NSString* const changedName = @"changed name";
 static NSString* const initial = @"initial name";
+static NSString* const segment = @"selected segment";
+static NSString* const segmentSelected = @"segment was selected";
 
 
 /*
@@ -36,6 +38,8 @@ static NSString* const initial = @"initial name";
         _savedItem = [decoder decodeObjectForKey:assignment];
         _changedName = [decoder decodeObjectForKey:changedName];
         _initialName = [decoder decodeObjectForKey:initial];
+        _segment = [decoder decodeIntegerForKey:segment];
+        _segmentSelected = [decoder decodeBoolForKey:segmentSelected];
     }
     return self;
 }
@@ -56,6 +60,8 @@ static NSString* const initial = @"initial name";
     [encoder encodeObject:self.savedItem forKey:assignment];
     [encoder encodeObject:self.changedName forKey:changedName];
     [encoder encodeObject:self.initialName forKey:initial];
+    [encoder encodeInteger:self.segment forKey:segment];
+    [encoder encodeBool:self.segmentSelected forKey:segmentSelected];
 }
 
 /*

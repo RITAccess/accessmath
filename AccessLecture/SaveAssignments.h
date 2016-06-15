@@ -25,6 +25,10 @@
 /* Saves assignments and corresponding date */
 @property NSMutableDictionary *savedAssignments;
 
+/* Saves the sort the user wants */
+@property NSInteger segment;
+@property BOOL segmentSelected;
+
 +(instancetype)sharedData;
 -(void)save;
 

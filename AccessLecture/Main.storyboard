@@ -1950,6 +1950,20 @@ Now when we run our app we will have a visible scrollview has a frame of 0,0,320
                                         </segue>
                                     </connections>
                                 </barButtonItem>
+                                <barButtonItem style="plain" id="6t0-hp-pjc">
+                                    <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="imS-Vu-8uk">
+                                        <rect key="frame" x="48" y="7" width="222" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <segments>
+                                            <segment title="Date Sort"/>
+                                            <segment title="Name Sort"/>
+                                            <segment title="Reverse"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="sortingChoice:" destination="FNw-2z-RTE" eventType="valueChanged" id="QQT-fI-nD9"/>
+                                        </connections>
+                                    </segmentedControl>
+                                </barButtonItem>
                             </items>
                         </toolbar>
                         <prototypes>
@@ -2003,6 +2017,9 @@ Now when we run our app we will have a visible scrollview has a frame of 0,0,320
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="segmentChoice" destination="imS-Vu-8uk" id="1ec-IA-U75"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hzk-cd-obP" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="ZZ6-pu-rqD" userLabel="Exit" sceneMemberID="exit"/>
