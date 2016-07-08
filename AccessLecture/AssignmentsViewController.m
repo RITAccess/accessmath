@@ -12,8 +12,9 @@
 #import "SaveAssignments.h"
 #import "AssignmentTableViewCell.h"
 #import "NewAssignmentViewController.h"
+#import "DetailedAssignmentViewController.h"
 
-@interface AssignmentsViewController () <NewAssignmentDelegate, UITextFieldDelegate>
+@interface AssignmentsViewController () <NewAssignmentDelegate, UITextFieldDelegate, DetailedAssignmentDelegate>
 {
     NSMutableArray *SelectedRows;
 }
@@ -49,6 +50,11 @@
         self.segmentChoice.selectedSegmentIndex = [SaveAssignments sharedData].segment;
     }
     
+    [self loadInitialData];
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    [self.toDoItems removeAllObjects];
     [self loadInitialData];
 }
 
@@ -122,6 +128,14 @@
     [self.tableView reloadData];
 }
 
+#pragma mark - Details
+
+-(void)dismissView {
+    [self.toDoItems removeAllObjects];
+    [self loadInitialData];
+    [self.tableView reloadData];
+}
+
 #pragma mark - New Assignment
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -151,14 +165,7 @@
 
 #pragma mark - Edit Names of Assignments
 
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-    [SaveAssignments sharedData].initialName = textField.text;
-    return YES;
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [SaveAssignments sharedData].changedName = textField.text;
-    [textField resignFirstResponder];
+-(void)changeText {
     NSUInteger index = [[SaveAssignments sharedData].savedArray indexOfObject:[SaveAssignments sharedData].initialName];
     for (NSString *name in [SaveAssignments sharedData].savedArray) {
         if ([name isEqualToString:[SaveAssignments sharedData].initialName]) {
@@ -172,9 +179,32 @@
             break;
         }
     }
+    self.editing = NO;
+    [_editButton setTitle:@"Edit"];
     [self.toDoItems removeAllObjects];
-    
     [self loadInitialData];
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    self.editing = YES;
+    [_editButton setTitle:@"Done"];
+    [SaveAssignments sharedData].initialName = textField.text;
+    
+    return YES;
+}
+
+-(BOOL)textFieldShouldEndEditing:(UITextField *)textField {
+    [SaveAssignments sharedData].changedName = textField.text;
+    [textField resignFirstResponder];
+    [self changeText];
+    
+    return YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [SaveAssignments sharedData].changedName = textField.text;
+    [textField resignFirstResponder];
+    [self changeText];
     
     return YES;
 }
@@ -219,22 +249,40 @@
     if ([SelectedRows containsObject:obj])
     {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        
         NSDictionary* attributes = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInt:NSUnderlineStyleSingle]};
         NSAttributedString* attributedString = [[NSAttributedString alloc] initWithString:toDoItem.itemName attributes:attributes];
-        
         cell.assignmentName.attributedText = attributedString;
         
     } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
-        
         NSDictionary* attributes = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInt:0]};
         NSAttributedString* attributedString = [[NSAttributedString alloc] initWithString:toDoItem.itemName attributes:attributes];
-        
         cell.assignmentName.attributedText = attributedString;
     }
     
+    // Configure the view for the selected state
+    UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
+    infoButton.frame = CGRectMake(690,8,30, 30);
+    [infoButton addTarget:self action:@selector(infoButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.contentView addSubview:infoButton];
+    
     return cell;
+}
+
+-(void)infoButtonSelected:(UIButton*)sender {
+    //Create a new view that contains the assignment's information in that view
+    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
+    AssignmentTableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    DetailedAssignmentViewController *davc = [storyboard instantiateViewControllerWithIdentifier:@"detailedAssignment"];
+    davc.name = cell.assignmentName.text;
+    davc.date = cell.assignmentDueDate.text;
+    davc.time = cell.assignmentTime.text;
+    [davc setDelegate:self];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:davc];
+    [self presentViewController:navigationController animated:YES completion:nil];
 }
 
 #pragma mark - Table view delegate
@@ -279,12 +327,10 @@
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return YES;
-    
 }
 
 // Allows for rows to be reordered
 - (void) tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
-    
     NSString *stringToMove = self.toDoItems[sourceIndexPath.row];
     AssignmentItem *movedItem = [self.toDoItems objectAtIndex:sourceIndexPath.row];
     [self.toDoItems removeObjectAtIndex:sourceIndexPath.row];

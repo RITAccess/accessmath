@@ -129,6 +129,7 @@
 		C97E7C161CC951820022EF73 /* TextColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C97E7C151CC951820022EF73 /* TextColorViewController.m */; };
 		C97E9ADA1C7F908100EF7783 /* SaveTextSize.m in Sources */ = {isa = PBXBuildFile; fileRef = C97E9AD91C7F908100EF7783 /* SaveTextSize.m */; };
 		C9849A8B1CD8396D00A31075 /* DraggableView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9849A8A1CD8396D00A31075 /* DraggableView.m */; };
+		C996437C1D2F576E0087EEB6 /* DetailedAssignmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C996437B1D2F576E0087EEB6 /* DetailedAssignmentViewController.m */; };
 		C9B4A0C81C5AB16800E9CE8B /* HighlighterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B4A0C71C5AB16800E9CE8B /* HighlighterViewController.m */; };
 		C9BAE6DB1C6D265000F2E8C7 /* NewNotesSideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BAE6DA1C6D265000F2E8C7 /* NewNotesSideViewController.m */; };
 		C9C136241C7CE97400EAAA74 /* SaveImage.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C136231C7CE97400EAAA74 /* SaveImage.m */; };
@@ -392,6 +393,8 @@
 		C97E9AD91C7F908100EF7783 /* SaveTextSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveTextSize.m; sourceTree = "<group>"; };
 		C9849A891CD8396D00A31075 /* DraggableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DraggableView.h; sourceTree = "<group>"; };
 		C9849A8A1CD8396D00A31075 /* DraggableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DraggableView.m; sourceTree = "<group>"; };
+		C996437A1D2F576E0087EEB6 /* DetailedAssignmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailedAssignmentViewController.h; sourceTree = "<group>"; };
+		C996437B1D2F576E0087EEB6 /* DetailedAssignmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailedAssignmentViewController.m; sourceTree = "<group>"; };
 		C9B4A0C61C5AB16800E9CE8B /* HighlighterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighlighterViewController.h; sourceTree = "<group>"; };
 		C9B4A0C71C5AB16800E9CE8B /* HighlighterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighlighterViewController.m; sourceTree = "<group>"; };
 		C9BAE6D91C6D265000F2E8C7 /* NewNotesSideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewNotesSideViewController.h; sourceTree = "<group>"; };
@@ -1007,6 +1010,8 @@
 				C944A4841D0868B000DE04DB /* SaveAssignments.m */,
 				C90418211D1073E800B3DE00 /* AssignmentTableViewCell.h */,
 				C90418221D1073E800B3DE00 /* AssignmentTableViewCell.m */,
+				C996437A1D2F576E0087EEB6 /* DetailedAssignmentViewController.h */,
+				C996437B1D2F576E0087EEB6 /* DetailedAssignmentViewController.m */,
 			);
 			name = AssignmentsViewController;
 			sourceTree = "<group>";
@@ -1369,6 +1374,7 @@
 				3F8FD2CB18AD33350059EF9C /* AddNote.m in Sources */,
 				3F8D99331880ACBE0061DEA2 /* NSString+TrimmingAdditions.m in Sources */,
 				3F8D990E187DD9100061DEA2 /* FullScreenNoteViewController.m in Sources */,
+				C996437C1D2F576E0087EEB6 /* DetailedAssignmentViewController.m in Sources */,
 				C9B4A0C81C5AB16800E9CE8B /* HighlighterViewController.m in Sources */,
 				3F07C34F187B2BA7005BC7EC /* TextNoteViewController.m in Sources */,
 				3FED96191370863E00D8D1B8 /* main.m in Sources */,

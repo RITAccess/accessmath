@@ -13,6 +13,8 @@
 @property NSMutableArray *toDoItems;
 
 - (IBAction)editButton:(UIBarButtonItem *)sender;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *editButton;
+
 
 - (IBAction)sortingChoice:(UISegmentedControl *)sender;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *segmentChoice;
