@@ -21,12 +21,11 @@
 @property (strong, nonatomic) IBOutlet UITextField *assignmentName;
 @property NSString *name;
 
-@property (strong, nonatomic) IBOutlet UITextField *assignmentDueDate;
-@property NSString *date;
-
-@property (strong, nonatomic) IBOutlet UITextField *assignmentTime;
-@property NSString *time;
+@property (strong, nonatomic) IBOutlet UIDatePicker *datePicker;
+@property NSDate *assignmentDate;
 
 - (IBAction)doneButton:(UIBarButtonItem *)sender;
+- (IBAction)updateDueDate:(UIDatePicker *)sender;
+
 
 @end

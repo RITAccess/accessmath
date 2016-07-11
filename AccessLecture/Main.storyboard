@@ -2398,30 +2398,8 @@ Now when we run our app we will have a visible scrollview has a frame of 0,0,320
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Vr-Ew-Dlg">
-                                <rect key="frame" x="185" y="248" width="200" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oBL-1L-bdR">
-                                <rect key="frame" x="185" y="326" width="200" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3lk-vD-sKb">
                                 <rect key="frame" x="82" y="175" width="95" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OAh-27-okQ">
-                                <rect key="frame" x="82" y="252" width="36" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="utK-bC-WUD">
-                                <rect key="frame" x="82" y="330" width="38" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -2431,6 +2409,15 @@ Now when we run our app we will have a visible scrollview has a frame of 0,0,320
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="fR7-I4-we9">
+                                <rect key="frame" x="185" y="249" width="364" height="216"/>
+                                <date key="date" timeIntervalSinceReferenceDate="489948506.384718">
+                                    <!--2016-07-11 16:48:26 +0000-->
+                                </date>
+                                <connections>
+                                    <action selector="updateDueDate:" destination="O6q-iK-Tpu" eventType="valueChanged" id="uxO-fX-pmw"/>
+                                </connections>
+                            </datePicker>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -2442,9 +2429,8 @@ Now when we run our app we will have a visible scrollview has a frame of 0,0,320
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="assignmentDueDate" destination="5Vr-Ew-Dlg" id="oLK-5i-ePE"/>
                         <outlet property="assignmentName" destination="dXd-wB-zwO" id="wLY-qA-cfW"/>
-                        <outlet property="assignmentTime" destination="oBL-1L-bdR" id="z58-qc-MRl"/>
+                        <outlet property="datePicker" destination="fR7-I4-we9" id="tng-lH-CFP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Omh-ir-9PN" userLabel="First Responder" sceneMemberID="firstResponder"/>

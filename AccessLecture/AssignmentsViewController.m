@@ -26,6 +26,9 @@
 @implementation AssignmentsViewController{
     NewAssignmentViewController *navc;
     UIPopoverController *popover;
+    
+    //to access assignment date directly
+    NSDate *assignmentDate;
 }
 
 - (void)viewDidLoad
@@ -238,6 +241,7 @@
     cell.assignmentName.delegate = self;
     cell.assignmentDueDate.text = theDate;
     cell.assignmentTime.text = time;
+    assignmentDate = toDoItem.creationDate;
     
     if (indexPath.row % 2) {
         [cell setBackgroundColor:[UIColor whiteColor]];
@@ -278,8 +282,7 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     DetailedAssignmentViewController *davc = [storyboard instantiateViewControllerWithIdentifier:@"detailedAssignment"];
     davc.name = cell.assignmentName.text;
-    davc.date = cell.assignmentDueDate.text;
-    davc.time = cell.assignmentTime.text;
+    davc.assignmentDate = assignmentDate;
     [davc setDelegate:self];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:davc];
     [self presentViewController:navigationController animated:YES completion:nil];

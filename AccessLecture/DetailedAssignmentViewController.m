@@ -19,11 +19,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.assignmentName.text = self.name;
+    self.datePicker.date = self.assignmentDate;
     self.assignmentName.delegate = self;
-    self.assignmentDueDate.text = self.date;
-    self.assignmentDueDate.delegate = self;
-    self.assignmentTime.text = self.time;
-    self.assignmentTime.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -60,6 +57,12 @@
 - (IBAction)doneButton:(UIBarButtonItem *)sender {
     [self.delegate dismissView];
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)updateDueDate:(UIDatePicker *)sender {
+    NSDate *dateToReplace = [[SaveAssignments sharedData].savedAssignments objectForKey:self.assignmentName.text];
+    dateToReplace = sender.date;
+    [[SaveAssignments sharedData].savedAssignments setObject:dateToReplace forKey:self.assignmentName.text];
 }
 
 @end
