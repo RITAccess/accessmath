@@ -21,6 +21,9 @@
     self.assignmentName.text = self.name;
     self.datePicker.date = self.assignmentDate;
     self.assignmentName.delegate = self;
+    self.detailTextView.text = self.notes;
+    
+    NSLog(@"Text view %@",self.detailTextView.text);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -31,23 +34,21 @@
 #pragma mark - Text Fields Editing
 
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-    [SaveAssignments sharedData].initialName = textField.text;
+    self.name = textField.text;
     return YES;
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [SaveAssignments sharedData].changedName = textField.text;
     [textField resignFirstResponder];
-    NSUInteger index = [[SaveAssignments sharedData].savedArray indexOfObject:[SaveAssignments sharedData].initialName];
+    NSUInteger index = [[SaveAssignments sharedData].savedArray indexOfObject:self.name];
     for (NSString *name in [SaveAssignments sharedData].savedArray) {
-        if ([name isEqualToString:[SaveAssignments sharedData].initialName]) {
-            NSDate *dateToSave = [[SaveAssignments sharedData].savedAssignments objectForKey:[SaveAssignments sharedData].initialName];
-            [[SaveAssignments sharedData].savedAssignments setObject:dateToSave forKey:[SaveAssignments sharedData].changedName];
+        if ([name isEqualToString:self.name]) {
+            NSDate *dateToSave = [[SaveAssignments sharedData].savedAssignments objectForKey:self.name];
+            [[SaveAssignments sharedData].savedAssignments setObject:dateToSave forKey:textField.text];
             [[SaveAssignments sharedData].savedAssignments removeObjectForKey:name];
-            [[SaveAssignments sharedData].savedArray replaceObjectAtIndex:index withObject:[SaveAssignments sharedData].changedName];
-            [SaveAssignments sharedData].initialName = nil;
-            [SaveAssignments sharedData].changedName = nil;
+            [[SaveAssignments sharedData].savedArray replaceObjectAtIndex:index withObject:textField.text];
             [[SaveAssignments sharedData] save];
+            self.name = textField.text;
             break;
         }
     }
@@ -55,6 +56,15 @@
 }
 
 - (IBAction)doneButton:(UIBarButtonItem *)sender {
+    NSLog(@"Text view %@",self.detailTextView.text);
+    NSLog(@"Text view %@",self.name);
+    NSString *newNotes = self.detailTextView.text;
+    for (NSString *key in [SaveAssignments sharedData].savedNotes) {
+        if ([key isEqualToString:self.name]) {
+            [[SaveAssignments sharedData].savedNotes setObject:newNotes forKey:key];
+            [[SaveAssignments sharedData] save];
+        }
+    }
     [self.delegate dismissView];
     [self dismissViewControllerAnimated:YES completion:nil];
 }

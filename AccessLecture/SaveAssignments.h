@@ -25,6 +25,9 @@
 /* Saves assignments and corresponding date */
 @property NSMutableDictionary *savedAssignments;
 
+/*Saves the notes corresponding to a specific assignment */
+@property NSMutableDictionary *savedNotes;
+
 /* Saves the sort the user wants */
 @property NSInteger segment;
 @property BOOL segmentSelected;

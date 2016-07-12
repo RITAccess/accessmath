@@ -11,6 +11,7 @@
 @implementation SaveAssignments
 
 static NSString* const assignmentsDict = @"assignments dictionary";
+static NSString* const notesDict = @"notes dictionary";
 static NSString* const assignmentsArray = @"assignments array";
 static NSString* const assignment = @"assignment";
 static NSString* const changedName = @"changed name";
@@ -34,7 +35,13 @@ static NSString* const segmentSelected = @"segment was selected";
             _savedAssignments = [[NSMutableDictionary alloc] init];
         }
         
+        if(!_savedNotes){
+            _savedNotes = [[NSMutableDictionary alloc] init];
+        }
+        
         _savedAssignments = [[decoder decodeObjectForKey:assignmentsDict] mutableCopy];
+        _savedNotes = [[decoder decodeObjectForKey:notesDict] mutableCopy];
+        
         _savedItem = [decoder decodeObjectForKey:assignment];
         _changedName = [decoder decodeObjectForKey:changedName];
         _initialName = [decoder decodeObjectForKey:initial];
@@ -56,7 +63,11 @@ static NSString* const segmentSelected = @"segment was selected";
     if(!self.savedAssignments){
         self.savedAssignments = [[NSMutableDictionary alloc] init];
     }
+    if(!self.savedNotes){
+        self.savedNotes = [[NSMutableDictionary alloc] init];
+    }
     [encoder encodeObject:self.savedAssignments forKey:assignmentsDict];
+    [encoder encodeObject:self.savedNotes forKey:notesDict];
     [encoder encodeObject:self.savedItem forKey:assignment];
     [encoder encodeObject:self.changedName forKey:changedName];
     [encoder encodeObject:self.initialName forKey:initial];

@@ -29,6 +29,8 @@
     
     //to access assignment date directly
     NSDate *assignmentDate;
+    //to access notes associated with assignment
+    NSString *assignmentNotes;
 }
 
 - (void)viewDidLoad
@@ -74,19 +76,61 @@
     }
 }
 
-#pragma mark - Bubble Sort Algorithm for Date
+#pragma mark - Merge Sort Algorithm for Date
 
--(void) bubbleSortForDate {
-    for (int i = 0; i < [[SaveAssignments sharedData].savedArray count]; i++) {
-        for (int j = i; j < [[SaveAssignments sharedData].savedArray count]; j++) {
-            if ([[[SaveAssignments sharedData].savedAssignments objectForKey:[[SaveAssignments sharedData].savedArray objectAtIndex:i]] compare:[[SaveAssignments sharedData].savedAssignments objectForKey:[[SaveAssignments sharedData].savedArray objectAtIndex:j]]] == NSOrderedDescending) {
-                NSString *temp = [[SaveAssignments sharedData].savedArray objectAtIndex:i];
-                [[SaveAssignments sharedData].savedArray replaceObjectAtIndex:i withObject:[[SaveAssignments sharedData].savedArray objectAtIndex:j]];
-                [[SaveAssignments sharedData].savedArray replaceObjectAtIndex:j withObject:temp];
-            }
+-(NSMutableArray*) mergeSort:(NSMutableArray*)list {
+    //Base case, only 1 element
+    if (list.count <= 1) {
+        return list;
+    }
+    
+    NSUInteger mid = [list count]/2;
+    NSMutableArray *left = [[NSMutableArray alloc] init];
+    NSMutableArray *right = [[NSMutableArray alloc] init];
+    
+    //Recursive case: divide list into equal-sized sublists
+    for (NSUInteger i = 0; i < mid; i++) {
+        [left addObject:[list objectAtIndex:i]];
+    }
+    
+    for (NSUInteger i = mid; i < [list count]; i++) {
+        [right addObject:[list objectAtIndex:i]];
+        
+    }
+    
+    return [self merge:[self mergeSort:left] with:[self mergeSort:right]];
+}
+
+-(NSMutableArray*) merge: (NSMutableArray*)left with: (NSMutableArray*)right {
+    NSMutableArray *result = [[NSMutableArray alloc] init];
+    
+    int leftIndex = 0;
+    int rightIndex = 0;
+    while ((leftIndex < [left count]) && (rightIndex < [right count])) {
+        if ([[[SaveAssignments sharedData].savedAssignments objectForKey:[left objectAtIndex:leftIndex]] compare:[[SaveAssignments sharedData].savedAssignments objectForKey:[right objectAtIndex:rightIndex]]] == NSOrderedAscending) {
+            [result addObject:[left objectAtIndex:leftIndex]];
+            leftIndex++;
+        }
+        else {
+            [result addObject:[right objectAtIndex:rightIndex]];
+            rightIndex++;
         }
     }
+    
+    while(leftIndex < [left count]) {
+        [result addObject:[left objectAtIndex:leftIndex]];
+        leftIndex++;
+    }
+    
+    while(rightIndex < [right count]) {
+        [result addObject:[right objectAtIndex:rightIndex]];
+        rightIndex++;
+    }
+    
+    return result;
 }
+
+
 
 #pragma mark - Alphabetical & Reverse Alphabetical Sort
 
@@ -114,7 +158,7 @@
     
     switch (sender.selectedSegmentIndex) {
         case 0:
-            [self bubbleSortForDate];
+            [SaveAssignments sharedData].savedArray = [self mergeSort:[SaveAssignments sharedData].savedArray];
             break;
         case 1:
             [self alphabetSort];
@@ -125,7 +169,7 @@
         default:
             break;
     }
-    
+    [[SaveAssignments sharedData] save];
     [self.toDoItems removeAllObjects];
     [self loadInitialData];
     [self.tableView reloadData];
@@ -246,7 +290,7 @@
     if (indexPath.row % 2) {
         [cell setBackgroundColor:[UIColor whiteColor]];
     } else {
-        [cell setBackgroundColor:[UIColor lightGrayColor]];
+        [cell setBackgroundColor:[UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1.0]];
     }
     
     NSNumber *obj = [NSNumber numberWithInteger:indexPath.row];
@@ -283,6 +327,8 @@
     DetailedAssignmentViewController *davc = [storyboard instantiateViewControllerWithIdentifier:@"detailedAssignment"];
     davc.name = cell.assignmentName.text;
     davc.assignmentDate = assignmentDate;
+    davc.notes = [[SaveAssignments sharedData].savedNotes valueForKey:cell.assignmentName.text];
+    NSLog(@"Text view %@",assignmentNotes);
     [davc setDelegate:self];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:davc];
     [self presentViewController:navigationController animated:YES completion:nil];

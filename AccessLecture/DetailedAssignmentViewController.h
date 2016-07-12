@@ -24,6 +24,10 @@
 @property (strong, nonatomic) IBOutlet UIDatePicker *datePicker;
 @property NSDate *assignmentDate;
 
+@property (strong, nonatomic) IBOutlet UITextView *detailTextView;
+@property NSString *notes;
+
+
 - (IBAction)doneButton:(UIBarButtonItem *)sender;
 - (IBAction)updateDueDate:(UIDatePicker *)sender;
 

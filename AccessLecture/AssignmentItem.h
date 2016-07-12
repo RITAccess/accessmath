@@ -13,5 +13,6 @@
 @property NSString *itemName;
 @property BOOL completed;
 @property NSDate *creationDate;
+@property NSString *notes;
 
 @end
