@@ -56,6 +56,12 @@
     }
     
     [self loadInitialData];
+    
+    int i = 1;
+    for (NSString *str in [SaveAssignments sharedData].savedNotes) {
+        NSLog(@"Here: %@", str);
+        i++;
+    }
 }
 
 -(void)viewDidAppear:(BOOL)animated {

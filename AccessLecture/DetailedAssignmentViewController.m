@@ -56,15 +56,10 @@
 }
 
 - (IBAction)doneButton:(UIBarButtonItem *)sender {
-    NSLog(@"Text view %@",self.detailTextView.text);
-    NSLog(@"Text view %@",self.name);
+    NSString *assignmentName = self.name;
     NSString *newNotes = self.detailTextView.text;
-    for (NSString *key in [SaveAssignments sharedData].savedNotes) {
-        if ([key isEqualToString:self.name]) {
-            [[SaveAssignments sharedData].savedNotes setObject:newNotes forKey:key];
-            [[SaveAssignments sharedData] save];
-        }
-    }
+    [[SaveAssignments sharedData].savedNotes setObject:newNotes forKey:assignmentName];
+    [[SaveAssignments sharedData] save];
     [self.delegate dismissView];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
