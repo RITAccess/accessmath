@@ -2410,7 +2410,7 @@ Now when we run our app we will have a visible scrollview has a frame of 0,0,320
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="fR7-I4-we9">
-                                <rect key="frame" x="144" y="219" width="364" height="60"/>
+                                <rect key="frame" x="144" y="219" width="364" height="100"/>
                                 <date key="date" timeIntervalSinceReferenceDate="489948506.384718">
                                     <!--2016-07-11 16:48:26 +0000-->
                                 </date>

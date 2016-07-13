@@ -26,11 +26,6 @@
 @implementation AssignmentsViewController{
     NewAssignmentViewController *navc;
     UIPopoverController *popover;
-    
-    //to access assignment date directly
-    NSDate *assignmentDate;
-    //to access notes associated with assignment
-    NSString *assignmentNotes;
 }
 
 - (void)viewDidLoad
@@ -291,12 +286,18 @@
     cell.assignmentName.delegate = self;
     cell.assignmentDueDate.text = theDate;
     cell.assignmentTime.text = time;
-    assignmentDate = toDoItem.creationDate;
     
-    if (indexPath.row % 2) {
-        [cell setBackgroundColor:[UIColor whiteColor]];
+    NSDate *today = [NSDate date];
+    NSDate *fiveDayWarning = [toDoItem.creationDate dateByAddingTimeInterval:-5*24*60*60];
+    
+    if (([today compare:fiveDayWarning] == NSOrderedDescending) && ([today compare:toDoItem.creationDate] == NSOrderedAscending)) {
+        [cell setBackgroundColor:[UIColor redColor]];
     } else {
-        [cell setBackgroundColor:[UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1.0]];
+        if (indexPath.row % 2) {
+            [cell setBackgroundColor:[UIColor whiteColor]];
+        } else {
+            [cell setBackgroundColor:[UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1.0]];
+        }
     }
     
     NSNumber *obj = [NSNumber numberWithInteger:indexPath.row];
@@ -332,9 +333,8 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     DetailedAssignmentViewController *davc = [storyboard instantiateViewControllerWithIdentifier:@"detailedAssignment"];
     davc.name = cell.assignmentName.text;
-    davc.assignmentDate = assignmentDate;
+    davc.assignmentDate = [[SaveAssignments sharedData].savedAssignments objectForKey:cell.assignmentName.text];
     davc.notes = [[SaveAssignments sharedData].savedNotes valueForKey:cell.assignmentName.text];
-    NSLog(@"Text view %@",assignmentNotes);
     [davc setDelegate:self];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:davc];
     [self presentViewController:navigationController animated:YES completion:nil];

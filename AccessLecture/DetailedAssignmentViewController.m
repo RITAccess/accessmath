@@ -22,8 +22,6 @@
     self.datePicker.date = self.assignmentDate;
     self.assignmentName.delegate = self;
     self.detailTextView.text = self.notes;
-    
-    NSLog(@"Text view %@",self.detailTextView.text);
 }
 
 - (void)didReceiveMemoryWarning {
