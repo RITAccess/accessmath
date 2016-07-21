@@ -13,8 +13,9 @@
 #import "AssignmentTableViewCell.h"
 #import "NewAssignmentViewController.h"
 #import "DetailedAssignmentViewController.h"
+#import "AssignmentsWarningViewController.h"
 
-@interface AssignmentsViewController () <NewAssignmentDelegate, UITextFieldDelegate, DetailedAssignmentDelegate>
+@interface AssignmentsViewController () <NewAssignmentDelegate, UITextFieldDelegate, DetailedAssignmentDelegate, AssignmentWarningDelegate>
 {
     NSMutableArray *SelectedRows;
 }
@@ -24,6 +25,7 @@
 @end
 
 @implementation AssignmentsViewController{
+    AssignmentsWarningViewController *awvc;
     NewAssignmentViewController *navc;
     UIPopoverController *popover;
 }
@@ -31,6 +33,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.tableView.delegate = self;
+    
+    self.tableView.dataSource = self;
     
     //date things
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
@@ -49,14 +54,7 @@
     if ([SaveAssignments sharedData].segmentSelected) {
         self.segmentChoice.selectedSegmentIndex = [SaveAssignments sharedData].segment;
     }
-    
     [self loadInitialData];
-    
-    int i = 1;
-    for (NSString *str in [SaveAssignments sharedData].savedNotes) {
-        NSLog(@"Here: %@", str);
-        i++;
-    }
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -69,11 +67,46 @@
  */
 -(void) loadInitialData
 {
+    [self fiveDayWarning];
     for (NSString *name in [SaveAssignments sharedData].savedArray) {
         AssignmentItem *newItem = [[AssignmentItem alloc] init];
         newItem.itemName = name;
         newItem.creationDate = [[SaveAssignments sharedData].savedAssignments objectForKey:name];
         [self.toDoItems addObject:newItem];
+    }
+}
+
+#pragma mark - Sort closest due to the top
+
+-(void)fiveDayWarning {
+    NSMutableArray *copyArray = [[NSMutableArray alloc] init];
+    for (NSString *str in [SaveAssignments sharedData].savedArray) {
+        [copyArray addObject:str];
+    }
+    NSMutableArray *closestDue = [self mergeSort:copyArray];
+    
+    NSMutableArray *sortedClosestDue = [[NSMutableArray alloc] init];
+    for (NSString *name in closestDue) {
+        NSDate *today = [NSDate date];
+        NSDate *fiveDayWarning;
+        if ([SaveAssignments sharedData].reminder != nil) {
+            int integer = [[SaveAssignments sharedData].reminder intValue];
+            fiveDayWarning = [[[SaveAssignments sharedData].savedAssignments objectForKey:name] dateByAddingTimeInterval:-integer*24*60*60];
+        } else {
+            fiveDayWarning = [[[SaveAssignments sharedData].savedAssignments objectForKey:name] dateByAddingTimeInterval:-5*24*60*60];
+        }
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
+        [dateFormat setDateFormat:@"EEE yyyy-MM-dd"];
+        //NSString *theDate = [dateFormat stringFromDate:fiveDayWarning];
+        if (([today compare:fiveDayWarning] == NSOrderedDescending) && ([today compare:[[SaveAssignments sharedData].savedAssignments objectForKey:name]] == NSOrderedAscending)) {
+            NSString *temp = name;
+            [sortedClosestDue addObject:temp];
+        }
+    };
+    
+    for (NSString *str in sortedClosestDue.reverseObjectEnumerator) {
+        [[SaveAssignments sharedData].savedArray removeObject:str];
+        [[SaveAssignments sharedData].savedArray insertObject:str atIndex:0];
     }
 }
 
@@ -190,12 +223,21 @@
     if ([segue.identifier isEqualToString:@"toNewAssignmentViewController"]) {
         navc = segue.destinationViewController;
         [navc setDelegate:self];
+    } else if ([segue.identifier isEqualToString:@"toReminder"]) {
+        awvc = segue.destinationViewController;
+        [awvc setDelegate:self];
     }
 }
 
 -(void) didDismissView {
     [self.toDoItems removeAllObjects];
     [self loadInitialData];
+    [self.tableView reloadData];
+}
+
+#pragma mark - Assignment Warning
+
+-(void)dismissAssignmentWarning {
     [self.tableView reloadData];
 }
 
@@ -227,8 +269,6 @@
             break;
         }
     }
-    self.editing = NO;
-    [_editButton setTitle:@"Edit"];
     [self.toDoItems removeAllObjects];
     [self loadInitialData];
 }
@@ -244,16 +284,22 @@
 -(BOOL)textFieldShouldEndEditing:(UITextField *)textField {
     [SaveAssignments sharedData].changedName = textField.text;
     [textField resignFirstResponder];
-    [self changeText];
-    
+    if (!([textField.text isEqualToString:[SaveAssignments sharedData].initialName])) {
+        [self changeText];
+    }
+    self.editing = NO;
+    [_editButton setTitle:@"Edit"];
     return YES;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [SaveAssignments sharedData].changedName = textField.text;
     [textField resignFirstResponder];
-    [self changeText];
-    
+    if (!([textField.text isEqualToString:[SaveAssignments sharedData].initialName])) {
+        [self changeText];
+    }
+    self.editing = NO;
+    [_editButton setTitle:@"Edit"];
     return YES;
 }
 
@@ -264,12 +310,14 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    NSLog(@"In numberOfRows");
     return [self.toDoItems count];
 }
 
 /* Strikes through the selected rows */
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"Am I here?");
     AssignmentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ListPrototypeCell" forIndexPath:indexPath];
     AssignmentItem *toDoItem = [self.toDoItems objectAtIndex:indexPath.row];
     navc.delegate = self;
@@ -288,16 +336,28 @@
     cell.assignmentTime.text = time;
     
     NSDate *today = [NSDate date];
-    NSDate *fiveDayWarning = [toDoItem.creationDate dateByAddingTimeInterval:-5*24*60*60];
+    NSDate *fiveDayWarning;
+    if ([SaveAssignments sharedData].reminder != nil) {
+        int integer = [[SaveAssignments sharedData].reminder intValue];
+        fiveDayWarning = [toDoItem.creationDate dateByAddingTimeInterval:-integer*24*60*60];
+    } else {
+        fiveDayWarning = [toDoItem.creationDate dateByAddingTimeInterval:-5*24*60*60];
+    }
     
     if (([today compare:fiveDayWarning] == NSOrderedDescending) && ([today compare:toDoItem.creationDate] == NSOrderedAscending)) {
         [cell setBackgroundColor:[UIColor redColor]];
+        [cell.assignmentName setTextColor:[UIColor whiteColor]];
+        [cell.assignmentDueDate setTextColor:[UIColor whiteColor]];
+        [cell.assignmentTime setTextColor:[UIColor whiteColor]];
     } else {
         if (indexPath.row % 2) {
             [cell setBackgroundColor:[UIColor whiteColor]];
         } else {
             [cell setBackgroundColor:[UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1.0]];
         }
+        [cell.assignmentName setTextColor:[UIColor blackColor]];
+        [cell.assignmentDueDate setTextColor:[UIColor blackColor]];
+        [cell.assignmentTime setTextColor:[UIColor blackColor]];
     }
     
     NSNumber *obj = [NSNumber numberWithInteger:indexPath.row];
@@ -400,5 +460,4 @@
 {
     [super didReceiveMemoryWarning];
 }
-
 @end

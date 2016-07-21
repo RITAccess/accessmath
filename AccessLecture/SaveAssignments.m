@@ -18,7 +18,8 @@ static NSString* const changedName = @"changed name";
 static NSString* const initial = @"initial name";
 static NSString* const segment = @"selected segment";
 static NSString* const segmentSelected = @"segment was selected";
-
+static NSString* const reminderInDays = @"remind in number of days";
+static NSString* const reminderChosen = @"reminder chosen";
 
 /*
  "Deserializes" the data
@@ -47,6 +48,9 @@ static NSString* const segmentSelected = @"segment was selected";
         _initialName = [decoder decodeObjectForKey:initial];
         _segment = [decoder decodeIntegerForKey:segment];
         _segmentSelected = [decoder decodeBoolForKey:segmentSelected];
+        _reminderInDays = [decoder decodeIntegerForKey:reminderInDays];
+        _reminder = [decoder decodeObjectForKey:reminderChosen];
+        //_reminderChosen = [decoder decodeBoolForKey:reminderChosen];
     }
     return self;
 }
@@ -73,6 +77,9 @@ static NSString* const segmentSelected = @"segment was selected";
     [encoder encodeObject:self.initialName forKey:initial];
     [encoder encodeInteger:self.segment forKey:segment];
     [encoder encodeBool:self.segmentSelected forKey:segmentSelected];
+    [encoder encodeInteger:self.reminderInDays forKey:reminderInDays];
+    [encoder encodeObject:self.reminder forKey:reminderChosen];
+    //[encoder encodeInteger:self.reminderChosen forKey:reminderChosen];
 }
 
 /*

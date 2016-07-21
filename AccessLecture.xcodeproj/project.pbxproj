@@ -133,6 +133,7 @@
 		C9B4A0C81C5AB16800E9CE8B /* HighlighterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B4A0C71C5AB16800E9CE8B /* HighlighterViewController.m */; };
 		C9BAE6DB1C6D265000F2E8C7 /* NewNotesSideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BAE6DA1C6D265000F2E8C7 /* NewNotesSideViewController.m */; };
 		C9C136241C7CE97400EAAA74 /* SaveImage.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C136231C7CE97400EAAA74 /* SaveImage.m */; };
+		C9F9AFEE1D4130D0000995F9 /* AssignmentsWarningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F9AFED1D4130D0000995F9 /* AssignmentsWarningViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -401,6 +402,8 @@
 		C9BAE6DA1C6D265000F2E8C7 /* NewNotesSideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewNotesSideViewController.m; sourceTree = "<group>"; };
 		C9C136221C7CE97400EAAA74 /* SaveImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveImage.h; sourceTree = "<group>"; };
 		C9C136231C7CE97400EAAA74 /* SaveImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveImage.m; sourceTree = "<group>"; };
+		C9F9AFEC1D4130D0000995F9 /* AssignmentsWarningViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssignmentsWarningViewController.h; sourceTree = "<group>"; };
+		C9F9AFED1D4130D0000995F9 /* AssignmentsWarningViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssignmentsWarningViewController.m; sourceTree = "<group>"; };
 		E42E409B29FC0EF386FD2A96 /* Pods-AccessLecture Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AccessLecture Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AccessLecture Tests/Pods-AccessLecture Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1012,6 +1015,8 @@
 				C90418221D1073E800B3DE00 /* AssignmentTableViewCell.m */,
 				C996437A1D2F576E0087EEB6 /* DetailedAssignmentViewController.h */,
 				C996437B1D2F576E0087EEB6 /* DetailedAssignmentViewController.m */,
+				C9F9AFEC1D4130D0000995F9 /* AssignmentsWarningViewController.h */,
+				C9F9AFED1D4130D0000995F9 /* AssignmentsWarningViewController.m */,
 			);
 			name = AssignmentsViewController;
 			sourceTree = "<group>";
@@ -1410,6 +1415,7 @@
 				3F8B515618FD90580053BFE8 /* UIImage+Rotate.m in Sources */,
 				4CFC573017DF800700393A1E /* NoteTakingViewController.m in Sources */,
 				4CDB057D17B557C300D8EB85 /* AccessLecture.xcdatamodeld in Sources */,
+				C9F9AFEE1D4130D0000995F9 /* AssignmentsWarningViewController.m in Sources */,
 				21C36E031BCEA193000CB5B0 /* AssignmentItem.m in Sources */,
 				3F8B515418FD90580053BFE8 /* UIImage+FixOrientation.m in Sources */,
 				3F8FD2E318B3F7BF0059EF9C /* Deferred.m in Sources */,

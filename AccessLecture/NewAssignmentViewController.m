@@ -20,6 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self.assignmentDueDate setMinimumDate:[NSDate date]];
 }
 
 - (void)didReceiveMemoryWarning {
