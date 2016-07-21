@@ -134,6 +134,7 @@
 		C9BAE6DB1C6D265000F2E8C7 /* NewNotesSideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BAE6DA1C6D265000F2E8C7 /* NewNotesSideViewController.m */; };
 		C9C136241C7CE97400EAAA74 /* SaveImage.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C136231C7CE97400EAAA74 /* SaveImage.m */; };
 		C9F9AFEE1D4130D0000995F9 /* AssignmentsWarningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F9AFED1D4130D0000995F9 /* AssignmentsWarningViewController.m */; };
+		C9F9AFF11D413587000995F9 /* SortingMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F9AFF01D413587000995F9 /* SortingMethods.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -404,6 +405,8 @@
 		C9C136231C7CE97400EAAA74 /* SaveImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveImage.m; sourceTree = "<group>"; };
 		C9F9AFEC1D4130D0000995F9 /* AssignmentsWarningViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssignmentsWarningViewController.h; sourceTree = "<group>"; };
 		C9F9AFED1D4130D0000995F9 /* AssignmentsWarningViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssignmentsWarningViewController.m; sourceTree = "<group>"; };
+		C9F9AFEF1D413587000995F9 /* SortingMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SortingMethods.h; sourceTree = "<group>"; };
+		C9F9AFF01D413587000995F9 /* SortingMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SortingMethods.m; sourceTree = "<group>"; };
 		E42E409B29FC0EF386FD2A96 /* Pods-AccessLecture Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AccessLecture Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AccessLecture Tests/Pods-AccessLecture Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1017,6 +1020,8 @@
 				C996437B1D2F576E0087EEB6 /* DetailedAssignmentViewController.m */,
 				C9F9AFEC1D4130D0000995F9 /* AssignmentsWarningViewController.h */,
 				C9F9AFED1D4130D0000995F9 /* AssignmentsWarningViewController.m */,
+				C9F9AFEF1D413587000995F9 /* SortingMethods.h */,
+				C9F9AFF01D413587000995F9 /* SortingMethods.m */,
 			);
 			name = AssignmentsViewController;
 			sourceTree = "<group>";
@@ -1407,6 +1412,7 @@
 				C9C136241C7CE97400EAAA74 /* SaveImage.m in Sources */,
 				21C36DFA1BCEA140000CB5B0 /* MoreShuffle.m in Sources */,
 				4C3BE5ED1A729B760017854C /* MenuIconCell.m in Sources */,
+				C9F9AFF11D413587000995F9 /* SortingMethods.m in Sources */,
 				4C62BECD175651DB00CAF4CF /* FileManager.m in Sources */,
 				3F2DC98218871FE4008C29BF /* ImageNoteViewController.m in Sources */,
 				4C37CCB018295FC0006D3B1F /* ALMetaData.m in Sources */,
