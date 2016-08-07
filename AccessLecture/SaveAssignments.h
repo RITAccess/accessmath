@@ -17,7 +17,6 @@
 /* Saves the number of days to remind student by prior to due date */
 @property NSString *reminder;
 @property NSInteger reminderInDays;
-@property BOOL reminderChosen;
 
 +(instancetype)sharedData;
 -(void)save;

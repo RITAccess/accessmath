@@ -10,6 +10,8 @@
 
 @interface SortingMethods : NSObject
 
+@property NSMutableArray *savedArray;
+
 +(NSMutableArray*) mergeSort:(NSMutableArray*)list;
 +(void)alphabetSort;
 +(void)reverseAlphabetSort;

@@ -10,13 +10,6 @@
 
 @implementation SaveAssignments
 
-static NSString* const assignmentsDict = @"assignments dictionary";
-static NSString* const notesDict = @"notes dictionary";
-static NSString* const assignmentsArray = @"assignments array";
-static NSString* const assignmentData = @"assignments data";
-static NSString* const assignment = @"assignment";
-static NSString* const changedName = @"changed name";
-static NSString* const initial = @"initial name";
 static NSString* const segment = @"selected segment";
 static NSString* const segmentSelected = @"segment was selected";
 static NSString* const reminderInDays = @"remind in number of days";
@@ -29,29 +22,10 @@ static NSString* const reminderChosen = @"reminder chosen";
 {
     self = [self init];
     if (self) {
-        /*if (!_savedArray) {
-         _savedArray = [[NSMutableArray alloc] init];
-         }
-         _savedArray = [[decoder decodeObjectForKey:assignmentsArray] mutableCopy];
-         if(!_savedAssignments){
-         _savedAssignments = [[NSMutableDictionary alloc] init];
-         }
-         
-         if(!_savedNotes){
-         _savedNotes = [[NSMutableDictionary alloc] init];
-         }
-         
-         _savedAssignments = [[decoder decodeObjectForKey:assignmentsDict] mutableCopy];
-         _savedNotes = [[decoder decodeObjectForKey:notesDict] mutableCopy];
-         _assignmentData = [decoder decodeObjectForKey:assignmentData];
-         _savedItem = [decoder decodeObjectForKey:assignment];
-         _changedName = [decoder decodeObjectForKey:changedName];
-         _initialName = [decoder decodeObjectForKey:initial];*/
         _segment = [decoder decodeIntegerForKey:segment];
         _segmentSelected = [decoder decodeBoolForKey:segmentSelected];
         _reminderInDays = [decoder decodeIntegerForKey:reminderInDays];
         _reminder = [decoder decodeObjectForKey:reminderChosen];
-        //_reminderChosen = [decoder decodeBoolForKey:reminderChosen];
     }
     return self;
 }
@@ -61,27 +35,10 @@ static NSString* const reminderChosen = @"reminder chosen";
  */
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
-    /* if(!self.savedArray){
-     self.savedArray = [[NSMutableArray alloc] init];
-     }
-     [encoder encodeObject:self.savedArray forKey:assignmentsArray];
-     if(!self.savedAssignments){
-     self.savedAssignments = [[NSMutableDictionary alloc] init];
-     }
-     [encoder encodeObject:self.assignmentData forKey:assignmentData];
-     if(!self.savedNotes){
-     self.savedNotes = [[NSMutableDictionary alloc] init];
-     }
-     [encoder encodeObject:self.savedAssignments forKey:assignmentsDict];
-     [encoder encodeObject:self.savedNotes forKey:notesDict];
-     [encoder encodeObject:self.savedItem forKey:assignment];
-     [encoder encodeObject:self.changedName forKey:changedName];
-     [encoder encodeObject:self.initialName forKey:initial];*/
     [encoder encodeInteger:self.segment forKey:segment];
     [encoder encodeBool:self.segmentSelected forKey:segmentSelected];
     [encoder encodeInteger:self.reminderInDays forKey:reminderInDays];
     [encoder encodeObject:self.reminder forKey:reminderChosen];
-    //[encoder encodeInteger:self.reminderChosen forKey:reminderChosen];
 }
 
 /*

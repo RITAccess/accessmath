@@ -98,7 +98,8 @@
     
     switch (sender.selectedSegmentIndex) {
         case 0:
-            //[SaveAssignments sharedData].savedArray = [SortingMethods mergeSort:[SaveAssignments sharedData].savedArray];
+            savedArray = [SortingMethods mergeSort:savedArray];
+            [AssignmentItem replaceArrayOfAssignmentsWith:savedArray];
             break;
         case 1:
             [SortingMethods alphabetSort];
@@ -109,7 +110,6 @@
         default:
             break;
     }
-    [[SaveAssignments sharedData] save];
     [self.toDoItems removeAllObjects];
     [self loadInitialData];
     [self.tableView reloadData];
