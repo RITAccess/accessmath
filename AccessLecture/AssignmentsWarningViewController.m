@@ -15,13 +15,25 @@
 
 @implementation AssignmentsWarningViewController {
     NSInteger *chosenNumberOfDays;
+    UILabel *selectedLabel;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.navigationController setToolbarHidden:NO];
     self.preferredContentSize = CGSizeMake(250, 300);
     self.reminderPickerView.delegate = self;
     self.reminderPickerView.showsSelectionIndicator = YES;
+    
+    selectedLabel = [[UILabel alloc] initWithFrame:CGRectMake(115, 90, 30, 30)];
+    selectedLabel.backgroundColor = [UIColor blueColor];
+    selectedLabel.layer.masksToBounds = YES;
+    selectedLabel.layer.cornerRadius = 15.0f;
+    selectedLabel.textAlignment = NSTextAlignmentCenter;
+    selectedLabel.textColor = [UIColor whiteColor];
+    selectedLabel.text = [NSString stringWithFormat:@"%d",0];
+    selectedLabel.font = [selectedLabel.font fontWithSize:25];
+    [self.view addSubview:selectedLabel];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -47,6 +59,7 @@
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     chosenNumberOfDays = row;
+    selectedLabel.text = [NSString stringWithFormat:@"%d",row];
 }
 
 - (IBAction)done:(id)sender {

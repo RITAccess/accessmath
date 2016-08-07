@@ -27,6 +27,12 @@
 @property (strong, nonatomic) IBOutlet UITextView *detailTextView;
 @property NSString *notes;
 
+@property NSString *lecture;
+@property BOOL completed;
+
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *stepperButton;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *segmentedButton;
+@property (strong, nonatomic) UIBarButtonItem *fixedSpace;
 
 - (IBAction)doneButton:(UIBarButtonItem *)sender;
 - (IBAction)updateDueDate:(UIDatePicker *)sender;

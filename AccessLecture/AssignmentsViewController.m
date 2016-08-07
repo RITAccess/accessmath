@@ -15,6 +15,7 @@
 #import "DetailedAssignmentViewController.h"
 #import "AssignmentsWarningViewController.h"
 #import "SortingMethods.h"
+#import "AMIndex.h"
 
 @interface AssignmentsViewController () <NewAssignmentDelegate, UITextFieldDelegate, DetailedAssignmentDelegate, AssignmentWarningDelegate>
 {
@@ -30,21 +31,34 @@
     NewAssignmentViewController *navc;
     UIPopoverController *popover;
     
-    //Sorting
-    SortingMethods *sortingMethods;
+    NSMutableArray *savedArray;
+    
+    //Deals with changing assignment name
+    NSString *initialName;
+    NSString *changedName;
+    
+    //Gets the names of lectures
+    AMIndex *_fsIndex;
+    NSString *_currectPath;
+    NSArray *lectureNames;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    //date things
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
-    [dateFormat setDateFormat:@"yyyy-MM-dd"];
-    NSDate *now = [[NSDate alloc]init];
-    NSString *theDate = [dateFormat stringFromDate:now];
-    _currDate.text = theDate;
-    _currDate.userInteractionEnabled = NO;
+    /*//date things
+     NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
+     [dateFormat setDateFormat:@"yyyy-MM-dd"];
+     NSDate *now = [[NSDate alloc]init];
+     NSString *theDate = [dateFormat stringFromDate:now];
+     _currDate.text = theDate;
+     _currDate.userInteractionEnabled = NO;*/
+    
+    //To get names of lectures
+    _currectPath = @"~/Documents";
+    _fsIndex = [AMIndex sharedIndex];
+    lectureNames = _fsIndex[_currectPath];
     
     //initialize the arrays here
     self.toDoItems = [[NSMutableArray alloc] init];
@@ -55,6 +69,8 @@
     if ([SaveAssignments sharedData].segmentSelected) {
         self.segmentChoice.selectedSegmentIndex = [SaveAssignments sharedData].segment;
     }
+    
+    savedArray = [AssignmentItem loadAssignments];
     [self loadInitialData];
 }
 
@@ -68,12 +84,10 @@
  */
 -(void) loadInitialData
 {
-    [SortingMethods fiveDayWarning];
-    for (NSString *name in [SaveAssignments sharedData].savedArray) {
-        AssignmentItem *newItem = [[AssignmentItem alloc] init];
-        newItem.itemName = name;
-        newItem.creationDate = [[SaveAssignments sharedData].savedAssignments objectForKey:name];
-        [self.toDoItems addObject:newItem];
+    if (savedArray != nil) {
+        for (AssignmentItem *newItem in savedArray) {
+            [self.toDoItems addObject:newItem];
+        }
     }
 }
 
@@ -84,7 +98,7 @@
     
     switch (sender.selectedSegmentIndex) {
         case 0:
-            [SaveAssignments sharedData].savedArray = [SortingMethods mergeSort:[SaveAssignments sharedData].savedArray];
+            //[SaveAssignments sharedData].savedArray = [SortingMethods mergeSort:[SaveAssignments sharedData].savedArray];
             break;
         case 1:
             [SortingMethods alphabetSort];
@@ -138,29 +152,35 @@
     if ([sender.title isEqualToString:@"Edit"]) {
         self.editing = YES;
         [sender setTitle:@"Done"];
+        self.segmentChoice.hidden = YES;
     } else {
         self.editing = NO;
         [self.tableView reloadData];
         [sender setTitle:@"Edit"];
+        self.segmentChoice.hidden = NO;
     }
 }
 
 #pragma mark - Edit Names of Assignments
 
 -(void)changeText {
-    NSUInteger index = [[SaveAssignments sharedData].savedArray indexOfObject:[SaveAssignments sharedData].initialName];
-    for (NSString *name in [SaveAssignments sharedData].savedArray) {
-        if ([name isEqualToString:[SaveAssignments sharedData].initialName]) {
-            NSDate *dateToSave = [[SaveAssignments sharedData].savedAssignments objectForKey:[SaveAssignments sharedData].initialName];
-            [[SaveAssignments sharedData].savedAssignments setObject:dateToSave forKey:[SaveAssignments sharedData].changedName];
-            [[SaveAssignments sharedData].savedAssignments removeObjectForKey:name];
-            [[SaveAssignments sharedData].savedArray replaceObjectAtIndex:index withObject:[SaveAssignments sharedData].changedName];
-            [SaveAssignments sharedData].initialName = nil;
-            [SaveAssignments sharedData].changedName = nil;
-            [[SaveAssignments sharedData] save];
+    for (AssignmentItem *assignment in savedArray) {
+        if ([assignment.itemName isEqualToString:initialName]) {
+            NSUInteger index = [savedArray indexOfObject:assignment];
+            NSDate *dateToSave = assignment.creationDate;
+            NSString *notesToSave = assignment.notes;
+            NSString *associatedLecture = assignment.associatedLecture;
+            BOOL isCompleted = assignment.completed;
+            AssignmentItem *updatedItem = [[AssignmentItem alloc] initWithName:changedName Date:dateToSave Lecture:associatedLecture];
+            updatedItem.notes = notesToSave;
+            updatedItem.completed = isCompleted;
+            [savedArray replaceObjectAtIndex:index withObject:updatedItem];
+            initialName = nil;
+            changedName = nil;
             break;
         }
     }
+    [AssignmentItem replaceArrayOfAssignmentsWith:savedArray];
     [self.toDoItems removeAllObjects];
     [self loadInitialData];
 }
@@ -168,15 +188,15 @@
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     self.editing = YES;
     [_editButton setTitle:@"Done"];
-    [SaveAssignments sharedData].initialName = textField.text;
+    initialName = textField.text;
     
     return YES;
 }
 
 -(BOOL)textFieldShouldEndEditing:(UITextField *)textField {
-    [SaveAssignments sharedData].changedName = textField.text;
+    changedName = textField.text;
     [textField resignFirstResponder];
-    if (!([textField.text isEqualToString:[SaveAssignments sharedData].initialName])) {
+    if (!([textField.text isEqualToString:initialName])) {
         [self changeText];
     }
     self.editing = NO;
@@ -185,9 +205,9 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [SaveAssignments sharedData].changedName = textField.text;
+    changedName = textField.text;
     [textField resignFirstResponder];
-    if (!([textField.text isEqualToString:[SaveAssignments sharedData].initialName])) {
+    if (!([textField.text isEqualToString:initialName])) {
         [self changeText];
     }
     self.editing = NO;
@@ -202,14 +222,12 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"In numberOfRows");
     return [self.toDoItems count];
 }
 
 /* Strikes through the selected rows */
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"Am I here?");
     AssignmentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ListPrototypeCell" forIndexPath:indexPath];
     AssignmentItem *toDoItem = [self.toDoItems objectAtIndex:indexPath.row];
     navc.delegate = self;
@@ -241,6 +259,7 @@
         [cell.assignmentName setTextColor:[UIColor whiteColor]];
         [cell.assignmentDueDate setTextColor:[UIColor whiteColor]];
         [cell.assignmentTime setTextColor:[UIColor whiteColor]];
+        cell.infoButton.tintColor = [UIColor whiteColor];
     } else {
         if (indexPath.row % 2) {
             [cell setBackgroundColor:[UIColor whiteColor]];
@@ -250,7 +269,9 @@
         [cell.assignmentName setTextColor:[UIColor blackColor]];
         [cell.assignmentDueDate setTextColor:[UIColor blackColor]];
         [cell.assignmentTime setTextColor:[UIColor blackColor]];
+        cell.infoButton.tintColor = [UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0];
     }
+    [cell.infoButton addTarget:self action:@selector(infoButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
     
     NSNumber *obj = [NSNumber numberWithInteger:indexPath.row];
     if ([SelectedRows containsObject:obj])
@@ -267,12 +288,6 @@
         cell.assignmentName.attributedText = attributedString;
     }
     
-    // Configure the view for the selected state
-    UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
-    infoButton.frame = CGRectMake(690,8,30, 30);
-    [infoButton addTarget:self action:@selector(infoButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
-    [cell.contentView addSubview:infoButton];
-    
     return cell;
 }
 
@@ -285,8 +300,14 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     DetailedAssignmentViewController *davc = [storyboard instantiateViewControllerWithIdentifier:@"detailedAssignment"];
     davc.name = cell.assignmentName.text;
-    davc.assignmentDate = [[SaveAssignments sharedData].savedAssignments objectForKey:cell.assignmentName.text];
-    davc.notes = [[SaveAssignments sharedData].savedNotes valueForKey:cell.assignmentName.text];
+    for (AssignmentItem *assignment in savedArray) {
+        if ([cell.assignmentName.text isEqualToString:assignment.itemName]) {
+            davc.assignmentDate = assignment.creationDate;
+            davc.notes = assignment.notes;
+            davc.lecture = assignment.associatedLecture;
+            davc.completed = assignment.completed;
+        }
+    }
     [davc setDelegate:self];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:davc];
     [self presentViewController:navigationController animated:YES completion:nil];
@@ -297,7 +318,6 @@
 /* Adds checkmark to selected rows */
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     NSNumber *obj = [NSNumber numberWithInteger:indexPath.row];
     if ([SelectedRows containsObject:obj])
     {
@@ -318,16 +338,14 @@
 
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
+    if (editingStyle == UITableViewCellEditingStyleDelete) { 
         //add code here for when you hit delete
-        AssignmentItem *removedItem = [self.toDoItems objectAtIndex:indexPath.row];
-        [self.toDoItems removeObjectAtIndex:indexPath.row];
-        [[SaveAssignments sharedData].savedAssignments removeObjectForKey:removedItem.itemName];
-        [[SaveAssignments sharedData].savedArray removeObjectAtIndex:indexPath.row];
+        AssignmentItem *removedItem = [savedArray objectAtIndex:indexPath.row];
+        [savedArray removeObject:removedItem];
+        [self.toDoItems removeObject:removedItem];
+        [AssignmentItem replaceArrayOfAssignmentsWith:savedArray];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-        [[SaveAssignments sharedData] save];
-        [self.tableView reloadData];
-    }
+     }
 }
 
 // Rows can be reordered
@@ -338,14 +356,12 @@
 
 // Allows for rows to be reordered
 - (void) tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
-    NSString *stringToMove = self.toDoItems[sourceIndexPath.row];
-    AssignmentItem *movedItem = [self.toDoItems objectAtIndex:sourceIndexPath.row];
-    [self.toDoItems removeObjectAtIndex:sourceIndexPath.row];
-    [self.toDoItems insertObject:stringToMove atIndex:destinationIndexPath.row];
-    [[SaveAssignments sharedData].savedArray removeObject:movedItem.itemName];
-    [[SaveAssignments sharedData].savedArray insertObject:movedItem.itemName atIndex:destinationIndexPath.row];
-    [[SaveAssignments sharedData] save];
-    
+    AssignmentItem *movedItem = [savedArray objectAtIndex:sourceIndexPath.row];
+    [savedArray removeObject:movedItem];
+    [savedArray insertObject:movedItem atIndex:destinationIndexPath.row];
+    [AssignmentItem replaceArrayOfAssignmentsWith:savedArray];
+    [self.toDoItems removeAllObjects];
+    [self loadInitialData];
 }
 
 - (void)didReceiveMemoryWarning

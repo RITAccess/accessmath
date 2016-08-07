@@ -16,4 +16,7 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *assignmentTime;
 
+@property (strong, nonatomic) IBOutlet UIButton *infoButton;
+
+
 @end

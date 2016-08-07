@@ -8,11 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
-@interface AssignmentItem : NSObject
+@interface AssignmentItem : NSObject <NSCoding>
 
 @property NSString *itemName;
-@property BOOL completed;
 @property NSDate *creationDate;
-@property BOOL warningEnabled;
+@property NSString *associatedLecture;
+@property NSString *notes;
+@property BOOL completed;
+
+-(instancetype)initWithName:(NSString*)name Date:(NSDate*)creationDate Lecture:(NSString*)associatedLecture;
+
++ (void)saveAssignment:(AssignmentItem*)assignment;
++ (NSMutableArray*)loadAssignments;
++ (void)replaceArrayOfAssignmentsWith:(NSMutableArray*)replacement;
 
 @end

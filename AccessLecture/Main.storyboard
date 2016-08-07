@@ -1665,27 +1665,36 @@ In a proof by contradiction we assume, along with the hypotheses, the logical ne
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Assignment Name..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BXA-DM-LtN">
-                                        <rect key="frame" x="17" y="285" width="287" height="30"/>
+                                        <rect key="frame" x="39" y="244" width="404" height="30"/>
                                         <color key="backgroundColor" red="0.85098039219999999" green="0.85882352939999995" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="textColor" red="0.001330525038" green="0.043233208439999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="OoI-ep-7YQ">
-                                        <rect key="frame" x="0.0" y="89" width="304" height="162"/>
+                                        <rect key="frame" x="39" y="15" width="404" height="162"/>
                                         <date key="date" timeIntervalSinceReferenceDate="460650374.54333001">
                                             <!--2015-08-07 14:26:14 +0000-->
                                         </date>
                                     </datePicker>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4FG-MB-Pam">
-                                        <rect key="frame" x="89" y="360" width="143" height="30"/>
+                                        <rect key="frame" x="170" y="496" width="143" height="30"/>
                                         <color key="backgroundColor" red="0.0" green="0.3289473684" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <state key="normal" title="Save">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
                                             <action selector="saveButton:" destination="JBL-OU-LDd" eventType="touchUpInside" id="veZ-sQ-nNX"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nlz-ah-6Ml">
+                                        <rect key="frame" x="39" y="348" width="404" height="30"/>
+                                        <color key="backgroundColor" red="0.85098039219999999" green="0.85882352939999995" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <state key="normal" title="Select Class"/>
+                                        <connections>
+                                            <action selector="selectClass:" destination="JBL-OU-LDd" eventType="touchUpInside" id="KPG-i9-gp8"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1698,6 +1707,7 @@ In a proof by contradiction we assume, along with the hypotheses, the logical ne
                     <connections>
                         <outlet property="assignmentDueDate" destination="OoI-ep-7YQ" id="3tX-Lo-RyL"/>
                         <outlet property="assignmentName" destination="BXA-DM-LtN" id="Tts-bj-78p"/>
+                        <outlet property="selectClass" destination="Nlz-ah-6Ml" id="yU7-l3-ktR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cnm-Er-PXx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1954,13 +1964,18 @@ Now when we run our app we will have a visible scrollview has a frame of 0,0,320
         <!--Navigation Controller-->
         <scene sceneID="lG9-8F-GaI">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fqG-41-Cax" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="fqG-41-Cax" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="86j-SI-VqH">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Heb-gb-dRR">
+                        <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="FNw-2z-RTE" kind="relationship" relationship="rootViewController" id="3OZ-kz-5uZ"/>
                     </connections>
@@ -1974,80 +1989,48 @@ Now when we run our app we will have a visible scrollview has a frame of 0,0,320
             <objects>
                 <tableViewController id="FNw-2z-RTE" customClass="AssignmentsViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ysB-Qy-xt6">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="800" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <toolbar key="tableFooterView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="qU6-tZ-TIa">
-                            <rect key="frame" x="0.0" y="130" width="600" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                            <items>
-                                <barButtonItem title="Item" systemItem="add" id="DIW-MM-HB7">
-                                    <connections>
-                                        <segue destination="JBL-OU-LDd" kind="popoverPresentation" identifier="toNewAssignmentViewController" popoverAnchorBarButtonItem="DIW-MM-HB7" id="gzH-AZ-A6I">
-                                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                        </segue>
-                                    </connections>
-                                </barButtonItem>
-                                <barButtonItem style="plain" id="6t0-hp-pjc">
-                                    <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="imS-Vu-8uk">
-                                        <rect key="frame" x="48" y="7" width="222" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <segments>
-                                            <segment title="Date Sort"/>
-                                            <segment title="Name Sort"/>
-                                            <segment title="Reverse"/>
-                                        </segments>
-                                        <connections>
-                                            <action selector="sortingChoice:" destination="FNw-2z-RTE" eventType="valueChanged" id="QQT-fI-nD9"/>
-                                        </connections>
-                                    </segmentedControl>
-                                </barButtonItem>
-                                <barButtonItem style="plain" systemItem="flexibleSpace" id="PUh-e9-b1B"/>
-                                <barButtonItem style="plain" id="CnD-TE-0L7">
-                                    <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="n3j-ya-CXx">
-                                        <rect key="frame" x="514" y="7" width="66" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Reminder"/>
-                                        <connections>
-                                            <segue destination="U78-yH-cGZ" kind="popoverPresentation" identifier="toReminder" popoverAnchorView="n3j-ya-CXx" id="8TE-go-9Pa">
-                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                            </segue>
-                                        </connections>
-                                    </button>
-                                </barButtonItem>
-                            </items>
-                        </toolbar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ListPrototypeCell" id="MVF-9r-IOo" customClass="AssignmentTableViewCell">
-                                <rect key="frame" x="0.0" y="86" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="86" width="800" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MVF-9r-IOo" id="LwJ-IH-Euu">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="800" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IcE-dQ-ZqA">
                                             <rect key="frame" x="28" y="8" width="160" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j5A-N3-TW7">
-                                            <rect key="frame" x="450" y="8" width="80" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9dj-vc-oiK">
+                                            <rect key="frame" x="289" y="8" width="153" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9dj-vc-oiK">
-                                            <rect key="frame" x="289" y="8" width="153" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P9o-bi-d9J">
+                                            <rect key="frame" x="690" y="8" width="22" height="22"/>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j5A-N3-TW7">
+                                            <rect key="frame" x="450" y="8" width="80" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="P9o-bi-d9J" secondAttribute="trailing" constant="80" id="Bzr-cR-VMD"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="P9o-bi-d9J" secondAttribute="bottom" constant="5.5" id="pUU-AX-1Kx"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="assignmentDueDate" destination="9dj-vc-oiK" id="j3Z-cE-Dtw"/>
                                     <outlet property="assignmentName" destination="IcE-dQ-ZqA" id="z2z-7y-cqN"/>
                                     <outlet property="assignmentTime" destination="j5A-N3-TW7" id="4MY-Bc-BUu"/>
+                                    <outlet property="infoButton" destination="P9o-bi-d9J" id="a2C-oq-Adr"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -2056,6 +2039,44 @@ Now when we run our app we will have a visible scrollview has a frame of 0,0,320
                             <outlet property="delegate" destination="FNw-2z-RTE" id="n3L-0R-9xx"/>
                         </connections>
                     </tableView>
+                    <toolbarItems>
+                        <barButtonItem title="Item" systemItem="add" id="DIW-MM-HB7">
+                            <connections>
+                                <segue destination="JBL-OU-LDd" kind="popoverPresentation" identifier="toNewAssignmentViewController" popoverAnchorBarButtonItem="DIW-MM-HB7" id="gzH-AZ-A6I">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="sP4-RJ-Dr8"/>
+                        <barButtonItem style="plain" id="6t0-hp-pjc">
+                            <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="imS-Vu-8uk">
+                                <rect key="frame" x="90" y="7" width="222" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Date Sort"/>
+                                    <segment title="Name Sort"/>
+                                    <segment title="Reverse"/>
+                                </segments>
+                                <connections>
+                                    <action selector="sortingChoice:" destination="FNw-2z-RTE" eventType="valueChanged" id="QQT-fI-nD9"/>
+                                </connections>
+                            </segmentedControl>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="PUh-e9-b1B"/>
+                        <barButtonItem style="plain" id="CnD-TE-0L7">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="n3j-ya-CXx">
+                                <rect key="frame" x="702" y="5" width="78" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Reminder"/>
+                                <connections>
+                                    <segue destination="U78-yH-cGZ" kind="popoverPresentation" identifier="toReminder" popoverAnchorView="n3j-ya-CXx" id="8TE-go-9Pa">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Upcoming Due Dates" id="AvJ-6X-3s4">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="FNc-gP-Tln">
                             <connections>
@@ -2068,6 +2089,8 @@ Now when we run our app we will have a visible scrollview has a frame of 0,0,320
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="800" height="600"/>
                     <connections>
                         <outlet property="editButton" destination="llb-zM-FDl" id="2Jb-cS-uav"/>
                         <outlet property="segmentChoice" destination="imS-Vu-8uk" id="1ec-IA-U75"/>
@@ -2524,6 +2547,8 @@ Now when we run our app we will have a visible scrollview has a frame of 0,0,320
                         <outlet property="assignmentName" destination="dXd-wB-zwO" id="wLY-qA-cfW"/>
                         <outlet property="datePicker" destination="fR7-I4-we9" id="tng-lH-CFP"/>
                         <outlet property="detailTextView" destination="xfO-0I-eFZ" id="GrJ-3N-Jju"/>
+                        <outlet property="segmentedButton" destination="GaL-M7-Ers" id="bMy-h0-73x"/>
+                        <outlet property="stepperButton" destination="SRY-Wr-j1W" id="W2y-bI-gMJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Omh-ir-9PN" userLabel="First Responder" sceneMemberID="firstResponder"/>
