@@ -1677,17 +1677,6 @@ In a proof by contradiction we assume, along with the hypotheses, the logical ne
                                             <!--2015-08-07 14:26:14 +0000-->
                                         </date>
                                     </datePicker>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4FG-MB-Pam">
-                                        <rect key="frame" x="170" y="496" width="143" height="30"/>
-                                        <color key="backgroundColor" red="0.0" green="0.3289473684" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <state key="normal" title="Save">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="saveButton:" destination="JBL-OU-LDd" eventType="touchUpInside" id="veZ-sQ-nNX"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nlz-ah-6Ml">
                                         <rect key="frame" x="39" y="348" width="404" height="30"/>
                                         <color key="backgroundColor" red="0.85098039219999999" green="0.85882352939999995" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -1695,6 +1684,17 @@ In a proof by contradiction we assume, along with the hypotheses, the logical ne
                                         <state key="normal" title="Select Class"/>
                                         <connections>
                                             <action selector="selectClass:" destination="JBL-OU-LDd" eventType="touchUpInside" id="KPG-i9-gp8"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4FG-MB-Pam">
+                                        <rect key="frame" x="170" y="496" width="143" height="30"/>
+                                        <color key="backgroundColor" red="0.0" green="0.32941176470588235" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <state key="normal" title="Save">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="saveButton:" destination="JBL-OU-LDd" eventType="touchUpInside" id="veZ-sQ-nNX"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -2473,18 +2473,18 @@ Now when we run our app we will have a visible scrollview has a frame of 0,0,320
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3lk-vD-sKb">
-                                <rect key="frame" x="41" y="145" width="95" height="21"/>
+                                <rect key="frame" x="41" y="159" width="95" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dXd-wB-zwO">
-                                <rect key="frame" x="144" y="142" width="364" height="30"/>
+                                <rect key="frame" x="144" y="156" width="364" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="fR7-I4-we9">
-                                <rect key="frame" x="144" y="219" width="364" height="100"/>
+                                <rect key="frame" x="144" y="233" width="364" height="100"/>
                                 <date key="date" timeIntervalSinceReferenceDate="489948506.384718">
                                     <!--2016-07-11 16:48:26 +0000-->
                                 </date>
@@ -2493,46 +2493,38 @@ Now when we run our app we will have a visible scrollview has a frame of 0,0,320
                                 </connections>
                             </datePicker>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Due" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u1U-tR-2b7">
-                                <rect key="frame" x="41" y="238" width="95" height="21"/>
+                                <rect key="frame" x="41" y="252" width="95" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Notes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AgQ-97-kN9">
-                                <rect key="frame" x="41" y="346" width="95" height="21"/>
+                                <rect key="frame" x="41" y="453" width="95" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xfO-0I-eFZ">
-                                <rect key="frame" x="41" y="375" width="518" height="128"/>
+                                <rect key="frame" x="41" y="482" width="518" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BbC-OE-fTO">
-                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
-                                <items>
-                                    <barButtonItem style="plain" id="SRY-Wr-j1W">
-                                        <stepper key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" id="1Py-DD-TIt">
-                                            <rect key="frame" x="20" y="7.5" width="94" height="29"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </stepper>
-                                    </barButtonItem>
-                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="Nl3-NN-dRL"/>
-                                    <barButtonItem style="plain" id="GaL-M7-Ers">
-                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="Ztl-4p-cCX">
-                                            <rect key="frame" x="166" y="7.5" width="121" height="29"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <segments>
-                                                <segment title="First"/>
-                                                <segment title="Second"/>
-                                            </segments>
-                                        </segmentedControl>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Lecture" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pQv-eh-BXA">
+                                <rect key="frame" x="41" y="374" width="95" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gQq-wd-grg">
+                                <rect key="frame" x="144" y="374" width="364" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="changeLecture:" destination="O6q-iK-Tpu" eventType="touchUpInside" id="eU4-uW-Jmq"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -2545,10 +2537,9 @@ Now when we run our app we will have a visible scrollview has a frame of 0,0,320
                     </navigationItem>
                     <connections>
                         <outlet property="assignmentName" destination="dXd-wB-zwO" id="wLY-qA-cfW"/>
+                        <outlet property="associatedLecture" destination="gQq-wd-grg" id="tnA-4b-R7z"/>
                         <outlet property="datePicker" destination="fR7-I4-we9" id="tng-lH-CFP"/>
                         <outlet property="detailTextView" destination="xfO-0I-eFZ" id="GrJ-3N-Jju"/>
-                        <outlet property="segmentedButton" destination="GaL-M7-Ers" id="bMy-h0-73x"/>
-                        <outlet property="stepperButton" destination="SRY-Wr-j1W" id="W2y-bI-gMJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Omh-ir-9PN" userLabel="First Responder" sceneMemberID="firstResponder"/>

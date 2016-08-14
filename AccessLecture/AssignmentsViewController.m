@@ -69,8 +69,6 @@
     if ([SaveAssignments sharedData].segmentSelected) {
         self.segmentChoice.selectedSegmentIndex = [SaveAssignments sharedData].segment;
     }
-    
-    savedArray = [AssignmentItem loadAssignments];
     [self loadInitialData];
 }
 
@@ -84,6 +82,7 @@
  */
 -(void) loadInitialData
 {
+    savedArray = [AssignmentItem loadAssignments];
     if (savedArray != nil) {
         for (AssignmentItem *newItem in savedArray) {
             [self.toDoItems addObject:newItem];

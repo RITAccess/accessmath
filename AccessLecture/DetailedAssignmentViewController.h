@@ -2,7 +2,7 @@
 //  DetailedAssignmentViewController.h
 //  AccessLecture
 //
-//  Created by Student on 7/6/16.
+//  Created by Kimberly Sookoo on 7/6/16.
 //
 //
 
@@ -27,6 +27,7 @@
 @property (strong, nonatomic) IBOutlet UITextView *detailTextView;
 @property NSString *notes;
 
+@property (strong, nonatomic) IBOutlet UIButton *associatedLecture;
 @property NSString *lecture;
 @property BOOL completed;
 
@@ -36,6 +37,8 @@
 
 - (IBAction)doneButton:(UIBarButtonItem *)sender;
 - (IBAction)updateDueDate:(UIDatePicker *)sender;
+- (IBAction)changeLecture:(UIButton *)sender;
+
 
 
 @end

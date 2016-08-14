@@ -50,8 +50,9 @@
     pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(39, 348, 404, 100)];
     pickerView.delegate = self;
     
-    choose = [[UIButton alloc] initWithFrame:CGRectMake(120, 348, 30, 30)];
-    choose.backgroundColor = [UIColor greenColor];
+    choose = [[UIButton alloc] initWithFrame:CGRectMake(380, 381, 120, 30)];
+    choose.backgroundColor = [UIColor colorWithRed:0.24 green:0.69 blue:0.00 alpha:1.0];
+    [choose setTitle:@"Select Lecture" forState:UIControlStateNormal];
     [choose addTarget:self action:@selector(chooseLecture:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:pickerView];
