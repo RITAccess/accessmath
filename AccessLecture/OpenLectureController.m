@@ -12,6 +12,7 @@
 #import "NavBackButton.h"
 #import "NewLectureButton.h"
 #import "SearchButton.h"
+#import "SearchTextField.h"
 #import "BrushButton.h"
 #import "SaveButton.h"
 #import "NewLectureController.h"
@@ -44,6 +45,10 @@
     
     // Dir nav stack
     Stack *_dirNavStack;
+    
+    //Search text - used while searching a lecture
+    NSString *_searchText;
+    NSString *_currectPathWithSearchText;
 }
 
 static NSString * const lectureCellReuseID = @"lecture";
@@ -55,6 +60,12 @@ static NSString * const directoryCellReuseID = @"directory";
 
     _dirNavStack = [Stack new];
     [_dirNavStack push:_currectPath];
+    
+    //setting searchText to nil
+    _searchText = nil;
+    [[self buttonClearSearch] setEnabled:false];
+    [[self buttonClearSearch] setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+    _currectPathWithSearchText = nil;
     
     [super viewDidLoad];
     
@@ -70,6 +81,9 @@ static NSString * const directoryCellReuseID = @"directory";
 
 - (void)viewDidDisappear:(BOOL)animated
 {
+    //_searchText = nil;
+    //_currectPathWithSearchText = nil;
+    _currectPath = @"~/Documents";
     _selectedLecture = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:FSFileChangeNotification object:nil];
 }
@@ -110,6 +124,7 @@ static NSString * const directoryCellReuseID = @"directory";
     
     UIButton *search = ({
         UIButton *b = [SearchButton buttonWithType:UIButtonTypeRoundedRect];
+        [b addTarget:self action:@selector(search) forControlEvents:UIControlEventTouchUpInside];
         b.accessibilityValue = @"search";
         b;
     });
@@ -194,6 +209,55 @@ static NSString * const directoryCellReuseID = @"directory";
 }
 
 #pragma mark <UICollectionViewDataSource>
+- (void)search
+{
+    NSLog(@"Clicked search");
+    UIAlertController * alert = [UIAlertController
+                                 alertControllerWithTitle:@"Alert"
+                                 message:@"Search Lectures"
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField){
+        textField.placeholder = @"Enter search criteria";
+        textField.textColor = [UIColor blueColor];
+        textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+        textField.borderStyle = UITextBorderStyleRoundedRect;
+    }];
+    UIAlertAction* cancelButton = [UIAlertAction
+                               actionWithTitle:@"Cancel"
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction * action) {
+                                   //Handle your Cancel button action here
+                                   
+                               }];
+    UIAlertAction* okButton = [UIAlertAction
+                               actionWithTitle:@"OK"
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction * action) {
+                                   //Handle your ok button action here
+                                   _searchText = alert.textFields.firstObject.text;
+                                   _currectPathWithSearchText = nil;
+                                   if(_searchText != nil && (![_searchText isEqualToString:@""])) {
+                                       [[self buttonClearSearch] setEnabled:true];
+                                       [[self buttonClearSearch] setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                                       _currectPathWithSearchText = [[_currectPath stringByAppendingString:@","] stringByAppendingString:_searchText];
+                                   }
+                                   [self loadDocumentPreviews];
+                               }];
+    [alert addAction:cancelButton];
+    [alert addAction:okButton];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (IBAction)clearSearch:(id)sender {
+    _searchText = nil;
+    [[self buttonClearSearch] setEnabled:false];
+    [[self buttonClearSearch] setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+    _currectPathWithSearchText = nil;
+    [self loadDocumentPreviews];
+}
+
+
+#pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
@@ -212,7 +276,13 @@ static NSString * const directoryCellReuseID = @"directory";
         case 1: {
             Deferred *promise = [Deferred deferred];
             _selectedLecture = [promise promise];
-            NSString *name = _fsIndex[_currectPath][indexPath.row];
+            NSString *name;
+            if(_currectPathWithSearchText == nil) {
+                name = _fsIndex[_currectPath][indexPath.row];
+            }
+            else {
+                name = _fsIndex[_currectPathWithSearchText][indexPath.row];
+            }
             NSString *fpath = [_currectPath stringByAppendingPathComponent:name];
             NSURL *path = [NSURL fileURLWithPath:[fpath stringByExpandingTildeInPath] isDirectory:NO];
             
@@ -247,7 +317,12 @@ static NSString * const directoryCellReuseID = @"directory";
             return _fsIndex[[_currectPath stringByAppendingPathComponent:@"*"]].count;
             break;
         case 1:
-            return _fsIndex[_currectPath].count;
+            if(_currectPathWithSearchText == nil) {
+                return _fsIndex[_currectPath].count;
+            }
+            else {
+                return _fsIndex[_currectPathWithSearchText].count;
+            }
             break;
     }
     return nil;
@@ -255,18 +330,24 @@ static NSString * const directoryCellReuseID = @"directory";
 
 - (UICollectionViewCell *)lectureViewCellWithCell:(LoadingLectureCVC *)cell indexPath:(NSIndexPath *)indexPath
 {
-    NSString *name = _fsIndex[_currectPath][indexPath.row];
+    NSString *name;
+    NSString *pathPlusSearchText = _currectPath;
+    if(_searchText != nil && (![_searchText isEqualToString:@""]))
+    {
+        pathPlusSearchText = [pathPlusSearchText stringByAppendingString:@","];
+        pathPlusSearchText = [pathPlusSearchText stringByAppendingString:_searchText];
+    }
+    name = _fsIndex[pathPlusSearchText][indexPath.row];
+    
     cell.title.text = name;
-    [cell loadLecturePreview:[_currectPath stringByAppendingPathComponent:name]];
-    
-    UITapGestureRecognizer *singletap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cellDidTap:)];
-    [singletap setNumberOfTapsRequired:1];
-    UITapGestureRecognizer *doubletap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cellDidTap:)];
-    [doubletap setNumberOfTapsRequired:2];
-    [singletap requireGestureRecognizerToFail:doubletap];
-    
-    [cell addGestureRecognizer:singletap];
-    [cell addGestureRecognizer:doubletap];
+        [cell loadLecturePreview:[_currectPath stringByAppendingPathComponent:name]];
+        UITapGestureRecognizer *singletap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cellDidTap:)];
+        [singletap setNumberOfTapsRequired:1];
+        UITapGestureRecognizer *doubletap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cellDidTap:)];
+        [doubletap setNumberOfTapsRequired:2];
+        [singletap requireGestureRecognizerToFail:doubletap];
+        [cell addGestureRecognizer:singletap];
+        [cell addGestureRecognizer:doubletap];
     
     return cell;
 }

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="16G1408" minimumToolsVersion="Xcode 4.3" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="Note" representedClassName="Note" syncable="YES">
+        <attribute name="content" optional="YES" attributeType="String" defaultValueString="&quot;&quot;" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" defaultValueString="New Note" syncable="YES"/>
+        <attribute name="topImage" optional="YES" attributeType="Transformable" customClassName=".ImageTransformer" syncable="YES"/>
+    </entity>
+    <entity name="NoteTakingNote" representedClassName="NoteTakingNote" syncable="YES">
+        <attribute name="location_x" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="location_y" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="noteid" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="note" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Note" syncable="YES"/>
+        <fetchedProperty name="parent" optional="YES" syncable="YES">
+            <fetchRequest name="fetchedPropertyFetchRequest" entity="NoteTakingNote" predicateString="note.id == $FETCH_SOURCE.noteid"/>
+        </fetchedProperty>
+    </entity>
+    <entity name="ShuffleNote" representedClassName="ShuffleNote" syncable="YES">
+        <attribute name="location_x" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="location_y" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="note" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Note" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Note" positionX="252" positionY="168" width="128" height="105"/>
+        <element name="NoteTakingNote" positionX="360" positionY="279" width="128" height="131"/>
+        <element name="ShuffleNote" positionX="-117" positionY="362" width="128" height="88"/>
+    </elements>
+</model>

@@ -7,8 +7,9 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import "NoteTakingNote.h"
 
-@interface MoreShuffle : SKScene
+@interface MoreShuffle : SKScene<UIPopoverControllerDelegate>
 
 @property NSArray* notesFromSelectedLecture;
 
@@ -17,5 +18,11 @@
 @property NSMutableArray *notesToBeRemoved;
 
 @property BOOL sceneReset;
+
+-(void)newPaper;//added by Rafique
+-(NSMutableDictionary*)getNoteData;//added by Rafique
+@property NSDictionary *noteDetailsFromNewNote;
+-(NoteTakingNote*) getTouchedNote;
+@property BOOL isLastTouchedNodeNew;
 
 @end

@@ -18,12 +18,21 @@
 #import "NSArray+PureLayout.h"
 #import "NavBackButton.h"
 
+#import "MoreShuffle.h"
+#import "Note.h"
+#import "NoteTopImageViewController.h"
+
 @interface NewNotesViewController () <NewNotesSideViewControllerDelegate>
 
 @property (nonatomic, strong) NewNotesSideViewController *sideViewController;
 @property (nonatomic, assign) BOOL showingSideView;
 
 @property IBOutlet UITextField *currentDate;
+@property (strong, nonatomic) IBOutlet UIButton *addImageButton;
+@property (strong, nonatomic) IBOutlet UIButton *addImageButton2;
+@property (strong, nonatomic) IBOutlet UIButton *addImageButton3;
+@property (strong, nonatomic) IBOutlet UIButton *addImageButton4;
+
 
 @end
 
@@ -38,6 +47,19 @@
     UIPopoverController *textPopover;
     
     NSArray *_navigationItems;
+    
+    NSString *noteTitle;
+    CGPoint currentNoteLocation;
+    NSMutableDictionary *currentNoteDetails;
+    
+    BOOL isAddingImage1;
+    BOOL isAddingImage2;
+    BOOL isAddingImage3;
+    BOOL isAddingImage4;
+    BOOL isViewingImage1;
+    BOOL isViewingImage2;
+    BOOL isViewingImage3;
+    BOOL isViewingImage4;
 }
 
 //x and y values
@@ -74,6 +96,15 @@ CGFloat y = 15;
     
     [self setupGestures];
     [self setUpNavigation];
+    
+    noteTitle = [self noteData][@"title"];
+    NSValue *currentNoteLocationNSValue = [self noteData][@"noteLocation"];
+    currentNoteLocation = currentNoteLocationNSValue.CGPointValue;
+    self.textView.text = [self noteData][@"content"];
+    self.imageView.image = [self noteData][@"topImage"];
+    self.imageView2.image = [self noteData][@"image2"];
+    self.imageView3.image = [self noteData][@"image3"];
+    self.imageView4.image = [self noteData][@"image4"];
 }
 
 //sends out notification that orientation has been changed
@@ -319,11 +350,336 @@ CGFloat y = 15;
     [[SaveColor sharedData] save];
 }
 
+//Added by Mohammad Rafique - Issue #197
+- (IBAction)addImage:(id)sender {
+    isAddingImage1 = YES;
+    isAddingImage2 = NO;
+    isAddingImage3 = NO;
+    isAddingImage4 = NO;
+    
+    [self displayAddImageAlertOnButton:[self addImageButton]];
+    /*
+    UIAlertController * alert = [UIAlertController
+                                 alertControllerWithTitle:@"Add an Image"
+                                 message:@"Take a photo or choose one from existing"
+                                 preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction* takePhotoButton = [UIAlertAction
+                                 actionWithTitle:@"Take Photo"
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction * action) {
+                                     //Handle your yes please button action here
+                                     [self takePhoto];
+                                 }];
+    [alert addAction:takePhotoButton];
+    UIAlertAction* choosePhotoButton = [UIAlertAction
+                                   actionWithTitle:@"Choose Photo"
+                                   style:UIAlertActionStyleDefault
+                                   handler:^(UIAlertAction * action) {
+                                       //Handle your yes please button action here
+                                       [self choosePhoto];
+                                   }];
+    [alert addAction:choosePhotoButton];
+    alert.popoverPresentationController.sourceView = [self addImageButton];
+    alert.popoverPresentationController.sourceRect = [[self addImageButton] bounds];
+    [self presentViewController:alert animated:YES completion:nil];
+     */
+}
+
+- (IBAction)addImage2:(id)sender {
+    isAddingImage1 = NO;
+    isAddingImage2 = YES;
+    isAddingImage3 = NO;
+    isAddingImage4 = NO;
+    
+    [self displayAddImageAlertOnButton:[self addImageButton2]];
+}
+
+- (IBAction)addImage3:(id)sender {
+    isAddingImage1 = NO;
+    isAddingImage2 = NO;
+    isAddingImage3 = YES;
+    isAddingImage4 = NO;
+    
+    [self displayAddImageAlertOnButton:[self addImageButton3]];
+}
+
+- (IBAction)addImage4:(id)sender {
+    isAddingImage1 = NO;
+    isAddingImage2 = NO;
+    isAddingImage3 = NO;
+    isAddingImage4 = YES;
+    
+    [self displayAddImageAlertOnButton:[self addImageButton4]];
+}
+
+-(void)displayAddImageAlertOnButton:(UIButton*)imageButton
+{
+    UIAlertController * alert = [UIAlertController
+                                 alertControllerWithTitle:@"Add an Image"
+                                 message:@"Take a photo or choose one from existing"
+                                 preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction* takePhotoButton = [UIAlertAction
+                                      actionWithTitle:@"Take Photo"
+                                      style:UIAlertActionStyleDefault
+                                      handler:^(UIAlertAction * action) {
+                                          //Handle your yes please button action here
+                                          [self takePhoto];
+                                      }];
+    [alert addAction:takePhotoButton];
+    UIAlertAction* choosePhotoButton = [UIAlertAction
+                                        actionWithTitle:@"Choose Photo"
+                                        style:UIAlertActionStyleDefault
+                                        handler:^(UIAlertAction * action) {
+                                            //Handle your yes please button action here
+                                            [self choosePhoto];
+                                        }];
+    [alert addAction:choosePhotoButton];
+    alert.popoverPresentationController.sourceView = imageButton;
+    alert.popoverPresentationController.sourceRect = [imageButton bounds];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+-(void)takePhoto{
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    
+    [self presentViewController:picker animated:YES completion:NULL];
+}
+
+-(void)choosePhoto{
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    
+    [self presentViewController:picker animated:YES completion:NULL];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    
+    if (isAddingImage1) {
+        self.imageView.image = chosenImage;
+    }
+    else if (isAddingImage2) {
+        self.imageView2.image = chosenImage;
+    }
+    else if (isAddingImage3) {
+        self.imageView3.image = chosenImage;
+    }
+    else if (isAddingImage4) {
+        self.imageView4.image = chosenImage;
+    }
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
+
+- (IBAction)viewImage:(id)sender {
+    isViewingImage1 = YES;
+    isViewingImage2 = NO;
+    isViewingImage3 = NO;
+    isViewingImage4 = NO;
+    
+    [self performSegueWithIdentifier:@"noteTopImageScreen" sender:nil];
+}
+
+- (IBAction)viewImage2:(id)sender {
+    isViewingImage1 = NO;
+    isViewingImage2 = YES;
+    isViewingImage3 = NO;
+    isViewingImage4 = NO;
+    
+    [self performSegueWithIdentifier:@"noteTopImageScreen" sender:nil];
+}
+
+- (IBAction)viewImage3:(id)sender {
+    isViewingImage1 = NO;
+    isViewingImage2 = NO;
+    isViewingImage3 = YES;
+    isViewingImage4 = NO;
+    
+    [self performSegueWithIdentifier:@"noteTopImageScreen" sender:nil];
+}
+
+- (IBAction)viewImage4:(id)sender {
+    isViewingImage1 = NO;
+    isViewingImage2 = NO;
+    isViewingImage3 = NO;
+    isViewingImage4 = YES;
+    
+    [self performSegueWithIdentifier:@"noteTopImageScreen" sender:nil];
+}
+
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"noteTopImageScreen"]) {
+        NoteTopImageViewController *ntivc = (NoteTopImageViewController*)((UINavigationController *)segue.destinationViewController).childViewControllers.firstObject;
+        
+        if (isViewingImage1) {
+            ntivc.noteTopImage = [[self imageView] image];
+        }
+        else if (isViewingImage2) {
+            ntivc.noteTopImage = [[self imageView2] image];
+        }
+        else if (isViewingImage3) {
+            ntivc.noteTopImage = [[self imageView3] image];
+        }
+        else if (isViewingImage4) {
+            ntivc.noteTopImage = [[self imageView4] image];
+        }
+    }
+}
+
+
+- (IBAction)saveNotes:(id)sender {
+    UIAlertController * alert = [UIAlertController
+                                 alertControllerWithTitle:@"Alert"
+                                 message:@"Note Title"
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField){
+        textField.text = noteTitle;
+        textField.placeholder = @"Enter note title";
+        textField.textColor = [UIColor blueColor];
+        textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+        textField.borderStyle = UITextBorderStyleRoundedRect;
+    }];
+    UIAlertAction* cancelButton = [UIAlertAction
+                                   actionWithTitle:@"Cancel"
+                                   style:UIAlertActionStyleDefault
+                                   handler:^(UIAlertAction * action) {
+                                       //Handle your Cancel button action here
+                                       
+                                   }];
+    UIAlertAction* okButton = [UIAlertAction
+                               actionWithTitle:@"OK"
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction * action) {
+                                   //Handle your ok button action here
+                                   noteTitle = alert.textFields.firstObject.text;
+                                   [self continueSave];
+                               }];
+    [alert addAction:cancelButton];
+    [alert addAction:okButton];
+    //[[[[[self view] window] rootViewController] presentedViewController] presentViewController:alert animated:nil completion:nil];
+    [self presentViewController:alert animated:YES completion:nil];
+    
+    /*
+    NSString *content = [[self textView] text];
+    UIImage *noteImage = [[self imageView] image];
+    currentNoteDetails[@"title"] = noteTitle;
+    currentNoteDetails[@"content"] = content;
+    currentNoteDetails[@"noteImage"] = noteImage;
+    
+    NSManagedObjectContext *nmoc1 = [self managedObjectContext];
+    NoteTakingNote *newNoteN = [NoteTakingNote insertInManagedObjectContext:nmoc1];
+    Note *newNoteParent = [Note insertInManagedObjectContext:nmoc1];
+    [newNoteN setNote:newNoteParent];
+    [newNoteN setNoteid:[newNoteParent id]];
+    [[newNoteN note] setTitle:@"Sample Test Title"];
+    [[newNoteN note] setContent:@"Sample Test Content"];
+    
+    //MoreShuffle *ms = ((MoreShuffle*)self.parentViewController);
+    
+    //[ms.notesToSelectedLecture addObject:newNoteN];
+    
+    //NoteShuffleViewController *nsv =(NoteShuffleViewController*)[[[self parentViewController] parentViewController] presentedViewController];
+    [_nsv.shuffleSKScene.notesToSelectedLecture addObject:newNoteN];
+     */
+}
+
+-(void)continueSave
+{
+    NSString *content = [[self textView] text];
+    UIImage *currentTopImage = [[self imageView] image];
+    currentNoteDetails[@"title"] = noteTitle;
+    currentNoteDetails[@"content"] = content;
+    currentNoteDetails[@"topImage"] = currentTopImage;
+    currentNoteDetails[@"image2"] = [[self imageView2] image];
+    currentNoteDetails[@"image3"] = [[self imageView3] image];
+    currentNoteDetails[@"image4"] = [[self imageView4] image];
+    
+    NoteTakingNote *newNoteN;
+    NSManagedObjectContext *nmoc1 = [self managedObjectContext];
+    
+    if(!(_nsv.shuffleSKScene.isLastTouchedNodeNew))
+    {
+        newNoteN = _nsv.shuffleSKScene.getTouchedNote;
+        if(!(newNoteN))
+        {
+            newNoteN = [NoteTakingNote insertInManagedObjectContext:nmoc1];
+        }
+    }
+    else
+    {
+        newNoteN = [NoteTakingNote insertInManagedObjectContext:nmoc1];
+    }
+    
+    //NSManagedObjectContext *nmoc1 = [self managedObjectContext];
+    //NSManagedObjectContext *nmoc2 = [self managedObjectContext];
+    //NoteTakingNote *newNoteN = [NoteTakingNote insertInManagedObjectContext:nmoc1];
+    Note *newNoteParent = [Note insertInManagedObjectContext:nmoc1];
+    
+    /*
+    NSNumber *lastID = [NSNumber numberWithInt:-1];
+    if (_nmoc1.registeredObjects.count > 0) {
+        NSManagedObject *nmo1 = _nmoc1.registeredObjects.allObjects.lastObject;
+        lastID = [nmo1 valueForKey:@"noteid"];
+    }
+    int newID = lastID.intValue + 1;
+    NSNumber *newIDNumber = [NSNumber numberWithInt:newID];
+     */
+    [newNoteParent setId:self.noteID];
+    [newNoteN setNote:newNoteParent];
+    [newNoteN setNoteid:self.noteID];
+    [[newNoteN note] setTitle:noteTitle];
+    [[newNoteN note] setContent:content];
+    [[newNoteN note] setTopImage:currentTopImage];
+    [[newNoteN note] setImage2:[[self imageView2] image]];
+    [[newNoteN note] setImage3:[[self imageView3] image]];
+    [[newNoteN note] setImage4:[[self imageView4] image]];
+    [newNoteN setLocation:currentNoteLocation];
+    
+    //MoreShuffle *ms = ((MoreShuffle*)self.parentViewController);
+    
+    //[ms.notesToSelectedLecture addObject:newNoteN];
+    
+    //NoteShuffleViewController *nsv =(NoteShuffleViewController*)[[[self parentViewController] parentViewController] presentedViewController];
+    [_nsv.shuffleSKScene.notesToSelectedLecture addObject:newNoteN];
+    NSArray* notes;
+    NSSet *setOfNotes;
+    notes = [[NSArray alloc] initWithArray:_nsv.shuffleSKScene.notesToSelectedLecture];
+    setOfNotes = [[NSSet alloc] initWithArray:notes];
+    [_nsv.selectedLecture.lecture addNotes:setOfNotes];
+    [self dismissNewNoteViewController];
+}
+
+//Below code is added by Rafique
+- (NSManagedObjectContext *)managedObjectContext {
+    NSManagedObjectContext *context = nil;
+    id delegate = [[UIApplication sharedApplication] delegate];
+    if ([delegate performSelector:@selector(managedObjectContext)]) {
+        context = [delegate managedObjectContext];
+    }
+    return context;
+}
+
+//till here - Added by Mohammad Rafique
+
 #pragma mark - Segue
 
 - (void)dismissNewNoteViewController
 {
-    [self dismissViewControllerAnimated:YES completion:^{
+    [self.parentViewController dismissViewControllerAnimated:YES completion:^{
         NSLog(@"DEBUG: Dismissed NewNotesViewController.");
     }];
 }

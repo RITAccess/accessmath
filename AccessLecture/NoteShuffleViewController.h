@@ -7,9 +7,11 @@
 //
 
 #import "AMLecture.h"
+#import "MoreShuffle.h"
 
 @interface NoteShuffleViewController : UIViewController
 
 @property AMLecture *selectedLecture;
+@property (strong) MoreShuffle *shuffleSKScene;//added from .m file by Rafique
 
 @end

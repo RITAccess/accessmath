@@ -35,6 +35,10 @@
 		2CA93202188596D400199CC4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CA93201188596D400199CC4 /* Images.xcassets */; };
 		2CF45FDD17971C0400E6C69E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF45FDC17971C0400E6C69E /* QuartzCore.framework */; };
 		32C23AE47DD846CB8427DBC1 /* libPods-AccessLecture Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FAD181C458E4CEEB87F6ECE /* libPods-AccessLecture Tests.a */; };
+		382B54AF2075712C001BD481 /* SearchTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 382B54AE2075712C001BD481 /* SearchTextField.m */; };
+		38A2E99D20CEDA13005CAA0D /* NoteResetButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A2E99C20CEDA13005CAA0D /* NoteResetButton.m */; };
+		38A2E9A020D07F06005CAA0D /* StackPapersButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A2E99F20D07F06005CAA0D /* StackPapersButton.m */; };
+		38A2E9A420F7EE9E005CAA0D /* NoteTopImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A2E9A320F7EE9E005CAA0D /* NoteTopImageViewController.m */; };
 		3F07C34F187B2BA7005BC7EC /* TextNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F07C34E187B2BA7005BC7EC /* TextNoteViewController.m */; };
 		3F07C352187B3627005BC7EC /* TextNoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F07C351187B3627005BC7EC /* TextNoteView.m */; };
 		3F0DBDD613BD174900E3FEE8 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0DBDD413BD174900E3FEE8 /* AboutViewController.m */; };
@@ -70,6 +74,7 @@
 		3FED96191370863E00D8D1B8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FED96181370863E00D8D1B8 /* main.m */; };
 		3FED961C1370863E00D8D1B8 /* AccessLectureAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FED961B1370863E00D8D1B8 /* AccessLectureAppDelegate.m */; };
 		3FFCFB2213A25388003DAB63 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FFCFB2113A25388003DAB63 /* MessageUI.framework */; };
+		4AAE47460ED33D6DAB892E6E /* libPods-AccessLecture.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC023B512F24FD184B9F806 /* libPods-AccessLecture.a */; };
 		4C325F3D1CD93BFB002AFC23 /* _Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C325F321CD93BFB002AFC23 /* _Note.m */; };
 		4C325F3E1CD93BFB002AFC23 /* _NoteTakingNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C325F341CD93BFB002AFC23 /* _NoteTakingNote.m */; };
 		4C325F3F1CD93BFB002AFC23 /* _ShuffleNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C325F361CD93BFB002AFC23 /* _ShuffleNote.m */; };
@@ -231,6 +236,16 @@
 		2CDF995E193CDE32005707D3 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		2CDF9961193CDE70005707D3 /* SearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		2CF45FDC17971C0400E6C69E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		382B54AD2075712C001BD481 /* SearchTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchTextField.h; sourceTree = "<group>"; };
+		382B54AE2075712C001BD481 /* SearchTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchTextField.m; sourceTree = "<group>"; };
+		38A2E99B20CEDA13005CAA0D /* NoteResetButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteResetButton.h; sourceTree = "<group>"; };
+		38A2E99C20CEDA13005CAA0D /* NoteResetButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteResetButton.m; sourceTree = "<group>"; };
+		38A2E99E20D07F06005CAA0D /* StackPapersButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StackPapersButton.h; sourceTree = "<group>"; };
+		38A2E99F20D07F06005CAA0D /* StackPapersButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StackPapersButton.m; sourceTree = "<group>"; };
+		38A2E9A120EE0C2D005CAA0D /* AccessLecture 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "AccessLecture 2.xcdatamodel"; sourceTree = "<group>"; };
+		38A2E9A220F7EE9E005CAA0D /* NoteTopImageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteTopImageViewController.h; sourceTree = "<group>"; };
+		38A2E9A320F7EE9E005CAA0D /* NoteTopImageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteTopImageViewController.m; sourceTree = "<group>"; };
+		38A2E9A5210777F6005CAA0D /* AccessLecture 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "AccessLecture 3.xcdatamodel"; sourceTree = "<group>"; };
 		3F07C34D187B2BA7005BC7EC /* TextNoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextNoteViewController.h; sourceTree = "<group>"; };
 		3F07C34E187B2BA7005BC7EC /* TextNoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextNoteViewController.m; sourceTree = "<group>"; };
 		3F07C350187B3627005BC7EC /* TextNoteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextNoteView.h; sourceTree = "<group>"; };
@@ -417,6 +432,7 @@
 				3F6D11D517625F270066A4FA /* CFNetwork.framework in Frameworks */,
 				3FED96101370863E00D8D1B8 /* CoreGraphics.framework in Frameworks */,
 				3FFCFB2213A25388003DAB63 /* MessageUI.framework in Frameworks */,
+				4AAE47460ED33D6DAB892E6E /* libPods-AccessLecture.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -862,6 +878,12 @@
 				4CBD62B41A89516500B6AC9E /* ContinueButton.m */,
 				21EF12CF1BC8055C001B0121 /* NoteShuffleButton.h */,
 				21EF12D01BC8055C001B0121 /* NoteShuffleButton.m */,
+				382B54AD2075712C001BD481 /* SearchTextField.h */,
+				382B54AE2075712C001BD481 /* SearchTextField.m */,
+				38A2E99B20CEDA13005CAA0D /* NoteResetButton.h */,
+				38A2E99C20CEDA13005CAA0D /* NoteResetButton.m */,
+				38A2E99E20D07F06005CAA0D /* StackPapersButton.h */,
+				38A2E99F20D07F06005CAA0D /* StackPapersButton.m */,
 			);
 			path = AccessLectureKit;
 			sourceTree = "<group>";
@@ -1050,6 +1072,8 @@
 				C9C136231C7CE97400EAAA74 /* SaveImage.m */,
 				C97E9AD81C7F908100EF7783 /* SaveTextSize.h */,
 				C97E9AD91C7F908100EF7783 /* SaveTextSize.m */,
+				38A2E9A220F7EE9E005CAA0D /* NoteTopImageViewController.h */,
+				38A2E9A320F7EE9E005CAA0D /* NoteTopImageViewController.m */,
 			);
 			name = NewNotesSection;
 			sourceTree = "<group>";
@@ -1061,6 +1085,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3FED96281370863E00D8D1B8 /* Build configuration list for PBXNativeTarget "AccessLecture" */;
 			buildPhases = (
+				F20BA70083F6C4E3CD6C5C34 /* [CP] Check Pods Manifest.lock */,
 				C689DAC0904340B8B718833A /* Check Pods Manifest.lock */,
 				3FED96031370863E00D8D1B8 /* Sources */,
 				3FED96041370863E00D8D1B8 /* Frameworks */,
@@ -1068,6 +1093,8 @@
 				6BBD5438D4314FD2921B91D1 /* Copy Pods Resources */,
 				4C4691021AB7677E006EE0CF /* Embed Frameworks */,
 				844AC1BF7C8108F16026D9E9 /* Embed Pods Frameworks */,
+				747185606C38C18AEE81B068 /* [CP] Embed Pods Frameworks */,
+				CB681CF8C7008A84CF506924 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1117,11 +1144,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4CE742D21768BDE60026DE71 /* Build configuration list for PBXNativeTarget "AccessLecture Tests" */;
 			buildPhases = (
+				77AE3C8FAF5D6BEED3AE353B /* [CP] Check Pods Manifest.lock */,
 				5D7CE565F90449668FE5BE49 /* Check Pods Manifest.lock */,
 				4CE742BF1768BDE60026DE71 /* Sources */,
 				4CE742C01768BDE60026DE71 /* Frameworks */,
 				4CE742C11768BDE60026DE71 /* Resources */,
 				0E2B979D8C4A48469A125E87 /* Copy Pods Resources */,
+				9D85FC0E6EFB2FD2F67E6B99 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1143,7 +1172,8 @@
 				LastUpgradeCheck = 0700;
 				TargetAttributes = {
 					3FED96061370863E00D8D1B8 = {
-						DevelopmentTeam = 4ZD4B3UWF7;
+						DevelopmentTeam = 2X5NZU49U4;
+						ProvisioningStyle = Automatic;
 					};
 					4C4691091AB767CF006EE0CF = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -1262,6 +1292,39 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AccessLecture/Pods-AccessLecture-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		747185606C38C18AEE81B068 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AccessLecture/Pods-AccessLecture-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		77AE3C8FAF5D6BEED3AE353B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AccessLecture Tests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		844AC1BF7C8108F16026D9E9 /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1277,6 +1340,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AccessLecture/Pods-AccessLecture-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		9D85FC0E6EFB2FD2F67E6B99 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AccessLecture Tests/Pods-AccessLecture Tests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		C689DAC0904340B8B718833A /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1290,6 +1368,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		CB681CF8C7008A84CF506924 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-AccessLecture/Pods-AccessLecture-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/ACEDrawingView/ACEDraggableText.bundle",
+				"${PODS_ROOT}/IQKeyboardManager/KeyboardTextFieldDemo/IQKeyBoardManager/IQButtonBarArrowLeft@2x.png",
+				"${PODS_ROOT}/IQKeyboardManager/KeyboardTextFieldDemo/IQKeyBoardManager/IQButtonBarArrowRight@2x.png",
+				"${PODS_ROOT}/NoticeView/NoticeView/WBNoticeView/NoticeView.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ACEDraggableText.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQButtonBarArrowLeft@2x.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQButtonBarArrowRight@2x.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/NoticeView.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AccessLecture/Pods-AccessLecture-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F20BA70083F6C4E3CD6C5C34 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AccessLecture-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1364,6 +1484,7 @@
 				C928E87D1C88CA7800E37CC5 /* BackgroundTile.m in Sources */,
 				C928E8641C88C5EE00E37CC5 /* ShuffleNoteActions.m in Sources */,
 				21BFC94D1C57EBCF001BD5C8 /* SaveData.m in Sources */,
+				38A2E9A420F7EE9E005CAA0D /* NoteTopImageViewController.m in Sources */,
 				3F8B515718FD90580053BFE8 /* UIImage+RoundedCorner.m in Sources */,
 				3F8FD2C418AD21860059EF9C /* AMOpenButton.m in Sources */,
 				4CFC4BED1A76E72C001E2E27 /* NewLectureController.m in Sources */,
@@ -1387,7 +1508,10 @@
 				4CFC4BEA1A76D859001E2E27 /* SaveButton.m in Sources */,
 				21EF12D11BC8055C001B0121 /* NoteShuffleButton.m in Sources */,
 				4CFC4BF01A76E961001E2E27 /* CheckButton.m in Sources */,
+				38A2E99D20CEDA13005CAA0D /* NoteResetButton.m in Sources */,
 				4CFC4BE11A76CFDF001E2E27 /* NewLectureButton.m in Sources */,
+				382B54AF2075712C001BD481 /* SearchTextField.m in Sources */,
+				38A2E9A020D07F06005CAA0D /* StackPapersButton.m in Sources */,
 				4C4FA6FD1A76C14400161ABE /* AccessLectureKit.m in Sources */,
 				4CFC4BF31A795500001E2E27 /* ALTextField.m in Sources */,
 				4CBD62B51A89516500B6AC9E /* ContinueButton.m in Sources */,
@@ -1495,7 +1619,9 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = 2X5NZU49U4;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AccessLecture/AccessLecture-Prefix.pch";
@@ -1517,10 +1643,11 @@
 					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = edu.rit.se.accesslecture;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.rit.se.accesslectureEdited;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
@@ -1545,7 +1672,9 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = 2X5NZU49U4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AccessLecture/AccessLecture-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1567,10 +1696,11 @@
 					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = edu.rit.se.accesslecture;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.rit.se.accesslectureEdited;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
@@ -1861,9 +1991,11 @@
 		4CDB057B17B557C300D8EB85 /* AccessLecture.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				38A2E9A5210777F6005CAA0D /* AccessLecture 3.xcdatamodel */,
+				38A2E9A120EE0C2D005CAA0D /* AccessLecture 2.xcdatamodel */,
 				4CDB057C17B557C300D8EB85 /* AccessLecture.xcdatamodel */,
 			);
-			currentVersion = 4CDB057C17B557C300D8EB85 /* AccessLecture.xcdatamodel */;
+			currentVersion = 38A2E9A5210777F6005CAA0D /* AccessLecture 3.xcdatamodel */;
 			path = AccessLecture.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

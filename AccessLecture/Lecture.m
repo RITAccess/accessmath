@@ -9,8 +9,8 @@
 #import "Lecture.h"
 #import "NoteTakingNote.h"
 #import "ImageNoteViewController.h"
-#import "AMLecture.h"
 #import "Note.h"
+#import "FileManager.h"//Added by Rafique
 @interface Lecture ()
 
 // Override public readonly
@@ -24,7 +24,8 @@
 
 - (id)initWithCoder:(NSCoder *)aCoder {
     if (self = [super init]) {
-        _notes = [aCoder decodeObjectForKey:@"NotesArray"];
+        //_notes = [aCoder decodeObjectForKey:@"NotesArray"];
+        _notes = _selectedLecture.notes;
     }
     return self;
 }

@@ -1,6 +1,7 @@
 // Copyright 2011 Access Lecture. All rights reserved.
 
 #import <UIKit/UIKit.h>
+#import "ALMetaData.h"//Added by Rafique
 
 @interface AccessLectureAppDelegate : NSObject <UIApplicationDelegate>
 {
@@ -14,5 +15,14 @@
 @property (nonatomic) IBOutlet UIWindow* window;
 @property (nonatomic) NSUserDefaults* defaults;
 @property (nonatomic, strong) UINavigationController* navigationController;
+
+//Below is added by Rafique
+@property (nonatomic, strong) ALMetaData *metadata;
+
+@property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;
+@property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+
+- (NSURL *)applicationDocumentsDirectory; // nice to have to reference files for core data
 
 @end

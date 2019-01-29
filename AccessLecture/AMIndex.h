@@ -21,4 +21,8 @@ extern NSString *const FSFileChangeNotification;
 - (NSArray *)objectForKeyedSubscript:(id <NSCopying>)key;
 + (NSString *)localDocumentsDirectoryPath;
 
+//Added below code
+
+@property (nonatomic,assign) NSString *searchCriteria;
+
 @end

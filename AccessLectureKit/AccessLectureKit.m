@@ -35,6 +35,88 @@ static UIColor* _brushDefault = nil;
 
 #pragma mark Drawing Methods
 
+//Added by Rafique
++ (CGPoint)calculatePointFromPoint:(CGPoint)point angle:(CGFloat)angle distance:(CGFloat)distance {
+    return CGPointMake(point.x + cosf(angle) * distance, point.y + sinf(angle) * distance);
+}
+
+//Added by Rafique
++ (void)drawResetNoteButtonWithFrame: (CGRect)frame
+{
+    //// Color Declarations
+    UIColor* color0 = [UIColor colorWithRed: 0 green: 0 blue: 0 alpha: 1];
+    
+    //// Subframes
+    CGRect left = CGRectMake(CGRectGetMinX(frame) + 18.26, CGRectGetMinY(frame) + 8, CGRectGetWidth(frame) - 37, CGRectGetHeight(frame) - 16);
+    
+    CGRect iconBounds = CGRectMake(CGRectGetMinX(left) + floor(CGRectGetWidth(left) * 0.00000 + 0.5), CGRectGetMinY(left) + floor(CGRectGetHeight(left) * 0.00000 + 0.5), floor(CGRectGetWidth(left) * 1.00000 + 0.5) - floor(CGRectGetWidth(left) * 0.00000 + 0.5), floor(CGRectGetHeight(left) * 1.00000 + 0.5) - floor(CGRectGetHeight(left) * 0.00000 + 0.5));
+
+    
+    {
+        CGFloat frameHeight = iconBounds.size.height;
+        CGFloat frameWidth = iconBounds.size.width;
+        CGPoint frameCenter = CGPointMake(frameWidth/2, frameHeight/2);
+        //For anticlockwise
+        UIBezierPath *arc2path = [UIBezierPath bezierPathWithArcCenter:frameCenter radius:(frameWidth/2) startAngle:(M_PI) endAngle:((3*M_PI)/2) clockwise:NO];
+        //For clockwise
+        //UIBezierPath *arc2path = [UIBezierPath bezierPathWithArcCenter:frameCenter radius:(frameWidth/2) startAngle:0 endAngle:((3*M_PI)/2) clockwise:YES];
+        CGPoint currPoint = [arc2path currentPoint];
+        
+        [color0 setStroke];
+        arc2path.lineWidth = 6;
+        [arc2path stroke];
+        
+        CGFloat distance = 10.0;
+        UIBezierPath *arrowPath = [UIBezierPath bezierPath];
+        [arrowPath moveToPoint:currPoint];
+        CGFloat arrowAngle = (CGFloat)(180.0 * 3.14/180.0);
+        [arrowPath addLineToPoint:[self calculatePointFromPoint:currPoint angle:arrowAngle + M_PI_2 distance:distance]];
+        [arrowPath addLineToPoint:[self calculatePointFromPoint:currPoint angle:arrowAngle distance:distance]];
+        [arrowPath addLineToPoint:[self calculatePointFromPoint:currPoint angle:arrowAngle - M_PI_2 distance:distance]];
+        [arrowPath closePath];
+        
+        [color0 setStroke];
+        arrowPath.lineWidth = 2;
+        [color0 setFill];
+        [arrowPath fill];
+        [arrowPath stroke];
+    }
+}
+
++ (void)drawStackPapersButtonWithFrame: (CGRect)frame
+{
+    UIColor* color0 = [UIColor colorWithRed: 0 green: 0 blue: 0 alpha: 1];
+    
+    /*
+    UIBezierPath *rect2Path = [UIBezierPath bezierPathWithRect:CGRectMake(CGRectGetMinX(frame) + 18.26, CGRectGetMinY(frame) + 8, CGRectGetWidth(frame) - 37, CGRectGetHeight(frame) - 16)];
+    
+    [color0 setStroke];
+    rect2Path.lineWidth = 6;
+    [rect2Path stroke];
+     */
+    
+    CGRect your_Icon = CGRectMake(CGRectGetMinX(frame) + 19, CGRectGetMinY(frame) + 9.43, CGRectGetWidth(frame) - 37.9, CGRectGetHeight(frame) - 19);
+    
+    UIBezierPath* bezier2Path = UIBezierPath.bezierPath;
+    [bezier2Path moveToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 0.00000 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 1.00000 * CGRectGetHeight(your_Icon))];
+    [bezier2Path addLineToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 1.00000 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 1.00000 * CGRectGetHeight(your_Icon))];
+    [bezier2Path addLineToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 1.00000 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 0.00123 * CGRectGetHeight(your_Icon))];
+    [bezier2Path addLineToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 0.59197 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 0.00123 * CGRectGetHeight(your_Icon))];
+    [bezier2Path addLineToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 0.59197 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 0.08889 * CGRectGetHeight(your_Icon))];
+    [bezier2Path addLineToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 0.91351 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 0.08889 * CGRectGetHeight(your_Icon))];
+    [bezier2Path addLineToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 0.91351 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 0.91233 * CGRectGetHeight(your_Icon))];
+    [bezier2Path addLineToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 0.08649 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 0.91233 * CGRectGetHeight(your_Icon))];
+    [bezier2Path addLineToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 0.08649 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 0.60001 * CGRectGetHeight(your_Icon))];
+    [bezier2Path addLineToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 0.00000 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 0.60001 * CGRectGetHeight(your_Icon))];
+    [bezier2Path addLineToPoint: CGPointMake(CGRectGetMinX(your_Icon) + 0.00000 * CGRectGetWidth(your_Icon), CGRectGetMinY(your_Icon) + 1.00000 * CGRectGetHeight(your_Icon))];
+    [bezier2Path closePath];
+    bezier2Path.miterLimit = 4;
+    
+    [color0 setFill];
+    [bezier2Path fill];
+    
+}
+
 + (void)drawBackButtonWithFrame: (CGRect)frame
 {
     //// Color Declarations

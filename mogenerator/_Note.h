@@ -24,6 +24,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, nullable) NSString* title;
 
+@property (nonatomic, strong, nullable) UIImage* topImage;
+@property (nonatomic, strong, nullable) UIImage* image2;
+@property (nonatomic, strong, nullable) UIImage* image3;
+@property (nonatomic, strong, nullable) UIImage* image4;
+
 @end
 
 @interface _Note (CoreDataGeneratedPrimitiveAccessors)
@@ -46,6 +51,10 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)content;
 + (NSString *)id;
 + (NSString *)title;
++ (NSString *)topImage;
++ (NSString *)image2;
++ (NSString *)image3;
++ (NSString *)image4;
 @end
 
 NS_ASSUME_NONNULL_END

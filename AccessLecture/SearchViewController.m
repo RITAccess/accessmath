@@ -93,8 +93,8 @@
     _sidePanelController.title = _selectedLecture.metadata.title;
     
     // TODO: get lecture timestamp too
-    _notes = [[NSArray alloc]initWithArray:_selectedLecture.lecture.notes];
-    
+    //_notes = [[NSArray alloc]initWithArray:_selectedLecture.lecture.notes];
+    _notes = [[NSArray alloc]initWithArray:_selectedLecture.notes];
     // TODO: pass notes to note search view controller
     NSMutableArray *lectureNoteTitles = [NSMutableArray new];
     for (NoteTakingNote* note in _notes) {

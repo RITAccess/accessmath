@@ -62,6 +62,14 @@
 
 @dynamic title;
 
+@dynamic topImage;
+
+@dynamic image2;
+
+@dynamic image3;
+
+@dynamic image4;
+
 @end
 
 @implementation NoteAttributes 
@@ -73,6 +81,18 @@
 }
 + (NSString *)title {
 	return @"title";
+}
++ (NSString *)topImage {
+    return @"topImage";
+}
++ (NSString *)image2 {
+    return @"image2";
+}
++ (NSString *)image3 {
+    return @"image3";
+}
++ (NSString *)image4 {
+    return @"image4";
 }
 @end
 

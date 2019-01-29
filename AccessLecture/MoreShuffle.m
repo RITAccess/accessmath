@@ -7,7 +7,6 @@
 //
 
 #import "Note.h"
-#import "NoteTakingNote.h"
 #import "MoreShuffle.h"
 #import "SaveData.h"
 #import "BackgroundImages.h"
@@ -16,12 +15,24 @@
 #import "BackgroundTile.h"
 #import "TextNoteViewController.h"
 #import "ShuffleNoteActions.h"
+//Below added by Rafique
+#import "AccessLectureKit.h"
 
 @interface MoreShuffle()
 
 @property BOOL created; //checks to see if scene is created
 @property BOOL tappedTwice; //checks to see is node is tapped twice
 @property SKSpriteNode *activeDragNode; //sets the node to be dragged
+
+//Below is added by Rafique
+
+@property NSFileWrapper *fileWrapper;
+/*
+// Core Data
+@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
+@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+ */
 
 @end
 
@@ -55,6 +66,18 @@
     
     //zoom
     UIPinchGestureRecognizer *zoomIn;
+    
+    //*******Below code is added by Rafique
+    /*
+    NSString *noteTitle;
+    NSManagedObjectContext *_managedObjectContext;
+    NSManagedObjectModel *_managedObjectModel;
+    NSPersistentStoreCoordinator *_persistentStoreCoordinator;
+     */
+    __weak SKSpriteNode* _lastAddedNode;
+    __weak SKNode* _lastTouchedNode;
+    NSNumber *lastNoteID;
+    CGPoint currentNoteLocation;
 }
 
 //paper nodes physics categories
@@ -78,15 +101,28 @@ static const int outline3Category = 3;
         self.created = YES;
     }
     
+    //lastNoteID = [NSNumber numberWithInt:-1];
+    self.isLastTouchedNodeNew = YES;
+    
     NSArray* notes = _notesFromSelectedLecture;
+    lastNoteID = [NSNumber numberWithUnsignedLong:(notes.count - 1)];
     for (Note* note in notes) {
         // TODO: create note representation for each note
         NSLog(@"DEBUG from SKView: %@", note.title);
-        [self newPaperFromLecture];
+        //self newPaperFromLecture];
+        if(CGPointEqualToPoint(((NoteTakingNote*)note).location, CGPointMake(0, 0)))
+        {
+            currentNoteLocation = CGPointMake(450, 500);
+        }
+        else
+        {
+            currentNoteLocation = ((NoteTakingNote*)note).location;
+        }
+        [self newPaperFromLectureWithNote:note];
     }
     
     //Initializes array to add and remove notes
-    _notesToSelectedLecture = [[NSMutableArray alloc] init];
+    _notesToSelectedLecture = [[NSMutableArray alloc] init]; //These 3 are commented for now (after updating these variables in newnotesviewcontroller.m)
     _notesToBeRemoved = [[NSMutableArray alloc] init];
     _sceneReset = FALSE;
     
@@ -105,12 +141,14 @@ static const int outline3Category = 3;
     [reset setTitle:@"Reset" forState:UIControlStateNormal];
     [reset addTarget:self action:@selector(resetButton) forControlEvents:UIControlEventTouchUpInside];
 
+    /*Commented for now - doubling up the notes in the Shuffle screen
     notes = _notesFromSelectedLecture;
     for (NoteTakingNote* note in notes) {
         // TODO: create note representation for each note
         NSLog(@"DEBUG from SKView: %@", note.title);
         [self newPaper];
     }
+     */
     
     //detects device orientation specifically for UIButtons
     if ([UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationPortrait || [UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationPortraitUpsideDown) {
@@ -336,11 +374,98 @@ static const int outline3Category = 3;
 //generates more nodes
 -(void)newPaper
 {
-    [self newPaperFromLecture];
+    if(!_lastAddedNode)
+    {
+    [self newPaperFromLectureWithNote:nil];
 
     //Add to lecture view
-    Note *newNote = [[Note alloc] init];
-    [_notesToSelectedLecture addObject:newNote];
+    //Note *newNote = [[Note alloc] init];
+    //NoteTakingNote *newNote1 = [NoteTakingNote insertInManagedObjectContext:[self managedObjectContext]];
+    /*
+    NSManagedObjectContext *tempContext = [self managedObjectContext];
+    NSManagedObject *tempEntity = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:tempContext];
+     */
+    //NoteTakingNote *nt = [[NoteTakingNote alloc] init];
+    //NSManagedObjectContext *nmoc = [nt managedObjectContext];
+    //_nmoc1 = [self managedObjectContext];
+    //NSManagedObjectContext *nmoc2 = [self managedObjectContext];
+    //_ntn = [NoteTakingNote insertInManagedObjectContext:_nmoc1];
+    //NSDictionary *nmoid1 = nmoc1.registeredObjects.allObjects.lastObject.objectID.entity.propertiesByName;
+    //NSDictionary *nmoid2 = nmoc1.registeredObjects.allObjects.lastObject.objectID.entity.properties;
+    //NSDictionary *nmoid3 = nmoc1.registeredObjects.allObjects.lastObject.objectID.entity.attributesByName;
+    //NSDictionary *nmoid4 = nmoc1.registeredObjects.allObjects.lastObject.objectID.entity.userInfo;
+    //NSLog((NSString*)nmoid);
+    //NoteTakingNote *newNote2 = [[NoteTakingNote alloc] init];
+    /********Below code is added by Rafique
+    NSLog(@"Clicked search");
+    //NSString *noteTitle = @"";
+    UIAlertController * alert = [UIAlertController
+                                 alertControllerWithTitle:@"Alert"
+                                 message:@"Search Lectures"
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField){
+        textField.placeholder = @"Enter search criteria";
+        textField.textColor = [UIColor blueColor];
+        textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+        textField.borderStyle = UITextBorderStyleRoundedRect;
+    }];
+    UIAlertAction* cancelButton = [UIAlertAction
+                                   actionWithTitle:@"Cancel"
+                                   style:UIAlertActionStyleDefault
+                                   handler:^(UIAlertAction * action) {
+                                       //Handle your Cancel button action here
+                                       
+                                   }];
+    UIAlertAction* okButton = [UIAlertAction
+                               actionWithTitle:@"OK"
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction * action) {
+                                   //Handle your ok button action here
+                                   noteTitle = alert.textFields.firstObject.text;
+                               }];
+    [alert addAction:cancelButton];
+    [alert addAction:okButton];
+    [[[[[self view] window] rootViewController] presentedViewController] presentViewController:alert animated:nil completion:nil];
+    //[self presentViewController:alert animated:YES completion:nil];
+    //[newNote setTitle:noteTitle];
+    //Till here added by Rafique*/
+    //[newNote1 setTitle:@"TestTitle"];
+    //[tempEntity setValue:@"Test Title" forKey:@"title"];
+    
+    //[_notesToSelectedLecture addObject:newNote];
+    /*
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Note" inManagedObjectContext:tempContext];
+    [request setEntity:entity];
+    NSError *error;
+    NSArray *notes = [tempContext executeFetchRequest:request error:&error];
+    BOOL isRetained = [tempContext retainsRegisteredObjects];
+    [tempContext refreshObject:tempEntity mergeChanges:YES];
+    isRetained = [tempContext retainsRegisteredObjects];
+     */
+    //[newNoteN setTitle:@"Sample Test Title"];
+    //[newNoteN setContent:@"Sample Test Content"];
+    //Note *newNoteParent = [Note insertInManagedObjectContext:_nmoc1];
+    //NSManagedObject *nmo1 = _nmoc1.registeredObjects.allObjects.lastObject;
+    //NSNumber *nmo1id = [nmo1 valueForKey:@"noteid"];
+    int *tempnum = lastNoteID.intValue + 1;
+    NSNumber *newID = [NSNumber numberWithInt:tempnum];
+    //[newNoteN setNote:newNoteParent];
+    //[newNoteN setNoteid:newID];
+    //[[newNoteN note] setTitle:@"Sample Test Title"];
+    //[[newNoteN note] setContent:@"Sample Test Content"];
+    //[_notesToSelectedLecture addObject:newNoteN]; //moved to NewNotesViewController.m in continueSave method
+    SKNode *associatedNode = _lastAddedNode;
+    NSMutableDictionary *noteProperties = [[NSMutableDictionary alloc] init];
+    noteProperties[@"id"] = newID;
+    associatedNode.userData = noteProperties;
+    //_lastAddedNode = nil;
+    lastNoteID = newID;
+    }
+    else
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"DuplicateNewNoteNotification" object:nil];
+    }
 }
 
 /**
@@ -364,6 +489,53 @@ static const int outline3Category = 3;
     [self addDeleteButton:newPap];
     
     [self addChild:newPap];
+    _lastAddedNode = newPap;
+}
+
+//Below method added by Rafique
+-(void)newPaperFromLectureWithNote:(Note*)note
+{
+    SKSpriteNode *newPap;
+    
+    if ([saveData sharedData].current != nil) {
+        newPap = [[SKSpriteNode alloc] initWithTexture:[saveData sharedData].current];
+    } else {
+        newPap = [[SKSpriteNode alloc] initWithTexture:[self originalTexture]];
+    }
+    
+    if(!note)
+    {
+        newPap.position = CGPointMake(450, 500);
+    }
+    else
+    {
+        newPap.position = currentNoteLocation;
+    }
+    newPap.name = @"newNodeX";
+    
+    [self addPositionConstraints:newPap];
+    [self makePhysicsBody:newPap];
+    [self addDeleteButton:newPap];
+    
+    if(!note) {
+        [self addChild:newPap];
+        _lastAddedNode = newPap;
+    }
+    
+    else {
+        NSMutableDictionary *noteProperties = [[NSMutableDictionary alloc] init];
+        noteProperties[@"id"] = ((NoteTakingNote*)note).note.id;
+        noteProperties[@"title"] = note.title;
+        noteProperties[@"content"] = note.content;
+        noteProperties[@"topImage"] = note.topImage;
+        noteProperties[@"image2"] = note.image2;
+        noteProperties[@"image3"] = note.image3;
+        noteProperties[@"image4"] = note.image4;
+        noteProperties[@"noteLocation"] = [NSValue valueWithCGPoint:currentNoteLocation];
+        newPap.userData = noteProperties;
+        
+        [self addChild:newPap];
+    }
 }
 
 /*
@@ -485,9 +657,9 @@ static const int outline3Category = 3;
         newNode3.position = CGPointMake(620, 980);
     }
     
-    [self addChild:newNode3];
-    [self addChild:newNode2];
-    [self addChild:newNode];
+    //[self addChild:newNode3];
+    //[self addChild:newNode2];
+    //[self addChild:newNode];
     
     //Undergoing revision
     
@@ -546,6 +718,60 @@ static const int outline3Category = 3;
     notecard.physicsBody.allowsRotation = NO;
 }
 
+//Below method added by Rafique
+-(NSMutableDictionary*)getNoteData
+{
+    NSMutableDictionary *returnedNodeData = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *nodeData = _lastTouchedNode.userData;
+    NSNumber *nodeID = nodeData[@"id"];
+    NSArray* notes = _notesFromSelectedLecture;
+    for (Note* note in notes) {
+        // TODO: create note representation for each note
+        if([nodeID isEqual:((NoteTakingNote*)note).note.id])
+        {
+            self.isLastTouchedNodeNew = NO;
+            returnedNodeData[@"id"] = ((NoteTakingNote*)note).note.id;
+            returnedNodeData[@"title"] = note.title;
+            returnedNodeData[@"content"] = note.content;
+            returnedNodeData[@"topImage"] = note.topImage;
+            returnedNodeData[@"image2"] = note.image2;
+            returnedNodeData[@"image3"] = note.image3;
+            returnedNodeData[@"image4"] = note.image4;
+            returnedNodeData[@"noteLocation"] = [NSValue valueWithCGPoint:currentNoteLocation];
+            return returnedNodeData;
+        }
+    }
+    self.isLastTouchedNodeNew = YES;
+    returnedNodeData[@"id"] = _lastAddedNode.userData[@"id"];
+    returnedNodeData[@"noteLocation"] = [NSValue valueWithCGPoint:currentNoteLocation];
+    _lastAddedNode = nil;
+    return returnedNodeData;
+}
+
+-(NoteTakingNote*) getTouchedNote
+{
+    //NSMutableDictionary *returnedNodeData = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *nodeData = _lastTouchedNode.userData;
+    NSNumber *nodeID = nodeData[@"id"];
+    NSArray* notes = _notesFromSelectedLecture;
+    for (Note* note in notes) {
+        // TODO: create note representation for each note
+        if([nodeID isEqual:((NoteTakingNote*)note).note.id])
+        {
+            self.isLastTouchedNodeNew = NO;
+            return (NoteTakingNote*)note;
+        }
+    }
+    return nil;
+}
+
+-(void)clickedNode:(SKNode*)sprite
+{
+    NSMutableDictionary *nodeData = sprite.userData;
+    NSString *xid = (NSString*)nodeData[@"id"];
+    //NSLog(xid);
+}
+
 #pragma mark: User Interaction with Notecards
 
 //in this section, the nodes' backgrounds will be able to by customized by the students using Access Math
@@ -555,6 +781,7 @@ static const int outline3Category = 3;
     CGPoint scenePosition = [touch locationInNode:self];
     
     SKNode *checkNode = [self nodeAtPoint:scenePosition];
+    _lastTouchedNode = checkNode;//Added by Rafique
     /*
      The following section is divided into cycling through nodes with different names.
      Each has different properties.
@@ -565,9 +792,10 @@ static const int outline3Category = 3;
         if ([touch tapCount] == 2) {
             _tappedTwice = YES;
             if ([checkNode.name isEqualToString:@"newNode"] || [checkNode.name isEqualToString:@"newNode2"] || [checkNode.name isEqualToString:@"newNode3"]) {
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"gotoNotes" object:nil];
+                //[[NSNotificationCenter defaultCenter] postNotificationName:@"gotoNotes" object:nil];
             } else{
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"gotoNewNotes" object:nil];
+                [self clickedNode:checkNode];
             }
         } else if ([touch tapCount] == 1 && !_tappedTwice) {
             _activeDragNode = (SKSpriteNode *)checkNode;
@@ -659,6 +887,7 @@ static const int outline3Category = 3;
     [[saveData sharedData] save];
     UITouch *touch = [touches anyObject];
     CGPoint scenePosition = [touch locationInNode:self];
+    currentNoteLocation = scenePosition;
     
     SKNode *checkNode = [self nodeAtPoint:scenePosition];
     
@@ -669,6 +898,16 @@ static const int outline3Category = 3;
         [self.view addGestureRecognizer:leftSwipe];
         [self.view addGestureRecognizer:panRecognizer];
     }
+}
+
+//Below code is added by Rafique
+- (NSManagedObjectContext *)managedObjectContext {
+    NSManagedObjectContext *context = nil;
+    id delegate = [[UIApplication sharedApplication] delegate];
+    if ([delegate performSelector:@selector(managedObjectContext)]) {
+        context = [delegate managedObjectContext];
+    }
+    return context;
 }
 
 @end

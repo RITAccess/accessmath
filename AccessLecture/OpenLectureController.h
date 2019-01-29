@@ -11,5 +11,6 @@
 #import "PreviewViewController.h"
 
 @interface OpenLectureController : UICollectionViewController <NewLetureVCDelegate, CreateAndPresentLecture, UICollectionViewDelegateFlowLayout>
+@property (strong, nonatomic) IBOutlet UIButton *buttonClearSearch;
 
 @end

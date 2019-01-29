@@ -14,6 +14,8 @@
 
 @interface Lecture : NSObject <NSCoding>
 
+@property (strong) Lecture *selectedLecture;
+
 // Parent Document
 @property (weak) id parent;
 

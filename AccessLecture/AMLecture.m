@@ -91,6 +91,7 @@ static NSString *LectureKey = @"lecture";
     return [UIImage imageWithData:data];
 }
 
+/*
 #pragma mark - Core Data stack
 
 // Returns the managed object context for the application.
@@ -146,6 +147,7 @@ static NSString *LectureKey = @"lecture";
     
     return _persistentStoreCoordinator;
 }
+ */
 
 
 #pragma mark Open and close file wrapper
@@ -216,7 +218,8 @@ static NSString *LectureKey = @"lecture";
 {
     if (_lecture == nil) {
         if (self.fileWrapper != nil) {
-            self.lecture = [self decodeObjectFromWrapperWithPreferredFilename:@"lecture.data"];
+            //self.lecture = [self decodeObjectFromWrapperWithPreferredFilename:@"lecture.data"];
+            self.lecture = [Lecture new];//commented above and added this by Rafique (just to test if anything affects)
         } else {
             self.lecture = [Lecture new];
         }
@@ -296,14 +299,42 @@ static NSString *LectureKey = @"lecture";
 - (NSArray *)notes
 {
     NSLog(@"DEBUG: fetching notes");
+    /*
     NSFetchRequest *allNotes = [[NSFetchRequest alloc] initWithEntityName:@"NoteTakingNote"];
     
     
     NSArray *notes = [[self managedObjectContext] executeFetchRequest:allNotes error:nil];
     
     NSLog(@"DEBUG: %@", notes);
+     */
+    //Commented above code and adding below code by Rafique
+    /*
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Note" inManagedObjectContext:[self managedObjectContext]];
+    [request setEntity:entity];
+    NSError *error;
+    NSArray *notes = [[self managedObjectContext] executeFetchRequest:request error:&error];
+     */
+    NSManagedObjectContext *nmoc = [self managedObjectContext];
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"NoteTakingNote"];
+    NSError *error = nil;
+    NSArray *notes = [nmoc executeFetchRequest:request error:&error];
+    if (!notes) {
+        NSLog(@"Error fetching Employee objects: %@\n%@", [error localizedDescription], [error userInfo]);
+        abort();
+    }
     
     return notes;
+}
+
+//Below code is added by Rafique
+- (NSManagedObjectContext *)managedObjectContext {
+    NSManagedObjectContext *context = nil;
+    id delegate = [[UIApplication sharedApplication] delegate];
+    if ([delegate performSelector:@selector(managedObjectContext)]) {
+        context = [delegate managedObjectContext];
+    }
+    return context;
 }
 
 @end

@@ -19,6 +19,8 @@
 + (UIColor*)brushDefault;
 
 // Drawing Methods
++ (void)drawResetNoteButtonWithFrame: (CGRect)frame;
++ (void)drawStackPapersButtonWithFrame: (CGRect)frame;
 + (void)drawBackButtonWithFrame: (CGRect)frame;
 + (void)drawCreateButtonWithFrame: (CGRect)frame;
 + (void)drawSearchButtonWithFrame: (CGRect)frame;
@@ -34,7 +36,6 @@
 // Generated Images
 + (UIImage*)imageOfBackButtonWithFrame: (CGRect)frame;
 + (UIImage*)imageOfNoLecture:(CGRect)frame;
-
 @end
 
 

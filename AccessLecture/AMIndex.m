@@ -61,11 +61,17 @@ NSString *const FSFileChangeNotification = @"static NSString *const FSFileChange
 
 - (NSArray *)objectForKeyedSubscript:(id <NSCopying>)key;
 {
-    NSString *requested = [[(NSString *)key stringByExpandingTildeInPath] stringByStandardizingPath];
+    NSArray<NSString*> *splitKey = [(NSString*) key componentsSeparatedByString:@","];
+    NSString *requested = splitKey[0];
+    NSString *sText = nil;
+    if([splitKey count] > 1)
+    {
+        sText = splitKey[1];
+    }
     bool directoryRequest = [[requested substringFromIndex:requested.length - 1] isEqualToString:@"*"];
     if (directoryRequest) {
         NSString *dir = [requested substringToIndex:requested.length - 1];
-        return [AMIndex listContentsOfDirectory:dir justDirectorys:YES];
+        return [AMIndex listContentsOfDirectory:[dir stringByExpandingTildeInPath] justDirectorys:YES]; //added stringBy... word
     }
     
     static NSString *path;
@@ -74,20 +80,39 @@ NSString *const FSFileChangeNotification = @"static NSString *const FSFileChange
         // This caching should probable be moved into a global state.
         documents = nil;
     }];
+    /*
     if (documents && path && [requested isEqualToString:path]) {
         return documents;
     } else {
+     */
         path = requested;
         documents = [NSMutableArray new];
         [_db inDatabase:^(FMDatabase *db) {
+            /*
             FMResultSet *results = [db executeQuery:@"select * from fs_name_index where directory=? order by modification desc;", [path stringByAbbreviatingWithTildeInPath]];
+             */
+            
+            // Added this code to perform search operation on the documents when user clicked Search button
+            FMResultSet *results;
+            //NSString *searchText = @"Dir";
+            if(sText == nil)
+            {
+                results = [db executeQuery:@"select * from fs_name_index where directory=? order by modification desc;", [path stringByAbbreviatingWithTildeInPath]];
+            }
+            else {
+                NSString *searchTextStart = [sText stringByAppendingString:@"%"];
+                results = [db executeQuery:@"select * from fs_name_index where directory=? and filename like ? order by modification desc;", [path stringByAbbreviatingWithTildeInPath], searchTextStart];
+            }
+            
             while ([results next]) {
                 [documents addObject:[results stringForColumn:@"filename"]];
             }
             [results close];
         }];
         return (NSArray *)documents;
+    /*
     }
+     */
 }
 
 - (void)beginIndexing

@@ -117,7 +117,8 @@
                 l.text = _selectedLecture.metadata.dateCreated.description ?: @"No Creation date found";
                 break;
             case 1:
-                l.text = [NSString stringWithFormat:@"Number of notes %ul", _selectedLecture.lecture.notes.count];
+                //l.text = [NSString stringWithFormat:@"Number of notes %ul", _selectedLecture.lecture.notes.count];
+                l.text = [NSString stringWithFormat:@"Number of notes %lu", (unsigned long)_selectedLecture.notes.count];
                 break;
             default:
                 break;
