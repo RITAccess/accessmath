@@ -91,64 +91,6 @@ static NSString *LectureKey = @"lecture";
     return [UIImage imageWithData:data];
 }
 
-/*
-#pragma mark - Core Data stack
-
-// Returns the managed object context for the application.
-// If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
-- (NSManagedObjectContext *)managedObjectContext
-{
-    if (_managedObjectContext != nil) {
-        return _managedObjectContext;
-    }
-    
-    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
-    if (coordinator != nil) {
-        _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-        [_managedObjectContext setPersistentStoreCoordinator:coordinator];
-    }
-    return _managedObjectContext;
-}
-
-// Returns the managed object model for the application.
-// If the model doesn't already exist, it is created from the application's model.
-- (NSManagedObjectModel *)managedObjectModel
-{
-    if (_managedObjectModel != nil) {
-        return _managedObjectModel;
-    }
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"AccessLecture" withExtension:@"momd"];
-    _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
-    return _managedObjectModel;
-}
-
-// Returns the persistent store coordinator for the application.
-// If the coordinator doesn't already exist, it is created and the application's store added to it.
-- (NSPersistentStoreCoordinator *)persistentStoreCoordinator
-{
-    if (_persistentStoreCoordinator != nil) {
-        return _persistentStoreCoordinator;
-    }
-    
-    NSString *documentRoot = [[@"~/Documents/" stringByExpandingTildeInPath]
-                              stringByAppendingPathComponent:
-                              [NSString stringWithFormat:@"%@.sqlite", self.metadata.title]
-                              ];
-    
-    NSURL *storeURL = [NSURL fileURLWithPath:documentRoot isDirectory:NO relativeToURL:NULL];
-    
-    NSError *error = nil;
-    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
-        // Should properly handle dump here, abort() shouldn't be used in production
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }
-    
-    return _persistentStoreCoordinator;
-}
- */
-
 
 #pragma mark Open and close file wrapper
 
@@ -160,12 +102,6 @@ static NSString *LectureKey = @"lecture";
     [self encodeObject:self.lecture toWrappers:wrappers preferredFilename:@"lecture.data"];
     [self encodeImage:self.thumb toWrappers:wrappers preferredFilename:@"thumb.png"];
     
-//    NSURL *storeURL = [[self fileURL] URLByAppendingPathComponent:@"notes.sqlite"];
-//    NSData *sqliteData = [NSData dataWithContentsOfFile:storeURL.path];
-//    
-//    NSFileWrapper *wrap = [[NSFileWrapper alloc] initRegularFileWithContents:sqliteData];
-//    [wrappers setObject:wrap forKey:@"db"];
-//    
     NSFileWrapper *fileWrapper = [[NSFileWrapper alloc] initDirectoryWithFileWrappers:wrappers];
     
     return fileWrapper;
@@ -174,13 +110,7 @@ static NSString *LectureKey = @"lecture";
 - (BOOL)loadFromContents:(id)contents ofType:(NSString *)typeName error:(NSError *__autoreleasing *)outError
 {
     self.fileWrapper = (NSFileWrapper *)contents;
-    
-    // Write sqlite data out to file
-//    NSURL *storeURL = [[self fileURL] URLByAppendingPathComponent:@"notes.sqlite"];
-//    NSFileWrapper *fileWrapper = [self.fileWrapper.fileWrappers objectForKey:@"db"];
-//    NSData *data = [fileWrapper regularFileContents];
-//    [data writeToFile:storeURL.path atomically:YES];
-//    
+
     // Lazy load everything
     self.metadata = nil;
     self.lecture = nil;
@@ -218,8 +148,7 @@ static NSString *LectureKey = @"lecture";
 {
     if (_lecture == nil) {
         if (self.fileWrapper != nil) {
-            //self.lecture = [self decodeObjectFromWrapperWithPreferredFilename:@"lecture.data"];
-            self.lecture = [Lecture new];//commented above and added this by Rafique (just to test if anything affects)
+            self.lecture = [self decodeObjectFromWrapperWithPreferredFilename:@"lecture.data"];
         } else {
             self.lecture = [Lecture new];
         }
@@ -231,13 +160,14 @@ static NSString *LectureKey = @"lecture";
 {
     [self saveWithCompletetion:^(BOOL success) {
         //
+        NSLog(@"DEBUG: document did save - from AMLecture %@", success ? @"YES" : @"NO");
     }];
 }
 
 - (void)saveWithCompletetion:(void(^)(BOOL success))completion
 {
     NSError *error;
-    [self.managedObjectContext save:&error];
+    [[self managedObjectContextForLecture:self] save:&error]; //saves the context (.sqlite)
     NSLog(@"DEBUG: %@", error);
     static dispatch_once_t onceToken;
     if (onceToken) {
@@ -272,10 +202,10 @@ static NSString *LectureKey = @"lecture";
 
 - (id)createNoteAtPosition:(CGPoint)point ofType:(Class)type
 {
-    Note *parent = [Note insertInManagedObjectContext:self.managedObjectContext];
+    Note *parent = [Note insertInManagedObjectContext:[self managedObjectContextForLecture:self]];
     
-    NoteTakingNote *tnote = [NoteTakingNote insertInManagedObjectContext:self.managedObjectContext];
-    ShuffleNote *snote = [ShuffleNote insertInManagedObjectContext:self.managedObjectContext];
+    NoteTakingNote *tnote = [NoteTakingNote insertInManagedObjectContext:[self managedObjectContextForLecture:self]];
+    ShuffleNote *snote = [ShuffleNote insertInManagedObjectContext:[self managedObjectContextForLecture:self]];
 
     [tnote setNote:parent];
     [snote setNote:parent];
@@ -283,7 +213,7 @@ static NSString *LectureKey = @"lecture";
     [tnote setLocation:point];
     [snote setLocation:point];
     
-    [self.managedObjectContext save:nil];
+    [[self managedObjectContextForLecture:self] save:nil];
     
     if ([NSStringFromClass(type) isEqualToString:@"NoteTakingNote"]) {
         return tnote;
@@ -299,23 +229,8 @@ static NSString *LectureKey = @"lecture";
 - (NSArray *)notes
 {
     NSLog(@"DEBUG: fetching notes");
-    /*
-    NSFetchRequest *allNotes = [[NSFetchRequest alloc] initWithEntityName:@"NoteTakingNote"];
     
-    
-    NSArray *notes = [[self managedObjectContext] executeFetchRequest:allNotes error:nil];
-    
-    NSLog(@"DEBUG: %@", notes);
-     */
-    //Commented above code and adding below code by Rafique
-    /*
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Note" inManagedObjectContext:[self managedObjectContext]];
-    [request setEntity:entity];
-    NSError *error;
-    NSArray *notes = [[self managedObjectContext] executeFetchRequest:request error:&error];
-     */
-    NSManagedObjectContext *nmoc = [self managedObjectContext];
+    NSManagedObjectContext *nmoc = [self managedObjectContextForLecture:self];
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"NoteTakingNote"];
     NSError *error = nil;
     NSArray *notes = [nmoc executeFetchRequest:request error:&error];
@@ -327,12 +242,12 @@ static NSString *LectureKey = @"lecture";
     return notes;
 }
 
-//Below code is added by Rafique
-- (NSManagedObjectContext *)managedObjectContext {
+//Get the managed object context from AccessLectureAppDelegate class
+- (NSManagedObjectContext *)managedObjectContextForLecture:(AMLecture*)lecture {
     NSManagedObjectContext *context = nil;
     id delegate = [[UIApplication sharedApplication] delegate];
-    if ([delegate performSelector:@selector(managedObjectContext)]) {
-        context = [delegate managedObjectContext];
+    if ([delegate performSelector:@selector(managedObjectContextForLecture:) withObject:lecture]) {
+        context = [delegate managedObjectContextForLecture:lecture];
     }
     return context;
 }

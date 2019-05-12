@@ -363,6 +363,11 @@ static NSString * const directoryCellReuseID = @"directory";
     switch (indexPath.section) {
         case 0:
         {
+            if(![indexPath item])
+            {
+                UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:lectureCellReuseID forIndexPath:indexPath];
+                return [self lectureViewCellWithCell:(LoadingLectureCVC *)cell indexPath:indexPath];
+            }
             UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:directoryCellReuseID forIndexPath:indexPath];
             return [self directoryViewCellWithCell:(DirectoryCVC *)cell indexPath:indexPath];
         } break;

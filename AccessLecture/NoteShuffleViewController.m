@@ -10,7 +10,6 @@
 
 #import "NoteShuffleViewController.h"
 #import <SpriteKit/SpriteKit.h>
-//#import "MoreShuffle.h"
 #import "WeeksNotesViewController.h"
 #import "NewNotesViewController.h"
 
@@ -18,9 +17,9 @@
 #import "ALView+PureLayout.h"
 #import "NSArray+PureLayout.h"
 #import "NavBackButton.h"
-#import "NewLectureButton.h"//added by Rafique
-#import "NoteResetButton.h"//added by Rafique
-#import "StackPapersButton.h"//added by Rafique
+#import "NewLectureButton.h"
+#import "NoteResetButton.h"
+#import "StackPapersButton.h"
 
 @interface NoteShuffleViewController ()
 {
@@ -40,7 +39,6 @@
 
 -(void) viewWillAppear:(BOOL)animated
 {
-    //NSArray* notes = [[NSArray alloc]initWithArray:_selectedLecture.lecture.notes];
     NSArray* notes = [[NSArray alloc]initWithArray:_selectedLecture.notes];
     // Pass notes to MoreShuffle
     self.shuffleSKScene = [[MoreShuffle alloc] initWithSize:CGSizeMake(2000, 1768)];
@@ -73,7 +71,6 @@
         b;
     });
     
-    //Below added by Rafique
     new = ({
         UIButton *b = [NewLectureButton buttonWithType:UIButtonTypeRoundedRect];
         [b addTarget:self action:@selector(newPaperFromMoreShuffleClass) forControlEvents:UIControlEventTouchUpInside];
@@ -150,8 +147,6 @@
                                        actionWithTitle:@"Note"
                                        style:UIAlertActionStyleDefault
                                        handler:^(UIAlertAction * action) {
-                                           //Handle your yes please button action here
-                                           //[self takePhoto];
                                            [self.shuffleSKScene newPaper];
                                        }];
     [alert addAction:selectNoteButton];
@@ -159,20 +154,12 @@
                                                  actionWithTitle:@"NoteTakingNote"
                                                  style:UIAlertActionStyleDefault
                                                  handler:^(UIAlertAction * action) {
-                                                     //Handle your yes please button action here
-                                                     //[self choosePhoto];
                                                      //[self.shuffleSKScene newPaper]; //commented for now
                                                  }];
     [alert addAction:selectNoteTakingNoteButton];
     alert.popoverPresentationController.sourceView = new;
     alert.popoverPresentationController.sourceRect = [new bounds];
     [self presentViewController:alert animated:YES completion:nil];
-    /*
-    UILabel *label = [[selectNoteButton valueForKey:@"__representer"] valueForKey:@"label"];
-    if(label != nil){
-        label.attributedText = noteActionMsg;
-    }
-     */
 }
 
 #pragma mark - Segues
@@ -188,14 +175,7 @@
     if (self.shuffleSKScene.sceneReset) {
         [_selectedLecture.lecture zeroNotes];
     }
-    /* Handled in NewNotesViewController
-    if ([self.shuffleSKScene.notesToSelectedLecture count] > 0) {
-        notes = [[NSArray alloc] initWithArray:self.shuffleSKScene.notesToSelectedLecture];
-        setOfNotes = [[NSSet alloc] initWithArray:notes];
-        [_selectedLecture.lecture addNotes:setOfNotes];
-        //[_selectedLecture createNoteOfType:setOfNotes];
-    }
-     */
+    
     if ([self.shuffleSKScene.notesToBeRemoved count] > 0) {
         notes = [[NSArray alloc] initWithArray:self.shuffleSKScene.notesToBeRemoved];
         setOfNotes = [[NSSet alloc] initWithArray:notes];

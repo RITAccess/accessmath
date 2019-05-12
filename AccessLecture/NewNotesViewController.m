@@ -358,31 +358,6 @@ CGFloat y = 15;
     isAddingImage4 = NO;
     
     [self displayAddImageAlertOnButton:[self addImageButton]];
-    /*
-    UIAlertController * alert = [UIAlertController
-                                 alertControllerWithTitle:@"Add an Image"
-                                 message:@"Take a photo or choose one from existing"
-                                 preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction* takePhotoButton = [UIAlertAction
-                                 actionWithTitle:@"Take Photo"
-                                 style:UIAlertActionStyleDefault
-                                 handler:^(UIAlertAction * action) {
-                                     //Handle your yes please button action here
-                                     [self takePhoto];
-                                 }];
-    [alert addAction:takePhotoButton];
-    UIAlertAction* choosePhotoButton = [UIAlertAction
-                                   actionWithTitle:@"Choose Photo"
-                                   style:UIAlertActionStyleDefault
-                                   handler:^(UIAlertAction * action) {
-                                       //Handle your yes please button action here
-                                       [self choosePhoto];
-                                   }];
-    [alert addAction:choosePhotoButton];
-    alert.popoverPresentationController.sourceView = [self addImageButton];
-    alert.popoverPresentationController.sourceRect = [[self addImageButton] bounds];
-    [self presentViewController:alert animated:YES completion:nil];
-     */
 }
 
 - (IBAction)addImage2:(id)sender {
@@ -422,7 +397,6 @@ CGFloat y = 15;
                                       actionWithTitle:@"Take Photo"
                                       style:UIAlertActionStyleDefault
                                       handler:^(UIAlertAction * action) {
-                                          //Handle your yes please button action here
                                           [self takePhoto];
                                       }];
     [alert addAction:takePhotoButton];
@@ -430,7 +404,6 @@ CGFloat y = 15;
                                         actionWithTitle:@"Choose Photo"
                                         style:UIAlertActionStyleDefault
                                         handler:^(UIAlertAction * action) {
-                                            //Handle your yes please button action here
                                             [self choosePhoto];
                                         }];
     [alert addAction:choosePhotoButton];
@@ -564,37 +537,13 @@ CGFloat y = 15;
                                actionWithTitle:@"OK"
                                style:UIAlertActionStyleDefault
                                handler:^(UIAlertAction * action) {
-                                   //Handle your ok button action here
                                    noteTitle = alert.textFields.firstObject.text;
                                    [self continueSave];
                                }];
     [alert addAction:cancelButton];
     [alert addAction:okButton];
-    //[[[[[self view] window] rootViewController] presentedViewController] presentViewController:alert animated:nil completion:nil];
+    
     [self presentViewController:alert animated:YES completion:nil];
-    
-    /*
-    NSString *content = [[self textView] text];
-    UIImage *noteImage = [[self imageView] image];
-    currentNoteDetails[@"title"] = noteTitle;
-    currentNoteDetails[@"content"] = content;
-    currentNoteDetails[@"noteImage"] = noteImage;
-    
-    NSManagedObjectContext *nmoc1 = [self managedObjectContext];
-    NoteTakingNote *newNoteN = [NoteTakingNote insertInManagedObjectContext:nmoc1];
-    Note *newNoteParent = [Note insertInManagedObjectContext:nmoc1];
-    [newNoteN setNote:newNoteParent];
-    [newNoteN setNoteid:[newNoteParent id]];
-    [[newNoteN note] setTitle:@"Sample Test Title"];
-    [[newNoteN note] setContent:@"Sample Test Content"];
-    
-    //MoreShuffle *ms = ((MoreShuffle*)self.parentViewController);
-    
-    //[ms.notesToSelectedLecture addObject:newNoteN];
-    
-    //NoteShuffleViewController *nsv =(NoteShuffleViewController*)[[[self parentViewController] parentViewController] presentedViewController];
-    [_nsv.shuffleSKScene.notesToSelectedLecture addObject:newNoteN];
-     */
 }
 
 -(void)continueSave
@@ -609,7 +558,7 @@ CGFloat y = 15;
     currentNoteDetails[@"image4"] = [[self imageView4] image];
     
     NoteTakingNote *newNoteN;
-    NSManagedObjectContext *nmoc1 = [self managedObjectContext];
+    NSManagedObjectContext *nmoc1 = [self managedObjectContextForLecture:_selectedLecture];
     
     if(!(_nsv.shuffleSKScene.isLastTouchedNodeNew))
     {
@@ -624,20 +573,8 @@ CGFloat y = 15;
         newNoteN = [NoteTakingNote insertInManagedObjectContext:nmoc1];
     }
     
-    //NSManagedObjectContext *nmoc1 = [self managedObjectContext];
-    //NSManagedObjectContext *nmoc2 = [self managedObjectContext];
-    //NoteTakingNote *newNoteN = [NoteTakingNote insertInManagedObjectContext:nmoc1];
     Note *newNoteParent = [Note insertInManagedObjectContext:nmoc1];
     
-    /*
-    NSNumber *lastID = [NSNumber numberWithInt:-1];
-    if (_nmoc1.registeredObjects.count > 0) {
-        NSManagedObject *nmo1 = _nmoc1.registeredObjects.allObjects.lastObject;
-        lastID = [nmo1 valueForKey:@"noteid"];
-    }
-    int newID = lastID.intValue + 1;
-    NSNumber *newIDNumber = [NSNumber numberWithInt:newID];
-     */
     [newNoteParent setId:self.noteID];
     [newNoteN setNote:newNoteParent];
     [newNoteN setNoteid:self.noteID];
@@ -649,11 +586,6 @@ CGFloat y = 15;
     [[newNoteN note] setImage4:[[self imageView4] image]];
     [newNoteN setLocation:currentNoteLocation];
     
-    //MoreShuffle *ms = ((MoreShuffle*)self.parentViewController);
-    
-    //[ms.notesToSelectedLecture addObject:newNoteN];
-    
-    //NoteShuffleViewController *nsv =(NoteShuffleViewController*)[[[self parentViewController] parentViewController] presentedViewController];
     [_nsv.shuffleSKScene.notesToSelectedLecture addObject:newNoteN];
     NSArray* notes;
     NSSet *setOfNotes;
@@ -663,17 +595,15 @@ CGFloat y = 15;
     [self dismissNewNoteViewController];
 }
 
-//Below code is added by Rafique
-- (NSManagedObjectContext *)managedObjectContext {
+//Gets the managed object context from AccessLectureAppDelegate
+- (NSManagedObjectContext *)managedObjectContextForLecture:(AMLecture*)lecture {
     NSManagedObjectContext *context = nil;
     id delegate = [[UIApplication sharedApplication] delegate];
-    if ([delegate performSelector:@selector(managedObjectContext)]) {
-        context = [delegate managedObjectContext];
+    if ([delegate performSelector:@selector(managedObjectContextForLecture:) withObject:lecture]) {
+        context = [delegate managedObjectContextForLecture:lecture];
     }
     return context;
 }
-
-//till here - Added by Mohammad Rafique
 
 #pragma mark - Segue
 

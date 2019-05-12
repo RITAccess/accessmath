@@ -29,7 +29,7 @@
 
 @property (nonatomic, assign) NSNumber *noteID;
 @property NSMutableDictionary *noteData;
-//@property NoteTakingNote *newNoteN;
+
 @property NoteShuffleViewController *nsv;
 @property AMLecture *selectedLecture;
 

@@ -11,6 +11,7 @@
 #import "NoteTakingViewController.h"
 #import "SearchViewController.h"
 #import "NoteShuffleViewController.h"
+#import "OpenLectureController.h"
 #import "AMLecture.h"
 #import "Promise.h"
 #import "TextNoteView.h"
@@ -176,7 +177,15 @@
 - (void)back
 {
     [self saveLecture];
+    
+    //Trying to remove any childViewControllers of lectureViewContainer
+    for (UIViewController *childController in self.childViewControllers) {
+        [childController willMoveToParentViewController:nil];
+        [childController.view removeFromSuperview];
+        [childController removeFromParentViewController];
+    }
     [self dismissViewControllerAnimated:YES completion:nil];
+    
 }
 
 - (void)presentSearch

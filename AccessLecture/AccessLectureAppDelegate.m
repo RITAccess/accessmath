@@ -15,6 +15,7 @@
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
+@synthesize lecture = _lecture;
 
 - (void)saveContext{
     NSError *error = nil;
@@ -27,16 +28,20 @@
     }
 }
 
+#pragma mark - Core Data Stack
+
 - (NSManagedObjectContext *)managedObjectContextForLecture:(AMLecture*)lecture{
-    /*
-    if (_managedObjectContext != nil) {
-        NSEnumerator *enum1 = _persistentStoreCoordinator.persistentStores.objectEnumerator;
-        
-        return _persistentStoreCoordinator.persistentStores.objectEnumerator
-    }*/
+    _lecture = lecture;
     
-    if([[[self managedObjectModel] entitiesByName] objectForKey:lecture.metadata.title]) {
-        return [[[[self managedObjectModel] entitiesByName] objectForKey:lecture.metadata.title] managedObjectModel] ;
+    if([[_persistentStoreCoordinator persistentStores] firstObject] && [[[[[_persistentStoreCoordinator persistentStores] firstObject] URL] absoluteString] containsString:_lecture.metadata.title]) {
+        return _managedObjectContext;
+    }
+    else if (_persistentStoreCoordinator != nil && [[_persistentStoreCoordinator persistentStores] count] > 0 && _lecture.metadata.title != nil) {
+        [self saveContext];
+    }
+    
+    if(_lecture.metadata.title == nil) {
+        return nil;
     }
     
     NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
@@ -71,33 +76,11 @@
 
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator
 {
-    if (_persistentStoreCoordinator != nil) {
+    if ((_persistentStoreCoordinator != nil)  && [[[[[_persistentStoreCoordinator persistentStores] firstObject] URL] absoluteString] containsString:_lecture.metadata.title]) {
         return _persistentStoreCoordinator;
     }
     
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.sqlite", @"1Lecture"]];
-    
-    NSError *error = nil;
-    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
-        
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }
-    
-    return _persistentStoreCoordinator;
-}
-
-//additional method to work with multiple lectures (multiple persistent stores)
-- (NSPersistentStoreCoordinator *)addPersistentStoreCoordinatorForLecture:(AMLecture*)lecture
-{
-    /*
-    if (_persistentStoreCoordinator != nil) {
-        return _persistentStoreCoordinator;
-    }
-     */
-    
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.sqlite", lecture]];
+    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.sqlite", _lecture.metadata.title]];
     
     NSError *error = nil;
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
@@ -117,7 +100,6 @@
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
-//Till here
 
 /**
  Customization after application launches

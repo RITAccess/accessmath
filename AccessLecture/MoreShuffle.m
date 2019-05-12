@@ -24,15 +24,7 @@
 @property BOOL tappedTwice; //checks to see is node is tapped twice
 @property SKSpriteNode *activeDragNode; //sets the node to be dragged
 
-//Below is added by Rafique
-
 @property NSFileWrapper *fileWrapper;
-/*
-// Core Data
-@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
-@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
- */
 
 @end
 
@@ -67,13 +59,6 @@
     //zoom
     UIPinchGestureRecognizer *zoomIn;
     
-    //*******Below code is added by Rafique
-    /*
-    NSString *noteTitle;
-    NSManagedObjectContext *_managedObjectContext;
-    NSManagedObjectModel *_managedObjectModel;
-    NSPersistentStoreCoordinator *_persistentStoreCoordinator;
-     */
     __weak SKSpriteNode* _lastAddedNode;
     __weak SKNode* _lastTouchedNode;
     NSNumber *lastNoteID;
@@ -101,7 +86,6 @@ static const int outline3Category = 3;
         self.created = YES;
     }
     
-    //lastNoteID = [NSNumber numberWithInt:-1];
     self.isLastTouchedNodeNew = YES;
     
     NSArray* notes = _notesFromSelectedLecture;
@@ -109,7 +93,7 @@ static const int outline3Category = 3;
     for (Note* note in notes) {
         // TODO: create note representation for each note
         NSLog(@"DEBUG from SKView: %@", note.title);
-        //self newPaperFromLecture];
+
         if(CGPointEqualToPoint(((NoteTakingNote*)note).location, CGPointMake(0, 0)))
         {
             currentNoteLocation = CGPointMake(450, 500);
@@ -378,88 +362,14 @@ static const int outline3Category = 3;
     {
     [self newPaperFromLectureWithNote:nil];
 
-    //Add to lecture view
-    //Note *newNote = [[Note alloc] init];
-    //NoteTakingNote *newNote1 = [NoteTakingNote insertInManagedObjectContext:[self managedObjectContext]];
-    /*
-    NSManagedObjectContext *tempContext = [self managedObjectContext];
-    NSManagedObject *tempEntity = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:tempContext];
-     */
-    //NoteTakingNote *nt = [[NoteTakingNote alloc] init];
-    //NSManagedObjectContext *nmoc = [nt managedObjectContext];
-    //_nmoc1 = [self managedObjectContext];
-    //NSManagedObjectContext *nmoc2 = [self managedObjectContext];
-    //_ntn = [NoteTakingNote insertInManagedObjectContext:_nmoc1];
-    //NSDictionary *nmoid1 = nmoc1.registeredObjects.allObjects.lastObject.objectID.entity.propertiesByName;
-    //NSDictionary *nmoid2 = nmoc1.registeredObjects.allObjects.lastObject.objectID.entity.properties;
-    //NSDictionary *nmoid3 = nmoc1.registeredObjects.allObjects.lastObject.objectID.entity.attributesByName;
-    //NSDictionary *nmoid4 = nmoc1.registeredObjects.allObjects.lastObject.objectID.entity.userInfo;
-    //NSLog((NSString*)nmoid);
-    //NoteTakingNote *newNote2 = [[NoteTakingNote alloc] init];
-    /********Below code is added by Rafique
-    NSLog(@"Clicked search");
-    //NSString *noteTitle = @"";
-    UIAlertController * alert = [UIAlertController
-                                 alertControllerWithTitle:@"Alert"
-                                 message:@"Search Lectures"
-                                 preferredStyle:UIAlertControllerStyleAlert];
-    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField){
-        textField.placeholder = @"Enter search criteria";
-        textField.textColor = [UIColor blueColor];
-        textField.clearButtonMode = UITextFieldViewModeWhileEditing;
-        textField.borderStyle = UITextBorderStyleRoundedRect;
-    }];
-    UIAlertAction* cancelButton = [UIAlertAction
-                                   actionWithTitle:@"Cancel"
-                                   style:UIAlertActionStyleDefault
-                                   handler:^(UIAlertAction * action) {
-                                       //Handle your Cancel button action here
-                                       
-                                   }];
-    UIAlertAction* okButton = [UIAlertAction
-                               actionWithTitle:@"OK"
-                               style:UIAlertActionStyleDefault
-                               handler:^(UIAlertAction * action) {
-                                   //Handle your ok button action here
-                                   noteTitle = alert.textFields.firstObject.text;
-                               }];
-    [alert addAction:cancelButton];
-    [alert addAction:okButton];
-    [[[[[self view] window] rootViewController] presentedViewController] presentViewController:alert animated:nil completion:nil];
-    //[self presentViewController:alert animated:YES completion:nil];
-    //[newNote setTitle:noteTitle];
-    //Till here added by Rafique*/
-    //[newNote1 setTitle:@"TestTitle"];
-    //[tempEntity setValue:@"Test Title" forKey:@"title"];
-    
-    //[_notesToSelectedLecture addObject:newNote];
-    /*
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Note" inManagedObjectContext:tempContext];
-    [request setEntity:entity];
-    NSError *error;
-    NSArray *notes = [tempContext executeFetchRequest:request error:&error];
-    BOOL isRetained = [tempContext retainsRegisteredObjects];
-    [tempContext refreshObject:tempEntity mergeChanges:YES];
-    isRetained = [tempContext retainsRegisteredObjects];
-     */
-    //[newNoteN setTitle:@"Sample Test Title"];
-    //[newNoteN setContent:@"Sample Test Content"];
-    //Note *newNoteParent = [Note insertInManagedObjectContext:_nmoc1];
-    //NSManagedObject *nmo1 = _nmoc1.registeredObjects.allObjects.lastObject;
-    //NSNumber *nmo1id = [nmo1 valueForKey:@"noteid"];
     int *tempnum = lastNoteID.intValue + 1;
     NSNumber *newID = [NSNumber numberWithInt:tempnum];
-    //[newNoteN setNote:newNoteParent];
-    //[newNoteN setNoteid:newID];
-    //[[newNoteN note] setTitle:@"Sample Test Title"];
-    //[[newNoteN note] setContent:@"Sample Test Content"];
-    //[_notesToSelectedLecture addObject:newNoteN]; //moved to NewNotesViewController.m in continueSave method
+
     SKNode *associatedNode = _lastAddedNode;
     NSMutableDictionary *noteProperties = [[NSMutableDictionary alloc] init];
     noteProperties[@"id"] = newID;
     associatedNode.userData = noteProperties;
-    //_lastAddedNode = nil;
+
     lastNoteID = newID;
     }
     else
@@ -495,7 +405,7 @@ static const int outline3Category = 3;
 //Below method added by Rafique
 -(void)newPaperFromLectureWithNote:(Note*)note
 {
-    SKSpriteNode *newPap;
+    SKSpriteNode *newPap;   
     
     if ([saveData sharedData].current != nil) {
         newPap = [[SKSpriteNode alloc] initWithTexture:[saveData sharedData].current];
@@ -657,10 +567,6 @@ static const int outline3Category = 3;
         newNode3.position = CGPointMake(620, 980);
     }
     
-    //[self addChild:newNode3];
-    //[self addChild:newNode2];
-    //[self addChild:newNode];
-    
     //Undergoing revision
     
     for (int i = 0; i < [[saveData sharedData].array count]; i++) {
@@ -750,7 +656,6 @@ static const int outline3Category = 3;
 
 -(NoteTakingNote*) getTouchedNote
 {
-    //NSMutableDictionary *returnedNodeData = [[NSMutableDictionary alloc] init];
     NSMutableDictionary *nodeData = _lastTouchedNode.userData;
     NSNumber *nodeID = nodeData[@"id"];
     NSArray* notes = _notesFromSelectedLecture;
@@ -898,16 +803,6 @@ static const int outline3Category = 3;
         [self.view addGestureRecognizer:leftSwipe];
         [self.view addGestureRecognizer:panRecognizer];
     }
-}
-
-//Below code is added by Rafique
-- (NSManagedObjectContext *)managedObjectContext {
-    NSManagedObjectContext *context = nil;
-    id delegate = [[UIApplication sharedApplication] delegate];
-    if ([delegate performSelector:@selector(managedObjectContext)]) {
-        context = [delegate managedObjectContext];
-    }
-    return context;
 }
 
 @end
